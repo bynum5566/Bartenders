@@ -1,0 +1,132 @@
+package bar.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class ShowPages {
+
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	public String showLogin() {
+		return "LoginPage";
+	}
+
+	@RequestMapping(path = "/Register", method = RequestMethod.GET)
+	public String showRegister() {
+		return "Register";
+	}
+
+	@RequestMapping(path = "/CRegister", method = RequestMethod.GET)
+	public String showCRegister() {
+		return "CRegister";
+	}
+
+	@RequestMapping(path = "/CLogin", method = RequestMethod.GET)
+	public String showCLogin() {
+		return "CLoginPage";
+	}
+	
+	@RequestMapping(path = "/WelcomeUser", method = RequestMethod.GET)
+	public String showWelcomeUser() {
+		return "WelcomeUser";
+	}
+
+	@RequestMapping(path = "/WelcomeCompany", method = RequestMethod.GET)
+	public String showWelcomeCompany() {
+		return "WelcomeCompany";
+	}
+
+///////////////(李昀陽)/////////////////
+	
+	@RequestMapping(path = "/ResetPassword", method = RequestMethod.GET)
+	public String showResetPassword() {
+		return "ResetPassword";
+	}
+	
+	@RequestMapping(path = "/ResetCompanyPassword", method = RequestMethod.GET)
+	public String showResetCompanyPassword() {
+		return "ResetCompanyPassword";
+	}
+
+	@RequestMapping(path = "/MessageBoard", method = RequestMethod.GET)
+	public String showMessageBoard() {
+		return "MessageBoard";
+	}
+	
+	@RequestMapping(path = "/VerifyPage", method = RequestMethod.GET)
+	public String showVerifyPage() {
+		return "VerifyPage";
+	}
+
+	
+////////////////////////	
+	
+	@RequestMapping(path = "/productViewPage", method = RequestMethod.GET)
+	public String showproductViewPage() {
+		return "productViewPage";
+	}
+///////////////////////////
+	
+	@RequestMapping(path ="/UserOrder")
+	public String showUserOrder() {
+		return "UserOrder";
+	}
+	
+	@RequestMapping(path ="/CompanyOrder")
+	public String showCompanyOrder() {
+		return "CompanyOrder";
+	}
+	
+	@RequestMapping(path ="/ShowChangeOrder")
+	public String showChangeOrder() {
+		return "ShowChangeOrder";
+	}
+	
+	@RequestMapping(path ="/ShowChangeOrderUser")
+	public String showChangeOrderUser() {
+		return "ShowChangeOrderUser";
+	}
+	
+	@RequestMapping(path ="/OrderList")
+	public String showOrderList() {
+		return "OrderList";
+	}
+	
+	@RequestMapping(path ="/CancelOrder")
+	public String showCancelOrder() {
+		return "CancelOrder";
+	}
+	
+	@RequestMapping(path ="/CancelOrderUser")
+	public String showCancelOrderUser() {
+		return "CancelOrderUser";
+	}
+	
+	@RequestMapping(path ="/SalesReport")
+	public String showSalesReport() {
+		return "SalesReport";
+	}
+	///////////////////
+	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
+	public String logistic() {
+		return "logistic/loginSystem";
+	}
+	
+	@RequestMapping(path = "/logistic/loginSuccess", method = RequestMethod.GET)
+	public String loginSuccess() {
+
+		return "logistic/loginSuccess";
+	}
+	
+	@RequestMapping(path = "/logistic/LogisticGate", method = RequestMethod.GET)
+	public String LogisticGate() {
+		return "logistic/LogisticGate";
+	}
+	
+	@RequestMapping(path = "/logistic/QRCodeUpdatePage", method = RequestMethod.GET)
+	public String QRCodeUpdatePage() {
+		return "logistic/QRCodeUpdatePage";
+	}
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="bar.model" />
+	<context:component-scan
+		base-package="bar.controller" />
+	<context:component-scan base-package="bar.model.logistic" />
+	<context:component-scan
+		base-package="bar.controller.logistic" />
+	<mvc:annotation-driven />
+
+	<mvc:resources location="/WEB-INF/resources/images/"
+		mapping="/images/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/scripts/"
+		mapping="/scripts/**"></mvc:resources>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"></property>
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+
+	<mvc:interceptors>
+		<!-- <mvc:interceptor> -->
+		<!-- <mvc:mapping path="/download/**" /> -->
+		<!-- <mvc:mapping path="/upload/**" /> -->
+		<!-- <bean class="com.xxxx.interceptor.AuthInterceptor" /> -->
+		<!-- </mvc:interceptor> -->
+
+		<mvc:interceptor>
+
+
+
+			<mvc:mapping path="/**" />
+
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/Register" />
+			<mvc:exclude-mapping path="/CRegister" />
+			<mvc:exclude-mapping path="/CLogin" />
+			<mvc:exclude-mapping
+				path="/UcheckLogin.controller" />
+			<mvc:exclude-mapping path="/register.do" />
+			<mvc:exclude-mapping path="/Cregister.do" />
+			<mvc:exclude-mapping
+				path="/CcheckLogin.controller" />
+
+
+			<mvc:exclude-mapping path="/googleVerify" />
+			<mvc:exclude-mapping path="/checkGLogin" />
+			<mvc:exclude-mapping path="/checkCGLogin" />
+			<mvc:exclude-mapping path="/Gregister.do" />
+			<mvc:exclude-mapping path="/GCregister.do" />
+
+
+			<mvc:exclude-mapping path="/VerifyPage" />
+			<mvc:exclude-mapping path="/verify" />
+			<mvc:exclude-mapping path="/verifyCompany" />
+			<mvc:exclude-mapping path="/ResetPassword" />
+			<mvc:exclude-mapping path="/resetPassword.controller" />
+			<mvc:exclude-mapping path="/ResetCompanyPassword" />
+			<mvc:exclude-mapping path="/resetCompanyPassword.controller" />
+
+
+			<mvc:exclude-mapping path="/logistic" />
+			<mvc:exclude-mapping path="/logistic/LogisticLogin.do" />
+			<mvc:exclude-mapping path="/logistic/LogisticLogout.do" />
+
+			<!-- 靜態資源 -->
+			<!-- <mvc:exclude-mapping path="/img/**" /> -->
+			<!-- <mvc:exclude-mapping path="/css/**" /> -->
+			<!-- <mvc:exclude-mapping path="/bootstrap/**" /> -->
+			<!-- <mvc:exclude-mapping path="/js/**" /> -->
+			<!-- <mvc:exclude-mapping path="/My97DatePicker/**" /> -->
+			<!-- <mvc:exclude-mapping path="/ueditorFile/**" /> -->
+			<!-- 客戶端文件上傳下載 -->
+			<!-- <mvc:exclude-mapping path="/download/**" /> <mvc:exclude-mapping -->
+			<!-- path="/upload/**" /> -->
+			<!-- 用戶是否已登入檢查 -->
+			<bean id="loginInterceptor" class="util.LoginInterceptor"></bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+
+</beans>

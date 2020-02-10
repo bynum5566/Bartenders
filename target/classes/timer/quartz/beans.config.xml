@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	default-lazy-init="false"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--說明應用程式會使用到annotation組態 -->
+	<context:annotation-config />
+	<!--使用annotation組態的類別放在model套件內 -->
+	<context:component-scan base-package="bar.model" />
+	<context:component-scan base-package="bar.controller" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<mvc:annotation-driven />
+	<mvc:view-controller path="/" view-name="redirect:/Dashboard.Products" />
+	<task:annotation-driven/>
+
+	<bean id="sqlserverJndiDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/connectSQLServerJdbc/OrderService">
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="sqlserverJndiDataSource">
+		</property>
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	</bean>
+
+
+	<!-- ***********************以下排程*********************** -->
+
+
+	<!-- Spring Quartz -->
+	<!--集成方式：MethodInvokingJobDetailFactoryBean，並且任務類別，是需要繼承QuartzJobBean -->
+	<!--定義jobDetail -->
+<!-- 	<bean name="schedulingJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean"> -->
+<!-- 		<property name="jobClass" value="bar.model.updateJob2" /> -->
+<!-- 		<property name="durability" value="true" /> -->
+<!-- 	</bean> -->
+
+	<!--定義Trigger觸發器: cronExpression 表達式的格式：秒 分 時 日 月 周 年(可選) -->
+<!-- 	<bean id="triggerJob" -->
+<!-- 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> -->
+<!-- 		<property name="jobDetail" ref="schedulingJob" /> -->
+<!-- 		<property name="cronExpression" value="*/5 * * * * ?" /> -->
+<!-- 	</bean> -->
+
+	<!--定義核心調度器 -->
+<!-- 	<bean id="scheduleController" -->
+<!-- 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="true"> -->
+<!-- 		<property name="schedulerName" value="monitorScheduler" /> -->
+<!-- 		<property name="triggers"> -->
+<!-- 			<list> -->
+<!-- 				<ref bean="triggerJob" /> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+</beans>
