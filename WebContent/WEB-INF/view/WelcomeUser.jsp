@@ -25,7 +25,7 @@
   <a href="<c:url value="/userOrder.controller"/>">UserOrder</a>
  </h1>
 
-
+<h1><a href="<c:url value="/messageBoardShow.controller"/>">留言板</a></h1>
 
 
 

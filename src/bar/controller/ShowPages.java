@@ -39,28 +39,32 @@ public class ShowPages {
 	}
 
 ///////////////(李昀陽)/////////////////
-	
-	@RequestMapping(path = "/ResetPassword", method = RequestMethod.GET)
-	public String showResetPassword() {
-		return "ResetPassword";
-	}
-	
-	@RequestMapping(path = "/ResetCompanyPassword", method = RequestMethod.GET)
-	public String showResetCompanyPassword() {
-		return "ResetCompanyPassword";
-	}
 
-	@RequestMapping(path = "/MessageBoard", method = RequestMethod.GET)
-	public String showMessageBoard() {
-		return "MessageBoard";
-	}
-	
-	@RequestMapping(path = "/VerifyPage", method = RequestMethod.GET)
-	public String showVerifyPage() {
-		return "VerifyPage";
-	}
+@RequestMapping(path = "/ResetPassword", method = RequestMethod.GET)
+public String showResetPassword() {
+return "ResetPassword";
+}
 
-	
+@RequestMapping(path = "/ResetCompanyPassword", method = RequestMethod.GET)
+public String showResetCompanyPassword() {
+return "ResetCompanyPassword";
+}
+
+@RequestMapping(path = "/MessageBoard", method = RequestMethod.GET)
+public String showMessageBoard() {
+return "MessageBoard";
+}
+
+@RequestMapping(path = "/VerifyPage", method = RequestMethod.GET)
+public String showVerifyPage() {
+return "VerifyPage";
+}
+
+@RequestMapping(path = "/SubMessageBoard", method = RequestMethod.GET)
+public String showSubMessageBoard() {
+return "SubMessageBoard";
+}
+
 ////////////////////////	
 	
 	@RequestMapping(path = "/productViewPage", method = RequestMethod.GET)
