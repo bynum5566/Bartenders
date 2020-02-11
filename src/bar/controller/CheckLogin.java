@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.CompanyService;
+import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
@@ -31,6 +32,9 @@ public class CheckLogin {
 	public String userProcessAction(@RequestParam(name = "userAccount") String account,
 			@RequestParam(name = "userPwd") String password, Model m) {
 
+		Users user = uservice.select(account);
+		m.addAttribute("userName", user.getUserName());
+		
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -55,7 +59,7 @@ public class CheckLogin {
 			boolean loginStatus2 = uservice.select(account).getRole().equals("member");	
 			if(loginStatus2) {
 				m.addAttribute("LoginStatus", "true");
-				return "WelcomeUser";
+				return "UserFirstPage";
 			}
 			
 		}

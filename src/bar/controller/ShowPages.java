@@ -72,7 +72,6 @@ return "SubMessageBoard";
 		return "productViewPage";
 	}
 ///////////////////////////
-	
 	@RequestMapping(path ="/UserOrder")
 	public String showUserOrder() {
 		return "UserOrder";
@@ -98,6 +97,11 @@ return "SubMessageBoard";
 		return "OrderList";
 	}
 	
+	@RequestMapping(path ="/OrderListUser")
+	public String showOrderListUser() {
+		return "OrderListUser";
+	}
+	
 	@RequestMapping(path ="/CancelOrder")
 	public String showCancelOrder() {
 		return "CancelOrder";
@@ -111,6 +115,16 @@ return "SubMessageBoard";
 	@RequestMapping(path ="/SalesReport")
 	public String showSalesReport() {
 		return "SalesReport";
+	}
+	
+	@RequestMapping(path ="/SalesReportByPie")
+	public String showSalesReportByPie() {
+		return "SalesReportByPie";
+	}
+	
+	@RequestMapping(path ="/UserFirstPage")
+	public String showUserFirstPage() {
+		return "UserFirstPage";
 	}
 	///////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
