@@ -55,7 +55,7 @@ public class DisplayBarListController {
 		m.addAttribute("listOfBar", listOfBar);
 		m.addAttribute("account", account);
 		
-		CartService.Pf("/DisplayBarList.controller，開始");
+		CartService.Pf("/DisplayBarList.controller，結束");
 		return "DisplayBarList";
 
 	}

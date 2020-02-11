@@ -65,7 +65,8 @@ public class AddToCartButtonController {
 //		ProductData pX= pDao.selectProduct(companyId, pdId); /*用dao取*/
 //		ProductData pX = pService.editThisPd(companyId, pdId); /* 用service取 */
 		System.out.println("pdId = " + pdId);
-		ProductData pX = pService.selectProductVer2(pdId);	/* 用service取 */
+		ProductData pX = pService.select(pdId);	/* 用service取 */
+		//ProductData pX = pService.selectProductVer2(pdId);	/* 用service取 */
 		System.out.println("【pX.getPdStock()】=" + pX.getPdStock()); // A
 		System.out.println("【pX.getProductName()】=" + pX.getProductName()); // A
 		System.out.println("【account】=" + account);

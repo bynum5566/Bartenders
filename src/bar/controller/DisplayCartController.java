@@ -52,7 +52,7 @@ public class DisplayCartController
 		CartService.Pf("開始，DisplayCartProcessAction");
 		CartService.Pf2("m.getAttribute(account)",m.getAttribute("account"));
 		String account = (String)m.getAttribute("account");
-		int userId = uService.select(account).getId();
+		int userId = uService.select(account).getUserId();
 		CartService.Pf2("userId",userId);
 		CartService.Pf2("account",account);
 		/* 找出所有該使用者的購物車 */
@@ -239,7 +239,8 @@ public class DisplayCartController
 		for (int i = 0; i <= cartSet.size() - 1; i++)
 		{
 			productId = cartSet.get(i).getPdId();
-			ProductData productDataX = pService.selectProductVer2(productId);
+			ProductData productDataX = pService.select(productId);
+			//ProductData productDataX = pService.selectProductVer2(productId);
 			qtyOfproduct = cartSet.get(i).getQuantity();
 			CartService.Pf2("productId", productId);
 			CartService.Pf2("qtyOfproduct", qtyOfproduct);

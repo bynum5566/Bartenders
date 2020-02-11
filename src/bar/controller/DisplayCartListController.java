@@ -88,7 +88,7 @@ public class DisplayCartListController {
 			Model m) {
 
 		Users user = userService.select(account);	/*用account 取得user物件*/
-		int userId = user.getId();	/*用user物件 取得userId物件*/
+		int userId = user.getUserId();	/*用user物件 取得userId物件*/
 		
 		List<Orders> listOfOrder = new ArrayList<Orders>();	/*初始化*/
 		listOfOrder.addAll(ordersService.selectUser(userId, 1)); /*取得此userId的...所有狀態為1的訂單*/

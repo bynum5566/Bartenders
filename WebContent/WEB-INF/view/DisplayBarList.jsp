@@ -170,7 +170,7 @@ div.panel
 	<tr>
 		<!-- 酒吧編號 -->		
 		<td align="center">
-		${listOfBar[current.index].id}
+		${listOfBar[current.index].companyId} <!-- id > companyId -->
 		</td>
 		
 		<!-- 酒吧名稱 -->

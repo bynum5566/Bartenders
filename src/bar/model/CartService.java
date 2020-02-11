@@ -196,6 +196,7 @@ public CartService(
 
 	//public Collection<? extends ProductData> selectAllBar() {
 	 public List <Company> selectAllBar() {	/*回傳資料庫中所有的Bar*/
+		 CartService.Pf("selectAllBar開始");
 		 List <Company>	listOfBar = companyDAO.selectAll();
 		return listOfBar;
 	}

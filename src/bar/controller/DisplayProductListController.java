@@ -99,7 +99,7 @@ public class DisplayProductListController {
 		
 		String companyAccount = barAccount;	//【公司】【公司帳號】
 		Company companyX = companyService.select(companyAccount);		
-		int companyId = companyX.getId();
+		int companyId = companyX.getCompanyId();
 		
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 		

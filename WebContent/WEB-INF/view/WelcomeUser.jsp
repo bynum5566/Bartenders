@@ -18,7 +18,7 @@
 	</h1>
 
 	<h1>
-		<a href="<c:url value="/DisplayProductList.controller"/>">商城</a>
+		<a href="<c:url value="/DisplayBarList.controller"/>">商城</a>
 	</h1>
 	
 	 <h1>
