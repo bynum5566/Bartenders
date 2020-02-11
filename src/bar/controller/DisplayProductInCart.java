@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class DisplayProductInCart
 		CartService.Pf("開始，DisplayCartProcessAction");
 		CartService.Pf2("m.getAttribute(account)",m.getAttribute("account"));
 		String account = (String)m.getAttribute("account");
-		int userId = uService.select(account).getUserId();
+		int userId = uService.select(account).getId();
 		CartService.Pf2("userId",userId);
 		CartService.Pf2("account",account);
 		/* 找出所有該使用者的購物車 */
@@ -59,15 +60,20 @@ public class DisplayProductInCart
 
 		CartService.Pf("結束，DisplayCartProcessAction");
 
-		List<Cart> oneOrderCartsList = cService.select(orderId);
+		//List<Cart> oneOrderCartsList = cService.select(orderId);
+		List<Cart> oneOrderCartsList = cService.selectListOfCart(orderId);
+		
 		m.addAttribute("oneOrderCarts", oneOrderCartsList);
 		
-		List<ProductData> listOfProduct = new ArrayList<ProductData>();
-		for (Cart oneOrderCart : oneOrderCartsList) {
-			ProductData products = pService.select(oneOrderCart.getPdId());
-			listOfProduct.add(products);
-		}
-		m.addAttribute("listOfProduct", listOfProduct);
+		
+//		List<ProductData> listOfProduct = new ArrayList<ProductData>();
+//		for (Cart oneOrderCart : oneOrderCartsList) {
+//			ProductData products = pService.select(oneOrderCart.getPdId());
+//			listOfProduct.add(products);
+//		}
+//		m.addAttribute("listOfProduct", listOfProduct);
+		m.addAttribute("listOfProduct",cService.selectListOfProductByOrderId(orderId));
+		
 		m.addAttribute("orderId",orderId);	//新增20200131_0934
 		
 

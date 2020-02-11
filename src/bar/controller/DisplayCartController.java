@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class DisplayCartController
 		CartService.Pf("開始，DisplayCartProcessAction");
 		CartService.Pf2("m.getAttribute(account)",m.getAttribute("account"));
 		String account = (String)m.getAttribute("account");
-		int userId = uService.select(account).getUserId();
+		int userId = uService.select(account).getId();
 		CartService.Pf2("userId",userId);
 		CartService.Pf2("account",account);
 		/* 找出所有該使用者的購物車 */
@@ -63,21 +64,25 @@ public class DisplayCartController
 		// return "OrderList";
 		// ===========================【開始】
 
-		List<Cart> oneOrderCartsList = cService.select(orderId);
+		List<Cart> oneOrderCartsList = cService.select(orderId);/*List，找出單[購物車]的所有Cart*/
 		m.addAttribute("oneOrderCarts", oneOrderCartsList);
-		int totalPriceOfOneOrder = 0;
+		
 		int subltotalOfOneProduct = 0;
 		int totalPriceOfOneOrderPlusFreight = 0;
 		int shippingPrice = 0;
-		List<ProductData> listOfProduct = new ArrayList<ProductData>();
-		List<Integer> listOfProductSubtotal = new ArrayList<Integer>();
+		List<ProductData> listOfProduct = new ArrayList<ProductData>();/*List，用來存單[購物車]的ProductData*/
+		List<Integer> listOfProductSubtotal = new ArrayList<Integer>();/*List，用來存單[購物車]各個產品的小計*/
 		
 		
-		listOfProductSubtotal = calculateListOfProductSubtotal(oneOrderCartsList);
+		listOfProductSubtotal = CartService.calculateListOfProductSubtotal(oneOrderCartsList);/*List，計算並存單[購物車]各個產品的小計*/
 
-		for (Integer oneProductSubtotal : listOfProductSubtotal) {
-			totalPriceOfOneOrder += oneProductSubtotal;
-		}
+
+		
+		int totalPriceOfOneOrder = 0;
+		totalPriceOfOneOrder = CartService.calculateTotalPriceOfOneOrder(listOfProductSubtotal);/*計算單[購物車]不含運費的金額*/
+//		for (Integer oneProductSubtotal : listOfProductSubtotal) {	/*計算單[購物車]不含運費的金額*/
+//			totalPriceOfOneOrder += oneProductSubtotal;
+//		}
 
 		for (Cart oneOrderCart : oneOrderCartsList) {
 			ProductData products = pService.select(oneOrderCart.getPdId());
@@ -85,7 +90,7 @@ public class DisplayCartController
 		}
 		
 		/*運費======================*/
-		shippingPrice = freight(orderId);
+		shippingPrice = freight(orderId);	/*取得運費*/
 		/*運費======================*/
 		
 		
@@ -155,19 +160,7 @@ public class DisplayCartController
 //		return "TestPage";
 	}
 	
-	public List <Integer> calculateListOfProductSubtotal(List <Cart> oneOrderCartsList) {
-		int subltotalOfOneProduct = 0;
-		List <Integer> listOfProductSubtotal = new ArrayList<Integer>();;
-		for (Cart oneOrderCart : oneOrderCartsList)
-		{
-			int cartCheckoutPrice = oneOrderCart.getCheckoutPrice();
-			int cartQuantity = oneOrderCart.getQuantity();
-			
-			subltotalOfOneProduct = cartCheckoutPrice * cartQuantity;
-			listOfProductSubtotal.add(subltotalOfOneProduct);
-		}
-		return listOfProductSubtotal;
-	}
+
 	
 	public int freight(String orderId) { /* 運費 */
 		int shippingPrice = 0;
@@ -246,7 +239,7 @@ public class DisplayCartController
 		for (int i = 0; i <= cartSet.size() - 1; i++)
 		{
 			productId = cartSet.get(i).getPdId();
-			ProductData productDataX = pService.select(productId);
+			ProductData productDataX = pService.selectProductVer2(productId);
 			qtyOfproduct = cartSet.get(i).getQuantity();
 			CartService.Pf2("productId", productId);
 			CartService.Pf2("qtyOfproduct", qtyOfproduct);

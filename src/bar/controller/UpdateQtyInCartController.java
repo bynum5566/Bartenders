@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 import java.util.Date;
 import java.util.List;
@@ -270,7 +271,7 @@ public class UpdateQtyInCartController
 				CartService.Pf("AddProductToCartProcessAction，End2");
 
 				Cart cartX = cartDao.selectCart(orderId2, pdId2);
-				String msg = "數值修改成功";
+				String msg = "修改成功";
 				m.addAttribute("msg",msg);
 				m.addAttribute("num",cartX.getNum());
 				return "returnToChangeNumberOfProductInCart";
@@ -280,7 +281,7 @@ public class UpdateQtyInCartController
 	}
 	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton) /*傳值給下一階段*/
 	{
-		ProductData pX = productDataService.select(pdId); /* 用service取 */
+		ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
 		Users uX;/* C */
 		CartService.Pf2("account", account);
 		uX = userService.select(account); /* C */
@@ -296,7 +297,7 @@ public class UpdateQtyInCartController
 	private boolean selectLessThanStock(String pdId, String qty)
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
-		ProductData pX = productDataService.select(pdId); /* 用service取 */
+		ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 		if (QtyOfAddToCart > nowStock) /* 選取的數量>庫存 */ // 【A】>【B】
@@ -322,7 +323,7 @@ public class UpdateQtyInCartController
 	private int getCompanyIdByPdId(String pdId) {	/*新增20200201_1509*/
 		int companyId = 0;// 【A】
 		ProductData productX;
-		productX = productDataService.select(pdId);
+		productX = productDataService.selectProductVer2(pdId);
 		companyId = productX.getCompanyId();
 		return companyId;
 	}
@@ -330,7 +331,7 @@ public class UpdateQtyInCartController
 	private int getUserIdByAccount(String account) { /* 新增20200201_1509 */
 		int userId;// 【C】
 		Users userX = userService.select(account);
-		userId = userX.getUserId();
+		userId = userX.getId();
 		CartService.Pf2("userId", userId);
 		return userId;
 	}

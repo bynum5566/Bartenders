@@ -7,12 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RWD 網頁測試</title>
-    <!-- 
-    <link rel="stylesheet" href="styles/rwd.css">
-    <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
-     -->
-    <style>
+    <title>確認訂單資訊頁面</title>
+
+    <style type= "text/css">
+
+.mydiv {
+ width: 100%;
+ margin: 0 auto;
+ top: 580px;			
+ position: sticky;
+ text-align: center;    
+ }
+
 body {
     background-color:	#ECF5FF;
     
@@ -91,19 +97,10 @@ footer {
     </style>
 </head>
 <body>
-	<div>(介面版本:N_20200204_1629)</div>
+<div class = mydiv>
     <div id="allpage">
         <header>
-            <!-- <img class="logo-img" src="images/logo.jpg" title="logo" alt="logo"> -->
-            <nav>
-                <ul class="menu">
-					<li><a href="<c:url value="/DisplayProductList.controller"/>">商城</a></li>
-					<li><a href="<c:url value="/DisplayCartList.controller"/>">我的購物車</a> </li>
-					<li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a> </li>					
-					<li><a href="http://localhost:8080/CreateUsers/login">登入</a></li>
-                    <li><a href="/CreateUsers/logout">登出</a></li>                
-				</ul>
-            </nav>            
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" />   
         </header>
         <div id="content">
             <article class="article">
@@ -112,8 +109,8 @@ footer {
 <%-- 本體，開始 --%>
 
 		<form action="<c:url value=" 123456" />" method="post">
-		<h2>訂單明細(訂單編號:${orderId})</h2>
-		<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車清單</a>
+		<h2>確認訂單資訊頁面</h2>
+		<!-- <h3>(購物車編號:${orderId}) </h3>  -->
 		<table>
 			<thead>
 				<tr align="center">
@@ -211,7 +208,7 @@ footer {
 		<Input type='hidden' name='orderId' value='${orderId}'>
 		<Input type='hidden' name='totalPrice' value='${totalPrice}'> <!-- 新增2020131_1634 -->
 		<Input type='hidden' name='Freight' value='${ShippingNumToPrice[order.shipping]}'> <!-- 新增2020131_1634 -->
-		<Input type='submit' value='確定購買'>
+		<Input type='submit' value='資訊無誤，確認訂購'>
 		</form>
 		
 <%-- 本體，結束 --%>
@@ -227,5 +224,6 @@ footer {
                 <p>2020 All Rights Reserved</p>
         </footer>
     </div>  <!--end allpage-->
+</div>	  <!--end mydiv-->
 </body>
 </html>

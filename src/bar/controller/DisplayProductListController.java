@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 
 import java.util.ArrayList;
@@ -28,17 +29,18 @@ import bar.model.UsersService;
 import bar.model.Users;
 //<td align="center">${Corders[current.index].amount}</td>
 @Controller
-@SessionAttributes(names = { ""
-		+ 
+@SessionAttributes(names = { 
 		"account", 
-		"recipient", 
-		"orderId", 
+		"listOfProduct", 
 		"productName", 
 		"amount", 
 		"shippingNumber", 
 		"address1",
 		"phone",
-		"orders" })
+		"orders"
+		})
+
+
 @EnableTransactionManagement
 public class DisplayProductListController {
 
@@ -81,14 +83,7 @@ public class DisplayProductListController {
 		return returnStatus;
 	}
 	
-	public String[] getShippingNumToStr() {
-		String returnShipping[] = {
-				"未選擇",
-		        "宅配",
-		        "超商",
-		        "QR票券"};
-		return returnShipping;
-	}
+
 	
 
 	
@@ -97,11 +92,14 @@ public class DisplayProductListController {
 	public String userOrdersProcessAction(
 			@ModelAttribute(name = "account") 
 			String account, 
+			@ModelAttribute(name = "barAccount") 
+			String barAccount, 
 			Model m) {
-		//String companyAccount = "1";
-		String companyAccount = "Bynum5566";
+		//String companyAccount = "Test99999999";
+		
+		String companyAccount = barAccount;	//【公司】【公司帳號】
 		Company companyX = companyService.select(companyAccount);		
-		int companyId = companyX.getCompanyId();
+		int companyId = companyX.getId();
 		
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 		
@@ -109,14 +107,15 @@ public class DisplayProductListController {
 		//listOfProduct.addAll(ordersService.selectUser(userId, 1));
 		CartService.printValueTypeTime("companyId",companyId    );
 		
-//		listOfProduct.addAll(productDataDAO.selectPds(companyId, "Pulled"));
-		listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));		
+		/*選擇Launched的*/
+		listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));
 		
 		/*圖片，開始*/
 		/*圖片，結束*/
 		
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
+		m.addAttribute("barAccount", barAccount);
 		
 		return "displayProductList";
 		

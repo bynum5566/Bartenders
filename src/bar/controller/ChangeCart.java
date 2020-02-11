@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ChangeCart {
 		m.addAttribute("order", order);
 		m.addAttribute("product", product);
 		m.addAttribute("productData", attr_product);
-		m.addAttribute("ShippingNumToStr", cartService.getShippingNumToStr());
+		m.addAttribute("ShippingNumToStr", CartService.getShippingNumToStr());
 		m.addAttribute("attrAddress", attr_address);
 		System.out.println("attr_address=" + attr_address + "=================");
 		
