@@ -7,15 +7,44 @@
 <meta charset="UTF-8">
 <title>ChartJs</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<style type="text/css">
+body {
+	background-image: url(/Bartenders/images/bg4.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top;
+}
+
+.outwrap {
+	text-align: center;
+	margin: auto;
+	width: 800px;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+}
+</style>
 
 </head>
 <body>
-<div align="center" style="width:800px;">
-  <canvas align="center" id="myChart"></canvas>
-</div>
+	<div class="outwrap">
+		<canvas id="myChart"></canvas>
+	</div>
 
-<script>
+	<script>
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -44,7 +73,7 @@
     }
   });
 </script>
-	
+
 </body>
 
 

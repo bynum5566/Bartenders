@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import bar.model.Cart;
 import bar.model.CartService;
@@ -47,7 +48,7 @@ public class finishPay {
 	
 	@SuppressWarnings({ "finally" })
 	@RequestMapping(path = "/finishPay", method = RequestMethod.POST)
-	public String toFinishPay(HttpServletRequest hsRequest, HttpServletResponse hsResponse, Model m) throws ServletException, IOException {
+	public ModelAndView toFinishPay(HttpServletRequest hsRequest, HttpServletResponse hsResponse, Model m) throws ServletException, IOException {
 		try {
 			String confirmUrl=(String) hsRequest.getSession().getAttribute("reqConfirmUrl");
 			int amount=(int) hsRequest.getSession().getAttribute("amount");
@@ -90,11 +91,13 @@ public class finishPay {
 				m.addAttribute("validDate", validDate);
 				m.addAttribute("expireDate", expiryDate);
 				m.addAttribute("orderId", orderId);
-				return "qrDelever";
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("qrDelever");
+				return mav;
 			}
 			int status = 3;
 			oService.updateToCancel(orderId, status);
-			return "UserOrder";	
+			return new ModelAndView("redirect:/userOrder.controller");
 			}
 		}
 	}

@@ -34,16 +34,6 @@ public class ProductDataDAO {
 		}
 		return false;
 	}
-
-//	public List<ProductData> selectPds(int companyId, String pdAvailable) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr = "from ProductData where companyId=:cId and pdAvailable=:pdA and validDate is null";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("cId", companyId);
-//		query.setParameter("pdA", pdAvailable);
-//
-//		return (List<ProductData>) query.list();
-//	}
 	
 	public List<ProductData> selectPdsLaunched(int companyId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -73,16 +63,6 @@ public class ProductDataDAO {
 		return (List<ProductData>) query.list();
 	}
 	
-//	public List<ProductData> selectTKPds(int companyId, String pdAvailable) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr = "from ProductData where companyId=:cId and pdAvailable=:pdA and validDate is not null";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("cId", companyId);
-//		query.setParameter("pdA", pdAvailable);
-//
-//		return (List<ProductData>) query.list();
-//	}
-	
 	public List<ProductData> selectTKPdsLaunched(int companyId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -109,6 +89,21 @@ public class ProductDataDAO {
 		query.setParameter("nowTime", nowTime);
 
 		return (List<ProductData>) query.list();
+	}
+	
+	public List<ProductData> selectTop3(int companyId) {	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
+		Date date = new Date();	
+		String nowTime = sdf.format(date);	
+			
+		Session session = sessionFactory.getCurrentSession();	
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";	
+		Query query = session.createQuery(hqlStr);	
+		query.setParameter("cId", companyId);	
+		query.setParameter("nowTime", nowTime);	
+		query.setMaxResults(3);	
+			
+		return (List<ProductData>) query.list();	
 	}
 	
 	public ProductData selectP(String pdId) {
@@ -142,10 +137,6 @@ public class ProductDataDAO {
 		String hqlStr = "select pd.pdId, pd.autoLaunchTime, pd.autoPullTime from ProductData as pd";
 		Query query = session.createQuery(hqlStr);
 		return (List<ProductData>)query.list();
-	}
-	
-	public void updatePdAvailable(String pdId, String autoLaunchTime, String autoPullTime, String pdAvailable) {
-		
 	}
 
 	public boolean edit(String pdId, String productName, String pdTag1, String pdTag2, String pdTag3, int pdStock,
@@ -360,13 +351,13 @@ public class ProductDataDAO {
 		query.setParameter("pdA", pdAvailable);
 		return (List<ProductData>) query.list();
 	}
-	public ProductData selectProductVer2(String pdId) {//豪
-		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where pdId=:pdId";
-		Query query = session.createQuery(hqlStr);
-		query.setParameter("pdId", pdId);
-		return (ProductData) query.uniqueResult();
-	}
+	//public ProductData selectProductVer2(String pdId) {//豪
+	//	Session session = sessionFactory.getCurrentSession();
+	//	String hqlStr = "from ProductData where pdId=:pdId";
+	//	Query query = session.createQuery(hqlStr);
+	//	query.setParameter("pdId", pdId);
+	//	return (ProductData) query.uniqueResult();
+	//}
 
 	/////////////////////
 	

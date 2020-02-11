@@ -60,8 +60,10 @@ public class CompanyDAO {
 
 	public Company select(String account) {
 		Session session = sessionFactory.getCurrentSession();
+		System.out.println(session);
 		String hqlStr = "from Company where account=:account";
 		Query query = session.createQuery(hqlStr);
+		System.out.println(query);
 		query.setParameter("account", account);
 		Company rs = (Company) query.uniqueResult();
 		return rs;
@@ -91,14 +93,26 @@ public class CompanyDAO {
 		}
 	}
 
-	// ---(楊書瑜)-------------------------------
-	public Company selectCompany(Integer id) {
-		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "From Company where id=:id";
-		Query query = session.createQuery(hqlStr);
-		query.setParameter("id", id);
-		Company rs = (Company) query.uniqueResult();
-		return rs;
+		// ---(楊書瑜)-------------------------------	
+	public Company selectCompany(Integer companyId) {	
+		Session session = sessionFactory.getCurrentSession();	
+		String hqlStr = "from Company where companyId=:id";	
+		Query query = session.createQuery(hqlStr);	
+		query.setParameter("id", companyId);	
+		Company rs = (Company) query.uniqueResult();	
+		return rs;	
+	}	
+		
+	// ---(吳昭蓉)-------------------------------	
+	public void updateBarData(String companyName, String phone, String address,Integer companyId) {	
+		Session session = sessionFactory.getCurrentSession();	
+		String hqlStr = "update Company set companyName=:cNm, phone=:tel, address=:add where companyId=:id";	
+		Query query = session.createQuery(hqlStr);	
+		query.setParameter("cNm", companyName);	
+		query.setParameter("tel", phone);	
+		query.setParameter("add", address);	
+		query.setParameter("id", companyId);	
+		query.executeUpdate();	
 	}
-
+	
 }

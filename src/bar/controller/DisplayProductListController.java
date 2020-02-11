@@ -99,9 +99,9 @@ public class DisplayProductListController {
 			String account, 
 			Model m) {
 		//String companyAccount = "1";
-		String companyAccount = "Bb123456";
+		String companyAccount = "Bynum5566";
 		Company companyX = companyService.select(companyAccount);		
-		int companyId = companyX.getId();
+		int companyId = companyX.getCompanyId();
 		
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 		

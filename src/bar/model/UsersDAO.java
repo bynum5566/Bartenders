@@ -92,11 +92,11 @@ public class UsersDAO {
 
 	}
 
-	 public Users selectUser(Integer id) {
+	 public Users selectUser(Integer userId) {
 		  Session session = sessionFactory.getCurrentSession();
-		  String hqlStr = "From Users where id=:id";
+		  String hqlStr = "From Users where userId=:userId";
 		  Query query = session.createQuery(hqlStr);
-		  query.setParameter("id", id);
+		  query.setParameter("userId", userId);
 		  Users rs = (Users) query.uniqueResult();
 		  return rs;
 		 }
