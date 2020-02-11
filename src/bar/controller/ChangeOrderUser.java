@@ -46,22 +46,17 @@ public class ChangeOrderUser {
 		Orders order = ordersService.selectOrder(orderId);
 		
 		List<ProductData> attr_product = new ArrayList<ProductData>();
-//		List<String> attr_address = new ArrayList<String>();
 		String attr_address;
 		
 		List<Cart> carts = ordersService.select(orderId);
-//**	List<Cart> carts = cartService.select(orderId);
 		Cart first_chart = carts.get(0);
 		
 		ProductData product = ordersService.selectP(first_chart.getPdId());
-//**	ProductData product = productService.select(first_chart.getPdId());
 		attr_product.add(product);
 		
 		if(order.getShipping()==1) {
-//			attr_address.add(order.getAddress1());
 			attr_address = order.getAddress1();
 		}else{
-//			attr_address.add(order.getAddress2());
 			attr_address = order.getAddress2();
 		}
 		
@@ -71,9 +66,7 @@ public class ChangeOrderUser {
 		m.addAttribute("ShippingNumToStr", getShippingNumToStr());
 		m.addAttribute("attrAddress", attr_address);
 		System.out.println("attr_address=" + attr_address + "=================");
-		
-		
-	
+					
 	return "ShowChangeOrderUser";
 	
 	}

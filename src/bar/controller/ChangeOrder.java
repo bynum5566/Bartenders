@@ -24,10 +24,8 @@ import bar.model.ProductDataService;
 public class ChangeOrder {
 	private OrdersService ordersService;
 
-	
 	public ChangeOrder(OrdersService ordersService){
 		this.ordersService=ordersService;
-
 	}
 	
 	public String[] getShippingNumToStr() {
@@ -39,30 +37,24 @@ public class ChangeOrder {
 		return returnShipping;
 	}
 	
-
 	@RequestMapping(path = { "/ShowChangeOrder.controller" })
 	public String ChangeOrderProcessAction(@RequestParam(name = "orderId") String orderId,Model m) {
 		m.addAttribute("orderId", orderId);
 		Orders order = ordersService.selectOrder(orderId);
 		
 		List<ProductData> attr_product = new ArrayList<ProductData>();
-//		List<String> attr_address = new ArrayList<String>();
 		String attr_address;
 		
 		List<Cart> carts = ordersService.select(orderId);
-//**	List<Cart> carts = cartService.select(orderId);
 		Cart first_chart = carts.get(0);
 		ProductData product = ordersService.selectP(first_chart.getPdId());
-//**	ProductData product = productService.select(first_chart.getPdId());
 		attr_product.add(product);
 		
 		
 		
 		if(order.getShipping()==1) {
-//			attr_address.add(order.getAddress1());
 			attr_address = order.getAddress1();
 		}else{
-//			attr_address.add(order.getAddress2());
 			attr_address = order.getAddress2();
 		}
 		
@@ -71,8 +63,6 @@ public class ChangeOrder {
 		m.addAttribute("productData", attr_product);
 		m.addAttribute("ShippingNumToStr", getShippingNumToStr());
 		m.addAttribute("attrAddress", attr_address);
-		System.out.println("attr_address=" + attr_address + "=================");
-		
 		
 	
 	return "ShowChangeOrder";

@@ -21,9 +21,6 @@ public class CancelOrderUser {
 	public CancelOrderUser(OrdersService ordersService) {
 		this.ordersService=ordersService;
 	}
-	
-	
-
 
 	@RequestMapping(path = { "/CancelOrderUser.controller" })
 	public String CancelOrderProcessAction(@RequestParam(name="orderId") String orderId,@RequestParam(name="status") Integer status,Model m) {

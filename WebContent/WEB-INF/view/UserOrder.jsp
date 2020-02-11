@@ -112,13 +112,5 @@
 			</table>
 		</form>
 	</div>
-	<button id="test">create logistic order</button>
-	<script>
-	var button = document.getElementById("test");
-	$('#test').on("click", function() {
-		console.log('click');
-		window.location.href = '<c:url value="/createLogistic.do"/>';
-		})
-	</script>
 </body>
 </html>
