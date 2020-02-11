@@ -51,7 +51,7 @@ public class DisplayProductInCart
 		CartService.Pf("開始，DisplayCartProcessAction");
 		CartService.Pf2("m.getAttribute(account)",m.getAttribute("account"));
 		String account = (String)m.getAttribute("account");
-		int userId = uService.select(account).getId();
+		int userId = uService.select(account).getUserId();
 		CartService.Pf2("userId",userId);
 		CartService.Pf2("account",account);
 		/* 找出所有該使用者的購物車 */

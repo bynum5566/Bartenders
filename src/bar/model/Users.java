@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "users")
 public class Users {
-	private int id;
+	private int userId;
 	private String account;
 	private String password;
 	private String userName;
@@ -41,12 +44,12 @@ public class Users {
 	@Id
 	@Column(name = "userId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Column(name = "account")

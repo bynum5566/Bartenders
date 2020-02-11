@@ -74,7 +74,7 @@ public class ChangeNumberOfProductInCart {
 		
 		System.out.println("num = " + num);	
 //		System.out.println("pdId = " + pdId);
-		ProductData pX = pService.selectProductVer2(pdId);	/* 用service取 */
+		ProductData pX = pService.select(pdId);	/* 用service取 */
 		System.out.println("【pX.getPdStock()】=" + pX.getPdStock()); // A
 		System.out.println("【pX.getProductName()】=" + pX.getProductName()); // A
 		System.out.println("【account】=" + account);

@@ -298,7 +298,7 @@ public class AddProductToCartController
 	}
 	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton) /*傳值給下一階段*/
 	{
-		ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId); /* 用service取 */
 		Users uX;/* C */
 		CartService.Pf2("account", account);
 		uX = userService.select(account); /* C */
@@ -314,7 +314,7 @@ public class AddProductToCartController
 	private boolean selectLessThanStock(String pdId, String qty)
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
-		ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId); /* 用service取 */
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 		if (QtyOfAddToCart > nowStock) /* 選取的數量>庫存 */ // 【A】>【B】
@@ -329,7 +329,7 @@ public class AddProductToCartController
 	private boolean selectLessThanStock2(String pdId, String qty, String orderId)
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
-		ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId); /* 用service取 */
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 //		Cart cartX = cDao.selectCart(orderId, pdId); /* 取物件 */
@@ -356,7 +356,7 @@ public class AddProductToCartController
 	private int getCompanyIdByPdId(String pdId) {	/*新增20200201_1509*/
 		int companyId = 0;// 【A】
 		ProductData productX;
-		productX = productDataService.selectProductVer2(pdId);
+		productX = productDataService.select(pdId);
 		companyId = productX.getCompanyId();
 		return companyId;
 	}
@@ -364,7 +364,7 @@ public class AddProductToCartController
 	private int getUserIdByAccount(String account) { /* 新增20200201_1509 */
 		int userId;// 【C】
 		Users userX = userService.select(account);
-		userId = userX.getId();
+		userId = userX.getUserId();
 		CartService.Pf2("userId", userId);
 		return userId;
 	}
@@ -383,7 +383,7 @@ public class AddProductToCartController
 			// 由pdId查到 companyId
 			int companyId = 0;// 【A】
 			ProductData productX;
-			productX = productDataService.selectProductVer2(pdId);
+			productX = productDataService.select(pdId);
 			companyId = productX.getCompanyId();
 			CartService.Pf2("companyId", companyId);
 			// ======================================
@@ -394,7 +394,7 @@ public class AddProductToCartController
 			// 由account查到userId
 			int userId;// 【C】
 			Users userX = userService.select(account);
-			userId = userX.getId();
+			userId = userX.getUserId();
 			CartService.Pf2("userId", userId);
 			// ======================================
 			/* 測試輸出開始 */

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -107,13 +108,13 @@ public class TicketQRcontroller {
 		Date toDay = new Date();   
 		System.out.println("toDay="+toDay);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		System.out.println("validDate="+hsRequest.getParameter("validDate"));
-		System.out.println("validDate="+hsRequest.getParameter("expireDate"));
+		System.out.println("expireDate="+hsRequest.getParameter("expireDate"));
 		
-		Date validDate = (Date)sdf.parse(hsRequest.getParameter("validDate"));
+		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
 		System.out.println("validDate="+validDate);
-		Date expireDate = (Date)sdf.parse(hsRequest.getParameter("expireDate"));
+		Date expireDate = (Date)sdf.parse(hsRequest.getParameter("expireDate").toString());
 		System.out.println("expireDate="+expireDate);
 		
 		String orderId = hsRequest.getParameter("orderId");

@@ -4,126 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
+<link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
+<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
 <title>Edit Product</title>
 
-<style type="text/css">
-.outwrap {
-	margin: auto;
-	text-align: center;
-}
-
-table {
-	width:500px;
-	margin:auto;
-	border: 1px solid black;
-	text-align: left;
-}
-
-tr, td {
-	line-height:22px;
-	border: 1px solid black;
-	text-align: left;
-}
-
-label, input, textarea, button, div{
-	margin:5px;
-}
-
-.lb{
- width:140px;
-} 
-
-.bt0{
-margin:10px;
-}
-
-.bt01{
-text-align: right;
-}
-
-#imgPlace1{
-max-width: 150px;
-margin:auto;
-text-align: center;
-}
-
-/* Imgur Upload Style */
-
-body.loading .loading-modal {
-    display: block
-}
-
-.dropzone {
-    border: 4px dashed #ccc;
-    height: 120px;
-    position: relative; 
-/*     margin-right: auto; */
-/*     margin-left: auto; */
-    max-width: 100%; 
-}
-
-.info {
-    margin-top: 11%;
-}
-
-.dropzone p {
-    /*height: 100%;*/
-    /*line-height: 200px;*/
-    margin: 0%;
-    text-align: center;
-    width: 100%
-}
-
-.input {
-    height: 100%;
-    left: 0;
-    outline: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    width: 100%
-}
-
-.status {
-    border-radius: 5px;
-    text-align: center;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.image-url {
-    width: 50%;
-}
-
-.dropzone.dropzone-dragging {
-    border-color: #000
-}
-
-.loading-modal {
-    background-color: rgba(255, 255, 255, .8);
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%
-}
-
-.loading-table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15%;
-    margin-bottom: 15%;
-    border: none;
-    text-align: center;
-}
-
- .img { 
-     max-width: 150px; 
-}
-</style>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link
@@ -140,94 +25,97 @@ body.loading .loading-modal {
 </head>
 <body>
 	<div class="outwrap">
-		<div>
+		<div class="inwrap">
 			<h1>修改票券商品</h1>
 			<form action="<c:url value="/editTkPD"></c:url>" method="POST" enctype="multipart/form-data">
 				<table>
 					<tr id="hdId">
 						<td colspan="2">
-							<input class="bt0" name="pdId" type="text" required="required" value="<c:out value="${pdId}"/>">
+							<input class="bt0" name="pdId" type="text" required="required" value="<c:out value="${pdId}"/>" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
-						<td><label>商品名稱:</label></td>
+						<td><label>商品名稱</label></td>
 						<td><input class="bt0" name="pdNm" type="text" required="required" value="<c:out value="${pdNm}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品數量:</label></td>
+						<td><label>商品數量</label></td>
 						<td><input class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required" value="<c:out value="${pdStk}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品價格:</label></td>
+						<td><label>商品價格</label></td>
 						<td><input class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required" value="<c:out value="${pdPri}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag1:</label></td>
+						<td><label>Tag1</label></td>
 						<td><input class="bt0" name="pdTg1" type="text" max="10" value="<c:out value="${pdT1}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag2:</label></td>
+						<td><label>Tag2</label></td>
 						<td><input class="bt0" name="pdTg2" type="text" max="10" value="<c:out value="${pdT2}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag3:</label></td>
+						<td><label>Tag3</label></td>
 						<td><input class="bt0" name="pdTg3" type="text" max="10" value="<c:out value="${pdT3}"/>"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品詳細:</label></td>
+						<td><label>商品詳細</label></td>
 						<td><textarea class="bt0" name="pdDta"><c:out value="${pdDT}"/></textarea></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品圖片:</label></td>
+						<td><label>商品圖片</label></td>
 						<td>
 							<div class="dropzone">
 								<div class="info"></div>
 							</div>
 							<div id="imgPlace1" >
-								<img src="<c:out value="${pdpicUrl}"/>"/>
+								<img id="oriImg" src="<c:out value="${pdpicUrl}"/>"/>
 							</div>
 								<input id="imgPlace2" type="text" name="pdImg" class="image-url" value="<c:out value="${pdpicUrl}"/>" readonly="readonly"/>
 						</td>
 					</tr>
 					<tr>
-						<td class="lb setT2"><label>票券生效日:</label><div><c:out value="${valideT}"/></div></td>
+						<td class="setT2"><label>票券生效日</label><div><c:out value="${valideT}"/></div></td>
 						<td>
-							<div>編輯請點下方選擇器</div>
+							<div>請點選擇器編輯</div>
 							<div><input name="setTKTime1" id="setB1" class="dateRange form-control" type="text"/></div>
 						</td>
 					</tr>
 					<tr>
-						<td class="lb setT2"><label>票券失效日:</label><div><c:out value="${expiryT}"/></div></td>
+						<td class="setT2"><label>票券失效日</label><div><c:out value="${expiryT}"/></div></td>
 						<td>
-							<div>編輯請點下方選擇器</div>
+							<div>請點選擇器編輯</div>
 							<div><input name="setTKTime2" id="setB2" class="dateRange form-control" type="text"/></div>
 						</td>
 					</tr>
 					<tr id="setA" class="sho">
-						<td class="lb"><label>上架時間:</label><div><c:out value="${autoLT}"/></div></td>
+						<td><label>上架時間</label><div><c:out value="${autoLT}"/></div></td>
 						<td>
-							<div>編輯請點下方選擇器</div>
+							<div>請點選擇器編輯</div>
 							<div><input name="setTimeAct1" id="setA1" class="dateRange form-control" type="text"></div>
 						</td>
 					</tr>
 					<tr id="setB" class="sho">
-						<td class="lb"><label>下架時間:</label><div><c:out value="${autoPT}"/></div></td>
+						<td><label>下架時間</label><div><c:out value="${autoPT}"/></div></td>
 						<td>
-							<div>編輯請點下方選擇器</div>
+							<div>請點選擇器編輯</div>
 							<div><input name="setTimeAct2" id="setA2" class="dateRange form-control" type="text"></div>
 						</td>
 					</tr>
 					<tr>
-						<td class="bt01 bt0" colspan="2"><a href="/Bartenders/Dashboard.TkProducts">
-							<input class="bt01 bt0" type="button" value="回票券商品管理"/></a>
-							<input class="bt01 bt0" type="submit" value="修改商品"/>
+						<td colspan="2" id="bT">
+							<a href="/Bartenders/Dashboard.TkProducts">
+								<input class="bT" type="button" value="回票券商品管理"/>
+							</a> 
+<!-- 							<button onclick="location.href = '/Bartenders/Dashboard.TkProducts';" class="bT" >回票券商品管理</button> -->
+							<input class="bT" type="submit" value="修改商品"/>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
-	
+
 	<script>
 	/* Imgur Upload Script */
 	(function (root, factory) {
@@ -306,7 +194,7 @@ body.loading .loading-modal {
 	            var p1, p2, input;
 
 	                p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
-	                p2 = this.createEls('p', {}, '或將1張圖片拖曳至此。');
+	                p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
 	            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
 
 	            Array.prototype.forEach.call(this.info, function (zone) {
@@ -464,7 +352,19 @@ new Imgur({
 			$(this).val(picker.startDate.format("YYYY/MM/DD HH:mm:ss"));
 			});
 
+// 		$(function() {
+// 			if (window.history && window.history.pushState) {
+// 			$(window).on('popstate', function () {
+// 			window.history.pushState('forward', null, '#');
+// 			window.history.forward(1);
+// 			});
+// 			}
+// 			window.history.pushState('forward', null, '#'); 
+// 			window.history.forward(1);
+// 			})
 	</script>
 
+	<%@ include file="menu.jsp"%>
+	
 </body>
 </html>

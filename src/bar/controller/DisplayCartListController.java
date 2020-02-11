@@ -95,7 +95,7 @@ public class DisplayCartListController {
 			Model m) {
 
 		Users user = userService.select(account);
-		int userId = user.getId();
+		int userId = user.getUserId();
 		
 		List<Orders> listOfOrder = new ArrayList<Orders>();
 		
