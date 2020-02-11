@@ -68,7 +68,7 @@ public class UserOrder {
 	public String userOrdersProcessAction(@ModelAttribute(name = "account") String account, Model m) {
 
 		Users user = userService.select(account);
-		int userId = user.getId();
+		int userId = user.getUserId();
 		
 		List<Orders> Corders = new ArrayList<Orders>();
 		Corders.addAll(ordersService.selectUser(userId, 2));

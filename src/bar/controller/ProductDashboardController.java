@@ -96,10 +96,9 @@ public class ProductDashboardController {
 
 	@RequestMapping(value = "/Dashboard.Products", method = RequestMethod.GET)
 	public String showDashboard(@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 				
 		try {
 			String Launched = pds.selectLaunched(companyId);
@@ -117,10 +116,9 @@ public class ProductDashboardController {
 	
 	@RequestMapping(value = "/Dashboard.TkProducts", method = RequestMethod.GET)
 	public String showDashboard2(@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		try {
 			String Launched = pds.selectTkLaunched(companyId);
@@ -142,10 +140,9 @@ public class ProductDashboardController {
 			@RequestParam("pdTg2") String pdTag2, @RequestParam("pdTg3") String pdTag3,
 			@RequestParam("pdDta") String pdDetail, @RequestParam("pdImg") String productImageUrl,
 			@RequestParam("setTimeAct") String Time,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		pds.addNewProduct(companyId, productName, pdStock, pdPrice, pdTag1, pdTag2, pdTag3, pdDetail, productImageUrl, Time);
 		request.setAttribute("productName", productName);
@@ -162,10 +159,9 @@ public class ProductDashboardController {
 			@RequestParam("pdTg2") String pdTag2, @RequestParam("pdTg3") String pdTag3,
 			@RequestParam("pdDta") String pdDetail, @RequestParam("pdImg") String productImageUrl,
 			@RequestParam("setTKTime") String TkTime, @RequestParam("setTimeAct") String Time,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		pds.addNewTKProduct(companyId, productName, pdStock, pdPrice, pdTag1, pdTag2, pdTag3, pdDetail, productImageUrl, TkTime, Time);
 		request.setAttribute("productName", productName);
@@ -175,7 +171,6 @@ public class ProductDashboardController {
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
 		return "productViewPage2";
-//		return "redirect:/ProductTicket.View";
 	}
 
 	@RequestMapping(value = "/pulPD", method = RequestMethod.POST)
@@ -183,7 +178,6 @@ public class ProductDashboardController {
 		boolean x = pds.pdPull(pdidckL);
 		if (x) {
 			return "redirect:/reFr";
-//			return "redirect:/Dashboard.Products";
 		} else {
 			return "addProduct";
 		}
@@ -194,7 +188,6 @@ public class ProductDashboardController {
 		boolean x = pds.pdLaunch(pdidckP);
 		if (x) {
 			return "redirect:/reFr";
-//			return "redirect:/Dashboard.Products";
 		} else {
 			return "addProduct";
 		}
@@ -204,7 +197,7 @@ public class ProductDashboardController {
 	public String reFresh() {
 		try
 		{
-		Thread.currentThread().sleep(1000);//毫秒
+		Thread.currentThread().sleep(1000);
 		}
 		catch(Exception e){
 		}
@@ -216,7 +209,6 @@ public class ProductDashboardController {
 		boolean x = pds.pdPull(pdidckL);
 		if (x) {
 			return "redirect:/reFrT";
-//			return "redirect:/Dashboard.TkProducts";
 		} else {
 			return "addProduct";
 		}
@@ -227,7 +219,6 @@ public class ProductDashboardController {
 		boolean x = pds.pdLaunch(pdidckP);
 		if (x) {
 			return "redirect:/reFrT";
-//			return "redirect:/Dashboard.TkProducts";
 		} else {
 			return "addProduct";
 		}
@@ -237,7 +228,7 @@ public class ProductDashboardController {
 	public String reFreshT() {
 		try
 		{
-		Thread.currentThread().sleep(1000);//毫秒
+		Thread.currentThread().sleep(1000);
 		}
 		catch(Exception e){
 		}
@@ -246,10 +237,9 @@ public class ProductDashboardController {
 
 	@RequestMapping(value = "/Product.EditPDL", method = RequestMethod.GET)
 	public String editProdL(@RequestParam("pdidckL") String pdId,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		ProductData pd = pds.editThisPd(companyId, pdId);
 		request.setAttribute("pdId", pd.getPdId());
@@ -268,10 +258,9 @@ public class ProductDashboardController {
 
 	@RequestMapping(value = "/Product.EditPDP", method = RequestMethod.GET)
 	public String editProdP(@RequestParam("pdidckP") String pdId,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		ProductData pd = pds.editThisPd(companyId, pdId);
 		request.setAttribute("pdId", pd.getPdId());
@@ -290,10 +279,9 @@ public class ProductDashboardController {
 	
 	@RequestMapping(value = "/Product.EditTkPDL", method = RequestMethod.GET)
 	public String editTkProdL(@RequestParam("pdidckL") String pdId,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
 		request.setAttribute("pdId", pd.getPdId());
@@ -314,10 +302,9 @@ public class ProductDashboardController {
 
 	@RequestMapping(value = "/Product.EditTkPDP", method = RequestMethod.GET)
 	public String editTkProdP(@RequestParam("pdidckP") String pdId,@ModelAttribute(name="Caccount") String account) {
-		// 之後要代入使用者帳號
-//		int companyId = 500002;
+
 		Company comp = companyService.select(account);
-		int companyId = comp.getId();
+		int companyId = comp.getCompanyId();
 		
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
 		request.setAttribute("pdId", pd.getPdId());

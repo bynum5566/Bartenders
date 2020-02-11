@@ -66,7 +66,7 @@ public class CompanyOrder {
 
 		m.addAttribute("Caccount", account);
 		Company company = companyService.select(account);		
-		int companyId = company.getId();
+		int companyId = company.getCompanyId();
 
 		List<Orders> Corders = new ArrayList<Orders>();
 		Corders.addAll(ordersService.selectCompany(companyId, 2));

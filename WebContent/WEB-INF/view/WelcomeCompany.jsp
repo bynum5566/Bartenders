@@ -10,22 +10,44 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 
 <title>Welcome</title>
+
+<style type="text/css">
+body {
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top;
+	background-image: url(/Bartenders/images/bg4.jpg);
+}
+.welcome{
+top:80px;
+position:relative;
+margin-top:10px;
+text-align: center;
+margin: auto;
+color:white;
+}
+</style>
+
 </head>
 <body>
-	<h1>
-		<button onclick="signOut();">Sign out</button>
-		<a href="<c:url value="/Dashboard.Products" />">123</a>
-	</h1>
+	<div class="welcome">
+		<h1>
+			歡迎回來，${CName}。
+			<!-- 		<button onclick="signOut();">Sign out</button> -->
+			<%-- 		<a href="<c:url value="/Dashboard.Products" />">123</a> --%>
+		</h1>
+	</div>
 
-	 <h1>
-  <a href="<c:url value="/companyOrder.controller"/>">CompanyOrder</a>
- </h1>
- 
- <h1>
-  <a href="<c:url value="/salesReport.controller"/>">SalesReport</a>
- </h1>
+		 <h1>
+	  <a href="<c:url value="/companyOrder.controller"/>">CompanyOrder</a>
+	 </h1>
 
+	<!--  <h1> -->
+	<%--   <a href="<c:url value="/salesReport.controller"/>">SalesReport</a> --%>
+	<!--  </h1> -->
 
+	<%@ include file="menu.jsp"%>
 
 
 

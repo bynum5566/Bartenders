@@ -14,7 +14,6 @@ public class MyFavorite {
 	private int fNum;
 	private int userId;
 	private String pdId;
-//	private String productName;
 	private String disliked;
 
 	public MyFavorite() {
@@ -24,7 +23,6 @@ public class MyFavorite {
 		this.fNum=fNum;
 		this.userId=userId;
 		this.pdId=pdId;
-//		this.productName=productName;
 		this.disliked=disliked;
 	}
 	
@@ -56,15 +54,6 @@ public class MyFavorite {
 		this.pdId = pdId;
 	}
 	
-//	@Column(name = "PRODUCTNAME")
-//	public String getProductName() {
-//		return productName;
-//	}
-//	
-//	public void setProductName(String productName) {
-//		this.productName = productName;
-//	}
-
 	@Column(name = "DISLIKED")
 	public String getDisliked() {
 		return disliked;

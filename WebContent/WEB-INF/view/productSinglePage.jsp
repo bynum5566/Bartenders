@@ -4,73 +4,103 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
+<link rel="stylesheet" type="text/css" href="/Bartenders/images/productView.css">
+<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
 <title>Bartender- Preview ${productName}</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<style type="text/css">
-	.outwrap{
-		margin: auto;
-		text-align: center;
-		width: 800px;
-		line-height: 18px;
-	}
-	.inwrap{
-		margin: auto;
-		text-align: left;
-	}
-	.pdData{
-		display: inline;
-		width: 350px;
-	}
-	.pdDataMain{
-		width: 350px;
-	}
-	.bt0 {
-		margin: 10px;
-	}
-	.bt01 {
-		text-align: right;
-	}
-	#pdPicture{
-		max-width: 350px;
-	}
-</style>
 </head>
+
 <body>
-<table class="outwrap">
-	<tr><td colspan="2"><h2>商品預覽</h2></td></tr>
-	<tr class="inwrap"><td colspan="2"><h3>${productName}</h3></td></tr>
-	<tr class="inwrap">
-		<td class="pdData">
-			<div class="pdData"><img id="pdPicture" src="<c:out value="${pic}"/>"></div>
-		</td>
-		<td class="pdDataMain">
-		<form action="/addToCart" method="post">
-			<div id="hideId" class="pdDataMain"><label>商品編號: </label><input type="text" value="<c:out value="${productId}"/>" readonly="readonly"></div>
-			<div class="pdDataMain"><label>價格: </label><h4>${pdPri}</h4></div>
-			<div class="pdDataMain"><label>庫存量: </label><h4 id="stk">${pdStk}</h4></div>
-			<div id="vdTime" class="pdDataMain"><label>有效期間: </label><div id="vdTime2">${pdValD}</div></div>
-			<div id="quant" class="pdDataMain"><label>購買數量:</label><input type="number" max="<c:out value="${pdStk}"/>"></div>
-			<div id="sold" class="sold pdDataMain"><h4 class="sold">缺貨中</h4></div>
-			<div>
-				<input class="bt0" type="submit" value="加入購物車+">
-			</div>
-		</form>
-			<div>
-					<form action="/Bartenders/addMyFav" method="post">
-						<input id ="pdidckL" type="text" name="pdidck" class="pdidckLL"
-							value="<c:out value="${productId}"/>" readonly="readonly">
-						<input class="bt0" type="submit" value="加入我的最愛+">
-					</form>
-			</div>
-		</td>
-	</tr>
-	<tr><td colspan="2"><div class="inwrap"><p>${pdDetail}</p></div></td></tr>
-	<tr class="bt01 bt0">
-		<td colspan="2"><a href="/Bartenders/Dashboard.MyFavorite">
-			<input class="bt01 bt0" type="button" value="回我的最愛" />
-		</a></td>
-	</tr>
-</table>
+	<div class="outw">
+				<div>
+					<h2>商品預覽</h2>
+				</div>
+		<table class="outwrap0">
+<!-- 			<tr> -->
+<!-- 				<td> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+			<tr>
+				<td>
+					<h3>${productName}</h3>
+				</td>
+			</tr>
+			<tr>
+				<td class="inwrap">
+					<div class="flos01">
+						<div>
+							<img id="pdPicture" src="<c:out value="${pic}"/>">
+<!-- 							<img id="pdPicture" src="https://images.plurk.com/3igWGJHn8RjteL3eqyutFX.jpg"> -->
+						</div>
+					</div>
+					<div class="flos02">
+						<form action="/addToCart" method="post">
+							<div id="hideId" class="pdDataMain">
+								<div>商品編號: </div>
+								<input type="text"
+								 value="<c:out value="${productId}"/>" readonly="readonly">
+							</div>
+							<div class="pdDataMain">
+								<div>
+									價格:${pdPri}
+								</div>
+							</div>
+							<div class="pdDataMain">
+								<div>
+									庫存量:
+									<span id="stk">${pdStk}</span>
+								</div>
+							</div>
+							<div id="quant" class="pdDataMain">
+								<div>
+									購買數量:
+									<input type="number" min="1" max="<c:out value="${pdStk}"/>">
+								</div>
+							</div>
+							<div id="sold" class="pdDataMain">
+								<div>缺貨中</div>
+							</div>
+							<div id="vdTime" class="pdDataMain">
+								${pdValD}
+								<!-- <div>有效期間:
+									<span id="vdTime2">${pdValD}</span>
+								</div> -->
+							</div>
+							<div id="myFv">
+								${bT}
+								<!-- <input class="bT" type="submit" value="加入購物車+"> -->
+							</div>
+						</form>
+							<div id="pdLk">
+								<form action="/Bartenders/addMyFav" method="post">
+									<input id ="pdidckL" type="text" name="pdidck" class="pdidckLL"
+										value="<c:out value="${productId}"/>" readonly="readonly">
+									<input class="bT" type="submit" value="加入我的最愛+">
+								</form>
+							</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="dtails">
+						<p>${pdDetail}</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="bt01">
+					<!-- <a href="/Bartenders/Dashboard.MyFavorite">
+						<input class="bT01" type="button" value="回我的最愛" />
+					</a> -->
+					<button onclick="location.href = '/Bartenders/Dashboard.MyFavorite';" class="bT" >回我的最愛</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<%@ include file="menu.jsp"%>
 
 <script type="text/javascript">
 	$('#sold').hide();
@@ -84,11 +114,7 @@
 		$('#quant').show();
 		$('#sold').hide();
 	}
-	var vT = document.getElementById('#vdTime2').value;
-	if(vT.length<1){
-		$('#vdTime').hide();
-	}
+
 </script>
-<!-- <button onclick="location.href='/Bartenders/Dashboard.TkProducts'">回主控台</button> -->
 </body>
 </html>

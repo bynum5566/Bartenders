@@ -9,52 +9,66 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyFavoriteService {
 	private MyFavoriteDAO mfD;
-	@Autowired
 	private ProductDataDAO pdao;
-	private MyFavorite mf = new MyFavorite();
+	private MyFavorite mf;
 	
 	public MyFavoriteService(){
 	}
 	
-	@Autowired(required = true)
-	public MyFavoriteService(MyFavoriteDAO mfD){
+	@Autowired
+	public MyFavoriteService(MyFavoriteDAO mfD, ProductDataDAO pdao, MyFavorite mf){
 		this.mfD=mfD;
+		this.pdao=pdao;
+		this.mf=mf;
 	}
 	
 	public String showAllFav(int userId) {
 		List<MyFavorite> MFs = mfD.selectFav(userId);
 		ArrayList<String> idList = new ArrayList<String>();
 		String favs = "";
-		for(MyFavorite MF : MFs) {
-			String id = MF.getPdId();
-			System.out.println(id);
-			idList.add(id);
-		}
-		for(int x = 0;x<idList.size();x++) {
-			String pdid = idList.get(x);
-			ProductData prod = pdao.selectP(pdid);
-			favs = favs
-					+"<tr class=\"pdRow\"><td>"
-					+"<form action=\"/Bartenders/Product.show\" method=\"GET\">"
-					+"<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\""
-					+ prod.getPdId() + "\" readonly>" 
-					+ "<div class=\"pdId\" name=\"pdId1\">編號:</div>"
-					+"<div><input type=\"submit\" value=\"" + prod.getPdId() + "\"/></div></form></td>"
-					+"<td class=\"MidS1\"><div class=\"pdNm\" name=\"pdNm1\">名稱:<div/><div>"
-					+ prod.getProductName() + "</div></td>"
-					+"<td class=\"RSide\"><form action=\"/Bartenders/pdDisLike\" method=\"POST\">"
-					+ "<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\"" + prod.getPdId()
-					+ "\" readonly=\"readonly\"><input type=\"submit\" value=\"刪除\"></form></td>"
-					+"</tr>";
+		for(MyFavorite MF : MFs) {	
+			String id = MF.getPdId();	
+			System.out.println(id);	
+			idList.add(id);	
+		}	
+		for(int x = 0;x<idList.size();x++) {	
+			String pdid = idList.get(x);	
+			ProductData prod = pdao.selectP(pdid);	
+			favs = favs	
+					+"<tr class=\"pdRow\"><td>"	
+					+"<form action=\"/Bartenders/Product.show\" method=\"GET\">"	
+					+"<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\""	
+					+ prod.getPdId() + "\" readonly=\"readonly\">" 	
+					+ "<div class=\"pdId\" name=\"pdId1\">編號:</div>"	
+					+"<div><input type=\"submit\" value=\"" + prod.getPdId() + "\"/></div></form></td>"	
+					+"<td class=\"MidS1\"><div class=\"pdNm\" name=\"pdNm1\">名稱:</div><div>"	
+					+ prod.getProductName() + "</div></td>"	
+					+"<td class=\"RSide\"><form action=\"/Bartenders/pdDisLike\" method=\"POST\">"	
+					+ "<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\"" + prod.getPdId()	
+					+ "\" readonly=\"readonly\"><input type=\"submit\" value=\"刪除\"></form></td>"	
+					+"</tr>";	
 		}
 		return favs;
 	}
 	
-	public void addFav(int userId, String pdId) {
+	public int getNewFvId(int userId) {	
+		int x = mfD.selectFav(userId).size();	
+		String s1 = Integer.toString(userId); 	
+        String s2 = Integer.toString(x); 	
+  	
+        String s = s1 + s2; 	
+  	
+        int fNum = Integer.parseInt(s); 	
+  	
+		return fNum;	
+	}
+	
+	public void addFav(int userId, String pdId, int fNum) {
 		MyFavorite myFv = mfD.selectOneFav(userId, pdId);
 		if(myFv == null) {
 		String L = "L";
 		mf.setDisliked(L);
+		mf.setfNum(fNum);
 		mf.setPdId(pdId);
 		mf.setUserId(userId);
 		mfD.addToFav(mf);
