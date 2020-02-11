@@ -105,7 +105,7 @@ public class TicketQRcontroller {
 	@RequestMapping(path = "/chkQR", method = RequestMethod.GET)
 	public String chkQR(HttpServletRequest hsRequest) throws ParseException {
 		Date toDay = new Date();   
-		System.out.println(toDay);
+		System.out.println("toDay="+toDay);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
