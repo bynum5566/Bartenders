@@ -6,167 +6,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="/Bartenders/images/dashboardView.css">
+<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
 <title>DashBoard</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<style type="text/css">
-.allwrapper0 {
-	text-align: center;
-	margin: auto;
-}
-
-.allwrapper {
-	width: 1410px;
-	margin: 35px auto;
-}
-
-.outwrapper {
-	margin: auto;
-	text-align: center;
-	width: 650px;
-	border: 1px solid black;
-}
-
-.bt {
-	margin: 30px auto;
-	border: none;
-	text-align: right;
-	margin-left: 530px;
-}
-
-.lb {
-	margin: 30px 250px;
-}
-
-.inwrapper {
-	margin: 20px;
-	width: 600px;
-	height: 350px;
-	overflow: auto;
-	border-top: 1px solid gray;
-	border-bottom: 1px solid gray;
-}
-
-.pd0 {
-	padding: 10px;
-	margin: auto;
-	width: 550px;
-	border-radius: 3px;
-}
-
-.pd0.td {
-	border-top: 1px solid gray;
-}
-
-.pd00 {
-	padding: 10px;
-	margin: auto;
-	width: 550px;
-}
-
-.pd01 {
-	padding: 10px;
-	margin: auto;
-	width: 545px;
-}
-
-.pd01:hover {
-	box-shadow: 0px 0px 5px blue;
-}
-
-.pd00.tr {
-	width: 410px;
-	text-align: left;
-}
-
-.pdidckP, pdidckL {
-	width: 10px;
-	text-align: left;
-}
-
-.pdRow {
-	margin: 5px;
-	line-height: 45px;
-	border-radius: 3px;
-}
-
-.pdRow1 {
-	line-height: 30px;
-}
-
-.LSide {
-	padding: 10px;
-	width: 20px;
-	text-align: left;
-}
-
-.MidS1 {
-	width: 320px;
-	text-align: left;
-}
-
-.pdId, .pdNm {
-	text-align: left;
-}
-
-.MidS2, .MidS3 {
-	text-align: center;
-	width: 75px;
-}
-
-.RSide {
-	width: 20px;
-}
-
-#addBt {
-	margin-top: 50px;
-	margin-right: 1100px;
-}
-</style>
-
 </head>
+
 <body>
 	<div class="allwrapper0">
-
-		<div id="addBt">
 			<form action="/Bartenders/TicketProduct.Add" method="get">
-				<input type="submit" value="新增票券+">
-				<a href="/Bartenders/Dashboard.Products">
-				<input class="bt01 bt0" type="button" value="商品管理"/></a>
+				<div class="box0">
+					<div class="flos1">
+					<div class="btn btn-one">
+						<input class="bT" type="submit" value="新增票券+">
+					</div>
+					</div>
+					<div class="flos2">
+					<div class="btn btn-one">
+						<a href="/Bartenders/Dashboard.Products">
+							<input class="bT" type="button" value="商品管理"/>
+						</a>
+						</div>
+					</div>
+				</div>
 			</form>
-		</div>
 
 		<div class="allwrapper">
-			<Table class="outwrapper">
+			<Table class="outwrapper blurred-box1">
 				<tr>
 					<td>
-						<div class="lb">上架中商品</div>
-						<div class="inwrapper">
-							<table class="pd0">${Launched}</table>
-						</div>
-					</td>
-					<td>
-						<div class="lb">下架中商品</div>
-						<div class="inwrapper">
-							<table class="pd0">${Pulled}</table>
+						<div class="box0">
+							<div class="flos1">
+								<label>上架中票券</label>
+								<div class="inwrapper blurred-box0">
+									<table class="pd0">${Launched}</table>
+								</div>
+							</div>
+							<div class="flos2">
+								<label>下架中票券</label>
+								<div class="inwrapper blurred-box2">
+									<table class="pd0">${Pulled}</table>
+								</div>
+							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
-
 		</div>
+	</div>
 
+	<%@ include file="menu.jsp"%>
+	
 		<script>
 			$('.pdidckPP').hide();
 			$('.pdidckLL').hide();
-			
-// 			function reloadIt() {
-// 			    if (window.location.href.substr(-2) !== "?r") {
-// 			        window.location = window.location.href + "?r";
-// 			    }
-// 			}
-
-// 			setTimeout('reloadIt()', 500)();
-			
 		</script>
 </body>
 </html>

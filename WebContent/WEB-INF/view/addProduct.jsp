@@ -5,119 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>新增商品</title>
-
-<style type="text/css">
-.outwrap {
-	margin: auto;
-	text-align: center;
-}
-
-table {
-	width:500px;
-	margin: auto;
-	border: 1px solid black;
-	text-align: left;
-}
-
-tr, td {
-	line-height: 22px;
-	border: 1px solid black;
-	text-align: left;
-}
-
-label, input, textarea, button, div {
-	margin: 5px;
-}
-
-.lb {
-	width: 140px;
-}
-
-.bt0 {
-	margin: 10px;
-}
-
-.bt01 {
-	text-align: right;
-}
-/* Imgur Upload Style */
-
-body.loading .loading-modal {
-    display: block
-}
-
-.dropzone {
-    border: 4px dashed #ccc;
-    height: 120px;
-    position: relative; 
-/*     margin-right: auto; */
-/*     margin-left: auto; */
-    max-width: 100%; 
-}
-
-.info {
-    margin-top: 11%;
-}
-
-.dropzone p {
-    /*height: 100%;*/
-    /*line-height: 200px;*/
-    margin: 0%;
-    text-align: center;
-    width: 100%
-}
-
-.input {
-    height: 100%;
-    left: 0;
-    outline: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    width: 100%
-}
-
-.status {
-    border-radius: 5px;
-    text-align: center;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.image-url {
-    width: 50%;
-}
-
-.dropzone.dropzone-dragging {
-    border-color: #000
-}
-
-.loading-modal {
-    background-color: rgba(255, 255, 255, .8);
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%
-}
-
-.loading-table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15%;
-    margin-bottom: 15%;
-    border: none;
-    text-align: center;
-}
-
- .img { 
-     max-width: 150px; 
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
+<link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
+<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>	
+<title>Add new product</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link
@@ -130,48 +21,48 @@ body.loading .loading-modal {
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
 	rel="stylesheet"></link>
-
 </head>
+
 <body>
 	<div class="outwrap">
-		<div>
+		<div class="inwrap">
 			<h1>新增商品</h1>
 			<form action="<c:url value="/addPD"></c:url>" method="POST"
 				enctype="multipart/form-data">
 				<table>
 					<tr>
-						<td class="lb"><label>商品名稱:</label></td>
+						<td><label>商品名稱</label></td>
 						<td><input class="bt0" name="pdNm" type="text"
 							required="required"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品數量:</label></td>
+						<td><label>商品數量</label></td>
 						<td><input class="bt0" name="pdStk" id="pdamount"
 							type="number" min="1" required="required"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品價格:</label></td>
+						<td><label>商品價格</label></td>
 						<td><input class="bt0" name="pdPri" id="pdprice"
 							type="number" min="1" required="required"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag1:</label></td>
+						<td><label>Tag1</label></td>
 						<td><input class="bt0" name="pdTg1" type="text" max="10"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag2:</label></td>
+						<td><label>Tag2</label></td>
 						<td><input class="bt0" name="pdTg2" type="text" max="10"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>Tag3:</label></td>
+						<td><label>Tag3</label></td>
 						<td><input class="bt0" name="pdTg3" type="text" max="10"></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品詳細:</label></td>
+						<td><label>商品詳細</label></td>
 						<td><textarea class="bt0" name="pdDta"></textarea></td>
 					</tr>
 					<tr>
-						<td class="lb"><label>商品圖片:</label></td>
+						<td><label>商品圖片</label></td>
 						<td>
 							<div class="dropzone">
 								<div class="info"></div>
@@ -180,37 +71,48 @@ body.loading .loading-modal {
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><label> <input class="bt0"
-								id="setTt1" name="tm" type="radio" value="1" checked required
-								onfocus="showT1()"></label> <label for="setTt1">設定自動上架時間(不設定:
-								立即上架)</label> <label><input class="bt0" id="setTt2" name="tm"
-								type="radio" value="2" onfocus="showT2()"></label> <label
-							for="setTt2">設定自動上架與下架時間</label></td>
+						<td colspan="2">
+							<!-- <label> -->
+								<input class="bt0" id="setTt1" name="tm" type="radio" value="1" checked required
+								onfocus="showT1()">
+							<!-- </label> -->
+							<label for="setTt1">設定自動上架時間</label>
+							<!-- <label> -->
+								<br><input class="bt0" id="setTt2" name="tm"
+								type="radio" value="2" onfocus="showT2()">
+							<!-- </label>  -->
+							<label	for="setTt2">設定自動上/下架時間</label></td>
 					</tr>
 					<tr id="setA" class="sho">
-						<td class="lb setT1"><label>上架時間:</label></td>
+						<td class="setT1"><label>上架時間</label></td>
 						<td><input name="setTimeAct" id="setA1"
 							class="dateRange form-control" type="text" /></td>
 					</tr>
 					<tr id="setB" class="nosho">
-						<td class="lb setT2"><label>上、下架時間:</label></td>
+						<td class="setT2"><label>上/下架時間</label></td>
 						<td><input name="setTimeNon" id="setB1"
 							class="dateRange2 form-control" type="text" /></td>
 					</tr>
 					<tr>
-						<td class="bt01 bt0" colspan="2"><a
-							href="/Bartenders/Dashboard.Products"> <input
-								class="bt01 bt0" type="button" value="回商品管理" /></a> <input
-							class="bt01 bt0" type="submit" value="新增商品" /></td>
+						<td colspan="2" id="bT">
+							<!-- <a href="/Bartenders/Dashboard.Products">
+								<input class="bT" type="button" value="回商品管理" />
+							</a> -->
+							<button onclick="location.href = '/Bartenders/Dashboard.Products';" class="bT" >回上頁</button>
+							<!-- <a href="/Bartenders/Product.Add">
+								<input class="bt01 bt0 bT" type="button" value="重填" />
+							</a> -->
+							<button class="bT" onClick="history.go(0);">重填</button>
+							<input class="bT" type="submit" value="新增商品" />
+						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
 
-
 	<script>
-	/* Imgur Upload Script */
+	/* Imgur */
 	(function (root, factory) {
 	    "use strict";
 	    if (typeof define === 'function' && define.amd) {
@@ -287,7 +189,7 @@ body.loading .loading-modal {
 	            var p1, p2, input;
 
 	                p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
-	                p2 = this.createEls('p', {}, '或將1張圖片拖曳至此。');
+	                p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
 	            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*', required: 'required'});
 
 	            Array.prototype.forEach.call(this.info, function (zone) {
@@ -379,7 +281,7 @@ body.loading .loading-modal {
 
 	$('#imgPlace').hide();
 	
-// 	Upload js
+// 	Upload
 var feedback = function(res) {
     if (res.success === true) {
     	$('#imgPlace').name="na";
@@ -395,7 +297,6 @@ new Imgur({
 });
 
 
-// Origin
 		$('.sho').show();
 		$('.nosho').hide();
 
@@ -406,8 +307,6 @@ new Imgur({
 			T1.name = "setTimeAct";
 			T2.className = "nosho";
 			T2.name = "setTimeNon";
-			console.log(T1.className + "/" + T1.name);
-			console.log(T2.className + "/" + T2.name);
 			$('.sho').show();
 			$('.nosho').hide();
 		}
@@ -419,8 +318,6 @@ new Imgur({
 			T2.name = "setTimeAct";
 			T1.className = "nosho";
 			T1.name = "setTimeNon";
-			console.log(T1.className + "/" + T1.name);
-			console.log(T2.className + "/" + T2.name);
 			$('.sho').show();
 			$('.nosho').hide();
 		}
@@ -491,7 +388,20 @@ new Imgur({
 				function(ev, picker) {
 					$(this).val("");
 				});
+
+		$(function() {
+			if (window.history && window.history.pushState) {
+			$(window).on('popstate', function () {
+			window.history.pushState('forward', null, '#');
+			window.history.forward(1);
+			});
+			}
+			window.history.pushState('forward', null, '#');
+			window.history.forward(1);
+			})
 	</script>
+
+	<%@ include file="menu.jsp"%>
 
 </body>
 </html>

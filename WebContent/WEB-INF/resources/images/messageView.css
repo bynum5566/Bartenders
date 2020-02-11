@@ -1,0 +1,473 @@
+@font-face{
+  font-family: Makinas;
+  src: url(Makinas-4-Flat.otf);
+}
+
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-image: url(bg14.png);
+  height: 100%;
+  font-family: Arial, Helvetica;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Makinas';
+  position: relative;
+}
+
+h1{
+  color: aliceblue;
+  top:10%;
+  font-size: 30px;
+  margin: 200px auto;
+  text-align: center;
+}
+
+h2{
+  color: aliceblue;
+  top:10%;
+  font-size: 30px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color:aliceblue;
+}
+
+table{
+  margin: 50px auto;
+  text-align: center;
+}
+
+.bT {
+  /* margin: auto;
+  text-align: center; */
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(0,0,0,0.77);
+  padding: 20px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+
+  /* position:absolute;
+  left: 50%;
+  top: 25%; */
+}
+
+.bT:hover {
+  background: rgb(0, 219, 11, 0.77);
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+  }
+
+  .bT01 {
+    /* margin: auto;
+    text-align: center; */
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    /* background: rgba(0,0,0,0.77); */
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+  
+    /* position:absolute;
+    left: 50%;
+    top: 25%; */
+  }
+  
+  .bT01:hover {
+    background: rgb(150, 13, 13, 0.77);
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+    }
+
+/* div scroll bars */
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+	background-color: rgb(0, 0, 0);
+}
+
+body::-webkit-scrollbar
+{
+  -webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+  border-radius: 10px;
+  width: 12px;
+	background-color: rgb(0, 0, 0);
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgb(80, 80, 80);
+	background-color: rgb(119, 119, 119);
+}
+
+
+/* ///////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////// */
+/* /////////////////////// M A I N ///////////////////////// */
+@font-face{
+	font-family: Makinas;
+	src: url(Makinas-4-Flat.otf);
+  }
+
+body {
+	-webkit-text-size-adjust: auto;
+}
+
+/* Container */
+		@media screen and (max-width: 1680px) {
+			.blurred-box1{
+				width: 1200px;
+			}
+			.outw{
+				width: auto;
+				text-align: center;
+			}
+
+		}
+
+		@media screen and (max-width: 1480px) {
+
+			.blurred-box1 {
+				width: 100%;
+			}
+			.allwrapper{
+				width: 800px;
+				margin: auto; 
+				text-align: center;
+			}
+			.outw{
+				font-size: 20px;
+				text-align: center;
+				width: 730px;
+				margin: auto;
+			}
+			.box0,table.outwrap0.blurred-box30 {
+				text-align: center;
+				width: 700px;
+				margin: auto;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,.inwrap.dtails{
+				text-align: center;
+				display: block;
+				width: 500px;
+				margin: auto;
+			}
+			.box30,.inwrap,h3,#pdPicture{
+				padding: 10px 0;
+				text-align: center;
+				display: block;
+				width: 500px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
+				width: auto;
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+
+		}
+
+		@media screen and (max-width: 960px) {
+			.allwrapper{
+				width: 800px;
+				margin: auto; 
+				text-align: center;
+			} 
+			.box0,.blurred-box3 {
+				text-align: center;
+				width: 650px;
+			}
+			.outw{
+				font-size: 20px;
+				text-align: center;
+				width: 700px;
+				margin: auto;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 600px;
+			}
+			.inwrap,.box30,table.outwrap0.blurred-box30{
+				width: 580px;
+				margin: auto;
+				text-align: center;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,.pdDataMain,.pdData,.inwrap.dtails,#pdPicture{
+				
+				text-align: center;
+				display: block;
+				width: 350px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}
+
+		@media screen and (max-width: 840px) {
+			.allwrapper{
+				width: 600px;
+				margin: auto; 
+				text-align: center;
+			} 
+			.box0,.blurred-box3,div.outw{
+				text-align: center;
+				width: 580px;
+			}
+			table.outwrap0.blurred-box30{
+				font-size: 20px;
+				text-align: center;
+				margin: auto;
+				width: 560px;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 545px;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,div.pdDataMain,div.pdData,.inwrap,.inwrap.dtails,.box30,#pdPicture{
+				width: 320px;
+				text-align: center;
+				display: block;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}
+
+		@media screen and (max-width: 736px) {
+			div.outw{
+				width: 560px;
+			}
+			.allwrapper{
+				width: 450px;
+				margin: auto; 
+				text-align: center;
+			}
+			table.outwrap0.blurred-box30,tr.inwrap{
+				font-size: 20px;
+				text-align: center;
+				margin: auto;
+				width: 380px;
+			} 
+			.box0,.blurred-box3{
+				text-align: center;
+				width: 380px;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 345px;
+			}
+			td.box30{
+				width: 345px;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,.pdDataMain,.pdData,#pdPicture{
+				text-align: center;
+				display: block;
+				width: 300px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}
+
+		@media screen and (max-width: 667px) {
+			.allwrapper,.outw{
+				width: 350px;
+				margin: auto; 
+				text-align: center;
+			} 
+			.box0,.blurred-box3{
+				text-align: center;
+				width: 300px;
+			}
+			table.outwrap0.blurred-box30{
+				font-size: 20px;
+				text-align: center;
+				width: 280px;
+				margin: auto;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 255px;
+			}
+			.inwrap,.inwrap.box30{
+				width: 200px;
+			}
+			input[type=text].bt0,input[type=number].bt0,input.dateRange,input.dateRange2,textarea.bt0,.dropzone{
+				width:180px ;
+			}
+			.bT{
+				display: block;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,div.pdDataMain,div.pdData,#pdPicture,.inwrap.dtails{
+				
+				text-align: center;
+				display: block;
+				width: 250px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}
+
+		@media screen and (max-width: 568px) {
+			.allwrapper{
+				width: 320px;
+				text-align: center;
+			} 
+			.box0,.blurred-box3{
+				text-align: center;
+				width: 280px;
+			}
+			/* .outw{
+				font-size: 20px;
+				text-align: center;
+				margin: auto;
+				width: 300px;
+			} */
+			.pd0,.inwrapper
+			{
+			/* ,table.outwrap0.blurred-box30,tr.inwrap,td.box30 */
+				width: 250px;
+				text-align: center;
+				margin: auto;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			/* div.flos01,div.flos02,div.pdDataMain,div.pdData,#pdPicture,.inwrap.dtails, */
+			.blurred-box2{
+				text-align: center;
+				display: block;
+				width: 240px;
+				margin: auto;
+			}
+			/* #myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			} */
+		}
+
+		@media screen and (max-width: 414px) {
+			.allwrapper{
+				width: 310px;
+				text-align: center;
+			} 
+			.box0,.blurred-box3,div.outw{
+				text-align: center;
+				width: 260px;
+			}
+			table.outwrap0.blurred-box30{
+				font-size: 20px;
+				text-align: center;
+				width: 210px;
+				margin: auto;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 210px;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			.flos01,div.flos02,div.pdDataMain,div.pdData,#pdPicture,.inwrap.dtails{
+				
+				text-align: center;
+				display: block;
+				width: 210px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}
+
+		@media screen and (max-width: 320px) {
+			.allwrapper{
+				width: 300px;
+				text-align: center;
+			} 
+			.box0,.blurred-box3,div.outw{
+				text-align: center;
+				margin: auto;
+				width: 280px;
+			}
+			table.outwrap0.blurred-box30,tr.inwrap,td.box30{
+				text-align: center;
+				margin: auto;
+				width: 280px;
+			}
+			.pd0,.inwrapper,.blurred-box0,.blurred-box2{
+				width: 180px;
+			}
+			.flos1,.flos2{
+				text-align: center;
+				display: block;
+			}
+			div.flos01,div.flos02,div.pdDataMain,div.pdData,#pdPicture,.dtails,h3,td.bt001{
+				text-align: center;
+				display: block;
+				width: 180px;
+				margin: auto;
+			}
+			#myFv,input.bt0.bT,button.bT{
+				float:none;
+				margin: 5px auto;
+				text-align: center;
+			}
+		}

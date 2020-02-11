@@ -33,7 +33,7 @@ public class SalesReport {
 	public String salesReportProcessAction(@ModelAttribute(name = "Caccount") String account, Model m) {
 		m.addAttribute("Caccount", account);
 		Company company = companyService.select(account);		
-		Integer companyId = company.getId();
+		Integer companyId = company.getCompanyId();
 		
 		List<String> productNames = new ArrayList<String>();
 		List<Integer> productsSoldQuantity = new ArrayList<Integer>();
