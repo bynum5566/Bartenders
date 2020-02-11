@@ -1,5 +1,6 @@
 package bar.controller;
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import bar.model.CartService;
 import bar.model.ImageResponse;
 import bar.model.ImgurAPI;
+import bar.model.Orders;
 import bar.model.OrdersService;
 import bar.model.ProductDataService;
 import okhttp3.MediaType;
@@ -49,7 +51,7 @@ public class TicketQRcontroller {
 		String expireDate=(String) hsRequest.getSession().getAttribute("expireDate");
 		String orderId=(String)hsRequest.getSession().getAttribute("orderId");
 		int width = 500, height = 500;
-		String format = "png", contents = "http://localhost:8080/chkQR?orderId="+orderId+"&validDate="+validDate+"&expireDate="+expireDate;
+		String format = "png", contents = "http://localhost:8080/Bartenders/chkQR?orderId="+orderId+"&validDate="+validDate+"&expireDate="+expireDate;
 //存放二維碼引數
 		HashMap hashMap = new HashMap();
 		hashMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -101,23 +103,28 @@ public class TicketQRcontroller {
 	}
 	
 	@RequestMapping(path = "/chkQR", method = RequestMethod.GET)
-	public String chkQR(HttpServletRequest hsRequest) {
-		Date toDay = java.sql.Date.valueOf(getTime());
-		Date validDate = java.sql.Date.valueOf(hsRequest.getParameter("validDate"));
-		Date expireDate = java.sql.Date.valueOf(hsRequest.getParameter("expireDate"));
+	public String chkQR(HttpServletRequest hsRequest) throws ParseException {
+		Date toDay = new Date();   
+		System.out.println(toDay);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
+		System.out.println("validDate="+validDate);
+		Date expireDate = sdf.parse(hsRequest.getParameter("expireDate"));
+		System.out.println("expireDate="+expireDate);
+		
 		String orderId = hsRequest.getParameter("orderId");
-		int status=6;
+		
 		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
-			oService.updateToCancel(orderId, status);
-			return "validQR";
+			Orders order = oService.selectOrder(orderId);
+			if(order.getStatus()==6) {
+				return "usedQR";
+			}else {
+				int status=6;
+				oService.updateToCancel(orderId, status);
+				return "validQR";	
+			}
 		}
 		return "invalidQR";
-	}
-	
-	public String getTime() {
-		Date date = new Date();
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");       
-	    String toDay = (String)dateFormat.format(date);   
-		return toDay;
 	}
 }
