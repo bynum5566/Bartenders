@@ -116,8 +116,8 @@ footer {
 						<td>配送類型</td>
 						<!-- <td>修改配送資訊</td> -->
 						<td>修改數量</td>
-							<td>取消購物車</td>
-							<td>結帳</td>
+							<td>從購物車移除</td>
+							<td>成立訂單</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -145,11 +145,11 @@ footer {
 								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
 								>修改數量</a></td>
 
-						<!-- 取消購物車 -->
+						<!-- 從購物車移除 -->
 						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								>取消此購物車</a></td>
+								>從購物車移除</a></td>
 						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								>結帳</a></td>
+								>成立訂單</a></td>
 
 					</tr>
 					</c:forEach>

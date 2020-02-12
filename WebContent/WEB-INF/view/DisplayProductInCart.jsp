@@ -108,7 +108,7 @@ footer {
 			<thead>
 				<tr align="center">
 
-					<td>產品id</td>
+			<!--		<td>產品id</td>	-->
 					<td>產品名稱</td>
 					<td>產品單價</td>
 					<td>數量</td>
@@ -121,7 +121,8 @@ footer {
 					<c:forEach items="${oneOrderCarts}" var="list" step="1" varStatus="current">
 				<tr>
 					<c:if test="${oneOrderCarts[current.index].quantity != '0' }">
-						<td align="center">${oneOrderCarts[current.index].pdId}</td>
+					
+					<!--	<td align="center">${oneOrderCarts[current.index].pdId}</td> -->
 						<td align="center">${listOfProduct[current.index].productName}</td>
 						<td align="center">${oneOrderCarts[current.index].checkoutPrice}</td>
 

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>返回我的購物車</title>
+    <title>回到購物車</title>
     <!-- 
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
@@ -104,7 +104,7 @@ footer {
 		<h2>${msg}</h2>
 		<form>
 			<h2>
-				<a href="<c:url value="/DisplayCartList.controller"/>">返回我的購物車 </a> </h2> </form> 
+				<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a> </h2> </form> 
 <%-- 本體，結束 --%>
 
                 </section>                

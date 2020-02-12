@@ -109,7 +109,7 @@ public CartService(
 	
 	public void deleteCartByNum(String num) {
 		Integer iNum = Integer.valueOf(num);
-		cartDAO.deleteCartByNum(iNum);
+		cartDAO.deleteCartByNum(iNum); 
 		/*未完成*/
 	}
 	
@@ -199,9 +199,10 @@ public CartService(
 	 }
 
 	//public Collection<? extends ProductData> selectAllBar() {
-	 public List <Company> selectAllBar() {	/*回傳資料庫中所有的Bar*/
+	 public List<Company> selectAllBar() {	/*回傳資料庫中所有的Bar*/
 		 CartService.Pf("selectAllBar開始");
-		 List <Company>	listOfBar = companyDAO.selectAll();
+		 List <Company>	listOfBar = new ArrayList<>();
+		 listOfBar = companyDAO.selectAll();
 		return listOfBar;		
 	}
 }

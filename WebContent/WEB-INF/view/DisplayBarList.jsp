@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>酒吧清單</title>
+    <title>所有酒吧</title>
     <!-- 
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
@@ -151,14 +151,14 @@ div.panel
 			<div class="article">
 				<section class="section">
 <%-- 清單版本 --%>
-					<h3>酒吧清單</h3>
+					<h3>所有酒吧</h3>
 					<h3>${msg}</h3>
 				<div>
 				<!--  	<form action="<c:url value="/DisplayProductList.controller"/>" method="post"> -->
 						<table style="border:3px #cccccc solid;">
 							<thead>
 								<tr align="center">
-									<td> 酒吧編號 </td>
+							<!-- 	<td> 酒吧編號 </td>	 -->
 									<td> 酒吧名稱 </td>
 									<td></td>	<!-- <td>前往商品介面</td> -->
 								</tr>
@@ -168,11 +168,12 @@ div.panel
 								
 <c:forEach items="${listOfBar}" var="list" step="1" varStatus="current">
 	<tr>
-		<!-- 酒吧編號 -->		
-		<td align="center">
-		${listOfBar[current.index].companyId} <!-- id > companyId -->
-		</td>
-		
+	<!-- 酒吧編號 -->	
+	<!--	<td align="center">	 -->
+	<!--	${listOfBar[current.index].companyId} -->		<!-- id > companyId -->
+	<!--	</td>	-->
+	
+		 
 		<!-- 酒吧名稱 -->
 		<td align="center">${listOfBar[current.index].companyName}</td>
 
