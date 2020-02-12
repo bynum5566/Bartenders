@@ -256,13 +256,13 @@ img {
 		<div id="nav-content" tabindex="0">
 			<ul>
 				<li><a href="#0">會員中心</a></li>
-				<li><a href=<c:url value="/DisplayProductList.controller"/>>搜尋酒吧</a></li>
+				<li><a href=<c:url value="/DisplayBarList.controller"/>>搜尋酒吧</a></li>
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 				<li><a href="#0">討論區</a></li>
 				<li><a href="#0">即時聊天</a></li>
 				<li class="small"><a href="UserFirstPage">返回首頁</a><a
-					href="javascript:signOut()">登出</a>
+					href="javascript:signOut()">登出</a></li>
 			</ul>
 		</div>
 	</div>

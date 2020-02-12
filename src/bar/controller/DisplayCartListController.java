@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 
 import java.util.ArrayList;
@@ -76,15 +77,7 @@ public class DisplayCartListController {
 		        "已取消"};
 		return returnStatus;
 	}
-	
-	public String[] getShippingNumToStr() {
-		String returnShipping[] = {
-				"未選擇",
-		        "宅配",
-		        "超商",
-		        "QR票券"};
-		return returnShipping;
-	}
+
 	
 
 	
@@ -94,27 +87,25 @@ public class DisplayCartListController {
 			@ModelAttribute(name = "account") String account, 
 			Model m) {
 
-		Users user = userService.select(account);
-		int userId = user.getUserId();
+		Users user = userService.select(account);	/*用account 取得user物件*/
+		int userId = user.getUserId();	/*用user物件 取得userId物件*/
 		
-		List<Orders> listOfOrder = new ArrayList<Orders>();
-		
-		printI("1");//1
-		listOfOrder.addAll(ordersService.selectUser(userId, 1));
+		List<Orders> listOfOrder = new ArrayList<Orders>();	/*初始化*/
+		listOfOrder.addAll(ordersService.selectUser(userId, 1)); /*取得此userId的...所有狀態為1的訂單*/
 		
 		
 		
-		printI("2");//2
-//		List<Orders> Corders = ordersService.selectLoginUser(userId);
 		m.addAttribute("Corders", listOfOrder);
 		m.addAttribute("statusNumToStr", getStatusNumToStr());
-		m.addAttribute("ShippingNumToStr", getShippingNumToStr());
+		//m.addAttribute("ShippingNumToStr", getShippingNumToStr());
+		m.addAttribute("ShippingNumToStr", CartService.getShippingNumToStr());	
+		
 		printI("3");//3
-		List<Company> attr_company = new ArrayList<Company>();
-		List<String> attr_user_account = new ArrayList<String>();
-		List<String> attr_address = new ArrayList<String>();
-		List<ProductData> attr_product = new ArrayList<ProductData>();
-		List<Orders> attr_orders = new ArrayList<Orders>();
+		List<Company> listOfCompany = new ArrayList<Company>();
+		List<String> listOfUserAccount = new ArrayList<String>();
+		List<String> listOfAddress = new ArrayList<String>();
+		List<ProductData> listOfProduct = new ArrayList<ProductData>();
+		List<Orders> listOfOrders = new ArrayList<Orders>();
 		
 		printI("4");//4
 		for (Orders oneOrder : listOfOrder) {
@@ -122,36 +113,34 @@ public class DisplayCartListController {
 			String orderId = oneOrder.getOrderId();
 			printI("5");//5
 			Orders order = ordersService.selectOrder(orderId);
-			attr_orders.add(order);
+			listOfOrders.add(order);
 			
 			List<Cart> oneOrderCartsList = cartService.select(orderId);
-			listOfProductSubtotal = calculateListOfProductSubtotal(oneOrderCartsList);
+			listOfProductSubtotal = CartService.calculateListOfProductSubtotal(oneOrderCartsList);
 			
 			int totalPriceOfOneOrder = 0;
-			for (Integer oneProductSubtotal : listOfProductSubtotal) {
-				totalPriceOfOneOrder += oneProductSubtotal;
-			}
+			totalPriceOfOneOrder = CartService.calculateTotalPriceOfOneOrder(listOfProductSubtotal);
 			
-			int freight = calculateFreight(orderId);
+			int freight = cartService.selectFreightByOrderId(orderId);
+
 			totalPriceOfOneOrder += freight;
 			
 			order.setAmount(totalPriceOfOneOrder);
 			
-			//int amount = 
 			
 			printI("6");//6
 			Company company = companyService.selectCompany(oneOrder.getCompanyId());
-			attr_company.add(company);
+			listOfCompany.add(company);
 		
 			printI("7");//7
-			List<Cart> carts = cartService.select(orderId);
+			List<Cart> listOfCart = cartService.select(orderId);
 			Cart first_chart;
-			if (carts.isEmpty()) {
+			if (listOfCart.isEmpty()) {
 				System.out.println("empty");
 				first_chart = null;
 			}
 			else {
-				first_chart = carts.get(0);
+				first_chart = listOfCart.get(0);
 			}
 
 			printI("8");//8
@@ -161,22 +150,22 @@ public class DisplayCartListController {
 			}
 			
 			ProductData product = productService.select(first_chart.getPdId());
-			attr_product.add(product);
+			listOfProduct.add(product);
 			
 			printI("9");//9
 			if(oneOrder.getShipping()==1) {
-				attr_address.add(oneOrder.getAddress1());
+				listOfAddress.add(oneOrder.getAddress1());
 				printI("10");//10
 			}else
 			{
 				if(oneOrder.getShipping()==2)
 				{
-					attr_address.add(oneOrder.getAddress2());
+					listOfAddress.add(oneOrder.getAddress2());
 					printI("12");//11
 				}
 				if(oneOrder.getShipping()==0)
 				{
-					attr_address.add("");
+					listOfAddress.add("");
 					printI("13");//11
 				}
 				
@@ -184,59 +173,16 @@ public class DisplayCartListController {
 
 		}
 
-		m.addAttribute("company", attr_company);
-		m.addAttribute("userAccount", attr_user_account);
-		m.addAttribute("attrAddress", attr_address);
-		m.addAttribute("productData", attr_product);
-		m.addAttribute("orders", attr_orders);
+		m.addAttribute("company", listOfCompany);
+		//m.addAttribute("userAccount", listOfUserAccount);	//20200210
+		//m.addAttribute("attrAddress", listOfAddress);	 //20200210
+		m.addAttribute("productData", listOfProduct);
+		m.addAttribute("orders", listOfOrders);
 		
 		return "CartList";
 
 	}
 	
-	public List <Integer> calculateListOfProductSubtotal(List <Cart> oneOrderCartsList) {
-		int subltotalOfOneProduct = 0;
-		List <Integer> listOfProductSubtotal = new ArrayList<Integer>();;
-		for (Cart oneOrderCart : oneOrderCartsList)
-		{
-			int cartCheckoutPrice = oneOrderCart.getCheckoutPrice();
-			int cartQuantity = oneOrderCart.getQuantity();
-			
-			subltotalOfOneProduct = cartCheckoutPrice * cartQuantity;
-			listOfProductSubtotal.add(subltotalOfOneProduct);
-		}
-		return listOfProductSubtotal;
-	}
-	
-	public int calculateFreight(String orderId) { /* 運費 */
-		int shippingPrice = 0;
-		Orders order = ordersService.selectOrder(orderId);
-		int shipping = order.getShipping();
-		/* 運費設定 */
-		/* ======================== */
-		int f0 = 0; /* 未選擇 */
-		int f1 = 80;/* 宅配 */
-		int f2 = 60;/* 超商 */
-		int f3 = 0;/* QR票券 */
-		/* ======================== */
-		switch (shipping) {
-		case 0:
-			shippingPrice = f0;
-			break;
-		case 1:
-			shippingPrice = f1;
-			break;
-		case 2:
-			shippingPrice = f2;
-			break;
-		case 3:
-			shippingPrice = f3;
-			break;
-		default:
-			shippingPrice = 0;
-		}
-		return shippingPrice;
-	}
 }
 
 

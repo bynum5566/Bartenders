@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,15 +60,20 @@ public class DisplayProductInCart
 
 		CartService.Pf("結束，DisplayCartProcessAction");
 
-		List<Cart> oneOrderCartsList = cService.select(orderId);
+		//List<Cart> oneOrderCartsList = cService.select(orderId);
+		List<Cart> oneOrderCartsList = cService.selectListOfCart(orderId);
+		
 		m.addAttribute("oneOrderCarts", oneOrderCartsList);
 		
-		List<ProductData> listOfProduct = new ArrayList<ProductData>();
-		for (Cart oneOrderCart : oneOrderCartsList) {
-			ProductData products = pService.select(oneOrderCart.getPdId());
-			listOfProduct.add(products);
-		}
-		m.addAttribute("listOfProduct", listOfProduct);
+		
+//		List<ProductData> listOfProduct = new ArrayList<ProductData>();
+//		for (Cart oneOrderCart : oneOrderCartsList) {
+//			ProductData products = pService.select(oneOrderCart.getPdId());
+//			listOfProduct.add(products);
+//		}
+//		m.addAttribute("listOfProduct", listOfProduct);
+		m.addAttribute("listOfProduct",cService.selectListOfProductByOrderId(orderId));
+		
 		m.addAttribute("orderId",orderId);	//新增20200131_0934
 		
 

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RWD 網頁測試</title>
+    <title>我的購物車</title>
     <!-- 
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
@@ -91,19 +91,9 @@ footer {
     </style>
 </head>
 <body>
-	<div>(介面版本:N_20200204_1629)</div>
     <div id="allpage">
         <header>
-            <!-- <img class="logo-img" src="images/logo.jpg" title="logo" alt="logo"> -->
-            <nav>
-                <ul class="menu">
-					<li><a href="<c:url value="/DisplayProductList.controller"/>">商城</a></li>
-					<li><a href="<c:url value="/DisplayCartList.controller"/>">我的購物車</a> </li>
-					<li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a> </li>					
-					<li><a href="http://localhost:8080/CreateUsers/login">登入</a></li>
-                    <li><a href="/CreateUsers/logout">登出</a></li>
-                </ul>
-            </nav>            
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
         </header>
         <div id="content">
             <article class="article">
@@ -113,26 +103,21 @@ footer {
 	
 	
 		<h3>我的購物車</h3>
-		<a href="<c:url value="/DisplayProductList.controller"/>">回到商城</a>
-
-		<a href="<c:url value="/userOrder.controller"/>">查看訂單</a>
 
 		<h3>${msg}</h3>
-		<form action="<c:url value="/userOrder.controller"/>" method="post">
+		<form>
 			<table>
 				<thead>
 					<tr align="center">
-						<td>購物車編號</td>
-						<!-- 購物車編號 -->
+						<!-- <td>購物車編號</td> -->
 						<td>賣家名稱</td>
-						<!--  -->
 						<td>商品名稱</td>
 						<td>小計</td>
 						<td>配送類型</td>
-						<td>修改配送資訊</td>
-						< <td>修改數量</td>
+						<!-- <td>修改配送資訊</td> -->
+						<td>修改數量</td>
 							<td>取消購物車</td>
-							<td>確定購買</td>
+							<td>結帳</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -140,10 +125,7 @@ footer {
 						<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
 					<tr>
 						<!-- 購物車編號 -->
-						<td align="center"><a
-								href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}"
-								value="${Corders[current.index].orderId}">${Corders[current.index].orderId}</a>
-						</td>
+						<!-- <td align="center">${Corders[current.index].orderId}</td> -->
 						<!-- 賣家名稱  -->
 						<td align="center">${company[current.index].companyName}</td>
 						<!-- 商品名稱 -->
@@ -154,20 +136,20 @@ footer {
 						<td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>
 						<!-- 修改購物車 -->
 
+						<!-- 修改配送資訊 -->
+						<!-- 
 						<td align="center"><a
-								href="<c:url value="/ChangeCart.controller"/>?orderId=${Corders[current.index].orderId}"
-								value="${Corders[current.index].orderId}">修改配送資訊</a></td>
-
-
+								href="<c:url value="/ChangeCart.controller"/>?orderId=${Corders[current.index].orderId}">修改配送資訊</a></td>
+						 -->
 						<td align="center"><a
 								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
-								value="${Corders[current.index].orderId}">修改數量</a></td>
+								>修改數量</a></td>
 
 						<!-- 取消購物車 -->
 						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								value="${Corders[current.index].orderId}">取消此購物車</a></td>
+								>取消此購物車</a></td>
 						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								value="${Corders[current.index].orderId}">確定購買</a></td>
+								>結帳</a></td>
 
 					</tr>
 					</c:forEach>

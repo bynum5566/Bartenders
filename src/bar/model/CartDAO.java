@@ -1,3 +1,4 @@
+/*豪*/
 package bar.model;
 import java.util.List;
 import org.hibernate.Session;
@@ -71,6 +72,22 @@ public class CartDAO
 		}
 	}
 	
+	public Cart selectCartByOid(String orderId) {/*useBy finishPay*/
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            String hqlStr = "from Cart where orderId=:orderId";
+            Query query = session.createQuery(hqlStr);
+            query.setParameter("orderId", orderId);
+            return (Cart) query.uniqueResult();
+        } catch (Exception e) {
+            System.out.println("【CartDAO.selectCartByOid】【error】");
+            System.out.println("【Exception = 】" + e);
+            System.out.println("【e.printStackTrace = 】");
+            e.printStackTrace();
+            return null;
+        }
+	}
+	
 	public boolean insert(Cart cart)
 	{
 		Session session = sessionFactory.getCurrentSession();
@@ -81,22 +98,7 @@ public class CartDAO
 		}
 		return false;
 	}
-
-	public Cart selectCartByOid(String orderId) {
-		try {
-			Session session = sessionFactory.getCurrentSession();
-			String hqlStr = "from Cart where orderId=:orderId";
-			Query query = session.createQuery(hqlStr);
-			query.setParameter("orderId", orderId);
-			return (Cart) query.uniqueResult();
-		} catch (Exception e) {
-			System.out.println("【CartDAO.selectCartByOid】【error】");
-			System.out.println("【Exception = 】" + e);
-			System.out.println("【e.printStackTrace = 】" + e);
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
 	 public Cart selectCartByNum(Integer num)
 	 {
 	  try
@@ -110,10 +112,30 @@ public class CartDAO
 	  } catch (Exception e)
 	  {
 	   System.out.println("【CartDAO.selectCart】【error】");
-	   System.out.println("【Exception = 】" + e);
 	   System.out.println("【e.printStackTrace = 】" + e);
 	   e.printStackTrace();
 	   return null;
 	  }
 	 }
+	 
+	 public void deleteCartByNum(Integer num)
+	 {
+		  try {
+			  	
+				Session session = sessionFactory.getCurrentSession();
+				/*DELETE FROM Cart Where num=35*/
+				String numS = Integer.toString(num);
+				String hqlStr = "DELETE FROM Cart Where num=:num";
+				Query query = session.createQuery(hqlStr);
+				query.setParameter("num", numS);
+				query.executeUpdate();
+		  }
+		  catch(Exception e){
+			   System.out.println("【CartDAO.deleteCartByNum】【error】");
+			   System.out.println("【e.printStackTrace = 】" + e);
+			   e.printStackTrace();
+		  }
+	 }
+
+
 }
