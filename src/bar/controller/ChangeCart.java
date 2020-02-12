@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 
 import java.util.ArrayList;
@@ -38,31 +39,32 @@ public class ChangeCart {
 	@RequestMapping(path = { "/ChangeCart.controller" })
 	public String ChangeOrderProcessAction(@RequestParam(name = "orderId") String orderId,Model m) {
 		m.addAttribute("orderId", orderId);
-		Orders order = ordersService.selectOrder(orderId);
+		Orders orderX = ordersService.selectOrder(orderId);
 		
-		List<ProductData> attr_product = new ArrayList<ProductData>();
+		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 //		List<String> attr_address = new ArrayList<String>();
-		String attr_address;
+		String address;
 		
-		List<Cart> carts = cartService.select(orderId);
-		Cart first_chart = carts.get(0);
-		ProductData product = productService.select(first_chart.getPdId());
-		attr_product.add(product);
+		List<Cart> listOfCart = cartService.select(orderId);
+		Cart firstCart = listOfCart.get(0);
+		ProductData firstProduct = productService.select(firstCart.getPdId());
+		listOfProduct.add(firstProduct);
 		
-		if(order.getShipping()==1) {
+		if(orderX.getShipping()==1) {
 //			attr_address.add(order.getAddress1());
-			attr_address = order.getAddress1();
+			address = orderX.getAddress1();
 		}else{
 //			attr_address.add(order.getAddress2());
-			attr_address = order.getAddress2();
+			address = orderX.getAddress2();
 		}
 		
-		m.addAttribute("order", order);
-		m.addAttribute("product", product);
-		m.addAttribute("productData", attr_product);
-		m.addAttribute("ShippingNumToStr", cartService.getShippingNumToStr());
-		m.addAttribute("attrAddress", attr_address);
-		System.out.println("attr_address=" + attr_address + "=================");
+		/*order 改為 orderX*/
+		m.addAttribute("orderX", orderX);				/*order物件*/
+		//m.addAttribute("product", firstProduct);		/*Cart中第一個產品*/	/*沒用到*/
+		m.addAttribute("productData", listOfProduct);	/*購物車中，的產品list*/
+		m.addAttribute("ShippingType", CartService.getShippingNumToStr());	//
+		m.addAttribute("Address", address);			/*地址*/
+		CartService.printValueTypeTime("address", address);
 		
 		
 	

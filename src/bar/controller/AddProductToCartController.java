@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import bar.model.Orders;
 import bar.model.OrdersDAO;
 import bar.model.OrdersService;
 import bar.model.ProductData;
+import bar.model.ProductDataDAO;
 import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
@@ -28,6 +30,7 @@ import bar.model.Users;
 public class AddProductToCartController
 {
 	private ProductDataService productDataService;
+	private ProductDataDAO productDataDAO;
 	private UsersService userService;
 	private OrdersService ordersService;
 	private CompanyService companyService;
@@ -35,13 +38,19 @@ public class AddProductToCartController
 	private CartService cartService;	/*新增20200201_1509*/
 	private OrdersDAO ordersDao;
 
-	public AddProductToCartController(ProductDataService pService, UsersService uService, OrdersService oService,
-			CartDAO cDao, CompanyService cService 
+	public AddProductToCartController(
+			ProductDataService pService, 
+			ProductDataDAO productDataDAO,
+			UsersService uService, 
+			OrdersService oService,
+			CartDAO cDao, 
+			CompanyService cService 
 			,CartService cartService	/*新增20200201_1509*/
 			,OrdersDAO ordersDao
 			)
 	{
 		this.productDataService = pService;
+		this.productDataDAO  = productDataDAO;
 		this.userService = uService;
 		this.ordersService = oService;
 		this.cartDao = cDao;
@@ -69,6 +78,16 @@ public class AddProductToCartController
 		/* 參數宣告 */
 		String orderId = "0";
 		/* 參數宣告結束 */
+		//===============
+		
+		System.out.println("2020 1341");
+		CartService.printValueTypeTime("pdId",pdId    );
+		CartService.printValueTypeTime("qty",qty    );
+		CartService.printValueTypeTime("PdStock",PdStock    );
+		CartService.printValueTypeTime("ProductName",ProductName    );
+		CartService.printValueTypeTime("account",account    );
+		
+		//===============
 		CartService.Pf2("account", account);
 		CartService.Pf2("pdId", pdId);
 		CartService.Pf2("ProductName", ProductName);
@@ -94,8 +113,16 @@ public class AddProductToCartController
 			int companyId = getCompanyIdByPdId(pdId);
 			int userId  = getUserIdByAccount(account);
 			/*找productData*/
-			ProductData ProductDataX =  cartService.selectP(pdId);
 			
+			CartService.Pf("標記A，20200206_1226");
+			CartService.printValueTypeTime("companyId",companyId    );
+			CartService.printValueTypeTime("userId",userId    );
+			CartService.printValueTypeTime("pdId",pdId    );
+
+			ProductData ProductDataX =  cartService.selectProductDataByPdid(pdId);
+			//ProductData ProductDataX =  productDataDAO.selectP(pdId);
+			//ProductData ProductDataX =  cartService.selectP(pdId);
+			CartService.Pf("標記B，20200206_1226");
 			if (ProductDataX.getValidDate() == null )
 			{
 				System.out.println("==============一般商品================");
@@ -108,8 +135,7 @@ public class AddProductToCartController
 				ordersListNormal = ordersDao.selectListUserCompanyStatusOrderNormal(companyId, status, userId, shipping);
 				if(ordersListNormal.isEmpty()) {
 					System.out.println("==============沒Normal類訂單，需要新增================");
-					shipping = 0;
-					orderId = "1";
+					shipping = 1;	/*預設使用1:宅配*/
 					Date date;
 					date = new Date();
 					orderId = userId +Long.toString(date.getTime());
@@ -125,7 +151,7 @@ public class AddProductToCartController
 					String address1 = userX.getAddress();	//null
 					String address2 = "請輸入"; //null
 					String phone = userX.getPhone();	//null
-					String shippingNumber = null; //null
+					String shippingNumber = "請輸入"; //null
 
 					
 					
@@ -188,7 +214,7 @@ public class AddProductToCartController
 						String address1 = userX.getAddress();	
 						String address2 = "請輸入"; //null
 						String phone = userX.getPhone();	
-						String shippingNumber = null; //null
+						String shippingNumber = "請輸入"; //null
 
 						Orders orders = new Orders(
 								orderId, 
@@ -217,7 +243,19 @@ public class AddProductToCartController
 						String x = ordersListQr.get(0).getOrderId();
 						System.out.println(x);
 						orderId = x;
-						System.out.println("==============有QR類訂單================");					
+						System.out.println("==============有QR類訂單================");
+						
+						/*==================================================*/
+						/*如果是QR類型，只要購物車中已有項目，就不允許再加入購物車，開始*/
+						
+						System.out.println("QR商品，只允許購買一個");/* 選取的數量+目前購物車內的數量>庫存 */
+						String error = "QR商品，只允許購買一個";
+						addAttribute(account, m, pdId, qty,error);
+						CartService.Pf("AddProductToCartProcessAction，End2");
+						return "AddToCartButton";
+						
+						/*如果是QR類型，只要購物車中已有項目，就不允許再加入購物車，結束*/
+						/*==================================================*/
 					}
 				}
 			}			
@@ -255,6 +293,7 @@ public class AddProductToCartController
 			} else /* 庫存足夠 */
 			{
 				CartService.Pf("庫存足夠");
+
 				Orders orderX;
 				orderX = ordersService.selectOrdersByOrderId(orderId);
 				/* ============ */
@@ -298,7 +337,8 @@ public class AddProductToCartController
 	}
 	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton) /*傳值給下一階段*/
 	{
-		ProductData pX = productDataService.select(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId);
+		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
 		Users uX;/* C */
 		CartService.Pf2("account", account);
 		uX = userService.select(account); /* C */
@@ -310,11 +350,13 @@ public class AddProductToCartController
 		m.addAttribute("qty", qty); // added
 		m.addAttribute("pdPrice", pX.getPdPrice()); // added
 		m.addAttribute("errorMsgOfAddToCartButton",errorMsgOfAddToCartButton);
+		m.addAttribute("validDate",pX.getValidDate());
 	}
 	private boolean selectLessThanStock(String pdId, String qty)
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
-		ProductData pX = productDataService.select(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId);
+		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 		if (QtyOfAddToCart > nowStock) /* 選取的數量>庫存 */ // 【A】>【B】
@@ -329,7 +371,8 @@ public class AddProductToCartController
 	private boolean selectLessThanStock2(String pdId, String qty, String orderId)
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
-		ProductData pX = productDataService.select(pdId); /* 用service取 */
+		ProductData pX = productDataService.select(pdId);
+		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 //		Cart cartX = cDao.selectCart(orderId, pdId); /* 取物件 */
@@ -357,6 +400,7 @@ public class AddProductToCartController
 		int companyId = 0;// 【A】
 		ProductData productX;
 		productX = productDataService.select(pdId);
+		//productX = productDataService.selectProductVer2(pdId);
 		companyId = productX.getCompanyId();
 		return companyId;
 	}
@@ -384,6 +428,7 @@ public class AddProductToCartController
 			int companyId = 0;// 【A】
 			ProductData productX;
 			productX = productDataService.select(pdId);
+			//productX = productDataService.selectProductVer2(pdId);
 			companyId = productX.getCompanyId();
 			CartService.Pf2("companyId", companyId);
 			// ======================================

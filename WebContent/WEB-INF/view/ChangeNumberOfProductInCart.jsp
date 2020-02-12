@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RWD 網頁測試</title>
+    <title>修改數量</title>
     <!-- 
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
@@ -91,19 +91,9 @@ footer {
     </style>
 </head>
 <body>
-	<div>(介面版本:N_20200204_1629)</div>
     <div id="allpage">
         <header>
-            <!-- <img class="logo-img" src="images/logo.jpg" title="logo" alt="logo"> -->
-            <nav>
-                <ul class="menu">
-					<li><a href="<c:url value="/DisplayProductList.controller"/>">商城</a></li>
-					<li><a href="<c:url value="/DisplayCartList.controller"/>">我的購物車</a> </li>
-					<li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a> </li>					
-					<li><a href="http://localhost:8080/CreateUsers/login">登入</a></li>
-                    <li><a href="/CreateUsers/logout">登出</a></li>                
-				</ul>
-            </nav>            
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
         </header>
         <div id="content">
             <article class="article">
@@ -113,17 +103,15 @@ footer {
 
 <body>
 
-
-	<h2>ChangeNumberOfProductInCart.jsp</h2>
-	<h2>您好，${UserName}(${account })</h2>
-	<a href="<c:url value="/DisplayProductList.controller "/>">回到商城</a>
-	<a href="<c:url value="/DisplayCartList.controller"/>">我的購物車(清單) </a> <h2>${errorMsgOfAddToCartButton}</h2>
+	<h2>修改數量</h2>
+<!-- <h2>ChangeNumberOfProductInCart.jsp</h2>  -->	
+	<h2>${errorMsgOfAddToCartButton}</h2>
 		<!-- <FORM action="BuyBook.do" method="POST">  -->
 		<form>
 			<table>
 				<thead>
 					<tr align="center">
-						<td>產品id</td>
+				<!-- 		<td>產品id</td>	-->	
 						<td>產品名稱</td>
 						<td>原購買數量</td>
 						<td>單價 </td>
@@ -131,7 +119,7 @@ footer {
 				</thead>
 				<tbody>
 					<tr align="center">
-						<td>${PdId}</td>
+				<!--		<td>${PdId}</td>	-->	
 						<td>${ProductName}</td>
 						<td>${nowBuyQty}</td>
 						<td>${pdPrice}</td>
@@ -139,9 +127,15 @@ footer {
 				</tbody>
 			</table>
 		</form>
+		
 		<FORM action="<c:url value="/UpdateQtyInCart.controller" />" method="get">
-		變更購買數量: <select name='qty'>
-			<option value="0">0</option>
+		變更購買數量: 
+
+<c:choose>
+	<c:when test="${validDate == null}">
+					<!-- 一般   -->	
+							
+		<select name='qty'>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -153,6 +147,15 @@ footer {
 			<option value="9">9</option>
 			<option value="10">10</option>
 		</select>
+	</c:when>
+	<c:otherwise>
+		<select name='qty'>
+<!-- QR票券只能買一張 -->
+			<option value="1">1</option>
+		</select>
+	</c:otherwise>
+</c:choose>		
+					
 		<!-- 這些隱藏欄位都會送到後端 -->
 		<!--  	<Input type='hidden' name='productId' value='500000'>  -->
 		<Input type='hidden' name='PdId' value='${PdId}'>
@@ -162,9 +165,8 @@ footer {
 		<Input type='hidden' name='pdPrice' value='${pdPrice}'>
 
 		<Input type='submit' value='確認修改'>
-
-		<!--    <a href="<c:url value="/DisplayCartList.controller"/>">我的購物車(清單)</a>   -->
 		</FORM>
+		
 <%-- 本體，結束 --%>
 
                 </section>                

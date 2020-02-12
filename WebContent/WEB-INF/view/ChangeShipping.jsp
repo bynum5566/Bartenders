@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RWD 網頁測試</title>
+    <title>修改配送資訊</title>
     <!-- 
     <link rel="stylesheet" href="styles/rwd.css">
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
@@ -91,19 +91,9 @@ footer {
     </style>
 </head>
 <body>
-	<div>(介面版本:N_20200204_1629)</div>
     <div id="allpage">
         <header>
-            <!-- <img class="logo-img" src="images/logo.jpg" title="logo" alt="logo"> -->
-            <nav>
-                <ul class="menu">
-					<li><a href="<c:url value="/DisplayProductList.controller"/>">商城</a></li>
-					<li><a href="<c:url value="/DisplayCartList.controller"/>">我的購物車</a> </li>
-					<li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a> </li>					
-					<li><a href="http://localhost:8080/CreateUsers/login">登入</a></li>
-                    <li><a href="/CreateUsers/logout">登出</a></li>                
-				</ul>
-            </nav>            
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" />    
         </header>
         <div id="content">
             <article class="article">
@@ -122,17 +112,17 @@ footer {
 				</tr>
 				<tr>
 					<td>商品名稱:</td>
-					<td><input type="text" size="40" name="name" value="${productData[0].productName}等"
+					<td><input type="text" size="40" name="name" value="${listOfProduct[0].productName}等"
 							readonly="readonly" /><br></td>
 				</tr>
 				<tr>
 					<td>訂單總價:</td>
-					<td><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br>
+					<td><input type="text" size="40" name="price" value="${orderX.amount}" readonly="readonly" /><br>
 					</td>
 				</tr>
 				<tr>
 					<td>原選擇之配送方式:</td>
-					<td><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"
+					<td><input type="text" size="40" name="price" value="${ShippingType[orderX.shipping]}"
 							readonly="readonly" /><br></td>
 				</tr>
 				<tr>
@@ -141,14 +131,14 @@ footer {
 				</tr>
 				<tr>
 					<td>收件人:</td>
-					<td><input type="text" size="40" name="recipient" value="${order.recipient}" /><br></td>
+					<td><input type="text" size="40" name="recipient" value="${orderX.recipient}" /><br></td>
 				</tr>
 
 				<tr>
 					<td>配送方式:</td>
 					<td><select name="shippingType">
 							<c:choose>
-								<c:when test="${ShippingNumToStr[order.shipping]=='QR票券'}">
+								<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
 									<option value="QR" width="10">3.QR</option>
 								</c:when>
 								<c:otherwise>
@@ -161,21 +151,21 @@ footer {
 				<tr>
 
 					<c:choose>
-						<c:when test="${ShippingNumToStr[order.shipping]=='QR票券'}">
+						<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
 							<td></td>
 							<td><br></td>
-							<Input type='hidden' name='address' value='${attrAddress}'>
+							<Input type='hidden' name='address' value='${Address}'>
 						</c:when>
 						<c:otherwise>
 							<td>地址/門市:</td>
-							<td><input type="text" name="address" size="40" value="${attrAddress}" /><br></td>
+							<td><input type="text" name="address" size="40" value="${Address}" /><br></td>
 						</c:otherwise>
 					</c:choose>
 
 				</tr>
 				<tr>
 					<td>收件人電話:</td>
-					<td><input type="text" size="40" name="phone" value="${order.phone}" /><br></td>
+					<td><input type="text" size="40" name="phone" value="${orderX.phone}" /><br></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="確認送出" /> <input type="reset" value="清除重填" /></td>
