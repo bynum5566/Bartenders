@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
      -->
     <style>
+    
+.td1{
+	width:100px;
+	height: 50px;
+	text-align: center;
+}
+.td6{
+	width:600px;
+	height: 50px;
+	text-align: center;
+}
+
 body {
     background-color:	#ECF5FF;
     
@@ -146,8 +158,32 @@ div.panel
         <div class="article">
 			<section class="section">
         	<!-- <h2>區塊C-關於賣場</h2> -->
-        	<h2>關於本酒吧</h2>
-        	
+        	<!-- 	<h2>關於本酒吧</h2>  -->
+	        	<table border="1"  >
+	        		<tr>
+	        			<td class="td1">${CompanyName}</td>
+	        			<td class="td1">酒吧logo</td>
+	        			<td class="td1">地圖按鈕</td>
+	        			<td class="td1">Menu</td>
+	        		</tr>
+	        	</table>
+        	 </section>
+        	 <section class="section">
+	        	 <table border="1"  >
+	        		<tr>
+	        			<td class="td6">event</td>
+	        		</tr>
+	        	</table>       	 
+        	 </section>
+        	 <section class="section">
+	        	 <table border="1"  >
+	        		<tr>
+	        			<td class="td6">跑馬燈(圖片)</td>
+	        		</tr>
+					<tr>
+	        			<td class="td6">酒吧介紹文字</td>
+	        		</tr>
+	        	</table>       	 
         	 </section>
         </div>
             <article class="article">

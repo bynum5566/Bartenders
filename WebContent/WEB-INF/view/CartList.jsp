@@ -7,12 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
+	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    
     <title>我的購物車</title>
-    <!-- 
-    <link rel="stylesheet" href="styles/rwd.css">
-    <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
-     -->
+
+
+
+
     <style>
+a.bT:link, a.bT:hover, a.bT:visited{
+	text-decoration: none;
+	}
 body {
     background-color:	#ECF5FF;
     
