@@ -11,12 +11,11 @@
 
 <style type="text/css">
 .mydiv {
-	width: 100%;
-	margin: 0 auto;
+	width: auto;
+	margin: auto;
 	top: 80px;
 	position: sticky;
 	text-align: center;
-	
 	border-radius: 5px;
 	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
 		rgba(163, 163, 163, 0.5) 99%);
@@ -32,7 +31,10 @@
 }
 
 html, body {
+	margin: 0px;
+	padding: 0px;
 	height: 100%;
+	width: auto;
 	background-image: url("/Bartenders/images/BarImg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;

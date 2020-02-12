@@ -16,7 +16,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName"})
 @EnableTransactionManagement
 public class CheckLogin {
 
