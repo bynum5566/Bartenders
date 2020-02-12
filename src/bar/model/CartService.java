@@ -33,6 +33,10 @@ public CartService(
 	public List<Cart> select(String orderId) {
 		return cartDAO.select(orderId);
 	}
+	
+    public Cart selectCartByOid(String orderId) {	/*useBy finishPay*/
+        return cartDAO.selectCartByOid(orderId);
+    }
 
 	
 	public ProductData selectP(String pdId) { /*更名不可*/
@@ -178,10 +182,10 @@ public CartService(
 
 	public static String[] getShippingNumToStr() {
 		  String returnShipping[] = {
-		    "未選擇",
-		          "宅配",
-		          "超商",
-		          "QR票券"};
+				  "未選擇",	/*0*/
+		          "宅配",		/*1*/
+		          "超商",		/*2*/
+		          "QR票券"};	/*3*/
 		  return returnShipping;
 		 }
 	
@@ -198,10 +202,6 @@ public CartService(
 	 public List <Company> selectAllBar() {	/*回傳資料庫中所有的Bar*/
 		 CartService.Pf("selectAllBar開始");
 		 List <Company>	listOfBar = companyDAO.selectAll();
-		return listOfBar;
+		return listOfBar;		
 	}
-	 
-
-		
-	
 }

@@ -109,14 +109,12 @@ footer {
 			<table>
 				<thead>
 					<tr align="center">
-						<td>購物車編號</td>
-						<!-- 購物車編號 -->
+						<!-- <td>購物車編號</td> -->
 						<td>賣家名稱</td>
-						<!--  -->
 						<td>商品名稱</td>
 						<td>小計</td>
 						<td>配送類型</td>
-						<td>修改配送資訊</td>
+						<!-- <td>修改配送資訊</td> -->
 						<td>修改數量</td>
 							<td>取消購物車</td>
 							<td>結帳</td>
@@ -127,7 +125,7 @@ footer {
 						<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
 					<tr>
 						<!-- 購物車編號 -->
-						<td align="center">${Corders[current.index].orderId}</td>
+						<!-- <td align="center">${Corders[current.index].orderId}</td> -->
 						<!-- 賣家名稱  -->
 						<td align="center">${company[current.index].companyName}</td>
 						<!-- 商品名稱 -->
@@ -138,10 +136,11 @@ footer {
 						<td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>
 						<!-- 修改購物車 -->
 
+						<!-- 修改配送資訊 -->
+						<!-- 
 						<td align="center"><a
 								href="<c:url value="/ChangeCart.controller"/>?orderId=${Corders[current.index].orderId}">修改配送資訊</a></td>
-
-
+						 -->
 						<td align="center"><a
 								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
 								>修改數量</a></td>

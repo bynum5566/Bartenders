@@ -158,39 +158,69 @@ footer {
 		<FORM action="<c:url value="/OrderOneToTwo.controller" />" method="get">
 		<h2>配送資訊</h2>
 		配送方式:
-		<c:if test="${shipping == '1' }">
-			<label>宅配</label>
-		</c:if>
-		<c:if test="${shipping == '2' }">
-			<label>超商</label>
-		</c:if>
+		
+		<!-- =如果是一般商品，可以選擇配送方式，開始= -->
+
+<c:if test="${shipping == '1' or shipping == '2'}">
+	<input  name="select1" type="radio" value="1" checked required >
+	<!-- onfocus="functionName()" 用來觸發函式 -->
+	<label for="setTt1">宅配</label>
+	
+	<input name="select1" type="radio" value="2" >
+	<label	for="setTt2">超商</label>
+</c:if>
+
+<!-- 
+0	未選擇
+1	宅配
+2	超商
+3	QR票券
+ -->
+		<!-- =如果是一般商品，可以選擇配送方式，結束= -->
+		
 		<c:if test="${shipping == '3' }">
 			<label>QR票券</label>
 		</c:if>
+
 		<br>
-		<label>收件人：${defaultName}</label>
-		<Input type='hidden' name='input1' value="${defaultName}">
+		<label>收件人：</label>
+		<input type="text" required="required" name="input1" size="40" value="${defaultName}" />
+<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 		<br>
-		<c:if test="${shipping == '1' }">
+		
+		
+		<!-- 未選擇 -->
+		<c:if test="${shipping == '0' }">
 			<label>宅配地址：${defaultAddress}</label>
 			<Input type='hidden' name='address1' value="${defaultAddress}">
+			<Input type='hidden' name='address2' value="${defaultAddress}">
+			<br>
+		</c:if>		
+		
+		
+		<c:if test="${shipping == '1' }">
+			<label>宅配地址：</label>
+			<input type="text" required="required" name="address1" size="40" value="${defaultAddress}" />
+	<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 			<br>
 		</c:if>
 
 
 		<c:if test="${shipping == '2' }">
-			<label>超商門市：${defaultAddress}</label>
-			<Input type='hidden' name='address2' value="${defaultAddress}">
+			<label>超商門市：</label>
+			<input type="text" required="required" name="address2" size="40" value="${defaultAddress}" />
+	<!-- 	<Input type='hidden' name='address2' value="${defaultAddress}"> -->	
 			<br>
 		</c:if>
 
 		<c:if test="${shipping == '3' }">
-			<label>QR票券</label>
+			<label>QR票券</label>		<!-- 如果是QR不印地址，宅配/超商則會印地址 -->
 			<br>
 		</c:if>
 
-		<label>電話：${defaultPhone}</label>
-		<Input type='hidden' name='input2' value='${defaultPhone}'>
+		<label>電話：</label>
+		<input type="text" required="required" name="input2" size="40" value="${defaultPhone}" />
+	<!--<Input type='hidden' name='input2' value='${defaultPhone}'> -->
 		<br>
 		<c:if test="${shipping == '1' }">
 			<Input type='hidden' name='address2' value='empty'>
@@ -203,12 +233,17 @@ footer {
 			<Input type='hidden' name='address2' value='empty'>
 		</c:if>
 
-		<Input type='hidden' name='select1' value='${shipping}'>
+		<c:if test="${shipping == '3' }">
+			<Input type='hidden' name='select1' value='${shipping}'>
+		</c:if>
+
+		
 
 		<Input type='hidden' name='orderId' value='${orderId}'>
 		<Input type='hidden' name='totalPrice' value='${totalPrice}'> <!-- 新增2020131_1634 -->
 		<Input type='hidden' name='Freight' value='${ShippingNumToPrice[order.shipping]}'> <!-- 新增2020131_1634 -->
 		<Input type='submit' value='資訊無誤，確認訂購'>
+		<p style="color:red">請注意，一經確認，即無法修改。</p>
 		</form>
 		
 <%-- 本體，結束 --%>

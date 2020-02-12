@@ -112,17 +112,17 @@ footer {
 				</tr>
 				<tr>
 					<td>商品名稱:</td>
-					<td><input type="text" size="40" name="name" value="${productData[0].productName}等"
+					<td><input type="text" size="40" name="name" value="${listOfProduct[0].productName}等"
 							readonly="readonly" /><br></td>
 				</tr>
 				<tr>
 					<td>訂單總價:</td>
-					<td><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br>
+					<td><input type="text" size="40" name="price" value="${orderX.amount}" readonly="readonly" /><br>
 					</td>
 				</tr>
 				<tr>
 					<td>原選擇之配送方式:</td>
-					<td><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"
+					<td><input type="text" size="40" name="price" value="${ShippingType[orderX.shipping]}"
 							readonly="readonly" /><br></td>
 				</tr>
 				<tr>
@@ -131,14 +131,14 @@ footer {
 				</tr>
 				<tr>
 					<td>收件人:</td>
-					<td><input type="text" size="40" name="recipient" value="${order.recipient}" /><br></td>
+					<td><input type="text" size="40" name="recipient" value="${orderX.recipient}" /><br></td>
 				</tr>
 
 				<tr>
 					<td>配送方式:</td>
 					<td><select name="shippingType">
 							<c:choose>
-								<c:when test="${ShippingNumToStr[order.shipping]=='QR票券'}">
+								<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
 									<option value="QR" width="10">3.QR</option>
 								</c:when>
 								<c:otherwise>
@@ -151,21 +151,21 @@ footer {
 				<tr>
 
 					<c:choose>
-						<c:when test="${ShippingNumToStr[order.shipping]=='QR票券'}">
+						<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
 							<td></td>
 							<td><br></td>
-							<Input type='hidden' name='address' value='${attrAddress}'>
+							<Input type='hidden' name='address' value='${Address}'>
 						</c:when>
 						<c:otherwise>
 							<td>地址/門市:</td>
-							<td><input type="text" name="address" size="40" value="${attrAddress}" /><br></td>
+							<td><input type="text" name="address" size="40" value="${Address}" /><br></td>
 						</c:otherwise>
 					</c:choose>
 
 				</tr>
 				<tr>
 					<td>收件人電話:</td>
-					<td><input type="text" size="40" name="phone" value="${order.phone}" /><br></td>
+					<td><input type="text" size="40" name="phone" value="${orderX.phone}" /><br></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="確認送出" /> <input type="reset" value="清除重填" /></td>

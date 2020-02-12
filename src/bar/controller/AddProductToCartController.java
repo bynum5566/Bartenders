@@ -135,8 +135,7 @@ public class AddProductToCartController
 				ordersListNormal = ordersDao.selectListUserCompanyStatusOrderNormal(companyId, status, userId, shipping);
 				if(ordersListNormal.isEmpty()) {
 					System.out.println("==============沒Normal類訂單，需要新增================");
-					shipping = 0;
-					orderId = "1";
+					shipping = 1;	/*預設使用1:宅配*/
 					Date date;
 					date = new Date();
 					orderId = userId +Long.toString(date.getTime());

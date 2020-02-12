@@ -72,6 +72,22 @@ public class CartDAO
 		}
 	}
 	
+	public Cart selectCartByOid(String orderId) {/*useBy finishPay*/
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            String hqlStr = "from Cart where orderId=:orderId";
+            Query query = session.createQuery(hqlStr);
+            query.setParameter("orderId", orderId);
+            return (Cart) query.uniqueResult();
+        } catch (Exception e) {
+            System.out.println("【CartDAO.selectCartByOid】【error】");
+            System.out.println("【Exception = 】" + e);
+            System.out.println("【e.printStackTrace = 】");
+            e.printStackTrace();
+            return null;
+        }
+	}
+	
 	public boolean insert(Cart cart)
 	{
 		Session session = sessionFactory.getCurrentSession();
@@ -120,5 +136,6 @@ public class CartDAO
 			   e.printStackTrace();
 		  }
 	 }
+
 
 }
