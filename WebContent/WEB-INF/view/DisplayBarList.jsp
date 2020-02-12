@@ -158,7 +158,7 @@ div.panel
 						<table style="border:3px #cccccc solid;">
 							<thead>
 								<tr align="center">
-									<td> 酒吧編號 </td>
+							<!-- 	<td> 酒吧編號 </td>	 -->
 									<td> 酒吧名稱 </td>
 									<td></td>	<!-- <td>前往商品介面</td> -->
 								</tr>
@@ -168,11 +168,12 @@ div.panel
 								
 <c:forEach items="${listOfBar}" var="list" step="1" varStatus="current">
 	<tr>
-		<!-- 酒吧編號 -->		
-		<td align="center">
-		${listOfBar[current.index].companyId} <!-- id > companyId -->
-		</td>
-		
+	<!-- 酒吧編號 -->	
+	<!--	<td align="center">	 -->
+	<!--	${listOfBar[current.index].companyId} -->		<!-- id > companyId -->
+	<!--	</td>	-->
+	
+		 
 		<!-- 酒吧名稱 -->
 		<td align="center">${listOfBar[current.index].companyName}</td>
 

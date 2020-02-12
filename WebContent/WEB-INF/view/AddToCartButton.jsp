@@ -106,7 +106,7 @@ footer {
 			<table>
 				<thead>
 					<tr align="center">
-						<td>產品id</td>
+				<!--  	<td>產品id</td>	-->	
 						<td>產品名稱</td>
 						<td>庫存數量</td>
 						<td>單價 </td>
@@ -114,7 +114,7 @@ footer {
 				</thead>
 				<tbody>
 					<tr align="center">
-						<td>${PdId}</td>
+				<!-- 	<td>${PdId}</td>	-->	
 						<td>${ProductName}</td>
 						<td>${PdStock}</td>
 						<td>${pdPrice}</td>

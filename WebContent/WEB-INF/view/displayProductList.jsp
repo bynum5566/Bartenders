@@ -309,7 +309,7 @@ div.panel
 						<table>
 							<thead>
 								<tr align="center">
-									<td>商品編號</td>
+							<!--  	<td>商品編號</td> -->
 									<td>商品名稱</td>
 									<td>商品種類</td>
 									<td>單價</td>
@@ -325,11 +325,12 @@ div.panel
 <c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
 	<tr>
 		<!-- 商品編號 -->
-			
+		<!-- 
 		<td align="center">
 		<a href="<c:url value="/AddToCartButton.controller"/>?pdId=${listOfProduct[current.index].pdId}"
 		value="${listOfProduct[current.index].pdId}">${listOfProduct[current.index].pdId}</a>
 		</td>
+		 -->	
 		
 		<!-- 商品名稱 -->
 		<td align="center">${listOfProduct[current.index].productName}</td>
