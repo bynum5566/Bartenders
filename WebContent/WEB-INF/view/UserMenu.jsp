@@ -34,6 +34,7 @@ strong {
 }
 
 header {
+	font-size: 20px;
 	display: flex;
 	position: fixed;
 	width: 100%;
@@ -43,6 +44,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	color: #CCBBFF;
 }
 
 main {
@@ -245,8 +247,7 @@ img {
 </head>
 
 <body>
-
-	<header tabindex="0">Header</header>
+	<header tabindex="0">Welcome back,and let's get legless.</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">

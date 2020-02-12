@@ -11,8 +11,7 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <style type="text/css">
 @import
-	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
-	;
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
 
 * {
 	outline: none;
@@ -34,6 +33,7 @@ strong {
 }
 
 header {
+	font-size: 20px;
 	display: flex;
 	position: fixed;
 	width: 100%;
@@ -43,6 +43,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	color: #CCBBFF;
 }
 
 main {
@@ -69,7 +70,7 @@ main p {
 
 main small {
 	font-weight: 300;
-	color:#CCBBFF;
+	color: #CCBBFF;
 }
 
 #nav-container {
@@ -213,11 +214,10 @@ main small {
 
 html, body {
 	height: 100%;
-	background-image:url("/Bartenders/images/userFirstPage.jpg");
-	background-repeat:no-repeat;
+	background-image: url("/Bartenders/images/userFirstPage.jpg");
+	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	
 }
 
 a, a:visited, a:focus, a:active, a:link {
@@ -245,6 +245,51 @@ img {
 	height: auto;
 	width: 100%;
 }
+
+input[type=search] {
+font-size: 70%;
+margin-top: 20px;
+}
+
+.css_button {
+   padding: 3.5px 7px;
+   border: 1px solid #857C7C;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6D6C70), to(#615B5B));
+   background: -webkit-linear-gradient(top, #6D6C70, #615B5B);
+   background: -moz-linear-gradient(top, #6D6C70, #615B5B);
+   background: -ms-linear-gradient(top, #6D6C70, #615B5B);
+   background: -o-linear-gradient(top, #6D6C70, #615B5B);
+   background-color: #615B5B;
+   box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+   -webkit-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+   -moz-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+   -webkit-border-radius: 50px;
+   -moz-border-radius: 50px;
+   border-radius: 50px;
+   text-shadow: #CFC7C7 1px 1px 0px;
+   color: #CCBBFF;
+   font-size: 16px;
+   font-family: '微軟正黑體';
+   text-decoration: none;
+   font-weight: bold;
+   -webkit-transition: 0.3s;
+   -moz-transition: 0.3s;
+   -o-transition: 0.3s;
+   cursor: pointer;
+   }
+.css_button:hover {
+   background: none;
+   background-color: #615B5B;
+   box-shadow: 0px 0px 5px 0px #AAAAAA;
+   -webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
+   -moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
+   border: 1px solid #ffffff;
+   color: #F2E4E4;
+   }
+.css_button:active {
+   top: 1px;
+   position: relative;
+   }
 </style>
 
 
@@ -252,7 +297,7 @@ img {
 
 <body>
 
-	<header tabindex="0">Header</header>
+	<header tabindex="0">Welcome back,and let's get legless.</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">
@@ -273,18 +318,23 @@ img {
 			</ul>
 		</div>
 	</div>
-	
-	
-		<main>
-			<div class="content">
-				<h2 align="center">
-					歡迎回來~~<span>${userName}</span>
-				</h2>
-				
-			</div>
-		</main> 
-	
-	
+
+
+	<main>
+		<div class="content">
+			<h2 align="center">
+				歡迎回來~~<span>${userName},今天想喝甚麼呢?</span>
+			</h2>
+			<h2 align="center">
+				<input type="search" size="45" >
+				<a href="/XXX">
+				<input class="css_button" type="button" value="搜尋酒吧" />
+				</a>			
+			</h2>
+		</div>
+	</main>
+
+
 	<script type="text/javascript">
 	function signOut() {
 		gapi.auth2.init().then( () => {
