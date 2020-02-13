@@ -147,4 +147,10 @@ return "SubMessageBoard";
 	public String QRCodeUpdatePage() {
 		return "logistic/QRCodeUpdatePage";
 	}
+	
+	//////////
+	@RequestMapping(path = "/room.chat", method = RequestMethod.GET)
+	public String ChatRoom() {
+		return "ChatRoom";
+	}
 }

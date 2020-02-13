@@ -3,6 +3,9 @@ package bar.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import bar.model.CompanyService;
 import bar.model.Users;
 import bar.model.UsersService;
+import util.WebSocketTest;
 
 @Controller
 @SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName"})
@@ -30,10 +34,8 @@ public class CheckLogin {
 
 	@RequestMapping(path = { "/UcheckLogin.controller" }, method = { RequestMethod.POST })
 	public String userProcessAction(@RequestParam(name = "userAccount") String account,
-			@RequestParam(name = "userPwd") String password, Model m) {
+			@RequestParam(name = "userPwd") String password, Model m , HttpServletRequest request) {
 
-		Users user = uservice.select(account);
-		m.addAttribute("userName", user.getUserName());
 		
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -58,7 +60,14 @@ public class CheckLogin {
 		if (loginStatus1) {						
 			boolean loginStatus2 = uservice.select(account).getRole().equals("member");	
 			if(loginStatus2) {
+				HttpSession session = request.getSession();
+				WebSocketTest.setHttpSession(session);
+				
 				m.addAttribute("LoginStatus", "true");
+				
+				Users user = uservice.select(account);
+				m.addAttribute("userName", user.getUserName());
+				
 				return "UserFirstPage";
 			}
 			
@@ -70,7 +79,7 @@ public class CheckLogin {
 
 	@RequestMapping(path = { "/CcheckLogin.controller" }, method = { RequestMethod.POST })
 	public String companyProcessAction(@RequestParam(name = "companyAccount") String account,
-			@RequestParam(name = "companyPwd") String password, Model m) {
+			@RequestParam(name = "companyPwd") String password, Model m , HttpServletRequest request) {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -95,9 +104,12 @@ public class CheckLogin {
 
 		if (loginStatus) {
 			if (loginStatus2) {
+				HttpSession session = request.getSession();
+				WebSocketTest.setHttpSession(session);
+				
 				m.addAttribute("LoginStatus", "true");
 				return "WelcomeCompany";
-			}
+			} 
 
 		}
 

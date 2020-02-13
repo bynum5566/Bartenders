@@ -29,11 +29,12 @@ public class GRegister {
 	}
 
 	@RequestMapping(path = "/checkGLogin", method = RequestMethod.GET)
-	public String checkGLogin(@ModelAttribute(name = "gid") String gid) {
+	public String checkGLogin(@ModelAttribute(name = "gid") String gid,Model m) {
 		Users Guser = uservice.select(gid);
 
 		if (Guser != null) {
-			return "Welcome";
+			m.addAttribute("userName", Guser.getUserName());
+			return "UserFirstPage";
 		} else {
 			return "GRegister";
 		}
@@ -60,16 +61,18 @@ public class GRegister {
 			m.addAttribute("errorMsg", "系統忙碌中，請稍後再試");
 			return "GRegister";
 		}
-		return "Welcome";
+		m.addAttribute("userName", userName);
+		return "UserFirstPage";
 	}
 
 	
 	@RequestMapping(path = "/checkCGLogin", method = RequestMethod.GET)
-	public String checkCGLogin(@ModelAttribute(name = "gid") String gid) {
+	public String checkCGLogin(@ModelAttribute(name = "gid") String gid,Model m) {
 		 Company Gcompany = cservice.select(gid);
 
 		if (Gcompany != null) {
-			return "Welcome";
+			m.addAttribute("CName", Gcompany.getCompanyName());
+			return "WelcomeCompany";
 		} else {
 			return "CGRegister";
 		}
@@ -101,6 +104,7 @@ public class GRegister {
 			return "CGRegister";
 		}
 
-		return "Welcome";
+		m.addAttribute("CName", companyName);
+		return "WelcomeCompany";
 	}
 }
