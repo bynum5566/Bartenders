@@ -19,15 +19,29 @@
  
      
 
-    
+<%--左側工具列，開始 --%>    
+
 .mydiv {
- width: 100%;
- margin: 0 auto;
- top: 80px;
- position: sticky;
- text-align: center;    
+ 	width: auto;
+	margin: auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);    
  }
-    
+
+<%--左側工具列，結束--%>     
     
 body {
     background-color:	#ECF5FF;
@@ -213,4 +227,6 @@ $(".flip").click(function(){
 </body>
 </html>
 
+<%--左側工具列，開始 --%>   
 <%@include file="UserMenu.jsp"%>
+<%--左側工具列，結束--%>    
