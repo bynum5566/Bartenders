@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import bar.model.Company;
 import bar.model.CompanyService;
 import bar.model.Users;
 import bar.model.UsersService;
@@ -107,6 +108,8 @@ public class CheckLogin {
 				HttpSession session = request.getSession();
 				WebSocketTest.setHttpSession(session);
 				
+				Company Gcompany = companyService.select(account);
+				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
 				return "WelcomeCompany";
 			} 

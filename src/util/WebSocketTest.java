@@ -13,7 +13,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 
@@ -21,9 +21,10 @@ import bar.model.MessageDto;
 
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
+@SessionAttributes(value = { "userName" , "CName"})
 public class WebSocketTest {
 	private static int onlineCount = 0;
-	
+
 //存放所有登錄用戶的Map集合，鍵：每個用戶的唯一標識（用戶名） 
 	private static Map<String, WebSocketTest> webSocketMap = new HashMap<String, WebSocketTest>();
 
@@ -44,30 +45,52 @@ public class WebSocketTest {
 		this.session = session;
 
 		String onlineUser = (String) httpSession.getAttribute("userName");
-		webSocketMap.put(onlineUser, this);
-		addOnlineCount();
+		String onlineCompany = (String) httpSession.getAttribute("CName");
 
-		MessageDto md = new MessageDto();
-		md.setMessageType("onlineCount");
-		md.setData(onlineCount + "");
-		sendOnlineCount(gson.toJson(md));
-		System.out.println(getOnlineCount());
-		
-		
-		for(Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
-			MessageDto md1 = new MessageDto();
-			md1.setMessageType("onlineUser");
-			md1.setData(entry.getKey());
-			
-			sendOnlineCount(gson.toJson(md1));
-			System.out.println(entry.getKey());
+		if (onlineUser != null && onlineUser.length()!=0) {
+			System.out.println("onlineUser:"+onlineUser);
+			webSocketMap.put(onlineUser, this);
+			addOnlineCount();
+
+			MessageDto md = new MessageDto();
+			md.setMessageType("onlineCount");
+			md.setData(onlineCount + "");
+			sendOnlineCount(gson.toJson(md));
+			System.out.println(getOnlineCount());
+
+			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
+				MessageDto md1 = new MessageDto();
+				md1.setMessageType("onlineUser");
+				md1.setData(entry.getKey());
+
+				sendOnlineCount(gson.toJson(md1));
+				System.out.println(entry.getKey());
+			}
 		}
-		
-		
+
+		if (onlineCompany != null && onlineCompany.length()!=0) {
+			System.out.println("onlineCompany:"+onlineCompany);
+			webSocketMap.put(onlineCompany, this);
+			addOnlineCount();
+
+			MessageDto md = new MessageDto();
+			md.setMessageType("onlineCount");
+			md.setData(onlineCount + "");
+			sendOnlineCount(gson.toJson(md));
+			System.out.println(getOnlineCount());
+
+			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
+				MessageDto md1 = new MessageDto();
+				md1.setMessageType("onlineUser");
+				md1.setData(entry.getKey());
+
+				sendOnlineCount(gson.toJson(md1));
+				System.out.println(entry.getKey());
+			}
+		}
+
 	}
 
-	
-	
 	/** * 向所有在線用戶發送在線人數 * @param message */
 	public static void sendOnlineCount(String message) {
 		for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
@@ -79,8 +102,6 @@ public class WebSocketTest {
 		}
 	}
 
-	
-	
 	/** * 連接關閉調用的方法 */
 	@OnClose
 	public void onClose() {
@@ -94,8 +115,6 @@ public class WebSocketTest {
 // System.out.println(getOnlineCount()); 
 	}
 
-	
-	
 	/**
 	 * * 伺服器接收到客戶端消息時調用的方法，（通過「@」截取接收用戶的用戶名） * * @param message * 客戶端發送過來的消息
 	 * * @param session * 數據源客戶端的session
@@ -156,7 +175,5 @@ public class WebSocketTest {
 	public static synchronized void subOnlineCount() {
 		WebSocketTest.onlineCount--;
 	}
-
-
 
 }

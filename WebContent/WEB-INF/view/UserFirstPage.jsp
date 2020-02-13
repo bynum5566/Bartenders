@@ -11,7 +11,8 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <style type="text/css">
 @import
-	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
+	;
 
 * {
 	outline: none;
@@ -247,49 +248,52 @@ img {
 }
 
 input[type=search] {
-font-size: 70%;
-margin-top: 20px;
+	font-size: 70%;
+	margin-top: 20px;
 }
 
 .css_button {
-   padding: 3.5px 7px;
-   border: 1px solid #857C7C;
-   background: -webkit-gradient(linear, left top, left bottom, from(#6D6C70), to(#615B5B));
-   background: -webkit-linear-gradient(top, #6D6C70, #615B5B);
-   background: -moz-linear-gradient(top, #6D6C70, #615B5B);
-   background: -ms-linear-gradient(top, #6D6C70, #615B5B);
-   background: -o-linear-gradient(top, #6D6C70, #615B5B);
-   background-color: #615B5B;
-   box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
-   -webkit-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
-   -moz-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
-   -webkit-border-radius: 50px;
-   -moz-border-radius: 50px;
-   border-radius: 50px;
-   text-shadow: #CFC7C7 1px 1px 0px;
-   color: #CCBBFF;
-   font-size: 16px;
-   font-family: '微軟正黑體';
-   text-decoration: none;
-   font-weight: bold;
-   -webkit-transition: 0.3s;
-   -moz-transition: 0.3s;
-   -o-transition: 0.3s;
-   cursor: pointer;
-   }
+	padding: 3.5px 7px;
+	border: 1px solid #857C7C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6D6C70),
+		to(#615B5B));
+	background: -webkit-linear-gradient(top, #6D6C70, #615B5B);
+	background: -moz-linear-gradient(top, #6D6C70, #615B5B);
+	background: -ms-linear-gradient(top, #6D6C70, #615B5B);
+	background: -o-linear-gradient(top, #6D6C70, #615B5B);
+	background-color: #615B5B;
+	box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-moz-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	text-shadow: #CFC7C7 1px 1px 0px;
+	color: #CCBBFF;
+	font-size: 16px;
+	font-family: '微軟正黑體';
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	cursor: pointer;
+}
+
 .css_button:hover {
-   background: none;
-   background-color: #615B5B;
-   box-shadow: 0px 0px 5px 0px #AAAAAA;
-   -webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
-   -moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
-   border: 1px solid #ffffff;
-   color: #F2E4E4;
-   }
+	background: none;
+	background-color: #615B5B;
+	box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	border: 1px solid #ffffff;
+	color: #F2E4E4;
+}
+
 .css_button:active {
-   top: 1px;
-   position: relative;
-   }
+	top: 1px;
+	position: relative;
+}
 </style>
 
 
@@ -313,7 +317,7 @@ margin-top: 20px;
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 				<li><a href="#0">討論區</a></li>
-				<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+				<li><a onclick="chat()">聊天室</a></li>
 				<li class="small"><a href="UserFirstPage">返回首頁</a><a
 					href="javascript:signOut()">登出</a>
 			</ul>
@@ -327,14 +331,18 @@ margin-top: 20px;
 				歡迎回來~~<span>${userName},今天想喝甚麼呢?</span>
 			</h2>
 			<h2 align="center">
-				<input type="search" size="45" >
-				<a href="/XXX">
-				<input class="css_button" type="button" value="搜尋酒吧" />
-				</a>			
+				<input type="search" size="45"> <a href="/XXX"> <input
+					class="css_button" type="button" value="搜尋酒吧" />
+				</a>
 			</h2>
 		</div>
 	</main>
 
+	<script type="text/javascript">
+		function chat(){
+			window.open('/Bartenders/room.chat', "Chat Room", config='height=700px,width=700px')
+		} 
+	</script>
 
 	<script type="text/javascript">
 	function signOut() {

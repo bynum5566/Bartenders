@@ -29,11 +29,18 @@
 				<li><a class="menu" href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 				<li><a class="menu" href="/Bartenders/salesReport.controller">銷售長條圖</a></li>
 				<li><a class="menu" href="/Bartenders/salesReportByPie.controller">銷售圓餅圖</a></li>
+				<li><a class="menu" onclick="chat()">聊天室</a></li>
 				<li class="small"><a class="menu" href="/Bartenders/Welcome.Company">前往首頁</a><a class="menu"
 					href="javascript:signOut()">登出</a></li>
 			</ul>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function chat(){
+			window.open('/Bartenders/room.chat', "Chat Room", config='height=700px,width=700px')
+		} 
+	</script>
 
 	<script type="text/javascript">
 	  function signOut() {

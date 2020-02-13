@@ -19,14 +19,14 @@
 }
 
 html, body {
-	margin: 0px;
-	padding: 0px;
-	height: 100%;
-	width: auto;
-	background-image: url("/Bartenders/images/chatRoom.png");
-	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	background: url("/Bartenders/images/chatRoom.png") no-repeat
+		center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
-	background-position: center;
 }
 
 h2 {
@@ -36,7 +36,8 @@ h2 {
 
 .onlineBox {
 	background-color: rgb(255, 255, 255, 0.4);
-	border-right: 1px ridge #6C6C6C; height : 75%;
+	border-right: 1px ridge #6C6C6C;
+	height: 75%;
 	width: 35%;
 	float: left;
 	text-align: center;
@@ -45,12 +46,13 @@ h2 {
 }
 
 .sendBox {
-	background-color: rgb(255, 255, 255, 0.4);
+	position: relative; background-color : rgb( 255, 255, 255, 0.4);
 	height: 75%;
 	width: 35%;
 	float: left;
 	text-align: center;
 	margin-right: 15%;
+	background-color: rgb(255, 255, 255, 0.4);
 }
 
 .countBox {
@@ -64,7 +66,7 @@ h2 {
 }
 
 #message {
-	margin:auto;
+	margin: auto;
 	width: 90%;
 	height: 100%;
 	border: 1.5px groove;
@@ -82,7 +84,7 @@ h2 {
 
 
 	<div class="mydiv">
-		<h2>哈囉，${userName} 歡迎來到聊天室</h2>
+		<h2>哈囉，${userName} ${CName } 歡迎來到聊天室</h2>
 		<br />
 
 		<div class="onlineBox">
