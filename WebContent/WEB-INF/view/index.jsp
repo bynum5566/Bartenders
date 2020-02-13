@@ -82,6 +82,14 @@
     <!-- class="text-center loginBtn loginBtn--google" -->
       Google
     </div>
+    <br>
+    <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
+      酒吧用戶
+    </a>
+    <br>
+    <a href="/Bartenders/ResetPassword" style="padding: 10px" class="login text-center loginBtn" >
+      忘記密碼
+    </a>
 </div>
                 <div class="col-sm-5 text-right">       
               <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
@@ -94,7 +102,14 @@
                   <button class="text-center col-12 loginBtn loginBtn--facebook">
                     Facebook
                   </button></div> -->
-                <div class="col-12  p-0 mt-1" > <div id="my-signin2" class="text-center col-12 loginBtn loginBtn--google" class="g-signin2" data-onsuccess="onSignIn">
+                  <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+     				酒吧用戶
+    			  </button></div>
+    			  <div class="col-12  p-0">
+    			  <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
+      			    忘記密碼
+    			  </button></div>
+                <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
                   Google &nbsp;
                 </div></div>
             </div>
@@ -248,6 +263,12 @@
     <div class="g-signin2" class="text-center loginBtn loginBtn--google" data-onsuccess="onSignIn">
       Google
     </div>
+    <button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+      酒吧用戶
+    </button>
+    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
+      忘記密碼
+    </button>
 </div>
                 <div class="col-sm-5 text-right">
                             
@@ -257,19 +278,25 @@
                 </div>
                </div>
                
-               </div>               
+                       
                  </form>
                
                
                
                <div class="display480">
-                <div class="col-12  p-0">
+                <!-- <div class="col-12  p-0"> -->
 <!--                   <button class="text-center col-12 loginBtn loginBtn--facebook">
                     Facebook
                   </button></div> -->
                 <div class="col-12  p-0 mt-1"> <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
                   Google &nbsp;
                 </div></div>
+                <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+      			酒吧用戶
+    			</button></div>
+    			<div class="col-12  p-0"><button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
+      			忘記密碼
+    			</button></div>
 
 
             </div>
