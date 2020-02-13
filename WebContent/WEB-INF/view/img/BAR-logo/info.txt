@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: OleoScript-Regular
+font link: https://fonts.google.com/specimen/Oleo+Script
+font author: soytutype fonts
+font author site: https://twitter.com/soytutype
+Slogan Font: SpaceMono-Regular.ttf
+
+icon designer: Renee Ramsey-Passmore
+icon designer link: /Renee Ramsey-Passmore
+        
+{"bg":"#EDECF4","icon-gradient-0":"#A54665","icon-gradient-1":"#ADBDE0","font":"#3C2A35","slogan":"#503e49"}
+      

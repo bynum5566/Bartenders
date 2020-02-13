@@ -19,12 +19,16 @@
 
 </head>
 <body>
+	<main>
+	<!-- 
 	<nav class = mydiv>
-		<ul class="menu">
+	 -->
+		<ul class="mydiv">
 			<li><a href="<c:url value="/DisplayBarList.controller"/>">商城</a></li>
 			<li><a href="<c:url value="/DisplayCartList.controller"/>">回到購物車</a>
 			</li>
 			<!--  <li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a></li> -->
+			<%--
 			<c:choose>
 				<c:when test="${LoginStatus=='true'}">
 				<!--	<li><a href="/Bartenders/logout">登出</a></li> -->
@@ -35,8 +39,12 @@
 					<li><a href="http://localhost:8080${pageContext.request.contextPath}/login">登入</a></li>
 				</c:otherwise>
 			</c:choose>
+			  --%>
 		</ul>
+	<!--  
 	</nav>
+	 -->
+	</main>
 
 </body>
 </html>
