@@ -6,8 +6,37 @@
 <head>
 <meta charset="UTF-8">
 <title>ChangeOrder</title>
+<style type="text/css">
+.mydiv {
+	width:100%;
+	margin:0 auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(15, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color: #E8CCFF;
+}
+
+body {
+	margin:0;
+	padding:0;
+	background: url("/Bartenders/images/bg11.png") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
 </head>
 <body>
+<div class="mydiv">
 	<div align="center">
 		<h1>請填寫要修改的訂單資料</h1>
 		<form action="<c:url value="/doChangeOrderUser.controller"/>" method="POST">
@@ -60,7 +89,8 @@
 		 	</table>
 		</form>
 	</div>
-
+	</div>
 
 </body>
 </html>
+<%@include file="UserMenu.jsp"%>

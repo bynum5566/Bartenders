@@ -32,8 +32,7 @@ public class CheckLogin {
 	public String userProcessAction(@RequestParam(name = "userAccount") String account,
 			@RequestParam(name = "userPwd") String password, Model m) {
 
-		Users user = uservice.select(account);
-		m.addAttribute("userName", user.getUserName());
+
 		
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -53,6 +52,9 @@ public class CheckLogin {
 		m.addAttribute("account", account);
 		m.addAttribute("password", password);
 
+		Users user = uservice.select(account);
+		m.addAttribute("userName", user.getUserName());
+		
 		boolean loginStatus1 = uservice.checkLogin(account, password);
 		
 		if (loginStatus1) {						
