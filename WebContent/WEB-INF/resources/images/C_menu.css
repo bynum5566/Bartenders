@@ -179,6 +179,16 @@ a.menu {
 	transition: .2s ease-in-out;
 }
 
+.page {
+ width: 100%;
+ height: 100vh;
+ background: #fdfdfd;
+font-family:TaipeiSansTCBeta;
+ font-weight: 600;
+ letter-spacing: .03em;
+ color: #212121;
+}
+
 /* h1, h2, h3, h4 { */
 /* 	margin: 0; */
 /* } */
