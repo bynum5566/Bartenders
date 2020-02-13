@@ -47,7 +47,7 @@ public class CheckLogin {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			return "LoginPage";
+			return "index";
 		}
 
 		m.addAttribute("account", account);
@@ -65,7 +65,7 @@ public class CheckLogin {
 		}
 
 		m.addAttribute("msg", "帳號或密碼不正確");
-		return "LoginPage";
+		return "index";
 	}
 
 	@RequestMapping(path = { "/CcheckLogin.controller" }, method = { RequestMethod.POST })
