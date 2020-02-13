@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <meta charset="UTF-8">
 <title>Cancel Order For User</title>
 <style type="text/css">
@@ -21,7 +26,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url("/Bartenders/images/bg11.png") no-repeat center center
+	background: url("/Bartenders/images/CancelOrder.jpg") no-repeat center center
 		fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

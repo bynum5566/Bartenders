@@ -332,6 +332,8 @@ margin-top: 20px;
  <main>
   <div class="content">
    <h2 align="center">
+   <img src="img/Logo.png" style="width:150px;margin: 20px"/>
+   <br>
     歡迎回來~~<span>${userName},今天想喝甚麼呢?</span>
    </h2>
    <h2 align="center">
