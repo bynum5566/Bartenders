@@ -4,22 +4,74 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RWD 網頁測試</title>
-    <!-- 
-    <link rel="stylesheet" href="styles/rwd.css">
-    <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
-     -->
-    <style>
-body {
-    background-color:	#ECF5FF;
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>所有酒吧</title>
+<%-- 畫面version 20200213_1650--%>
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="/Bartenders/images/add_editView.css">
+	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+	
+	<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+	
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
+	rel="stylesheet"></link>
+	
+    <style type= "text/css">	
+
+	.sigmaGray{
+		color: gray;
+	}
+
+	.sigmaTd1 {
+		width: 100px;
+		height: 50px;
+		text-align: center;
+	}
+	
+	.sigmaTd6 {
+		width: 600px;
+		height: 50px;
+		text-align: center;
+	}
+.mydiv {
+	width: auto;
+	margin: auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 }
+ 
+h{
+	color:white ;
+}
+
+td{
+	border-width: 1px;
+}
+
 * {
     margin:0;
     padding:0;
+    font-family :Microsoft JhengHei;
 }
 #allpage {
     width:100%;
@@ -35,7 +87,6 @@ header {
 .menu {
     width:100%;
     overflow:auto;            
-    background-color:#ACD6FF;
     border-radius:5px;
     list-style-type:none;
    
@@ -87,33 +138,49 @@ footer {
     text-align:center;
     line-height:2.5em;
     color:	#4F4F4F;
-}        
+}
+
+<!--縮放用CSS，開始-->
+div.panel,img.flip
+{
+	margin:0px;
+	padding:5px;
+	text-align:center;
+	background:#e5eecc;
+	border:solid 1px #c3c3c3;
+}
+div.panel
+{
+	height:300px;
+	width:300px;
+	display:none;
+}
+<!--縮放用CSS，結束-->
+
+  
     </style>
+
+<!-- script src,開始 -->   
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+<!-- script src,結束-->
+    
 </head>
 <body>
-	<div>(介面版本:N_20200204_1629)</div>
-    <div id="allpage">
+<main>
+
+    <div class="mydiv" >
         <header>
-            <!-- <img class="logo-img" src="images/logo.jpg" title="logo" alt="logo"> -->
-            <nav>
-                <ul class="menu">
-					<li><a href="<c:url value="/DisplayProductList.controller"/>">商城</a></li>
-					<li><a href="<c:url value="/DisplayCartList.controller"/>">我的購物車</a> </li>
-					<li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a> </li>					
-					<li><a href="http://localhost:8080/CreateUsers/login">登入</a></li>
-                    <li><a href="/CreateUsers/logout">登出</a></li>                
-				</ul>
-            </nav>            
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
         </header>
-        <div id="content">
-            <article class="article">
-                <section class="section">
+        <div >
 
 <%-- 本體，開始 --%>
 
 		<form action="<c:url value=" 123456" />" method="post">
-		<h2>訂單明細(訂單編號:${orderId})</h2>
-		<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車清單</a>
+		<h2>確認訂單資訊頁面</h2>
+		<!-- <h3>(購物車編號:${orderId}) </h3>  -->
 		<table>
 			<thead>
 				<tr align="center">
@@ -161,39 +228,69 @@ footer {
 		<FORM action="<c:url value="/OrderOneToTwo.controller" />" method="get">
 		<h2>配送資訊</h2>
 		配送方式:
-		<c:if test="${shipping == '1' }">
-			<label>宅配</label>
-		</c:if>
-		<c:if test="${shipping == '2' }">
-			<label>超商</label>
-		</c:if>
+		
+		<!-- =如果是一般商品，可以選擇配送方式，開始= -->
+
+<c:if test="${shipping == '1' or shipping == '2'}">
+	<input  name="select1" type="radio" value="1" checked required >
+	<!-- onfocus="functionName()" 用來觸發函式 -->
+	<label for="setTt1">宅配</label>
+	
+	<input name="select1" type="radio" value="2" >
+	<label	for="setTt2">超商</label>
+</c:if>
+
+<!-- 
+0	未選擇
+1	宅配
+2	超商
+3	QR票券
+ -->
+		<!-- =如果是一般商品，可以選擇配送方式，結束= -->
+		
 		<c:if test="${shipping == '3' }">
 			<label>QR票券</label>
 		</c:if>
+
 		<br>
-		<label>收件人：${defaultName}</label>
-		<Input type='hidden' name='input1' value="${defaultName}">
+		<label>收件人：</label>
+		<input type="text" required="required" name="input1" size="40" value="${defaultName}" />
+<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 		<br>
-		<c:if test="${shipping == '1' }">
+		
+		
+		<!-- 未選擇 -->
+		<c:if test="${shipping == '0' }">
 			<label>宅配地址：${defaultAddress}</label>
 			<Input type='hidden' name='address1' value="${defaultAddress}">
+			<Input type='hidden' name='address2' value="${defaultAddress}">
+			<br>
+		</c:if>		
+		
+		
+		<c:if test="${shipping == '1' }">
+			<label>宅配地址：</label>
+			<input type="text" required="required" name="address1" size="40" value="${defaultAddress}" />
+	<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 			<br>
 		</c:if>
 
 
 		<c:if test="${shipping == '2' }">
-			<label>超商門市：${defaultAddress}</label>
-			<Input type='hidden' name='address2' value="${defaultAddress}">
+			<label>超商門市：</label>
+			<input type="text" required="required" name="address2" size="40" value="${defaultAddress}" />
+	<!-- 	<Input type='hidden' name='address2' value="${defaultAddress}"> -->	
 			<br>
 		</c:if>
 
 		<c:if test="${shipping == '3' }">
-			<label>QR票券</label>
+			<label>QR票券</label>		<!-- 如果是QR不印地址，宅配/超商則會印地址 -->
 			<br>
 		</c:if>
 
-		<label>電話：${defaultPhone}</label>
-		<Input type='hidden' name='input2' value='${defaultPhone}'>
+		<label>電話：</label>
+		<input type="text" required="required" name="input2" size="40" value="${defaultPhone}" />
+	<!--<Input type='hidden' name='input2' value='${defaultPhone}'> -->
 		<br>
 		<c:if test="${shipping == '1' }">
 			<Input type='hidden' name='address2' value='empty'>
@@ -206,26 +303,38 @@ footer {
 			<Input type='hidden' name='address2' value='empty'>
 		</c:if>
 
-		<Input type='hidden' name='select1' value='${shipping}'>
+		<c:if test="${shipping == '3' }">
+			<Input type='hidden' name='select1' value='${shipping}'>
+		</c:if>
+
+		
 
 		<Input type='hidden' name='orderId' value='${orderId}'>
 		<Input type='hidden' name='totalPrice' value='${totalPrice}'> <!-- 新增2020131_1634 -->
 		<Input type='hidden' name='Freight' value='${ShippingNumToPrice[order.shipping]}'> <!-- 新增2020131_1634 -->
-		<Input type='submit' value='確定購買'>
+		<Input type='submit' value='資訊無誤，確認訂購'>
+		<p style="color:red">請注意，一經確認，即無法修改。</p>
 		</form>
 		
 <%-- 本體，結束 --%>
-
-                </section>                
-            </article>
-
-
         
         </div>  <!--end content-->
 
-        <footer>
-                <p>2020 All Rights Reserved</p>
-        </footer>
+
     </div>  <!--end allpage-->
+   
+<!--縮放用JS，開始-->
+<script type="text/javascript">
+$(".flip").click(function(){
+    $(".panel").slideToggle("slow");
+  });
+</script>
+<!--縮放用JS，結束-->
+
+</main> 
 </body>
 </html>
+
+<%--左側工具列，開始 --%>   
+<%@include file="UserMenu.jsp"%>
+<%--左側工具列，結束--%>    

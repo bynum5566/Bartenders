@@ -6,17 +6,17 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.CompanyService;
+import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount", "CName"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -32,6 +32,9 @@ public class CheckLogin {
 	public String userProcessAction(@RequestParam(name = "userAccount") String account,
 			@RequestParam(name = "userPwd") String password, Model m) {
 
+		Users user = uservice.select(account);
+		m.addAttribute("userName", user.getUserName());
+		
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -44,7 +47,7 @@ public class CheckLogin {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			return "LoginPage";
+			return "index";
 		}
 
 		m.addAttribute("account", account);
@@ -56,13 +59,13 @@ public class CheckLogin {
 			boolean loginStatus2 = uservice.select(account).getRole().equals("member");	
 			if(loginStatus2) {
 				m.addAttribute("LoginStatus", "true");
-				return "WelcomeUser";
+				return "UserFirstPage";
 			}
 			
 		}
 
 		m.addAttribute("msg", "帳號或密碼不正確");
-		return "LoginPage";
+		return "index";
 	}
 
 	@RequestMapping(path = { "/CcheckLogin.controller" }, method = { RequestMethod.POST })
@@ -93,7 +96,6 @@ public class CheckLogin {
 		if (loginStatus) {
 			if (loginStatus2) {
 				m.addAttribute("LoginStatus", "true");
-				m.addAttribute("CName", account);//(吳昭蓉)
 				return "WelcomeCompany";
 			}
 
@@ -101,10 +103,5 @@ public class CheckLogin {
 
 		m.addAttribute("msg", "帳號或密碼不正確");
 		return "CLoginPage";
-	}
-	
-	@RequestMapping(value =  "/Welcome.Company" , method = RequestMethod.GET )
-	public String goWelcome() {
-		return "WelcomeCompany";
 	}
 }

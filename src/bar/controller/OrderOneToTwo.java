@@ -1,3 +1,4 @@
+/*豪*/
 package bar.controller;
 
 //import java.util.Date;
@@ -151,8 +152,8 @@ public class OrderOneToTwo /* 使用者按下 */
 					CartService.Pf2("b",b);
 					ProductDataX.setPdStock(b-a);
 				}
-				msg = "結帳成功，庫存足夠，訂單狀態1>2";
-				
+				msg = "成立訂單成功";
+				/*訂單狀態1>2*/
 			} else {
 				msg = "庫存不足，請重新選擇數量";
 				System.out.println("庫存不足");
@@ -179,7 +180,7 @@ public class OrderOneToTwo /* 使用者按下 */
 			m.addAttribute("msg",msg);
 			return "resultOfCheckout";
 		}
-		if (msg == "結帳成功，庫存足夠，訂單狀態1>2") {
+		if (msg == "成立訂單成功") {
 			System.out.println("結束狀態B");
 			m.addAttribute("msg",msg);
 			return "resultOfCheckout";

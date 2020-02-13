@@ -3,14 +3,13 @@ package bar.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ShowPages {
 
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String showLogin() {
-		return "LoginPage";
+		return "index";
 	}
 
 	@RequestMapping(path = "/Register", method = RequestMethod.GET)
@@ -72,7 +71,6 @@ return "SubMessageBoard";
 		return "productViewPage";
 	}
 ///////////////////////////
-	
 	@RequestMapping(path ="/UserOrder")
 	public String showUserOrder() {
 		return "UserOrder";
@@ -98,6 +96,11 @@ return "SubMessageBoard";
 		return "OrderList";
 	}
 	
+	@RequestMapping(path ="/OrderListUser")
+	public String showOrderListUser() {
+		return "OrderListUser";
+	}
+	
 	@RequestMapping(path ="/CancelOrder")
 	public String showCancelOrder() {
 		return "CancelOrder";
@@ -111,6 +114,16 @@ return "SubMessageBoard";
 	@RequestMapping(path ="/SalesReport")
 	public String showSalesReport() {
 		return "SalesReport";
+	}
+	
+	@RequestMapping(path ="/SalesReportByPie")
+	public String showSalesReportByPie() {
+		return "SalesReportByPie";
+	}
+	
+	@RequestMapping(path ="/UserFirstPage")
+	public String showUserFirstPage() {
+		return "UserFirstPage";
 	}
 	///////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
