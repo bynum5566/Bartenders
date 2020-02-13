@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ import bar.model.CompanyService;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount", "CName"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -92,6 +93,7 @@ public class CheckLogin {
 		if (loginStatus) {
 			if (loginStatus2) {
 				m.addAttribute("LoginStatus", "true");
+				m.addAttribute("CName", account);//(吳昭蓉)
 				return "WelcomeCompany";
 			}
 
@@ -99,5 +101,10 @@ public class CheckLogin {
 
 		m.addAttribute("msg", "帳號或密碼不正確");
 		return "CLoginPage";
+	}
+	
+	@RequestMapping(value =  "/Welcome.Company" , method = RequestMethod.GET )
+	public String goWelcome() {
+		return "WelcomeCompany";
 	}
 }

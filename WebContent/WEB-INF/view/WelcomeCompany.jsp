@@ -19,18 +19,20 @@ body {
 	background-position: top;
 	background-image: url(/Bartenders/images/bg4.jpg);
 }
-.welcome{
-top:80px;
-position:relative;
-margin-top:10px;
-text-align: center;
-margin: auto;
-color:white;
+
+.welcome {
+	top: 80px;
+	position: relative;
+	margin-top: 10px;
+	text-align: center;
+	margin: auto;
+	color: white;
 }
 </style>
 
 </head>
 <body>
+	<img src="img/Logo.png" style="width: 150px; margin: 20px" />
 	<div class="welcome">
 		<h1>
 			歡迎回來，${CName}。
@@ -39,9 +41,9 @@ color:white;
 		</h1>
 	</div>
 
-		 <h1>
-	  <a href="<c:url value="/companyOrder.controller"/>">CompanyOrder</a>
-	 </h1>
+	<!-- 		 <h1> -->
+	<%-- 	  <a href="<c:url value="/companyOrder.controller"/>">CompanyOrder</a> --%>
+	<!-- 	 </h1> -->
 
 	<!--  <h1> -->
 	<%--   <a href="<c:url value="/salesReport.controller"/>">SalesReport</a> --%>
