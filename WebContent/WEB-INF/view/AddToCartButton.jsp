@@ -101,7 +101,7 @@ footer {
                 <section class="section">
 
 <%-- 本體，開始 --%>
-	<h2>${errorMsgOfAddToCartButton}</h2>
+	<h2 style="color:rgb(200,200,200)">${errorMsgOfAddToCartButton}</h2>
 		<form>
 			<table>
 				<thead>

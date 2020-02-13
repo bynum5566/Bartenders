@@ -4,15 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
     <link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
 	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
+	<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
+	rel="stylesheet"></link>
 
 <title>酒吧</title>
 
@@ -126,7 +131,7 @@
 <div >
 	<section >
 		<%-- 清單版本 --%>
-<h3>商品清單</h3>
+<h3 class="sigmaTd1" style="color:white">商品清單</h3>
 <h3>${msg}</h3>
 <div>
 	<!--  	<form action="<c:url value="/DisplayProductList.controller"/>" method="post"> -->
@@ -134,13 +139,13 @@
 	<thead>
 		<tr align="center">
 			<!--  	<td>商品編號</td> -->
-			<td>商品名稱</td>
-			<td>商品種類</td>
-			<td>單價</td>
-			<td>庫存</td>
-			<td>前往商品介面</td>
-			<td>圖片</td>
-			<td>加入購物車</td>
+			<td class="sigmaTd1">商品名稱</td>
+			<td class="sigmaTd1">商品種類</td>
+			<td class="sigmaTd1">單價</td>
+			<td class="sigmaTd1">庫存</td>
+			<td class="sigmaTd1">前往商品介面</td>
+			<td class="sigmaTd1">圖片</td>
+			<td class="sigmaTd1">加入購物車</td>
 		</tr>
 	</thead>
 	<tbody>
