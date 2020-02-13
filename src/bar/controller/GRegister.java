@@ -33,7 +33,7 @@ public class GRegister {
 		Users Guser = uservice.select(gid);
 
 		if (Guser != null) {
-			return "Welcome";
+			return "UserFirstPage";
 		} else {
 			return "GRegister";
 		}
