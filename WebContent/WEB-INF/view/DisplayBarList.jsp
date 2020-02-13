@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>所有酒吧</title>
-<%-- version 20200213_1413--%>
+<%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
     type="text/css" 
@@ -71,6 +71,7 @@ td{
 * {
     margin:0;
     padding:0;
+    font-family :Microsoft JhengHei;
 }
 #allpage {
     width:100%;
@@ -190,25 +191,23 @@ div.panel
 					</tr>
 				</thead>
 				<tbody>
-					<tr align="center">
-								
-<c:forEach items="${listOfBar}" var="list" step="1" varStatus="current">
-	<tr>
-	<!-- 酒吧編號 -->	
-	<!--	<td align="center">	 -->
-	<!--	${listOfBar[current.index].companyId} -->		<!-- id > companyId -->
-	<!--	</td>	-->
-	
-		 
-		<!-- 酒吧名稱 -->
-		<td align="center">${listOfBar[current.index].companyName}</td>
-
+					<tr align="center">								
+						<c:forEach items="${listOfBar}" var="list" step="1" varStatus="current">
+							<tr>
+							<!-- 酒吧編號 -->	
+							<!--	<td align="center">	 -->
+							<!--	${listOfBar[current.index].companyId} -->		<!-- id > companyId -->
+							<!--	</td>	-->
+													 
+							<!-- 酒吧名稱 -->
+							<td align="center">${listOfBar[current.index].companyName}</td>
+					
+							
+							<td align="center">
+								<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
+								>前往酒吧產品介面</a>
 		
-		<td align="center">
-		<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
-		>前往酒吧產品介面</a>
-		</td>
-		
+							</td>		
 						</tr>
 					</c:forEach>
 				</tr>

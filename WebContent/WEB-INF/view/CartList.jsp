@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>我的購物車</title>
-<%-- version 20200213_1413--%>
+<%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
     type="text/css" 
@@ -71,6 +71,7 @@ td{
 * {
     margin:0;
     padding:0;
+    font-family :Microsoft JhengHei;
 }
 #allpage {
     width:100%;
