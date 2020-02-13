@@ -60,7 +60,7 @@
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
             <div class="col-10 input_bgg">
               <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
-              ${errors.account}
+              <%-- ${errors.account} --%>
             </div>
           </div>
           <div class="form-group row">
@@ -68,7 +68,7 @@
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
             <div class="col-10">
               <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
-              ${errors.password}
+              <%-- ${errors.password} --%>
             </div>
           </div>
         <!-- </form> --> 
@@ -94,7 +94,7 @@
                 <div class="col-sm-5 text-right">       
               <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
               <button value="submit" class="btn btn-dark ">送出</button>
-              ${msg}
+             <%--  ${msg} --%>
                 </div>
                </div>
                <div class="display480">
@@ -147,16 +147,20 @@
             <div class="bg1 w-100">
             </div>
             <div class="bg1_right">
-              <h2>想找酒吧?</h2>
               <h2>想找酒友?</h2>
+              <h2>想找酒吧?</h2>
             </div>
             <div class="carousel-caption d-none d-md-block">
               <div class="loginbox">
                 <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">會員登入</button>
+                <p style="color:red;">
+                ${errors.account}
+				${errors.password}
+                ${msg}</p>
                 <p><a href="/Bartenders/Register">還沒有帳號?</a></p>
               </div>
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>準備啟程</h5>
+              <p>抓穩了，準備好啜飲每一口的驚喜</p>
             </div>
           </div>
 
@@ -183,11 +187,11 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">按鈕按鈕</button>
+              <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">討論區</button>
               <p>
             </div>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h5>前進討論天地</h5>
+            <p>無論您是職業調酒師或業餘玩家，都歡迎暢所欲言、分享心得</p>
           </div>
           
           </div>
@@ -215,11 +219,12 @@
             </div>
             <div class="carousel-caption d-none d-md-block">
               <div class="loginbox2">
-                <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">按鈕按鈕</button>
+                <button class="login" onclick="location.href='DisplayBarList.controller'" data-toggle="modal" data-target="#exampleModalCenter1">即時聊天</button>
+          
                 <p>
               </div>
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>好久沒敘舊了</h5>
+              <p>有沒有未讀訊息？快來看看朋友們又發了什麼給你～</p>
             </div>
           </div>
           <div class="carousel-item">
@@ -242,7 +247,7 @@
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
             <div class="col-10 input_bgg">
               <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
-              ${errors.account}
+              <%-- ${errors.account} --%>
             </div>
           </div>
           <div class="form-group row">
@@ -250,7 +255,7 @@
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
             <div class="col-10">
               <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
-              ${errors.password}
+              <%-- ${errors.password} --%>
             </div>
           </div>
         
@@ -274,7 +279,7 @@
                             
               <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
               <button value="submit" class="btn btn-dark ">送出</button>
-              ${msg}
+              <%-- ${msg} --%>
                 </div>
                </div>
                
@@ -339,7 +344,7 @@
             <div class="carousel-caption d-none d-md-block">
               <div class="loginbox">
                 <button class="login" data-toggle="modal" data-target="#exampleModalCenter">會員登入</button>
-                <p><a href="/Bartenders/Register">還沒有帳號?</a></p>
+                <p><a href="/Bartenders/Register">還沒有帳號111?</a></p>
               </div>
               <h5>First slide label</h5>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -366,11 +371,11 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">按鈕按鈕</button>
+              <button class="login" onclick="location.href='要前往的網頁連結'" data-toggle="modal" data-target="#exampleModalCenter1">地圖搜尋</button>
               <p>
             </div>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h5>迷路了嗎？</h5>
+            <p>不論身在何方，都能用最快速度找到鄰近的酒吧！</p>
           </div>
           </div>
 
@@ -394,11 +399,11 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">按鈕按鈕</button>
+              <button class="login" data-toggle="modal" onclick="location.href='要前往的網頁連結'" data-target="#exampleModalCenter1">搜尋酒吧</button>
               <p>
             </div>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h5>腦中靈光一閃？</h5>
+            <p>快利用搜尋您想到的酒吧或酒品，找到最熟悉的那個地方</p>
           </div>
           </div>
 

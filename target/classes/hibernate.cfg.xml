@@ -12,6 +12,7 @@
 		<mapping class="bar.model.ProductData"/>
 		<mapping class="bar.model.MyFavorite"/>
 		<mapping class="bar.model.MyBar"/>
+		<mapping class="bar.model.EventsAndNews"/>
 		<mapping class="bar.model.Users"/>
         <mapping class="bar.model.Company"/>
         <mapping class="bar.model.Orders"/>

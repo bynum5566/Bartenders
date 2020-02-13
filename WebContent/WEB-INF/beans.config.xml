@@ -23,8 +23,8 @@
 	<context:component-scan base-package="bar.model" />
 	<context:component-scan base-package="bar.controller" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<mvc:annotation-driven />
-	<mvc:view-controller path="/" view-name="redirect:/Dashboard.Products" />
+	<mvc:annotation-driven />	  
+	<mvc:view-controller path="/" view-name="redirect:/Dashboard.Products" /> 
 	<task:annotation-driven/>
 
 	<bean id="sqlserverJndiDataSource"

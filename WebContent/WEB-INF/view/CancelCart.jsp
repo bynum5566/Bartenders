@@ -4,22 +4,74 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>購物車已取消</title>
-    <!-- 
-    <link rel="stylesheet" href="styles/rwd.css">
-    <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
-     -->
-    <style>
-body {
-    background-color:	#ECF5FF;
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>所有酒吧</title>
+<%-- 畫面version 20200213_1650--%>
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="/Bartenders/images/add_editView.css">
+	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+	
+	<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+	
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
+	rel="stylesheet"></link>
+	
+    <style type= "text/css">	
+
+	.sigmaGray{
+		color: gray;
+	}
+
+	.sigmaTd1 {
+		width: 100px;
+		height: 50px;
+		text-align: center;
+	}
+	
+	.sigmaTd6 {
+		width: 600px;
+		height: 50px;
+		text-align: center;
+	}
+.mydiv {
+	width: auto;
+	margin: auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 }
+ 
+h{
+	color:white ;
+}
+
+td{
+	border-width: 1px;
+}
+
 * {
     margin:0;
     padding:0;
+    font-family :Microsoft JhengHei;
 }
 #allpage {
     width:100%;
@@ -35,7 +87,6 @@ header {
 .menu {
     width:100%;
     overflow:auto;            
-    background-color:#ACD6FF;
     border-radius:5px;
     list-style-type:none;
    
@@ -87,17 +138,43 @@ footer {
     text-align:center;
     line-height:2.5em;
     color:	#4F4F4F;
-}        
+}
+
+<!--縮放用CSS，開始-->
+div.panel,img.flip
+{
+	margin:0px;
+	padding:5px;
+	text-align:center;
+	background:#e5eecc;
+	border:solid 1px #c3c3c3;
+}
+div.panel
+{
+	height:300px;
+	width:300px;
+	display:none;
+}
+<!--縮放用CSS，結束-->
+
+  
     </style>
+
+<!-- script src,開始 -->   
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+<!-- script src,結束-->
+    
 </head>
 <body>
-    <div id="allpage">
+<main>
+
+    <div class="mydiv" >
         <header>
-			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" />          
+			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
         </header>
-        <div id="content">
-            <article class="article">
-                <section class="section">
+        <div >
 
 <%-- 本體，開始 --%>
 	
@@ -107,17 +184,24 @@ footer {
 				<a href="<c:url value="/DisplayCartList.controller"/>">返回訂單頁面 </a> </h2> </form> 
 				
 <%-- 本體，結束 --%>
-
-                </section>                
-            </article>
-
-
         
         </div>  <!--end content-->
 
-        <footer>
-                <p>2020 All Rights Reserved</p>
-        </footer>
+
     </div>  <!--end allpage-->
+   
+<!--縮放用JS，開始-->
+<script type="text/javascript">
+$(".flip").click(function(){
+    $(".panel").slideToggle("slow");
+  });
+</script>
+<!--縮放用JS，結束-->
+
+</main> 
 </body>
 </html>
+
+<%--左側工具列，開始 --%>   
+<%@include file="UserMenu.jsp"%>
+<%--左側工具列，結束--%>    

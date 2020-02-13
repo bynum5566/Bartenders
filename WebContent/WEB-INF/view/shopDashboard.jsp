@@ -14,22 +14,22 @@
 
 <body>
 	<div class="allwrapper0">
-			<form action="/Bartenders/Product.Add" method="get">
 				<div class="box0">
 					<div class="flos1">
-					 <div class="btn btn-one">
-						<input class="bT" type="submit" value="新增商品+">
-						</div>
+						<a class="f1" href="/Bartenders/Product.Add">
+					 		<div class="btn btn-one ">
+								<input class="bT" type="submit" value="新增商品+">
+							</div>
+						</a>
 					</div>
 					<div class="flos2">
-					 <div class="btn btn-one">
-						<a href="/Bartenders/Dashboard.TkProducts">
-							<input class="bT" type="button" value="票券商品管理"/>
+						<a class="f1" href="/Bartenders/Dashboard.TkProducts">
+					 			<div class="btn btn-one">
+									<input class="bT" type="button" value="票券商品管理"/>
+					 			</div>
 						</a>
-						</div>
 					</div>
 				</div>
-			</form>
 
 		<div class="allwrapper">
 			<Table class="outwrapper blurred-box1">
