@@ -4,19 +4,70 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的購物車</title>
-    <!-- 
-    <link rel="stylesheet" href="styles/rwd.css">
-    <link rel="stylesheet" href="styles/rwd780.css" media="screen and (max-width:780px)">
-     -->
-    <style>
-body {
-    background-color:	#ECF5FF;
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>我的購物車</title>
+<%-- version 20200213_1413--%>
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="/Bartenders/images/add_editView.css">
+	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+	
+	<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+	
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
+	rel="stylesheet"></link>
+	
+    <style type= "text/css">	
+
+	.sigmaGray{
+		color: gray;
+	}
+
+	.sigmaTd1 {
+		width: 100px;
+		height: 50px;
+		text-align: center;
+	}
+	
+	.sigmaTd6 {
+		width: 600px;
+		height: 50px;
+		text-align: center;
+	}
+.mydiv {
+	width: auto;
+	margin: auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 }
+ 
+h{
+	color:white ;
+}
+
+td{
+	border-width: 1px;
+}
+
 * {
     margin:0;
     padding:0;
@@ -35,7 +86,6 @@ header {
 .menu {
     width:100%;
     overflow:auto;            
-    background-color:#ACD6FF;
     border-radius:5px;
     list-style-type:none;
    
@@ -87,39 +137,63 @@ footer {
     text-align:center;
     line-height:2.5em;
     color:	#4F4F4F;
-}        
+}
+
+<!--縮放用CSS，開始-->
+div.panel,img.flip
+{
+	margin:0px;
+	padding:5px;
+	text-align:center;
+	background:#e5eecc;
+	border:solid 1px #c3c3c3;
+}
+div.panel
+{
+	height:300px;
+	width:300px;
+	display:none;
+}
+<!--縮放用CSS，結束-->
+
+  
     </style>
+
+<!-- script src,開始 -->   
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+<!-- script src,結束-->
+    
 </head>
 <body>
-    <div id="allpage">
+<main>
+
+    <div class="mydiv" >
         <header>
 			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
         </header>
-        <div id="content">
-            <article class="article">
-                <section class="section">
+        <div >
 
 <%-- 本體，開始 --%>
-	
-	
-		<h3>我的購物車</h3>
-
-		<h3>${msg}</h3>
+	<h3 style="color:white">我的購物車</h3>
+	<h3>${msg}</h3>
 		<form>
-			<table>
-				<thead>
-					<tr align="center">
+			<table border="1">
+				<thead >
+					<tr align="center" class="sigmaGray">
 						<!-- <td>購物車編號</td> -->
-						<td>賣家名稱</td>
-						<td>商品名稱</td>
-						<td>小計</td>
-						<td>配送類型</td>
+						<td class="sigmaTd1">賣家名稱</td>
+						<td class="sigmaTd1">商品名稱</td>
+						<td class="sigmaTd1">小計</td>
+						<td class="sigmaTd1">配送類型</td>
 						<!-- <td>修改配送資訊</td> -->
-						<td>修改數量</td>
-							<td>從購物車移除</td>
-							<td>成立訂單</td>
+						<td class="sigmaTd1">修改數量</td>
+						<td class="sigmaTd1">從購物車移除</td>
+						<td class="sigmaTd1">成立訂單</td>
 					</tr>
 				</thead>
+
 				<tbody>
 					<tr align="center">
 						<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
@@ -151,25 +225,31 @@ footer {
 						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
 								>成立訂單</a></td>
 
-					</tr>
+						</tr>
 					</c:forEach>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-		
+				</tr>
+			</tbody>
+		</table>
+	</form>
 <%-- 本體，結束 --%>
-
-                </section>                
-            </article>
-
-
         
         </div>  <!--end content-->
 
-        <footer>
-                <p>2020 All Rights Reserved</p>
-        </footer>
+
     </div>  <!--end allpage-->
+   
+<!--縮放用JS，開始-->
+<script type="text/javascript">
+$(".flip").click(function(){
+    $(".panel").slideToggle("slow");
+  });
+</script>
+<!--縮放用JS，結束-->
+
+</main> 
 </body>
 </html>
+
+<%--左側工具列，開始 --%>   
+<%@include file="UserMenu.jsp"%>
+<%--左側工具列，結束--%>    

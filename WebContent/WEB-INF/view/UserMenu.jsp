@@ -34,6 +34,7 @@ strong {
 }
 
 header {
+	font-size: 20px;
 	display: flex;
 	position: fixed;
 	width: 100%;
@@ -43,6 +44,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	color: #CCBBFF;
 }
 
 main {
@@ -245,8 +247,7 @@ img {
 </head>
 
 <body>
-
-	<header tabindex="0">Header</header>
+	<header tabindex="0">Welcome back,and let's get legless.</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">
@@ -257,6 +258,7 @@ img {
 			<ul>
 				<li><a href="#0">會員中心</a></li>
 				<li><a href=<c:url value="/DisplayBarList.controller"/>>搜尋酒吧</a></li>
+				<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 				<li><a href="#0">討論區</a></li>
