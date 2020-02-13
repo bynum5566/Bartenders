@@ -101,6 +101,7 @@ footer {
                 <section class="section">
 
 <%-- 本體，開始 --%>
+	<!-- [加入購物車成功] 改亮字 -->
 	<h2 style="color:rgb(200,200,200)">${errorMsgOfAddToCartButton}</h2>
 		<form>
 			<table>
