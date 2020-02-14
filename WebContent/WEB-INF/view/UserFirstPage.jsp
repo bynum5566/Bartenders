@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Page</title>
+<title>Bartenders' place</title>
 
 <meta name="google-signin-client_id"
  content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -306,7 +306,7 @@ margin-top: 20px;
 
 <body>
 
- <header tabindex="0">Welcome back. Let's get legless.</header>
+ <header tabindex="0">Welcome back! Let's get legless.</header>
  <div id="nav-container">
   <div class="bg"></div>
   <div class="button" tabindex="0">

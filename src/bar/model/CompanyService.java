@@ -39,8 +39,8 @@ public class CompanyService {
 		return companyDAO.checkLogin(account, password);
 	}
 	
-	public Company selectCompany(Integer id) {
-		  return companyDAO.selectCompany(id);
+	public Company selectCompany(Integer companyId) {
+		  return companyDAO.selectCompany(companyId);
 		 }
 	
 }

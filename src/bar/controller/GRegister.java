@@ -20,7 +20,7 @@ import bar.model.UsersService;
 import util.WebSocketTest;
 
 @Controller
-@SessionAttributes(value = { "userName", "email", "gid" , "CName"})
+@SessionAttributes(value = { "Caccount","userName", "email", "gid" , "CName"})
 @EnableTransactionManagement
 public class GRegister {
 
@@ -80,6 +80,7 @@ public class GRegister {
 
 		if (Gcompany != null) {
 			m.addAttribute("CName", Gcompany.getCompanyName());
+			m.addAttribute("Caccount", gid);
 			HttpSession session = request.getSession();
 			WebSocketTest.setHttpSession(session);
 			return "WelcomeCompany";
@@ -113,7 +114,7 @@ public class GRegister {
 			m.addAttribute("errorMsg", "系統忙碌中，請稍後再試");
 			return "CGRegister";
 		}
-
+		m.addAttribute("Caccount", account);
 		m.addAttribute("CName", companyName);
 		HttpSession session = request.getSession();
 		WebSocketTest.setHttpSession(session);
