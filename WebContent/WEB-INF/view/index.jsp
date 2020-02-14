@@ -399,6 +399,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
+            	<!-- "location.href='要前往的網頁連結'" -->
               <button class="login" data-toggle="modal" onclick="location.href='要前往的網頁連結'" data-target="#exampleModalCenter1">搜尋酒吧</button>
               <p>
             </div>

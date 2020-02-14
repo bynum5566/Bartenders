@@ -31,6 +31,16 @@ public class ProductDataService {
 		this.pdao = pdao;
 		this.proD = proD;
 	}
+	
+	/* ProductDataService的searchResult */
+	public String searchResult(String keyword) {
+		String res = "";
+		List<ProductData> products = pdao.searchPds(keyword);
+		for (ProductData prod : products) {
+			res = res + "";
+		}
+		return res;
+	}
 
 	public void addNewProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
 			String pdTag3, String pdDetail, String Url, String Time) {
