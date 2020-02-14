@@ -95,7 +95,7 @@ h2 {
 
 
 	<div class="mydiv">
-		<h2>哈囉，${userName} 歡迎來到聊天室</h2>
+		<h2>哈囉，${CName } 歡迎來到聊天室</h2>
 		<br />
 
 		<div class="onlineBox">
@@ -178,4 +178,4 @@ h2 {
 
 </body>
 </html>
-<%@include file="UserMenu.jsp"%>
+<%@include file="menu.jsp"%>
