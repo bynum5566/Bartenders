@@ -148,10 +148,10 @@ return "SubMessageBoard";
 	}
 	
 	//////////
-	@RequestMapping(path = "/room.chat", method = RequestMethod.GET)
-	public String ChatRoom() {
-		return "ChatRoom";
-	}
+//	@RequestMapping(path = "/room.chat", method = RequestMethod.GET)
+//	public String ChatRoom() {
+//		return "ChatRoom";
+//	}
 	
 	@RequestMapping(value = "/Welcome.Company" , method = RequestMethod.GET )
 	public String goWelcome() {

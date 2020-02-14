@@ -1,7 +1,6 @@
 package bar.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -14,13 +13,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.Company;
 import bar.model.CompanyService;
-
 import bar.model.Users;
 import bar.model.UsersService;
-import util.WebSocketTest;
 
 @Controller
-@SessionAttributes(value = { "userName", "email", "gid" , "CName"})
+@SessionAttributes(value = { "userName", "email", "gid" , "CName" , "Gname"})
 @EnableTransactionManagement
 public class GRegister {
 
@@ -33,13 +30,11 @@ public class GRegister {
 	}
 
 	@RequestMapping(path = "/checkGLogin", method = RequestMethod.GET)
-	public String checkGLogin(@ModelAttribute(name = "gid") String gid,Model m,HttpServletRequest request) {
+	public String checkGLogin(@ModelAttribute(name = "gid") String gid,Model m) {
 		Users Guser = uservice.select(gid);
 
 		if (Guser != null) {
 			m.addAttribute("userName", Guser.getUserName());
-			HttpSession session = request.getSession();
-			WebSocketTest.setHttpSession(session);
 			return "UserFirstPage";
 		} else {
 			return "GRegister";
@@ -49,9 +44,9 @@ public class GRegister {
 	@RequestMapping(path = "/Gregister.do", method = RequestMethod.POST)
 	public String userProcessAction(@ModelAttribute(name = "gid") String account,
 			@RequestParam(name = "newPassword") String password, @RequestParam(name = "newPassword2") String password2,
-			@ModelAttribute(name = "name") String userName, @RequestParam(name = "birthday") String birthday,
+			@ModelAttribute(name = "Gname") String userName, @RequestParam(name = "birthday") String birthday,
 			@RequestParam(name = "phone") String phone, @ModelAttribute(name = "email") String email,
-			@RequestParam(name = "address") String address, Model m , HttpServletRequest request) {
+			@RequestParam(name = "address") String address, Model m ) {
 
 		try {
 
@@ -68,20 +63,18 @@ public class GRegister {
 			return "GRegister";
 		}
 		m.addAttribute("userName", userName);
-		HttpSession session = request.getSession();
-		WebSocketTest.setHttpSession(session);
+		
 		return "UserFirstPage";
 	}
 
 	
 	@RequestMapping(path = "/checkCGLogin", method = RequestMethod.GET)
-	public String checkCGLogin(@ModelAttribute(name = "gid") String gid,Model m , HttpServletRequest request) {
+	public String checkCGLogin(@ModelAttribute(name = "gid") String gid,Model m ) {
 		 Company Gcompany = cservice.select(gid);
 
 		if (Gcompany != null) {
 			m.addAttribute("CName", Gcompany.getCompanyName());
-			HttpSession session = request.getSession();
-			WebSocketTest.setHttpSession(session);
+			
 			return "WelcomeCompany";
 		} else {
 			return "CGRegister";
@@ -95,7 +88,7 @@ public class GRegister {
 			@RequestParam(name = "companyName") String companyName, @RequestParam(name = "taxId") String taxId,
 			@RequestParam(name = "phone") String phone, @ModelAttribute(name = "email") String email,
 			@RequestParam(name = "address") String address, @RequestParam(name = "lineId") String lineId,
-			@RequestParam(name = "lineSecret") String lineSecret, Model m , HttpServletRequest request) {
+			@RequestParam(name = "lineSecret") String lineSecret, Model m ) {
 
 		try {
 
@@ -115,8 +108,7 @@ public class GRegister {
 		}
 
 		m.addAttribute("CName", companyName);
-		HttpSession session = request.getSession();
-		WebSocketTest.setHttpSession(session);
+		
 		return "WelcomeCompany";
 	}
 }

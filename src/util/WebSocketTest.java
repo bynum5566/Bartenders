@@ -21,7 +21,7 @@ import bar.model.MessageDto;
 
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
-@SessionAttributes(value = { "userName" , "CName"})
+@SessionAttributes(value = { "userName", "CName" })
 public class WebSocketTest {
 	private static int onlineCount = 0;
 
@@ -47,8 +47,8 @@ public class WebSocketTest {
 		String onlineUser = (String) httpSession.getAttribute("userName");
 		String onlineCompany = (String) httpSession.getAttribute("CName");
 
-		if (onlineUser != null && onlineUser.length()!=0) {
-			System.out.println("onlineUser:"+onlineUser);
+		if (onlineUser != null && onlineUser.length() != 0) {
+			System.out.println("onlineUser:" + onlineUser);
 			webSocketMap.put(onlineUser, this);
 			addOnlineCount();
 
@@ -66,10 +66,8 @@ public class WebSocketTest {
 				sendOnlineCount(gson.toJson(md1));
 				System.out.println(entry.getKey());
 			}
-		}
-
-		if (onlineCompany != null && onlineCompany.length()!=0) {
-			System.out.println("onlineCompany:"+onlineCompany);
+		} else if (onlineCompany != null && onlineCompany.length() != 0) {
+			System.out.println("onlineCompany:" + onlineCompany);
 			webSocketMap.put(onlineCompany, this);
 			addOnlineCount();
 
