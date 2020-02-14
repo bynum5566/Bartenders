@@ -35,11 +35,16 @@ public class MyBarDAO {
 		return myBar;
 	}
 	
-	public void updateBar(String coverUrl, String aboutBar, String barFb, String barLine, String barIg, int companyId) {
+	public void updateBar(String logoUrl,String coverUrl1,String coverUrl2,String coverUrl3,String coverUrl4,String coverUrl5, String aboutBar, String barFb, String barLine, String barIg, int companyId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "update MyBar set coverUrl=:cUrl, aboutBar=:aBar, barFb=:bFb, barLine=:bLine, barIg=:bIg where companyId=:cId";
+		String hqlStr = "update MyBar set logoUrl=:lUrl, coverUrl1=:cUrl1, coverUrl2=:cUrl2, coverUrl3=:cUrl3, coverUrl4=:cUrl4, coverUrl5=:cUrl5, aboutBar=:aBar, barFb=:bFb, barLine=:bLine, barIg=:bIg where companyId=:cId";
 		Query query = session.createQuery(hqlStr);
-		query.setParameter("cUrl", coverUrl);
+		query.setParameter("lUrl", logoUrl);
+		query.setParameter("cUrl1", coverUrl1);
+		query.setParameter("cUrl2", coverUrl2);
+		query.setParameter("cUrl3", coverUrl3);
+		query.setParameter("cUrl4", coverUrl4);
+		query.setParameter("cUrl5", coverUrl5);
 		query.setParameter("aBar", aboutBar);
 		query.setParameter("bFb", barFb);
 		query.setParameter("bLine", barLine);

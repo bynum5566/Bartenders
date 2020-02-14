@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <title>Edit News and Events</title>
 </head>

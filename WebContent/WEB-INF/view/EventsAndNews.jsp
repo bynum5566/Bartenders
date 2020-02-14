@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/Bartenders/images/dashboardView.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/dashboardView.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <title>Event and News</title>
 </head>
