@@ -22,7 +22,18 @@ html, body {
 }
 
 .content{
-	margin: auto;
+	margin:100px auto;
+	text-align: center;
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 50%;
+	height:500px;
+	border: 1.5px groove  rgb(255, 255, 255, 0.4);
+	border-radius:2%;
+	font-size: 140%;
+}
+
+table{
+	margin-left: 20%;
 }
 
 </style>
@@ -35,7 +46,7 @@ html, body {
 			<h2>${errorMsg}</h2>
 		</div>
 		<form action="<c:url value="/register.do" />" method="POST">
-			<table>
+			<table >
 				<tr>
 					<td>姓名:</td>
 					<td><input type="text" name="userName" required="required"
@@ -92,8 +103,8 @@ html, body {
 				</tr>
 			</table>
 		</form>
+
+	<a href="/Bartenders/login">回主頁</a>
 	</div>
-	<a href="/Bartenders/login">返回</a>
-	<br />
 </body>
 </html>
