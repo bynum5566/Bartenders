@@ -56,12 +56,12 @@ public class MyFavoriteController {
 	}
 
 	@RequestMapping(value = "/Product.show", method = RequestMethod.GET)
-	public String showProductPage(@RequestParam(value = "pdidck", required = false) String pdId) throws ParseException {
+	public String showProductPage(@RequestParam(value = "PdId", required = false) String pdId) throws ParseException {
 		ProductData prod = pdao.selectP(pdId);
 		String ALT = prod.getAutoLaunchTime();
 		String APT = prod.getAutoPullTime();
 		String p = "目前無法購買此產品。";
-		String s = "<input class=\"bt0\" type=\"submit\" value=\"加入購物車+\">";
+		String s = "<input class=\"bT\" type=\"submit\" value=\"加入購物車+\">";
 		String pdVD = prod.getValidDate() + " ~ " + prod.getExpiryDate();
 		if(pdVD.equals("null ~ null")) {
 			pdVD="";
@@ -137,8 +137,8 @@ public class MyFavoriteController {
 
 	}
 
-	@RequestMapping(value = "/addMyFav", method = RequestMethod.POST)
-	public String addFav(@ModelAttribute(name = "account") String account, @RequestParam("pdidck") String pdId) {
+	@RequestMapping(value = "/addMyFav", method = RequestMethod.GET)
+	public String addFav(@ModelAttribute(name = "account") String account, @RequestParam(name="pdidck", required = false) String pdId) {
 		Users user = usersS.select(account);
 		int userId = user.getUserId();
 		int fNum = mfs.getNewFvId(userId);

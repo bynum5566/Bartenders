@@ -37,7 +37,7 @@ public class MyFavoriteService {
 			favs = favs	
 					+"<tr class=\"pdRow\"><td>"	
 					+"<form action=\"/Bartenders/Product.show\" method=\"GET\">"	
-					+"<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\""	
+					+"<input type=\"text\" name=\"PdId\" class=\"pdidckLL\" value=\""	
 					+ prod.getPdId() + "\" readonly=\"readonly\">" 	
 					+ "<div class=\"pdId\" name=\"pdId1\">編號:</div>"	
 					+"<div><input type=\"submit\" value=\"" + prod.getPdId() + "\"/></div></form></td>"	
@@ -52,7 +52,8 @@ public class MyFavoriteService {
 	}
 	
 	public int getNewFvId(int userId) {	
-		int x = mfD.selectFav(userId).size();	
+		int x = mfD.selectAllFav(userId).size();
+//		x=x++;
 		String s1 = Integer.toString(userId); 	
         String s2 = Integer.toString(x); 	
   	

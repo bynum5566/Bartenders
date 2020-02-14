@@ -322,4 +322,11 @@ public class ProductDashboardController {
 		request.setAttribute("pdpicUrl", pd.getProductImageUrl());
 		return "editTicketProduct";
 	}
+	
+	@RequestMapping(value = "/search.Product", method = RequestMethod.GET)
+	public String getSearchResult(@RequestParam("keyword") String keyword) {
+		String res = pds.searchResult(keyword);
+		request.setAttribute("drinkPd",res);
+		return "searchProductsResult";
+	}
 }

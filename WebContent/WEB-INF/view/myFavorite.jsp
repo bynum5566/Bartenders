@@ -47,9 +47,9 @@
 			</tr>
 		</table>
 	</div>
-
 	<script>
 		$('.pdidckLL').hide();
 	</script>
+	<%@include file="UserMenu.jsp"%>
 </body>
 </html>

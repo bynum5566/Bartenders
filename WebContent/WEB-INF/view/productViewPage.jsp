@@ -54,7 +54,7 @@
 							</div>
 							<div id="quant" class="pdDataMain">
 								<div>購買數量:
-									<input type="number" min="1" max="<c:out value="${pdStk}"/>">
+									<input type="number" value="1" min="1" max="<c:out value="${pdStk}"/>">
 								</div>
 							</div>
 							<div id="sold" class="pdDataMain">

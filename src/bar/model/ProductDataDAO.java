@@ -91,6 +91,20 @@ public class ProductDataDAO {
 		return (List<ProductData>) query.list();
 	}
 	
+	public List<ProductData> searchPds(String keyword){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
+		Date date = new Date();	
+		String nowTime = sdf.format(date);
+		keyword= "%"+keyword+"%";
+		
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from ProductData where (productName like :kWord or pdTag1 like :kWord or pdTag2 like :kWord or pdTag3 like :kWord) and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("kWord",keyword);
+		query.setParameter("nowTime", nowTime);	
+		return (List<ProductData>)query.list();
+		}
+	
 	public List<ProductData> selectTop3(int companyId) {	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
 		Date date = new Date();	

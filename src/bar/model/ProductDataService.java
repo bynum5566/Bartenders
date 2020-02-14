@@ -260,6 +260,25 @@ public class ProductDataService {
 		}
 		return Pulled;
 	}
+	
+	
+	public String searchResult(String keyword) {
+		String res = "";
+		int x = 0;
+		List<ProductData> products = pdao.searchPds(keyword);
+		for (ProductData product : products) {
+//			if (x % 3 == 0) {
+//				res = res + "<tr>";
+//			}
+			res = res + "<a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
+					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a>";
+			if (x % 3 == 2) {
+				res = res + "</br>";
+			}
+			x++;
+		}
+		return res;
+	}
 
 	public String selectTop3Pd(int companyId) {
 		String t3 = "";
