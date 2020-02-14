@@ -18,7 +18,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 
 
 @Controller
-@SessionAttributes(value = {"LoginStatus" , "email" , "name" , "gid" })
+@SessionAttributes(value = {"LoginStatus" , "email" , "Gname" , "gid" })
 public class GoogleLogin {
 	
 
@@ -70,7 +70,7 @@ public class GoogleLogin {
 			
 			m.addAttribute("LoginStatus", "true");
 			m.addAttribute("email", email);
-			m.addAttribute("name", name);
+			m.addAttribute("Gname", name);
 			m.addAttribute("gid", userId);
 			
 		} else {

@@ -30,12 +30,16 @@
 				<li><a class="menu" href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
 				<li><a class="menu" href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 				<li><a class="menu" href="/Bartenders/salesReport.controller">銷售數量長條圖</a></li>
-				<li><a class="menu" href="/Bartenders/salesReportByPie.controller">銷售金額圓餅圖</a></li>
-				<li class="small"><a class="menu" href="/Bartenders/Welcome.Company">前往首頁</a><a class="menu"
+				<li><a class="menu"
+					href="/Bartenders/salesReportByPie.controller">銷售金額圓餅圖</a></li>
+				<li><a class="menu" href="/Bartenders/Croom.chat">聊天室</a></li>
+				<li class="small"><a class="menu"
+					href="/Bartenders/Welcome.Company">前往首頁</a><a class="menu"
 					href="javascript:signOut()">登出</a></li>
 			</ul>
 		</div>
 	</div>
+
 
 	<script type="text/javascript">
 	  function signOut() {

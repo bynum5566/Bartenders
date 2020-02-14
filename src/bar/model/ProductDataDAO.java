@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +23,15 @@ public class ProductDataDAO {
 	@Autowired
 	public ProductDataDAO(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	
+	/*ProductDataDAO的searchPds*/
+	public List<ProductData> searchPds(String keyword) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from ProductData where productName like =:kWord or pdTag1 like =:kWord or pdTag2 like =:kWord or pdTag3 like =:kWord";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("kWord", keyword);
+		return (List<ProductData>) query.list();
 	}
 
 	public boolean insert(ProductData proD) {

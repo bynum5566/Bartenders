@@ -4,9 +4,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import bar.model.CompanyService;
+import bar.model.OrdersService;
 
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
@@ -46,7 +51,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             		rd.forward(request, response);
                     return false;
             	}
-            	
             }
         	if(logisticLogin==null) {
         		System.out.println("user not login, return to loginSystem");
@@ -57,8 +61,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 //        		response.sendRedirect("/LogisticSystem/loginSuccess");
                 return true;
         	}
-        	
-        	
         }else if(!url.equals("")){
         	String loginStatus = (String) request.getSession().getAttribute("LoginStatus");
             if(loginStatus == null){
@@ -68,8 +70,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             }
             return true;
         }
-        
-        
         return true;
 		//return super.preHandle(request, response, handler);
 	}

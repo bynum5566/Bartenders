@@ -8,9 +8,42 @@
 <head>
 <meta charset="UTF-8">
 <title>註冊店家帳戶</title>
+
+
+<style type="text/css">
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: url("/Bartenders/images/Register.jpg") no-repeat center
+		center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.content{
+	margin:100px auto;
+	text-align: center;
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 50%;
+	height:500px;
+	border: 1.5px groove  rgb(255, 255, 255, 0.4);
+	border-radius:2%;
+	font-size: 140%;
+}
+
+table{
+	margin-left: 20%;
+}
+
+</style>
+
+
 </head>
 <body>
-	<div align="center">
+	<div class="content">
 		<h1>請填寫基本資料</h1>
 		<div>
 			<h2>${errorMsg}</h2>
@@ -24,7 +57,7 @@
 				</tr>
 				<tr>
 					<td>帳號:</td>
-					<td><input type="text" name="newAccount" placeholder="${gid}"
+					<td><input type="text" name="newAccount" placeholder="${gid}" size="50"
 						disabled="disabled" /><br></td>
 				</tr>
 				<tr>
@@ -55,7 +88,7 @@
 
 				<tr>
 					<td>電子郵件:</td>
-					<td><input type="email" name="email" placeholder="${email}"
+					<td><input type="email" name="email" placeholder="${email}" size="50"
 						disabled="disabled" /><br></td>
 				</tr>
 
@@ -84,6 +117,7 @@
 				</tr>
 			</table>
 		</form>
+		
 	</div>
 
 

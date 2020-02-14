@@ -5,9 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>註冊店家帳戶</title>
+
+
+<style type="text/css">
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: url("/Bartenders/images/Register.jpg") no-repeat center
+		center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.content{
+	margin:100px auto;
+	text-align: center;
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 50%;
+	height:500px;
+	border: 1.5px groove  rgb(255, 255, 255, 0.4);
+	border-radius:2%;
+	font-size: 140%;
+}
+
+table{
+	margin-left: 20%;
+}
+
+</style>
+
 </head>
 <body>
-	<div align="center">
+	<div class="content">
 		<h1>請填寫基本資料</h1>
 		<div><h2>${CerrorMsg}</h2></div>
 			<form action="<c:url value="/Cregister.do" />"  method="POST">
@@ -73,7 +105,7 @@
 				</tr>
 			</table>
 		</form>
+		<a href="/Bartenders/login">回主頁</a>
 	</div>
-	<a href="/Bartenders/CLogin">返回</a><br /> 
 </body>
 </html>

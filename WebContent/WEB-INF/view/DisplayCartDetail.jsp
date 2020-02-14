@@ -224,7 +224,7 @@ div.panel
 
 		</form>
 
-		<FORM action="<c:url value="/OrderOneToTwo.controller" />" method="get">
+		<FORM action="<c:url value="/ChangeStatusOneToTwo.controller" />" method="get">
 		<h2>配送資訊</h2>
 		配送方式:
 		

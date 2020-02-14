@@ -33,7 +33,11 @@ public CartService(
 		this.myBarDAO = myBarDAO;
 }
 	public MyBar selectMyBarByCompanyId(int companyId) {
+		Pf("selectMyBarByCompanyId，開始");
+
 		MyBar myBarX = myBarDAO.selectBar(companyId);
+		printValueTypeTime("myBarX", myBarX);
+		Pf("selectMyBarByCompanyId，結束");
 		return myBarX;
 	}
 	

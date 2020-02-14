@@ -180,7 +180,6 @@ div.panel
 		<h2>${msg}</h2>
 		<form>
 			<h2>
-				<!--<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a>-->
 				<a href="<c:url value="/userOrder.controller"/>">回到訂單頁面 </a> 
 			</h2> 
 		</form> 
