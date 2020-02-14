@@ -115,4 +115,13 @@ public class CompanyDAO {
 		query.executeUpdate();	
 	}
 	
+	public List<Company> searchBar(String keyword) {
+		keyword = "%" + keyword + "%";
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("From Company where companyName like :kWord");
+		query.setParameter("kWord", keyword);
+		return (List<Company>) query.list();
+	}
+	
 }

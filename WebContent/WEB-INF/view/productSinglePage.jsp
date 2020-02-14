@@ -16,10 +16,6 @@
 					<h2>商品預覽</h2>
 				</div>
 		<table class="outwrap0">
-<!-- 			<tr> -->
-<!-- 				<td> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
 			<tr>
 				<td>
 					<h3>${productName}</h3>
@@ -35,7 +31,6 @@
 					<div class="flos02">
 						<form action="/Bartenders/AddProductToCart.controller" method="GET">
 							<div id="hideId" class="pdDataMain">
-<!-- 								<div>商品編號: </div> -->
 								<input type="text" name="PdId" value="<c:out value="${productId}"/>" readonly="readonly">
 								<input type = "number" name="PdStock" value="<c:out value="${pdStk}"/>" readonly="readonly">
 								<input type = "text" name="ProductName" value="<c:out value="${productName}"/>" readonly="readonly">

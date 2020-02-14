@@ -26,6 +26,12 @@ body{
   text-align: center;
   margin: auto;
 }
+.inwrap1 tr, .inwrap1 td{
+padding:10px;
+font-size: 18px;
+font-weight: 600;
+color: ghostwhite;
+}
 
 #outwrap{
   text-align: center;
@@ -39,7 +45,7 @@ body{
 	
 	<div class="inwrap1">
 <!-- 		<h3 class="inwrap1">Looking for drinks?</h3> -->
-		<div class="inwrap1"><table class="inwrap1"><tr><td>${drinkPd}</td></tr></table></div>
+		<div class="inwrap1"><table class="inwrap1">${barRes}</table></div>
 	</div>
 	
 </div>

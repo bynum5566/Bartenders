@@ -114,4 +114,13 @@ public class CheckLogin {
 		m.addAttribute("msg", "帳號或密碼不正確");
 		return "CLoginPage";
 	}
+	
+	// ---(吳昭蓉)-------------------------------
+	@RequestMapping(path = { "/search.Bar" }, method = { RequestMethod.GET })
+	public String searchCompany(@RequestParam(name = "KWord") String keyword, Model m ) {
+		String res = companyService.searchBarResult(keyword);
+		m.addAttribute("barRes", res);
+		return "searchBarResult";
+	}
+	
 }

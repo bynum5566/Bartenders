@@ -143,7 +143,7 @@ public class MyFavoriteController {
 		int userId = user.getUserId();
 		int fNum = mfs.getNewFvId(userId);
 		mfs.addFav(userId, pdId, fNum);
-		return "redirect:/Product.show?pdidck=" + pdId;
+		return "redirect:/Product.show?PdId=" + pdId;
 	}
 
 	@RequestMapping(value = "/pdDisLike", method = RequestMethod.POST)

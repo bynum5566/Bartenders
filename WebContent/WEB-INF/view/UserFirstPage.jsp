@@ -5,11 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<title>User Page</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<title>User Page</title>
+
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
@@ -304,6 +310,11 @@ input[type=search] {
 }
 </style>
 
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
 
 </head>
 
@@ -339,63 +350,35 @@ input[type=search] {
 				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
 				歡迎回來~~<span>${userName},今天想喝甚麼呢?</span>
 			</h2>
-			<div>
-				<input class="bt0" id="set1" name="sch" type="radio" value="酒吧" checked required onfocus="showS1()">
-				<label for="set1">酒吧</label>
-				<input class="bt0" id="set2" name="sch" type="radio" value="酒" onfocus="showS2()">
-				<label	for="set2">酒</label>			
-			</div>
-			<div class="showSearch" id="sBarf" align="center">
-				<form action="/Bartenders/search.Bar" method="GET">
-					<input type="text" size="45" name="na" id="sBar">
-					<input class="css_button" type="submit" value="Bar" />
-				</form>
+			<br>
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Search Bar</a></li>
+					<li><a href="#tabs-2">Search Alcohol</a></li>
+				</ul>
+				<div id="tabs-1">
+					<div class="showSearch" id="sBarf" align="center">
+						<form action="/Bartenders/search.Bar" method="GET">
+							<input type="text" size="45" name="KWord" id="sBar"><br>
+							<input class="css_button" type="submit" value="Bar" />
+						</form>
+					</div>
+				</div>
+				<div id="tabs-2">
+					<div class="hideSearch" id="sAlcf" align="center">
+						<form action="/Bartenders/search.Product" method="GET">
+							<input type="text" size="45" name="keyword" id="sAlc">
+							<input class="css_button" type="submit" value="Alcohol" />
+						</form>
+					</div>
+				</div>
 			</div>
 
-			<div class="hideSearch" id="sAlcf" align="center">
-				<form action="/Bartenders/search.Product" method="GET">
-					<input type="text" size="45" name="keyword" id="sAlc">
-					<input class="css_button" type="submit" value="Alchole" />
-				</form>
-			</div>
 		</div>
 	</main>
 
-	
-	<script type="text/javascript">
-// 	$('.showSearch').show();
-// 	$('.hideSearch').hide();
-	
-// 	function showS1() {
-// 		var S1 = document.getElementById("sBar");
-// 		var S2 = document.getElementById("sAlc");
-// 		var S11 = document.getElementById("sBarf");
-// 		var S22 = document.getElementById("sAlcf");
-// 		S1.className = "showSearch";
-// 		S11.className = "showSearch";
-// 		S1.name = "keyword";
-// 		S2.className = "hideSearch";
-// 		S22.className = "hideSearch";
-// 		S2.name = "na";
-// 		$('.showSearch').show();
-// 		$('.hideSearch').hide();
-// 	}
 
-// 	function showS2() {
-// 		var S1 = document.getElementById("sBar");
-// 		var S2 = document.getElementById("sAlc");
-// 		var S11 = document.getElementById("sBar");
-// 		var S22 = document.getElementById("sAlc");
-// 		S2.className = "showSearch";
-// 		S22.className = "showSearch";
-// 		S2.name = "keyword";
-// 		S1.className = "hideSearch";
-// 		S11.className = "hideSearch";
-// 		S1.name = "na";
-// 		$('.showSearch').show();
-// 		$('.hideSearch').hide();
-// 	}
-	
+	<script type="text/javascript">
 	//Logout
 	function signOut() {
   gapi.auth2.init().then( () => {

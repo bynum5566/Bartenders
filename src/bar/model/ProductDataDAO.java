@@ -25,15 +25,6 @@ public class ProductDataDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	/*ProductDataDAO的searchPds*/
-	public List<ProductData> searchPds(String keyword) {
-		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where productName like =:kWord or pdTag1 like =:kWord or pdTag2 like =:kWord or pdTag3 like =:kWord";
-		Query query = session.createQuery(hqlStr);
-		query.setParameter("kWord", keyword);
-		return (List<ProductData>) query.list();
-	}
-
 	public boolean insert(ProductData proD) {
 		Session session = sessionFactory.getCurrentSession();
 		if (proD != null) {
@@ -373,13 +364,6 @@ public class ProductDataDAO {
 		query.setParameter("pdA", pdAvailable);
 		return (List<ProductData>) query.list();
 	}
-	//public ProductData selectProductVer2(String pdId) {//豪
-	//	Session session = sessionFactory.getCurrentSession();
-	//	String hqlStr = "from ProductData where pdId=:pdId";
-	//	Query query = session.createQuery(hqlStr);
-	//	query.setParameter("pdId", pdId);
-	//	return (ProductData) query.uniqueResult();
-	//}
 
 	/////////////////////
 	
