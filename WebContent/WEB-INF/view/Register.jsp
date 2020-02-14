@@ -7,9 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>註冊帳戶</title>
+
+<style type="text/css">
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: url("/Bartenders/images/Register.jpg") no-repeat center
+		center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.content{
+	margin: auto;
+}
+
+</style>
+
 </head>
 <body>
-	<div align="center">
+	<div class="content" >
 		<h1>請填寫基本資料</h1>
 		<div>
 			<h2>${errorMsg}</h2>

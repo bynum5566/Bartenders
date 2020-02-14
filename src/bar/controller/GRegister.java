@@ -17,7 +17,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(value = { "userName", "email", "gid" , "CName" , "Gname"})
+@SessionAttributes(value = { "userName", "email", "gid" , "CName" , "Gname","account","Caccount"})
 @EnableTransactionManagement
 public class GRegister {
 
@@ -35,6 +35,7 @@ public class GRegister {
 
 		if (Guser != null) {
 			m.addAttribute("userName", Guser.getUserName());
+			m.addAttribute("account", gid);
 			return "UserFirstPage";
 		} else {
 			return "GRegister";
@@ -63,7 +64,7 @@ public class GRegister {
 			return "GRegister";
 		}
 		m.addAttribute("userName", userName);
-		
+		m.addAttribute("account", account);
 		return "UserFirstPage";
 	}
 
@@ -74,7 +75,7 @@ public class GRegister {
 
 		if (Gcompany != null) {
 			m.addAttribute("CName", Gcompany.getCompanyName());
-			
+			m.addAttribute("Caccount", gid);
 			return "WelcomeCompany";
 		} else {
 			return "CGRegister";
@@ -108,7 +109,7 @@ public class GRegister {
 		}
 
 		m.addAttribute("CName", companyName);
-		
+		m.addAttribute("Caccount", account);
 		return "WelcomeCompany";
 	}
 }
