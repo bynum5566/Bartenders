@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <title>User Page</title>
 
 <style type="text/css">
@@ -308,6 +308,28 @@ input[type=search] {
 	top: 1px;
 	position: relative;
 }
+
+
+.ml9 {
+  position: relative;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.ml9 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml9 .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+}
 </style>
 
 <script>
@@ -346,9 +368,13 @@ input[type=search] {
 
 	<main>
 		<div class="content">
-			<h2 align="center">
-				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
-				歡迎回來~~<span>${userName},今天想喝甚麼呢?</span>
+		<h2 align="center">
+		<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
+		</h2>
+			<h2 class="ml9" align="center">
+				<span class="text-wrapper">
+				<span class="letters">歡迎回來~~${userName},今天想喝甚麼呢?</span>
+				</span>
 			</h2>
 			<br>
 			<div id="tabs">
@@ -400,6 +426,26 @@ input[type=search] {
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
 
+<script type="text/javascript">
+//Wrap every letter in a span
+var textWrapper = document.querySelector('.ml9 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml9 .letter',
+    scale: [0, 1],
+    duration: 1500,
+    elasticity: 600,
+    delay: (el, i) => 45 * (i+1)
+  }).add({
+    targets: '.ml9',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
 
 </body>
 </html>

@@ -33,12 +33,56 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+.css_button {
+	text-align: center;
+	padding: 3.5px 7px;
+	border: 1px solid #857C7C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6D6C70),
+		to(#615B5B));
+	background: -webkit-linear-gradient(top, #6D6C70, #615B5B);
+	background: -moz-linear-gradient(top, #6D6C70, #615B5B);
+	background: -ms-linear-gradient(top, #6D6C70, #615B5B);
+	background: -o-linear-gradient(top, #6D6C70, #615B5B);
+	background-color: #615B5B;
+	box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-moz-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	color: #CCBBFF;
+	font-size: 16px;
+	font-family: 111.otf;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	cursor: pointer;
+}
+
+.css_button:hover {
+	background: none;
+	background-color: #615B5B;
+	box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	border: 1px solid #ffffff;
+	color: #F2E4E4;
+}
+
+.css_button:active {
+	top: 1px;
+	position: relative;
+}
 </style>
 </head>
 <body>
 <div class="mydiv">
 	<div align="center">
 		<h1>請填寫要修改的訂單資料</h1>
+		<br>
 		<form action="<c:url value="/doChangeOrder.controller"/>" method="POST">
 			<table>
 			
@@ -84,12 +128,11 @@ body {
 					<td>收件人電話:</td>
 					<td><input type="text" size="40" name="phone" value="${order.phone}" /><br></td>
 				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="確認送出" /> <input
-						type="reset" value="清除重填" /></td>
-				</tr>
-				
+
 		 	</table>
+		 	<br><br>
+		 	<input class="css_button" type="submit" value="確認送出" /> <input
+						class="css_button" type="reset" value="清除重填" />
 		</form>
 	</div>
 	</div>

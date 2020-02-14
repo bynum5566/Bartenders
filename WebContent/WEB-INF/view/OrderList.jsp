@@ -45,10 +45,10 @@ body {
 			<table>
 				<thead>
 					<tr align="center">
-						<td>產品名稱</td>
-						<td>產品單價</td>
-						<td>產品數量</td>
-						<td>產品金額</td>
+						<th>產品名稱</th>
+						<th>產品單價</th>
+						<th>產品數量</th>
+						<th>產品金額</th>
 					</tr>
 				</thead>
 				<tbody>
