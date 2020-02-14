@@ -43,7 +43,7 @@
 	<%-- Event script，結束 --%>
 	
 	<%-- Menu script，開始 --%>	
-	 $( function() {
+	 $( function menuClick() {
 		   $( "#dialog" ).dialog();
 		 } );
 	 <%-- Menu script，結束 --%>
@@ -242,7 +242,7 @@ function pl() {
 <tr>
 <td>			
 <div id="dialog" title="Menu">
-  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+  <p>${CompanyName}的Menu</p>
 </div>
 </td>	
 </tr>
