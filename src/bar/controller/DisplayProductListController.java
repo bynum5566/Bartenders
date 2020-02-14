@@ -122,7 +122,7 @@ public class DisplayProductListController {
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
-		cartService.Pf("DisplayProductList，結束");
+		CartService.Pf("DisplayProductList，結束");
 		return "DisplayProductList";
 		
 //		return "displayProductListMk2";

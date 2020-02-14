@@ -48,12 +48,11 @@
 	 <%-- Menu script，結束 --%>
 	 
 <%-- 跑馬燈script，開始 --%>
-<!--../img/bg1.jpg -->
-<!-- var images = ["mucha_1.jpg", "mucha_2.jpg", "mucha_3.jpg", "mucha_4.jpg", "mucha_5.jpg"]; -->
-<!-- var images = ["../img/mucha_1.jpg", "../img/mucha_2.jpg", "../img/mucha_3.jpg", "../img/mucha_4.jpg", "../img/mucha_5.jpg"];-->
+
 
 <!-- 可以直接打網址，如"https://images.goodsmile.info/cgm/images/product/20200131/9243/67389/thumb/770733b2c97f14bae8f9bfa6d03b7b05.jpg" -->
-var images = ["/Bartenders/images/mucha_1.jpg", "/Bartenders/images/mucha_2.jpg", "/Bartenders/images/mucha_3.jpg", "/Bartenders/images/mucha_4.jpg", "/Bartenders/images/mucha_5.jpg"];
+<!-- "/Bartenders/images/mucha_1.jpg" 對應位置:\Bartenders\WebContent\WEB-INF\resources\images\mucha_1.jpg -->
+var images = ["${myBarX.coverUrl1}", "${myBarX.coverUrl2}", "${myBarX.coverUrl3}", "${myBarX.coverUrl4}", "${myBarX.coverUrl5}"];
 var num = 0;
 
 function nex() {
@@ -231,7 +230,14 @@ function pl() {
 			<table border="1">
 				<tr>
 					<td class="sigmaTd1">${CompanyName}</td>
-					<td class="sigmaTd1">酒吧logo</td>
+					<td class="sigmaTd1">
+		                <img 
+		                class="pics"
+		                width="200"
+		                height="200"
+		                src="<c:out value="${myBarX.logoUrl}"
+		                />" />					
+					</td>	<!-- 酒吧logo -->
 					<td class="sigmaTd1">地圖按鈕</td>
 					<td class="sigmaTd1">Menu</td>
 					<td class="sigmaTd1"></td>
@@ -307,7 +313,7 @@ function pl() {
                 class="pics"
                 width="200"
                 height="200"
-                src="/Bartenders/images/mucha_1.jpg">
+                src="${myBarX.coverUrl1}">
             </figure>
         </div>
         <div>
@@ -354,16 +360,14 @@ function pl() {
 			</table>
 		<table border="1" >
 				<tr>
-					<td class="sigmaTd6" style="text-align: left">酒吧介紹：
-					${myBarX.aboutBar}
-					<br>
-					<br>
-					
-					FB:${myBarX.barFb}<br>
-					Line:${myBarX.barLine}<br>
-					Instgram:${myBarX.barIg}<br>
-					</td>
-					
+					<td class="sigmaTd6" style="text-align: left">
+						酒吧介紹：<br>
+						${myBarX.aboutBar}<br>
+						<br>				
+						FB:${myBarX.barFb}<br>
+						Line:${myBarX.barLine}<br>
+						Instgram:${myBarX.barIg}<br>
+					</td>					
 				</tr>		
 		</table>
 		</section>

@@ -37,8 +37,10 @@ body {
 
 </head>
 <body>
+
 	<div id="outwrap">
 		<div id="barName">
+		<br><br><br><br><br><br><br><br><br>
 			<h1>${barName}</h1>
 		</div>
 
@@ -93,5 +95,6 @@ body {
 	</script>
 
 	<%@ include file="menu.jsp"%>
+
 </body>
 </html>
