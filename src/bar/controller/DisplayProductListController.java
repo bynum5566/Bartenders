@@ -113,6 +113,10 @@ public class DisplayProductListController {
 		/*圖片，開始*/
 		/*圖片，結束*/
 		
+		
+		
+		m.addAttribute("myBarX",cartService.selectMyBarByCompanyId(companyId));
+		
 		m.addAttribute("CompanyName", companyX.getCompanyName());
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);

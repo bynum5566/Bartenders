@@ -225,6 +225,9 @@ div.panel
 		</table>
 		</form>
 		
+
+
+		
 <%-- 本體，結束 --%>
         
         </div>  <!--end content-->

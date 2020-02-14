@@ -16,6 +16,7 @@ public class CartService {
 	private CompanyDAO companyDAO;
 	private OrdersDAO ordersDAO;
 	private ProductDataDAO productDataDAO;
+	private MyBarDAO  myBarDAO;
 	static Date date;
 	
 @Autowired
@@ -23,12 +24,18 @@ public CartService(
 		CartDAO cartDAO ,
 		CompanyDAO companyDAO,
 		OrdersDAO ordersDAO, 
-		ProductDataDAO productDataDAO) {
+		ProductDataDAO productDataDAO,
+		MyBarDAO myBarDAO) {
 		this.cartDAO = cartDAO;
 		this.companyDAO = companyDAO;
 		this.ordersDAO = ordersDAO;
 		this.productDataDAO = productDataDAO;
+		this.myBarDAO = myBarDAO;
 }
+	public MyBar selectMyBarByCompanyId(int companyId) {
+		MyBar myBarX = myBarDAO.selectBar(companyId);
+		return myBarX;
+	}
 	
 	public List<Cart> select(String orderId) {
 		return cartDAO.select(orderId);

@@ -14,6 +14,6 @@ public class Logout {
 	public String ULogout(HttpSession session,Model m) {
 		session.invalidate();
 		m.addAttribute("msg", "已登出，請重新登入");
-		return "LoginPage";
+		return "index";
 	}
 }

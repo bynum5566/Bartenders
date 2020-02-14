@@ -11,35 +11,34 @@
 
 <style type="text/css">
 .mydiv {
-	width: auto;
-	margin: auto;
+	min-width: auto;
 	top: 80px;
 	position: sticky;
 	text-align: center;
 	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
 	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color: #E8CCFF;
 }
 
-html, body {
-	margin: 0px;
-	padding: 0px;
-	height: 100%;
-	width: auto;
-	background-image: url("/Bartenders/images/BarImg.jpg");
-	background-repeat: no-repeat;
+
+body {
+	margin:0;
+	padding:0;
+	background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
-	background-position: center;
 }
+
+
+
 </style>
 
 </head>
@@ -48,7 +47,7 @@ html, body {
 		<div align="center">
 			<h3>我的訂單</h3>
 			<form action="<c:url value="/userOrder.controller"/>" method="post">
-				<table>
+				<table class="myTable">
 					<thead>
 						<tr align="center">
 							<td nowrap="nowrap">訂單編號</td>

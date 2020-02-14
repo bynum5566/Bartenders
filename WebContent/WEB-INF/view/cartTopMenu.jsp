@@ -24,11 +24,11 @@
 	<nav class = mydiv>
 	 -->
 		<ul class="mydiv">
-		 
+		 	<!--  
 			<li><a href="<c:url value="/DisplayBarList.controller"/>">商城</a></li>
 			<li><a href="<c:url value="/DisplayCartList.controller"/>">回到購物車</a>
 			</li>
-		 
+		 	-->
 			<!--  <li><a href="<c:url value="/userOrder.controller"/>">查看訂單</a></li> -->
 			<%--
 			<c:choose>
