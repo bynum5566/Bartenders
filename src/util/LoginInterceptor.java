@@ -51,7 +51,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             		rd.forward(request, response);
                     return false;
             	}
-            	
             }
         	if(logisticLogin==null) {
         		System.out.println("user not login, return to loginSystem");
@@ -62,10 +61,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 //        		response.sendRedirect("/LogisticSystem/loginSuccess");
                 return true;
         	}
-        	
-        	
-        }
-        else if(!url.equals("")){
+        }else if(!url.equals("")){
         	String loginStatus = (String) request.getSession().getAttribute("LoginStatus");
             if(loginStatus == null){
             	System.out.println(">>>未登入者<<<");
@@ -74,8 +70,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             }
             return true;
         }
-        
-        
         return true;
 		//return super.preHandle(request, response, handler);
 	}

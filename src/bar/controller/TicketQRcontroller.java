@@ -33,15 +33,15 @@ import retrofit2.Retrofit;
 @Controller
 public class TicketQRcontroller {
 
-	private OrdersService oService;
 	private CompanyService cService;
+	private OrdersService oService;
 	private String qrPath;
 	private String qrUrl;
 	
 	@Autowired
-	public TicketQRcontroller(OrdersService oService,CompanyService cService) {
-		this.oService = oService;
+	public TicketQRcontroller(CompanyService cService,OrdersService oService) {
 		this.cService = cService;
+		this.oService = oService;
 	}
 	
 	@RequestMapping(path = "/rqQR", method = RequestMethod.POST)
@@ -108,20 +108,20 @@ public class TicketQRcontroller {
 		System.out.println("toDay="+toDay);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		System.out.println("validDate="+hsRequest.getParameter("validDate"));
-		System.out.println("expireDate="+hsRequest.getParameter("expireDate"));
 		
 		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
 		System.out.println("validDate="+validDate);
 		Date expireDate = (Date)sdf.parse(hsRequest.getParameter("expireDate").toString());
 		System.out.println("expireDate="+expireDate);
 		
-		String orderId = hsRequest.getParameter("orderId");
+		String orderId = (String)hsRequest.getParameter("orderId");
     	String onlineCac = (String)hsRequest.getSession().getAttribute("Caccount");
     	int cId = oService.selectOrder(orderId).getCompanyId();
     	String orderCac = cService.selectCompany(cId).getAccount();
+    	System.out.println("onlineCac="+onlineCac);
+    	System.out.println("orderCac="+orderCac);
     	
-    	if (onlineCac == orderCac) {
+    	if (orderCac.equals(onlineCac)) {
     		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
     			Orders order = oService.selectOrder(orderId);
     			if(order.getStatus()==6) {
