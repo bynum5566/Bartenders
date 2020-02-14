@@ -12,8 +12,7 @@
     <link 
     rel="stylesheet" 
     type="text/css" 
-    href="/Bartenders/images/add_editView.css">
-	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+    href="/Bartenders/CSS/add_editView.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -43,7 +42,7 @@
 	<%-- Event script，結束 --%>
 	
 	<%-- Menu script，開始 --%>	
-	 $( function() {
+	 $( function menuClick() {
 		   $( "#dialog" ).dialog();
 		 } );
 	 <%-- Menu script，結束 --%>
@@ -242,7 +241,7 @@ function pl() {
 <tr>
 <td>			
 <div id="dialog" title="Menu">
-  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+  <p>${CompanyName}的Menu</p>
 </div>
 </td>	
 </tr>

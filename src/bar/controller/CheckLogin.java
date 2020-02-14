@@ -103,6 +103,7 @@ public class CheckLogin {
 				
 				
 				Company Gcompany = companyService.select(account);
+				m.addAttribute("Caccount", account);
 				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
 				return "WelcomeCompany";

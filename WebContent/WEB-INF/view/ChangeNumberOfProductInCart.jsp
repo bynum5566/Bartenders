@@ -12,8 +12,7 @@
     <link 
     rel="stylesheet" 
     type="text/css" 
-    href="/Bartenders/images/add_editView.css">
-	<noscript><link rel="stylesheet" href="/Bartenders/images/noscript.css" /></noscript>
+    href="/Bartenders/CSS/add_editView.css">
 	
 	<link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"

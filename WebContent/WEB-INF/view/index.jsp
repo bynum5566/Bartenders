@@ -190,7 +190,7 @@
               <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">討論區</button>
               <p>
             </div>
-            <h5>前進討論天地</h5>
+            <h5>前進討論天地!!</h5>
             <p>無論您是職業調酒師或業餘玩家，都歡迎暢所欲言、分享心得</p>
           </div>
           
@@ -344,10 +344,10 @@
             <div class="carousel-caption d-none d-md-block">
               <div class="loginbox">
                 <button class="login" data-toggle="modal" data-target="#exampleModalCenter">會員登入</button>
-                <p><a href="/Bartenders/Register">還沒有帳號111?</a></p>
+                <p><a href="/Bartenders/Register">還沒有帳號?</a></p>
               </div>
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>準備啟程</h5>
+              <p>抓穩了，準備好啜飲每一口的驚喜</p>
             </div>
           </div>
           <div class="carousel-item">
@@ -399,6 +399,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
+            	<!-- "location.href='要前往的網頁連結'" -->
               <button class="login" data-toggle="modal" onclick="location.href='要前往的網頁連結'" data-target="#exampleModalCenter1">搜尋酒吧</button>
               <p>
             </div>

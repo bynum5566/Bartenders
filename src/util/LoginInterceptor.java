@@ -4,12 +4,25 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import bar.model.CompanyService;
+import bar.model.OrdersService;
+
 @Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
+	
+	private CompanyService cService;
+	private OrdersService oService;
+	@Autowired
+	public LoginInterceptor(CompanyService cService,OrdersService oService) {
+		this.cService = cService;
+		this.oService = oService;
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -59,6 +72,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         	}
         	
         	
+        }else if(!url.contains("chkQR")) {
+        	String onlineCac = (String)request.getSession().getAttribute("Caccount");
+        	String orderId = (String)request.getSession().getAttribute("orderId");
+        	int cId = oService.selectOrder(orderId).getCompanyId();
+        	String orderCac = cService.selectCompany(cId).getAccount();
+        	if (onlineCac == orderCac) {
+        		return true;
+        	}
+        	else {
+        		request.setAttribute("msg", "請登入販售此票券的酒吧經營者帳密，以利審核此票券!!");
+        		response.sendRedirect("/Bartenders/login");
+        		return false;
+        	}
         }else if(!url.equals("")){
         	String loginStatus = (String) request.getSession().getAttribute("LoginStatus");
             if(loginStatus == null){

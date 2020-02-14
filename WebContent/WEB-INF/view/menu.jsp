@@ -8,7 +8,7 @@
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <link rel="stylesheet" type="text/css"
-	href="/Bartenders/images/C_menu.css">
+	href="/Bartenders/CSS/C_menu.css">
 </head>
 <body>
 	<header tabindex="0">Bartenders</header>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/Bartenders/images/add_editView.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css">
 <title>Add News and Event</title>
 </head>
 <body>

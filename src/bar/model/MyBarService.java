@@ -32,8 +32,8 @@ public class MyBarService {
 		return mbDao.selectBar(companyId);
 	}
 	
-	public void updateBarPage(String companyName, String phone, String address, String coverUrl, String aboutBar, String barFb, String barLine, String barIg, int companyId) {
+	public void updateBarPage(String companyName, String phone, String address, String logoUrl, String coverUrl1, String coverUrl2, String coverUrl3, String coverUrl4, String coverUrl5, String aboutBar, String barFb, String barLine, String barIg, int companyId) {
 		cDao.updateBarData(companyName, phone, address, companyId);
-		mbDao.updateBar(coverUrl, aboutBar, barFb, barLine, barIg, companyId);
+		mbDao.updateBar(logoUrl, coverUrl1, coverUrl2, coverUrl3, coverUrl4, coverUrl5, aboutBar, barFb, barLine, barIg, companyId);
 	}
 }
