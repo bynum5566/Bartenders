@@ -78,11 +78,11 @@ public class MessageBoardDAO {
 
 	public boolean deleteSubMessage(Integer subId, String deletePassword) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from subMessageBoard where subId=:subId and deletePassword=:deletePassword";
+		String hqlStr = "from SubMessageBoard where subId=:subId and deletePassword=:deletePassword";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("subId", subId);
 		query.setParameter("deletePassword", deletePassword);
-		MessageBoard rs = (MessageBoard) query.uniqueResult();
+		SubMessageBoard rs = (SubMessageBoard) query.uniqueResult();
 		if (rs != null) {
 			session.delete(rs);
 			return true;

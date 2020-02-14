@@ -7,7 +7,7 @@
 <title>Success</title>
 </head>
 <body>
-	帳戶已啟用
+	帳戶已啟用，請重新登入。
 	<a href="/Bartenders/login">返回</a><br /> 
 </body>
 </html>
