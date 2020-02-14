@@ -14,7 +14,8 @@
 	<context:component-scan base-package="bar.model" />
 	<context:component-scan
 		base-package="bar.controller" />
-	<context:component-scan base-package="bar.model.logistic" />
+	<context:component-scan
+		base-package="bar.model.logistic" />
 	<context:component-scan
 		base-package="bar.controller.logistic" />
 	<mvc:annotation-driven />
@@ -27,6 +28,10 @@
 		mapping="css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/resources/images/"
 		mapping="/images/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/CSS/"
+		mapping="/CSS/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/JS/"
+		mapping="/JS/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/scripts/"
 		mapping="/scripts/**"></mvc:resources>
 	<bean id="multipartResolver"
@@ -34,28 +39,14 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-<!-- <bean id="freemarkerConfig"
-        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="freemarkerSettings">
-            <bean
-                class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-                <property name="properties">
-                    <props>
-                        <prop key="default_encoding">utf-8</prop>
-                        <prop key="output_encoding">utf-8</prop>
-                    </props>
-                </property>
-            </bean>
-        </property>
-        <property name="templateLoaderPath">
-            <value>/WEB-INF/view/</value>
-        </property>
-    </bean>
-    <bean id="htmlviewResolver"
-        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-        p:suffix=".html" p:order="0">
-        <property name="contentType" value="text/html;charset=UTF-8" />
-    </bean> -->
+	<!-- <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> 
+		<property name="freemarkerSettings"> <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean"> 
+		<property name="properties"> <props> <prop key="default_encoding">utf-8</prop> 
+		<prop key="output_encoding">utf-8</prop> </props> </property> </bean> </property> 
+		<property name="templateLoaderPath"> <value>/WEB-INF/view/</value> </property> 
+		</bean> <bean id="htmlviewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" 
+		p:suffix=".html" p:order="0"> <property name="contentType" value="text/html;charset=UTF-8" 
+		/> </bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -77,12 +68,12 @@
 
 
 			<mvc:mapping path="/**" />
-			
+
 			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/img/**" />
-			
+
 			<mvc:exclude-mapping path="/login" />
 			<mvc:exclude-mapping path="/Register" />
 			<mvc:exclude-mapping path="/CRegister" />
@@ -106,14 +97,18 @@
 			<mvc:exclude-mapping path="/verify" />
 			<mvc:exclude-mapping path="/verifyCompany" />
 			<mvc:exclude-mapping path="/ResetPassword" />
-			<mvc:exclude-mapping path="/resetPassword.controller" />
+			<mvc:exclude-mapping
+				path="/resetPassword.controller" />
 			<mvc:exclude-mapping path="/ResetCompanyPassword" />
-			<mvc:exclude-mapping path="/resetCompanyPassword.controller" />
+			<mvc:exclude-mapping
+				path="/resetCompanyPassword.controller" />
 
 
 			<mvc:exclude-mapping path="/logistic" />
-			<mvc:exclude-mapping path="/logistic/LogisticLogin.do" />
-			<mvc:exclude-mapping path="/logistic/LogisticLogout.do" />
+			<mvc:exclude-mapping
+				path="/logistic/LogisticLogin.do" />
+			<mvc:exclude-mapping
+				path="/logistic/LogisticLogout.do" />
 
 			<!-- 靜態資源 -->
 			<!-- <mvc:exclude-mapping path="/img/**" /> -->

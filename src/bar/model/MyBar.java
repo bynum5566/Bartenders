@@ -12,7 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyBar {
 	private int companyId;
-	private String coverUrl;
+	private String logoUrl;
+	private String coverUrl1;
+	private String coverUrl2;
+	private String coverUrl3;
+	private String coverUrl4;
+	private String coverUrl5;
 	private String aboutBar;
 	private String barFb;
 	private String barLine;
@@ -21,9 +26,14 @@ public class MyBar {
 	public MyBar() {
 	}
 	
-	public MyBar(int companyId,String coverUrl,String aboutBar,String barFb,String barLine,String barIg) {
+	public MyBar(int companyId, String logoUrl, String coverUrl1, String coverUrl2, String coverUrl3, String coverUrl4, String coverUrl5, String aboutBar,String barFb,String barLine,String barIg) {
 		this.companyId=companyId;
-		this.coverUrl=coverUrl;
+		this.logoUrl=logoUrl;
+		this.coverUrl1=coverUrl1;
+		this.coverUrl2=coverUrl2;
+		this.coverUrl3=coverUrl3;
+		this.coverUrl4=coverUrl4;
+		this.coverUrl5=coverUrl5;
 		this.aboutBar=aboutBar;
 		this.barFb=barFb;
 		this.barLine=barLine;
@@ -40,13 +50,58 @@ public class MyBar {
 		this.companyId = companyId;
 	}
 
-	@Column(name = "COVERURL")
-	public String getCoverUrl() {
-		return coverUrl;
+	@Column(name = "LOGOURL")
+	public String getLogoUrl() {
+		return logoUrl;
 	}
 
-	public void setCoverUrl(String coverUrl) {
-		this.coverUrl = coverUrl;
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
+	}
+	
+	@Column(name = "COVERURL1")
+	public String getCoverUrl1() {
+		return coverUrl1;
+	}
+
+	public void setCoverUrl1(String coverUrl1) {
+		this.coverUrl1 = coverUrl1;
+	}
+	
+	@Column(name = "COVERURL2")
+	public String getCoverUrl2() {
+		return coverUrl2;
+	}
+
+	public void setCoverUrl2(String coverUrl2) {
+		this.coverUrl2 = coverUrl2;
+	}
+	
+	@Column(name = "COVERURL3")
+	public String getCoverUrl3() {
+		return coverUrl3;
+	}
+
+	public void setCoverUrl3(String coverUrl3) {
+		this.coverUrl3 = coverUrl3;
+	}
+	
+	@Column(name = "COVERURL4")
+	public String getCoverUrl4() {
+		return coverUrl4;
+	}
+
+	public void setCoverUrl4(String coverUrl4) {
+		this.coverUrl4 = coverUrl4;
+	}
+	
+	@Column(name = "COVERURL5")
+	public String getCoverUrl5() {
+		return coverUrl5;
+	}
+
+	public void setCoverUrl5(String coverUrl5) {
+		this.coverUrl5 = coverUrl5;
 	}
 
 	@Column(name = "ABOUTBAR")

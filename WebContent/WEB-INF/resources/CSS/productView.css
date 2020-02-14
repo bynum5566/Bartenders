@@ -1,6 +1,6 @@
 @font-face{
   font-family: Makinas;
-  src: url(Makinas-4-Flat.otf);
+  src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
 body {
@@ -8,7 +8,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: right;
-  background-image: url(bg13.png);
+  background-image: url(/Bartenders/images/bg13.png);
   height: 100%;
   font-family: Arial, Helvetica;
   letter-spacing: 0.02em;

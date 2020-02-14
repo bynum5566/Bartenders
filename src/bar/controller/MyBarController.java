@@ -56,7 +56,12 @@ public class MyBarController {
 			request.setAttribute("barAdd", Data2.getAddress());
 			request.setAttribute("barPhone", Data2.getPhone());
 
-			request.setAttribute("barImgUrl", Detail2.getCoverUrl());
+			request.setAttribute("barLogoUrl", Detail2.getLogoUrl());
+			request.setAttribute("barImgUrl1", Detail2.getCoverUrl1());
+			request.setAttribute("barImgUrl2", Detail2.getCoverUrl2());
+			request.setAttribute("barImgUrl3", Detail2.getCoverUrl3());
+			request.setAttribute("barImgUrl4", Detail2.getCoverUrl4());
+			request.setAttribute("barImgUrl5", Detail2.getCoverUrl5());
 			request.setAttribute("aboutBar", Detail2.getAboutBar());
 			request.setAttribute("barFb", Detail2.getBarFb());
 			request.setAttribute("barLine", Detail2.getBarLine());
@@ -74,7 +79,12 @@ public class MyBarController {
 		request.setAttribute("barAdd", Data.getAddress());
 		request.setAttribute("barPhone", Data.getPhone());
 
-		request.setAttribute("barImgUrl", Detail.getCoverUrl());
+		request.setAttribute("barLogoUrl", Detail.getLogoUrl());
+		request.setAttribute("barImgUrl1", Detail.getCoverUrl1());
+		request.setAttribute("barImgUrl2", Detail.getCoverUrl2());
+		request.setAttribute("barImgUrl3", Detail.getCoverUrl3());
+		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
+		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
 		request.setAttribute("aboutBar", Detail.getAboutBar());
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());
@@ -111,7 +121,12 @@ public class MyBarController {
 			request.setAttribute("barAdd", Data2.getAddress());
 			request.setAttribute("barPhone", Data2.getPhone());
 
-			request.setAttribute("barImgUrl", Detail2.getCoverUrl());
+			request.setAttribute("barLogoUrl", Detail2.getLogoUrl());
+			request.setAttribute("barImgUrl1", Detail2.getCoverUrl1());
+			request.setAttribute("barImgUrl2", Detail2.getCoverUrl2());
+			request.setAttribute("barImgUrl3", Detail2.getCoverUrl3());
+			request.setAttribute("barImgUrl4", Detail2.getCoverUrl4());
+			request.setAttribute("barImgUrl5", Detail2.getCoverUrl5());
 			request.setAttribute("aboutBar", Detail2.getAboutBar());
 			request.setAttribute("barFb", Detail2.getBarFb());
 			request.setAttribute("barLine", Detail2.getBarLine());
@@ -127,7 +142,12 @@ public class MyBarController {
 		request.setAttribute("barAdd", Data.getAddress());
 		request.setAttribute("barPhone", Data.getPhone());
 
-		request.setAttribute("barImgUrl", Detail.getCoverUrl());
+		request.setAttribute("barLogoUrl", Detail.getLogoUrl());
+		request.setAttribute("barImgUrl1", Detail.getCoverUrl1());
+		request.setAttribute("barImgUrl2", Detail.getCoverUrl2());
+		request.setAttribute("barImgUrl3", Detail.getCoverUrl3());
+		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
+		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
 		request.setAttribute("aboutBar", Detail.getAboutBar());
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());
@@ -139,32 +159,36 @@ public class MyBarController {
 	@RequestMapping(value = "/editBar", method = RequestMethod.POST)
 	public String editMyBar(@ModelAttribute(name = "Caccount") String account,
 			@RequestParam("barName") String companyName, @RequestParam("barPhone") String phone,
-			@RequestParam("barAddress") String address, @RequestParam(name = "pdImg", required = false) String coverUrl,
+			@RequestParam("barAddress") String address, @RequestParam(name = "pdImg", required = false) String logoUrl,
+			@RequestParam(name = "cover1", required = false) String coverUrl1,
+			@RequestParam(name = "cover2", required = false) String coverUrl2,
+			@RequestParam(name = "cover3", required = false) String coverUrl3,
+			@RequestParam(name = "cover4", required = false) String coverUrl4,
+			@RequestParam(name = "cover5", required = false) String coverUrl5,
 			@RequestParam("aboutBar") String aboutBar, @RequestParam("barFb") String barFb,
 			@RequestParam("barLine") String barLine, @RequestParam("barIG") String barIg) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
 
-		mBS.updateBarPage(companyName, phone, address, coverUrl, aboutBar, barFb, barLine, barIg, companyId);
+		mBS.updateBarPage(companyName, phone, address, logoUrl, coverUrl1, coverUrl2, coverUrl3, coverUrl4, coverUrl5,
+				aboutBar, barFb, barLine, barIg, companyId);
 
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return "redirect:/reBr";
 	}
-	
+
 	@RequestMapping(value = "/reBr", method = RequestMethod.GET)
 	public String reFresh() {
-		try
-		{
-		Thread.currentThread().sleep(1000);
+		try {
+			Thread.currentThread().sleep(1000);
+		} catch (Exception e) {
 		}
-		catch(Exception e){
-		}
-			return "redirect:/My.Bar";
+		return "redirect:/My.Bar";
 	}
 
 	@RequestMapping(value = "/Product.All", method = RequestMethod.GET)
@@ -177,7 +201,7 @@ public class MyBarController {
 		String tickets = pds.selectTickets(companyId);
 		request.setAttribute("drinkPd", drinks);
 		request.setAttribute("ticketPd", tickets);
-		
+
 		return "allProducts";
 	}
 }
