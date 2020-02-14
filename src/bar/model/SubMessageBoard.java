@@ -23,9 +23,10 @@ public class SubMessageBoard {
 
 	}
 
-	public SubMessageBoard(Integer id, String account, String time, String blabla, String picture,
+	public SubMessageBoard(Integer id, Integer subId ,String account, String time, String blabla, String picture,
 			String deletePassword) {
 		this.id = id;
+		this.subId=subId;
 		this.account = account;
 		this.time = time;
 		this.blabla = blabla;

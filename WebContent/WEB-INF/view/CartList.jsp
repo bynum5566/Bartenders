@@ -183,14 +183,17 @@ div.panel
 				<thead >
 					<tr align="center" class="sigmaGray">
 						<!-- <td>購物車編號</td> -->
-						<td class="sigmaTd1">賣家名稱</td>
-						<td class="sigmaTd1">商品名稱</td>
-						<td class="sigmaTd1">小計</td>
-						<td class="sigmaTd1">配送類型</td>
+						
+						<td class="sigmaTd1"  style="font-size:18px" >賣家名稱</td>
+						<td class="sigmaTd1">產品名稱</td>
+						<td class="sigmaTd1">產品單價</td>
+
+						<!--  <td class="sigmaTd1">配送類型</td>-->
 						<!-- <td>修改配送資訊</td> -->
-						<td class="sigmaTd1">修改數量</td>
-						<td class="sigmaTd1">從購物車移除</td>
-						<td class="sigmaTd1">成立訂單</td>
+						<td class="sigmaTd1">產品數量</td>		<!-- 修改數量 / 產品數量 -->
+						<td class="sigmaTd1">小計</td>
+						<td class="sigmaTd1"></td>	<!-- 刪除 -->
+						<td class="sigmaTd1"></td>	<!-- 成立訂單-->
 					</tr>
 				</thead>
 
@@ -202,12 +205,16 @@ div.panel
 						<!-- <td align="center">${Corders[current.index].orderId}</td> -->
 						<!-- 賣家名稱  -->
 						<td align="center">${company[current.index].companyName}</td>
-						<!-- 商品名稱 -->
-						<td align="center">${productData[current.index].productName}等</td>
-						<!-- 小計 -->
-						<td align="center">${Corders[current.index].amount}</td>
+						<!-- 產品名稱 -->
+						<td align="center">${productData[current.index].productName}</td>
+
+						<!-- 產品單價 -->
+						<td></td>
+
 						<!-- 配送方式 -->
-						<td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+						<!-- <td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>  -->
+						
+						
 						<!-- 修改購物車 -->
 
 						<!-- 修改配送資訊 -->
@@ -219,9 +226,11 @@ div.panel
 								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
 								>修改數量</a></td>
 
-						<!-- 從購物車移除 -->
+						<!-- 小計 -->
+						<td align="center">${Corders[current.index].amount}</td>
+						<!-- 刪除 -->
 						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								>從購物車移除</a></td>
+								>刪除</a></td>
 						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
 								>成立訂單</a></td>
 

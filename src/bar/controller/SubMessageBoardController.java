@@ -39,9 +39,8 @@ public class SubMessageBoardController {
 
 	@RequestMapping(path = { "subMessageBoard.controller" }, method = { RequestMethod.POST })
 	public String processAction(@RequestParam(name = "blabla") String blabla,
-			@RequestParam(name = "picture") String picture,
-			@RequestParam(name = "deletePassword") String deletePassword, Model m,
-			@ModelAttribute(name = "account") String account, @ModelAttribute(name = "resId") int resId,
+			@RequestParam(name = "pdImg") String picture, @RequestParam(name = "deletePassword") String deletePassword,
+			Model m, @ModelAttribute(name = "account") String account, @ModelAttribute(name = "resId") int resId,
 			@ModelAttribute(name = "resAccount") String resAccount) {
 
 		Map<String, String> errors = new HashMap<String, String>();
@@ -66,23 +65,21 @@ public class SubMessageBoardController {
 			m.addAttribute("subnewest", subnewest);
 			return "SubMessageBoard";
 		}
-		
-		
-		
+
+		String rightblabla = blabla.replaceAll("\n", "<br>");
 
 		m.addAttribute("account", account);
-		m.addAttribute("blabla", blabla);
+		m.addAttribute("blabla", rightblabla);
 		m.addAttribute("picture", picture);
 		m.addAttribute("deletePassword", deletePassword);
 //		m.addAttribute("resId", resId);
 //		m.addAttribute("resAccount", resAccount);
 		String time = getDateTime();
 
-		
-
-		SubMessageBoard subMessageBoard = new SubMessageBoard(resId, account, time, blabla, picture, deletePassword);
+		SubMessageBoard subMessageBoard = new SubMessageBoard(resId, 1, account, time, rightblabla, picture,
+				deletePassword);
 		messageBoardService.createSubMessage(subMessageBoard);
-		
+
 		List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
 		List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
 		m.addAttribute("newest", theMessage);
@@ -107,13 +104,12 @@ public class SubMessageBoardController {
 //		System.out.println("resAccount:" + resAccount);
 		m.addAttribute("resId", resId);
 		m.addAttribute("resAccount", resAccount);
-		
+
 		List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
 		m.addAttribute("newest", theMessage);
-		
-		
+
 		List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
-		
+
 		m.addAttribute("subnewest", subnewest);
 		return "SubMessageBoard";
 	}
@@ -125,14 +121,20 @@ public class SubMessageBoardController {
 			@ModelAttribute(name = "resAccount") String resAccount) {
 
 		messageBoardService.subDelete(subId, deletePassword);
-		
-		
+		if (messageBoardService.subDelete(subId, deletePassword)) {
+			List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
+			m.addAttribute("newest", theMessage);
+
+			List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
+
+			m.addAttribute("subnewest", subnewest);
+			return "SubMessageBoard";
+		}
 		List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
 		m.addAttribute("newest", theMessage);
-		
-		
+
 		List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
-		
+
 		m.addAttribute("subnewest", subnewest);
 		return "SubMessageBoard";
 	}

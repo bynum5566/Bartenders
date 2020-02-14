@@ -12,14 +12,21 @@
 
 <style type="text/css">
 body {
+	margin: 0;
+	padding: 0;
 	background-image: url(/Bartenders/images/bg4.jpg);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: top;
+	overflow-y:hidden;
+	overflow-y:hidden;
 }
 
 .outwrap {
+	min-width: auto;
+	top: 80px;
+	position: sticky;
 	text-align: center;
 	margin: auto;
 	width: 800px;
@@ -35,12 +42,14 @@ body {
 	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color:#FFFFFF;
+	margin-top: 50%;
 }
 </style>
 
 </head>
 <body>
-	<div class="outwrap">
+	<div class="outwrap" >
 		<canvas id="myChart"></canvas>
 	</div>
 
@@ -78,3 +87,4 @@ body {
 
 
 </html>
+<%@include file="menu.jsp"%>

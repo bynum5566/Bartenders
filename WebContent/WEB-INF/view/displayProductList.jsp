@@ -20,6 +20,130 @@
 	<link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
 	rel="stylesheet"></link>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+	
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	
+	<%-- Event script，開始 --%>
+	$( function() {
+	  $( "#accordion" ).accordion({
+	    collapsible: true
+	  });
+	} );
+	<%-- Event script，結束 --%>
+	
+	<%-- Menu script，開始 --%>	
+	 $( function menuClick() {
+		   $( "#dialog" ).dialog();
+		 } );
+	 <%-- Menu script，結束 --%>
+	 
+<%-- 跑馬燈script，開始 --%>
+<!--../img/bg1.jpg -->
+<!-- var images = ["mucha_1.jpg", "mucha_2.jpg", "mucha_3.jpg", "mucha_4.jpg", "mucha_5.jpg"]; -->
+<!-- var images = ["../img/mucha_1.jpg", "../img/mucha_2.jpg", "../img/mucha_3.jpg", "../img/mucha_4.jpg", "../img/mucha_5.jpg"];-->
+
+<!-- 可以直接打網址，如"https://images.goodsmile.info/cgm/images/product/20200131/9243/67389/thumb/770733b2c97f14bae8f9bfa6d03b7b05.jpg" -->
+var images = ["/Bartenders/images/mucha_1.jpg", "/Bartenders/images/mucha_2.jpg", "/Bartenders/images/mucha_3.jpg", "/Bartenders/images/mucha_4.jpg", "/Bartenders/images/mucha_5.jpg"];
+var num = 0;
+
+function nex() {
+    var slider = document.getElementById("slider");
+    num++;
+    if (num >= images.length) {
+        num = 0;
+    }
+    slider.src = images[num];
+}
+
+function prev() {
+    var slider = document.getElementById("slider");
+    num--;
+    if (num < 0) {
+        num = images.length - 1;
+    }
+    slider.src = images[num];
+}
+
+var P = document.getElementById("slider");
+var t = setInterval(changeP, 2000);
+
+function choose1(obj, oEvent) {
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var pArrays = obj.getElementsByTagName("img");
+    slider.src = images[0];
+    window.clearInterval(t);
+}
+function choose2(obj, oEvent) {
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var pArrays = obj.getElementsByTagName("img");
+    slider.src = images[1];
+    window.clearInterval(t);
+}
+function choose3(obj, oEvent) {
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var pArrays = obj.getElementsByTagName("img");
+    slider.src = images[2];
+    window.clearInterval(t);
+}
+function choose4(obj, oEvent) {
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var pArrays = obj.getElementsByTagName("img");
+    slider.src = images[3];
+    window.clearInterval(t);
+}
+function choose5(obj, oEvent) {
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var pArrays = obj.getElementsByTagName("img");
+    slider.src = images[4];
+    window.clearInterval(t);
+}
+function chooseout() {
+    t = setInterval(changeP, 2000);
+}
+
+function changeP() {
+    num++;
+    if (num >= images.length) {
+        num = 0;
+    }
+    slider.src = images[num];
+}
+
+let flag;
+flag2 = true;
+function pl() {
+    if (flag2) {
+        flag2 = false;
+        window.clearInterval(t);
+    }
+    else {
+        flag2 = true;
+        t = setInterval(changeP, 2000);
+    }
+}
+
+
+<%-- 跑馬燈script，結束 --%>
+
+
+
+	 
+	</script>
 
 <title>酒吧</title>
 
@@ -45,6 +169,12 @@
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 }
 
+	.sigmaTransparent{
+		background:rgba(0,0,0,0.1);
+		margin-bottom:10px;
+		color:white;
+		
+	}
 
 	.sigmaTd1 {
 		width: 100px;
@@ -104,27 +234,138 @@
 					<td class="sigmaTd1">酒吧logo</td>
 					<td class="sigmaTd1">地圖按鈕</td>
 					<td class="sigmaTd1">Menu</td>
+					<td class="sigmaTd1"></td>
+					<td class="sigmaTd1"></td>
 				</tr>
+<!-- (Menu) Dialog開始 -->
+<tr>
+<td>			
+<div id="dialog" title="Menu">
+  <p>${CompanyName}的Menu</p>
+</div>
+</td>	
+</tr>
+<!-- (Menu) Dialog結束 -->
 			</table>	
 		</section>
 		
 		<section >
 			<table border="1">
 				<tr>
-					<td class="sigmaTd6">event</td>
+					<td class="sigmaTd6">Event</td>
 				</tr>
+
+	<!-- 事件，開始 -->
+<tr>
+<td>
+<div id="accordion" class="sigmaTransparent">
+  <h3 class="sigmaTransparent"
+  >Event 1</h3>
+  <div class="sigmaTransparent">
+    <p class="sigmaTransparent">白蘭地買十送一</p>
+  </div>
+  <h3 class="sigmaTransparent">Event 2</h3>
+  <div class="sigmaTransparent">
+    <p class="sigmaTransparent">買3000送300</p>
+  </div>
+  <h3 class="sigmaTransparent">Event 3</h3>
+  <div class="sigmaTransparent">
+    <p class="sigmaTransparent">以下商品七折</p>
+    <ul>
+      <li class="sigmaTransparent">蘋果酒</li>
+      <li class="sigmaTransparent">伏特加</li>
+    </ul>
+  </div>
+  <h3 class="sigmaTransparent">Event 4</h3>
+  <div class="sigmaTransparent">
+    <p class="sigmaTransparent">QR票券七折優惠中</p>
+  </div>
+</div>
+</td>
+</tr>
+	<!-- 事件，結束 -->
+				
 			</table>
 		</section>
 		
 		<section >
-			<table border="1">
+			<table border="1"  width="200">
 				<tr>
 					<td class="sigmaTd6">跑馬燈(圖片)</td>
 				</tr>
+				
+
+								
 				<tr>
-					<td class="sigmaTd6">酒吧介紹文字</td>
-				</tr>
+<td>
+<!-- 跑馬燈，開始 -->
+    <div >
+        <div>
+            <figure >
+            	<!-- "mucha_1.jpg"改成"/Bartenders/images/mucha_1.jpg"  -->
+                <img id="slider" 
+                class="pics"
+                width="200"
+                height="200"
+                src="/Bartenders/images/mucha_1.jpg">
+            </figure>
+        </div>
+        <div>
+        <!-- north_star.png改成  /Bartenders/images/north_star.png -->
+        	<table>
+        	<tr>
+        	<td style="background-color:gray">
+            <img onmouseover="choose1(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st1"
+                src="/Bartenders/images/north_star.png">
+            </td>
+        	<td style="background-color:gray">
+            <img onmouseover="choose2(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st2"
+                src="/Bartenders/images/north_star.png">
+            </td>
+        	<td style="background-color:gray">
+            <img onmouseover="choose3(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st3"
+                src="/Bartenders/images/north_star.png">
+            </td>
+        	<td style="background-color:gray">
+            <img onmouseover="choose4(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st4"
+                src="/Bartenders/images/north_star.png">
+            </td>
+        	<td style="background-color:gray">
+            <img onmouseover="choose5(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st5"
+                src="/Bartenders/images/north_star.png">
+            </td>
+			</tr>
 			</table>
+        </div>
+        <!-- 
+        <div>
+            <button onclick="prev()"><img class="bt" src="/Bartenders/images/first.png"></button>
+            <button onclick="pl()"><img class="bt" src="/Bartenders/images/play_pause.png"></button>
+            <button onclick="nex()"><img class="bt" src="/Bartenders/images/last.png"></button>
+        </div>
+         -->
+    </div>
+<!-- 跑馬燈，結束 -->
+</td>				
+				
+				</tr>
+				
+
+			</table>
+		<table border="1" >
+				<tr>
+					<td class="sigmaTd6" style="text-align: left">酒吧介紹：
+					${myBarX.aboutBar}
+					<br>
+					<br>
+					
+					FB:${myBarX.barFb}<br>
+					Line:${myBarX.barLine}<br>
+					Instgram:${myBarX.barIg}<br>
+					</td>
+					
+				</tr>		
+		</table>
 		</section>
 		
 	
@@ -264,6 +505,11 @@
 		</div>
 			</section>
 	</div>
+	
+	
+
+	
+	
 	<%-- 本體，結束 --%>
 	
 	</div>
