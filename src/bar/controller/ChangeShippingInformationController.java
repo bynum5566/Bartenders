@@ -23,14 +23,14 @@ import bar.model.ProductDataService;
 @Controller
 //@SessionAttributes(names = "orderId")
 @EnableTransactionManagement
-public class doChangeShippingController {
+public class ChangeShippingInformationController {
 
 	private OrdersService ordersService;
 	private CartService cartService;
 	private ProductDataService productService;
 
 	
-	public doChangeShippingController(OrdersService ordersService,CartService cartService,ProductDataService productService) {
+	public ChangeShippingInformationController(OrdersService ordersService,CartService cartService,ProductDataService productService) {
 		this.ordersService=ordersService;
 		this.cartService=cartService;
 		this.productService=productService;
@@ -107,6 +107,6 @@ public class doChangeShippingController {
 		
 
 		m.addAttribute("msg", msg);
-		return "returnToCartList";
+		return "ReturnToCartList";
 	}
 }

@@ -96,6 +96,7 @@ public class DisplayProductListController {
 			String barAccount, 
 			Model m) {
 		//String companyAccount = "Test99999999";
+		cartService.Pf("DisplayProductList，開始");
 		
 		String companyAccount = barAccount;	//【公司】【公司帳號】
 		Company companyX = companyService.select(companyAccount);		
@@ -121,10 +122,11 @@ public class DisplayProductListController {
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
-		
-		return "displayProductList";
+		cartService.Pf("DisplayProductList，結束");
+		return "DisplayProductList";
 		
 //		return "displayProductListMk2";
+		
 
 	}
 	

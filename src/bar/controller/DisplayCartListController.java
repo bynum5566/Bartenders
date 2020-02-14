@@ -179,7 +179,7 @@ public class DisplayCartListController {
 		m.addAttribute("productData", listOfProduct);
 		m.addAttribute("orders", listOfOrders);
 		
-		return "CartList";
+		return "DisplayCartList";
 
 	}
 	

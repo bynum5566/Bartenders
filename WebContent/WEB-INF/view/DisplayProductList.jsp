@@ -42,7 +42,7 @@
 	<%-- Event script，結束 --%>
 	
 	<%-- Menu script，開始 --%>	
-	 $( function menuClick() {
+	 $( function() {
 		   $( "#dialog" ).dialog();
 		 } );
 	 <%-- Menu script，結束 --%>
