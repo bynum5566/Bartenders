@@ -57,7 +57,7 @@ table{
 				</tr>
 				<tr>
 					<td>帳號:</td>
-					<td><input type="text" name="newAccount" placeholder="${gid}"
+					<td><input type="text" name="newAccount" placeholder="${gid}" size="50"
 						disabled="disabled" /><br></td>
 				</tr>
 				<tr>
@@ -88,7 +88,7 @@ table{
 
 				<tr>
 					<td>電子郵件:</td>
-					<td><input type="email" name="email" placeholder="${email}"
+					<td><input type="email" name="email" placeholder="${email}" size="50"
 						disabled="disabled" /><br></td>
 				</tr>
 
@@ -118,7 +118,6 @@ table{
 			</table>
 		</form>
 		
-		<a href="/Bartenders/login">回主頁</a>
 	</div>
 
 
