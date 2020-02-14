@@ -44,7 +44,14 @@
 	<%-- Menu script，開始 --%>	
 	 $( function() {
 		   $( "#dialog" ).dialog();
+		   $( "#dialog" ).dialog('close');
 		 } );
+	 
+	 function displayMenu() {
+		  $( "#dialog" ).dialog('open');
+		}
+
+	 
 	 <%-- Menu script，結束 --%>
 	 
 <%-- 跑馬燈script，開始 --%>
@@ -239,7 +246,7 @@ function pl() {
 		                />" />					
 					</td>	<!-- 酒吧logo -->
 					<td class="sigmaTd1">地圖按鈕</td>
-					<td class="sigmaTd1">Menu</td>
+					<td class="sigmaTd1" onclick="displayMenu()">Menu</td>
 					<td class="sigmaTd1"></td>
 					<td class="sigmaTd1"></td>
 				</tr>
@@ -247,7 +254,7 @@ function pl() {
 <tr>
 <td>			
 <div id="dialog" title="Menu">
-  <p>${CompanyName}的Menu</p>
+  <p>${myBarX.barMenu}</p>
 </div>
 </td>	
 </tr>
