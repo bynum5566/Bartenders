@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +19,11 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-import bar.model.CartService;
+import bar.model.CompanyService;
 import bar.model.ImageResponse;
 import bar.model.ImgurAPI;
 import bar.model.Orders;
 import bar.model.OrdersService;
-import bar.model.ProductDataService;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -37,12 +34,14 @@ import retrofit2.Retrofit;
 public class TicketQRcontroller {
 
 	private OrdersService oService;
+	private CompanyService cService;
 	private String qrPath;
 	private String qrUrl;
 	
 	@Autowired
-	public TicketQRcontroller(OrdersService oService) {
+	public TicketQRcontroller(OrdersService oService,CompanyService cService) {
 		this.oService = oService;
+		this.cService = cService;
 	}
 	
 	@RequestMapping(path = "/rqQR", method = RequestMethod.POST)
@@ -118,17 +117,25 @@ public class TicketQRcontroller {
 		System.out.println("expireDate="+expireDate);
 		
 		String orderId = hsRequest.getParameter("orderId");
-		
-		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
-			Orders order = oService.selectOrder(orderId);
-			if(order.getStatus()==6) {
-				return "usedQR";
-			}else {
-				int status=6;
-				oService.updateToCancel(orderId, status);
-				return "validQR";	
-			}
-		}
-		return "invalidQR";
+    	String onlineCac = (String)hsRequest.getSession().getAttribute("Caccount");
+    	int cId = oService.selectOrder(orderId).getCompanyId();
+    	String orderCac = cService.selectCompany(cId).getAccount();
+    	
+    	if (onlineCac == orderCac) {
+    		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
+    			Orders order = oService.selectOrder(orderId);
+    			if(order.getStatus()==6) {
+    				return "usedQR";
+    			}else {
+    				int status=6;
+    				oService.updateToCancel(orderId, status);
+    				return "validQR";	
+    			}
+    		}
+    		return "invalidQR";
+    	}else {
+    		hsRequest.setAttribute("msg", "請以發行本票券之酒吧經營者身分登入，以利審核此票券!");
+    		return "index";
+    	}
 	}
 }
