@@ -83,7 +83,7 @@ public class ProductDashboardController {
 
 		return "productViewPage2";
 	}
-
+//*****************************************************************
 	@RequestMapping(value = "/Product.View", method = RequestMethod.GET)
 	public String showViewPD() {
 		return "productViewPage";
@@ -93,7 +93,7 @@ public class ProductDashboardController {
 	public String showViewTKPD() {
 		return "productViewPage2";
 	}
-
+//	*****************************************************************
 	@RequestMapping(value = "/Dashboard.Products", method = RequestMethod.GET)
 	public String showDashboard(@ModelAttribute(name="Caccount") String account) {
 
@@ -326,6 +326,7 @@ public class ProductDashboardController {
 	@RequestMapping(value = "/search.Product", method = RequestMethod.GET)
 	public String getSearchResult(@RequestParam("keyword") String keyword) {
 		String res = pds.searchResult(keyword);
+		request.setAttribute("kWord", keyword);
 		request.setAttribute("drinkPd",res);
 		return "searchProductsResult";
 	}

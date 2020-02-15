@@ -76,6 +76,13 @@
 									<a href="/Bartenders/addMyFav?pdidck=<c:out value="${productId}"/>">
 										<input class="bT" type="submit" value="加入我的最愛+">
 									</a>
+									
+<!-- 									<a class="f1" href="/Bartenders/addFav.bar?cidck=500002"> -->
+<!-- 										<div> -->
+<!-- 											<input class="bT" type="image" alt="button" src="/Bartenders/images/like_icon.png" value="加入我的最愛+"> -->
+<!-- 										</div> -->
+<!-- 									</a> -->
+									<br><button style="background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" onclick="location.href = '/Bartenders/addFav.bar?cidck=500002';" class="bT"/>
 <!-- 								</form> -->
 							</div>
 					</div>

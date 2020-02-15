@@ -300,13 +300,12 @@ public class ProductDataDAO {
 		}
 	}
 
-	public boolean launchP(String autoLaunchTime, String pdAvailable, String pdId) {
+	public boolean launchP(String autoLaunchTime, String pdId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hqlStr = "update ProductData set autoLaunchTime=:alTm, pdAvailable=:pdA where pdId=:pdId";
+			String hqlStr = "update ProductData set autoLaunchTime=:alTm where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("alTm", autoLaunchTime);
-			query.setParameter("pdA", pdAvailable);
 			query.setParameter("pdId", pdId);
 			query.executeUpdate();
 			return true;
@@ -316,13 +315,12 @@ public class ProductDataDAO {
 		return false;
 	}
 	
-	public boolean pullP(String autoPullTime, String pdAvailable, String pdId) {
+	public boolean pullP(String autoPullTime, String pdId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hqlStr = "update ProductData set autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+			String hqlStr = "update ProductData set autoPullTime=:apTm where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("apTm", autoPullTime);
-			query.setParameter("pdA", pdAvailable);
 			query.setParameter("pdId", pdId);
 			query.executeUpdate();
 			return true;

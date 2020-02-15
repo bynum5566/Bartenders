@@ -17,7 +17,7 @@
 					<div class="flos1">
 						<a class="f1" href="/Bartenders/Product.Add">
 					 		<div class="btn btn-one ">
-								<input class="bT" type="submit" value="新增商品+">
+								<input class="bT" type="button" value="新增商品+">
 							</div>
 						</a>
 					</div>
