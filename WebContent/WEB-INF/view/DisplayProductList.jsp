@@ -59,6 +59,7 @@
 
 <!-- 可以直接打網址，如"https://images.goodsmile.info/cgm/images/product/20200131/9243/67389/thumb/770733b2c97f14bae8f9bfa6d03b7b05.jpg" -->
 <!-- "/Bartenders/images/mucha_1.jpg" 對應位置:\Bartenders\WebContent\WEB-INF\resources\images\mucha_1.jpg -->
+<!--跑馬燈圖片-->
 var images = ["${myBarX.coverUrl1}", "${myBarX.coverUrl2}", "${myBarX.coverUrl3}", "${myBarX.coverUrl4}", "${myBarX.coverUrl5}"];
 var num = 0;
 
@@ -81,7 +82,7 @@ function prev() {
 }
 
 var P = document.getElementById("slider");
-var t = setInterval(changeP, 2000);
+var t = setInterval(changeP, 5000);
 
 function choose1(obj, oEvent) {
     var e = oEvent || window.event;
@@ -119,7 +120,7 @@ function choose5(obj, oEvent) {
     window.clearInterval(t);
 }
 function chooseout() {
-    t = setInterval(changeP, 2000);
+    t = setInterval(changeP, 5000);	
 }
 
 function changeP() {
@@ -139,7 +140,7 @@ function pl() {
     }
     else {
         flag2 = true;
-        t = setInterval(changeP, 2000);
+        t = setInterval(changeP, 5000);
     }
 }
 
@@ -234,14 +235,11 @@ function pl() {
 	
 	
 		<section >	
-			<table border="1">
+			<table border="1" >
 				<tr>
 					<td class="sigmaTd1">${CompanyName}</td>
 					<td class="sigmaTd1">
 		                <img 
-		                class="pics"
-		                width="200"
-		                height="200"
 		                src="<c:out value="${myBarX.logoUrl}"
 		                />" />					
 					</td>	<!-- 酒吧logo -->
@@ -265,36 +263,21 @@ function pl() {
 		<section >
 			<table border="1">
 				<tr>
-					<td class="sigmaTd6">Event</td>
+					<td class="sigmaTd6">最新活動</td>	<!-- 最新活動 標題 -->
 				</tr>
 
-	<!-- 事件，開始 -->
+	<!-- 事件event，開始 -->
 <tr>
-<td>
-<div id="accordion" class="sigmaTransparent">
-  <h3 class="sigmaTransparent"
-  >Event 1</h3>
-  <div class="sigmaTransparent">
-    <p class="sigmaTransparent">白蘭地買十送一</p>
-  </div>
-  <h3 class="sigmaTransparent">Event 2</h3>
-  <div class="sigmaTransparent">
-    <p class="sigmaTransparent">買3000送300</p>
-  </div>
-  <h3 class="sigmaTransparent">Event 3</h3>
-  <div class="sigmaTransparent">
-    <p class="sigmaTransparent">以下商品七折</p>
-    <ul>
-      <li class="sigmaTransparent">蘋果酒</li>
-      <li class="sigmaTransparent">伏特加</li>
-    </ul>
-  </div>
-  <h3 class="sigmaTransparent">Event 4</h3>
-  <div class="sigmaTransparent">
-    <p class="sigmaTransparent">QR票券七折優惠中</p>
-  </div>
-</div>
-</td>
+	<td>
+		<div id="accordion" class="sigmaTransparent">
+			<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">	<!-- 此酒吧的所有事件 -->
+				<h3 class="sigmaTransparent">${listOfEventOfOneBar[current.index].neTitle}</h3>	<!-- event標題 -->
+					<div class="sigmaTransparent">
+						<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>	<!-- event內文-->
+					</div>
+			</c:forEach>
+		</div>
+	</td>
 </tr>
 	<!-- 事件，結束 -->
 				
@@ -302,22 +285,16 @@ function pl() {
 		</section>
 		
 		<section >
-			<table border="1"  width="200">
-				<tr>
-					<td class="sigmaTd6">跑馬燈(圖片)</td>
-				</tr>
-				
-
-								
+			<table border="1"  width="600">	<!-- 跑馬燈(圖片) -->					
 				<tr>
 <td>
 <!-- 跑馬燈，開始 -->
     <div >
         <div>
-            <figure >
-            	<!-- "mucha_1.jpg"改成"/Bartenders/images/mucha_1.jpg"  -->
+            <figure >	<!-- 跑馬燈，第一張圖 -->
+            	<!-- "/Bartenders/images/圖片名稱.jpg"-->
                 <img id="slider" 
-                class="pics"
+               
                 width="200"
                 height="200"
                 src="${myBarX.coverUrl1}">
@@ -327,25 +304,25 @@ function pl() {
         <!-- north_star.png改成  /Bartenders/images/north_star.png -->
         	<table>
         	<tr>
-        	<td style="background-color:gray">
+        	<td style="background-color:gray" width="30px" >
             <img onmouseover="choose1(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st1"
-                src="/Bartenders/images/north_star.png">
+                src="/Bartenders/images/Circle.png">
             </td>
-        	<td style="background-color:gray">
+        	<td style="background-color:gray" width="30px">
             <img onmouseover="choose2(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st2"
-                src="/Bartenders/images/north_star.png">
+                src="/Bartenders/images/Circle.png">
             </td>
-        	<td style="background-color:gray">
+        	<td style="background-color:gray" width="30px">
             <img onmouseover="choose3(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st3"
-                src="/Bartenders/images/north_star.png">
+                src="/Bartenders/images/Circle.png">
             </td>
-        	<td style="background-color:gray">
+        	<td style="background-color:gray" width="30px">
             <img onmouseover="choose4(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st4"
-                src="/Bartenders/images/north_star.png">
+                src="/Bartenders/images/Circle.png">
             </td>
-        	<td style="background-color:gray">
+        	<td style="background-color:gray" width="30px">
             <img onmouseover="choose5(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st5"
-                src="/Bartenders/images/north_star.png">
+                src="/Bartenders/images/Circle.png">
             </td>
 			</tr>
 			</table>
