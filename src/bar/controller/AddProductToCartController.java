@@ -106,7 +106,8 @@ public class AddProductToCartController
 			String error = "庫存不足，請重新選擇";
 			addAttribute(account, m, pdId, qty ,error,barAccount);
 			//return "AddToCartButton";		//Wu
-			return "redirect:/Product.show";//Wu
+			//return "redirect:/Product.show";//Wu
+			return "ResultOfAddToCart";
 		} else	/*庫存足夠*/
 		{
 			System.out.println("判斷訂單，開始==============================");
@@ -173,7 +174,7 @@ public class AddProductToCartController
 					//===============
 //					String error = "測試終止";
 //					addAttribute(account, m, pdId, qty,error);
-//					return "AddToCartButton";
+//					return "ResultOfAddToCart";
 					//===============
 				}
 				else
@@ -233,7 +234,7 @@ public class AddProductToCartController
 						//===============
 //						String error = "測試終止";
 //						addAttribute(account, m, pdId, qty,error);
-//						return "AddToCartButton";
+//						return "ResultOfAddToCart";
 						//===============
 					}
 					else
@@ -255,7 +256,8 @@ public class AddProductToCartController
 						addAttribute(account, m, pdId, qty,error,barAccount);
 						CartService.Pf("AddProductToCartProcessAction，End2");
 						//return "AddToCartButton";		//Wu
-						return "redirect:/Product.show";//Wu
+						//return "redirect:/Product.show";//Wu
+						return "ResultOfAddToCart";
 						
 						/*如果是QR類型，只要購物車中已有項目，就不允許再加入購物車，結束*/
 						/*==================================================*/
@@ -292,8 +294,9 @@ public class AddProductToCartController
 				String error = "庫存不足，請重新選擇!";
 				addAttribute(account, m, pdId, qty,error,barAccount);
 				CartService.Pf("AddProductToCartProcessAction，End2");
-				//return "AddToCartButton";		//Wu
-				return "redirect:/Product.show";//Wu
+				//return "AddToCartButton";		//Wu				
+				//return "redirect:/Product.show";//Wu
+				return "ResultOfAddToCart";
 			} else /* 庫存足夠 */
 			{
 				CartService.Pf("庫存足夠");
