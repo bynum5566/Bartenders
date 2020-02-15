@@ -10,6 +10,13 @@
 <title>User's Orders</title>
 
 <style type="text/css">
+a{
+color: #E8CCFF;
+
+}
+a:hover {
+color: 	#9F88FF;
+}
 .mydiv {
 	min-width: auto;
 	top: 80px;
@@ -46,24 +53,25 @@ body {
 	<div class="mydiv">
 		<div align="center">
 			<h3>我的訂單</h3>
+			<br>
 			<form action="<c:url value="/userOrder.controller"/>" method="post">
 				<table class="myTable">
 					<thead>
 						<tr align="center">
-							<td nowrap="nowrap">訂單編號</td>
-							<td nowrap="nowrap">賣家名稱</td>
-							<td nowrap="nowrap">商品名稱</td>
-							<td nowrap="nowrap">訂單金額</td>
-							<td nowrap="nowrap">收件人</td>
-							<td nowrap="nowrap">配送方式</td>
-							<td nowrap="nowrap">配送地址/QRcode載點</td>
-							<td nowrap="nowrap">配送電話</td>
-							<td nowrap="nowrap">訂單狀態</td>
-							<td nowrap="nowrap">購買時間</td>
-							<td nowrap="nowrap">物流編號</td>
-							<td nowrap="nowrap">我要付款</td>
-							<td nowrap="nowrap">修改訂單</td>
-							<td nowrap="nowrap">取消訂單</td>
+							<th nowrap="nowrap">訂單編號</th>
+							<th nowrap="nowrap">賣家名稱</th>
+							<th nowrap="nowrap">訂單內容</th>
+							<th nowrap="nowrap">金額</th>
+							<th nowrap="nowrap">收件人</th>
+							<th nowrap="nowrap">配送方式</th>
+							<th nowrap="nowrap">配送地址/QRcode載點</th>
+							<th nowrap="nowrap">配送電話</th>
+							<th nowrap="nowrap">訂單狀態</th>
+							<th nowrap="nowrap">購買時間</th>
+							<th nowrap="nowrap">物流編號</th>
+							<th nowrap="nowrap">付款</th>
+							<th nowrap="nowrap">修改</th>
+							<th nowrap="nowrap">取消</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,7 +85,7 @@ body {
 									</td>
 									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
 									<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].amount}</td>
+									<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
 									<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
 									<c:choose>
@@ -107,24 +115,24 @@ body {
 									<c:choose>
 										<c:when
 											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-											<td nowrap="nowrap"><font color=gray>修改訂單</font></td>
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
 										</c:when>
 										<c:when
 											test="${statusNumToStr[Corders[current.index].status]=='配送中'}">
-											<td nowrap="nowrap"><font color=gray>修改訂單</font></td>
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
 										</c:when>
 										<c:when
 											test="${statusNumToStr[Corders[current.index].status]=='已到貨'}">
-											<td nowrap="nowrap"><font color=gray>修改訂單</font></td>
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
 										</c:when>
 										<c:when
 											test="${statusNumToStr[Corders[current.index].status]=='已取消'}">
-											<td nowrap="nowrap"><font color=gray>修改訂單</font></td>
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
 										</c:when>
 										<c:otherwise>
 											<td align="center" nowrap="nowrap"><a
 												href="<c:url value="/ShowChangeOrderUser.controller"/>?orderId=${Corders[current.index].orderId}"
-												value="${Corders[current.index].orderId}">修改訂單</a></td>
+												value="${Corders[current.index].orderId}">修改</a></td>
 										</c:otherwise>
 									</c:choose>
 									<c:choose>
@@ -132,10 +140,10 @@ body {
 											test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
 											<td nowrap="nowrap"><a
 												href="<c:url value="/CancelOrderUser.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-												value="${Corders[current.index].orderId}">取消訂單</a></td>
+												value="${Corders[current.index].orderId}">取消</a></td>
 										</c:when>
 										<c:otherwise>
-											<td nowrap="nowrap"><font color=gray>取消訂單</font></td>
+											<td nowrap="nowrap"><font color=gray>取消</font></td>
 										</c:otherwise>
 									</c:choose>
 								</tr>

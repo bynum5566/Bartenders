@@ -45,6 +45,10 @@ public CartService(
 		return cartDAO.select(orderId);
 	}
 	
+    public Company selectCompanyByCompanyId(int CompanyId) {	
+        return companyDAO.selectCompany(CompanyId);
+    }
+	
     public Cart selectCartByOid(String orderId) {	/*useBy finishPay*/
         return cartDAO.selectCartByOid(orderId);
     }
