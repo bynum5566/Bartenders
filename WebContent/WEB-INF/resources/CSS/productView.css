@@ -354,7 +354,7 @@ body {
 		width: auto;
 		margin: auto;
 	}
-	#pdPicture {
+	#pdPicture, .slides, .slide {
 		width: 230px;
 	}
 	#myFv, button.bT, .pdDataMain, .pdData {

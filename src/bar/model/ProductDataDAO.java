@@ -153,10 +153,10 @@ public class ProductDataDAO {
 	}
 
 	public boolean edit(String pdId, String productName, String pdTag1, String pdTag2, String pdTag3, int pdStock,
-			int pdPrice, String pdDetail, String productImageUrl) {
+			int pdPrice, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3) {
 		Session session = sessionFactory.getCurrentSession();
 		String hqlStr = "update ProductData set productName=:pName, pdTag1=:pTg1, pdTag2=:pTg2, pdTag3=:pTg3, pdStock=:pStk,"
-				+ " pdPrice=:pPri, pdDetail=:pDtl, productImageUrl=:piUrl where pdId=:pdId";
+				+ " pdPrice=:pPri, pdDetail=:pDtl, productImageUrl=:piUrl, productImageUrl2=:piUrl2, productImageUrl3=:piUrl3 where pdId=:pdId";
 		try {
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("pName", productName);
@@ -167,6 +167,8 @@ public class ProductDataDAO {
 			query.setParameter("pPri", pdPrice);
 			query.setParameter("pDtl", pdDetail);
 			query.setParameter("piUrl", productImageUrl);
+			query.setParameter("piUrl2", productImageUrl2);
+			query.setParameter("piUrl3", productImageUrl3);
 			query.setParameter("pdId", pdId);
 			query.executeUpdate();
 			return true;

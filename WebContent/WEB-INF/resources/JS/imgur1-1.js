@@ -25,8 +25,8 @@
         this.clientid = options.clientid;
         this.endpoint = 'https://api.imgur.com/3/image';
         this.callback = options.callback || undefined;
-        this.dropzone = document.querySelectorAll('.dropzone3');
-        this.info = document.querySelectorAll('.info3');
+        this.dropzone = document.querySelectorAll('.dropzone1');
+        this.info = document.querySelectorAll('.info1');
 
         this.run();
     };
@@ -74,8 +74,8 @@
             var p1, p2, input;
 
                 p1 = this.createEls('p', {}, 'Upload');
-                p2 = this.createEls('p', {}, 'Image 3');
-            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
+                p2 = this.createEls('p', {}, 'Image 1');
+            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*', required: 'required'});
 
             Array.prototype.forEach.call(this.info, function (zone) {
                 zone.appendChild(p1);
@@ -99,17 +99,17 @@
             document.body.appendChild(div);
         },
         status: function (el) {
-            var div = this.createEls('div', {className: 'status3'});
+            var div = this.createEls('div', {className: 'status1'});
 
             this.insertAfter(el, div);
         },
         matchFiles: function (file, zone) {
-            var status3 = zone.nextSibling;
+            var status1 = zone.nextSibling;
 
             if (file.type.match(/image/) && file.type !== 'image/svg+xml') {
                 document.body.classList.add('loading');
-                status3.classList.remove('bg-success', 'bg-danger');
-                status3.innerHTML = '';
+                status1.classList.remove('bg-success', 'bg-danger');
+                status1.innerHTML = '';
 
                 var fd = new FormData();
                 fd.append('image', file);
@@ -119,9 +119,9 @@
                     typeof this.callback === 'function' && this.callback.call(this, data);
                 }.bind(this));
             } else {
-                status3.classList.remove('bg-success');
-                status3.classList.add('bg-danger');
-                status3.innerHTML = 'Invalid archive';
+                status1.classList.remove('bg-success');
+                status1.classList.add('bg-danger');
+                status1.innerHTML = 'Invalid archive';
             }
         },
         upload: function (zone) {

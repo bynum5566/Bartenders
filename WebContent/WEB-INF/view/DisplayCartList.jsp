@@ -186,55 +186,102 @@ div.panel
 						
 						<td class="sigmaTd1"  style="font-size:18px" >賣家名稱</td>
 						<td class="sigmaTd1">產品名稱</td>
-						<!-- <td class="sigmaTd1">產品單價</td> -->		<!-- 待雙層foreach完成後enable -->
+						<td class="sigmaTd1">產品單價</td>		<!-- 待雙層foreach完成後enable -->
 
 						<!--  <td class="sigmaTd1">配送類型</td>-->
 						<!-- <td>修改配送資訊</td> -->
 						<td class="sigmaTd1">產品數量</td>		<!-- 修改數量 / 產品數量 -->
 						<td class="sigmaTd1">小計</td>
-						<td class="sigmaTd1"></td>	<!-- 刪除 -->
-						<td class="sigmaTd1"></td>	<!-- 成立訂單-->
+						<td class="sigmaTd1"></td>	<!-- 刪除 ，成立訂單-->
+
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr align="center">
-						<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
-					<tr>
-						<!-- 購物車編號 -->
-						<!-- <td align="center">${Corders[current.index].orderId}</td> -->
-						<!-- 賣家名稱  -->
-						<td align="center">${company[current.index].companyName}</td>
-						<!-- 產品名稱 -->
-						<td align="center">${productData[current.index].productName}</td>
-
-						<!-- 產品單價 -->
-						<!-- <td></td>  -->		<!-- 待雙層foreach完成後enable -->
-
-						<!-- 配送方式 -->
-						<!-- <td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>  -->
+						<c:forEach items="${listOfOrder}" var="list" step="1" varStatus="current">
 						
 						
-						<!-- 修改購物車 -->
+						<tr>	<!-- 每個訂單的總結列 -->
+							<!-- 購物車編號 -->
+							<!-- <td align="center">${listOfOrder[current.index].orderId}</td> -->
+							<!-- 賣家名稱  -->
+							<td align="center">${listOfCompany[current.index].companyName}</td>
+							<!-- 產品名稱 ，第一行空著-->
+							<td align="center"></td>
+	
+							<!-- 產品單價 -->
+							<td></td>		
+	
+							<!-- 配送方式 -->
+							<!-- <td align="center">${ShippingNumToStr[listOfOrder[current.index].shipping]}</td>  -->
+							
+							
+							<!-- 修改購物車 -->
+	
+							<!-- 修改配送資訊 -->
+							<!-- 
+							<td align="center"><a
+									href="<c:url value="/ChangeCart.controller"/>?orderId=${listOfOrder[current.index].orderId}">修改配送資訊</a></td>
+							 -->
+							<td align="center"><a
+									href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${listOfOrder[current.index].orderId}"
+									>修改數量</a></td>
+	
+							<!-- 小計，第一行空著 -->
+							<td align="center"></td>
+							<!-- 刪除 -->
+							<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
+									>刪除</a>
+							</td>
 
-						<!-- 修改配送資訊 -->
-						<!-- 
-						<td align="center"><a
-								href="<c:url value="/ChangeCart.controller"/>?orderId=${Corders[current.index].orderId}">修改配送資訊</a></td>
-						 -->
-						<td align="center"><a
-								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
-								>修改數量</a></td>
 
-						<!-- 小計 -->
-						<td align="center">${Corders[current.index].amount}</td>
-						<!-- 刪除 -->
-						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								>刪除</a></td>
-						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-								>成立訂單</a></td>
+
 
 						</tr>
+						
+						
+						<tr>
+						<!-- 每個訂單的各個產品 -->
+						<c:forEach items="${listOflistOfCart[current.index]}" var="list" step="1" varStatus="current2">
+							<tr>
+								<td>
+								</td>
+								
+								<td><!-- pdId = ${listOflistOfCart[current.index][current2.index].pdId} -->
+									${listOflistOfProduct[current.index][current2.index].productName}
+								</td>
+								
+								<td><!-- 單價   -->
+									${listOflistOfCart[current.index][current2.index].checkoutPrice}
+								</td>
+								
+								<td><!-- 數量   -->
+									${listOflistOfCart[current.index][current2.index].quantity}
+								</td>
+								
+								<td><!--　小計   -->
+									${listOflistOfCart[current.index][current2.index].quantity * listOflistOfCart[current.index][current2.index].checkoutPrice}
+								</td>
+								
+								<td></td><!-- 刪除/成立訂單　 -->
+								
+
+								
+								
+							</tr>
+						</c:forEach>
+						</tr>
+						
+						<td></td>
+						<td>總金額</td>
+						<td></td>
+						<td></td>
+						<td align="center">${listOfOrder[current.index].amount}</td>
+						
+						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
+						>成立訂單</a>
+						</td>				
 					</c:forEach>
 				</tr>
 			</tbody>

@@ -90,7 +90,11 @@ public class MyFavoriteService {
 		mf.setUserId(userId);
 		mfD.addToFav(mf);
 		}else {
-			disLreL(userId, pdId);
+			String Like = myFv.getDisliked();
+			if(Like.equals("L")) {
+			}else {
+				disLreL(userId, pdId);
+			}
 		}
 	}
 	public void disLreL(int userId, String pdId) {
