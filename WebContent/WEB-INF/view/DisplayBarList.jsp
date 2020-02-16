@@ -199,10 +199,10 @@ div.panel
 							<!--	</td>	-->
 													 
 							<!-- 酒吧名稱 -->
-							<td align="center">${listOfBar[current.index].companyName}</td>
+							<td align="center" style="width:150px">${listOfBar[current.index].companyName}</td>
 					
 							
-							<td align="center">
+							<td align="center" style="width:200px">
 								<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
 								>前往酒吧產品介面</a>
 		
