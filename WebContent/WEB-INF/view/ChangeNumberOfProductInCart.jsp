@@ -23,6 +23,10 @@
 	rel="stylesheet"></link>
 	
     <style type= "text/css">	
+    
+    .sigmaBlack{
+		color: black;
+	}
 
 	.sigmaGray{
 		color: gray;
@@ -211,7 +215,7 @@ div.panel
 	<c:when test="${validDate == null}">
 					<!-- 一般   -->	
 							
-		<select name='qty'>
+		<select class="sigmaBlack" name='qty'>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
