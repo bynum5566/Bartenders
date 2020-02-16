@@ -109,6 +109,11 @@ body {
   float: left;
 }
 
+.pdNm a:link, .pdNm a:hover, .pdNm a:visited {
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
 /* add buton */
 .btn {
 	align-items: center; 

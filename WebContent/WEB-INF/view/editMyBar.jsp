@@ -177,9 +177,13 @@ a.bT:link, a.bT:hover, a.bT:visited {
 					</tr>
 
 					<tr>
-						<td id="bT" colspan="2"><a href="/Bartenders/My.Bar"> <input
-								class="bT" type="button" value="回上頁" />
-						</a> <input class="bT" type="submit" value="確認修改" /></td>
+						<td id="bT" colspan="2">
+							<a href="/Bartenders/My.Bar">
+<!-- 								<input class="bT" type="button" value="回上頁" /> -->
+								<div class="bT">回上頁</div>
+							</a>
+							<input class="bT" type="submit" value="確認修改" />
+						</td>
 					</tr>
 
 				</table>

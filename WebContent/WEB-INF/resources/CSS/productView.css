@@ -67,6 +67,11 @@ body {
 	text-align: left;
 }
 
+.pdDataMain a:link, .pdDataMain a:hover, .pdDataMain a:visited{
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
 .dtails {
 	width: 800px;
 	border-top: 5px dotted rgb(252, 243, 126, 0.5);
@@ -354,7 +359,7 @@ body {
 		width: auto;
 		margin: auto;
 	}
-	#pdPicture {
+	#pdPicture, .slides, .slide {
 		width: 230px;
 	}
 	#myFv, button.bT, .pdDataMain, .pdData {
