@@ -148,8 +148,8 @@ h2 {
 
 			if (messageJson.messageType === "onlineUser") {
 // 				alert(messageJson.data);
-				document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
-						+ messageJson.data + '</div>';
+				document.getElementById('onlineUser').innerHTML += 
+					'<div id="targetName">'+ messageJson.data + '</div>';
 			}
 
 		}
