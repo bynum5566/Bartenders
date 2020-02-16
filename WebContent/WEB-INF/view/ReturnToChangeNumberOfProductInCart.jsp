@@ -177,13 +177,10 @@ div.panel
 
 <%-- 本體，開始 --%>
 		<!-- 回到購物車 -->
-		<h2>${msg}</h2>
-<!--	<h2>${num}</h2>   -->
-
-
-
+		<h2 style="color:green">${msg}</h2>
+		<h2 style="color:white">
 			<a href="<c:url value="/DisplayCartList.controller"/>?num=${num}">回到購物車 </a> 
-	
+		</h2>
 		
 <%-- 本體，結束 --%>
         

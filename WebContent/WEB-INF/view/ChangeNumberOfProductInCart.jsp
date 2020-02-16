@@ -184,13 +184,13 @@ div.panel
 	<h2>${errorMsgOfAddToCartButton}</h2>
 		<!-- <FORM action="BuyBook.do" method="POST">  -->
 		<form>
-			<table>
+			<table border="1">
 				<thead>
 					<tr align="center">
 				<!-- 		<td>產品id</td>	-->	
-						<td>產品名稱</td>
-						<td>原購買數量</td>
-						<td>單價 </td>
+						<td style="width: 100px">產品名稱</td>
+						<td style="width: 120px">原購買數量</td>
+						<td style="width: 100px">單價 </td>
 					</tr>
 				</thead>
 				<tbody>
