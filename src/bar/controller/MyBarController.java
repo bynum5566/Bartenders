@@ -165,13 +165,15 @@ public class MyBarController {
 			@RequestParam(name = "cover3", required = false) String coverUrl3,
 			@RequestParam(name = "cover4", required = false) String coverUrl4,
 			@RequestParam(name = "cover5", required = false) String coverUrl5,
-			@RequestParam("aboutBar") String aboutBar, @RequestParam("barFb") String barFb,
-			@RequestParam("barLine") String barLine, @RequestParam("barIG") String barIg) {
+			@RequestParam("aboutBar") String aboutBar, @RequestParam("barMenu") String barMenu,
+			@RequestParam("barFb") String barFb, @RequestParam("barLine") String barLine,
+			@RequestParam("barIG") String barIg) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
 
 		mBS.updateBarPage(companyName, phone, address, logoUrl, coverUrl1, coverUrl2, coverUrl3, coverUrl4, coverUrl5,
-				aboutBar, barFb, barLine, barIg, companyId);
+				aboutBar, barMenu, barFb, barLine, barIg, companyId);
+		;
 
 		try {
 			Thread.sleep(3000);

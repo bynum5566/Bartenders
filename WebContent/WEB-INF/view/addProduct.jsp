@@ -71,16 +71,11 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<!-- <label> -->
-								<input class="bt0" id="setTt1" name="tm" type="radio" value="1" checked required
-								onfocus="showT1()">
-							<!-- </label> -->
-							<label for="setTt1">設定自動上架時間</label>
-							<!-- <label> -->
-								<br><input class="bt0" id="setTt2" name="tm"
-								type="radio" value="2" onfocus="showT2()">
-							<!-- </label>  -->
-							<label	for="setTt2">設定自動上/下架時間</label></td>
+							<input class="bt0" id="setTt1" name="tm" type="radio" value="1" checked required onfocus="showT1()">
+							<label for="setTt1">設定自動上架時間</label><br>
+							<input class="bt0" id="setTt2" name="tm" type="radio" value="2" onfocus="showT2()">
+							<label	for="setTt2">設定自動上/下架時間</label>
+						</td>
 					</tr>
 					<tr id="setA" class="sho">
 						<td class="setT1"><label>上架時間</label></td>

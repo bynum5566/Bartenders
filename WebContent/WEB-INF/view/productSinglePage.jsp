@@ -16,10 +16,6 @@
 					<h2>商品預覽</h2>
 				</div>
 		<table class="outwrap0">
-<!-- 			<tr> -->
-<!-- 				<td> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
 			<tr>
 				<td>
 					<h3>${productName}</h3>
@@ -30,15 +26,17 @@
 					<div class="flos01">
 						<div>
 							<img id="pdPicture" src="<c:out value="${pic}"/>">
-<!-- 							<img id="pdPicture" src="https://images.plurk.com/3igWGJHn8RjteL3eqyutFX.jpg"> -->
 						</div>
 					</div>
 					<div class="flos02">
-						<form action="/addToCart" method="post">
+						<form action="/Bartenders/AddProductToCart.controller" method="GET">
 							<div id="hideId" class="pdDataMain">
-								<div>商品編號: </div>
-								<input type="text"
-								 value="<c:out value="${productId}"/>" readonly="readonly">
+								<input type="text" name="PdId" value="<c:out value="${productId}"/>" readonly="readonly">
+								<input type = "number" name="PdStock" value="<c:out value="${pdStk}"/>" readonly="readonly">
+								<input type = "text" name="ProductName" value="<c:out value="${productName}"/>" readonly="readonly">
+							</div>
+							<div>
+								<h2 style="color:rgb(200,200,200)">${errorMsgOfAddToCartButton}</h2>
 							</div>
 							<div class="pdDataMain">
 								<div>
@@ -54,7 +52,7 @@
 							<div id="quant" class="pdDataMain">
 								<div>
 									購買數量:
-									<input type="number" min="1" max="<c:out value="${pdStk}"/>">
+									<input type="number" name="qty" value="1" min="1" max="<c:out value="${pdStk}"/>">
 								</div>
 							</div>
 							<div id="sold" class="pdDataMain">
@@ -66,17 +64,26 @@
 									<span id="vdTime2">${pdValD}</span>
 								</div> -->
 							</div>
-							<div id="myFv">
+							<div id="myFv" class="bt01">
 								${bT}
 								<!-- <input class="bT" type="submit" value="加入購物車+"> -->
 							</div>
 						</form>
 							<div id="pdLk">
-								<form action="/Bartenders/addMyFav" method="post">
-									<input id ="pdidckL" type="text" name="pdidck" class="pdidckLL"
-										value="<c:out value="${productId}"/>" readonly="readonly">
-									<input class="bT" type="submit" value="加入我的最愛+">
-								</form>
+<!-- 								<form action="/Bartenders/addMyFav" method="post"> -->
+<!-- 									<input id ="pdidckL" type="text" name="pdidck" class="pdidckLL" -->
+<%-- 										value="<c:out value="${productId}"/>" readonly="readonly"> --%>
+									<a href="/Bartenders/addMyFav?pdidck=<c:out value="${productId}"/>">
+										<input class="bT" type="submit" value="加入我的最愛+">
+									</a>
+									
+<!-- 									<a class="f1" href="/Bartenders/addFav.bar?cidck=500002"> -->
+<!-- 										<div> -->
+<!-- 											<input class="bT" type="image" alt="button" src="/Bartenders/images/like_icon.png" value="加入我的最愛+"> -->
+<!-- 										</div> -->
+<!-- 									</a> -->
+									<br><button style="background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" onclick="location.href = '/Bartenders/addFav.bar?cidck=500002';" class="bT"/>
+<!-- 								</form> -->
 							</div>
 					</div>
 				</td>
@@ -99,7 +106,7 @@
 		</table>
 	</div>
 	
-	<%@ include file="menu.jsp"%>
+	<%@include file="UserMenu.jsp"%>
 
 <script type="text/javascript">
 	$('#sold').hide();

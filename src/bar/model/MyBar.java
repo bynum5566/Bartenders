@@ -19,6 +19,7 @@ public class MyBar {
 	private String coverUrl4;
 	private String coverUrl5;
 	private String aboutBar;
+	private String barMenu;
 	private String barFb;
 	private String barLine;
 	private String barIg;
@@ -26,7 +27,7 @@ public class MyBar {
 	public MyBar() {
 	}
 	
-	public MyBar(int companyId, String logoUrl, String coverUrl1, String coverUrl2, String coverUrl3, String coverUrl4, String coverUrl5, String aboutBar,String barFb,String barLine,String barIg) {
+	public MyBar(int companyId, String logoUrl, String coverUrl1, String coverUrl2, String coverUrl3, String coverUrl4, String coverUrl5, String aboutBar, String barMenu, String barFb,String barLine,String barIg) {
 		this.companyId=companyId;
 		this.logoUrl=logoUrl;
 		this.coverUrl1=coverUrl1;
@@ -35,6 +36,7 @@ public class MyBar {
 		this.coverUrl4=coverUrl4;
 		this.coverUrl5=coverUrl5;
 		this.aboutBar=aboutBar;
+		this.barMenu=barMenu;
 		this.barFb=barFb;
 		this.barLine=barLine;
 		this.barIg=barIg;
@@ -112,12 +114,21 @@ public class MyBar {
 	public void setAboutBar(String aboutBar) {
 		this.aboutBar = aboutBar;
 	}
+	
+	@Column(name = "BARMENU")
+	public String getBarMenu() {
+		return barMenu;
+	}
+
+	public void setBarMenu(String barMenu) {
+		this.barMenu = barMenu;
+	}
 
 	@Column(name = "BARFB")
 	public String getBarFb() {
 		return barFb;
 	}
-
+	
 	public void setBarFb(String barFb) {
 		this.barFb = barFb;
 	}

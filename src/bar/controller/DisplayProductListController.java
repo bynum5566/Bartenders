@@ -2,31 +2,27 @@
 package bar.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.Cart;
 import bar.model.CartService;
 import bar.model.Company;
 import bar.model.CompanyService;
+import bar.model.EventsAndNews;
+import bar.model.EventsAndNewsDAO;
 import bar.model.Orders;
 import bar.model.OrdersService;
 import bar.model.ProductData;
 import bar.model.ProductDataDAO;
 import bar.model.ProductDataService;
 import bar.model.UsersService;
-import bar.model.Users;
 //<td align="center">${Corders[current.index].amount}</td>
 @Controller
 @SessionAttributes(names = { 
@@ -51,6 +47,7 @@ public class DisplayProductListController {
 	private ProductDataService productService;
 	private ProductDataDAO productDataDAO ;
 	private UsersService userService;
+	private EventsAndNewsDAO eventsAndNewsDAO;	/*載入這個酒吧的所有事件*/
 
 	public void printI(String s){
 		this.i++;
@@ -63,13 +60,16 @@ public class DisplayProductListController {
 			CartService cartService,
 			ProductDataService productService, 
 			ProductDataDAO productDataDAO,
-			UsersService userService) {
+			UsersService userService,
+			EventsAndNewsDAO eventsAndNewsDAO
+			) {
 		this.ordersService = ordersService;
 		this.companyService = comservice;
 		this.cartService = cartService;
 		this.productService = productService;
 		this.productDataDAO = productDataDAO;
 		this.userService = userService;
+		this.eventsAndNewsDAO = eventsAndNewsDAO;
 	}
 
 	public String[] getStatusNumToStr() {
@@ -96,6 +96,7 @@ public class DisplayProductListController {
 			String barAccount, 
 			Model m) {
 		//String companyAccount = "Test99999999";
+		cartService.Pf("DisplayProductList，開始");
 		
 		String companyAccount = barAccount;	//【公司】【公司帳號】
 		Company companyX = companyService.select(companyAccount);		
@@ -107,11 +108,25 @@ public class DisplayProductListController {
 		//listOfProduct.addAll(ordersService.selectUser(userId, 1));
 		CartService.printValueTypeTime("companyId",companyId    );
 		
-		/*選擇Launched的*/
-		listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));
+		/*選擇Launched的產品(一般，QR)，開始*/
+		//listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));	/*原本*/
 		
-		/*圖片，開始*/
-		/*圖片，結束*/
+		/*測試是否可用*/
+			/*找這個酒吧的一般上架商品，不含QR*/
+			//listOfProduct.addAll(productDataDAO.selectPdsLaunched(companyId));	/*測試*/
+		
+		/*找這個酒吧的一般上架商品，不含QR*/
+		listOfProduct.addAll(productDataDAO.selectPdsLaunched(companyId));
+		/*找這個酒吧的QR上架商品，不含一般*/
+		listOfProduct.addAll(productDataDAO.selectTKPdsLaunched(companyId));
+		
+		/*選擇Launched的產品(一般，QR)，結束*/
+		
+		/*載入這個酒吧的所有事件，開始*/
+		List<EventsAndNews> listOfEventOfOneBar = eventsAndNewsDAO.selectAllEN(companyId);
+		CartService.printValueTypeTime("listOfEventOfOneBar",listOfEventOfOneBar);
+		/*載入這個酒吧的所有事件，結束*/
+		
 		
 		
 		
@@ -121,10 +136,15 @@ public class DisplayProductListController {
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
+		/*Rosalie Wu的[我的最愛]按鈕會用到:companyId"*/
+		m.addAttribute("companyId", companyId); //Wu
+		m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);	/*這個酒吧的所有事件*/
 		
-		return "displayProductList";
+		CartService.Pf("DisplayProductList，結束");
+		return "DisplayProductList";
 		
 //		return "displayProductListMk2";
+		
 
 	}
 	

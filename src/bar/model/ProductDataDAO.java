@@ -25,15 +25,6 @@ public class ProductDataDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	/*ProductDataDAO的searchPds*/
-	public List<ProductData> searchPds(String keyword) {
-		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where productName like =:kWord or pdTag1 like =:kWord or pdTag2 like =:kWord or pdTag3 like =:kWord";
-		Query query = session.createQuery(hqlStr);
-		query.setParameter("kWord", keyword);
-		return (List<ProductData>) query.list();
-	}
-
 	public boolean insert(ProductData proD) {
 		Session session = sessionFactory.getCurrentSession();
 		if (proD != null) {
@@ -42,7 +33,7 @@ public class ProductDataDAO {
 		}
 		return false;
 	}
-	
+	/*找這個酒吧的一般上架商品，不含QR*/
 	public List<ProductData> selectPdsLaunched(int companyId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -98,6 +89,20 @@ public class ProductDataDAO {
 
 		return (List<ProductData>) query.list();
 	}
+	
+	public List<ProductData> searchPds(String keyword){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
+		Date date = new Date();	
+		String nowTime = sdf.format(date);
+		keyword= "%"+keyword+"%";
+		
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from ProductData where (productName like :kWord or pdTag1 like :kWord or pdTag2 like :kWord or pdTag3 like :kWord) and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("kWord",keyword);
+		query.setParameter("nowTime", nowTime);	
+		return (List<ProductData>)query.list();
+		}
 	
 	public List<ProductData> selectTop3(int companyId) {	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
@@ -295,13 +300,12 @@ public class ProductDataDAO {
 		}
 	}
 
-	public boolean launchP(String autoLaunchTime, String pdAvailable, String pdId) {
+	public boolean launchP(String autoLaunchTime, String pdId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hqlStr = "update ProductData set autoLaunchTime=:alTm, pdAvailable=:pdA where pdId=:pdId";
+			String hqlStr = "update ProductData set autoLaunchTime=:alTm where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("alTm", autoLaunchTime);
-			query.setParameter("pdA", pdAvailable);
 			query.setParameter("pdId", pdId);
 			query.executeUpdate();
 			return true;
@@ -311,13 +315,12 @@ public class ProductDataDAO {
 		return false;
 	}
 	
-	public boolean pullP(String autoPullTime, String pdAvailable, String pdId) {
+	public boolean pullP(String autoPullTime, String pdId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hqlStr = "update ProductData set autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+			String hqlStr = "update ProductData set autoPullTime=:apTm where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("apTm", autoPullTime);
-			query.setParameter("pdA", pdAvailable);
 			query.setParameter("pdId", pdId);
 			query.executeUpdate();
 			return true;
@@ -351,6 +354,7 @@ public class ProductDataDAO {
 	}
 	
 	///==================豪===
+
 	public List<ProductData> selectPds(int companyId, String pdAvailable) {//豪
 		Session session = sessionFactory.getCurrentSession();
 		String hqlStr = "from ProductData where companyId=:cId and pdAvailable=:pdA";
@@ -359,13 +363,6 @@ public class ProductDataDAO {
 		query.setParameter("pdA", pdAvailable);
 		return (List<ProductData>) query.list();
 	}
-	//public ProductData selectProductVer2(String pdId) {//豪
-	//	Session session = sessionFactory.getCurrentSession();
-	//	String hqlStr = "from ProductData where pdId=:pdId";
-	//	Query query = session.createQuery(hqlStr);
-	//	query.setParameter("pdId", pdId);
-	//	return (ProductData) query.uniqueResult();
-	//}
 
 	/////////////////////
 	

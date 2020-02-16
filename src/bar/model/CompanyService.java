@@ -43,4 +43,15 @@ public class CompanyService {
 		  return companyDAO.selectCompany(companyId);
 		 }
 	
+	// ---(吳昭蓉)-------------------------------
+	public String searchBarResult(String keyword) {
+		String res = "";
+		List<Company> comps = companyDAO.searchBar(keyword);
+		for (Company comp : comps) {
+			res = res + "<tr><td><a href=\"/Bartenders/DisplayProductList.controller?barAccount=" + comp.getAccount()
+					+ "\">" + comp.getCompanyName() + "</a></td></tr>";
+		}
+		return res;
+	}
+	
 }

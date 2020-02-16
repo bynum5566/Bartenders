@@ -32,16 +32,6 @@ public class ProductDataService {
 		this.proD = proD;
 	}
 	
-	/* ProductDataService的searchResult */
-	public String searchResult(String keyword) {
-		String res = "";
-		List<ProductData> products = pdao.searchPds(keyword);
-		for (ProductData prod : products) {
-			res = res + "";
-		}
-		return res;
-	}
-
 	public void addNewProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
 			String pdTag3, String pdDetail, String Url, String Time) {
 		try {
@@ -270,6 +260,22 @@ public class ProductDataService {
 		}
 		return Pulled;
 	}
+	
+	
+	public String searchResult(String keyword) {
+		String res = "";
+		int x = 0;
+		List<ProductData> products = pdao.searchPds(keyword);
+		for (ProductData product : products) {
+			res = res + "<a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
+					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a>";
+			if (x % 3 == 2) {
+				res = res + "</br>";
+			}
+			x++;
+		}
+		return res;
+	}
 
 	public String selectTop3Pd(int companyId) {
 		String t3 = "";
@@ -317,20 +323,18 @@ public class ProductDataService {
 		return tickets;
 	}
 
-	public boolean pdPull(String pdidckL) {
+	public boolean pdPull(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String pullT = sdf.format(date);
-		String pdAvailable = "Pulled";
-		return pdao.pullP(pullT, pdAvailable, pdidckL);
+		return pdao.pullP(pullT, pdId);
 	}
 
-	public boolean pdLaunch(String pdidckP) {
+	public boolean pdLaunch(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String launchT = sdf.format(date);
-		String pdAvailable = "Launched";
-		return pdao.launchP(launchT, pdAvailable, pdidckP);
+		return pdao.launchP(launchT, pdId);
 	}
 
 	public ProductData editThisPd(int companyId, String pdId) {

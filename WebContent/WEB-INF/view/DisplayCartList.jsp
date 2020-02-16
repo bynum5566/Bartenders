@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>所有酒吧</title>
+<title>我的購物車</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -176,145 +176,70 @@ div.panel
         <div >
 
 <%-- 本體，開始 --%>
+	<h3 style="color:white">我的購物車</h3>
+	<h3>${msg}</h3>
+		<form>
+			<table border="1">
+				<thead >
+					<tr align="center" class="sigmaGray">
+						<!-- <td>購物車編號</td> -->
+						
+						<td class="sigmaTd1"  style="font-size:18px" >賣家名稱</td>
+						<td class="sigmaTd1">產品名稱</td>
+						<!-- <td class="sigmaTd1">產品單價</td> -->		<!-- 待雙層foreach完成後enable -->
 
-		<form action="<c:url value=" 123456" />" method="post">
-		<h2>確認訂單資訊頁面</h2>
-		<!-- <h3>(購物車編號:${orderId}) </h3>  -->
-		<table>
-			<thead>
-				<tr align="center">
-					<td>產品名稱</td>
-					<td>產品單價</td>
-					<td>產品數量</td>
-					<td>產品金額</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr align="center">
-					<c:forEach items="${oneOrderCarts}" var="list" step="1" varStatus="current">
-				<tr>
+						<!--  <td class="sigmaTd1">配送類型</td>-->
+						<!-- <td>修改配送資訊</td> -->
+						<td class="sigmaTd1">產品數量</td>		<!-- 修改數量 / 產品數量 -->
+						<td class="sigmaTd1">小計</td>
+						<td class="sigmaTd1"></td>	<!-- 刪除 -->
+						<td class="sigmaTd1"></td>	<!-- 成立訂單-->
+					</tr>
+				</thead>
 
-					<c:if test="${oneOrderCarts[current.index].quantity != '0' }">
+				<tbody>
+					<tr align="center">
+						<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
+					<tr>
+						<!-- 購物車編號 -->
+						<!-- <td align="center">${Corders[current.index].orderId}</td> -->
+						<!-- 賣家名稱  -->
+						<td align="center">${company[current.index].companyName}</td>
+						<!-- 產品名稱 -->
 						<td align="center">${productData[current.index].productName}</td>
-						<td align="center">${oneOrderCarts[current.index].checkoutPrice}</td>
-						<td align="center">${oneOrderCarts[current.index].quantity}</td>
-						<td align="center">${productsPrice[current.index]}</td>
-					</c:if>
 
-				</tr>
-				<br>
-				</c:forEach>
+						<!-- 產品單價 -->
+						<!-- <td></td>  -->		<!-- 待雙層foreach完成後enable -->
 
-				</tr>
-				<tr align="center">
-					<td colspan="3">產品合計</td>
-					<td>${totalPrice}</td>
-				</tr>
-				<tr align="center">
-					<td colspan="3">運費</td>
-					<td>${ShippingNumToPrice[order.shipping]}</td>
-				</tr>
-				<tr align="center">
-					<td colspan="3">訂單總金額</td>
-					<td>${finalTotalPrice}</td>
+						<!-- 配送方式 -->
+						<!-- <td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>  -->
+						
+						
+						<!-- 修改購物車 -->
+
+						<!-- 修改配送資訊 -->
+						<!-- 
+						<td align="center"><a
+								href="<c:url value="/ChangeCart.controller"/>?orderId=${Corders[current.index].orderId}">修改配送資訊</a></td>
+						 -->
+						<td align="center"><a
+								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${Corders[current.index].orderId}"
+								>修改數量</a></td>
+
+						<!-- 小計 -->
+						<td align="center">${Corders[current.index].amount}</td>
+						<!-- 刪除 -->
+						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
+								>刪除</a></td>
+						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
+								>成立訂單</a></td>
+
+						</tr>
+					</c:forEach>
 				</tr>
 			</tbody>
-
 		</table>
-
-		</form>
-
-		<FORM action="<c:url value="/OrderOneToTwo.controller" />" method="get">
-		<h2>配送資訊</h2>
-		配送方式:
-		
-		<!-- =如果是一般商品，可以選擇配送方式，開始= -->
-
-<c:if test="${shipping == '1' or shipping == '2'}">
-	<input  name="select1" type="radio" value="1" checked required >
-	<!-- onfocus="functionName()" 用來觸發函式 -->
-	<label for="setTt1">宅配</label>
-	
-	<input name="select1" type="radio" value="2" >
-	<label	for="setTt2">超商</label>
-</c:if>
-
-<!-- 
-0	未選擇
-1	宅配
-2	超商
-3	QR票券
- -->
-		<!-- =如果是一般商品，可以選擇配送方式，結束= -->
-		
-		<c:if test="${shipping == '3' }">
-			<label>QR票券</label>
-		</c:if>
-
-		<br>
-		<label>收件人：</label>
-		<input type="text" required="required" name="input1" size="40" value="${defaultName}" />
-<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
-		<br>
-		
-		
-		<!-- 未選擇 -->
-		<c:if test="${shipping == '0' }">
-			<label>宅配地址：${defaultAddress}</label>
-			<Input type='hidden' name='address1' value="${defaultAddress}">
-			<Input type='hidden' name='address2' value="${defaultAddress}">
-			<br>
-		</c:if>		
-		
-		
-		<c:if test="${shipping == '1' }">
-			<label>宅配地址：</label>
-			<input type="text" required="required" name="address1" size="40" value="${defaultAddress}" />
-	<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
-			<br>
-		</c:if>
-
-
-		<c:if test="${shipping == '2' }">
-			<label>超商門市：</label>
-			<input type="text" required="required" name="address2" size="40" value="${defaultAddress}" />
-	<!-- 	<Input type='hidden' name='address2' value="${defaultAddress}"> -->	
-			<br>
-		</c:if>
-
-		<c:if test="${shipping == '3' }">
-			<label>QR票券</label>		<!-- 如果是QR不印地址，宅配/超商則會印地址 -->
-			<br>
-		</c:if>
-
-		<label>電話：</label>
-		<input type="text" required="required" name="input2" size="40" value="${defaultPhone}" />
-	<!--<Input type='hidden' name='input2' value='${defaultPhone}'> -->
-		<br>
-		<c:if test="${shipping == '1' }">
-			<Input type='hidden' name='address2' value='empty'>
-		</c:if>
-		<c:if test="${shipping == '2' }">
-			<Input type='hidden' name='address1' value='empty'>
-		</c:if>
-		<c:if test="${shipping == '3' }">
-			<Input type='hidden' name='address1' value='empty'>
-			<Input type='hidden' name='address2' value='empty'>
-		</c:if>
-
-		<c:if test="${shipping == '3' }">
-			<Input type='hidden' name='select1' value='${shipping}'>
-		</c:if>
-
-		
-
-		<Input type='hidden' name='orderId' value='${orderId}'>
-		<Input type='hidden' name='totalPrice' value='${totalPrice}'> <!-- 新增2020131_1634 -->
-		<Input type='hidden' name='Freight' value='${ShippingNumToPrice[order.shipping]}'> <!-- 新增2020131_1634 -->
-		<Input type='submit' value='資訊無誤，確認訂購'>
-		<p style="color:red">請注意，一經確認，即無法修改。</p>
-		</form>
-		
+	</form>
 <%-- 本體，結束 --%>
         
         </div>  <!--end content-->

@@ -274,7 +274,7 @@ public class UpdateQtyInCartController
 				String msg = "修改成功";
 				m.addAttribute("msg",msg);
 				m.addAttribute("num",cartX.getNum());
-				return "returnToChangeNumberOfProductInCart";
+				return "ReturnToChangeNumberOfProductInCart";
 				
 			
 		}
