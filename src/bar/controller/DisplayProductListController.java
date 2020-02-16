@@ -125,7 +125,8 @@ public class DisplayProductListController {
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
-		//m.addAttribute("companyId", companyId); //Wu
+		/*Rosalie Wu的[我的最愛]按鈕會用到:companyId"*/
+		m.addAttribute("companyId", companyId); //Wu
 		m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);	/*這個酒吧的所有事件*/
 		
 		CartService.Pf("DisplayProductList，結束");

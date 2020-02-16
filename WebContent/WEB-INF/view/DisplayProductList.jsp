@@ -116,7 +116,14 @@
 					</td>	<!-- 酒吧logo -->
 					<td class="sigmaTd1">地圖按鈕</td>
 					<td class="sigmaTd1" onclick="displayMenu()">Menu</td>
-					<td class="sigmaTd1"></td>
+					<!-- Rosalie Wu的我的最愛按鈕  -->	
+					<td class="sigmaTd1">
+						<button 
+						style="background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" 
+						onclick="location.href = '/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';" 
+						class="bT"> 
+						</button>
+					</td>
 					<td class="sigmaTd1"></td>
 				</tr>
 <!-- (Menu) Dialog開始 -->
@@ -329,6 +336,9 @@
 												</p><br>
 													<!--<a href="<c:url value="/AddToCartButton.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>-->
 													<a href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+													<!-- <a href="<c:url value="/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk2</a> -->
+													<!-- <a href="<c:url value="/Bartenders/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk3</a> -->
+													
 											</div>
 										</div>
 									</td>
