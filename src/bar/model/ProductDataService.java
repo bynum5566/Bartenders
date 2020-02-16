@@ -208,7 +208,7 @@ public class ProductDataService {
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<a href=\"/Bartenders/Product.View?pdId="
-					+ product.getPdId() + "\">"
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
 					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
@@ -232,7 +232,7 @@ public class ProductDataService {
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<a href=\"/Bartenders/Product.View?pdId="
-					+ product.getPdId() + "\">"
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
 					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
@@ -256,7 +256,7 @@ public class ProductDataService {
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
-					+ product.getPdId() + "\">"
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
 					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
@@ -281,7 +281,7 @@ public class ProductDataService {
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
-					+ product.getPdId() + "\">"
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
 					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
@@ -298,6 +298,10 @@ public class ProductDataService {
 		String res = "";
 		int x = 0;
 		List<ProductData> products = pdao.searchPds(keyword);
+		if(products.size()==0) {
+			res = "<tr><td><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></td></tr>";
+			return res;
+		}
 		for (ProductData product : products) {
 			res = res + "<a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
 					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a>";

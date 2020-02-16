@@ -84,9 +84,9 @@
 							</div>
 							<div class="pdDataMain">
 								<div>
-									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag1}"/>">${Tag1}</a>
-									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag2}"/>">${Tag2}</a>
-									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag3}"/>">${Tag3}</a>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag1}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag1}</a>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag2}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag2}</a>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag3}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag3}</a>
 								</div>
 							</div>
 							<div class="pdDataMain">

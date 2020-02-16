@@ -23,6 +23,10 @@
 	rel="stylesheet"></link>
 	
     <style type= "text/css">	
+    
+    .sigmaBlack{
+		color: black;
+	}
 
 	.sigmaGray{
 		color: gray;
@@ -184,13 +188,13 @@ div.panel
 	<h2>${errorMsgOfAddToCartButton}</h2>
 		<!-- <FORM action="BuyBook.do" method="POST">  -->
 		<form>
-			<table>
+			<table border="1">
 				<thead>
 					<tr align="center">
 				<!-- 		<td>產品id</td>	-->	
-						<td>產品名稱</td>
-						<td>原購買數量</td>
-						<td>單價 </td>
+						<td style="width: 100px">產品名稱</td>
+						<td style="width: 120px">原購買數量</td>
+						<td style="width: 100px">單價 </td>
 					</tr>
 				</thead>
 				<tbody>
@@ -211,7 +215,7 @@ div.panel
 	<c:when test="${validDate == null}">
 					<!-- 一般   -->	
 							
-		<select name='qty'>
+		<select class="sigmaBlack" name='qty'>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
