@@ -74,9 +74,7 @@
 									<div id="imgPlace01">
 										<img id="oriImg" src="<c:out value="${pic1}"/>" />
 									</div>
-									<input id="imgPlace02" type="text" name="cover1"
-										class="image-url" value="<c:out value="${pic1}"/>"
-										readonly="readonly" />
+									<input id="imgPlace02" type="text" name="pdImg" class="image-url" value="<c:out value="${pic1}"/>" readonly="readonly" />
 									<script type="text/javascript" src="/Bartenders/JS/imgur1.js"></script>
 									<script type="text/javascript" src="/Bartenders/JS/uploadPd1-1.js"></script>
 								</div>
@@ -87,7 +85,7 @@
 									<div id="imgPlace03">
 										<img id="oriImg" src="<c:out value="${pic2}"/>" />
 									</div>
-									<input id="imgPlace04" type="text" name="cover2" class="image-url" value="<c:out value="${pic2}"/>" readonly="readonly" />
+									<input id="imgPlace04" type="text" name="pdImg2" class="image-url" value="<c:out value="${pic2}"/>" readonly="readonly" />
 									<script type="text/javascript" src="/Bartenders/JS/imgur2.js"></script>
 									<script type="text/javascript" src="/Bartenders/JS/uploadPd2-1.js"></script>
 								</div>
@@ -98,9 +96,7 @@
 									<div id="imgPlace05">
 										<img id="oriImg" src="<c:out value="${pic3}"/>" />
 									</div>
-									<input id="imgPlace06" type="text" name="cover3"
-										class="image-url" value="<c:out value="${pic3}"/>"
-										readonly="readonly" />
+									<input id="imgPlace06" type="text" name="pdImg3" class="image-url" value="<c:out value="${pic3}"/>" readonly="readonly" />
 									<script type="text/javascript" src="/Bartenders/JS/imgur3.js"></script>
 									<script type="text/javascript" src="/Bartenders/JS/uploadPd3-1.js"></script>
 								</div>
@@ -130,7 +126,8 @@
 					<tr>
 						<td colspan="2" id="bT">
 							<a href="/Bartenders/Dashboard.Products">
-								<input class="bT" type="button" value="回商品管理"/>
+<!-- 								<input class="bT" type="button" value="回商品管理"/> -->
+								<div  class="bT">回商品管理</div>
 							</a>
 							<input class="bT" type="submit" value="修改商品"/>
 						</td>

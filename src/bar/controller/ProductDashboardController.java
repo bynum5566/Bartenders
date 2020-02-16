@@ -129,7 +129,7 @@ public class ProductDashboardController {
 
 		return "productViewPage2";
 	}
-//*****************************************************************
+
 	@RequestMapping(value = "/Product.View", method = RequestMethod.GET)
 	public String showViewPD(@RequestParam("pdId") String pdId) {
 		ProductData prod = pds.select(pdId);
@@ -191,7 +191,7 @@ public class ProductDashboardController {
 		
 		return "productViewPage2";
 	}
-//	*****************************************************************
+
 	@RequestMapping(value = "/Dashboard.Products", method = RequestMethod.GET)
 	public String showDashboard(@ModelAttribute(name="Caccount") String account) {
 

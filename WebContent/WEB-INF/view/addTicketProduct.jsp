@@ -109,8 +109,14 @@
 					</tr>
 					<tr>
 						<td colspan="2" id="bT">
-							<button onclick="location.href = '/Bartenders/Dashboard.TkProducts';" class="bT">回上頁</button>
-							<button class="bT" onClick="history.go(0);">重填</button>
+							<a href="/Bartenders/Dashboard.TkProducts">
+<!-- 								<button onclick="location.href = '/Bartenders/Dashboard.TkProducts';" class="bT">回上頁</button> -->
+								<div class="bT">回上頁</div>
+							</a>
+							<a href="/Bartenders/TicketProduct.Add">
+<!-- 								<button class="bT" onClick="history.go(0);">重填</button> -->
+								<div class="bT">重填</div>
+							</a>
 							<input class="bT" type="submit" value="新增票券" />
 						</td>
 					</tr>

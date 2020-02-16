@@ -105,8 +105,14 @@
 					</tr>
 					<tr>
 						<td colspan="2" id="bT">
-							<button onclick="location.href = '/Bartenders/Dashboard.Products';" class="bT" >回上頁</button>
-							<button class="bT" onClick="history.go(0);">重填</button>
+							<a href="/Bartenders/Dashboard.Products">
+<!-- 								<button onclick="location.href = '/Bartenders/Dashboard.Products';" class="bT" >回上頁</button> -->
+								<div class="bT">回上頁</div>
+							</a>
+							<a href="/Bartenders/Product.Add">
+<!-- 								<button class="bT" onClick="history.go(0);">重填</button> -->
+								<div class="bT">重填</div>
+							</a>
 							<input class="bT" type="submit" value="新增商品" />
 						</td>
 					</tr>
