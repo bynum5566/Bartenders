@@ -6,9 +6,9 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
 .slides {
     padding: 0;
 /*     width: 609px; */
-    width: 350px;
-    height: auto;
 /*     height: 420px; */
+    width: 350px;
+    max-height: 210px;
     display: block;
     margin: 0 auto;
     position: relative;
@@ -33,7 +33,7 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
 /*     width: 609px; */
 /*     height: 420px; */
 	width: 350px;
-    height: auto;
+    max-height: 210px;
     display: block;
     position: absolute;
 
@@ -48,12 +48,12 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
 }
 
 .nav label {
-    width: 200px;
-    height: 100%;
+    width: 50px;
+    height: 50%;
     display: none;
     position: absolute;
 
-	  opacity: 0;
+	opacity: 0;
     z-index: 9;
     cursor: pointer;
 
