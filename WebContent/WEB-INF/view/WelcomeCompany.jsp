@@ -5,10 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<meta name="google-signin-client_id"
-	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-
 <title>Welcome</title>
 
 <style type="text/css">
@@ -17,7 +13,7 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: top;
-	background-image: url(/Bartenders/images/bg4.jpg);
+	background-image: url(/Bartenders/images/bg16.png);
 }
 
 .welcome {
@@ -27,51 +23,25 @@ body {
 	text-align: center;
 	margin: auto;
 	color: white;
+	padding: 117px;
+}
+#logo{
+position: relative;
+width: 150px; 
+margin: 20px;
 }
 </style>
 
 </head>
 <body>
-	<img src="img/Logo.png" style="width: 150px; margin: 20px" />
 	<div class="welcome">
+		<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
 		<h1>
 			歡迎回來，${CName}。
-			<!-- 		<button onclick="signOut();">Sign out</button> -->
-			<%-- 		<a href="<c:url value="/Dashboard.Products" />">123</a> --%>
 		</h1>
 	</div>
 
-	<!-- 		 <h1> -->
-	<%-- 	  <a href="<c:url value="/companyOrder.controller"/>">CompanyOrder</a> --%>
-	<!-- 	 </h1> -->
-
-	<!--  <h1> -->
-	<%--   <a href="<c:url value="/salesReport.controller"/>">SalesReport</a> --%>
-	<!--  </h1> -->
-
 	<%@ include file="menu.jsp"%>
 
-
-
-	<script type="text/javascript">
-	  function signOut() {
-			gapi.auth2.init().then( () => {
-		    var auth2 = gapi.auth2.getAuthInstance();
-		    auth2.signOut().then(function () {
-		      console.log('User signed out.');
-		   		});
-			})
-			document.location.href="http://localhost:8080/Bartenders/logout";
-		  }
-		  
-		  function onLoad() {
-		      gapi.load('auth2', function() {
-		        gapi.auth2.init();
-		      });
-		    }
-	</script>
-
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
-		async defer></script>
 </body>
 </html>

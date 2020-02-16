@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>精選酒吧</title>
+<title>回到訂單頁面</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -176,43 +176,15 @@ div.panel
         <div >
 
 <%-- 本體，開始 --%>
-
-
-	<h3 style="color:white">精選酒吧</h3>
-	<h3>${msg}</h3>
+		<!-- 回到酒吧頁面 -->
+		<h2>${msg}</h2>
 		<form>
-			<table border="1">
-				<thead>
-					<tr align="center" class="sigmaGray">
-				<!-- 	<td> 酒吧編號 </td>	 -->
-						<td class="sigmaTd1"> 酒吧名稱 </td>
-						<td class="sigmaTd1"> </td>	<!-- <td>前往商品介面</td> -->
-					</tr>
-				</thead>
-				<tbody>
-					<tr align="center">								
-						<c:forEach items="${listOfBar}" var="list" step="1" varStatus="current">
-							<tr>
-							<!-- 酒吧編號 -->	
-							<!--	<td align="center">	 -->
-							<!--	${listOfBar[current.index].companyId} -->		<!-- id > companyId -->
-							<!--	</td>	-->
-													 
-							<!-- 酒吧名稱 -->
-							<td align="center">${listOfBar[current.index].companyName}</td>
-					
-							
-							<td align="center">
-								<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
-								>前往酒吧產品介面</a>
-		
-							</td>		
-						</tr>
-					</c:forEach>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+			<h2>
+				<!--<a href="<c:url value="/DisplayProductList.controller"/>">回到酒吧頁面 </a>--> 
+				<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${barAccount}">回到酒吧 </a>
+				<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a>
+			</h2> 
+		</form> 
 <%-- 本體，結束 --%>
         
         </div>  <!--end content-->

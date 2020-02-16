@@ -323,20 +323,18 @@ public class ProductDataService {
 		return tickets;
 	}
 
-	public boolean pdPull(String pdidckL) {
+	public boolean pdPull(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String pullT = sdf.format(date);
-		String pdAvailable = "Pulled";
-		return pdao.pullP(pullT, pdAvailable, pdidckL);
+		return pdao.pullP(pullT, pdId);
 	}
 
-	public boolean pdLaunch(String pdidckP) {
+	public boolean pdLaunch(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String launchT = sdf.format(date);
-		String pdAvailable = "Launched";
-		return pdao.launchP(launchT, pdAvailable, pdidckP);
+		return pdao.launchP(launchT, pdId);
 	}
 
 	public ProductData editThisPd(int companyId, String pdId) {

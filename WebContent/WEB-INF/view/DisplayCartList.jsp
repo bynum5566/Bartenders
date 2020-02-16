@@ -186,7 +186,7 @@ div.panel
 						
 						<td class="sigmaTd1"  style="font-size:18px" >賣家名稱</td>
 						<td class="sigmaTd1">產品名稱</td>
-						<td class="sigmaTd1">產品單價</td>
+						<!-- <td class="sigmaTd1">產品單價</td> -->		<!-- 待雙層foreach完成後enable -->
 
 						<!--  <td class="sigmaTd1">配送類型</td>-->
 						<!-- <td>修改配送資訊</td> -->
@@ -209,7 +209,7 @@ div.panel
 						<td align="center">${productData[current.index].productName}</td>
 
 						<!-- 產品單價 -->
-						<td></td>
+						<!-- <td></td>  -->		<!-- 待雙層foreach完成後enable -->
 
 						<!-- 配送方式 -->
 						<!-- <td align="center">${ShippingNumToStr[Corders[current.index].shipping]}</td>  -->

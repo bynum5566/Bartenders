@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<div class="flos02">
-						<form action="/addMyFav" method="post">
+<!-- 						<form action="/addMyFav" method="post"> -->
 							<div id="hideId" class="pdDataMain">
 								<div>商品編號: </div>
 								<input type="text" value="<c:out value="${productId}"/>" readonly="readonly">
@@ -62,12 +62,14 @@
 							</div>
 							<div>
 								<div id="myFv">
-									<input id="bT" class="bT" type="submit" value="加入購物車+">
+									<button class="bT">加入購物車+</button>
+<!-- 									<input id="bT" class="bT" type="button" value="加入購物車+"> -->
 								</div>
 							</div>
-						</form>
+<!-- 						</form> -->
 							<div>
-								<input class="bT" type="submit" value="加入我的最愛+">
+								<button class="bT">加入我的最愛+</button>
+<!-- 								<input class="bT" type="button" value="加入我的最愛+"> -->
 							</div>
 					</div>
 				</td>

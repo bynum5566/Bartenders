@@ -9,11 +9,12 @@
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
 <title>User Page</title>
 
 <style type="text/css">
@@ -262,9 +263,24 @@ img {
 	width: 100%;
 }
 
-input[type=search] {
+input[type=text] {
 	font-size: 70%;
-	margin-top: 20px;
+	margin: 10px auto;
+	padding: 10px;
+	line-height: 18px;
+	border-radius: 3px;
+	border-color: transparent;
+	background-color: rgb(12, 10, 10, 0.85);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
+	border: none;
+	color: rgb(198, 220, 241);
+}
+
+input[type=text]:focus {
+	color: rgb(198, 220, 241);
+	outline: none;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 5px rgb(252, 243, 126);
 }
 
 .css_button {
@@ -309,26 +325,25 @@ input[type=search] {
 	position: relative;
 }
 
-
 .ml9 {
-  position: relative;
-  font-weight: bold;
-  font-size: 30px;
+	position: relative;
+	font-weight: bold;
+	font-size: 30px;
 }
 
 .ml9 .text-wrapper {
-  position: relative;
-  display: inline-block;
-  padding-top: 0.2em;
-  padding-right: 0.05em;
-  padding-bottom: 0.1em;
-  overflow: hidden;
+	position: relative;
+	display: inline-block;
+	padding-top: 0.2em;
+	padding-right: 0.05em;
+	padding-bottom: 0.1em;
+	overflow: hidden;
 }
 
 .ml9 .letter {
-  transform-origin: 50% 100%;
-  display: inline-block;
-  line-height: 1em;
+	transform-origin: 50% 100%;
+	display: inline-block;
+	line-height: 1em;
 }
 </style>
 
@@ -352,8 +367,7 @@ input[type=search] {
 		<div id="nav-content" tabindex="0">
 			<ul>
 				<li><a href="#0">會員中心</a></li>
-				<!--<li><a href=<c:url value="/DisplayProductList.controller"/>>搜尋酒吧</a></li>-->
-				<li><a href=<c:url value="/DisplayBarList.controller"/>>搜尋酒吧</a></li>
+				<li><a href=<c:url value="/DisplayBarList.controller"/>>精選酒吧</a></li>
 				<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
@@ -368,34 +382,43 @@ input[type=search] {
 
 	<main>
 		<div class="content">
-		<h2 align="center">
-		<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
-		</h2>
+			<h2 align="center">
+				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
+			</h2>
 			<h2 class="ml9" align="center">
-				<span class="text-wrapper">
-				<span class="letters">歡迎回來~~${userName},今天想喝甚麼呢?</span>
+				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName},今天想喝甚麼呢?</span>
 				</span>
 			</h2>
 			<br>
 			<div id="tabs">
 				<ul>
-					<li><a href="#tabs-1">Search Bar</a></li>
-					<li><a href="#tabs-2">Search Alcohol</a></li>
+					<li><a href="#tabs-1">Bar</a></li>
+					<li><a href="#tabs-2">Alcohol</a></li>
 				</ul>
-				<div id="tabs-1">
-					<div class="showSearch" id="sBarf" align="center">
-						<form action="/Bartenders/search.Bar" method="GET">
-							<input type="text" size="45" name="KWord" id="sBar"><br>
-							<input class="css_button" type="submit" value="Bar" />
-						</form>
+				<div id="content">
+					<div id="tabs-1">
+						<div class="showSearch" id="sBarf" align="center">
+							<form action="/Bartenders/search.Bar" method="GET">
+								<table class="searchbar">
+									<tr class="searchbar">
+										<td class="searchbar"><input type="text" size="45" name="KWord" id="sBar"></td>
+										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+									</tr>
+								</table>
+							</form>
+						</div>
 					</div>
-				</div>
-				<div id="tabs-2">
-					<div class="hideSearch" id="sAlcf" align="center">
-						<form action="/Bartenders/search.Product" method="GET">
-							<input type="text" size="45" name="keyword" id="sAlc">
-							<input class="css_button" type="submit" value="Alcohol" />
-						</form>
+					<div id="tabs-2">
+						<div class="hideSearch" id="sAlcf" align="center">
+							<form action="/Bartenders/search.Product" method="GET">
+								<table class="searchbar">
+									<tr class="searchbar">
+										<td class="searchbar"><input type="text" size="45" name="keyword" id="sAlc"></td>
+										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+									</tr>
+								</table>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -403,7 +426,7 @@ input[type=search] {
 		</div>
 	</main>
 
-
+	<script type="text/javascript" src="/Bartenders/JS/forTabs.js"></script>
 	<script type="text/javascript">
 	//Logout
 	function signOut() {
@@ -426,7 +449,7 @@ input[type=search] {
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 //Wrap every letter in a span
 var textWrapper = document.querySelector('.ml9 .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");

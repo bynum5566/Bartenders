@@ -119,6 +119,7 @@ public class CheckLogin {
 	@RequestMapping(path = { "/search.Bar" }, method = { RequestMethod.GET })
 	public String searchCompany(@RequestParam(name = "KWord") String keyword, Model m ) {
 		String res = companyService.searchBarResult(keyword);
+		m.addAttribute("kWord", keyword);
 		m.addAttribute("barRes", res);
 		return "searchBarResult";
 	}
