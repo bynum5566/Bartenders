@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
+
+<!-- ----------------------------------------------↓網頁title icon複製這句link -->
+    <link rel="icon" href="img/smallLogo.ico" type="image/x-icon" / >
+<!-- ----------------------------------------------↑網頁title icon複製這句link -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,72 +60,156 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<c:url value="/UcheckLogin.controller" />" method="post">
-          <div class="form-group row">
-            <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
-            <div class="col-10 input_bgg">
-              <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
-              <%-- ${errors.account} --%>
-            </div>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link text-dark active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">一般會員</a>
+            <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">酒吧專區</a>
           </div>
-          <div class="form-group row">
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="p-2"></div>
+        <!-- ----------------------------------------------一般會員 -->
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">        
+            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
+              <div class="col-10 input_bgg">
+                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
+              </div>
+            </div>
+            <div class="form-group row">
+              
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
+              <div class="col-10">
+                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+              </div>
+            </div>
+         
+                 <div class="col-12 p-0 ">
+                 <div class="row">
+  <div class="col-sm-7 dis480">
+  <!--     <button class="text-center loginBtn loginBtn--facebook">
+        Facebook
+      </button> -->
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      <!-- class="text-center loginBtn loginBtn--google" -->
+        Google
+      </div>
+      <br>
+      <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
+        酒吧用戶
+      </a> -->
+      <br>
+      <a href="/Bartenders/ResetPassword" style="padding: 10px; color:#343a40;" class="login text-center loginBtn" >
+        忘記密碼
+      </a>
+  </div>
+                  <div class="col-sm-5 text-right">       
+                <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
+                <button value="submit" class="btn btn-dark ">送出</button>
+                  </div>
+                 </div>
+                 <div class="display480">
+  <!--                 <div class="col-12  p-0">
+                    <button class="text-center col-12 loginBtn loginBtn--facebook">
+                      Facebook
+                    </button></div> -->
+                    <!-- <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+               酒吧用戶
+              </button></div> -->
+
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                    Google &nbsp;
+                  </div></div>
+                  <div class="col-12 p-0 mt-1">
+                    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
+                        忘記密碼
+                    </button></div>
+              </div>
+                 </div>
             
-            <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
-            <div class="col-10">
-              <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
-              <%-- ${errors.password} --%>
+            </form> 
+            
+            <div class="p-2"></div>
+            <div class="modal-footer">
+              <a href="/Bartenders/Register">還沒有帳號? 點我申請</a>
             </div>
           </div>
-        <!-- </form> --> 
-               <div class="col-12 p-0 ">
-               <div class="row">
-<div class="col-sm-7 dis480">
-<!--     <button class="text-center loginBtn loginBtn--facebook">
-      Facebook
-    </button> -->
-    <div class="g-signin2" data-onsuccess="onSignIn">
-    <!-- class="text-center loginBtn loginBtn--google" -->
-      Google
-    </div>
-    <br>
-    <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
-      酒吧用戶
-    </a>
-    <br>
-    <a href="/Bartenders/ResetPassword" style="padding: 10px" class="login text-center loginBtn" >
-      忘記密碼
-    </a>
-</div>
-                <div class="col-sm-5 text-right">       
-              <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
-              <button value="submit" class="btn btn-dark ">送出</button>
-             <%--  ${msg} --%>
-                </div>
-               </div>
-               <div class="display480">
-<!--                 <div class="col-12  p-0">
-                  <button class="text-center col-12 loginBtn loginBtn--facebook">
-                    Facebook
-                  </button></div> -->
-                  <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
-     				酒吧用戶
-    			  </button></div>
-    			  <div class="col-12  p-0">
-    			  <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
-      			    忘記密碼
-    			  </button></div>
-                <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
-                  Google &nbsp;
-                </div></div>
+        <!-- ----------------------------------------------酒吧專區 -->
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <form action="<c:url value="/CcheckLogin.controller" />" method="post">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
+              <div class="col-10 input_bgg">
+                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="companyAccount">
+              </div>
             </div>
-               </div>
-                </form>
+            <div class="form-group row">
+              
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
+              <div class="col-10">
+                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="companyPwd">
+              </div>
+            </div>
+         
+          
+                 <div class="col-12 p-0 ">
+                 <div class="row">
+  <div class="col-sm-7 dis480">
+  <!--     <button class="text-center loginBtn loginBtn--facebook">
+        Facebook
+      </button> -->
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      <!-- class="text-center loginBtn loginBtn--google" -->
+        Google
+      </div>
+      <br>
+      <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
+        酒吧用戶
+      </a> -->
+      <br>
+      <a href="/Bartenders/ResetCompanyPassword" style="padding: 10px; color:#343a40;" class="login text-center loginBtn" >
+        忘記密碼
+      </a>
+  </div>
+                  <div class="col-sm-5 text-right">       
+                <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
+                <button value="submit" class="btn btn-dark ">送出</button>
+                  </div>
+                 </div>
+                 <div class="display480">
+  <!--                 <div class="col-12  p-0">
+                    <button class="text-center col-12 loginBtn loginBtn--facebook">
+                      Facebook
+                    </button></div> -->
+                    <!-- <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+               酒吧用戶
+              </button></div> -->
+
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                    Google &nbsp;
+                  </div></div>
+                  <div class="col-12  p-0 mt-1">
+                    <button onclick="location.href='/Bartenders/ResetCompanyPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">忘記密碼
+                    </button></div>
+              </div>
+                 </div>
+                 
+           </form>
+            
+            <div class="p-2"></div>
+            <div class="modal-footer">
+              <a href="/Bartenders/CRegister">還沒有帳號? 點我申請</a>
+            </div>
+          </div>
+        
+        </div>
+
                 
                 
       </div>
-      <div class="modal-footer">
-        <a href="/Bartenders/Register">還沒有帳號? 點我申請</a>
-      </div>
+
     </div>
   </div>
 </div>
@@ -155,8 +244,9 @@
                 <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">會員登入</button>
                 <p style="color:red;">
                 ${errors.account}
-				${errors.password}
-                ${msg}</p>
+			        	${errors.password}
+                ${msg}
+              </p>
                 <p><a href="/Bartenders/Register">還沒有帳號?</a></p>
               </div>
               <h5>準備啟程</h5>
@@ -187,7 +277,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <button class="login" data-toggle="modal" data-target="#exampleModalCenter1">討論區</button>
+              <a href="/Bartenders/messageBoardShow.controller"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">討論區</button></a>
               <p>
             </div>
             <h5>前進討論天地!!</h5>
@@ -219,7 +309,7 @@
             </div>
             <div class="carousel-caption d-none d-md-block">
               <div class="loginbox2">
-                <button class="login" onclick="location.href='DisplayBarList.controller'" data-toggle="modal" data-target="#exampleModalCenter1">即時聊天</button>
+               <a href="/Bartenders/room.chat"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">即時聊天</button></a>
           
                 <p>
               </div>
@@ -242,76 +332,149 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<c:url value="/UcheckLogin.controller" />" method="post">
-          <div class="form-group row">
-            <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
-            <div class="col-10 input_bgg">
-              <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
-              <%-- ${errors.account} --%>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link text-dark active" id="nav-home-tab" data-toggle="tab" href="#nav-home2" role="tab" aria-controls="nav-home" aria-selected="true">一般會員</a>
+            <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2" role="tab" aria-controls="nav-profile" aria-selected="false">酒吧專區</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="p-2"></div>
+        <!-- ----------------------------------------------一般會員 -->
+          <div class="tab-pane fade show active" id="nav-home2" role="tabpanel" aria-labelledby="nav-home-tab">        
+            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
+              <div class="col-10 input_bgg">
+                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
+              </div>
+            </div>
+            <div class="form-group row">
+              
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
+              <div class="col-10">
+                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+              </div>
+            </div>
+         
+                 <div class="col-12 p-0 ">
+                 <div class="row">
+  <div class="col-sm-7 dis480">
+  <!--     <button class="text-center loginBtn loginBtn--facebook">
+        Facebook
+      </button> -->
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      <!-- class="text-center loginBtn loginBtn--google" -->
+        Google
+      </div>
+      <br>
+      <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
+        酒吧用戶
+      </a> -->
+      <br>
+      <a href="/Bartenders/ResetPassword" style="padding: 10px; color:#343a40;" class="login text-center loginBtn" >
+        忘記密碼
+      </a>
+  </div>
+                  <div class="col-sm-5 text-right">       
+                <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
+                <button value="submit" class="btn btn-dark ">送出</button>
+                  </div>
+                 </div>
+                 <div class="display480">
+  <!--                 <div class="col-12  p-0">
+                    <button class="text-center col-12 loginBtn loginBtn--facebook">
+                      Facebook
+                    </button></div> -->
+                    <!-- <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+               酒吧用戶
+              </button></div> -->
+
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                    Google &nbsp;
+                  </div></div>
+                  <div class="col-12 p-0 mt-1">
+                    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
+                        忘記密碼
+                    </button></div>
+              </div>
+                 </div>
+            </form>
+            <div class="p-2"></div>
+            <div class="modal-footer">
+              <a href="/Bartenders/Register">還沒有帳號? 點我申請</a>
             </div>
           </div>
-          <div class="form-group row">
-            
-            <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
-            <div class="col-10">
-              <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
-              <%-- ${errors.password} --%>
+        <!-- ----------------------------------------------酒吧專區 -->
+          <div class="tab-pane fade" id="nav-profile2" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <form action="<c:url value="/CcheckLogin.controller" />" method="post">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
+              <div class="col-10 input_bgg">
+                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="companyAccount">
+              </div>
+            </div>
+            <div class="form-group row">
+              
+              <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
+              <div class="col-10">
+                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="companyPwd">
+              </div>
+            </div>
+          
+                 <div class="col-12 p-0 ">
+                 <div class="row">
+  <div class="col-sm-7 dis480">
+  <!--     <button class="text-center loginBtn loginBtn--facebook">
+        Facebook
+      </button> -->
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      <!-- class="text-center loginBtn loginBtn--google" -->
+        Google
+      </div>
+      <br>
+      <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
+        酒吧用戶
+      </a> -->
+      <br>
+      <a href="/Bartenders/ResetCompanyPassword" style="padding: 10px; color:#343a40;" class="login text-center loginBtn" >
+        忘記密碼
+      </a>
+  </div>
+                  <div class="col-sm-5 text-right">       
+                <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
+                <button value="submit" class="btn btn-dark ">送出</button>
+                  </div>
+                 </div>
+                 <div class="display480">
+  <!--                 <div class="col-12  p-0">
+                    <button class="text-center col-12 loginBtn loginBtn--facebook">
+                      Facebook
+                    </button></div> -->
+                    <!-- <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
+               酒吧用戶
+              </button></div> -->
+
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                    Google &nbsp;
+                  </div></div>
+                  <div class="col-12  p-0 mt-1">
+                    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">忘記密碼
+                    </button></div>
+              </div>
+                 </div>
+            </form>
+            <div class="p-2"></div>
+            <div class="modal-footer">
+              <a href="/Bartenders/CRegister">還沒有帳號? 點我申請</a>
             </div>
           </div>
         
-               <div class="col-12 p-0 ">
-               <div class="row">
-<div class="col-sm-7 dis480">
-<!--     <button class="text-center loginBtn loginBtn--facebook">
-      Facebook
-    </button> -->
-    <div class="g-signin2" class="text-center loginBtn loginBtn--google" data-onsuccess="onSignIn">
-      Google
-    </div>
-    <button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
-      酒吧用戶
-    </button>
-    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
-      忘記密碼
-    </button>
-</div>
-                <div class="col-sm-5 text-right">
-                            
-              <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
-              <button value="submit" class="btn btn-dark ">送出</button>
-              <%-- ${msg} --%>
-                </div>
-               </div>
-               
-                       
-                 </form>
-               
-               
-               
-               <div class="display480">
-                <!-- <div class="col-12  p-0"> -->
-<!--                   <button class="text-center col-12 loginBtn loginBtn--facebook">
-                    Facebook
-                  </button></div> -->
-                <div class="col-12  p-0 mt-1"> <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
-                  Google &nbsp;
-                </div></div>
-                <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
-      			酒吧用戶
-    			</button></div>
-    			<div class="col-12  p-0"><button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
-      			忘記密碼
-    			</button></div>
+        </div>
 
-
-            </div>
-               </div>
-      </div>
-      
-      
-      
-      <div class="modal-footer">
-        <a href="/Bartenders/Register">還沒有帳號? 點我申請</a>
+                
+                
       </div>
     </div>
   </div>
@@ -371,7 +534,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <button class="login" onclick="location.href='要前往的網頁連結'" data-toggle="modal" data-target="#exampleModalCenter1">地圖搜尋</button>
+              <a href="/Bartenders/XXX"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">地圖搜尋</button></a>
               <p>
             </div>
             <h5>迷路了嗎？</h5>
@@ -399,8 +562,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-            	<!-- "location.href='要前往的網頁連結'" -->
-              <button class="login" data-toggle="modal" onclick="location.href='要前往的網頁連結'" data-target="#exampleModalCenter1">搜尋酒吧</button>
+              <a href="/Bartenders/DisplayBarList.controller"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">搜尋酒吧</button></a>
               <p>
             </div>
             <h5>腦中靈光一閃？</h5>

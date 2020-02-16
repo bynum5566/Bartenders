@@ -103,7 +103,7 @@ public class TicketQRcontroller {
 	}
 	
 	@RequestMapping(path = "/chkQR", method = RequestMethod.GET)
-	public String chkQR(HttpServletRequest hsRequest) throws ParseException {
+	public String chkQR(HttpServletRequest hsRequest, Model m) throws ParseException {
 		Date toDay = new Date();   
 		System.out.println("toDay="+toDay);
 
@@ -134,7 +134,7 @@ public class TicketQRcontroller {
     		}
     		return "invalidQR";
     	}else {
-    		hsRequest.setAttribute("msg", "請以發行本票券之酒吧經營者身分登入，以利審核此票券!");
+    		m.addAttribute("msg", "請以票券發行用戶登入以利驗票");
     		return "index";
     	}
 	}
