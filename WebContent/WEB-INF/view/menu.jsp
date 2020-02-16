@@ -20,7 +20,8 @@
 		</div>
 		<div id="nav-content" tabindex="0">
 			<ul>
-				<li><a class="menu" href="/Bartenders/My.Bar">我的Bar</a></li>
+<!-- 				<li><a class="menu" href="/Bartenders/My.Bar">我的Bar</a></li> -->
+				<li><a class="menu" href="/Bartenders/DisplayProductList.controller">我的Bar</a></li>
 				<li><a class="menu" href="/Bartenders/Bar.edit">編輯Bar</a></li>
 				<li><a class="menu" href="/Bartenders/Product.Add">新增商品+</a></li>
 				<li><a class="menu" href="/Bartenders/TicketProduct.Add">新增票券+</a></li>

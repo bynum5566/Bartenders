@@ -93,7 +93,25 @@ public class MyFavoriteController {
 
 			if ((a == true && b == true && c == false) || (a == true && b == false && c == true)) {
 				request.setAttribute("productName", prod.getProductName());
-				request.setAttribute("pic", prod.getProductImageUrl());
+				request.setAttribute("pic1", prod.getProductImageUrl());
+				if(prod.getProductImageUrl2()==null || prod.getProductImageUrl2().length()<1) {
+					request.setAttribute("pic2", prod.getProductImageUrl());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}else {
+					request.setAttribute("pic2", prod.getProductImageUrl2());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}
+				request.setAttribute("Tag1", prod.getPdTag1());
+				request.setAttribute("Tag2", prod.getPdTag2());
+				request.setAttribute("Tag3", prod.getPdTag3());
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -103,7 +121,25 @@ public class MyFavoriteController {
 				return "productSinglePage";
 			} else {
 				request.setAttribute("productName", prod.getProductName());
-				request.setAttribute("pic", prod.getProductImageUrl());
+				request.setAttribute("pic1", prod.getProductImageUrl());
+				if(prod.getProductImageUrl2()==null || prod.getProductImageUrl2().length()<1) {
+					request.setAttribute("pic2", prod.getProductImageUrl());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}else {
+					request.setAttribute("pic2", prod.getProductImageUrl2());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}
+				request.setAttribute("Tag1", prod.getPdTag1());
+				request.setAttribute("Tag2", prod.getPdTag2());
+				request.setAttribute("Tag3", prod.getPdTag3());
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -117,7 +153,25 @@ public class MyFavoriteController {
 			boolean a = pds.checkTime(ALT);
 			if (a) {
 				request.setAttribute("productName", prod.getProductName());
-				request.setAttribute("pic", prod.getProductImageUrl());
+				request.setAttribute("pic1", prod.getProductImageUrl());
+				if(prod.getProductImageUrl2()==null || prod.getProductImageUrl2().length()<1) {
+					request.setAttribute("pic2", prod.getProductImageUrl());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}else {
+					request.setAttribute("pic2", prod.getProductImageUrl2());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}
+				request.setAttribute("Tag1", prod.getPdTag1());
+				request.setAttribute("Tag2", prod.getPdTag2());
+				request.setAttribute("Tag3", prod.getPdTag3());
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -127,7 +181,22 @@ public class MyFavoriteController {
 				return "productSinglePage";
 			} else {
 				request.setAttribute("productName", prod.getProductName());
-				request.setAttribute("pic", prod.getProductImageUrl());
+				request.setAttribute("pic1", prod.getProductImageUrl());
+				if(prod.getProductImageUrl2()==null || prod.getProductImageUrl2().length()<1) {
+					request.setAttribute("pic2", prod.getProductImageUrl());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}else {
+					request.setAttribute("pic2", prod.getProductImageUrl2());
+					if(prod.getProductImageUrl3()==null || prod.getProductImageUrl3().length()<1) {
+						request.setAttribute("pic3", prod.getProductImageUrl());
+					}else {
+						request.setAttribute("pic3", prod.getProductImageUrl3());
+					}
+				}
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());

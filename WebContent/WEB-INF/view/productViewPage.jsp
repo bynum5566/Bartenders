@@ -6,41 +6,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css">
-<noscript><link rel="stylesheet" href="/Bartenders/CSS/noscript.css" /></noscript>
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forSlideShow.css">
 <title>Bartender- Preview ${productName}</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
 <body>
 	<div class="outw">
-				<div>
-					<h2>商品預覽</h2>
-				</div>
+		<div>
+			<h2>商品預覽</h2>
+		</div>
 		<table class="outwrap0">
-<!-- 			<tr> -->
-<!-- 				<td colspan="2"> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
 			<tr>
 				<td colspan="2">
-				<div>
-					<h3>${productName}</h3>
-				</div>
+					<div>
+						<h3>${productName}</h3>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td class="inwrap">
 					<div class="flos01">
-						<div>
-							<img id="pdPicture" src="<c:out value="${pic}"/>">
-<!-- 							<img id="pdPicture" src="https://images.plurk.com/3igWGJHn8RjteL3eqyutFX.jpg"> -->
-						</div>
+<!-- 						<div> -->
+<%-- 							<img id="pdPicture" src="<c:out value="${pic}"/>"> --%>
+<!-- 						</div> -->
+						<ul class="slides">
+							<input type="radio" name="radio-btn" id="img-1" checked />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic1}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-3" class="prev">&#x2039;</label>
+									<label for="img-2" class="next">&#x203a;</label>
+								</div>
+							</li>
+							<input type="radio" name="radio-btn" id="img-2" />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic2}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-1" class="prev">&#x2039;</label>
+									<label for="img-3" class="next">&#x203a;</label>
+								</div>
+							</li>
+							<input type="radio" name="radio-btn" id="img-3" />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic3}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-2" class="prev">&#x2039;</label>
+									<label for="img-1" class="next">&#x203a;</label>
+								</div>
+							</li>
+
+							<li class="nav-dots">
+								<label for="img-1" class="nav-dot" id="img-dot-1"></label>
+								<label for="img-2" class="nav-dot" id="img-dot-2"></label>
+								<label for="img-3" class="nav-dot" id="img-dot-3"></label>
+							</li>
+						</ul>
 					</div>
 					<div class="flos02">
-<!-- 						<form action="/addMyFav" method="post"> -->
 							<div id="hideId" class="pdDataMain">
 								<div>商品編號: </div>
 								<input type="text" value="<c:out value="${productId}"/>" readonly="readonly">
+							</div>
+							<div class="pdDataMain">
+								<div>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag1}"/>">${Tag1}</a>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag2}"/>">${Tag2}</a>
+									<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag3}"/>">${Tag3}</a>
+								</div>
 							</div>
 							<div class="pdDataMain">
 								<div>價格:
@@ -63,13 +102,11 @@
 							<div>
 								<div id="myFv">
 									<button class="bT">加入購物車+</button>
-<!-- 									<input id="bT" class="bT" type="button" value="加入購物車+"> -->
 								</div>
 							</div>
 <!-- 						</form> -->
 							<div>
 								<button class="bT">加入我的最愛+</button>
-<!-- 								<input class="bT" type="button" value="加入我的最愛+"> -->
 							</div>
 					</div>
 				</td>
@@ -83,9 +120,6 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="bt01">
-					<!-- <a href="/Bartenders/Dashboard.Products">
-						<input class="bT" type="button" value="回商品管理" />
-					</a> -->
 					<button onclick="location.href = '/Bartenders/Dashboard.Products';" class="bT" >回商品管理</button>
 				</td>
 			</tr>

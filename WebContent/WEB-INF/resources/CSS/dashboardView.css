@@ -109,6 +109,10 @@ body {
   float: left;
 }
 
+a:link, a:hover, a:visited {
+	text-decoration: none;
+}
+
 /* add buton */
 .btn {
 	align-items: center; 
