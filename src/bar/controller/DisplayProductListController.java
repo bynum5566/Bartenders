@@ -108,8 +108,19 @@ public class DisplayProductListController {
 		//listOfProduct.addAll(ordersService.selectUser(userId, 1));
 		CartService.printValueTypeTime("companyId",companyId    );
 		
-		/*選擇Launched的*/
-		listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));
+		/*選擇Launched的產品(一般，QR)，開始*/
+		//listOfProduct.addAll(productDataDAO.selectPds(companyId, "Launched"));	/*原本*/
+		
+		/*測試是否可用*/
+			/*找這個酒吧的一般上架商品，不含QR*/
+			//listOfProduct.addAll(productDataDAO.selectPdsLaunched(companyId));	/*測試*/
+		
+		/*找這個酒吧的一般上架商品，不含QR*/
+		listOfProduct.addAll(productDataDAO.selectPdsLaunched(companyId));
+		/*找這個酒吧的QR上架商品，不含一般*/
+		listOfProduct.addAll(productDataDAO.selectTKPdsLaunched(companyId));
+		
+		/*選擇Launched的產品(一般，QR)，結束*/
 		
 		/*載入這個酒吧的所有事件，開始*/
 		List<EventsAndNews> listOfEventOfOneBar = eventsAndNewsDAO.selectAllEN(companyId);
@@ -125,7 +136,8 @@ public class DisplayProductListController {
 		m.addAttribute("listOfProduct", listOfProduct);
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
-		//m.addAttribute("companyId", companyId); //Wu
+		/*Rosalie Wu的[我的最愛]按鈕會用到:companyId"*/
+		m.addAttribute("companyId", companyId); //Wu
 		m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);	/*這個酒吧的所有事件*/
 		
 		CartService.Pf("DisplayProductList，結束");

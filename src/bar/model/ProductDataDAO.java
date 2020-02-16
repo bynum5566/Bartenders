@@ -33,7 +33,7 @@ public class ProductDataDAO {
 		}
 		return false;
 	}
-	
+	/*找這個酒吧的一般上架商品，不含QR*/
 	public List<ProductData> selectPdsLaunched(int companyId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -356,6 +356,7 @@ public class ProductDataDAO {
 	}
 	
 	///==================豪===
+
 	public List<ProductData> selectPds(int companyId, String pdAvailable) {//豪
 		Session session = sessionFactory.getCurrentSession();
 		String hqlStr = "from ProductData where companyId=:cId and pdAvailable=:pdA";

@@ -2,6 +2,8 @@ package bar.model;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,8 @@ public class UsersService {
 		return userdao.checkLogin(account, password);
 	}
 
+	public boolean updateInfo(String account,String email,String name,String phone,String birthday,String address) {
+		return userdao.updateInfo(account, email, name, phone, birthday, address);
+	 }
 
 }

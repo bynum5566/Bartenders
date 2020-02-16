@@ -366,13 +366,13 @@ input[type=text]:focus {
 		</div>
 		<div id="nav-content" tabindex="0">
 			<ul>
-				<li><a href="#0">會員中心</a></li>
+				<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 				<li><a href=<c:url value="/DisplayBarList.controller"/>>精選酒吧</a></li>
 				<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 				<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
-				<li><a href="#0">即時聊天</a></li>
+				<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 				<li class="small"><a href="UserFirstPage">返回首頁</a><a
 					href="javascript:signOut()">登出</a>
 			</ul>
