@@ -23,9 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bar.model.Cart;
 import bar.model.CartService;
+import bar.model.Orders;
 import bar.model.OrdersService;
 import bar.model.ProductData;
 import bar.model.ProductDataService;
+import bar.model.logistic.LogisticService;
 import net.sf.json.JSONObject;
 
 @Controller
@@ -38,12 +40,14 @@ public class finishPay {
 	private String validDate;
 	private String expiryDate;
 	private String orderId;
+	private LogisticService lService;
 	
 	@Autowired
-	public finishPay(ProductDataService pdService, CartService carService, OrdersService oService) {
+	public finishPay(ProductDataService pdService, CartService carService, OrdersService oService,LogisticService lService) {
 		this.pdService = pdService;
 		this.carService = carService;
 		this.oService = oService;
+		this.lService = lService;
 	}
 	
 	@SuppressWarnings({ "finally" })
@@ -97,6 +101,15 @@ public class finishPay {
 			}
 			int status = 3;
 			oService.updateToCancel(orderId, status);
+			Orders order = oService.selectOrder(orderId);
+			String lAddress = null;
+			if(order.getShipping()==1) {
+				lAddress = order.getAddress1();
+			}else if(order.getShipping()==2) {
+				lAddress = order.getAddress2();
+			}
+			lService.createLogistic(orderId,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			
 			return new ModelAndView("redirect:/userOrder.controller");
 			}
 		}
