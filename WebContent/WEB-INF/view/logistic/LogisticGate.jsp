@@ -9,12 +9,48 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
+a{
+color: #E8CCFF;
+
+}
+a:hover {
+color: 	#9F88FF;
+}
+.mydiv {
+	min-width: auto;
+	top: 80px;
+	position: sticky;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color: #E8CCFF;
+}
+
+
+body {
+	margin:0;
+	padding:0;
+	background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 table {
 	border-collapse: collapse;
 }
 
 td {
 	border: 1px solid black;
+	color:white;
+	font-size:20px;
 }
 
 div {
@@ -23,23 +59,25 @@ div {
 
 fieldset {
 	text-align: center;
-	width: 1200px;
+	width: 1500px;
 }
 </style>
 
 </head>
 <body class="center">
-	<h1>LogisticGate</h1>
+	<h1 align=center style="color:white;font-size:48px">物流訂單管理</h1>
 
 		
-			<table>
+			<table align=center>
 				<tr>
 					<td>
 						<button id="status0" class="ByStatus" >管理所有訂單</button>
 						<button id="status1" class="ByStatus" >查詢未收貨訂單</button>	<!-- status=1 -->
 						<button id="status2" class="ByStatus" >查詢配送中訂單</button>	<!-- status=2 -->
 						<button id="status3" class="ByStatus" >查詢已送達訂單</button>  <!-- status=3 -->
-						<button id="status4" class="ByStatus" >查詢已完成訂單</button>
+					<!-- 
+						<button id="test" class="create" >測試訂單</button>
+					 -->
 					</td>
 				</tr>
 			</table>
@@ -47,7 +85,7 @@ fieldset {
 		<!-- 	
 	 -->
 
-	<div>
+	<div align=center>
 		<fieldset>
 			<legend>查詢結果</legend>
 			<table align=center>
@@ -66,6 +104,7 @@ fieldset {
 						<td>送達物流中心時間</td>
 						<td>顧客取貨時間</td>
 						<td>完成</td>
+						<td>貨物送達確認</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,18 +113,23 @@ fieldset {
 							<td>${status.index+1}</td>
 							<td>${Logistic.oID}</td>
 							<td>${Logistic.lID}</td>
-							<td>${Logistic.oType}</td>
+							<td id="type${Logistic.lID}">${Logistic.oType}</td>
 							<td>${Logistic.oAddr}</td>
 							<td>${Logistic.oName}</td>
 							<td>${Logistic.oPhone}</td>
 							<td>${Logistic.oAmount}</td>
-							<td class="status">${Logistic.oStatus}</td>
+							<td id="ostatus${Logistic.lID}">${Logistic.oStatus}</td>
 							<td>${Logistic.oTimeA}</td>
 							<td>${Logistic.oTimeB}</td>
 							<td>${Logistic.oTimeC}</td>
-							<td>${Logistic.oComplete}</td>
-							<!--  -->
-							<td><button
+							<td id="oComplete${Logistic.lID}">${Logistic.oComplete}</td>
+							<td><button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
+									class="Ready" style="display: none">貨物確認送達</button></td>
+							
+							<!-- 
+							<td>
+							
+								<button
 									id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
 									class="UnPaid" style="display: none">確認收款</button>
 								<button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
@@ -95,19 +139,39 @@ fieldset {
 								<button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
 									class="Ready" style="display: none">貨物確認送達</button>
 							</td>
-
+							 -->
 						</tr>
+						<script>
+							console.log('status is, ${Logistic.oStatus}')
+						
+							var type = document.getElementById('type${Logistic.lID}');
+							if(type.innerHTML=='1'){
+								type.innerHTML = '宅配';
+							}else if(type.innerHTML=='3'){
+								type.innerHTML = '票券';
+							};
+							
+							var status = document.getElementById('ostatus${Logistic.lID}');
+							if(status.innerHTML==1){
+								status.innerHTML = '未取貨';
+							}else if(status.innerHTML==2){
+								status.innerHTML = '運送中';
+							}else if(status.innerHTML==3){
+								status.innerHTML = '訂單完成';
+							};
+							
+							var finish = document.getElementById('oComplete${Logistic.lID}');
+							if(finish.innerHTML=='1'){
+								console.log('finish');
+								finish.innerHTML = '送達';
+							}
+							</script>
 					</c:forEach>
-					<tr>
-						<td colspan="11">${noData}</td>
-					</tr>
-					<tr>
-						<td colspan="11">${Status}</td>
-					</tr>
 				</tbody>
 			</table>
 		</fieldset>
 	</div>
+	<!-- 
 	<div>
 		<h1>Test Query by Type</h1>
 				<table>
@@ -178,6 +242,7 @@ fieldset {
 			<button id="code2" class="Code" >掃描QRCode</button><br>
 			${code}
 	</div>
+	 -->
 	<script>
 		$(".st1,.st2")
 				.on(
@@ -192,6 +257,21 @@ fieldset {
 									+ orderID + '&orderType=' + orderType;
 
 						})
+						$(".Ready").on("click",function() {
+							var Str = this.id
+							orderID = Str.substring(2);
+							orderStatus = Str.substring(0, 1);
+							orderType = Str.substring(1, 2);
+							window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
+							})
+							$(".ByStatus").on("click", function() {
+								var Str = this.id
+								orderStatus = Str.substring(6);
+								window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
+								})
+								
+				
+/*
 
 		$(".UnPaid,.UnTrans,.Comp").on("click",function() {
 			var Str = this.id
@@ -200,20 +280,11 @@ fieldset {
 			orderType = Str.substring(1, 2);
 			window.location.href = '<c:url value="/logistic/ChangeStatus.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
 			})
-		$(".Ready").on("click",function() {
-			var Str = this.id
-			orderID = Str.substring(2);
-			orderStatus = Str.substring(0, 1);
-			orderType = Str.substring(1, 2);
-			window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
-			})
 			
 		
-		$(".ByStatus").on("click", function() {
-			var Str = this.id
-			orderStatus = Str.substring(6);
-			window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
-			})
+			
+		
+		
 			
 		$(".ByType").on("click", function() {
 			var Str = this.id
@@ -240,6 +311,10 @@ fieldset {
 			orderType = Str.substring(1, 2);
 			window.location.href = '<c:url value="/QRCodeAction.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
 			})
+		
+		$(".create").on("click", function() {
+			window.location.href = '<c:url value="/testLogistic.do"/>';
+			})
 
 		listAll = $('button');
 		console.log(listAll);
@@ -256,14 +331,15 @@ fieldset {
 		listT = $('button[id^="2"][class="UnTrans"]');
 		listT.attr("style", "display:block;");
 		console.log(listT);
-		
+		listC = $('button[id^="3"][class="Comp"]');
+		listC.attr("style", "display:block;");
+		console.log(listC);
+		*/
 		listR = $('button[id^="2"][class="Ready"]');
 		listR.attr("style", "display:block;");
 		console.log(listR);
 
-		listC = $('button[id^="3"][class="Comp"]');
-		listC.attr("style", "display:block;");
-		console.log(listC);
+		
 
 		listD = $('button[id^="4"]');
 		listD.attr("style", "display:none;");

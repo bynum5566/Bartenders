@@ -125,7 +125,7 @@ return "SubMessageBoard";
 	public String showUserFirstPage() {
 		return "UserFirstPage";
 	}
-	///////////////////
+	////////////////////----以下是物流----/////////////////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
 	public String logistic() {
 		return "logistic/loginSystem";
@@ -145,6 +145,11 @@ return "SubMessageBoard";
 	@RequestMapping(path = "/logistic/QRCodeUpdatePage", method = RequestMethod.GET)
 	public String QRCodeUpdatePage() {
 		return "logistic/QRCodeUpdatePage";
+	}
+
+	@RequestMapping(path = "/logistic/LogisticOrder", method = RequestMethod.GET)
+	public String LogisticOrder() {
+		return "logistic/LogisticOrder";
 	}
 	
 	//////////

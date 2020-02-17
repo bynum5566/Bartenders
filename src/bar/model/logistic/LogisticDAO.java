@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import bar.model.Orders;
+import bar.model.OrdersService;
 import bar.model.logistic.Logistic;
 @Repository
 public class LogisticDAO {
@@ -19,32 +20,56 @@ public class LogisticDAO {
 
 	private SessionFactory sessionFactory;
 	private QRCodeDAO qdao;
+	private OrdersService oService;
 @Autowired
-	public LogisticDAO(@Qualifier("sessionFactory")SessionFactory sessionFactory, QRCodeDAO qdao) {
+	public LogisticDAO(@Qualifier("sessionFactory")SessionFactory sessionFactory, QRCodeDAO qdao,OrdersService oService) {
 		this.sessionFactory = sessionFactory;
+		this.oService = oService;
 		this.qdao = qdao;
 	}
 	
 	
-	public Logistic createLogistic(String id,int type,String phone,String name,int amount,String address) {
+	public String createLogistic(String id,int type,String phone,String name,int amount,String address) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
 			Query query = session.createQuery(hqlStr);
 			Logistic logis = new Logistic();
-			String time = getTime();
+			Date time = getTime();
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+			SimpleDateFormat logisticNum = new SimpleDateFormat("yyyyMMdd");//20200217
+			String forTime = sdFormat.format(time);
+			String forNum = logisticNum.format(time);//20200217
+			String last = getLastNum();
+			String finalLast;
+			if(last=="none") {
+				System.out.println("尚未有訂單,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
+				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+			}else if(Integer.parseInt(forNum.substring(6))!=Integer.parseInt(last.substring(0, 2))){
+				System.out.println("上一個訂單日為: "+Integer.parseInt(forNum.substring(6))+"比"+Integer.parseInt(last.substring(0, 2)));
+				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
+				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+			}else{
+				int num = Integer.parseInt(last)+1;
+				String text = Integer.toString(num);
+				finalLast = forNum+text.substring(2); 
+			}
+			System.out.println("finalLast: "+finalLast);
+//			String lID = forNum
+			
 			logis.setoID(id);
-			logis.setlID("50001");
+			logis.setlID(finalLast);
 			logis.setoType(type);
 			logis.setoAddr(address);
 			logis.setoName(name);
 			logis.setoPhone(phone);
 			logis.setoAmount(amount);
 			logis.setoStatus(1);
-			logis.setoTimeA(time);
+			logis.setoTimeA(forTime);
 			session.save(logis);
 			qdao.CreateQR(id, 1, name);
-			return null;
+//			order.setShippingNumber(finalLast);
+			return finalLast;
 		}catch(Exception e) {
 			System.out.println("e:"+e);
 			return null;
@@ -53,7 +78,30 @@ public class LogisticDAO {
 		
 	}
 
-
+	public String getLastNum() {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from Logistic ORDER BY oNo DESC";
+		System.out.println("hqlStr:"+hqlStr);
+		Query query = session.createQuery(hqlStr);
+		query.setMaxResults(1);
+		Logistic rs = (Logistic) query.uniqueResult();
+		System.out.println(rs);
+		if(rs==null) {
+			System.out.println("no logistic yet");
+			return "none";
+		}else {
+			String last = rs.getlID();
+			String num = last.substring(6);
+			System.out.println("last 5 num:"+num);
+			return num;
+		}
+		
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
 
 	public List<Logistic> queryByStatus(Integer status) {
 		try {
@@ -161,11 +209,11 @@ public class LogisticDAO {
 //		return rs;
 //	}
 	
-	public String getTime() {
+	public Date getTime() {
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		Date date = new Date();
-		String strDate = sdFormat.format(date);
-		System.out.println(strDate);
-		return strDate;
+//		String strDate = sdFormat.format(date);
+//		System.out.println(strDate);
+		return date;
 	}
 }
