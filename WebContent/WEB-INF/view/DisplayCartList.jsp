@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>我的購物車x</title>
+<title>我的購物車</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -284,6 +284,7 @@ div.panel
 											<!-- 一般類型，max = 庫存 -->
 	
 											<input type="number" 
+											required="required"
 											style="width:60px"
 											name="qty" 
 											value="${listOflistOfCart[current.index][current2.index].quantity}" 

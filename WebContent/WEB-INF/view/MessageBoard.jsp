@@ -4,36 +4,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<meta property="og:url"           content="http://localhost:8080/Bartenders/messageBoardShow.controller" />
+<meta property="og:url"           content="http://localhost:8080/Bartenders/login" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
-  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+  <meta property="og:title"         content="Bartenders" />
+  <meta property="og:description"   content="Bartenders" />
+  
 
 
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" type="text/css"
-	href="/Bartenders/images/add_editView.css">
-
-<noscript>
-	<link rel="stylesheet" href="/Bartenders/images/noscript.css" />
-</noscript>
+	href="/Bartenders/CSS/add_editView.css">
+<title>Add new product</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet"></link>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
 	rel="stylesheet"></link>
-
-
-<title>酒吧</title>
 
 <style>
 h1.panel, form.flip {
@@ -48,13 +44,19 @@ form.panel {
 	width: 900px;
 	background-color: transparent;
 }
+
+#wordPicture {
+	height: 200px;
+	width: 800px;
+}
 </style>
+
+
 </head>
 
 <body>
 
 	<main>
-
 		<h1 style="color: WhiteSmoke;" class="flip" align="right">縮放留言按此</h1>
 
 		<!--縮放用JS，開始-->
@@ -93,7 +95,8 @@ form.panel {
 					<td>
 						<div class="dropzone" id="wordPicture" required="required">
 							<div class="info"></div>
-						</div> <input id="imgPlace" name="pdImg" class="image-url" />
+						</div> 
+						<input id="imgPlace" name="pdImg" class="image-url" />
 					</td>
 				</tr>
 
@@ -108,19 +111,20 @@ form.panel {
 
 
 		<div style="color: white">
-		<div id="fb-root"></div>
+			<div id="fb-root"></div>
 			<c:forEach var="messageBoard" items="${newest}">
 				<div>
 					<div>
-						<img height="100" width="200" id="pdPicture"
+						<img height="150" width="300" id="pdPicture"
 							src="<c:out value="${messageBoard.picture}" />">
 					</div>
 
 					<div style="margin: 10px;">
-						<span style="margin: 10px; padding: 10px;">帳號:${messageBoard.account}
-							&nbsp; &nbsp;</span> <span style="margin: 10px; padding: 10px;">ID:${messageBoard.id}
-							&nbsp; &nbsp;</span> <span style="margin: 10px; padding: 10px;">${messageBoard.time}
-							&nbsp; &nbsp;</span> <span style="margin: 10px; padding: 10px;">
+						<span style="padding: 10px;"> 帳號:${messageBoard.account}
+							&nbsp; &nbsp;名稱:${messageBoard.userName} </span> <span
+							style="padding: 10px;">ID:${messageBoard.id}</span> <span
+							style="padding: 10px;">${messageBoard.time}</span> <span
+							style="margin: 25px; padding: 10px; font-size: 20px; color: #F9F900">
 							<a
 							href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}"><b>回覆</b></a>
 						</span>
@@ -129,14 +133,13 @@ form.panel {
 					<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
 
 					<div id=""><${messageBoard.blabla}</div>
+					<div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
-<div class="fb-like" data-href="http://localhost:8080/Bartenders/messageBoardShow.controller" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>			
-
-
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>					
 					<hr>
-					
-		</div>
-		</c:forEach>
+
+				</div>
+			</c:forEach>
 		</div>
 
 
@@ -160,8 +163,10 @@ form.panel {
 
 	</main>
 
+
+
 	<script>
-		/* Imgur */
+		/* Imgur Upload Script */
 		(function(root, factory) {
 			"use strict";
 			if (typeof define === 'function' && define.amd) {
@@ -247,9 +252,8 @@ form.panel {
 								},
 								createDragZone : function() {
 									var p1, p2, input;
-									p1 = this.createEls('p', {}, '請點此區選擇1張圖片');
-									p2 = this.createEls('p', {}, '');
-
+									p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
+									p2 = this.createEls('p', {}, '或將1張圖片拖曳至此。');
 									input = this.createEls('input', {
 										type : 'file',
 										className : 'input',
@@ -386,7 +390,7 @@ form.panel {
 
 		$('#imgPlace').hide();
 
-		// 	Upload
+		// 	Upload js
 		var feedback = function(res) {
 			if (res.success === true) {
 				$('#imgPlace').name = "na";
@@ -401,6 +405,7 @@ form.panel {
 			callback : feedback
 		});
 
+		// Origin
 		$('.sho').show();
 		$('.nosho').hide();
 
@@ -411,6 +416,8 @@ form.panel {
 			T1.name = "setTimeAct";
 			T2.className = "nosho";
 			T2.name = "setTimeNon";
+			console.log(T1.className + "/" + T1.name);
+			console.log(T2.className + "/" + T2.name);
 			$('.sho').show();
 			$('.nosho').hide();
 		}
@@ -422,6 +429,8 @@ form.panel {
 			T2.name = "setTimeAct";
 			T1.className = "nosho";
 			T1.name = "setTimeNon";
+			console.log(T1.className + "/" + T1.name);
+			console.log(T2.className + "/" + T2.name);
 			$('.sho').show();
 			$('.nosho').hide();
 		}
@@ -492,21 +501,11 @@ form.panel {
 				function(ev, picker) {
 					$(this).val("");
 				});
-
-		$(function() {
-			if (window.history && window.history.pushState) {
-				$(window).on('popstate', function() {
-					window.history.pushState('forward', null, '#');
-					window.history.forward(1);
-				});
-			}
-			window.history.pushState('forward', null, '#');
-			window.history.forward(1);
-		})
 	</script>
+
+	<%--左側工具列，開始 --%>
+	<%@include file="UserMenu.jsp"%>
+	<%--左側工具列，結束--%>
+
 </body>
 </html>
-
-<%--左側工具列，開始 --%>
-<%@include file="UserMenu.jsp"%>
-<%--左側工具列，結束--%>
