@@ -22,7 +22,7 @@ public class EventsAndNewsService {
 	}
 	
 	public String getNewneId(int companyId) {	
-		int x = enDao.selectAllEN(companyId).size();	
+		int x = enDao.allENs(companyId).size();	
 		String s1 = Integer.toString(companyId); 	
         String s2 = Integer.toString(x); 	
   	

@@ -26,19 +26,22 @@ import bar.model.ProductData;
 import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
-//<td align="center">${Corders[current.index].amount}</td>
+//<td align="center">${listOfOrder[current.index].amount}</td>
 @Controller
-@SessionAttributes(names = { ""
-		+ 
-		"account", 
-		"recipient", 
-		"orderId", 
-		"productName", 
-		"amount", 
-		"shippingNumber", 
-		"address1",
-		"phone",
-		"orders" })
+@SessionAttributes
+(names = 
+	{
+			"account", 
+			"recipient", 
+			"orderId", 
+			"productName", 
+			"amount", 
+			"shippingNumber", 
+			"address1",
+			"phone",
+			"orders" 
+	}
+)
 @EnableTransactionManagement
 public class DisplayCartListController {
 
@@ -67,16 +70,7 @@ public class DisplayCartListController {
 		this.userService = userService;
 	}
 
-	public String[] getStatusNumToStr() {
-		String returnStatus[] = {
-				"",
-		        "只先暫存購物車",
-		        "未付款",
-		        "已付款未配送",
-		        "已配送",
-		        "已取消"};
-		return returnStatus;
-	}
+
 
 	
 
@@ -95,91 +89,95 @@ public class DisplayCartListController {
 		
 		
 		
-		m.addAttribute("Corders", listOfOrder);
-		m.addAttribute("statusNumToStr", getStatusNumToStr());
-		//m.addAttribute("ShippingNumToStr", getShippingNumToStr());
-		m.addAttribute("ShippingNumToStr", CartService.getShippingNumToStr());	
+		
+		m.addAttribute("listOfOrder", listOfOrder); /*Corders>listOfOrder*/	
 		
 		printI("3");//3
 		List<Company> listOfCompany = new ArrayList<Company>();
 		List<String> listOfUserAccount = new ArrayList<String>();
-		List<String> listOfAddress = new ArrayList<String>();
-		List<ProductData> listOfProduct = new ArrayList<ProductData>();
+		//List<String> listOfAddress = new ArrayList<String>();
+		List<ProductData> listOfFirstProductOfOrder = new ArrayList<ProductData>();
 		List<Orders> listOfOrders = new ArrayList<Orders>();
 		
+		List<Object> listOflistOfCart = new ArrayList<Object>();	/*CartList的List*/
+		List<Object> listOflistOfProduct = new ArrayList<Object>();	/*CartList的List*/
+		
 		printI("4");//4
-		for (Orders oneOrder : listOfOrder) {
+		for (Orders oneOrder : listOfOrder) {	/*所有的訂單*/
 			List<Integer> listOfProductSubtotal = new ArrayList<Integer>();
-			String orderId = oneOrder.getOrderId();
+			String orderId = oneOrder.getOrderId();	/*取得訂單id*/
 			printI("5");//5
-			Orders order = ordersService.selectOrder(orderId);
-			listOfOrders.add(order);
+			Orders order = ordersService.selectOrder(orderId);	/*取得訂單物件*/
+			listOfOrders.add(order);	/*訂單物件加到 list中*/
 			
-			List<Cart> oneOrderCartsList = cartService.select(orderId);
-			listOfProductSubtotal = CartService.calculateListOfProductSubtotal(oneOrderCartsList);
+			List<Cart> oneOrderCartsList = cartService.select(orderId);	/*用orderId取得cart list*/
+			listOfProductSubtotal = CartService.calculateListOfProductSubtotal(oneOrderCartsList); /*計算單商品小計*/
 			
 			int totalPriceOfOneOrder = 0;
-			totalPriceOfOneOrder = CartService.calculateTotalPriceOfOneOrder(listOfProductSubtotal);
+			totalPriceOfOneOrder = CartService.calculateTotalPriceOfOneOrder(listOfProductSubtotal); /*計算單訂單金額（不含運費）*/
 			
-			int freight = cartService.selectFreightByOrderId(orderId);
+			int freight = cartService.selectFreightByOrderId(orderId);/*取得運費*/
 
-			totalPriceOfOneOrder += freight;
+			totalPriceOfOneOrder += freight;	/*計算單訂單金額（含運費）*/
 			
-			order.setAmount(totalPriceOfOneOrder);
+			order.setAmount(totalPriceOfOneOrder);	/*單訂單金額（含運費），寫入資料庫*/
 			
 			
 			printI("6");//6
-			Company company = companyService.selectCompany(oneOrder.getCompanyId());
-			listOfCompany.add(company);
+			Company company = companyService.selectCompany(oneOrder.getCompanyId());	/*取得Company物件*/	/*這個賣家酒吧的Company物件*/
+			listOfCompany.add(company);	/*加到賣家list中*/
 		
 			printI("7");//7
-			List<Cart> listOfCart = cartService.select(orderId);
-			Cart first_chart;
-			if (listOfCart.isEmpty()) {
-				System.out.println("empty");
-				first_chart = null;
+			List<Cart> listOfCartOfOneOrder = cartService.select(orderId);	/*取得訂單的 Cart list*/
+			
+			List<ProductData> listOfProductNameOfOneOrder = new ArrayList<ProductData>();
+			
+			for (int n = 0; n <= listOfCartOfOneOrder.size() - 1; n++) {
+				String stringPdid = listOfCartOfOneOrder.get(n).getPdId();
+				ProductData productX = cartService.selectProductDataByPdid(stringPdid);
+				listOfProductNameOfOneOrder.add(productX);
+			}
+			
+			listOflistOfCart.add(listOfCartOfOneOrder);	/*把Cart list*/
+			
+			listOflistOfProduct.add(listOfProductNameOfOneOrder);
+			
+			Cart firstCart;
+			if (listOfCartOfOneOrder.isEmpty()) {
+				System.out.println("這個訂單是空的");
+				firstCart = null;
 			}
 			else {
-				first_chart = listOfCart.get(0);
+				firstCart = listOfCartOfOneOrder.get(0); /*取得第一個Cart*/
 			}
 
 			printI("8");//8
-			if (first_chart == null) {
-				System.out.printf("null ，continue");
+			if (firstCart == null) {
+				System.out.printf("這個訂單是空的");
 				continue;
 			}
 			
-			ProductData product = productService.select(first_chart.getPdId());
-			listOfProduct.add(product);
+			ProductData firstProduct = productService.select(firstCart.getPdId());	/*取得第一個Cart的產品物件*/
+			listOfFirstProductOfOrder.add(firstProduct);	/*每個訂單的第一個產品物件 list*/
 			
-			printI("9");//9
-			if(oneOrder.getShipping()==1) {
-				listOfAddress.add(oneOrder.getAddress1());
-				printI("10");//10
-			}else
-			{
-				if(oneOrder.getShipping()==2)
-				{
-					listOfAddress.add(oneOrder.getAddress2());
-					printI("12");//11
-				}
-				if(oneOrder.getShipping()==0)
-				{
-					listOfAddress.add("");
-					printI("13");//11
-				}
-				
-			}
+
+
 
 		}
 
-		m.addAttribute("company", listOfCompany);
+		m.addAttribute("listOfCompany", listOfCompany);	/*company >　listOfCompany*/
 		//m.addAttribute("userAccount", listOfUserAccount);	//20200210
 		//m.addAttribute("attrAddress", listOfAddress);	 //20200210
-		m.addAttribute("productData", listOfProduct);
-		m.addAttribute("orders", listOfOrders);
+		m.addAttribute("listOfFirstProductOfOrder", listOfFirstProductOfOrder);	/*productData >　listOfFirstProductOfOrder*/
+		m.addAttribute("listOfOrders", listOfOrders);	/*orders > listOfOrders*/
+		m.addAttribute("listOflistOfCart",listOflistOfCart);
+		m.addAttribute("listOflistOfProduct",listOflistOfProduct);
 		
-		return "CartList";
+		
+		
+		
+		//return "DisplayCartList";	/*舊版使用單層foreach*/
+		return "DisplayCartList";	/*試製雙層foreach*/
 
 	}
 	

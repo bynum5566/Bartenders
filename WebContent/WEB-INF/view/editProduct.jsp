@@ -6,19 +6,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
 <title>Edit Product</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet"></link>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
-	rel="stylesheet"></link>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"></link>
 
 </head>
 <body>
@@ -63,24 +59,65 @@
 					<tr>
 						<td><label>商品圖片</label></td>
 						<td>
-							<div class="dropzone">
-								<div class="info"></div>
+<!-- 							<div class="dropzone"> -->
+<!-- 								<div class="info"></div> -->
+<!-- 							</div> -->
+<!-- 							<div id="imgPlace1" > -->
+<%-- 								<img id="oriImg" src="<c:out value="${pdpicUrl}"/>"/> --%>
+<!-- 							</div> -->
+<%-- 							<input id="imgPlace2" type="text" name="pdImg" class="image-url" value="<c:out value="${pdpicUrl}"/>" readonly="readonly"/> --%>
+							<div id="imgs">
+								<div id="img1">
+									<div class="dropzone1">
+										<div class="info1"></div>
+									</div>
+									<div id="imgPlace01">
+										<img id="oriImg" src="<c:out value="${pic1}"/>" />
+									</div>
+									<input id="imgPlace02" type="text" name="pdImg" class="image-url" value="<c:out value="${pic1}"/>" readonly="readonly" />
+									<script type="text/javascript" src="/Bartenders/JS/imgur1.js"></script>
+									<script type="text/javascript" src="/Bartenders/JS/uploadPd1-1.js"></script>
+								</div>
+								<div id="img2">
+									<div class="dropzone2">
+										<div class="info2"></div>
+									</div>
+									<div id="imgPlace03">
+										<img id="oriImg" src="<c:out value="${pic2}"/>" />
+									</div>
+									<input id="imgPlace04" type="text" name="pdImg2" class="image-url" value="<c:out value="${pic2}"/>" readonly="readonly" />
+									<script type="text/javascript" src="/Bartenders/JS/imgur2.js"></script>
+									<script type="text/javascript" src="/Bartenders/JS/uploadPd2-1.js"></script>
+								</div>
+								<div id="img3">
+									<div class="dropzone3">
+										<div class="info3"></div>
+									</div>
+									<div id="imgPlace05">
+										<img id="oriImg" src="<c:out value="${pic3}"/>" />
+									</div>
+									<input id="imgPlace06" type="text" name="pdImg3" class="image-url" value="<c:out value="${pic3}"/>" readonly="readonly" />
+									<script type="text/javascript" src="/Bartenders/JS/imgur3.js"></script>
+									<script type="text/javascript" src="/Bartenders/JS/uploadPd3-1.js"></script>
+								</div>
 							</div>
-							<div id="imgPlace1" >
-								<img id="oriImg" src="<c:out value="${pdpicUrl}"/>"/>
-							</div>
-							<input id="imgPlace2" type="text" name="pdImg" class="image-url" value="<c:out value="${pdpicUrl}"/>" readonly="readonly"/>
 						</td>
 					</tr>
 					<tr id="setA" class="sho">
-						<td><label>上架時間</label><div><c:out value="${autoLT}"/></div></td>
+						<td>
+							<label>上架時間</label>
+							<div><c:out value="${autoLT}"/></div>
+						</td>
 						<td>
 							<div>請點選擇器編輯</div>
 							<div><input name="setTimeAct1" id="setA1" class="dateRange form-control" type="text"></div>
 						</td>
 					</tr>
 					<tr id="setB" class="sho">
-						<td><label>下架時間</label><div><c:out value="${autoPT}"/></div></td>
+						<td>
+							<label>下架時間</label>
+							<div><c:out value="${autoPT}"/></div>
+						</td>
 						<td>
 							<div>請點選擇器編輯</div>
 							<div><input name="setTimeAct2" id="setA2" class="dateRange form-control" type="text"></div>
@@ -89,9 +126,9 @@
 					<tr>
 						<td colspan="2" id="bT">
 							<a href="/Bartenders/Dashboard.Products">
-								<input class="bT" type="button" value="回商品管理"/>
+<!-- 								<input class="bT" type="button" value="回商品管理"/> -->
+								<div  class="bT">回商品管理</div>
 							</a>
-<!-- 							<button onclick="location.href = '/Bartenders/Dashboard.Products';" class="bT" >回商品管理</button> -->
 							<input class="bT" type="submit" value="修改商品"/>
 						</td>
 					</tr>
@@ -102,177 +139,177 @@
 
 	<script>
 	/* Imgur Upload Script */
-	(function (root, factory) {
-	    "use strict";
-	    if (typeof define === 'function' && define.amd) {
-	        define([], factory);
-	    } else if (typeof exports === 'object') {
-	        module.exports = factory();
-	    } else {
-	        root.Imgur = factory();
-	    }
-	}(this, function () {
-	    "use strict";
-	    var Imgur = function (options) {
-	        if (!this || !(this instanceof Imgur)) {
-	            return new Imgur(options);
-	        }
-	        if (!options) {
-	            options = {};
-	        }
-	        if (!options.clientid) {
-	            throw 'Provide a valid Client Id here: https://api.imgur.com/';
-	        }
-	        this.clientid = options.clientid;
-	        this.endpoint = 'https://api.imgur.com/3/image';
-	        this.callback = options.callback || undefined;
-	        this.dropzone = document.querySelectorAll('.dropzone');
-	        this.info = document.querySelectorAll('.info');
-	        this.run();
-	    };
+// 	(function (root, factory) {
+// 	    "use strict";
+// 	    if (typeof define === 'function' && define.amd) {
+// 	        define([], factory);
+// 	    } else if (typeof exports === 'object') {
+// 	        module.exports = factory();
+// 	    } else {
+// 	        root.Imgur = factory();
+// 	    }
+// 	}(this, function () {
+// 	    "use strict";
+// 	    var Imgur = function (options) {
+// 	        if (!this || !(this instanceof Imgur)) {
+// 	            return new Imgur(options);
+// 	        }
+// 	        if (!options) {
+// 	            options = {};
+// 	        }
+// 	        if (!options.clientid) {
+// 	            throw 'Provide a valid Client Id here: https://api.imgur.com/';
+// 	        }
+// 	        this.clientid = options.clientid;
+// 	        this.endpoint = 'https://api.imgur.com/3/image';
+// 	        this.callback = options.callback || undefined;
+// 	        this.dropzone = document.querySelectorAll('.dropzone');
+// 	        this.info = document.querySelectorAll('.info');
+// 	        this.run();
+// 	    };
 
-	    Imgur.prototype = {
-	        createEls: function (name, props, text) {
-	            var el = document.createElement(name), p;
-	            for (p in props) {
-	                if (props.hasOwnProperty(p)) {
-	                    el[p] = props[p];
-	                }
-	            }
-	            if (text) {
-	                el.appendChild(document.createTextNode(text));
-	            }
-	            return el;
-	        },
-	        insertAfter: function (referenceNode, newNode) {
-	            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-	        },
-	        post: function (path, data, callback) {
-	            var xhttp = new XMLHttpRequest();
-	            xhttp.open('POST', path, true);
-	            xhttp.setRequestHeader('Authorization', 'Client-ID ' + this.clientid);
-	            xhttp.onreadystatechange = function () {
-	                if (this.readyState === 4) {
-	                    if (this.status >= 200 && this.status < 300) {
-	                        var response = '';
-	                        try {
-	                            response = JSON.parse(this.responseText);
-	                        } catch (err) {
-	                            response = this.responseText;
-	                        }
-	                        callback.call(window, response);
-	                    } else {
-	                        throw new Error(this.status + " - " + this.statusText);
-	                    }
-	                }
-	            };
-	            xhttp.send(data);
-	            xhttp = null;
-	        },
-	        createDragZone: function () {
-	            var p1, p2, input;
-	                p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
-	                p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
-	            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
-	            Array.prototype.forEach.call(this.info, function (zone) {
-	                zone.appendChild(p1);
-	                zone.appendChild(p2);
-	            }.bind(this));
-	            Array.prototype.forEach.call(this.dropzone, function (zone) {
-	                zone.appendChild(input);
-	                this.status(zone);
-	                this.upload(zone);
-	            }.bind(this));
-	        },
-	        loading: function () {
-	            var div, table, img;
-	            div = this.createEls('div', {className: 'loading-modal'});
-	            table = this.createEls('table', {className: 'loading-table'});
-	            img = this.createEls('img', {className: 'loading-image', src: '/Bartenders/images/loading-spin.svg'});
-	            div.appendChild(table);
-	            table.appendChild(img);
-	            document.body.appendChild(div);
-	        },
-	        status: function (el) {
-	            var div = this.createEls('div', {className: 'status'});
-	            this.insertAfter(el, div);
-	        },
-	        matchFiles: function (file, zone) {
-	            var status = zone.nextSibling;
+// 	    Imgur.prototype = {
+// 	        createEls: function (name, props, text) {
+// 	            var el = document.createElement(name), p;
+// 	            for (p in props) {
+// 	                if (props.hasOwnProperty(p)) {
+// 	                    el[p] = props[p];
+// 	                }
+// 	            }
+// 	            if (text) {
+// 	                el.appendChild(document.createTextNode(text));
+// 	            }
+// 	            return el;
+// 	        },
+// 	        insertAfter: function (referenceNode, newNode) {
+// 	            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+// 	        },
+// 	        post: function (path, data, callback) {
+// 	            var xhttp = new XMLHttpRequest();
+// 	            xhttp.open('POST', path, true);
+// 	            xhttp.setRequestHeader('Authorization', 'Client-ID ' + this.clientid);
+// 	            xhttp.onreadystatechange = function () {
+// 	                if (this.readyState === 4) {
+// 	                    if (this.status >= 200 && this.status < 300) {
+// 	                        var response = '';
+// 	                        try {
+// 	                            response = JSON.parse(this.responseText);
+// 	                        } catch (err) {
+// 	                            response = this.responseText;
+// 	                        }
+// 	                        callback.call(window, response);
+// 	                    } else {
+// 	                        throw new Error(this.status + " - " + this.statusText);
+// 	                    }
+// 	                }
+// 	            };
+// 	            xhttp.send(data);
+// 	            xhttp = null;
+// 	        },
+// 	        createDragZone: function () {
+// 	            var p1, p2, input;
+// 	                p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
+// 	                p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
+// 	            input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
+// 	            Array.prototype.forEach.call(this.info, function (zone) {
+// 	                zone.appendChild(p1);
+// 	                zone.appendChild(p2);
+// 	            }.bind(this));
+// 	            Array.prototype.forEach.call(this.dropzone, function (zone) {
+// 	                zone.appendChild(input);
+// 	                this.status(zone);
+// 	                this.upload(zone);
+// 	            }.bind(this));
+// 	        },
+// 	        loading: function () {
+// 	            var div, table, img;
+// 	            div = this.createEls('div', {className: 'loading-modal'});
+// 	            table = this.createEls('table', {className: 'loading-table'});
+// 	            img = this.createEls('img', {className: 'loading-image', src: '/Bartenders/images/loading-spin.svg'});
+// 	            div.appendChild(table);
+// 	            table.appendChild(img);
+// 	            document.body.appendChild(div);
+// 	        },
+// 	        status: function (el) {
+// 	            var div = this.createEls('div', {className: 'status'});
+// 	            this.insertAfter(el, div);
+// 	        },
+// 	        matchFiles: function (file, zone) {
+// 	            var status = zone.nextSibling;
 
-	            if (file.type.match(/image/) && file.type !== 'image/svg+xml') {
-	                document.body.classList.add('loading');
-	                status.classList.remove('bg-success', 'bg-danger');
-	                status.innerHTML = '';
+// 	            if (file.type.match(/image/) && file.type !== 'image/svg+xml') {
+// 	                document.body.classList.add('loading');
+// 	                status.classList.remove('bg-success', 'bg-danger');
+// 	                status.innerHTML = '';
 
-	                var fd = new FormData();
-	                fd.append('image', file);
+// 	                var fd = new FormData();
+// 	                fd.append('image', file);
 
-	                this.post(this.endpoint, fd, function (data) {
-	                    document.body.classList.remove('loading');
-	                    typeof this.callback === 'function' && this.callback.call(this, data);
-	                }.bind(this));
-	            } else {
-	                status.classList.remove('bg-success');
-	                status.classList.add('bg-danger');
-	                status.innerHTML = 'Invalid archive';
-	            }
-	        },
-	        upload: function (zone) {
-	            var events = ['dragenter', 'dragleave', 'dragover', 'drop'],
-	                file, target, i, len;
+// 	                this.post(this.endpoint, fd, function (data) {
+// 	                    document.body.classList.remove('loading');
+// 	                    typeof this.callback === 'function' && this.callback.call(this, data);
+// 	                }.bind(this));
+// 	            } else {
+// 	                status.classList.remove('bg-success');
+// 	                status.classList.add('bg-danger');
+// 	                status.innerHTML = 'Invalid archive';
+// 	            }
+// 	        },
+// 	        upload: function (zone) {
+// 	            var events = ['dragenter', 'dragleave', 'dragover', 'drop'],
+// 	                file, target, i, len;
 
-	            zone.addEventListener('change', function (e) {
-	                if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
-	                    target = e.target.files;
+// 	            zone.addEventListener('change', function (e) {
+// 	                if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
+// 	                    target = e.target.files;
 
-	                    for (i = 0, len = target.length; i < len; i += 1) {
-	                        file = target[i];
-	                        this.matchFiles(file, zone);
-	                    }
-	                }
-	            }.bind(this), false);
+// 	                    for (i = 0, len = target.length; i < len; i += 1) {
+// 	                        file = target[i];
+// 	                        this.matchFiles(file, zone);
+// 	                    }
+// 	                }
+// 	            }.bind(this), false);
 
-	            events.map(function (event) {
-	                zone.addEventListener(event, function (e) {
-	                    if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
-	                        if (event === 'dragleave' || event === 'drop') {
-	                            e.target.parentNode.classList.remove('dropzone-dragging');
-	                        } else {
-	                            e.target.parentNode.classList.add('dropzone-dragging');
-	                        }
-	                    }
-	                }, false);
-	            });
-	        },
-	        run: function () {
-	            var loadingModal = document.querySelector('.loading-modal');
-	            if (!loadingModal) {
-	                this.loading();
-	            }
-	            this.createDragZone();
-	        }
-	    };
-	    return Imgur;
-	}));
+// 	            events.map(function (event) {
+// 	                zone.addEventListener(event, function (e) {
+// 	                    if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
+// 	                        if (event === 'dragleave' || event === 'drop') {
+// 	                            e.target.parentNode.classList.remove('dropzone-dragging');
+// 	                        } else {
+// 	                            e.target.parentNode.classList.add('dropzone-dragging');
+// 	                        }
+// 	                    }
+// 	                }, false);
+// 	            });
+// 	        },
+// 	        run: function () {
+// 	            var loadingModal = document.querySelector('.loading-modal');
+// 	            if (!loadingModal) {
+// 	                this.loading();
+// 	            }
+// 	            this.createDragZone();
+// 	        }
+// 	    };
+// 	    return Imgur;
+// 	}));
 
-	$('#imgPlace2').hide();
+// 	$('#imgPlace2').hide();
 	
-// 	Upload js
-var feedback = function(res) {
-    if (res.success === true) {
-    	$('#imgPlace1').hide();
-    	$('#imgPlace2').name="na";
-        var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
-        document.querySelector('.status').innerHTML =
-        '<input id="realImg" name="pdImg" style="display:none;" class="image-url" value=\"' + get_link + '\" readonly="readonly"/><br>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
-    }
-};
+// // 	Upload js
+// var feedback = function(res) {
+//     if (res.success === true) {
+//     	$('#imgPlace1').hide();
+//     	$('#imgPlace2').name="na";
+//         var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
+//         document.querySelector('.status').innerHTML =
+//         '<input id="realImg" name="pdImg" style="display:none;" class="image-url" value=\"' + get_link + '\" readonly="readonly"/><br>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
+//     }
+// };
 
-new Imgur({
-    clientid: 'ceb59faf76db10f',
-    callback: feedback
-});
+// new Imgur({
+//     clientid: 'ceb59faf76db10f',
+//     callback: feedback
+// });
 
 // Origin
 		$("#hdId").hide();

@@ -155,7 +155,7 @@ public class DisplayCartController
 		
 		//==================================
 //		return "OrderList";
-		return "CartDetail";
+		return "DisplayCartDetail";
 		// ===========================【結束】
 //		return "TestPage";
 	}

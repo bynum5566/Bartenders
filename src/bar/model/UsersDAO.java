@@ -100,4 +100,21 @@ public class UsersDAO {
 		  Users rs = (Users) query.uniqueResult();
 		  return rs;
 		 }
+	 
+	 public boolean updateInfo(String account,String email,String name,String phone,String birthday,String address) {
+		 Session session = sessionFactory.getCurrentSession();
+			String hqlStr = "from Users where account=:account and email=:email";
+			Query query = session.createQuery(hqlStr);
+			query.setParameter("account", account);
+			query.setParameter("email", email);
+			Users rs = (Users) query.uniqueResult();
+			if (rs != null) {
+				rs.setUserName(name);
+				rs.setPhone(phone);
+				rs.setBirthday(birthday);
+				rs.setAddress(address);
+				return true;
+			}
+			return false;
+	 }
 }

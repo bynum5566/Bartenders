@@ -43,7 +43,7 @@ body {
 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	color:#FFFFFF;
-	margin-top: 50%;
+	
 }
 </style>
 

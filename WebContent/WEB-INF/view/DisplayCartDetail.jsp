@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>所有酒吧</title>
+<title>確認訂單資訊頁面</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -180,13 +180,13 @@ div.panel
 		<form action="<c:url value=" 123456" />" method="post">
 		<h2>確認訂單資訊頁面</h2>
 		<!-- <h3>(購物車編號:${orderId}) </h3>  -->
-		<table>
+		<table border="1">
 			<thead>
 				<tr align="center">
-					<td>產品名稱</td>
-					<td>產品單價</td>
-					<td>產品數量</td>
-					<td>產品金額</td>
+					<td class="sigmaTd1">產品名稱</td>
+					<td class="sigmaTd1">產品單價</td>
+					<td class="sigmaTd1">產品數量</td>
+					<td class="sigmaTd1">產品金額</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -224,19 +224,19 @@ div.panel
 
 		</form>
 
-		<FORM action="<c:url value="/OrderOneToTwo.controller" />" method="get">
+		<FORM action="<c:url value="/ChangeStatusOneToTwo.controller" />" method="get">
 		<h2>配送資訊</h2>
 		配送方式:
 		
 		<!-- =如果是一般商品，可以選擇配送方式，開始= -->
 
 <c:if test="${shipping == '1' or shipping == '2'}">
-	<input  name="select1" type="radio" value="1" checked required >
-	<!-- onfocus="functionName()" 用來觸發函式 -->
-	<label for="setTt1">宅配</label>
-	
-	<input name="select1" type="radio" value="2" >
-	<label	for="setTt2">超商</label>
+	<Input type='hidden' name='select1' value="${shipping}"> 
+	<label>宅配</label>
+	<!--<input  name="select1" type="radio" value="1" checked required >-->
+	<!--<label for="setTt1">宅配</label>	-->
+	<!--<input name="select1" type="radio" value="2" >-->
+	<!--<label	for="setTt2">超商</label>-->
 </c:if>
 
 <!-- 
@@ -251,12 +251,19 @@ div.panel
 			<label>QR票券</label>
 		</c:if>
 
+		<c:if test="${shipping == '1' }">
 		<br>
-		<label>收件人：</label>
-		<input type="text" required="required" name="input1" size="40" value="${defaultName}" />
+		<label>收件人&emsp;：</label>
+		<input type="text" required="required" name="input1" size="30" value="${defaultName}" />
 <!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 		<br>
-		
+		</c:if>
+		<c:if test="${shipping == '3' }">
+		<br>
+		<label></label>
+		<Input type='hidden' name='input1' value="${defaultName}">
+		<br>
+		</c:if>
 		
 		<!-- 未選擇 -->
 		<c:if test="${shipping == '0' }">
@@ -269,7 +276,7 @@ div.panel
 		
 		<c:if test="${shipping == '1' }">
 			<label>宅配地址：</label>
-			<input type="text" required="required" name="address1" size="40" value="${defaultAddress}" />
+			<input type="text" required="required" name="address1" size="30" value="${defaultAddress}" />
 	<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 			<br>
 		</c:if>
@@ -277,19 +284,24 @@ div.panel
 
 		<c:if test="${shipping == '2' }">
 			<label>超商門市：</label>
-			<input type="text" required="required" name="address2" size="40" value="${defaultAddress}" />
-	<!-- 	<Input type='hidden' name='address2' value="${defaultAddress}"> -->	
+			<input type="text" required="required" name="address2" size="30" value="${defaultAddress}" />
 			<br>
 		</c:if>
 
 		<c:if test="${shipping == '3' }">
-			<label>QR票券</label>		<!-- 如果是QR不印地址，宅配/超商則會印地址 -->
+			<label></label>		
+			<Input type='hidden' name='input2' value="${defaultAddress}">
 			<br>
 		</c:if>
 
-		<label>電話：</label>
-		<input type="text" required="required" name="input2" size="40" value="${defaultPhone}" />
-	<!--<Input type='hidden' name='input2' value='${defaultPhone}'> -->
+		<c:if test="${shipping == '1' }">
+		<label>電話&emsp;&emsp;：</label>
+		<input type="text" required="required" name="input2" size="30" value="${defaultPhone}" />
+		</c:if>
+		<c:if test="${shipping == '3' }">
+			<label></label>	
+		</c:if>
+
 		<br>
 		<c:if test="${shipping == '1' }">
 			<Input type='hidden' name='address2' value='empty'>

@@ -1,217 +1,211 @@
-@font-face{
-  font-family: Makinas;
-  src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
+@font-face {
+	font-family: Makinas;
+	src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
+}
+
+*{
+	text-decoration: none;
+	text-decoration-color: transparent;
 }
 
 body {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: right;
-  background-image: url(/Bartenders/images/bg13.png);
-  height: 100%;
-  font-family: Arial, Helvetica;
-  letter-spacing: 0.02em;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Makinas';
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: right;
+	background-image: url(/Bartenders/images/bg13.png);
+	height: 100%;
+	font-family: Arial, Helvetica;
+	letter-spacing: 0.02em;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Makinas';
 }
 
-.outw{
-  width: auto;
-  padding-top:10px;
-	position:relative;
-	top:80px;
+.outw {
+	width: auto;
+	padding-top: 10px;
+	position: relative;
+	top: 80px;
 }
 
-.outwrap0{
-	top:80px;
-  margin: 25px auto;
-  text-align: center;
-  width: auto;
-  line-height: 20px;
-  padding: 25px;
-  color: rgb(255, 255, 255);
-/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(179, 148, 48) 0px 0px 20px, rgb(179, 148, 48) 0px 0px 30px, rgb(179, 148, 48) 0px 0px 40px; */
-  font-size: 24px;
-  border-radius: 5px;
+.outwrap0 {
+	top: 80px;
+	margin: 25px auto;
+	text-align: center;
+	width: auto;
+	line-height: 20px;
+	padding: 25px;
+	color: rgb(255, 255, 255);
+	/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(179, 148, 48) 0px 0px 20px, rgb(179, 148, 48) 0px 0px 30px, rgb(179, 148, 48) 0px 0px 40px; */
+	font-size: 24px;
+	border-radius: 5px;
 }
 
-.inwrap{
-  width: auto;
-  text-align: center;
-  margin: 10px auto;
-  padding: 10px;
+.inwrap {
+	width: auto;
+	text-align: center;
+	margin: 10px auto;
+	padding: 10px;
 }
 
-.flos01{
-  vertical-align:top;
-  display: inline-block;
+.flos01 {
+	vertical-align: top;
+	display: inline-block;
 }
 
-#pdPicture{
-  max-width: 350px;
-  margin: 30px auto;
+#pdPicture {
+	max-width: 350px;
+	margin: 30px auto;
 }
 
-.flos02{
-  display: inline-block;
-  text-align: left;
-  max-width: 350px;
+.flos02 {
+	display: inline-block;
+	text-align: left;
+	max-width: 350px;
 }
 
-.pdDataMain{
-  line-height: 20px;
-  padding: 5px;
-  margin: 10px 5px;
-  text-align: left;
+.pdDataMain {
+	line-height: 20px;
+	padding: 5px;
+	margin: 10px 5px;
+	text-align: left;
 }
 
-.dtails{
-  width: 800px;
-  border-top: 5px dotted rgb(252, 243, 126, 0.5);
-  min-height: 400px;
-  padding: 10px;
-  font-size: 18px;
-  margin: 10px auto;
-  text-align: center;
+.pdDataMain a:link, .pdDataMain a:hover, .pdDataMain a:visited{
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
+.dtails {
+	width: 800px;
+	border-top: 5px dotted rgb(252, 243, 126, 0.5);
+	min-height: 400px;
+	padding: 10px;
+	font-size: 18px;
+	margin: 10px auto;
+	text-align: center;
 }
 
 .bT01 {
-  font-family: 'Makinas';
-  font-size: 20px;
-  opacity: 0.9;
-  border: none;
-  color: #ffffff !important;
-  font-weight: 500;
-  padding: 20px;
-  margin-left: 40px;
-  text-transform: uppercase;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease 0s;
-  background: none;
-  color: rgb(255, 255, 255);
-/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(179, 148, 48) 0px 0px 20px, rgb(179, 148, 48) 0px 0px 30px, rgb(179, 148, 48) 0px 0px 40px; */
+	font-family: 'Makinas';
+	font-size: 20px;
+	opacity: 0.9;
+	border: none;
+	color: #ffffff !important;
+	font-weight: 500;
+	padding: 20px;
+	margin-left: 40px;
+	text-transform: uppercase;
+	border-radius: 6px;
+	display: inline-block;
+	transition: all 0.3s ease 0s;
+	background: none;
+	color: rgb(255, 255, 255);
+	/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(179, 148, 48) 0px 0px 20px, rgb(179, 148, 48) 0px 0px 30px, rgb(179, 148, 48) 0px 0px 40px; */
 }
 
 .bT01:hover {
-  text-shadow:none;
-  background: #030303;
-  color: #f5efef !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.3s ease 0s;
+	text-shadow: none;
+	background: #030303;
+	color: #f5efef !important;
+	font-weight: 700 !important;
+	letter-spacing: 3px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	transition: all 0.3s ease 0s;
 }
 
-.bT,#bT {
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: rgba(0,0,0,0.77);
-  padding: 20px;
-  border-radius: 5px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-  text-align: center;
-  margin: 10px;
+.bT, #bT {
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.77);
+	padding: 20px;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+	text-align: center;
+	margin: 10px;
 }
 
 .bT:hover, #bT:hover {
-  background: rgb(150, 13, 13,0.77);
-  letter-spacing: 1px;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-  transition: all 0.4s ease 0s;
+	background: rgb(150, 13, 13, 0.77);
+	letter-spacing: 1px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+	transition: all 0.4s ease 0s;
 }
 
-#myFv{
-  float: left;
+#myFv {
+	float: left;
 }
 
-input{
-  padding: 10px;
-  line-height: 18px;
-  border-radius: 3px;
-  border-color: transparent;
-  background-color: rgb(12, 10, 10, 0.65);
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
-  border: none;
-  color: rgb(198, 220, 241);
+input {
+	padding: 10px;
+	line-height: 18px;
+	border-radius: 3px;
+	border-color: transparent;
+	background-color: rgb(12, 10, 10, 0.65);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
+	border: none;
+	color: rgb(198, 220, 241);
 }
 
 input[type="number"] {
-  width: 50px;
-  line-height: 20px;
-  text-align: center;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+	width: 50px;
+	line-height: 20px;
+	text-align: center;
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
 }
 
-input:focus{
-  color: rgb(198, 220, 241);
-  outline: none ;
-  border-radius: 3px;
-  -webkit-box-shadow:  0 0 5px rgb(252, 243, 126);
+input:focus {
+	color: rgb(198, 220, 241);
+	outline: none;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 5px rgb(252, 243, 126);
 }
 
 /* div scroll bars */
-.inwrap::-webkit-scrollbar-track
-{
+.inwrap::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
 	background-color: rgb(0, 0, 0);
 }
 
-.inwrap::-webkit-scrollbar
-{
-  -webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
-  border-radius: 10px;
-  width: 12px;
+.inwrap::-webkit-scrollbar {
+	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+	border-radius: 10px;
+	width: 12px;
 	background-color: rgb(0, 0, 0);
 }
 
-.inwrap::-webkit-scrollbar-thumb
-{
+.inwrap::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgb(80, 80, 80);
 	background-color: rgb(119, 119, 119);
 }
 
-body::-webkit-scrollbar-track
-{
+body::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
 	background-color: rgb(0, 0, 0);
 }
 
-body::-webkit-scrollbar
-{
-  -webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
-  border-radius: 10px;
-  width: 12px;
+body::-webkit-scrollbar {
+	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+	border-radius: 10px;
+	width: 12px;
 	background-color: rgb(0, 0, 0);
 }
 
-body::-webkit-scrollbar-thumb
-{
+body::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgb(80, 80, 80);
 	background-color: rgb(119, 119, 119);
 }
-
-
-
-
-
-
-
-
-
-
 
 /* ///////////////////////////////////////////////////////// */
 /* ///////////////////////////////////////////////////////// */
@@ -224,162 +218,160 @@ body {
 }
 
 /* Container */
-		@media screen and (max-width: 1680px) {
-			.outw{
-				width: auto;
-				text-align: center;
-			}
+@media screen and (max-width: 1680px) {
+	.outw {
+		width: auto;
+		text-align: center;
+	}
+}
 
-		}
+@media screen and (max-width: 1480px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		width: auto;
+	}
+	#myFv, .pdDataMain, .pdData {
+		width: auto;
+		margin: 15px auto;
+	}
+}
 
-		@media screen and (max-width: 1480px) {			
-			.outw,.outwrap0{
-        width: auto;
-				margin: auto;
-			}
-			.inwrap,.flos01,.flos02,.dtails{
-        width: auto;
-			}
-			#myFv,.pdDataMain,.pdData{
-				width: auto;
-				margin: 15px auto;
-			}
+@media screen and (max-width: 960px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		width: auto;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		width: auto;
+		margin: 10px auto;
+	}
+}
 
-		}
+@media screen and (max-width: 840px) {
+	.outw, .outwrap0 {
+		text-align: center;
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		width: auto;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		width: auto;
+		margin: 10px auto;
+		float: none;
+	}
+}
 
-		@media screen and (max-width: 960px) {
-			.outw,.outwrap0{
-				width: auto;
-				margin: auto;
-			}
-			.inwrap,.flos01,.flos02,.dtails{
-				width: auto;
-			}
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				width: auto;
-				margin: 10px auto;
-			}
-		}
+@media screen and (max-width: 736px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		margin: auto;
+		width: auto;
+		font-size: 20px;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		display: block;
+		width: auto;
+		margin: 10px auto;
+		float: none;
+	}
+}
 
-		@media screen and (max-width: 840px) {
-			.outw,.outwrap0{
-				text-align: center;
-				width: auto;
-        margin: auto;
-			}
-			.inwrap,.flos01,.flos02,.dtails{
-				width: auto;
-			}
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				width: auto;
-				margin: 10px auto;
-        float:none;
-			}
-		}
+@media screen and (max-width: 660px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		font-size: 20px;
+		width: auto;
+		margin: auto;
+	}
+	#myFv, .bt0.bT, button.bT, .pdDataMain, .pdData {
+		display: block;
+		float: none;
+		width: auto;
+		margin: auto;
+		text-align: center;
+	}
+}
 
-		@media screen and (max-width: 736px) {
-			.outw,.outwrap0{
-        width: auto;
-        margin: auto;
-			}
-			.inwrap,.flos01,.flos02,.dtails{
-				margin: auto;
-        width: auto;
-        font-size: 20px;
-			} 
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				display: block;
-				width: auto;
-        margin: 10px auto;
-        float:none;
-			}
-		}
+@media screen and (max-width: 568px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+		text-align: center;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		font-size: 20px;
+		text-align: center;
+		width: auto;
+		margin: auto;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		display: block;
+		width: auto;
+		float: none;
+		margin: s auto;
+		text-align: center;
+	}
+}
 
-		@media screen and (max-width: 660px) {
-      .outw,.outwrap0{
-				width: auto;
-				margin: auto; 
-			} 
-			.inwrap,.flos01,.flos02,.dtails{
-				font-size: 20px;
-				width: auto;
-				margin: auto;
-			}
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				display: block;
-        float:none;
-				width: auto;
-        margin: auto;
-        text-align: center;
-			}
-		}
+@media screen and (max-width: 414px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+		text-align: center;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		font-size: 20px;
+		text-align: center;
+		width: auto;
+		margin: auto;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		display: block;
+		width: auto;
+		float: none;
+		margin: s auto;
+		text-align: center;
+	}
+}
 
-		@media screen and (max-width: 568px) {
-      .outw,.outwrap0{
-				width: auto;
-				margin: auto; 
-				text-align: center;
-			} 
-			.inwrap,.flos01,.flos02,.dtails{
-				font-size: 20px;
-				text-align: center;
-				width: auto;
-				margin: auto;
-			}
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				display: block;
-				width: auto;
-        float:none;
-        margin:s auto;
-        text-align: center;
-			}
-		}
-
-		@media screen and (max-width: 414px) {
-			.outw,.outwrap0{
-				width: auto;
-				margin: auto; 
-				text-align: center;
-			} 
-			.inwrap,.flos01,.flos02,.dtails{
-				font-size: 20px;
-				text-align: center;
-				width: auto;
-				margin: auto;
-			}
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				display: block;
-				width: auto;
-        float:none;
-        margin:s auto;
-        text-align: center;
-			}
-		}
-
-		@media screen and (max-width: 320px) {
-      body{
-        width: 230px;
-        text-align: center;
-      }
-			.outw,.outwrap0{
-				width: auto;
-				margin: auto; 
-				text-align: center;
-			} 
-			.inwrap,.flos01,.flos02,.dtails{
-				font-size: 20px;
-				text-align: center;
-				width: auto;
-				margin: auto;
-      }
-      #pdPicture{
-        width: 230px;
-      }
-			#myFv,input.bt0.bT,button.bT,.pdDataMain,.pdData{
-				display: block;
-				width: auto;
-        float:none;
-        margin: auto;
-        text-align: center;
-			}
-		}
+@media screen and (max-width: 320px) {
+	body {
+		width: 230px;
+		text-align: center;
+	}
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+		text-align: center;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		font-size: 20px;
+		text-align: center;
+		width: auto;
+		margin: auto;
+	}
+	#pdPicture, .slides, .slide {
+		width: 230px;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		display: block;
+		width: auto;
+		float: none;
+		margin: auto;
+		text-align: center;
+	}
+}

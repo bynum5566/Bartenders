@@ -180,16 +180,16 @@ div.panel
 		<form action="<c:url value=" 123456" />" method="post">
 		<h2>修改數量</h2><BR>
 <!-- 		<h2>(購物車編號:${orderId})</h2>  -->
-		<table>
+		<table border="1">
 			<thead>
 				<tr align="center">
 
 			<!--		<td>產品id</td>	-->
-					<td>產品名稱</td>
-					<td>產品單價</td>
-					<td>數量</td>
-					<td>修改數量</td>
-					<td>刪除</td>
+					<td class="sigmaTd1">產品名稱</td>
+					<td class="sigmaTd1">產品單價</td>
+					<td class="sigmaTd1">數量</td>
+					<td class="sigmaTd1">修改數量</td>
+					<td class="sigmaTd1">刪除</td>
 				</tr>
 			</thead>
 			<tbody>

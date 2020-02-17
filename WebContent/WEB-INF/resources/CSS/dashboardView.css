@@ -3,6 +3,11 @@
   src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
+*{
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -107,6 +112,11 @@ body {
 .flos {
   margin-right: 10px;
   float: left;
+}
+
+.pdNm a:link, .pdNm a:hover, .pdNm a:visited {
+	text-decoration: none;
+	text-decoration-color: transparent;
 }
 
 /* add buton */

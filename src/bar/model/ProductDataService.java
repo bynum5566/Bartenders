@@ -32,22 +32,20 @@ public class ProductDataService {
 		this.proD = proD;
 	}
 	
-	/* ProductDataService的searchResult */
-	public String searchResult(String keyword) {
-		String res = "";
-		List<ProductData> products = pdao.searchPds(keyword);
-		for (ProductData prod : products) {
-			res = res + "";
-		}
-		return res;
-	}
-
 	public void addNewProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String Url, String Time) {
+			String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3, String Time) {
 		try {
-			String productImageUrl = "";
-			if (Url.length() != 0) {
-				productImageUrl = Url;
+			String pUrl1 = "";
+			if (productImageUrl.length() != 0) {
+				pUrl1 = productImageUrl;
+			}
+			String pUrl2 = "";
+			if (productImageUrl2.length() != 0) {
+				pUrl2 = productImageUrl2;
+			}
+			String pUrl3 = "";
+			if (productImageUrl3.length() != 0) {
+				pUrl3 = productImageUrl3;
 			}
 
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -78,7 +76,9 @@ public class ProductDataService {
 			int pdSoldQuantity = 0;
 			String pdSoldOut = "";
 
-			proD.setProductImageUrl(productImageUrl);
+			proD.setProductImageUrl(pUrl1);
+			proD.setProductImageUrl2(pUrl2);
+			proD.setProductImageUrl3(pUrl3);
 			proD.setPdId(pdId);
 			proD.setAutoLaunchTime(autoLaunchTime);
 			proD.setAutoPullTime(autoPullTime);
@@ -102,11 +102,19 @@ public class ProductDataService {
 	}
 
 	public void addNewTKProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1,
-			String pdTag2, String pdTag3, String pdDetail, String Url, String TkTime, String Time) {
+			String pdTag2, String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3, String TkTime, String Time) {
 		try {
-			String productImageUrl = "";
-			if (Url.length() != 0) {
-				productImageUrl = Url;
+			String pUrl1 = "";
+			if (productImageUrl.length() != 0) {
+				pUrl1 = productImageUrl;
+			}
+			String pUrl2 = "";
+			if (productImageUrl2.length() != 0) {
+				pUrl2 = productImageUrl2;
+			}
+			String pUrl3 = "";
+			if (productImageUrl3.length() != 0) {
+				pUrl3 = productImageUrl3;
 			}
 
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -141,7 +149,9 @@ public class ProductDataService {
 			int pdSoldQuantity = 0;
 			String pdSoldOut = "";
 
-			proD.setProductImageUrl(productImageUrl);
+			proD.setProductImageUrl(pUrl1);
+			proD.setProductImageUrl2(pUrl2);
+			proD.setProductImageUrl3(pUrl3);
 			proD.setPdId(pdId);
 			proD.setAutoLaunchTime(autoLaunchTime);
 			proD.setAutoPullTime(autoPullTime);
@@ -196,7 +206,10 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + product.getProductName()
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<a href=\"/Bartenders/Product.View?pdId="
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
+					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
 					+ "</div></td>" + "<form action=\"/Bartenders/Product.EditPDL\" method=\"GET\"><td class=\"RSide\">"
@@ -217,7 +230,10 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + product.getProductName()
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<a href=\"/Bartenders/Product.View?pdId="
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
+					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
 					+ "</div></td>" + "<form action=\"/Bartenders/Product.EditPDP\" method=\"GET\"><td class=\"RSide\">"
@@ -238,7 +254,10 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + product.getProductName()
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
+					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
 					+ "</div></td>"
@@ -260,7 +279,10 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + product.getProductName()
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
+					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
+					+ product.getProductName() + "</a>"
 					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
 					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
 					+ "</div></td>"
@@ -269,6 +291,26 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"編輯\"  class=\"bT2\"><a></td></form></tr>";
 		}
 		return Pulled;
+	}
+	
+	
+	public String searchResult(String keyword) {
+		String res = "";
+		int x = 0;
+		List<ProductData> products = pdao.searchPds(keyword);
+		if(products.size()==0) {
+			res = "<tr><td><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></td></tr>";
+			return res;
+		}
+		for (ProductData product : products) {
+			res = res + "<a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
+					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a>";
+			if (x % 3 == 2) {
+				res = res + "</br>";
+			}
+			x++;
+		}
+		return res;
 	}
 
 	public String selectTop3Pd(int companyId) {
@@ -317,20 +359,18 @@ public class ProductDataService {
 		return tickets;
 	}
 
-	public boolean pdPull(String pdidckL) {
+	public boolean pdPull(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String pullT = sdf.format(date);
-		String pdAvailable = "Pulled";
-		return pdao.pullP(pullT, pdAvailable, pdidckL);
+		return pdao.pullP(pullT, pdId);
 	}
 
-	public boolean pdLaunch(String pdidckP) {
+	public boolean pdLaunch(String pdId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String launchT = sdf.format(date);
-		String pdAvailable = "Launched";
-		return pdao.launchP(launchT, pdAvailable, pdidckP);
+		return pdao.launchP(launchT, pdId);
 	}
 
 	public ProductData editThisPd(int companyId, String pdId) {
@@ -344,18 +384,26 @@ public class ProductDataService {
 	}
 
 	public void editPd(String pdId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String Url, String autoLaunchTime, String autoPullTime) {
+			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String autoLaunchTime, String autoPullTime) {
 		try {
 			String productImageUrl = "";
 			if (Url.length() != 0) {
 				productImageUrl = Url;
 			}
+			String productImageUrl2 = "";
+			if (Url2.length() != 0) {
+				productImageUrl2 = Url2;
+			}
+			String productImageUrl3 = "";
+			if (Url3.length() != 0) {
+				productImageUrl3 = Url3;
+			}
 
-			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date = new Date();
-			String strDate = sdFormat.format(date);
+//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//			Date date = new Date();
+//			String strDate = sdFormat.format(date);
 
-			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl);
+			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl, productImageUrl2, productImageUrl3);
 
 			if (autoLaunchTime != null && autoLaunchTime.length() != 0) {
 				if (autoPullTime != null && autoPullTime.length() != 0) {
@@ -374,19 +422,27 @@ public class ProductDataService {
 	}
 
 	public void editTKPd(String pdId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String Url, String validDate, String expiryDate, String autoLaunchTime,
+			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String validDate, String expiryDate, String autoLaunchTime,
 			String autoPullTime) {
 		try {
 			String productImageUrl = "";
 			if (Url.length() != 0) {
 				productImageUrl = Url;
 			}
+			String productImageUrl2 = "";
+			if (Url2.length() != 0) {
+				productImageUrl2 = Url2;
+			}
+			String productImageUrl3 = "";
+			if (Url3.length() != 0) {
+				productImageUrl3 = Url3;
+			}
 
-			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date = new Date();
-			String strDate = sdFormat.format(date);
+//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//			Date date = new Date();
+//			String strDate = sdFormat.format(date);
 
-			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl);
+			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl, productImageUrl2, productImageUrl3);
 
 			if (validDate != null && validDate.length() != 0) {
 				if (expiryDate != null && expiryDate.length() != 0) {

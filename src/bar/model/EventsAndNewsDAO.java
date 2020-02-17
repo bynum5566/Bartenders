@@ -27,6 +27,15 @@ public class EventsAndNewsDAO {
 		session.save(eAn);
 	}
 	
+	public List<EventsAndNews> allENs(int companyId){
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr="from EventsAndNews where companyId=:cId";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("cId", companyId);
+		return (List<EventsAndNews>)query.list();
+		
+	}
+	
 	public List<EventsAndNews> selectAllEN(int companyId){
 		Session session = sessionFactory.getCurrentSession();
 		String hqlStr="from EventsAndNews where companyId=:cId and deleteTag is null";

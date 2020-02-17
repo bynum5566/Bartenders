@@ -51,7 +51,7 @@ public class Register {
 
 			m.addAttribute("msg", "註冊成功，請至信箱啟用帳號");
 			new GmailService("11129henry@gmail.com", "PassW0rd@aryido").validationLinkUsers(Ruser);
-			return "LoginPage";
+			return "index";
 			
 		} catch (Exception e) {
 			m.addAttribute("errorMsg", "系統忙碌中，請稍後再試");

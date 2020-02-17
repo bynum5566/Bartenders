@@ -23,7 +23,7 @@ import bar.model.UsersService;
 
 @Controller
 @EnableTransactionManagement
-public class OrderOneToTwo /* 使用者按下 */
+public class ChangeStatusOneToTwo
 {
 	private ProductDataService pService;
 	private UsersService uService;
@@ -31,7 +31,7 @@ public class OrderOneToTwo /* 使用者按下 */
 	private CompanyService cService;
 	private CartService cartService;
 
-	public OrderOneToTwo(ProductDataService pService, UsersService uService, OrdersService oService,
+	public ChangeStatusOneToTwo(ProductDataService pService, UsersService uService, OrdersService oService,
 			CompanyService cService , CartService cartService) {
 		this.pService = pService;
 		this.uService = uService;
@@ -40,8 +40,8 @@ public class OrderOneToTwo /* 使用者按下 */
 		this.cartService = cartService;
 	}
 
-	@RequestMapping(path = "/OrderOneToTwo.controller", method = RequestMethod.GET)
-	public String OrderOneToTwoProcessAction(
+	@RequestMapping(path = "/ChangeStatusOneToTwo.controller", method = RequestMethod.GET)
+	public String ChangeStatusOneToTwoProcessAction(
 			@RequestParam("orderId") String inputOrderId, /* orderId */ // 新增20200131_0934
 			@RequestParam("select1") String select1, /* 配送方式 */
 			@RequestParam("input1") String input1, /* 收件人 */
@@ -166,29 +166,29 @@ public class OrderOneToTwo /* 使用者按下 */
 
 			// return null;
 		} catch (Exception e) {
-			System.out.println("【OrderOneToTwoProcessAction】【error】");
-			System.out.println("【Exception = 】" + e);
+			System.out.println("【ChangeStatusOneToTwoProcessAction】【error】");
+			System.out.println("【Exception = 】");
 			System.out.println("【e.printStackTrace = 】");
 			e.printStackTrace();
 		}
-		// return "CartDetail";
+		// return "DisplayCartDetail";
 		
 		
 		
 		if (msg == "庫存不足，請重新選擇數量") {
 			System.out.println("結束狀態A");
 			m.addAttribute("msg",msg);
-			return "resultOfCheckout";
+			return "ResultOfCheckout";
 		}
 		if (msg == "成立訂單成功") {
 			System.out.println("結束狀態B");
 			m.addAttribute("msg",msg);
-			return "resultOfCheckout";
+			return "ResultOfCheckout";
 		}
 		msg="發生不明錯誤";
 		m.addAttribute("msg",msg);
 		System.out.println("結束狀態C");
-		return "resultOfCheckout";
+		return "ResultOfCheckout";
 	}
 
 	private void printInputData(String inputOrderId, // 新增20200131_0934

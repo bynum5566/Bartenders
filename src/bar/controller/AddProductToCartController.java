@@ -64,6 +64,7 @@ public class AddProductToCartController
 			@RequestParam("qty") String qty,
 			@RequestParam("PdStock") String PdStock, 
 			@RequestParam("ProductName") String ProductName,
+			@RequestParam("barAccount") String barAccount,
 			@ModelAttribute(name = "account") String account, // new
 			Model m)
 	{
@@ -103,8 +104,10 @@ public class AddProductToCartController
 		{
 			/* 庫存不足 */
 			String error = "庫存不足，請重新選擇";
-			addAttribute(account, m, pdId, qty ,error);
-			return "AddToCartButton";
+			addAttribute(account, m, pdId, qty ,error,barAccount);
+			//return "AddToCartButton";		//Wu
+			//return "redirect:/Product.show";//Wu
+			return "ResultOfAddToCart";
 		} else	/*庫存足夠*/
 		{
 			System.out.println("判斷訂單，開始==============================");
@@ -171,7 +174,7 @@ public class AddProductToCartController
 					//===============
 //					String error = "測試終止";
 //					addAttribute(account, m, pdId, qty,error);
-//					return "AddToCartButton";
+//					return "ResultOfAddToCart";
 					//===============
 				}
 				else
@@ -231,7 +234,7 @@ public class AddProductToCartController
 						//===============
 //						String error = "測試終止";
 //						addAttribute(account, m, pdId, qty,error);
-//						return "AddToCartButton";
+//						return "ResultOfAddToCart";
 						//===============
 					}
 					else
@@ -250,9 +253,11 @@ public class AddProductToCartController
 						
 						System.out.println("QR商品，只允許購買一個");/* 選取的數量+目前購物車內的數量>庫存 */
 						String error = "QR商品，只允許購買一個";
-						addAttribute(account, m, pdId, qty,error);
+						addAttribute(account, m, pdId, qty,error,barAccount);
 						CartService.Pf("AddProductToCartProcessAction，End2");
-						return "AddToCartButton";
+						//return "AddToCartButton";		//Wu
+						//return "redirect:/Product.show";//Wu
+						return "ResultOfAddToCart";
 						
 						/*如果是QR類型，只要購物車中已有項目，就不允許再加入購物車，結束*/
 						/*==================================================*/
@@ -287,9 +292,11 @@ public class AddProductToCartController
 			{
 				System.out.println("庫存不足，請重新選擇。");/* 選取的數量+目前購物車內的數量>庫存 */
 				String error = "庫存不足，請重新選擇!";
-				addAttribute(account, m, pdId, qty,error);
+				addAttribute(account, m, pdId, qty,error,barAccount);
 				CartService.Pf("AddProductToCartProcessAction，End2");
-				return "AddToCartButton";
+				//return "AddToCartButton";		//Wu				
+				//return "redirect:/Product.show";//Wu
+				return "ResultOfAddToCart";
 			} else /* 庫存足夠 */
 			{
 				CartService.Pf("庫存足夠");
@@ -327,15 +334,19 @@ public class AddProductToCartController
 
 				
 				String ok = "加入購物車成功";
-				addAttribute(account, m, pdId, qty ,ok);
+				addAttribute(account, m, pdId, qty ,ok,barAccount);
 				System.out.println("加入購物車成功");
 				CartService.Pf("AddProductToCartProcessAction，End2");
 
-				return "AddToCartButton";
+				//return "AddToCartButton";		//Wu
+				//return "redirect:/Product.show";//Wu
+				//"redirect:/Product.show"	//商品詳情
+				return "ResultOfAddToCart";
+				
 			}
 		}
 	}
-	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton) /*傳值給下一階段*/
+	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton,String barAccount) /*傳值給下一階段*/
 	{
 		ProductData pX = productDataService.select(pdId);
 		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
@@ -350,7 +361,9 @@ public class AddProductToCartController
 		m.addAttribute("qty", qty); // added
 		m.addAttribute("pdPrice", pX.getPdPrice()); // added
 		m.addAttribute("errorMsgOfAddToCartButton",errorMsgOfAddToCartButton);
+		m.addAttribute("msg",errorMsgOfAddToCartButton);
 		m.addAttribute("validDate",pX.getValidDate());
+		m.addAttribute("barAccount",barAccount);
 	}
 	private boolean selectLessThanStock(String pdId, String qty)
 	{

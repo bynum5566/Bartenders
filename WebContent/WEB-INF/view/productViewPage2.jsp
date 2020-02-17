@@ -1,78 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forSlideShow.css">
 <title>Bartender- Preview ${productName}</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
 <body>
 	<div class="outw">
-				<div>
-					<h2>商品預覽</h2>
-				</div>
+		<div>
+			<h2>商品預覽</h2>
+		</div>
 		<table class="outwrap0">
-<!-- 			<tr> -->
-<!-- 				<td colspan="2"> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
 			<tr>
 				<td colspan="2">
-				<div>
-					<h3>${productName}</h3>
-				</div>
+					<div>
+						<h3>${productName}</h3>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td class="inwrap">
 					<div class="flos01">
-						<div>
-							<img id="pdPicture" src="<c:out value="${pic}"/>">
-<!-- 							<img id="pdPicture" src="https://images.plurk.com/3igWGJHn8RjteL3eqyutFX.jpg"> -->
-						</div>
+<!-- 						<div> -->
+<%-- 							<img id="pdPicture" src="<c:out value="${pic}"/>"> --%>
+<!-- 						</div> -->
+						<ul class="slides">
+							<input type="radio" name="radio-btn" id="img-1" checked />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic1}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-3" class="prev">&#x2039;</label>
+									<label for="img-2" class="next">&#x203a;</label>
+								</div>
+							</li>
+							<input type="radio" name="radio-btn" id="img-2" />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic2}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-1" class="prev">&#x2039;</label>
+									<label for="img-3" class="next">&#x203a;</label>
+								</div>
+							</li>
+							<input type="radio" name="radio-btn" id="img-3" />
+							<li class="slide-container">
+								<div class="slide">
+									<img src="<c:out value="${pic3}"/>" />
+								</div>
+								<div class="nav">
+									<label for="img-2" class="prev">&#x2039;</label>
+									<label for="img-1" class="next">&#x203a;</label>
+								</div>
+							</li>
+							<li class="nav-dots">
+								<label for="img-1" class="nav-dot" id="img-dot-1"></label>
+								<label for="img-2" class="nav-dot" id="img-dot-2"></label>
+								<label for="img-3" class="nav-dot" id="img-dot-3"></label>
+							</li>
+						</ul>
 					</div>
 					<div class="flos02">
-						<form action="/addMyFav" method="post">
 						<div id="hideId" class="pdDataMain">
-							<div>商品編號: </div>
-							<input type="text" value="<c:out value="${productId}"/>" readonly="readonly">
+							<div>商品編號:</div>
+							<input type="text" value="<c:out value="${productId}"/>"
+								readonly="readonly">
 						</div>
 						<div class="pdDataMain">
-							<div>價格:
-								<span>${pdPri}</span>
+							<div>
+								<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag1}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag1}</a>
+								<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag2}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag2}</a>
+								<a href="/Bartenders/search.Product?keyword=<c:out value="${Tag3}"/>" style="text-decoration:none; text-decoration-color:transparent;">${Tag3}</a>
 							</div>
 						</div>
 						<div class="pdDataMain">
-							<div>庫存量:
-								<span id="stk">${pdStk}</span>
+							<div>
+								價格: <span>${pdPri}</span>
+							</div>
+						</div>
+						<div class="pdDataMain">
+							<div>
+								庫存量: <span id="stk">${pdStk}</span>
 							</div>
 						</div>
 						<div id="quant" class="pdDataMain">
-							<div>購買數量:
-								<input type="number" min="1" max="<c:out value="${pdStk}"/>">
+							<div>
+								購買數量: <input type="number" value="1" min="1"
+									max="<c:out value="${pdStk}"/>">
 							</div>
 						</div>
 						<div id="sold" class="pdDataMain">
 							<h4>缺貨中</h4>
 						</div>
 						<div class="pdDataMain flos">
-							<div>有效期間:<br>
-								<span>${pdValD}</span>
+							<div>
+								有效期間:<br> <span>${pdValD}</span>
 							</div>
 						</div>
 						<div id="myFv">
 							<div>
-								<input id="bT" class="bT" type="submit" value="加入購物車+">
+								<button class="bT">加入購物車+</button>
 							</div>
 						</div>
-					</form>
-							<div>
-								<input class="bT" type="submit" value="加入我的最愛+">
-							</div>
+						<div>
+							<button class="bT">加入我的最愛+</button>
+						</div>
 					</div>
 				</td>
 			</tr>
@@ -85,29 +125,29 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="bt01">
-					<!-- <a href="/Bartenders/Dashboard.TkProducts">
-						<input class="bt01 bt0 bT01" type="button" value="回商品管理" />
-					</a> -->
-				<button onclick="location.href = '/Bartenders/Dashboard.TkProducts';" class="bT" >回票券商品管理</button>
-			</td>
+					<button
+						onclick="location.href = '/Bartenders/Dashboard.TkProducts';"
+						class="bT">回票券商品管理</button>
+				</td>
 			</tr>
 		</table>
 	</div>
 
 	<%@ include file="menu.jsp"%>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$('#sold').hide();
-	$('#hideId').hide();
-	var stock = document.getElementById("stk").value;
-	if(stock <= 0){
-		$('#sold').show();
-		$('#quant').hide();
-	}else{
-		$('#quant').show();
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
 		$('#sold').hide();
-	}
-</script>
+		$('#hideId').hide();
+		var stock = document.getElementById("stk").value;
+		if (stock <= 0) {
+			$('#sold').show();
+			$('#quant').hide();
+		} else {
+			$('#quant').show();
+			$('#sold').hide();
+		}
+	</script>
 </body>
 </html>

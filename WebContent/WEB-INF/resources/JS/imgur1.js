@@ -1,4 +1,3 @@
-/* Imgur Upload Script */
 (function (root, factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
@@ -75,7 +74,7 @@
             var p1, p2, input;
 
                 p1 = this.createEls('p', {}, 'Upload');
-                p2 = this.createEls('p', {}, 'Image 2');
+                p2 = this.createEls('p', {}, 'Image 1');
             input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.info, function (zone) {
@@ -164,5 +163,3 @@
 
     return Imgur;
 }));
-
-$('#imgPlace02').hide();

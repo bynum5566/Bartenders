@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>回到訂單頁面</title>
+<title>我的購物車</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -176,14 +176,70 @@ div.panel
         <div >
 
 <%-- 本體，開始 --%>
-		<!-- 回到訂單頁面 -->
-		<h2>${msg}</h2>
+	<h3 style="color:white">我的購物車</h3>
+	<h3>${msg}</h3>
 		<form>
-			<h2>
-				<!--<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a>-->
-				<a href="<c:url value="/userOrder.controller"/>">回到訂單頁面 </a> 
-			</h2> 
-		</form> 
+			<table border="1">
+				<thead >
+					<tr align="center" class="sigmaGray">
+						<!-- <td>購物車編號</td> -->
+						
+						<td class="sigmaTd1"  style="font-size:18px" >賣家名稱</td>
+						<td class="sigmaTd1">產品名稱</td>
+						<!-- <td class="sigmaTd1">產品單價</td> -->		<!-- 待雙層foreach完成後enable -->
+
+						<!--  <td class="sigmaTd1">配送類型</td>-->
+						<!-- <td>修改配送資訊</td> -->
+						<td class="sigmaTd1">產品數量</td>		<!-- 修改數量 / 產品數量 -->
+						<td class="sigmaTd1">小計</td>
+						<td class="sigmaTd1"></td>	<!-- 刪除 -->
+						<td class="sigmaTd1"></td>	<!-- 成立訂單-->
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr align="center">
+						<c:forEach items="${listOfOrder}" var="list" step="1" varStatus="current">
+					<tr>
+						<!-- 購物車編號 -->
+						<!-- <td align="center">${listOfOrder[current.index].orderId}</td> -->
+						<!-- 賣家名稱  -->
+						<td align="center">${listOfCompany[current.index].companyName}</td>
+						<!-- 產品名稱 -->
+						<td align="center">${listOfFirstProductOfOrder[current.index].productName}</td>
+
+						<!-- 產品單價 -->
+						<!-- <td></td>  -->		<!-- 待雙層foreach完成後enable -->
+
+						<!-- 配送方式 -->
+						<!-- <td align="center">${ShippingNumToStr[listOfOrder[current.index].shipping]}</td>  -->
+						
+						
+						<!-- 修改購物車 -->
+
+						<!-- 修改配送資訊 -->
+						<!-- 
+						<td align="center"><a
+								href="<c:url value="/ChangeCart.controller"/>?orderId=${listOfOrder[current.index].orderId}">修改配送資訊</a></td>
+						 -->
+						<td align="center"><a
+								href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${listOfOrder[current.index].orderId}"
+								>修改數量</a></td>
+
+						<!-- 小計 -->
+						<td align="center">${listOfOrder[current.index].amount}</td>
+						<!-- 刪除 -->
+						<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
+								>刪除</a></td>
+						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
+								>成立訂單</a></td>
+
+						</tr>
+					</c:forEach>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 <%-- 本體，結束 --%>
         
         </div>  <!--end content-->

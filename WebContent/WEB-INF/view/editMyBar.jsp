@@ -37,11 +37,11 @@ a.bT:link, a.bT:hover, a.bT:visited {
 							value="<c:out value="${barName}"/>"></td>
 					</tr>
 
-					<tr>
-						<td><label>Bar Logo</label></td>
-						<td><input type="text" name="barName" required="required"
-							value="<c:out value="${barName}"/>"></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td><label>Bar Logo</label></td> -->
+<!-- 						<td><input type="text" name="barName" required="required" -->
+<%-- 							value="<c:out value="${barLogo}"/>"></td> --%>
+<!-- 					</tr> -->
 
 					<tr>
 						<td><label>Bar Logo</label></td>
@@ -53,7 +53,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 								<img id="oriImg" src="<c:out value="${pdpicUrl}"/>" />
 							</div>
 							<input id="imgPlace2" type="text" name="pdImg" class="image-url"
-							value="<c:out value="${barImgUrl}"/>" readonly="readonly" />
+							value="<c:out value="${barLogoUrl}"/>" readonly="readonly" />
 							<script type="text/javascript" src="/Bartenders/JS/imgur.js"></script>
 							<script type="text/javascript" src="/Bartenders/JS/upload.js"></script>
 						</td>
@@ -68,7 +68,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 										<div class="info1"></div>
 									</div>
 									<div id="imgPlace01">
-										<img id="oriImg" src="<c:out value="${pdpicUrl1}"/>" />
+										<img id="oriImg" src="<c:out value="${barImgUrl1}"/>" />
 									</div>
 									<input id="imgPlace02" type="text" name="cover1" class="image-url"
 									value="<c:out value="${barImgUrl1}"/>" readonly="readonly" />
@@ -81,7 +81,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 										<div class="info2"></div>
 									</div>
 									<div id="imgPlace03">
-										<img id="oriImg" src="<c:out value="${pdpicUrl2}"/>" />
+										<img id="oriImg" src="<c:out value="${barImgUrl2}"/>" />
 									</div>
 									<input id="imgPlace04" type="text" name="cover2" class="image-url"
 									value="<c:out value="${barImgUrl2}"/>" readonly="readonly" />
@@ -94,7 +94,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 										<div class="info3"></div>
 									</div>
 									<div id="imgPlace05">
-										<img id="oriImg" src="<c:out value="${pdpicUrl3}"/>" />
+										<img id="oriImg" src="<c:out value="${barImgUrl3}"/>" />
 									</div>
 									<input id="imgPlace06" type="text" name="cover3" class="image-url"
 									value="<c:out value="${barImgUrl3}"/>" readonly="readonly" />
@@ -107,7 +107,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 										<div class="info4"></div>
 									</div>
 									<div id="imgPlace07">
-										<img id="oriImg" src="<c:out value="${pdpicUrl4}"/>" />
+										<img id="oriImg" src="<c:out value="${barImgUrl4}"/>" />
 									</div>
 									<input id="imgPlace08" type="text" name="cover4" class="image-url"
 									value="<c:out value="${barImgUrl4}"/>" readonly="readonly" />
@@ -119,7 +119,7 @@ a.bT:link, a.bT:hover, a.bT:visited {
 										<div class="info5"></div>
 									</div>
 									<div id="imgPlace09">
-										<img id="oriImg" src="<c:out value="${pdpicUr5l}"/>" />
+										<img id="oriImg" src="<c:out value="${barImgUrl5}"/>" />
 									</div>
 									<input id="imgPlace10" type="text" name="cover5" class="image-url"
 									value="<c:out value="${barImgUrl5}"/>" readonly="readonly" />
@@ -177,9 +177,13 @@ a.bT:link, a.bT:hover, a.bT:visited {
 					</tr>
 
 					<tr>
-						<td id="bT" colspan="2"><a href="/Bartenders/My.Bar"> <input
-								class="bT" type="button" value="回上頁" />
-						</a> <input class="bT" type="submit" value="確認修改" /></td>
+						<td id="bT" colspan="2">
+							<a href="/Bartenders/My.Bar">
+<!-- 								<input class="bT" type="button" value="回上頁" /> -->
+								<div class="bT">回上頁</div>
+							</a>
+							<input class="bT" type="submit" value="確認修改" />
+						</td>
 					</tr>
 
 				</table>

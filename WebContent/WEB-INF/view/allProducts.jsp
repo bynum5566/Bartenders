@@ -15,8 +15,8 @@ body{
   background-position: top;
 }
 .pdImg{
-	min-width:200px;
-	max-width:250px;
+	min-width:150px;
+	max-width:200px;
 	height: 200px;
 }
 .inwrap1, #outwrap{
