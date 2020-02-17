@@ -5,8 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>驗證成功</title>
+<style>
+img{
+width:150px;
+display:block; 
+margin:auto;
+}
+</style>
 </head>
 <body>
-票券驗證成功，感謝您的使用與蒞臨！
+<img src="img/Logo.png">
+<h3 style="text-align: center;">票券驗證成功，感謝您的使用與蒞臨！</h3>
 </body>
 </html>
