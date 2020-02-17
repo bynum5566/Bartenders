@@ -101,7 +101,11 @@
 				path="/resetPassword.controller" />
 			<mvc:exclude-mapping path="/ResetCompanyPassword" />
 			<mvc:exclude-mapping
-				path="/resetCompanyPassword.controller" />
+				path="/resetCompanyPassword.controller" />	
+			<mvc:exclude-mapping
+				path="/messageBoardShow.controller" />	
+				<mvc:exclude-mapping
+				path="/submessageBoardShow.controller" />	
 
 
 			<mvc:exclude-mapping path="/logistic" />
