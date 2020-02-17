@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/index.css">
 
 <!-- ----------------------------------------------↓網頁title icon複製這句link -->
-    <link rel="icon" href="img/smallLogo.ico" type="image/x-icon" / >
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" / >
 <!-- ----------------------------------------------↑網頁title icon複製這句link -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

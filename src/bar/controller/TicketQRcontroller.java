@@ -107,7 +107,7 @@ public class TicketQRcontroller {
 		Date toDay = new Date();   
 		System.out.println("toDay="+toDay);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
 		System.out.println("validDate="+validDate);

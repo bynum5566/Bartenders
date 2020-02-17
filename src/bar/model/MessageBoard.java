@@ -18,13 +18,14 @@ public class MessageBoard {
 	private String blabla;
 	private String picture;
 	private String deletePassword;
+	private String userName;
 
 	public MessageBoard() {
 
 	}
 
 	public MessageBoard(Integer id, String title, String account, String time, String blabla, String picture,
-			String deletePassword) {
+			String deletePassword, String userName) {
 		this.id = id;
 		this.title = title;
 		this.account = account;
@@ -32,6 +33,7 @@ public class MessageBoard {
 		this.blabla = blabla;
 		this.picture = picture;
 		this.deletePassword = deletePassword;
+		this.userName = userName;
 
 	}
 
@@ -98,6 +100,15 @@ public class MessageBoard {
 
 	public void setDeletePassword(String deletePassword) {
 		this.deletePassword = deletePassword;
+	}
+
+	@Column(name = "userName")
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }
