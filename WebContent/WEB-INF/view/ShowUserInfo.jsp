@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>個人資訊</title>
+<title>會員中心</title>
 
 <style type="text/css">
 html, body {
@@ -32,8 +32,8 @@ html, body {
 
 .content{
 	margin: auto;
-	line-height:400%;
-	font-size: 110%;
+	line-height:350%;
+	font-size: 130%;
 }
 
 </style>

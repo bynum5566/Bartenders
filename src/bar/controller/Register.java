@@ -1,5 +1,9 @@
 package bar.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -33,11 +37,28 @@ public class Register {
 			@RequestParam(name = "address") String address, Model m) {
 
 		try {
-
+			
 			if (!password.equals(password2)) {
 				m.addAttribute("errorMsg", "請確認密碼是否相符");
 				return "Register";
 			}
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date birthDate = sdf.parse(birthday);
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(birthDate);
+			int ta = c.get(Calendar.YEAR);
+			
+			Calendar c1 = Calendar.getInstance();
+			c1.setTime(new Date());
+			c1.add(Calendar.YEAR, -18);
+		    int la = c1.get(Calendar.YEAR);
+		    
+		    if(ta>=la) {
+		    	m.addAttribute("errorMsg", "未滿18歲，請勿飲酒。");
+				return "Register";
+		    }
 
 			Users Nuser = new Users(account, password, userName, birthday, phone, email, address, "unverified");
 
@@ -86,7 +107,7 @@ public class Register {
 
 			m.addAttribute("msg", "註冊成功，請至信箱啟用帳號");
 			new GmailService("11129henry@gmail.com", "PassW0rd@aryido").validationLinkCompany(Rcompany);
-			return "CLoginPage";
+			return "index";
 			
 		} catch (Exception e) {
 			m.addAttribute("CerrorMsg", "系統忙碌中，請稍後再試");
