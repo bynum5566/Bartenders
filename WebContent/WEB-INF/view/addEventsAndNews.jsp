@@ -29,7 +29,7 @@
 							<a href="/Bartenders/NewsAndEvents.All">
 								<div class="bT">取消</div>
 							</a>
-							<input class="bT" type="submit" value="發佈">
+							<input class="bT" type="submit" value="發表">
 						</td>
 					</tr>
 				</table>
