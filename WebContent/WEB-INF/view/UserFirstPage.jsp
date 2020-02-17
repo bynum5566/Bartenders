@@ -357,7 +357,7 @@ input[type=text]:focus {
 
 <body>
 
-	<header tabindex="0">Welcome back. Let's get legless.</header>
+	<header tabindex="0">Welcome back! Let's get legless!</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">
@@ -386,7 +386,7 @@ input[type=text]:focus {
 				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
 			</h2>
 			<h2 class="ml9" align="center">
-				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName},今天想喝甚麼呢?</span>
+				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
 				</span>
 			</h2>
 			<br>

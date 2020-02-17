@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>company's Orders</title>
+<title>Orders</title>
 
 <style type="text/css">
 a{
@@ -79,7 +79,7 @@ background-size: cover;
 								</td>
 								<td align="center" nowrap="nowrap">${user[current.index].account}</td>
 								<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
-								<td align="center" nowrap="nowrap">${Corders[current.index].amount}</td>
+								<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 								<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
 								<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
 								<c:choose>
