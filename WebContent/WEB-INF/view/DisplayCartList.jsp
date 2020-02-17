@@ -238,8 +238,22 @@ div.panel
 							<!-- 小計，第一行空著 -->
 							<td align="center"></td>
 							<!-- 刪除 -->
-							<td><a href="<c:url value="/CancelCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
-									>刪除</a>
+							
+							
+							
+							<td>
+
+							<!-- form版本刪除 -->
+								<form 
+								style="margin:0px;display:inline"
+								action="<c:url value="/CancelCart.controller" />"
+								method="get"
+								>
+								
+								<Input type='hidden' name='orderId' value='${listOfOrder[current.index].orderId}'>
+								<Input type='hidden' name='status' value='${listOfOrder[current.index].status}'>
+								<Input type='submit' value='刪除'>
+								</form>
 							</td>
 
 
@@ -335,7 +349,7 @@ div.panel
 								
 								
 							</tr>
-						</c:forEach>
+					</c:forEach>
 						</tr>
 						
 						<td></td>
@@ -344,8 +358,14 @@ div.panel
 						<td></td>
 						<td align="center">${listOfOrder[current.index].amount}</td>
 						
-						<td><a href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}"
-						>成立訂單</a>
+						
+						<td>
+						
+						
+						
+						<a href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}">成立訂單</a>
+						
+						
 						</td>				
 					</c:forEach>
 				</tr>
