@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>註冊店家帳戶</title>
+<title>註冊酒吧帳戶</title>
 
 
 <style type="text/css">
@@ -32,10 +32,15 @@ html, body {
 	border: 1.5px groove  rgb(255, 255, 255, 0.4);
 	border-radius:2%;
 	font-size: 140%;
+	line-height:130%;
 }
 
 table{
-	margin-left: 20%;
+	margin-left: 5%;
+}
+
+h5{
+	color:red;
 }
 
 </style>
@@ -46,7 +51,7 @@ table{
 	<div class="content">
 		<h1>請填寫基本資料</h1>
 		<div>
-			<h2>${errorMsg}</h2>
+			<h5>${errorMsg}</h5>
 		</div>
 		<form action="<c:url value="/GCregister.do" />" method="POST">
 			<table>
