@@ -295,6 +295,7 @@ div.panel
 		</c:if>
 
 		<c:if test="${shipping == '1' }">
+		<!-- 全型空白 -->
 		<label>電話&emsp;&emsp;：</label>
 		<input type="text" required="required" name="input2" size="30" value="${defaultPhone}" />
 		</c:if>

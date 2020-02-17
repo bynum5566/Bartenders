@@ -18,20 +18,22 @@ public class SubMessageBoard {
 	private String blabla;
 	private String picture;
 	private String deletePassword;
+	private String userName;
 
 	public SubMessageBoard() {
 
 	}
 
-	public SubMessageBoard(Integer id, Integer subId ,String account, String time, String blabla, String picture,
-			String deletePassword) {
+	public SubMessageBoard(Integer id, Integer subId, String account, String time, String blabla, String picture,
+			String deletePassword,String userName) {
 		this.id = id;
-		this.subId=subId;
+		this.subId = subId;
 		this.account = account;
 		this.time = time;
 		this.blabla = blabla;
 		this.picture = picture;
 		this.deletePassword = deletePassword;
+		this.userName = userName;
 
 	}
 
@@ -98,6 +100,15 @@ public class SubMessageBoard {
 
 	public void setDeletePassword(String deletePassword) {
 		this.deletePassword = deletePassword;
+	}
+
+	@Column(name = "userName")
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

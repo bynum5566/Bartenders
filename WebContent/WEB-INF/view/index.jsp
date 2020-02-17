@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/index.css">
 
 <!-- ----------------------------------------------↓網頁title icon複製這句link -->
-    <link rel="icon" href="img/smallLogo.ico" type="image/x-icon" / >
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" / >
 <!-- ----------------------------------------------↑網頁title icon複製這句link -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -160,7 +160,7 @@
   <!--     <button class="text-center loginBtn loginBtn--facebook">
         Facebook
       </button> -->
-      <div class="g-signin2" data-onsuccess="onSignIn">
+      <div class="g-signin2" data-onsuccess="onSignInC">
       <!-- class="text-center loginBtn loginBtn--google" -->
         Google
       </div>
@@ -187,7 +187,7 @@
                酒吧用戶
               </button></div> -->
 
-                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignInC">
                     Google &nbsp;
                   </div></div>
                   <div class="col-12  p-0 mt-1">
@@ -429,7 +429,7 @@
   <!--     <button class="text-center loginBtn loginBtn--facebook">
         Facebook
       </button> -->
-      <div class="g-signin2" data-onsuccess="onSignIn">
+      <div class="g-signin2" data-onsuccess="onSignInC">
       <!-- class="text-center loginBtn loginBtn--google" -->
         Google
       </div>
@@ -456,11 +456,11 @@
                酒吧用戶
               </button></div> -->
 
-                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignInC">
                     Google &nbsp;
                   </div></div>
                   <div class="col-12  p-0 mt-1">
-                    <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">忘記密碼
+                    <button onclick="location.href='/Bartenders/ResetCompanyPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">忘記密碼
                     </button></div>
               </div>
                  </div>
@@ -608,6 +608,19 @@
 			xhr.onload = function() {
 				console.log('Signed in as: ' + xhr.responseText);
 				document.location.href="http://localhost:8080/Bartenders/checkGLogin";
+			};
+		}
+		function onSignInC(googleUser) {
+			var id_token = googleUser.getAuthResponse().id_token;
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'http://localhost:8080/Bartenders/googleVerify');
+			xhr.setRequestHeader('Content-Type',
+					'application/x-www-form-urlencoded');
+			xhr.send('idtokenstr=' + id_token);
+			xhr.onload = function() {
+				console.log('Signed in as: ' + xhr.responseText);
+				document.location.href="http://localhost:8080/Bartenders/checkCGLogin";
 			};
 		}
 	</script>

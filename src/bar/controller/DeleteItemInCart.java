@@ -58,20 +58,22 @@ public class DeleteItemInCart {
 			CartService.Pf("totalPriceOfOneOrder = 0");
 			/*如果是最後一個項目，把整個Order給刪掉*/ /*Order狀態改成5(已取消)*/		
 			cartService.setOrderStatusByOrderId(orderId,5);/*Order狀態改成5(已取消)*/
-		
+			m.addAttribute("msg","刪除成功");
 			/*回到[我的購物車]頁，而不是[修改數量]頁*/
 			//transParam(m , orderId); /*傳送參數給下一頁*/
 			//CartService.Pf("DeleteItemInCartProcessAction結束");
 			//return "CartList";
+			
 		}
 		else 
 		{
 			CartService.printValueTypeTime("totalPriceOfOneOrder", totalPriceOfOneOrder);
 		}
-
-		transParam(m , orderId); /*傳送參數給下一頁*/
+		m.addAttribute("msg","刪除成功");
+		transParam(m , orderId); /*傳送參數給下一頁([修改數量]頁用)*/
 		CartService.Pf("DeleteItemInCartProcessAction結束");
-		return "DisplayProductInCart";/*回到[修改數量]頁*/
+		//return "DisplayProductInCart";/*回到[修改數量]頁*/
+		return "ReturnToCartList";	/*回到我的購物車*/
 	}
 	
 	

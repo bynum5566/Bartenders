@@ -207,11 +207,12 @@ div.panel
 
 						<td align="center"><a
 								href="<c:url value="/ChangeNumberOfProductInCart.controller"/>?num=${oneOrderCarts[current.index].num}"
-								value="${oneOrderCarts[current.index].num}">修改數量</a>
+								>修改數量</a>
 						</td>
 
-						<td align="center"><a href="<c:url value="/DeleteItemInCart.controller"/>?num=${oneOrderCarts[current.index].num}&orderId=${orderId}"
-								value="${oneOrderCarts[current.index].num}">刪除</a> <!-- 未完成 -->
+						<td align="center">
+						<a href="<c:url value="/DeleteItemInCart.controller"/>?num=${oneOrderCarts[current.index].num}&orderId=${orderId}"
+								>刪除</a>
 						</td>
 
 
