@@ -3,6 +3,11 @@
   src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
+*{
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;

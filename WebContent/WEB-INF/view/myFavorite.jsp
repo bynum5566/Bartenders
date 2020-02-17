@@ -33,7 +33,7 @@
 				<div id="tabs-1" class="outwrapper">
 <!-- 					<tr> -->
 						<div id="" class="box0">
-							<label>我的最愛清單──酒吧</label>
+							<label>我的最愛酒吧清單</label>
 							<div class="inwrapper">
 								<table class="pd0">${MyfavB}
 <!-- 									<tr class="pdRow"> -->
@@ -63,7 +63,7 @@
 				<div id="tabs-2" class="outwrapper">
 <!-- 					<tr> -->
 						<div id="" class="box0">
-							<label>我的最愛清單──酒</label>
+							<label>我的最愛酒類清單</label>
 							<div class="inwrapper">
 								<table class="pd0">
 									${Myfav}

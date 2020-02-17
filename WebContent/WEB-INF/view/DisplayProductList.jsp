@@ -71,6 +71,14 @@
 		-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	}
 
+	.sigmaBlack{
+		color: black;
+	}
+	
+	.sigmaGray{
+		color: gray;
+	}
+
 	/*透明*/
 	.sigmaTransparent{
 		background:rgba(0,0,0,0.1);
@@ -266,7 +274,7 @@
 															<div>
 																<FORM action="<c:url value="/AddProductToCart.controller" />" method="get">
 									
-																	<select name='qty'>
+																	<select class="sigmaBlack" name='qty'>
 																		<option value="1">1</option>
 																		<option value="2">2</option>
 																		<option value="3">3</option>
@@ -304,7 +312,7 @@
 																		action="<c:url value="/AddProductToCart.controller" />"
 																		method="get">
 																
-																<select name='qty'>
+																<select class="sigmaBlack" name='qty'>
 																	<!-- QR票券只能買一張 -->
 																	<option value="1">1</option>
 																</select> 
