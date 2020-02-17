@@ -132,8 +132,9 @@
 			<table class="sigmaFontSize20">	<!-- 無框 -->
 				<tr>
 					<td class="sigmaTd1" >${CompanyName}</td>
-					<td class="sigmaTd1">
+					<td class="sigmaTd1">	<!-- 標記 -->
 		                <img 
+		                style="width:100px;height:100px"
 		                src="<c:out value="${myBarX.logoUrl}"
 		                />" />					
 					</td>	<!-- 酒吧logo -->
