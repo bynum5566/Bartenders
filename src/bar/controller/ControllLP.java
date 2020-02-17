@@ -85,7 +85,7 @@ public class ControllLP{
 		jsonParam.put("amount", amount); 
 		//備用圖片url"http://placehold.it/84x84"); 
 		//以orderId撈出BEAN
-		jsonParam.put("productImageUrl", "https://i.imgur.com/SAK8flX.jpg"); 
+		jsonParam.put("productImageUrl", "https://i.imgur.com/ae3GSBi.png"); 
 		jsonParam.put("confirmUrl", "http://localhost:8080/Bartenders/finishPayment.jsp"); 
 		//以orderId撈出BEAN
 		jsonParam.put("productName", "TestProduct"); 

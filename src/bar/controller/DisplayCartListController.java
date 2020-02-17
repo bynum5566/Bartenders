@@ -176,8 +176,9 @@ public class DisplayCartListController {
 		
 		
 		
-		//return "DisplayCartList";	/*舊版使用單層foreach*/
+		
 		return "DisplayCartList";	/*試製雙層foreach*/
+		//return "DisplayCartListPrototype";
 
 	}
 	

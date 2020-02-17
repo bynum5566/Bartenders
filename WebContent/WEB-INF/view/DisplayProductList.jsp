@@ -182,7 +182,7 @@
 					            	<!-- "/Bartenders/images/圖片名稱.jpg"-->
 					            	<!-- px不寫，會無效 -->
 					                <img id="slider" 
-					               style="width:600px;height:300px"	
+					               style="width:550px;height:330px"	
 					                src="${myBarX.coverUrl1}">
 					            </figure>
 					        </div>
@@ -244,8 +244,15 @@
 			<div>
 				<table>
 					<tbody>
-						<tr align="center">
+						<!--  <tr align="center">-->
 							<c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
+							
+										<!-- 四個換一行 -->
+										<c:if test="${(current.index+1) %3  == '1' }">
+											<tr>
+										</c:if>
+
+
 
 								
 									<!-- 一組 -->
@@ -273,19 +280,17 @@
 															<!--一般的-->
 															<div>
 																<FORM action="<c:url value="/AddProductToCart.controller" />" method="get">
-									
-																	<select class="sigmaBlack" name='qty'>
-																		<option value="1">1</option>
-																		<option value="2">2</option>
-																		<option value="3">3</option>
-																		<option value="4">4</option>
-																		<option value="5">5</option>
-																		<option value="6">6</option>
-																		<option value="7">7</option>
-																		<option value="8">8</option>
-																		<option value="9">9</option>
-																		<option value="10">10</option>
-																	</select> 	
+																	
+																	<!-- 一般，上下式 -->
+																		<input type="number" 
+																		required="required"
+																		style="width:60px"
+																		name="qty" 
+																		value="1" 
+																		max="${listOfProduct[current.index].pdStock}"	
+																		min="1" 	
+																		/>		
+																	<!-- 一般，上下式 -->	
 																	
 																	<Input 	type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
 																	<Input 	type='hidden' name='ProductName'
@@ -312,10 +317,23 @@
 																		action="<c:url value="/AddProductToCart.controller" />"
 																		method="get">
 																
-																<select class="sigmaBlack" name='qty'>
+																<!-- QR，下拉式 -->
+																
+																<!--舊版下拉式-->
+																<!--<select class="sigmaBlack" name='qty'>-->
 																	<!-- QR票券只能買一張 -->
-																	<option value="1">1</option>
-																</select> 
+																	<!--<option value="1">1</option>-->
+																<!--</select> -->
+																
+																		<input type="number" 
+																		required="required"
+																		style="width:60px"
+																		name="qty" 
+																		value="1" 
+																		max="1"	
+																		min="1" 	
+																		/>	
+																
 																<Input 	type='hidden' name='PdId'
 																		value='${listOfProduct[current.index].pdId}'>
 																<Input 	type='hidden' name='ProductName'
@@ -350,10 +368,17 @@
 											</div>
 										</div>
 									</td>
+
 									<!-- 一組 -->
+									
+									
+										<c:if test="${(current.index+1) %3  == '0' }">
+											</tr>
+										</c:if>
+										<!-- 四個換一行 -->
 
 							</c:forEach>
-						</tr>
+						<!-- </tr>-->
 					</tbody>
 				</table>
 			</div>
