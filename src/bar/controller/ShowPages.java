@@ -147,9 +147,40 @@ return "SubMessageBoard";
 		return "logistic/QRCodeUpdatePage";
 	}
 
-	@RequestMapping(path = "/logistic/LogisticOrder", method = RequestMethod.GET)
+	@RequestMapping(path = "/ManageBar", method = RequestMethod.GET)
 	public String LogisticOrder() {
-		return "logistic/LogisticOrder";
+		return "logistic/ManageBar";
+	}
+	
+	@RequestMapping(path = "/ManageActivity", method = RequestMethod.GET)
+	public String ManageActivity() {
+		System.out.println("redirect to ManageActivity");
+		return "logistic/ManageActivity";
+	}
+	
+	@RequestMapping(path = "/createMarker", method = RequestMethod.GET)
+	public String createMarkerPage() {
+		return "logistic/createMarker";
+	}
+	
+	@RequestMapping(path = "/createActivity", method = RequestMethod.GET)
+	public String createActivityPage() {
+		return "logistic/createActivity";
+	}
+	
+	@RequestMapping(path = "/createShow", method = RequestMethod.GET)
+	public String createShow() {
+		return "logistic/createShow";
+	}
+	
+	@RequestMapping(path = "/editActivity", method = RequestMethod.GET)
+	public String editActivity() {
+		return "logistic/editActivity";
+	}
+	
+	@RequestMapping(path = "/searchMarker", method = RequestMethod.GET)
+	public String searchMarker() {
+		return "logistic/searchMarker";
 	}
 	
 	//////////

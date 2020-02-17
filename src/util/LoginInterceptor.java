@@ -19,7 +19,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String url = request.getServletPath();    
+		String url = request.getServletPath();
+		request.setAttribute("preUrl",url);
         System.out.println("post URL："+url);
         if(url.contains("/logistic")) {
         	System.out.println("start");

@@ -81,13 +81,22 @@ fieldset {
 					</td>
 				</tr>
 			</table>
-
+			<div align="center">
+			<form action="<c:url value="/logistic/LogisticLogout.do" />" method="post">
+				<table>
+					<tr>
+						<td><input type="submit" value="登出"></td>
+					</tr>
+				</table>
+			</form>
+			</div>
+			<br>
 		<!-- 	
 	 -->
 
 	<div align=center>
 		<fieldset>
-			<legend>查詢結果</legend>
+			<legend style="color:white;font-size:24px">查詢結果</legend>
 			<table align=center>
 				<thead>
 					<tr>
