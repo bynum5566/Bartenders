@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User's Orders</title>
+<title>Orders</title>
 
 <style type="text/css">
 a{
@@ -155,5 +155,5 @@ body {
 		</div>
 	</div>
 </body>
-</html>
 <%@include file="UserMenu.jsp"%>
+</html>

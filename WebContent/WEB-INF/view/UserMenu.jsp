@@ -257,7 +257,7 @@ img {
 </head>
 
 <body>
- <header tabindex="0">Welcome back. Let's get legless.</header>
+ <header tabindex="0">Welcome back! Let's get legless!</header>
  <div id="nav-container">
   <div class="bg"></div>
   <div class="button" tabindex="0">
