@@ -31,64 +31,68 @@ import bar.model.Users;
 public class MessageBoardController {
 
 	private MessageBoardService messageBoardService;
-	
+	private UsersService usersService;
 
-	public MessageBoardController(MessageBoardService messageBoardService) {
+	public MessageBoardController(MessageBoardService messageBoardService, UsersService usersService) {
 		this.messageBoardService = messageBoardService;
+		this.usersService = usersService;
 	}
 
 	@RequestMapping(path = { "messageBoard.controller" }, method = { RequestMethod.POST })
 	public String processAction(@RequestParam(name = "title") String title,
-			@RequestParam(name = "blabla") String blabla, 
-			@RequestParam(name = "pdImg") String picture,
-			@RequestParam(name = "deletePassword") String deletePassword,
-			Model m, @ModelAttribute(name = "account") String account) {
+			@RequestParam(name = "blabla") String blabla, @RequestParam(name = "pdImg") String picture,
+			@RequestParam(name = "deletePassword") String deletePassword, Model m,
+			@ModelAttribute(name = "account") String account) {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
 		if (title == null || title.length() == 0) {
-			
+
 			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 			m.addAttribute("newest", newest);
 			return "MessageBoard";
 		}
-		
-		
+
 		if (blabla == null || blabla.length() == 0) {
-			
+
 			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 			m.addAttribute("newest", newest);
 			return "MessageBoard";
 		}
-		
+
 		if (deletePassword == null || deletePassword.length() == 0) {
-			
+
 			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 			m.addAttribute("newest", newest);
 			return "MessageBoard";
 		}
+
+		String rightblabla = blabla.replaceAll("\n", "<br>");
 		
-		String rightblabla = blabla.replaceAll("\n","<br>");
-		
-		
+		String userName = usersService.select(account).getUserName();
+
+		m.addAttribute("userName", userName);
 		m.addAttribute("account", account);
 		m.addAttribute("blabla", rightblabla);
 		m.addAttribute("title", title);
 		m.addAttribute("picture", picture);
 		m.addAttribute("deletePassword", deletePassword);
-		
-		String time = getDateTime();
 
-		MessageBoard messageBoard = new MessageBoard(1, title, account, time, rightblabla, picture, deletePassword);
+		String time = getDateTime();
+		
+		
+		
+
+		MessageBoard messageBoard = new MessageBoard(1, title, account, time, rightblabla, picture, deletePassword,
+				userName);
 		messageBoardService.createMessage(messageBoard);
 
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
-		
 		m.addAttribute("newest", newest);
 
 		return "MessageBoard";
@@ -112,15 +116,14 @@ public class MessageBoardController {
 		return "MessageBoard";
 	}
 
-	
 	@RequestMapping(path = { "messageBoardDelete.controller" }, method = { RequestMethod.POST })
-	public String processActionDelete(@RequestParam(name = "id") int id, 
-			@RequestParam(name = "deletePassword") String deletePassword,
-			Model m, @ModelAttribute(name = "account") String account) {
-	
+	public String processActionDelete(@RequestParam(name = "id") int id,
+			@RequestParam(name = "deletePassword") String deletePassword, Model m,
+			@ModelAttribute(name = "account") String account) {
+
 		boolean status = messageBoardService.delete(id, deletePassword);
-		
-		if(status) {
+
+		if (status) {
 			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 			m.addAttribute("newest", newest);
@@ -131,12 +134,8 @@ public class MessageBoardController {
 
 		m.addAttribute("newest", newest);
 
-		
 		return "MessageBoard";
-		
+
 	}
-	
-	
-	
-	
+
 }

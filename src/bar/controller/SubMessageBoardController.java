@@ -32,9 +32,11 @@ import bar.model.Users;
 public class SubMessageBoardController {
 
 	private MessageBoardService messageBoardService;
+	private UsersService usersService;
 
-	public SubMessageBoardController(MessageBoardService messageBoardService) {
+	public SubMessageBoardController(MessageBoardService messageBoardService, UsersService usersService) {
 		this.messageBoardService = messageBoardService;
+		this.usersService = usersService;
 	}
 
 	@RequestMapping(path = { "subMessageBoard.controller" }, method = { RequestMethod.POST })
@@ -67,7 +69,10 @@ public class SubMessageBoardController {
 		}
 
 		String rightblabla = blabla.replaceAll("\n", "<br>");
+		
+		String userName = usersService.select(account).getUserName();
 
+		m.addAttribute("userName", userName);
 		m.addAttribute("account", account);
 		m.addAttribute("blabla", rightblabla);
 		m.addAttribute("picture", picture);
@@ -77,7 +82,7 @@ public class SubMessageBoardController {
 		String time = getDateTime();
 
 		SubMessageBoard subMessageBoard = new SubMessageBoard(resId, 1, account, time, rightblabla, picture,
-				deletePassword);
+				deletePassword,userName);
 		messageBoardService.createSubMessage(subMessageBoard);
 
 		List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);

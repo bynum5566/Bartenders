@@ -5,29 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" type="text/css"
-	href="/Bartenders/images/add_editView.css">
-
-<noscript>
-	<link rel="stylesheet" href="/Bartenders/images/noscript.css" />
-</noscript>
+	href="/Bartenders/CSS/add_editView.css">
+<title>Add new product</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet"></link>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
 	rel="stylesheet"></link>
-
-
-<title>酒吧</title>
 
 <style>
 h1.panel, form.flip {
@@ -42,115 +36,132 @@ form.panel {
 	width: 900px;
 	background-color: transparent;
 }
+
+#wordPicture {
+	height: 200px;
+	width: 800px;
+}
 </style>
+
+
 </head>
+
 <body>
 
-	<h1>
-		<a href="<c:url value="/messageBoardShow.controller"/>">返回留言板</a>
-	</h1>
+	<main>
 
-	<h1 style="color: WhiteSmoke;" class="flip" align="right">縮放主題留言按此</h1>
+		<h1 style="color: WhiteSmoke;" class="flip" align="right">縮放主題留言按此</h1>
 
-	<!--縮放用JS，開始-->
-	<script type="text/javascript">
-		$(".flip").click(function() {
-			$(".panel").slideToggle("slow");
-		});
-	</script>
-	<!--縮放用JS，結束-->
+		<!--縮放用JS，開始-->
+		<script type="text/javascript">
+			$(".flip").click(function() {
+				$(".panel").slideToggle("slow");
+			});
+		</script>
+		<!--縮放用JS，結束-->
 
-	<form action='subMessageBoard.controller' method='post' class="panel">
-		<table border='1'>
+		<form action='subMessageBoard.controller' method='post' class="panel">
+			<table border='1'>
 
-			<tr>
-				<td><b>文章</b></td>
-				<td width='700'><textarea rows='30' cols='70' name='blabla'
-						placeholder="請輸入文章" required="required"></textarea></td>
-			</tr>
+				<tr>
+					<td><b>文章</b></td>
+					<td width='700'><textarea rows='30' cols='70' name='blabla'
+							placeholder="請輸入文章" required="required"></textarea></td>
+				</tr>
 
-			<tr>
-				<td><b>刪除碼</b></td>
-				<td><input type="password" name="deletePassword" size="16"
-					maxlength="8" placeholder="請輸入刪除碼" required="required"> <small>(留言刪除用，英文數字最多8個)</small>
-				</td>
-			</tr>
-			<tr>
-				<td align="center"><b>圖片</b></td>
-				<td>
-					<div class="dropzone" id="wordPicture" required="required">
-						<div class="info"></div>
-					</div> <input id="imgPlace" name="pdImg" class="image-url" />
-				</td>
-			</tr>
+				<tr>
+					<td><b>刪除碼</b></td>
+					<td><input type="password" name="deletePassword" size="16"
+						maxlength="8" placeholder="請輸入刪除碼" required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><b>圖片</b></td>
+					<td>
+						<div class="dropzone" id="wordPicture" required="required">
+							<div class="info"></div>
+						</div> <input id="imgPlace" name="pdImg" class="image-url" />
+					</td>
+				</tr>
 
-			<tr>
-				<td><input type='submit' value='提交'></td>
-			</tr>
-		</table>
-	</form>
-
-	<div style="color: white">
-		<c:forEach var="messageBoard" items="${newest}">
-			<div>
-				<div align="center">
-					<img id="pdPicture" src="<c:out value="${messageBoard.picture}" />">
-				</div>
-
-				<div style="margin: 10px;">
-					<h3 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}</h3>
-					<div id="fb-root"></div>
-					<script async defer crossorigin="anonymous"
-						src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
-					
-
-				<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
-
-				<div style="margin: 40px;" id=""><${messageBoard.blabla}</div>
-
-				<hr>
-
-			</div>
-		</c:forEach>
-	</div>
-
-	<div style="color: white">
-		<c:forEach var="subMessageBoard" items="${subnewest}">
-			<tr>
-				<td><div class="pdData">
-						<img height="100" width="200" id="pdPicture"
-							src="<c:out value="${subMessageBoard.picture}"/>">
-					</div></td>
-				<td style='vertical-align: top bottom:;'>帳號:${subMessageBoard.account}
-					&nbsp &nbsp SubID:${subMessageBoard.subId}<br>
-					<div style="margin: 10px;">${subMessageBoard.blabla}<br>
-					</div> ${subMessageBoard.time}<br>
-
-					<hr>
-				</td>
-			</tr>
-
-		</c:forEach>
-	</div>
-
-
-
-
-	<form action='subMessageBoardDelete.controller' method='post'>
-
-		<div id="del">
-			<table style="float: right;">
-				<tbody>
-					<tr>
-						<td align="center" style="white-space: nowrap;">刪除留言: <input
-							type="text" name="subId" placeholder="留言subId"><input
-							type="password" name="deletePassword" size="8" maxlength="8"
-							placeholder="刪除碼"> <input type="submit" value=" 送出 "></td>
-					</tr>
-				</tbody>
+				<tr>
+					<td><input type='submit' value='提交'></td>
+				</tr>
 			</table>
+		</form>
+		<hr>
+
+
+
+		<div
+			style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
+			<div style="color: white">
+				<div id="fb-root"></div>
+				<c:forEach var="messageBoard" items="${newest}">
+
+					<div>
+						<img height="150" width="300" id="pdPicture"
+							src="<c:out value="${messageBoard.picture}" />">
+					</div>
+
+					<div style="margin: 10px;">
+						<h4 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}
+							&nbsp; &nbsp;名稱:${messageBoard.userName}</h4>
+
+					</div>
+
+					<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
+					<div style="margin: 10px;" id=""><${messageBoard.blabla}</div>
+			</div>
+			</c:forEach>
 		</div>
-	</form>
+
+		<c:forEach var="subMessageBoard" items="${subnewest}">
+			<table>
+				<div style="color: white; margin: 10px;">
+				<tr>
+					<td rowspan="3"><img style="height: 150px; width: 300px;"
+						id="pdPicture" src="<c:out value="${subMessageBoard.picture}"/>"></td>
+					<td style="vertical-align: top">
+						帳號:${subMessageBoard.account}&nbsp &nbsp
+						名稱:${subMessageBoard.userName}&nbsp &nbsp
+						SubID:${subMessageBoard.subId}</td>
+
+				</tr>
+				<tr>
+					<td>${subMessageBoard.blabla}</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: bottom;">${subMessageBoard.time}</td>
+				</tr>
+
+				</div>
+			</table>
+		
+		</c:forEach>
+
+
+
+
+
+		<form action='subMessageBoardDelete.controller' method='post'>
+
+			<div id="del">
+				<table style="float: right;">
+					<tbody>
+						<tr>
+							<td align="center" style="white-space: nowrap;">刪除留言: <input
+								type="text" name="subId" placeholder="留言subId"><input
+								type="password" name="deletePassword" size="8" maxlength="8"
+								placeholder="刪除碼"> <input type="submit" value=" 送出 "></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+
+	</main>
+
 
 
 	<script>
@@ -491,7 +502,9 @@ form.panel {
 				});
 	</script>
 
-
+	<%--左側工具列，開始 --%>
+	<%@include file="UserMenu.jsp"%>
+	<%--左側工具列，結束--%>
 
 </body>
 </html>

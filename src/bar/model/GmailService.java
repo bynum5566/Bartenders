@@ -45,7 +45,7 @@ public class GmailService {
             String html = String.format("請按 %s 啟用帳戶或複製鏈結至網址列：<br><br> %s", anchor, link);
             
             javax.mail.Message message = createMessage(
-                    mailUser, users.getEmail(), " 註冊結果", html);
+                    mailUser, users.getEmail(), "Bartenders註冊結果", html);
             Transport.send(message);
         } catch (MessagingException | IOException e) {
             throw new RuntimeException(e);
@@ -64,7 +64,7 @@ public class GmailService {
             String html = String.format("請按 %s 啟用帳戶或複製鏈結至網址列：<br><br> %s", anchor, link);
             
             javax.mail.Message message = createMessage(
-                    mailUser, company.getEmail(), " 註冊結果", html);
+                    mailUser, company.getEmail(), "Bartenders註冊結果", html);
             Transport.send(message);
         } catch (MessagingException | IOException e) {
             throw new RuntimeException(e);

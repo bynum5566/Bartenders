@@ -33,6 +33,7 @@ public class ResetUsersPasswordController {
 
 	@RequestMapping(path = { "/resetPassword.controller" }, method = { RequestMethod.POST })
 	public String processAction(@RequestParam(name = "userAccount") String account,
+			@RequestParam(name = "userphone") String phone,
 			@RequestParam(name = "useremail") String email, @RequestParam(name = "newPassword") String password,
 			@RequestParam(name = "newPassword2") String password2, Model m) {
 
@@ -46,6 +47,10 @@ public class ResetUsersPasswordController {
 		if (email == null || email.length() == 0) {
 			errors.put("email", "請輸入email");
 		}
+		
+		if (phone == null || phone.length() == 0) {
+			errors.put("phone", "請輸入手機");
+		}
 
 		if (!password.equals(password2)) {
 			errors.put("pswd", "請確認密碼是否相符");
@@ -54,15 +59,24 @@ public class ResetUsersPasswordController {
 		if (errors != null && !errors.isEmpty()) {
 			return "ResetPassword";
 		}
-
+		
 		m.addAttribute("account", account);
 		m.addAttribute("email", email);
-
+		m.addAttribute("phone", phone);
+		
 		Users rs = uservice.select(account);
 		if(rs==null) {
-			errors.put("msg", "資料不正確");
+			errors.put("msg", "資料不正確");	
 			return "ResetPassword";
 		}
+		
+		String rsPhone = rs.getPhone();
+		if(!rsPhone.equals(phone)) {
+			errors.put("msg", "資料不正確");	
+			return "ResetPassword";
+		}
+		
+		
 		String rsEmail = rs.getEmail();
 		boolean searchStatus = rsEmail.equals(email);
 

@@ -96,9 +96,10 @@ public class CheckLogin {
 		m.addAttribute("Cpassword", password);
 
 		boolean loginStatus = companyService.checkLogin(account, password);
-		boolean loginStatus2 = companyService.select(account).getRole().equals("member");
+		
 
 		if (loginStatus) {
+			boolean loginStatus2 = companyService.select(account).getRole().equals("member");
 			if (loginStatus2) {
 				
 				
