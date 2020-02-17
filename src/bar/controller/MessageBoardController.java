@@ -47,29 +47,10 @@ public class MessageBoardController {
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
-		if (title == null || title.length() == 0) {
-
-			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
-
-			m.addAttribute("newest", newest);
-			return "MessageBoard";
+		if(account==null) {
+			return "index";
 		}
-
-		if (blabla == null || blabla.length() == 0) {
-
-			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
-
-			m.addAttribute("newest", newest);
-			return "MessageBoard";
-		}
-
-		if (deletePassword == null || deletePassword.length() == 0) {
-
-			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
-
-			m.addAttribute("newest", newest);
-			return "MessageBoard";
-		}
+		
 
 		String rightblabla = blabla.replaceAll("\n", "<br>");
 		
@@ -108,7 +89,7 @@ public class MessageBoardController {
 	}
 
 	@RequestMapping(path = { "messageBoardShow.controller" })
-	public String processActionShow(Model m, @ModelAttribute(name = "account") String account) {
+	public String processActionShow(Model m) {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 		m.addAttribute("newest", newest);

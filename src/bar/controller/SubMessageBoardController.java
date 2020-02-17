@@ -47,26 +47,11 @@ public class SubMessageBoardController {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
-
-		if (blabla == null || blabla.length() == 0) {
-			errors.put("blabla", "請輸入內文");
-
-			List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
-			List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
-			m.addAttribute("newest", theMessage);
-			m.addAttribute("subnewest", subnewest);
-			return "SubMessageBoard";
+		
+		if(account==null) {
+			return "index";
 		}
 
-		if (deletePassword == null || deletePassword.length() == 0) {
-			errors.put("deletePassword", "請輸入刪除鍵值");
-
-			List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
-			List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(resId);
-			m.addAttribute("newest", theMessage);
-			m.addAttribute("subnewest", subnewest);
-			return "SubMessageBoard";
-		}
 
 		String rightblabla = blabla.replaceAll("\n", "<br>");
 		
@@ -103,7 +88,7 @@ public class SubMessageBoardController {
 	}
 
 	@RequestMapping(path = { "submessageBoardShow.controller" })
-	public String processActionShow(Model m, @ModelAttribute(name = "account") String account,
+	public String processActionShow(Model m,
 			@RequestParam(name = "resId") int resId, @RequestParam(name = "resAccount") String resAccount) {
 //		System.out.println("resId:" + resId);
 //		System.out.println("resAccount:" + resAccount);
