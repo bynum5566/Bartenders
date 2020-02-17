@@ -33,8 +33,8 @@ html, body {
 
 .content {
 	margin: auto;
-	line-height: 350%;
-	font-size: 110%;
+	line-height: 340%;
+	font-size: 130%;
 }
 </style>
 

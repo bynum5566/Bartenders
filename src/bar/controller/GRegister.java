@@ -1,5 +1,9 @@
 package bar.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -53,6 +57,23 @@ public class GRegister {
 				m.addAttribute("errorMsg", "請確認密碼是否相符");
 				return "GRegister";
 			}
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date birthDate = sdf.parse(birthday);
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(birthDate);
+			int ta = c.get(Calendar.YEAR);
+			
+			Calendar c1 = Calendar.getInstance();
+			c1.setTime(new Date());
+			c1.add(Calendar.YEAR, -18);
+		    int la = c1.get(Calendar.YEAR);
+		    
+		    if(ta>=la) {
+		    	m.addAttribute("errorMsg", "未滿18歲，請勿飲酒。");
+				return "GRegister";
+		    }
 
 			Users Nuser = new Users(account, password, userName, birthday, phone, email, address, "member");
 			uservice.insert(Nuser);

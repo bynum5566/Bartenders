@@ -11,7 +11,7 @@
 <style type="text/css">
 div {
 	min-width: auto;
-	top: 80px;
+	top: 90px;
 	position: sticky;
 	text-align: center;
 	margin: auto;}
@@ -19,7 +19,7 @@ div {
 body {
 	margin: 0;
 	padding: 0;
-	background-image: url(/Bartenders/images/bg4.jpg);
+	background-image: url(/Bartenders/images/bg12.jpg);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
