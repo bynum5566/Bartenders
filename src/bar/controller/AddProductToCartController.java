@@ -151,10 +151,10 @@ public class AddProductToCartController
 					createTime  = new java.sql.Date(date.getTime());
 					int amount = 0;
 					Users userX = userService.select(account);
-					String address1 = userX.getAddress();	//null
-					String address2 = "請輸入"; //null
-					String phone = userX.getPhone();	//null
-					String shippingNumber = "請輸入"; //null
+					String address1 = userX.getAddress();	//可null
+					String address2 = ""; //可null
+					String phone = userX.getPhone();	//可null
+					String shippingNumber = ""; //可null
 
 					
 					
@@ -215,9 +215,9 @@ public class AddProductToCartController
 						createTime  = new java.sql.Date(date.getTime());
 						int amount = 0;
 						String address1 = userX.getAddress();	
-						String address2 = "請輸入"; //null
+						String address2 = ""; //可null
 						String phone = userX.getPhone();	
-						String shippingNumber = "請輸入"; //null
+						String shippingNumber = ""; //可null
 
 						Orders orders = new Orders(
 								orderId, 
