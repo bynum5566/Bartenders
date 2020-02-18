@@ -69,7 +69,7 @@ public class FunctionByActivity {
 		String[] x = type.toString().split(",");
 		System.out.println("x[0]: "+x[0]);
 		System.out.println("x: "+x);
-		List<Activity> activity;
+		List<Activity> activity = null;
 
 		for(int i=0;i<x.length;i++) {
 
@@ -78,7 +78,7 @@ public class FunctionByActivity {
 //			boolean y = activity.addAll(temp[i]);
 //			System.out.println("temp activity: "+activity);
 		}
-		System.out.println("all list: "+activity);
+//		System.out.println("all list: "+activity);
 		String hqlStr = "from Activity where status=O and type=shop or type=show";
 		String hqlStr2 = "from Activity where status=O and type="+x[0];
 //		List<Activity> activity = aDao.simpleQuery(hqlStr);
