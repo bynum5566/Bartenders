@@ -125,7 +125,7 @@ return "SubMessageBoard";
 	public String showUserFirstPage() {
 		return "UserFirstPage";
 	}
-	///////////////////
+	////////////////////----以下是物流----/////////////////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
 	public String logistic() {
 		return "logistic/loginSystem";
@@ -145,6 +145,42 @@ return "SubMessageBoard";
 	@RequestMapping(path = "/logistic/QRCodeUpdatePage", method = RequestMethod.GET)
 	public String QRCodeUpdatePage() {
 		return "logistic/QRCodeUpdatePage";
+	}
+
+	@RequestMapping(path = "/ManageBar", method = RequestMethod.GET)
+	public String LogisticOrder() {
+		return "logistic/ManageBar";
+	}
+	
+	@RequestMapping(path = "/ManageActivity", method = RequestMethod.GET)
+	public String ManageActivity() {
+		System.out.println("redirect to ManageActivity");
+		return "logistic/ManageActivity";
+	}
+	
+	@RequestMapping(path = "/createMarker", method = RequestMethod.GET)
+	public String createMarkerPage() {
+		return "logistic/createMarker";
+	}
+	
+	@RequestMapping(path = "/createActivity", method = RequestMethod.GET)
+	public String createActivityPage() {
+		return "logistic/createActivity";
+	}
+	
+	@RequestMapping(path = "/createShow", method = RequestMethod.GET)
+	public String createShow() {
+		return "logistic/createShow";
+	}
+	
+	@RequestMapping(path = "/editActivity", method = RequestMethod.GET)
+	public String editActivity() {
+		return "logistic/editActivity";
+	}
+	
+	@RequestMapping(path = "/searchMarker", method = RequestMethod.GET)
+	public String searchMarker() {
+		return "logistic/searchMarker";
 	}
 	
 	//////////

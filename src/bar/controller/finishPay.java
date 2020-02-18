@@ -27,6 +27,7 @@ import bar.model.Orders;
 import bar.model.OrdersService;
 import bar.model.ProductData;
 import bar.model.ProductDataService;
+import bar.model.logistic.Logistic;
 import bar.model.logistic.LogisticService;
 import net.sf.json.JSONObject;
 
@@ -74,7 +75,7 @@ public class finishPay {
 			jsonParam.put("amount", amount); 
 			jsonParam.put("currency", "TWD"); 
 			
-			StringEntity entity = new StringEntity(jsonParam.toString(), "utf-8");// 解決中文亂碼問題
+			StringEntity entity = new StringEntity(jsonParam.toString(), "utf-8");// 閫�瘙箔葉���Ⅳ����
 			entity.setContentEncoding("UTF-8");
 			entity.setContentType("application/json");
 			httpPost.setEntity(entity);
@@ -101,6 +102,7 @@ public class finishPay {
 			}
 			int status = 3;
 			oService.updateToCancel(orderId, status);
+			//以下會再付款成功後建立物流訂單
 			Orders order = oService.selectOrder(orderId);
 			String lAddress = null;
 			if(order.getShipping()==1) {
@@ -108,8 +110,12 @@ public class finishPay {
 			}else if(order.getShipping()==2) {
 				lAddress = order.getAddress2();
 			}
-			lService.createLogistic(orderId,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			System.out.println("order found: "+order);
+			String logistic = lService.createLogistic(orderId,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			System.out.println("logistic creation done");
+			order.setShippingNumber(logistic);
 			
+			//以上屬於物流部分 請勿刪除
 			return new ModelAndView("redirect:/userOrder.controller");
 			}
 		}

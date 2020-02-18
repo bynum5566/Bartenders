@@ -36,7 +36,7 @@ public class LogisticService {
 //		return lDao.ChangeType(type,ID);
 //	}
 	
-	public Logistic createLogistic(String id,int type,String phone,String name,int amount,String address) {
+	public String createLogistic(String id,int type,String phone,String name,int amount,String address) {
 		return lDao.createLogistic(id,type, phone, name, amount, address);
 	}
 	

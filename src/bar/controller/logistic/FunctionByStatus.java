@@ -36,6 +36,19 @@ public class FunctionByStatus {
 		
 	}
 	
+	@RequestMapping(path = "/testLogistic.do",method = RequestMethod.GET)
+	public String testLogistic() throws IOException {
+		String id = "1000001581943454337";
+		int type = 1;
+		String phone = "0921228145";
+		String name = "林靖";
+		int amount = 650;
+		String address = "住家";
+		lService.createLogistic( id, type, phone, name, amount, address);
+
+		return "logistic/LogisticGate";
+	}
+	
 	@RequestMapping(path = "/createLogistic.do",method = RequestMethod.GET)
 	public String createLogistic() throws IOException {
 		Orders rs = oService.selectOrder("1000001581303140715");

@@ -24,8 +24,21 @@
 	
     <style type= "text/css">	
 
+	/*-- 訊息用  */
+	.sigmaGreen{
+		color:green;
+	}
+	
+	.sigmaYellow{
+		color:yellow
+	}
+	
 	.sigmaGray{
 		color: gray;
+	}
+	
+	.sigmaHoverRed{
+		Hover: red;
 	}
 
 	.sigmaTd1 {
@@ -177,12 +190,15 @@ div.panel
 
 <%-- 本體，開始 --%>
 		<!-- 回到酒吧頁面 -->
-		<h2>${msg}</h2>
+		<h2 class="sigmaGreen">${msg}</h2>
 		<form>
 			<h2>
 				<!--<a href="<c:url value="/DisplayProductList.controller"/>">回到酒吧頁面 </a>--> 
-				<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${barAccount}">回到酒吧 </a>
-				<a href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a>
+				<a class="sigmaYellow" href="<c:url value="/DisplayProductList.controller"/>?barAccount=${barAccount}">回到酒吧 </a>
+				
+			</h2> 
+			<h2>
+				<a class="sigmaYellow" href="<c:url value="/DisplayCartList.controller"/>">回到購物車 </a>
 			</h2> 
 		</form> 
 <%-- 本體，結束 --%>
