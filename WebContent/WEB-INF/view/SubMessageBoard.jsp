@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" type="text/css"
 	href="/Bartenders/CSS/add_editView.css">
-<title>Add new product</title>
+<title>主題留言板</title>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link
