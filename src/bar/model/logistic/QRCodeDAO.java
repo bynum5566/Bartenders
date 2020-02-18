@@ -29,18 +29,21 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import bar.model.Orders;
+import bar.model.OrdersService;
 import bar.model.logistic.Logistic;
 
 @Repository
 public class QRCodeDAO {
 
 	private SessionFactory sessionFactory;
+	private OrdersService oService;
 
 
 	@Autowired
-	public QRCodeDAO(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
+	public QRCodeDAO(@Qualifier("sessionFactory") SessionFactory sessionFactory,OrdersService oService) {
 		this.sessionFactory = sessionFactory;
-
+		this.oService = oService;
 	}
 
 	public Logistic QRCodeAction(String ID, Integer status) {
@@ -61,10 +64,14 @@ public class QRCodeDAO {
 					System.out.println("update status");
 					String name = order.getoName();
 					CreateQR(ID,status+1,name);
+					Orders reUpdate = oService.selectOrder(ID);
+					reUpdate.setStatus(4);
 				}else if(order.getoStatus()==2&&order.getoComplete()==1) {
 					order.setoStatus(3);
 					String date = getTime();
 					order.setoTimeC(date);
+					Orders reUpdate = oService.selectOrder(ID);
+					reUpdate.setStatus(5);
 					System.out.println("update status");
 				}
 			}
