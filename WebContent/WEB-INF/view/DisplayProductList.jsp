@@ -173,9 +173,9 @@
 					<!-- 事件event，開始 -->
 				<tr>
 					<td>
-						<div id="accordion" class="sigmaTransparent">
+						<div id="accordion" class="sigmaYellow sigmaTransparent">
 							<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">	<!-- 此酒吧的所有事件 -->
-								<h3 class="sigmaTransparent sigmaYellow">${listOfEventOfOneBar[current.index].neTitle}</h3>	<!-- event標題 -->
+								<h3 class="sigmaTransparent sigmaYellow" style="color:yellow">${listOfEventOfOneBar[current.index].neTitle}</h3>	<!-- event標題 -->
 									<div class="sigmaTransparent">
 										<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>	<!-- event內文-->
 									</div>
@@ -380,7 +380,7 @@
 												${listOfProduct[current.index].pdDetail}
 												</p><br>
 													<!--<a href="<c:url value="/AddToCartButton.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>-->
-													<a href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+													<a class="sigmaYellow" href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
 													<!-- <a href="<c:url value="/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk2</a> -->
 													<!-- <a href="<c:url value="/Bartenders/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk3</a> -->
 													

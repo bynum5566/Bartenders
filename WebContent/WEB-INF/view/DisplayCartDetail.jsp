@@ -231,8 +231,14 @@ div.panel
 		<!-- =如果是一般商品，可以選擇配送方式，開始= -->
 
 <c:if test="${shipping == '1' or shipping == '2'}">
-	<Input type='hidden' name='select1' value="${shipping}"> 
-	<label>宅配</label>
+	<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> --> 
+	<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
+	<input  name="select1" type="radio" value="1" checked required >
+	<label for="setTt1">宅配</label>
+	<input name="select1" type="radio" value="2" >
+	<label	for="setTt2">超商</label>
+	
+	<!-- 多寫一次 -->
 	<!--<input  name="select1" type="radio" value="1" checked required >-->
 	<!--<label for="setTt1">宅配</label>	-->
 	<!--<input name="select1" type="radio" value="2" >-->
