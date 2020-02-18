@@ -1,5 +1,6 @@
 /*豪*/
 package bar.controller;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -141,6 +142,15 @@ public class AddProductToCartController
 					shipping = 1;	/*預設使用1:宅配*/
 					Date date;
 					date = new Date();
+					
+					/*String版本時間，開始*/	/*【】標記ＱＲ也要改*/
+					SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+					Date dateSource = new Date();
+					String StringDate = sdFormat.format(dateSource);
+					CartService.printValueTypeTime("date.getTime()", date.getTime());
+					CartService.printValueTypeTime("StringDate", StringDate);
+					/*String版本時間，開始結束*/
+					
 					orderId = userId +Long.toString(date.getTime());
 					System.out.println("orderId = ");
 					System.out.println(orderId);
@@ -157,6 +167,7 @@ public class AddProductToCartController
 					String shippingNumber = ""; //可null
 
 					
+					String tempString ="2020-02-27 11:11:11.777";
 					
 					
 					Orders orders = new Orders(
@@ -165,12 +176,16 @@ public class AddProductToCartController
 							userId, 
 							recipient, 
 							(int)status, 
-							createTime,
+							StringDate,				/*--createTime*/
 							amount, 
 							(int)shipping, 
 							address1, address2, phone, shippingNumber);
 					
 					ordersDao.insert(orders);
+					CartService.printValueTypeTime("orders.getCreateTime()", orders.getCreateTime());
+					Orders ordersInDB = ordersService.selectOrder(orderId);
+					CartService.printValueTypeTime("ordersInDB.getCreateTime()", ordersInDB.getCreateTime());
+					
 					//===============
 //					String error = "測試終止";
 //					addAttribute(account, m, pdId, qty,error);
@@ -204,6 +219,16 @@ public class AddProductToCartController
 						orderId = "1";
 						Date date;
 						date = new Date();
+						
+						/*String版本時間，開始*/	/*【】標記一般也要改*/
+						SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+						Date dateSource = new Date();
+						String StringDate = sdFormat.format(dateSource);
+						CartService.printValueTypeTime("date.getTime()", date.getTime());
+						CartService.printValueTypeTime("StringDate", StringDate);
+						/*String版本時間，開始結束*/
+						
+						
 						orderId = userId +Long.toString(date.getTime());
 						System.out.println("orderId = ");
 						System.out.println(orderId);
@@ -219,13 +244,14 @@ public class AddProductToCartController
 						String phone = userX.getPhone();	
 						String shippingNumber = ""; //可null
 
+						String tempString ="2020-02-27 11:11:11.777";
 						Orders orders = new Orders(
 								orderId, 
 								companyId, 
 								userId, 
 								recipient, 
 								(int)status, 
-								createTime,
+								StringDate,
 								amount, 
 								(int)shipping, 
 								address1, address2, phone, shippingNumber);

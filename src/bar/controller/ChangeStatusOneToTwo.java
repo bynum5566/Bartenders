@@ -2,7 +2,8 @@
 package bar.controller;
 
 //import java.util.Date;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -100,7 +101,18 @@ public class ChangeStatusOneToTwo
 			/* 寫入資料庫，狀態改變(status 1 > 2，開始) */
 			/* ================================================= */ // 新增20200131_1228
 			orderX = oService.selectOrder(orderId);
-			orderX.setCreateTime(createTime);
+			
+			String tempString ="2020-02-27 11:11:11.777";
+			
+			/*String版本時間，開始*/	
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+			Date dateSource = new Date();
+			String StringDate = sdFormat.format(dateSource);
+			CartService.printValueTypeTime("date.getTime()", dateSource.getTime());
+			CartService.printValueTypeTime("StringDate", StringDate);
+			/*String版本時間，開始結束*/			
+			
+			orderX.setCreateTime(StringDate);
 			orderX.setShipping(Integer.valueOf(select1));
 			orderX.setRecipient(input1);
 			orderX.setPhone(input2);

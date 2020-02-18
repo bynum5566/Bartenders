@@ -1,6 +1,5 @@
 /*豪*/
 package bar.controller;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -32,8 +31,6 @@ public class UpdateQtyInCartController
 {
 	private ProductDataService productDataService;
 	private UsersService userService;
-	private OrdersService ordersService;
-	private CompanyService companyService;
 	private CartDAO cartDao;
 	private CartService cartService;	/*新增20200201_1509*/
 	private OrdersDAO ordersDao;
@@ -46,9 +43,8 @@ public class UpdateQtyInCartController
 	{
 		this.productDataService = pService;
 		this.userService = uService;
-		this.ordersService = oService;
+
 		this.cartDao = cDao;
-		this.companyService = cService;
 		this.cartService = cartService;	/*新增20200201_1509*/
 		this.ordersDao = ordersDao;
 	}
@@ -61,13 +57,7 @@ public class UpdateQtyInCartController
 			@ModelAttribute(name = "account") String account, // new
 			Model m)
 	{
-		/* 運費設定 */
-		/* ======================== */
-		int f0 = 0; /* 未選擇 */
-		int f1 = 80;/* 宅配 */
-		int f2 = 60;/* 超商 */
-		int f3 = 0;/* QR票券 */
-		/* ======================== */
+
 		CartService.Pf("AddProductToCartProcessAction，Start");
 		/* 參數宣告 */
 		String orderId = "0";
@@ -101,52 +91,22 @@ public class UpdateQtyInCartController
 			
 			if (ProductDataX.getValidDate() == null )
 			{
+				
 				System.out.println("==============一般商品================");
-				/*取得Normal訂單*/
+				//取得Normal訂單
 				System.out.printf("%d %d %d",companyId, 1, userId);
 				List <Orders> ordersListNormal;
-//				ordersListNormal = null;
+
 				Integer  status = 1 ;
 				Integer shipping = 3;
 				ordersListNormal = ordersDao.selectListUserCompanyStatusOrderNormal(companyId, status, userId, shipping);
 				if(ordersListNormal.isEmpty()) {
-					System.out.println("==============沒Normal類訂單，需要新增================");
-					shipping = 0;
-					orderId = "1";
-					Date date;
-					date = new Date();
-					orderId = userId +Long.toString(date.getTime());
-					System.out.println("orderId = ");
-					System.out.println(orderId);
-					//===
-					String recipient= userService.select(account).getUserName();
-//					String recipient=null;
-					java.sql.Date createTime;
-					createTime  = new java.sql.Date(date.getTime());
-					int amount = 0;
-					String address1 = null;	
-					String address2 = null; 
-					String phone = null;	
-					String shippingNumber = null;
-
-					Orders orders = new Orders(
-							orderId, 
-							companyId, 
-							userId, 
-							recipient, 
-							(int)status, 
-							createTime,
-							amount, 
-							(int)shipping, 
-							address1, address2, phone, shippingNumber);
-					
-					ordersDao.insert(orders);
+					System.out.println("==============沒 Normal類訂單，================");
+					String error = "錯誤";
+					addAttribute(account, m, pdId, qty,error);
+					return "AddToCartButton";
 					//===============
-//					String error = "測試終止";
-//					addAttribute(account, m, pdId, qty,error);
-//					return "AddToCartButton";
-					//===============
-				}
+				}	//標記
 				else
 				{	
 					System.out.println("==============有Normal類訂單================");
@@ -170,42 +130,14 @@ public class UpdateQtyInCartController
 					Integer shipping = 3;
 					ordersListQr = ordersDao.selectListUserCompanyStatusOrderQrTicket(companyId, status, userId, shipping);
 					if(ordersListQr.isEmpty()) {
-						System.out.println("==============沒QR類訂單，需要新增================");
-						orderId = "1";
-						Date date;
-						date = new Date();
-						orderId = userId +Long.toString(date.getTime());
-						System.out.println("orderId = ");
-						System.out.println(orderId);
-						//===
-						Users userX = userService.select(account);
-						String recipient= userX.getUserName();
-//						String recipient=null;
-						java.sql.Date createTime;
-						createTime  = new java.sql.Date(date.getTime());
-						int amount = 0;
-						String address1 = userX.getAddress();	
-						String address2 = null; 
-						String phone = userX.getPhone();	
-						String shippingNumber = null;
 
-						Orders orders = new Orders(
-								orderId, 
-								companyId, 
-								userId, 
-								recipient, 
-								(int)status, 
-								createTime,
-								amount, 
-								(int)shipping, 
-								address1, address2, phone, shippingNumber);
-						
-						ordersDao.insert(orders);
+						System.out.println("==============沒QR類訂單，================");
 						//===============
-//						String error = "測試終止";
-//						addAttribute(account, m, pdId, qty,error);
-//						return "AddToCartButton";
+						String error = "錯誤";
+						addAttribute(account, m, pdId, qty,error);
+						return "AddToCartButton";
 						//===============
+
 					}
 					else
 					{
@@ -236,38 +168,25 @@ public class UpdateQtyInCartController
 			{ /* 如果有，不動作。orderId */
 				CartService.Pf("【NOT NULL】【該訂單有該pdId】");
 			}
-			/*新增Cart-結束*/		/*移動20200201_1509*/
 			
-
-			
-				/* 不需要判斷【選取的數量+目前購物車內的數量>庫存 】*/
 			
 				CartService.Pf("庫存足夠");
-				Orders orderX;
-				orderX = ordersService.selectOrdersByOrderId(orderId);
 
-//				String orderId2 = "1";	/*測試，更新數量，參數*/
+
+
 				String orderId2 = orderId;
-//				String pdId2 = "1";	/*測試，更新數量，參數*/
+
 				String pdId2 = pdId;
 				// ============================
-				
-//				qtyOfpdId += QtyOfAddToCart; /* 新的數量 */	//【C】+=【A】
-				//int qtyOfpdId = returnQtyOfpdId(pdId, orderId);   //old
-				
-				/*因為是更新，不用加入訂單內的數量*/
-				//qtyOfpdId += Integer.valueOf(qty);	//old
+			
 				
 				int qtyOfpdId = Integer.valueOf(qty);
 				cartDao.updateQuantity(orderId2, pdId2, qtyOfpdId); /* 更新數量 */
 				
-//				int checkoutPrice = cartService.selectProductDataByPdid(pdId).getPdPrice();/*取得現在單價*/
-
-
 				
-				String ok = "加入購物車成功";
+				String ok = "成功";
 				addAttribute(account, m, pdId, qty ,ok);
-				System.out.println("加入購物車成功");
+				System.out.println("成功");
 				CartService.Pf("AddProductToCartProcessAction，End2");
 
 				Cart cartX = cartDao.selectCart(orderId2, pdId2);
@@ -282,14 +201,14 @@ public class UpdateQtyInCartController
 	private void addAttribute(String account, Model m, String pdId, String qty ,String errorMsgOfAddToCartButton) /*傳值給下一階段*/
 	{
 		ProductData pX = productDataService.select(pdId);
-		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
+
 		Users uX;/* C */
 		CartService.Pf2("account", account);
-		uX = userService.select(account); /* C */
-		m.addAttribute("account", account);/* D */
-		m.addAttribute("UserName", uX.getUserName());/* D */
-		m.addAttribute("ProductName", pX.getProductName());/* D */
-		m.addAttribute("PdStock", pX.getPdStock());/* D */
+		uX = userService.select(account); 
+		m.addAttribute("account", account);
+		m.addAttribute("UserName", uX.getUserName());
+		m.addAttribute("ProductName", pX.getProductName());
+		m.addAttribute("PdStock", pX.getPdStock());
 		m.addAttribute("PdId", pX.getPdId());
 		m.addAttribute("qty", qty); // added
 		m.addAttribute("pdPrice", pX.getPdPrice()); // added
@@ -299,7 +218,7 @@ public class UpdateQtyInCartController
 	{
 		int QtyOfAddToCart = Integer.valueOf(qty);// 【A】
 		ProductData pX = productDataService.select(pdId);
-		//ProductData pX = productDataService.selectProductVer2(pdId); /* 用service取 */
+
 		int nowStock = pX.getPdStock(); // 【B】
 		CartService.Pf2("Integer.valueOf(qty", Integer.valueOf(qty));
 		if (QtyOfAddToCart > nowStock) /* 選取的數量>庫存 */ // 【A】>【B】
@@ -312,27 +231,20 @@ public class UpdateQtyInCartController
 		}
 	}
 
-	private int returnQtyOfpdId(String pdId, String orderId)
-	{
-		Cart cartX = cartDao.selectCart(orderId, pdId); /* 取物件 */
-		int qtyOfpdId = cartX.getQuantity();/* 取數量 */ // 【C】
-		return qtyOfpdId;
-	}
 	/*
 	 * 存在此廠商的 訂單編號 且狀態為購物車狀態？
 	 */
 	
-	private int getCompanyIdByPdId(String pdId) {	/*新增20200201_1509*/
+	private int getCompanyIdByPdId(String pdId) {	
 		int companyId = 0;// 【A】
 		ProductData productX;
 		productX = productDataService.select(pdId);
-		//productX = productDataService.selectProductVer2(pdId);
 		companyId = productX.getCompanyId();
 		return companyId;
 	}
 
-	private int getUserIdByAccount(String account) { /* 新增20200201_1509 */
-		int userId;// 【C】
+	private int getUserIdByAccount(String account) {
+		int userId;
 		Users userX = userService.select(account);
 		userId = userX.getUserId();
 		CartService.Pf2("userId", userId);
