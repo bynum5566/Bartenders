@@ -144,7 +144,7 @@ public class AddProductToCartController
 					date = new Date();
 					
 					/*String版本時間，開始*/	/*【】標記ＱＲ也要改*/
-					SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+					SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 					Date dateSource = new Date();
 					String StringDate = sdFormat.format(dateSource);
 					CartService.printValueTypeTime("date.getTime()", date.getTime());
@@ -221,7 +221,7 @@ public class AddProductToCartController
 						date = new Date();
 						
 						/*String版本時間，開始*/	/*【】標記一般也要改*/
-						SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+						SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 						Date dateSource = new Date();
 						String StringDate = sdFormat.format(dateSource);
 						CartService.printValueTypeTime("date.getTime()", date.getTime());

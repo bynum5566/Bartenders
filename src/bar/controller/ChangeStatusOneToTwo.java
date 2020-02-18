@@ -105,7 +105,7 @@ public class ChangeStatusOneToTwo
 			String tempString ="2020-02-27 11:11:11.777";
 			
 			/*String版本時間，開始*/	
-			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date dateSource = new Date();
 			String StringDate = sdFormat.format(dateSource);
 			CartService.printValueTypeTime("date.getTime()", dateSource.getTime());

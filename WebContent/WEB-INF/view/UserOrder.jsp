@@ -103,7 +103,7 @@ body {
 									</c:choose>
 									<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
 									<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].createTime}</td>
+									<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,19)}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
 									<c:choose>
 										<c:when
