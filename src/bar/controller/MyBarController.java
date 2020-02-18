@@ -190,6 +190,7 @@ public class MyBarController {
 			request.setAttribute("barImgUrl4", Detail2.getCoverUrl4());
 			request.setAttribute("barImgUrl5", Detail2.getCoverUrl5());
 			request.setAttribute("aboutBar", Detail2.getAboutBar());
+			request.setAttribute("barMenu", Detail2.getBarMenu());
 			request.setAttribute("barFb", Detail2.getBarFb());
 			request.setAttribute("barLine", Detail2.getBarLine());
 			request.setAttribute("barIg", Detail2.getBarIg());
@@ -211,6 +212,7 @@ public class MyBarController {
 		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
 		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
 		request.setAttribute("aboutBar", Detail.getAboutBar());
+		request.setAttribute("barMenu", Detail.getBarMenu());
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());
 		request.setAttribute("barIg", Detail.getBarIg());
