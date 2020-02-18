@@ -10,42 +10,45 @@
 <title>Orders</title>
 
 <style type="text/css">
-a{
-color: #E8CCFF;
+a {
+	color: #E8CCFF;
+}
 
-}
 a:hover {
-color: 	#9F88FF;
+	color: #9F88FF;
 }
+
 .mydiv {
 	min-width: auto;
 	top: 80px;
 	position: sticky;
 	text-align: center;
 	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
+		rgba(163, 163, 163, 0.5) 99%);
 	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	color: #E8CCFF;
+	font-size: 18px;
 }
 
-
 body {
-	margin:0;
-	padding:0;
-	background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
+	margin: 0;
+	padding: 0;
+	background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat
+		center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
-
-
-
 </style>
 
 </head>
@@ -92,7 +95,7 @@ body {
 										<c:when
 											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 											<td align="center" nowrap="nowrap"><a
-												href="${attrAddress[current.index]}">${attrAddress[current.index]}</a></td>
+												href="${attrAddress[current.index]}">QRcode載點</a></td>
 										</c:when>
 										<c:otherwise>
 											<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
@@ -102,9 +105,23 @@ body {
 									<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].createTime}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
-									<td align="center" nowrap="nowrap"><a
+									<c:choose>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
+											<td align="center" nowrap="nowrap"><a
+												href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
+													去付款</a></td>
+										</c:when>
+										<c:otherwise>
+											<td nowrap="nowrap"><font color=gray>去付款</font></td>
+										</c:otherwise>
+									</c:choose>
+
+
+									<!--<td align="center" nowrap="nowrap"><a
 										href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
-											去付款</a></td>
+											去付款</a></td>-->
+											
 									<!--<form:form action="doLPay" method="post">
 									<table>
 										<tr>
