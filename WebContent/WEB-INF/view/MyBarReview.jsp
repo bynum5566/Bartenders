@@ -77,6 +77,9 @@
 	#circle td{
 	width: 30px !important;
 	}
+	.sigmaTd1 img{
+	width: 150px;
+	}
 </style>
 </head>
 
