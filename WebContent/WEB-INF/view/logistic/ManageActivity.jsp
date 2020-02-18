@@ -159,7 +159,7 @@ var number = 0;
 					<div class="name" >${Activity.name}</div>
 					<br>
 					<p id="date${Activity.activityId}" class="date" align=left style="margin: 10px;"></p>
-					<p align=left style="margin: 10px">${Activity.address}<button id="Bhidden${status.index}" type="button">確認地圖</button></p>
+					<p align=left style="margin: 10px">${Activity.address}</p><button id="Bhidden${status.index}" type="button" >確認地圖</button>
 						<div class="showEachMap">
 							<div id="hidden${status.index}" class="hideMap" >
 								<div id="map${status.index}" style="width:500px;height:500px;background:red"></div>
@@ -205,6 +205,10 @@ var number = 0;
 					number++;
 					//個別地圖展開
 					var target;
+					var element = document.querySelector('#block');
+					function open(){
+						console.log('click function open');
+					}
 					$('#Bhidden${status.index}').on('click',function(){
 						console.log('start');
 						var temp = this.id;
@@ -213,6 +217,7 @@ var number = 0;
 						var mapId = '${status.index}';
 						console.log('userId:',activityId);
 						target = temp.substring(1);
+						console.log('target is:',target);
 						if($('#hidden${status.index}').css('display') == 'none'){
 							console.log('try to show');
 							showTargetMap(target);

@@ -124,6 +124,7 @@ public class FunctionByActivity {
 	@RequestMapping(path = "saveActivity.do",method = RequestMethod.POST)
 	public String createActivity(HttpServletRequest request, HttpServletResponse response,Model m,
 			@RequestParam(name = "preUrl")String preUrl,
+			@RequestParam(name = "userId")String userId,
 			@RequestParam(name = "name")String name,
 			@RequestParam(name = "address")String address,
 			@RequestParam(name = "lat")float lat,
@@ -159,36 +160,43 @@ public class FunctionByActivity {
 		if (type.equals("on")) {
 			errors.put("type", "尚未選擇類型");
 		}
+		
+		if (userId.length()<7) {
+//			errors.put("type", "尚未選擇類型");
+			System.out.println("閒置過久，請重新登入");
+			return "WelcomeCompany";
+		}
 
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
 			return "createShow";
 		}
-		System.out.println("this is preUrl: "+preUrl);
+		
+		System.out.println("this is catched userId: "+userId);
+		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);
 		String realPath = request.getSession().getServletContext().getRealPath("\\WEB-INF\\resource\\images/");
+		System.out.println("this is realPath:"+realPath);
 		String tempPath = "C:\\test\\";
 		System.out.println("upload file: "+request.getContentLengthLong());
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile file = multipartRequest.getFile("uploadFile");
-		String filename = file.getOriginalFilename();
-		InputStream input = file.getInputStream();
-		System.out.println("start Thumbnails");
-		File savePath2 = new File(tempPath+filename);
-		System.out.println("this is path:"+realPath);
-		Thumbnails.of(input).size(30, 30).toFile(savePath2);
-//		//設定日期格式
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-//		System.out.println("Activity time:"+beginTime);
-//		//進行轉換
-//		Date date1 = sdf.parse(beginTime);
-//		System.out.println("開始時間:"+beginTime);
-//		Date date2 = sdf.parse(endTime);
-//		System.out.println("結束時間:"+endTime);
-//		long day=(date2.getTime()-date1.getTime())/(1000*60); 
-//		System.out.println("時間差:"+day+"分");
-		int userid = 5645;
+		String filename;
+		if(!file.isEmpty()) {
+			filename = file.getOriginalFilename();
+			InputStream input = file.getInputStream();
+		
+			System.out.println("start Thumbnails");
+			File savePath2 = new File(tempPath+filename);
+			Thumbnails.of(input).size(30, 30).toFile(savePath2);
+			System.out.println("Thumbnails complete");
+		}else {
+			System.out.println("no file selected");
+			filename="noImage";
+		}
+		
+
 		Activity activity = new Activity();
-		aDao.saveActivity(activity,userid, name, address, lat, lng, type, filename, brief, beginTime, endTime, targetNum, actualNum);
+		aDao.saveActivity(activity,userId, name, address, lat, lng, type, filename, brief, beginTime, endTime, targetNum, actualNum);
 		
 		
 		if(preUrl!=null&&preUrl.equals("/createShow")) {
@@ -345,13 +353,18 @@ public class FunctionByActivity {
 	}
 	
 	
-	@RequestMapping(path = "queryActivity.do",method = RequestMethod.GET)
+	@RequestMapping(path = "queryActivityByUser.do",method = RequestMethod.GET)
 	public String queryActivity(HttpServletRequest request, HttpServletResponse response, Model m,
-			@RequestParam(name = "userId")Integer userId,RedirectAttributes redirectAttributes
+			@RequestParam(name = "userId")String userId,RedirectAttributes redirectAttributes
 			) throws IOException, ParseException {
+		if (userId.length()<7) {
+			System.out.println("閒置過久，請重新登入");
+			return "index";
+		}
 		List<Activity> list = aDao.query("userId",userId);
-		boolean status = aDao.checkEndTime(list);
-		System.out.println("all activities is checked: "+status);
+		//不檢查 將所有個人活動全部撈出來
+//		boolean status = aDao.checkEndTime(list);
+//		System.out.println("all activities is checked: "+status);
 		m.addAttribute("activity",list);
 //		redirectAttributes.addFlashAttribute("activitytest", list);
 		return "logistic/ManageActivity";

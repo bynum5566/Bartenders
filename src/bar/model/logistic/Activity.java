@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Activity {
 
 	private Integer activityId;
-	private Integer userId;
+	private String userId;
 	private String name;
 	private String address;
 	private float lat;
@@ -42,12 +42,12 @@ public class Activity {
 	}
 
 	@Column(name="USERID")
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
 	@XmlElement
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
