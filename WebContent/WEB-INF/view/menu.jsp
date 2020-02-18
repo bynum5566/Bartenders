@@ -4,11 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<meta name="google-signin-client_id"
-	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<link rel="stylesheet" type="text/css"
-	href="/Bartenders/CSS/C_menu.css">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/C_menu.css">
 </head>
 <body>
 	<header tabindex="0">Bartenders</header>
@@ -20,8 +17,8 @@
 		</div>
 		<div id="nav-content" tabindex="0">
 			<ul>
-				<li><a class="menu" href="/Bartenders/My.Bar">我的Bar</a></li>
-				<li><a class="menu" href="/Bartenders/Bar.edit">編輯Bar</a></li>
+				<li><a class="menu" href="/Bartenders/My.Bar">我的酒吧</a></li>
+				<li><a class="menu" href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 				<li><a class="menu" href="/Bartenders/Product.Add">新增商品+</a></li>
 				<li><a class="menu" href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
 				<li><a class="menu" href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
@@ -30,12 +27,14 @@
 				<li><a class="menu" href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
 				<li><a class="menu" href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 				<li><a class="menu" href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
-				<li><a class="menu"
-					href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+				<li><a class="menu" href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 				<li><a class="menu" href="/Bartenders/Croom.chat">聊天室</a></li>
-				<li class="small"><a class="menu"
-					href="/Bartenders/Welcome.Company">前往首頁</a><a class="menu"
-					href="javascript:signOut()">登出</a></li>
+				<li class="small">
+					<a class="menu" href="/Bartenders/Welcome.Company">前往首頁</a>
+					<a class="menu" href="javascript:signOut()">登出</a>
+				</li>
+				<li><a class="menu" href="/Bartenders/logistic/LogisticOrder">物流</a></li>
+				<li><a class="menu" href="/Bartenders/ManageBar">管理活動</a></li>
 			</ul>
 		</div>
 	</div>

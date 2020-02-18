@@ -3,6 +3,16 @@
   src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
+@font-face {
+	font-family: FangBold;
+	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+}
+
+@font-face {
+	font-family: Taipei;
+	src: url(/Bartenders/CSS/TaipeiSansTCBeta-Regular.ttf);
+}
+
 *{
 	text-decoration: none;
 	text-decoration-color: transparent;
@@ -19,7 +29,7 @@ body {
   letter-spacing: 0.02em;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Makinas';
+  font-family: 'FangBold';
 }
 
 .allwrapper0 {
@@ -40,9 +50,8 @@ body {
   text-align: center;
   width: 640px;
   padding: 15px;
-  font-family: 'Makinas';
+  font-family: 'FangBold';
   color: rgb(255, 255, 255);
-/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(7, 86, 255) 0px 0px 20px, rgb(7, 86, 255) 0px 0px 30px, rgb(0, 63, 199) 0px 0px 40px; */
   font-size: 24px;
   border-radius: 5px;
   background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
@@ -59,7 +68,6 @@ body {
   width: 600px;
   height: 390px;
   overflow: auto;
-  /* overflow-x: hidden; */
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   background: linear-gradient(black 30%, hsla(0, 0%, 100%, 0)), linear-gradient(hsla(0, 0%, 100%, 0), black 70%) bottom, radial-gradient(at top, rgba(0, 0, 0, .2), transparent 70%), radial-gradient(at bottom, rgba(0, 0, 0, .2), transparent 70%) bottom;
@@ -114,7 +122,22 @@ body {
   float: left;
 }
 
-.pdNm a:link, .pdNm a:hover, .pdNm a:visited {
+div.pdNm a:link {
+	font-size:20px;
+	line-height:22px;
+	color: #08fdd1;
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
+div.pdNm a:hover {
+	text-shadow: 0 0 3px lightcyan;
+	text-decoration: none;
+	text-decoration-color: transparent;
+}
+
+div.pdNm a:visited {
+	color: #08fdd1;
 	text-decoration: none;
 	text-decoration-color: transparent;
 }
@@ -180,7 +203,7 @@ body {
 	transform: scale(0.1, 1);
 }
 input.bT {
-  font-family: 'Makinas';
+  font-family: 'FangBold';
   font-size: 20px;
   opacity: 0.9;
   border: none;
@@ -200,19 +223,19 @@ input.bT {
 }
 
 .bT2 {
-  color: lavender !important;
+  color: #FFFF78	 !important;
   text-transform: uppercase;
   background: transparent;
   padding: 10px;
-  border: 4px solid lavender !important;
+  border: 4px solid #FFFF78 !important;
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-  font-family: Makinas;
+  font-family: FangBold;
   }
 
   .bT2:hover {
-    color: 	ghostwhite !important;
+    color: #FFFFE8 !important;
     border-radius: 50px;
     border-color: 	ghostwhite !important;
     transition: all 0.3s ease 0s;

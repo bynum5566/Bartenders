@@ -3,6 +3,11 @@
 	src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
+@font-face {
+	font-family: FangBold;
+	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+}
+
 body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -14,7 +19,7 @@ body {
 	letter-spacing: 0.02em;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Makinas';
+	font-family: 'FangBold';
 }
 
 /* divs */
@@ -258,7 +263,7 @@ ul.fav {
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-  font-family: Makinas;
+  font-family: FangBold;
   }
 
   .bT2:hover {

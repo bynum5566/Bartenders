@@ -3,6 +3,11 @@
 	src: url(/Bartenders/CSS/Makinas-4-Flat.otf);
 }
 
+@font-face {
+	font-family: FangBold;
+	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+}
+
 *{
 	text-decoration: none;
 	text-decoration-color: transparent;
@@ -19,7 +24,7 @@ body {
 	letter-spacing: 0.02em;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Makinas';
+	font-family: 'FangBold';
 }
 
 .outw {
@@ -27,6 +32,9 @@ body {
 	padding-top: 10px;
 	position: relative;
 	top: 80px;
+	text-align: center;
+	color: rgb(255, 255, 255);
+	font-size: 24px;
 }
 
 .outwrap0 {
@@ -37,7 +45,6 @@ body {
 	line-height: 20px;
 	padding: 25px;
 	color: rgb(255, 255, 255);
-	/*   text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(179, 148, 48) 0px 0px 20px, rgb(179, 148, 48) 0px 0px 30px, rgb(179, 148, 48) 0px 0px 40px; */
 	font-size: 24px;
 	border-radius: 5px;
 }
@@ -63,6 +70,8 @@ body {
 	display: inline-block;
 	text-align: left;
 	max-width: 350px;
+	clear: both;
+	line-height: 28px;
 }
 
 .pdDataMain {
@@ -72,9 +81,22 @@ body {
 	text-align: left;
 }
 
-.pdDataMain a:link, .pdDataMain a:hover, .pdDataMain a:visited{
+.pdDataMain a:link {
 	text-decoration: none;
 	text-decoration-color: transparent;
+	color:	#E63F00;
+}
+
+.pdDataMain a:hover {
+	text-decoration: none;
+	text-decoration-color: transparent;
+	color:	lightsalmon;
+}
+
+.pdDataMain a:visited{
+	text-decoration: none;
+	text-decoration-color: transparent;
+	color:	#E63F00;
 }
 
 .dtails {
@@ -83,12 +105,13 @@ body {
 	min-height: 400px;
 	padding: 10px;
 	font-size: 18px;
+	line-height: 22px;
 	margin: 10px auto;
 	text-align: center;
 }
 
 .bT01 {
-	font-family: 'Makinas';
+	font-family: 'FangBold';
 	font-size: 20px;
 	opacity: 0.9;
 	border: none;
@@ -237,6 +260,15 @@ body {
 		width: auto;
 		margin: 15px auto;
 	}
+	
+	#myFv, #pdLk{
+		float: none;
+		text-align: left;
+	}
+	
+	.bT{
+		display: block;
+	}
 }
 
 @media screen and (max-width: 960px) {
@@ -250,6 +282,15 @@ body {
 	#myFv, button.bT, .pdDataMain, .pdData {
 		width: auto;
 		margin: 10px auto;
+	}
+	
+	#myFv, #pdLk {
+		float: none;
+		text-align: left;
+	}
+	
+	.bT{
+		display: block;
 	}
 }
 
@@ -267,6 +308,29 @@ body {
 		margin: 10px auto;
 		float: none;
 	}
+	.bT{
+		display: block;
+	}
+}
+
+@media screen and (max-width: 812px) {
+	.outw, .outwrap0 {
+		width: auto;
+		margin: auto;
+	}
+	.inwrap, .flos01, .flos02, .dtails {
+		margin: auto;
+		width: auto;
+		font-size: 20px;
+		line-height: 24px;
+		text-align: center;
+	}
+	#myFv, button.bT, .pdDataMain, .pdData {
+		display: block;
+		width: auto;
+		margin: 10px auto;
+		float: none;
+	}
 }
 
 @media screen and (max-width: 736px) {
@@ -277,7 +341,9 @@ body {
 	.inwrap, .flos01, .flos02, .dtails {
 		margin: auto;
 		width: auto;
+		text-align: center;
 		font-size: 20px;
+		line-height: 24px;
 	}
 	#myFv, button.bT, .pdDataMain, .pdData {
 		display: block;
@@ -294,6 +360,7 @@ body {
 	}
 	.inwrap, .flos01, .flos02, .dtails {
 		font-size: 20px;
+		line-height: 24px;
 		width: auto;
 		margin: auto;
 	}
@@ -314,6 +381,7 @@ body {
 	}
 	.inwrap, .flos01, .flos02, .dtails {
 		font-size: 20px;
+		line-height: 24px;
 		text-align: center;
 		width: auto;
 		margin: auto;
@@ -335,6 +403,7 @@ body {
 	}
 	.inwrap, .flos01, .flos02, .dtails {
 		font-size: 20px;
+		line-height: 24px;
 		text-align: center;
 		width: auto;
 		margin: auto;
@@ -360,6 +429,7 @@ body {
 	}
 	.inwrap, .flos01, .flos02, .dtails {
 		font-size: 20px;
+		line-height: 24px;
 		text-align: center;
 		width: auto;
 		margin: auto;

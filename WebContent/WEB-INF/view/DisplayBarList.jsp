@@ -24,6 +24,10 @@
 	
     <style type= "text/css">	
 
+
+	.sigmaYellow{
+		color: yellow;
+	}
 	.sigmaGray{
 		color: gray;
 	}
@@ -201,9 +205,9 @@ div.panel
 							<!-- 酒吧名稱 -->
 							<td align="center" style="width:150px">${listOfBar[current.index].companyName}</td>
 					
-							
+							<!-- 酒吧連結 -->
 							<td align="center" style="width:200px">
-								<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
+								<a class="sigmaYellow" href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
 								>前往酒吧產品介面</a>
 		
 							</td>		

@@ -363,7 +363,9 @@ div.panel
 						
 						
 						
-						<a href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}">成立訂單</a>
+						<a 
+						style="color:yellow;font-size:18px"
+						href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}">成立訂單</a>
 						
 						
 						</td>				
