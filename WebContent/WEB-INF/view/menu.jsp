@@ -33,7 +33,7 @@
 					<a class="menu" href="/Bartenders/Welcome.Company">前往首頁</a>
 					<a class="menu" href="javascript:signOut()">登出</a>
 				</li>
-				<li><a class="menu" href="/Bartenders/logistic/LogisticOrder">物流</a></li>
+				<li><a class="menu" href="/Bartenders/logistic/LogisticGate">物流</a></li>
 				<li><a class="menu" href="/Bartenders/ManageBar">管理活動</a></li>
 			</ul>
 		</div>
