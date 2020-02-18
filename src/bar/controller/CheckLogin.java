@@ -89,7 +89,7 @@ public class CheckLogin {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			return "CLoginPage";
+			return "index";
 		}
 
 		m.addAttribute("Caccount", account);
@@ -113,7 +113,7 @@ public class CheckLogin {
 		}
 
 		m.addAttribute("msg", "帳號或密碼不正確");
-		return "CLoginPage";
+		return "index";
 	}
 	
 	// ---(吳昭蓉)-------------------------------

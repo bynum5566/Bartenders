@@ -234,9 +234,12 @@ public class MyBarController {
 			@RequestParam("barIG") String barIg) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
+		
+		String AboutBar = aboutBar.replaceAll("\n", "<br>");
+		String MybarMenu = barMenu.replaceAll("\n", "<br>");
 
 		mBS.updateBarPage(companyName, phone, address, logoUrl, coverUrl1, coverUrl2, coverUrl3, coverUrl4, coverUrl5,
-				aboutBar, barMenu, barFb, barLine, barIg, companyId);
+				AboutBar, MybarMenu, barFb, barLine, barIg, companyId);
 		;
 
 		try {
