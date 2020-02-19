@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chat Room</title>
+<title>聊天室</title>
 
 <style type="text/css">
 .mydiv {

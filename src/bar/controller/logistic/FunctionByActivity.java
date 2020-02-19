@@ -68,15 +68,18 @@ public class FunctionByActivity {
 		System.out.println("checkbot contain: "+type);
 		String[] x = type.toString().split(",");
 		System.out.println("x[0]: "+x[0]);
-		System.out.println("x: "+x);
+		System.out.println("x.length: "+x.length);
 		List<Activity> activity = null;
-
+		List<Activity> temp;
+		
+//		List<Activity> activity = aSer.queryJoker("type","'"+x[0]+"'");
+//		System.out.println("search result: "+activity);
 		for(int i=0;i<x.length;i++) {
 
-			activity = aSer.queryJoker("type",x[i]);
-//			System.out.println("temp list: "+temp);
-//			boolean y = activity.addAll(temp[i]);
-//			System.out.println("temp activity: "+activity);
+			temp = aSer.queryJoker("type","'"+x[i]+"'");
+			System.out.println("temp list: "+temp);
+			activity.addAll(temp);
+			System.out.println("temp activity: "+activity);
 		}
 //		System.out.println("all list: "+activity);
 		String hqlStr = "from Activity where status=O and type=shop or type=show";
@@ -353,8 +356,22 @@ public class FunctionByActivity {
 	}
 	
 	
+	@RequestMapping(path = "queryActivityByActivityId.do",method = RequestMethod.GET)
+	public String queryActivityByActivityId(HttpServletRequest request, HttpServletResponse response, Model m,
+			@RequestParam(name = "activityId")String activityId,RedirectAttributes redirectAttributes
+			) throws IOException, ParseException {
+//		if (userId.length()<7) {
+//			System.out.println("閒置過久，請重新登入");
+//			return "index";
+//		}
+		List<Activity> list = aSer.queryJoker("activityId",activityId);
+		m.addAttribute("activity",list);
+//		redirectAttributes.addFlashAttribute("activitytest", list);
+		return "logistic/ManageActivity";
+	}
+	
 	@RequestMapping(path = "queryActivityByUser.do",method = RequestMethod.GET)
-	public String queryActivity(HttpServletRequest request, HttpServletResponse response, Model m,
+	public String queryActivityByUser(HttpServletRequest request, HttpServletResponse response, Model m,
 			@RequestParam(name = "userId")String userId,RedirectAttributes redirectAttributes
 			) throws IOException, ParseException {
 		if (userId.length()<7) {

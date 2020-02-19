@@ -29,6 +29,7 @@ box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 -webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 -moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); 
 color: #E8CCFF;
+font-size: 18px;
 }
 
 
@@ -86,7 +87,7 @@ background-size: cover;
 									<c:when
 										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 										<td align="center" nowrap="nowrap"><a
-											href="${attrAddress[current.index]}">${attrAddress[current.index]}</a></td>
+											href="${attrAddress[current.index]}">QRcode載點</a></td>
 									</c:when>
 									<c:otherwise>
 										<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
@@ -94,7 +95,7 @@ background-size: cover;
 								</c:choose>
 								<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
 								<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-								<td align="center" nowrap="nowrap">${Corders[current.index].createTime}</td>
+								<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,19)}</td>
 								<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
 
 								<c:choose>

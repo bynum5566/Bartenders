@@ -140,9 +140,9 @@ var number = 0;
 			</tr>
 			<tr>
 				<td>
-					<button id="1000" class="user">查詢1000</button>
-					<button id="1001" class="user">查詢1001</button>
-					<button id="1002" class="user">查詢1002</button>
+					<button id="1000" class="activity">查詢1000</button>
+					<button id="1001" class="activity">查詢1001</button>
+					<button id="1002" class="activity">查詢1002</button>
 				</td>
 			</tr>
 		</table>
@@ -259,13 +259,14 @@ var number = 0;
 	console.log('接收到的activity: ','${activity}');
 	var preUrl = "${preUrl}";
 	console.log(preUrl);
-	$(".user").on("click",function() {
-		var userId = this.id
+	//個別搜尋
+	$(".activity").on("click",function() {
+		var activityId = this.id
 		/*
 		console.log('click');
 		reloadMarkers(userId);
 		*/
-		window.location.href = '<c:url value="/queryActivity.do"/>?userId='+ userId;
+		window.location.href = '<c:url value="/queryActivityByActivityId.do"/>?activityId='+ activityId;
 		})
 	//我想參加
 	$(".join").on("click",function() {
@@ -340,6 +341,9 @@ var number = 0;
 	<!--  -->
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForMarker.js"></script>
+	<script>
+	
+	</script>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 

@@ -18,6 +18,7 @@ public class ActivityService {
 	public List<Activity> queryJoker(Object Param,Object obj) {
 		//"from Activity where activityId=1002"
 		String condition = "from Activity where "+Param+"="+obj;
+		System.out.println("searching condition: "+condition);
 		List<Activity> first = aDao.simpleQuery(condition);
 		return first;
 	}
