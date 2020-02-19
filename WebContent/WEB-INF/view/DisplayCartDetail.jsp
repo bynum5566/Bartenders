@@ -233,16 +233,13 @@ div.panel
 <c:if test="${shipping == '1' or shipping == '2'}">
 	<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> --> 
 	<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
+	
 	<input  name="select1" type="radio" value="1" checked required >
 	<label for="setTt1">宅配</label>
 	<input name="select1" type="radio" value="2" >
 	<label	for="setTt2">超商</label>
 	
-	<!-- 多寫一次 -->
-	<!--<input  name="select1" type="radio" value="1" checked required >-->
-	<!--<label for="setTt1">宅配</label>	-->
-	<!--<input name="select1" type="radio" value="2" >-->
-	<!--<label	for="setTt2">超商</label>-->
+
 </c:if>
 
 <!-- 
@@ -259,7 +256,7 @@ div.panel
 
 		<c:if test="${shipping == '1' }">
 		<br>
-		<label>收件人&emsp;：</label>
+		<label>收件人&emsp;&emsp;：</label>
 		<input type="text" required="required" name="input1" size="30" value="${defaultName}" />
 <!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 		<br>
@@ -281,7 +278,7 @@ div.panel
 		
 		
 		<c:if test="${shipping == '1' }">
-			<label>宅配地址：</label>
+			<label>地址／門市：</label>
 			<input type="text" required="required" name="address1" size="30" value="${defaultAddress}" />
 	<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 			<br>
@@ -302,7 +299,7 @@ div.panel
 
 		<c:if test="${shipping == '1' }">
 		<!-- 全型空白 -->
-		<label>電話&emsp;&emsp;：</label>
+		<label>電話&emsp;&emsp;&emsp;：</label>
 		<input type="text" required="required" name="input2" size="30" value="${defaultPhone}" />
 		</c:if>
 		<c:if test="${shipping == '3' }">
