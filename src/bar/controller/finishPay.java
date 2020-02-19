@@ -75,7 +75,7 @@ public class finishPay {
 			jsonParam.put("amount", amount); 
 			jsonParam.put("currency", "TWD"); 
 			
-			StringEntity entity = new StringEntity(jsonParam.toString(), "utf-8");// 閫�瘙箔葉���Ⅳ����
+			StringEntity entity = new StringEntity(jsonParam.toString(), "utf-8");// 解決中文亂碼問題
 			entity.setContentEncoding("UTF-8");
 			entity.setContentType("application/json");
 			httpPost.setEntity(entity);

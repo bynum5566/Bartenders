@@ -2,7 +2,8 @@
 package bar.controller;
 
 //import java.util.Date;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -100,12 +101,63 @@ public class ChangeStatusOneToTwo
 			/* 寫入資料庫，狀態改變(status 1 > 2，開始) */
 			/* ================================================= */ // 新增20200131_1228
 			orderX = oService.selectOrder(orderId);
-			orderX.setCreateTime(createTime);
+			
+			String tempString ="2020-02-27 11:11:11.777";
+			
+			/*String版本時間，開始*/	
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date dateSource = new Date();
+			String StringDate = sdFormat.format(dateSource);
+			CartService.printValueTypeTime("date.getTime()", dateSource.getTime());
+			CartService.printValueTypeTime("StringDate", StringDate);
+			/*String版本時間，開始結束*/			
+			
+			orderX.setCreateTime(StringDate);
 			orderX.setShipping(Integer.valueOf(select1));
 			orderX.setRecipient(input1);
 			orderX.setPhone(input2);
-			orderX.setAddress1(address1);
-			orderX.setAddress2(address2);
+			
+			
+			/*根據配送方式寫入地址*/	
+			/*shipping 1，shipping 2 超取shipping 3， QR */
+			/*address1宅配，address2超商*/
+			
+			CartService.Pf("判斷前列印");
+			CartService.printValueTypeTime("select1", select1);
+			CartService.printValueTypeTime("shipping", address1);
+			CartService.printValueTypeTime("address1", address1);
+			int flag = 0;
+			if (select1.equals("1")) { /* select1 == "1" 錯誤 */
+				CartService.Pf("宅配");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1(address1);
+				orderX.setAddress2("");
+				flag = 1;
+			}
+			if (select1.equals("2")) {
+				CartService.Pf("超商");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2(address1);
+				flag = 1;
+			}
+			if (select1.equals("3")) {
+				CartService.Pf("QR");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2("");
+				flag = 1;
+			}
+			if(flag == 0)
+			{
+				CartService.Pf("例外狀況");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2("");
+			}
+			
+			
+			
 //			orderX.setCompanyId(companyId); //FK
 			orderX.setAmount(amount);
 //			orderX.setStatus(2);
