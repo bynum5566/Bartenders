@@ -12,17 +12,18 @@
 </head>
 <body>
 	<div class="outwrap">
+		<button style="width:40px; height:40px; background-color: transparent; border-color: transparent; border: none; background-image: url(/Bartenders/images/contract.png);" align="right" id="Input"></button>
 		<div class="inwrap">
-			<h3>新增最新消息與活動</h3>
+			<h3>新增最新消息</h3>
 			<form action="<c:url value="/addNew.EN"></c:url>" method="POST">
 				<table>
 					<tr>
 						<td><label>標題</label></td>
-						<td><input type="text" name="neTitle" required="required"></td>
+						<td><input id="newsTitle" type="text" name="neTitle" required="required"></td>
 					</tr>
 					<tr>
 						<td><label>詳細</label></td>
-						<td><textarea name="neText" required="required"></textarea></td>
+						<td><textarea id="newsDetail" name="neText" required="required"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" id="bT">
@@ -40,6 +41,11 @@
 	<%@ include file="menu.jsp"%>
 
 	<script type="text/javascript">
+		$('#Input').click(function(){
+			$('#newsTitle').val('新分店台北信義店新開幕!');
+			$('#newsDetail').val('慶祝信義分店新開幕，<br>即日起全店品項5折優惠!<br>活動期限至2020/3/30止。<br>(本活動僅限信義分店有效，其他分店無此優惠。)');
+		})
+	
 		$(function() {
 			if (window.history && window.history.pushState) {
 				$(window).on('popstate', function() {

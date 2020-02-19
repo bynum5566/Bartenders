@@ -119,7 +119,7 @@ public class CompanyDAO {
 		keyword = "%" + keyword + "%";
 		
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("From Company where companyName like :kWord");
+		Query query = session.createQuery("From Company where upper(companyName) like '%' || upper(:kWord) || '%'");
 		query.setParameter("kWord", keyword);
 		return (List<Company>) query.list();
 	}

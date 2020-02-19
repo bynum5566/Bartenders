@@ -20,45 +20,42 @@
 
 <body>
 	<div class="outwrap">
+		<button style="width:40px; height:40px; background-color: transparent; border-color: transparent; border: none; background-image: url(/Bartenders/images/contract.png);" align="right" id="Input"></button>
 		<div class="inwrap">
 			<h1>新增票券</h1>
 			<form action="<c:url value="/addTkPD"></c:url>" method="POST" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td><label>商品名稱</label></td>
-						<td><input class="bt0" name="pdNm" type="text" required="required"></td>
+						<td><input id="pdName" class="bt0" name="pdNm" type="text" required="required"></td>
 					</tr>
 					<tr>
 						<td><label>商品數量</label></td>
-						<td><input class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required"></td>
+						<td><input id="pdStock" class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required"></td>
 					</tr>
 					<tr>
 						<td><label>商品價格</label></td>
-						<td><input class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required"></td>
+						<td><input id="pdPrice" class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required"></td>
 					</tr>
 					<tr>
 						<td><label>Tag1</label></td>
-						<td><input class="bt0" name="pdTg1" type="text" max="10"></td>
+						<td><input id="pdTag1" class="bt0" name="pdTg1" type="text" max="10"></td>
 					</tr>
 					<tr>
 						<td><label>Tag2</label></td>
-						<td><input class="bt0" name="pdTg2" type="text" max="10"></td>
+						<td><input id="pdTag2" class="bt0" name="pdTg2" type="text" max="10"></td>
 					</tr>
 					<tr>
 						<td><label>Tag3</label></td>
-						<td><input class="bt0" name="pdTg3" type="text" max="10"></td>
+						<td><input id="pdTag3" class="bt0" name="pdTg3" type="text" max="10"></td>
 					</tr>
 					<tr>
 						<td><label>商品詳細</label></td>
-						<td><textarea class="bt0" name="pdDta"></textarea></td>
+						<td><textarea id="pdDetail" class="bt0" name="pdDta"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>商品圖片</label></td>
 						<td>
-<!-- 							<div class="dropzone"> -->
-<!-- 								<div class="info"></div> -->
-<!-- 							</div> -->
-<!-- 							<input id="imgPlace" name="pdImg" class="image-url" /> -->
 							<div id="imgs">
 								<div id="img1">
 									<div class="dropzone1">
@@ -104,17 +101,15 @@
 						<td><input name="setTimeAct" id="setA1" class="dateRange form-control" type="text" /></td>
 					</tr>
 					<tr id="setB" class="nosho">
-						<td class="setT2"><label>上架下架時間</label></td>
+						<td class="setT2"><label>上/下架時間</label></td>
 						<td><input name="setTimeNon" id="setB1" class="dateRange2 form-control" type="text" /></td>
 					</tr>
 					<tr>
 						<td colspan="2" id="bT">
 							<a href="/Bartenders/Dashboard.TkProducts">
-<!-- 								<button onclick="location.href = '/Bartenders/Dashboard.TkProducts';" class="bT">回上頁</button> -->
 								<div class="bT">回上頁</div>
 							</a>
 							<a href="/Bartenders/TicketProduct.Add">
-<!-- 								<button class="bT" onClick="history.go(0);">重填</button> -->
 								<div class="bT">重填</div>
 							</a>
 							<input class="bT" type="submit" value="新增票券" />
@@ -125,195 +120,21 @@
 		</div>
 	</div>
 
+	<script>
+		$('#Input').click(function(){
+				$('#pdName').val('周三藍色之夜入場券');
+				$('#pdStock').val('50');
+				$('#pdPrice').val('1000');
+				$('#pdTag1').val('藍色');
+				$('#pdTag2').val('Blue');
+				$('#pdTag3').val('限量');
+				$('#pdDetail').val('辛苦工作之後就該好好放鬆一下犒賞自己!<br>週三穿著藍色服裝或飾品並憑本券入場，即可無限暢飲。<br>數量有限，要買要快!<br><br>開始入場時間: 每周三晚上8:00。');
+		})
+	</script>
+
 	<%@ include file="menu.jsp"%>
 
-
 	<script>
-		/* Imgur Upload Script */
-// 		(function (root, factory) {
-// 			"use strict";
-// 			if (typeof define === 'function' && define.amd) {
-// 				define([], factory);
-// 			} else if (typeof exports === 'object') {
-// 				module.exports = factory();
-// 			} else {
-// 				root.Imgur = factory();
-// 			}
-// 		}(this, function () {
-// 			"use strict";
-// 			var Imgur = function (options) {
-// 				if (!this || !(this instanceof Imgur)) {
-// 					return new Imgur(options);
-// 				}
-
-// 				if (!options) {
-// 					options = {};
-// 				}
-
-// 				if (!options.clientid) {
-// 					throw 'Provide a valid Client Id here: https://api.imgur.com/';
-// 				}
-
-// 				this.clientid = options.clientid;
-// 				this.endpoint = 'https://api.imgur.com/3/image';
-// 				this.callback = options.callback || undefined;
-// 				this.dropzone = document.querySelectorAll('.dropzone');
-// 				this.info = document.querySelectorAll('.info');
-
-// 				this.run();
-// 			};
-
-// 			Imgur.prototype = {
-// 				createEls: function (name, props, text) {
-// 					var el = document.createElement(name), p;
-// 					for (p in props) {
-// 						if (props.hasOwnProperty(p)) {
-// 							el[p] = props[p];
-// 						}
-// 					}
-// 					if (text) {
-// 						el.appendChild(document.createTextNode(text));
-// 					}
-// 					return el;
-// 				},
-// 				insertAfter: function (referenceNode, newNode) {
-// 					referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-// 				},
-// 				post: function (path, data, callback) {
-// 					var xhttp = new XMLHttpRequest();
-
-// 					xhttp.open('POST', path, true);
-// 					xhttp.setRequestHeader('Authorization', 'Client-ID ' + this.clientid);
-// 					xhttp.onreadystatechange = function () {
-// 						if (this.readyState === 4) {
-// 							if (this.status >= 200 && this.status < 300) {
-// 								var response = '';
-// 								try {
-// 									response = JSON.parse(this.responseText);
-// 								} catch (err) {
-// 									response = this.responseText;
-// 								}
-// 								callback.call(window, response);
-// 							} else {
-// 								throw new Error(this.status + " - " + this.statusText);
-// 							}
-// 						}
-// 					};
-// 					xhttp.send(data);
-// 					xhttp = null;
-// 				},
-// 				createDragZone: function () {
-// 					var p1, p2, input;
-
-// 					p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
-// 					p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
-// 					input = this.createEls('input', { type: 'file', className: 'input', accept: 'image/*', required: 'required' });
-
-// 					Array.prototype.forEach.call(this.info, function (zone) {
-// 						zone.appendChild(p1);
-// 						zone.appendChild(p2);
-// 					}.bind(this));
-// 					Array.prototype.forEach.call(this.dropzone, function (zone) {
-// 						zone.appendChild(input);
-// 						this.status(zone);
-// 						this.upload(zone);
-// 					}.bind(this));
-// 				},
-// 				loading: function () {
-// 					var div, table, img;
-
-// 					div = this.createEls('div', { className: 'loading-modal' });
-// 					table = this.createEls('table', { className: 'loading-table' });
-// 					img = this.createEls('img', { className: 'loading-image', src: '/Bartenders/images/loading-spin.svg' });
-
-// 					div.appendChild(table);
-// 					table.appendChild(img);
-// 					document.body.appendChild(div);
-// 				},
-// 				status: function (el) {
-// 					var div = this.createEls('div', { className: 'status' });
-
-// 					this.insertAfter(el, div);
-// 				},
-// 				matchFiles: function (file, zone) {
-// 					var status = zone.nextSibling;
-
-// 					if (file.type.match(/image/) && file.type !== 'image/svg+xml') {
-// 						document.body.classList.add('loading');
-// 						status.classList.remove('bg-success', 'bg-danger');
-// 						status.innerHTML = '';
-
-// 						var fd = new FormData();
-// 						fd.append('image', file);
-
-// 						this.post(this.endpoint, fd, function (data) {
-// 							document.body.classList.remove('loading');
-// 							typeof this.callback === 'function' && this.callback.call(this, data);
-// 						}.bind(this));
-// 					} else {
-// 						status.classList.remove('bg-success');
-// 						status.classList.add('bg-danger');
-// 						status.innerHTML = 'Invalid archive';
-// 					}
-// 				},
-// 				upload: function (zone) {
-// 					var events = ['dragenter', 'dragleave', 'dragover', 'drop'],
-// 						file, target, i, len;
-
-// 					zone.addEventListener('change', function (e) {
-// 						if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
-// 							target = e.target.files;
-
-// 							for (i = 0, len = target.length; i < len; i += 1) {
-// 								file = target[i];
-// 								this.matchFiles(file, zone);
-// 							}
-// 						}
-// 					}.bind(this), false);
-
-// 					events.map(function (event) {
-// 						zone.addEventListener(event, function (e) {
-// 							if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
-// 								if (event === 'dragleave' || event === 'drop') {
-// 									e.target.parentNode.classList.remove('dropzone-dragging');
-// 								} else {
-// 									e.target.parentNode.classList.add('dropzone-dragging');
-// 								}
-// 							}
-// 						}, false);
-// 					});
-// 				},
-// 				run: function () {
-// 					var loadingModal = document.querySelector('.loading-modal');
-
-// 					if (!loadingModal) {
-// 						this.loading();
-// 					}
-// 					this.createDragZone();
-// 				}
-// 			};
-
-// 			return Imgur;
-// 		}));
-
-// 		$('#imgPlace').hide();
-
-		// 	Upload js
-// 		var feedback = function (res) {
-// 			if (res.success === true) {
-// 				$('#imgPlace').name = "na";
-// 				var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
-// 				document.querySelector('.status').innerHTML =
-// 					'<input id="realImg" name="pdImg" style="display:none;" class="image-url" value=\"' + get_link + '\" readonly/><br>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
-// 			}
-// 		};
-
-// 		new Imgur({
-// 			clientid: 'ceb59faf76db10f',
-// 			callback: feedback
-// 		});
-
-
 		$('.sho').show();
 		$('.nosho').hide();
 

@@ -9,8 +9,9 @@
 <title>Edit News and Events</title>
 </head>
 <body>
-	<div class="outwrap">
-		<h3>編輯最新消息與活動</h3>
+<div class="outwrap">
+	<div class="inwrap">
+		<h3>編輯最新消息</h3>
 		<form action="/Bartenders/EN.edit" method="POST">
 			<div>
 				<label>標題</label>
@@ -18,7 +19,7 @@
 			</div>
 
 			<div>
-				<label>內容</label>
+				<label>詳細</label>
 				<textarea name="neText" required="required">${neText}</textarea>
 			</div>
 			
@@ -32,6 +33,7 @@
 			</div>
 		</form>
 	</div>
+</div>
 	
 	<%@ include file="menu.jsp"%>
 	
