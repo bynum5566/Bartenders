@@ -41,8 +41,14 @@ background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center cente
 -moz-background-size: cover; 
 -o-background-size: cover; 
 background-size: cover;
-
 }
+
+td{
+line-height: 25px;
+padding-left: 3px;
+padding-right: 3px;
+}
+
 </style>
 </head>
 <body>

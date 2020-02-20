@@ -22,6 +22,7 @@
 	-webkit-box-shadow: 0px 11px 7px rgba(15, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	color: #E8CCFF;
+	font-size: 17px;
 }
 
 body {
@@ -34,9 +35,59 @@ body {
 	background-size: cover;
 }
 
+
+
 img{
 height:90;
 width:130;
+}
+
+.css_button {
+	padding: 3.5px 7px;
+	border: 1px solid #857C7C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6D6C70),
+		to(#615B5B));
+	background: -webkit-linear-gradient(top, #6D6C70, #615B5B);
+	background: -moz-linear-gradient(top, #6D6C70, #615B5B);
+	background: -ms-linear-gradient(top, #6D6C70, #615B5B);
+	background: -o-linear-gradient(top, #6D6C70, #615B5B);
+	background-color: #615B5B;
+	box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-moz-box-shadow: 0px 7px 2px -5px #1A1A1A, inset 0px 0px 4px #948888;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	color: #CCBBFF;
+	font-size: 16px;
+	font-family: 111.otf;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	cursor: pointer;
+}
+
+.css_button:hover {
+	background: none;
+	background-color: #615B5B;
+	box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	-moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
+	border: 1px solid #ffffff;
+	color: #F2E4E4;
+}
+
+.css_button:active {
+	top: 1px;
+	position: relative;
+}
+
+td,th{
+line-height: 25px;
+padding-left: 5px;
+padding-right: 5px;
 }
 
 </style>
@@ -73,27 +124,31 @@ width:130;
 							</tr>
 							<br>
 						</c:forEach>
-
 					</tr>
 					
 					<tr align="center">
-						<td colspan="4">產品合計</td>
+						<th colspan="4">產品合計</th>
 						<td>$${totalPrice}</td>
 					</tr>
 					<tr align="center">
-						<td colspan="4">運費</td>
+						<th colspan="4">運費</th>
 						<td>$${ShippingNumToPrice[order.shipping]}</td>
 					</tr>
 					<tr align="center">
-						<td colspan="4">訂單總金額</td>
+						<th colspan="4">訂單總金額</th>
 						<td>$${finalTotalPrice}</td>
 					</tr>
 						
 				</tbody>
-
-
 			</table>
-
+			<br>
+				<div align="center">
+					<h3>
+					<a href="<c:url value="/companyOrder.controller"/>"> <input
+							class="css_button" type="button" value="返回訂單頁面" />
+						</a>
+					</h3>
+				</div>
 		</form>
 	</div>
 </div>

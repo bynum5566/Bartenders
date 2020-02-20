@@ -37,20 +37,24 @@ body {
 	max-width: 800px;
 	padding: 15px;
 	color: rgb(255, 255, 255);
-	/* 	text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(250, 9, 69) 0px 0px 20px, rgb(250, 9, 69) 0px 0px 30px, rgb(250, 9, 69) 0px 0px 40px; */
 	font-size: 30px;
 	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top;
+	background-image: url(/Bartenders/images/bg22.png);
+/* 	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, */
+/* 		rgba(163, 163, 163, 0.5) 99%); */
+/* 	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, */
+/* 		rgba(163, 163, 163, 0.5) 99%); */
+/* 	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, */
+/* 		rgba(163, 163, 163, 0.5) 99%); */
+/* 	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, */
+/* 		rgba(163, 163, 163, 0.5) 99%); */
+/* 	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
+/* 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
+/* 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
 }
 
 .box0 {
@@ -64,22 +68,31 @@ body {
 	max-width: 740px;
 	height: 390px;
 	overflow: auto;
-	border-top: 1px solid gray;
-	border-bottom: 1px solid gray;
-	background: linear-gradient(black 30%, hsla(0, 0%, 100%, 0)),
-		linear-gradient(hsla(0, 0%, 100%, 0), black 70%) bottom,
-		radial-gradient(at top, rgba(0, 0, 0, .2), transparent 70%),
-		radial-gradient(at bottom, rgba(0, 0, 0, .2), transparent 70%) bottom;
-	background-repeat: no-repeat;
-	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
-	background-attachment: local, local, scroll, scroll;
-	box-shadow: inset 0px 0px 24px 5px #0A0909;
-	-webkit-box-shadow: inset 0px 0px 24px 5px #0A0909;
-	-moz-box-shadow: inset 0px 0px 24px 5px #0A0909;
-	-o-box-shadow: inset 0px 0px 24px 5px #0A0909;
+	
+   background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+   background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+   background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+   background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+   box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+   -webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+   -moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	
+/* 	border-top: 1px solid gray; */
+/* 	border-bottom: 1px solid gray; */
+/* 	background: linear-gradient(black 30%, hsla(0, 0%, 100%, 0)), */
+/* 	linear-gradient(hsla(0, 0%, 100%, 0), black 70%) bottom, */
+/* 	radial-gradient(at top, rgba(0, 0, 0, .2), transparent 70%), */
+/* 	radial-gradient(at bottom, rgba(0, 0, 0, .2), transparent 70%) bottom; */
+/* 	background-repeat: no-repeat; */
+/* 	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px; */
+/* 	background-attachment: local, local, scroll, scroll; */
+/* 	box-shadow: inset 0px 0px 24px 5px #0A0909; */
+/* 	-webkit-box-shadow: inset 0px 0px 24px 5px #0A0909; */
+/* 	-moz-box-shadow: inset 0px 0px 24px 5px #0A0909; */
+/* 	-o-box-shadow: inset 0px 0px 24px 5px #0A0909; */
+/* 	background-image: url(/Bartenders/images/bg10.png); */
 	border-radius: 5px;
 	font-size: 18px;
-	background-image: url(/Bartenders/images/bg10.png);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-size: cover;

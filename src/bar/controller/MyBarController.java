@@ -53,22 +53,17 @@ public class MyBarController {
 		Company companyX = companyService.select(account);
 		int companyId = companyX.getCompanyId();
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
-
 		MyBar Detail = mBS.selectBarDetail(companyId);
 		if (Detail == null) {
 			mBS.insertBar(companyId);
-
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
-//			CartService.printValueTypeTime("companyId", companyId);
 			listOfProduct.addAll(pdao.selectPdsLaunched(companyId));
 			listOfProduct.addAll(pdao.selectTKPdsLaunched(companyId));
 			List<EventsAndNews> listOfEventOfOneBar = eAnDAO.selectAllEN(companyId);
-//			CartService.printValueTypeTime("listOfEventOfOneBar", listOfEventOfOneBar);
 			m.addAttribute("myBarX", Cservice.selectMyBarByCompanyId(companyId));
 			m.addAttribute("CompanyName", companyX.getCompanyName());
 			m.addAttribute("listOfProduct", listOfProduct);
@@ -78,11 +73,9 @@ public class MyBarController {
 
 			return "MyBarReview";
 		} else {
-//			CartService.printValueTypeTime("companyId", companyId);
 			listOfProduct.addAll(pdao.selectPdsLaunched(companyId));
 			listOfProduct.addAll(pdao.selectTKPdsLaunched(companyId));
 			List<EventsAndNews> listOfEventOfOneBar = eAnDAO.selectAllEN(companyId);
-//			CartService.printValueTypeTime("listOfEventOfOneBar", listOfEventOfOneBar);
 			m.addAttribute("myBarX", Cservice.selectMyBarByCompanyId(companyId));
 			m.addAttribute("CompanyName", companyX.getCompanyName());
 			m.addAttribute("listOfProduct", listOfProduct);
@@ -93,70 +86,6 @@ public class MyBarController {
 			return "MyBarReview";
 		}
 	}
-
-//	@RequestMapping(value = "/My.Bar", method = RequestMethod.GET)
-//	public String myBarPage(@ModelAttribute(name = "Caccount") String account) {
-//		Company comp = companyService.select(account);
-//		int companyId = comp.getCompanyId();
-//
-//		MyBar Detail = mBS.selectBarDetail(companyId);
-//		if (Detail == null) {
-//			mBS.insertBar(companyId);
-//
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//
-//			MyBar Detail2 = mBS.selectBarDetail(companyId);
-//
-//			Company Data2 = mBS.selectBarData(companyId);
-//			String t3pds2 = pds.selectTop3Pd(companyId);
-//
-//			request.setAttribute("barName", Data2.getCompanyName());
-//			request.setAttribute("barAdd", Data2.getAddress());
-//			request.setAttribute("barPhone", Data2.getPhone());
-//
-//			request.setAttribute("barLogoUrl", Detail2.getLogoUrl());
-//			request.setAttribute("barImgUrl1", Detail2.getCoverUrl1());
-//			request.setAttribute("barImgUrl2", Detail2.getCoverUrl2());
-//			request.setAttribute("barImgUrl3", Detail2.getCoverUrl3());
-//			request.setAttribute("barImgUrl4", Detail2.getCoverUrl4());
-//			request.setAttribute("barImgUrl5", Detail2.getCoverUrl5());
-//			request.setAttribute("aboutBar", Detail2.getAboutBar());
-//			request.setAttribute("barFb", Detail2.getBarFb());
-//			request.setAttribute("barLine", Detail2.getBarLine());
-//			request.setAttribute("barIg", Detail2.getBarIg());
-//
-//			request.setAttribute("pDs", t3pds2);
-//			request.setAttribute("barId", companyId);
-//
-//			return "DisplayProductList";
-//		}
-//		Company Data = mBS.selectBarData(companyId);
-//		String t3pds = pds.selectTop3Pd(companyId);
-//
-//		request.setAttribute("barName", Data.getCompanyName());
-//		request.setAttribute("barAdd", Data.getAddress());
-//		request.setAttribute("barPhone", Data.getPhone());
-//
-//		request.setAttribute("barLogoUrl", Detail.getLogoUrl());
-//		request.setAttribute("barImgUrl1", Detail.getCoverUrl1());
-//		request.setAttribute("barImgUrl2", Detail.getCoverUrl2());
-//		request.setAttribute("barImgUrl3", Detail.getCoverUrl3());
-//		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
-//		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
-//		request.setAttribute("aboutBar", Detail.getAboutBar());
-//		request.setAttribute("barFb", Detail.getBarFb());
-//		request.setAttribute("barLine", Detail.getBarLine());
-//		request.setAttribute("barIg", Detail.getBarIg());
-//
-//		request.setAttribute("pDs", t3pds);
-//		request.setAttribute("barId", companyId);
-//
-//		return "myBar";
-//	}
 
 	@RequestMapping(value = "/Bar.edit", method = RequestMethod.GET)
 	public String editBarPage(@ModelAttribute(name = "Caccount") String account) {
@@ -234,13 +163,12 @@ public class MyBarController {
 			@RequestParam("barIG") String barIg) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
-		
-		String AboutBar = aboutBar.replaceAll("\n", "<br>");
-		String MybarMenu = barMenu.replaceAll("\n", "<br>");
+
+		aboutBar = aboutBar.replaceAll("\n", "<br>");
+		barMenu = barMenu.replaceAll("\n", "<br>");
 
 		mBS.updateBarPage(companyName, phone, address, logoUrl, coverUrl1, coverUrl2, coverUrl3, coverUrl4, coverUrl5,
-				AboutBar, MybarMenu, barFb, barLine, barIg, companyId);
-		;
+				aboutBar, barMenu, barFb, barLine, barIg, companyId);
 
 		try {
 			Thread.sleep(3000);

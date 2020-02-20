@@ -49,6 +49,12 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+td{
+line-height: 25px;
+padding-left: 3px;
+padding-right: 3px;
+}
 </style>
 
 </head>

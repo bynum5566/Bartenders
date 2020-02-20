@@ -35,13 +35,18 @@
 		position: relative;
 		text-align: center;
 		border-radius: 5px;
-		background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%);
-		background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%);
-		background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%);
-		background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%);
-		box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-		-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-		-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: top;
+		background-image: url(/Bartenders/images/bg21.png);
+/* 		background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
+/* 		background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
+/* 		background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
+/* 		background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
+/* 		box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
+/* 		-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
+/* 		-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
 	}
 	.sigmaBlack{
 		color: black;
@@ -78,7 +83,19 @@
 	width: 30px !important;
 	}
 	.sigmaTd1 img{
-	width: 150px;
+	width: 100px;
+	}
+	
+	.BT{
+	min-width: 40px;
+	min-height: 40px;
+	background-image: url(/Bartenders/images/like_icon.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border: none;
+	border-color: transparent;
+	background-color: transparent;
 	}
 </style>
 </head>
@@ -96,8 +113,7 @@
 					<td class="sigmaTd1">地圖按鈕</td>
 					<td class="sigmaTd1" onclick="displayMenu()">Menu</td>
 					<td class="sigmaTd1">
-						<button style="background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" onclick="location.href = '/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';" class="bT"> 
-						</button>
+						<button class="BT" id="<c:out value="${companyId}"/>"></button>
 					</td>
 					<td class="sigmaTd1"></td>
 				</tr>
