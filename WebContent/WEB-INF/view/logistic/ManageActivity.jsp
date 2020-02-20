@@ -140,9 +140,9 @@ var number = 0;
 			</tr>
 			<tr>
 				<td>
-					<button id="1000" class="user">查詢1000</button>
-					<button id="1001" class="user">查詢1001</button>
-					<button id="1002" class="user">查詢1002</button>
+					<button id="1000" class="activity">查詢1000</button>
+					<button id="1001" class="activity">查詢1001</button>
+					<button id="1002" class="activity">查詢1002</button>
 				</td>
 			</tr>
 		</table>
@@ -159,12 +159,13 @@ var number = 0;
 					<div class="name" >${Activity.name}</div>
 					<br>
 					<p id="date${Activity.activityId}" class="date" align=left style="margin: 10px;"></p>
-					<p align=left style="margin: 10px">${Activity.address}<button id="Bhidden${status.index}" type="button">確認地圖</button></p>
+					<p align=left style="margin: 10px">${Activity.address}</p><button id="Bhidden${status.index}" type="button" >確認地圖</button>
 						<div class="showEachMap">
 							<div id="hidden${status.index}" class="hideMap" >
 								<div id="map${status.index}" style="width:500px;height:500px;background:red"></div>
 							</div>
 						</div>
+						
 						<div>
 						<c:choose>
 						<c:when test="${empty Activity.targetNum}">
@@ -173,6 +174,7 @@ var number = 0;
 						<c:when test="${Activity.targetNum-Activity.actualNum>0}">
 						<p id="people${status.index}" class="number" align=left style="display:inline;margin: 0px;">參加人數: ${Activity.targetNum} / ${Activity.actualNum}  	</p>
 						<p align=right style="display:inline;margin: 0px;">   我想報名:</p>
+						
 						<form align=right action="joinActivity.do" method="post" style="display:inline;margin: 0px;">
 							<input type="hidden" name="userId" value="${Activity.userId}" >
 							<input type="hidden" name="activityId" value="${Activity.activityId}" >
@@ -184,12 +186,14 @@ var number = 0;
 							<p align=right style="display:inline;margin: 0px;">人</p>
 							<input type="submit" value="確定">
 						</form>
+						
 						</c:when>
 						<c:otherwise>
 					        <p>參加人數已滿</p>
 					    </c:otherwise>
 					</c:choose>
 						</div>
+						<!--  -->
 					<p class="brief" align=center style=";width:340px;margin: 5px;text-align:justify" >${Activity.brief}</p>
 					<span>
 					<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
@@ -205,6 +209,10 @@ var number = 0;
 					number++;
 					//個別地圖展開
 					var target;
+					var element = document.querySelector('#block');
+					function open(){
+						console.log('click function open');
+					}
 					$('#Bhidden${status.index}').on('click',function(){
 						console.log('start');
 						var temp = this.id;
@@ -213,6 +221,7 @@ var number = 0;
 						var mapId = '${status.index}';
 						console.log('userId:',activityId);
 						target = temp.substring(1);
+						console.log('target is:',target);
 						if($('#hidden${status.index}').css('display') == 'none'){
 							console.log('try to show');
 							showTargetMap(target);
@@ -254,13 +263,14 @@ var number = 0;
 	console.log('接收到的activity: ','${activity}');
 	var preUrl = "${preUrl}";
 	console.log(preUrl);
-	$(".user").on("click",function() {
-		var userId = this.id
+	//個別搜尋
+	$(".activity").on("click",function() {
+		var activityId = this.id
 		/*
 		console.log('click');
 		reloadMarkers(userId);
 		*/
-		window.location.href = '<c:url value="/queryActivity.do"/>?userId='+ userId;
+		window.location.href = '<c:url value="/queryActivityByActivityId.do"/>?activityId='+ activityId;
 		})
 	//我想參加
 	$(".join").on("click",function() {
@@ -335,6 +345,9 @@ var number = 0;
 	<!--  -->
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForMarker.js"></script>
+	<script>
+	
+	</script>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 

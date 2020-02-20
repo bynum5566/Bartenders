@@ -17,7 +17,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUser","getCompany"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -63,7 +63,8 @@ public class CheckLogin {
 				
 				Users user = uservice.select(account);
 				m.addAttribute("userName", user.getUserName());
-				
+				////////新增回傳整個Bean方便撈其他資料////////////
+				m.addAttribute("getUser", user);
 				return "UserFirstPage";
 			}
 			
@@ -107,6 +108,8 @@ public class CheckLogin {
 				m.addAttribute("Caccount", account);
 				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
+				////////新增回傳整個Bean方便撈其他資料////////////
+				m.addAttribute("getCompany", Gcompany);
 				return "WelcomeCompany";
 			} 
 

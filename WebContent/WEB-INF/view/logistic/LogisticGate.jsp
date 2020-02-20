@@ -122,16 +122,16 @@ fieldset {
 							<td>${status.index+1}</td>
 							<td>${Logistic.oID}</td>
 							<td>${Logistic.lID}</td>
-							<td id="type${Logistic.lID}">${Logistic.oType}</td>
+							<td id="type${Logistic.oID}">${Logistic.oType}</td>
 							<td>${Logistic.oAddr}</td>
 							<td>${Logistic.oName}</td>
 							<td>${Logistic.oPhone}</td>
 							<td>${Logistic.oAmount}</td>
-							<td id="ostatus${Logistic.lID}">${Logistic.oStatus}</td>
+							<td id="mystatus${Logistic.oID}">${Logistic.oStatus}</td>
 							<td>${Logistic.oTimeA}</td>
 							<td>${Logistic.oTimeB}</td>
 							<td>${Logistic.oTimeC}</td>
-							<td id="oComplete${Logistic.lID}">${Logistic.oComplete}</td>
+							<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
 							<td><button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
 									class="Ready" style="display: none">貨物確認送達</button></td>
 							
@@ -151,27 +151,34 @@ fieldset {
 							 -->
 						</tr>
 						<script>
-							console.log('status is, ${Logistic.oStatus}')
-						
-							var type = document.getElementById('type${Logistic.lID}');
+							
+							
+							var type = document.getElementById('type${Logistic.oID}');
+							console.log('type column: ',type);
 							if(type.innerHTML=='1'){
 								type.innerHTML = '宅配';
+							}else if(type.innerHTML=='2'){
+								type.innerHTML = '超商';
 							}else if(type.innerHTML=='3'){
 								type.innerHTML = '票券';
 							};
+							console.log('oID is: ','${Logistic.oID}');
 							
-							var status = document.getElementById('ostatus${Logistic.lID}');
-							if(status.innerHTML==1){
-								status.innerHTML = '未取貨';
-							}else if(status.innerHTML==2){
+							var status = document.getElementById('mystatus${Logistic.oID}');
+							console.log('status is: ','mystatus${Logistic.oID}');
+							console.log('status.innerHTML: ',status);
+							console.log('status column: ',status.getHeaders());
+							if(status='1'){
+								status = '未取貨';
+							}else if(status.innerHTML=='2'){
+								
 								status.innerHTML = '運送中';
-							}else if(status.innerHTML==3){
-								status.innerHTML = '訂單完成';
+							}else if(status=3){
+								status = '訂單完成';
 							};
 							
-							var finish = document.getElementById('oComplete${Logistic.lID}');
+							var finish = document.getElementById('oComplete${Logistic.oID}');
 							if(finish.innerHTML=='1'){
-								console.log('finish');
 								finish.innerHTML = '送達';
 							}
 							</script>
