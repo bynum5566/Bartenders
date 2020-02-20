@@ -73,6 +73,9 @@
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/img/**" />
+			
+			<mvc:exclude-mapping path="/CSS/**" />
+			
 
 			<mvc:exclude-mapping path="/login" />
 			<mvc:exclude-mapping path="/Register" />
@@ -113,6 +116,7 @@
 				path="/logistic/LogisticLogin.do" />
 			<mvc:exclude-mapping
 				path="/logistic/LogisticLogout.do" />
+				
 
 			<!-- 靜態資源 -->
 			<!-- <mvc:exclude-mapping path="/img/**" /> -->

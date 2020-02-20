@@ -123,7 +123,7 @@ public class TicketQRcontroller {
     	System.out.println("orderCac="+orderCac);
     	
     	if (orderCac.equals(onlineCac)) {
-    		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
+    		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.after(validDate) || toDay.equals(validDate) ) {
     			Orders order = oService.selectOrder(orderId);
     			if(order.getStatus()==6) {
     				return "usedQR";

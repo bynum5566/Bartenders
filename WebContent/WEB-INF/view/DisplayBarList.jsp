@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>精選酒吧</title>
+<title>${title}</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -24,6 +24,10 @@
 	
     <style type= "text/css">	
 
+
+	.sigmaYellow{
+		color: yellow;
+	}
 	.sigmaGray{
 		color: gray;
 	}
@@ -178,7 +182,7 @@ div.panel
 <%-- 本體，開始 --%>
 
 
-	<h3 style="color:white">精選酒吧</h3>
+	<h3 style="color:white">${title}</h3>
 	<h3>${msg}</h3>
 		<form>
 			<table border="1">
@@ -201,9 +205,9 @@ div.panel
 							<!-- 酒吧名稱 -->
 							<td align="center" style="width:150px">${listOfBar[current.index].companyName}</td>
 					
-							
+							<!-- 酒吧連結 -->
 							<td align="center" style="width:200px">
-								<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
+								<a class="sigmaYellow" href="<c:url value="/DisplayProductList.controller"/>?barAccount=${listOfBar[current.index].account}"
 								>前往酒吧產品介面</a>
 		
 							</td>		

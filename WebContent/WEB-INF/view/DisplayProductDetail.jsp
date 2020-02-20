@@ -6,8 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css">
-<title>Bartender- Preview ${productName}</title>
+<title>商品詳情 ${productName}</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<style type="text/css">
+	.sigmaYellow{
+		color: yellow;
+	}	
+</style>
 </head>
 
 <body>
@@ -89,7 +94,7 @@
 				<td>
 					<h2>
 						<!--<a href="<c:url value="/DisplayProductList.controller"/>">回到酒吧頁面 </a>--> 
-						<a href="<c:url value="/DisplayProductList.controller"/>?barAccount=${barAccount}">回到酒吧 </a>
+						<a class="sigmaYellow" href="<c:url value="/DisplayProductList.controller"/>?barAccount=${barAccount}">回到酒吧 </a>
 					</h2> 
 				</td>
 			</tr>

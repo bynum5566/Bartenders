@@ -78,8 +78,8 @@
 								},
 								createDragZone : function() {
 									var p1, p2, input;
-									p1 = this.createEls('p', {}, '請點此區選擇1張圖片，');
-									p2 = this.createEls('p', {}, '或將1張圖片拉至此區。');
+									p1 = this.createEls('p', {}, 'Upload');
+									p2 = this.createEls('p', {}, 'Image');
 									input = this.createEls('input', {
 										type : 'file',
 										className : 'input',

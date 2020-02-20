@@ -58,6 +58,8 @@ public class FunctionByQRCode {
 		if(order==null) {
 			System.out.println("result is null");
 			return "logistic/QRCodeInvalid";
+		}else {
+			System.out.println("order is created");
 		}
 		m.addAttribute("update",order);
 		m.addAttribute("test","this is result: "+order);

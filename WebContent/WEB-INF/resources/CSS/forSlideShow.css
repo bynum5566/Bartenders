@@ -1,16 +1,16 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Varela+Round);
 
-html, body { background: #333 url("https://codepen.io/images/classy_fabric.png"); }
 
 .slides {
     padding: 0;
 /*     width: 609px; */
 /*     height: 420px; */
     width: 350px;
-    max-height: 210px;
+    height: 210px;
     display: block;
-    margin: 0 auto;
+/*     margin: 0 auto; */
+    margin: 10px;
     position: relative;
 }
 
@@ -33,7 +33,10 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
 /*     width: 609px; */
 /*     height: 420px; */
 	width: 350px;
-    max-height: 210px;
+    height: 210px;
+    line-height: 210px;
+/*     max-height: 210px; */
+    
     display: block;
     position: absolute;
 
@@ -42,14 +45,19 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
     transition: all .7s ease-in-out;
 }
 
-.slide img {
+div.slide img {
+/*     width: auto; */
     width: 100%;
     height: 100%;
+/* 	max-width: auto; */
+/*     max-height: 210px; */
+    margin: auto;
+    object-fit: cover;
 }
 
 .nav label {
     width: 50px;
-    height: 50%;
+    height: 100%;
     display: none;
     position: absolute;
 
@@ -60,9 +68,9 @@ html, body { background: #333 url("https://codepen.io/images/classy_fabric.png")
     transition: opacity .2s;
 
     color: #FFF;
-    font-size: 156pt;
+    font-size: 80pt; /*156pt;*/
     text-align: center;
-    line-height: 380px;
+    line-height: 190px; /*380px;*/
     font-family: "Varela Round", sans-serif;
     background-color: rgba(255, 255, 255, .3);
     text-shadow: 0px 0px 15px rgb(119, 119, 119);

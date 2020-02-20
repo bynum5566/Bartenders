@@ -74,7 +74,7 @@
             var p1, p2, input;
 
                 p1 = this.createEls('p', {}, 'Upload');
-                p2 = this.createEls('p', {}, 'Image 3');
+                p2 = this.createEls('p', {}, 'Image');
             input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.info, function (zone) {

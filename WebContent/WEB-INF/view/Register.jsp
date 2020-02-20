@@ -10,7 +10,15 @@
 
 <style type="text/css">
 
+@font-face {
+	font-family: FangBold;
+	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+}
+
+
+
 html, body {
+	font-family: FangBold;
 	margin: 0;
 	padding: 0;
 	background: url("/Bartenders/images/Register.jpg") no-repeat center
@@ -26,7 +34,7 @@ html, body {
 	text-align: center;
 	background-color: rgb(255, 255, 255, 0.4);
 	width: 50%;
-	height:500px;
+	height:650px;
 	border: 1.5px groove  rgb(255, 255, 255, 0.4);
 	border-radius:2%;
 	font-size: 140%;
@@ -34,12 +42,39 @@ html, body {
 
 }
 
+::-webkit-input-placeholder { 
+  color: #ccc;
+}
+
+:-ms-input-placeholder { 
+  color: #ccc;
+}
+
+::placeholder {
+  color: #ccc;
+}
+
 table{
-	margin-left: 15%;
+ 	margin-left: 15%; 
+	width:fit-content;
+	text-align:left;
 }
 
 h5{
 	color:red;
+}
+
+input[type=text],input[type=password],input[type=tel],input[type=date],input[type=email]{
+  min-width:30%;
+  width:75%;
+  padding: 10px;
+  line-height: 18px;
+  border-radius: 3px;
+  border-color: transparent;
+  background-color: rgb(12, 10, 10,0.5);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
+  border: none;
+  color: rgb(198, 220, 241);
 }
 
 </style>

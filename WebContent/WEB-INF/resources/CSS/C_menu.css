@@ -2,10 +2,15 @@
 @import
 	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
 	;
+@font-face {
+	font-family: FangBold;
+	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+}
 	
 * {
 	outline: none;
 }
+
 
 strong {
 	font-weight: 600;
@@ -21,6 +26,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: FangBold;
 }
 
 #nav-container {
@@ -116,6 +122,7 @@ div.button {
 	transition: transform .3s;
 	will-change: transform;
 	contain: paint;
+	font-family: FangBold;
 }
 
 #nav-content ul {
