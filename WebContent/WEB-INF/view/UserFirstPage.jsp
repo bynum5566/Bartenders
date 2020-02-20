@@ -15,22 +15,20 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
-<title>User Page</title>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+<title>Bartenders</title>
 
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
 	;
 
-@font-face {
-	font-family: 111.otf;
-	src: url("/Bartenders/images/TaipeiSansTCBeta-Regular.ttf");
-}
+
 
 * {
 	outline: none;
 	top: 0px;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 strong {
@@ -59,7 +57,7 @@ header {
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	color: #CCBBFF;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 main {
@@ -212,7 +210,7 @@ main small {
 	font-size: 16px;
 	font-weight: 400;
 	color: #888;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 .small a+a {
