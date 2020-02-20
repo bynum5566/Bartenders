@@ -165,6 +165,7 @@ var number = 0;
 								<div id="map${status.index}" style="width:500px;height:500px;background:red"></div>
 							</div>
 						</div>
+						
 						<div>
 						<c:choose>
 						<c:when test="${empty Activity.targetNum}">
@@ -173,6 +174,7 @@ var number = 0;
 						<c:when test="${Activity.targetNum-Activity.actualNum>0}">
 						<p id="people${status.index}" class="number" align=left style="display:inline;margin: 0px;">參加人數: ${Activity.targetNum} / ${Activity.actualNum}  	</p>
 						<p align=right style="display:inline;margin: 0px;">   我想報名:</p>
+						
 						<form align=right action="joinActivity.do" method="post" style="display:inline;margin: 0px;">
 							<input type="hidden" name="userId" value="${Activity.userId}" >
 							<input type="hidden" name="activityId" value="${Activity.activityId}" >
@@ -184,12 +186,14 @@ var number = 0;
 							<p align=right style="display:inline;margin: 0px;">人</p>
 							<input type="submit" value="確定">
 						</form>
+						
 						</c:when>
 						<c:otherwise>
 					        <p>參加人數已滿</p>
 					    </c:otherwise>
 					</c:choose>
 						</div>
+						<!--  -->
 					<p class="brief" align=center style=";width:340px;margin: 5px;text-align:justify" >${Activity.brief}</p>
 					<span>
 					<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"

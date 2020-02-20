@@ -342,6 +342,18 @@ public class FunctionByActivity {
 		List<Activity> activity = aDao.query("type",type,"status","O");
 		return activity;
 	}
+	
+	@RequestMapping(path = "ActivityDate/{date}",method = RequestMethod.GET)
+	public @ResponseBody List<Activity> ActivityDate(@PathVariable String date,Model m,
+			HttpServletRequest request, HttpServletResponse response) throws ParseException {
+		System.out.println("start to query");
+//		System.out.println("this is url: Activity/"+search+"/"+userId);
+		List<Activity> all = aSer.queryAll();
+		boolean status = aSer.checkEndTime(all);
+		System.out.println("all activities is checked: "+status);
+		List<Activity> activity = aSer.queryJoker("status","O");
+		return activity;
+	}
 
 	@RequestMapping(path = "editActivity.do",method = RequestMethod.GET)
 	public String editActivity(HttpServletRequest request, HttpServletResponse response, Model m,

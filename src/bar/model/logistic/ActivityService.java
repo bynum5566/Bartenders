@@ -52,5 +52,16 @@ public class ActivityService {
 			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
 		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief, beginTime, endTime, targetNum, actualNum);
 	}
+	
+	public boolean checkEndTime(List<Activity> list) {
+		return aDao.checkEndTime(list);
+	}
+	
+	public List<Activity> queryAll() {
+		String condition = "from Activity";
+		System.out.println("searching condition: "+condition);
+		List<Activity> all = aDao.simpleQuery(condition);
+		return all;
+	}
 
 }

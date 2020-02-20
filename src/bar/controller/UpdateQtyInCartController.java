@@ -22,10 +22,9 @@ import bar.model.ProductData;
 import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
+/*執行這個Controller的時間點：我的購物車按下[修改]按鈕時*/
 @Controller
-//@SessionAttributes(names = "account")
 @SessionAttributes({"account","num"})
-
 @EnableTransactionManagement
 public class UpdateQtyInCartController
 {

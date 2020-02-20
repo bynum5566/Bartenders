@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>精選酒吧</title>
+<title>${title}</title>
 <%-- 畫面version 20200213_1650--%>
     <link 
     rel="stylesheet" 
@@ -182,7 +182,7 @@ div.panel
 <%-- 本體，開始 --%>
 
 
-	<h3 style="color:white">精選酒吧</h3>
+	<h3 style="color:white">${title}</h3>
 	<h3>${msg}</h3>
 		<form>
 			<table border="1">
