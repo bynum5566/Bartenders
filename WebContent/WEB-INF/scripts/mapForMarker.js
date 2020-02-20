@@ -6,7 +6,10 @@
 		var mapId = pre;
 		var mapNumber = number;
 		var mapIndex = pre;
+
 		function initMap() {
+//			var bounds  = new google.maps.LatLngBounds();
+//			console.log('this is bounds:',bounds)
 			for(var i=0; i<number;i++){
 				console.log('creating mapId: ',mapId[i]);
 				mapIndex[i] = new google.maps.Map(document.getElementById(mapId[i]),mapStyle);
@@ -14,6 +17,11 @@
 				console.log('creating success: ',mapReal[i]);
 			}
 			infowindow = new google.maps.InfoWindow;
+			
+		}
+		
+		function testInit() {
+			console.log('hello, this is callback');
 		}
 		
 		function reloadMarkers(prefix,input,mapId) {
@@ -27,6 +35,7 @@
 		
 		function getMarkers(prefix,input,mapId){
 			var targetMap = mapReal[mapId];
+			
 			console.log('targetMap is: ',targetMap);
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
@@ -48,6 +57,7 @@
 					console.log('this is img: ', img);
 					var brief = item.brief;
 					var point = new google.maps.LatLng(lat, lng);
+					
 					//建立個別marker
 					var marker = new google.maps.Marker({
 						map : targetMap,
@@ -55,6 +65,7 @@
 						icon: 'images/'+type+'.jpg'
 					});
 					
+					bounds.extend(point);
 					markers.push(marker);
 					//建立個別window
 					var contentString = 	'<div id="idiv">'+
@@ -70,7 +81,7 @@
 						infowindow.open(targetMap, marker);
 					});
 					}else if(prefix=='ActivityUserId'||prefix=='ActivityType'||prefix=='ActivityActivityId'){
-						var id = item.barId;
+						var id = item.activityId;
 						var name = item.name;
 						var address = item.address;
 						var lat = item.lat;
@@ -87,7 +98,8 @@
 							position : point,
 							icon: 'images/'+type+'.jpg'
 						});
-						
+						console.log('try to re-locating');
+						targetMap.panTo(point);
 						markers.push(marker);
 						//建立個別window
 						var contentString = 	'<div id="idiv">'+
@@ -105,6 +117,8 @@
 					}//if結尾
 				})	
 			});
+			
+
 		}
 
 		
