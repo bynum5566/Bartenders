@@ -76,7 +76,7 @@ padding-right: 3px;
 							<tr>
 								<td align="center" nowrap="nowrap"><a
 									href="<c:url value="/OrderList.controller"/>?orderId=${Corders[current.index].orderId}"
-									value="${Corders[current.index].orderId}">${Corders[current.index].orderId}</a>
+									value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
 								</td>
 								<td align="center" nowrap="nowrap">${user[current.index].account}</td>
 								<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
