@@ -96,7 +96,8 @@ fieldset {
 					<h3 id="ih3" style="margin: 10px 10px 0px 10px; display: inline-block"><input type="text" name="name" value="${Activity.name}"></h3>
 					<p id="ip" align="right" style="color: red; margin: 10px 20px 10px 70px; display: inline">
 					<input type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
-					<input type="radio" id="show" name="type" value="show"> <label for="show">酒展</label></p>
+					<input type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
+					<input type="hidden" id="no" name="type" value="no"><label for="no"></label></p>
 					
 					<p style="margin: 5px"><input id="beginTime" type="text" name="beginTime"
 							placeholder="請選擇開始時間"> ~ <input
@@ -113,69 +114,38 @@ fieldset {
 								<div id="map" style="width:500px;height:500px;background:red"></div>
 							</div>
 						</div>
-					
-					<input id="lat" type="hidden" name="lat" >
-					<input id="lng" type="hidden" name="lng" >
+					<script>
+						//測試是否可以接收到登入參數
+						var user = '${getUser.userId}';
+						console.log('userId is: ','${getUser.userId}');
+						var company = '${getCompany.companyId}';
+						console.log('companyId is: ','${getCompany.companyId}');
+						console.log('preUrl=','${preUrl}');
+						var sendText;
+						<c:if test='${empty getUser.userId}'>
+							sendText = 'c${getCompany.companyId}';
+							<c:set var="finalText" scope="page" value='c${getCompany.companyId}'/>
+						</c:if>
+						<c:if test='${empty getCompany.companyId}'>
+							sendText = 'u${getUser.userId}';
+							<c:set var="finalText" scope="page" value='u${getUser.userId}'/>
+						</c:if>
+						
+						console.log('final sendText is: ',sendText);
+
+					</script>
+			
 					<br>
 					
 					<input type="file" name="uploadFile" />
 					
 					<p><input type="text" placeholder="輸入活動簡介" style="width:400px;height:250px" name="brief"></p>
-					<input type="hidden" name="preUrl" value="${preUrl}">
+					<input type="text" name="preUrl" value="${preUrl}">
+					<input type="text" name="userId" value="<c:out value="${finalText}"/>">
 					<input type="submit" value="確認">
 			</fieldset>
 		</form>
 	</div>
-	<!-- 
-	<div align=center>
-		<form action="saveActivity.do" method="post" enctype="multipart/form-data">
-			<fieldset style="width: 500px">
-				<legend>建立活動</legend>
-				<table align=center>
-					<tr>
-						<td>活動名稱: <input type="text" name="name">
-						<input type="hidden" name="preUrl" value="${preUrl}"><p class="errors">${errors.name}</p></td>
-					</tr>
-					<tr>
-						<td>活動地址: <input type="text" name="address"><p class="errors"></p>${errors.address}</td>
-					</tr>
-					<tr>
-						<td>地圖位置: 
-							<input id="fake1" type="text" value="點擊地圖位置" name="fakelat" disabled> 
-							<img id="smallok" src="images/ok.jpg" style="visibility:collapse"><p class="errors">${errors.lat}</p>
-							<input id="lat" type="hidden" name="lat" value="0">
-							<input id="lng" type="hidden" name="lng" value="0"></td>
-					</tr>
-					<tr>
-						<td>開始時間: <input id="beginTime" type="text" name="beginTime"
-							placeholder="Select your date">${errors.beginTime}<br> 結束時間: <input
-							id="endTime" type="text" name="endTime"
-							placeholder="Select your date">${errors.endTime}</td>
-					</tr>
-					<tr>
-						<td>內容簡介: <input type="text" name="brief" ${errors.brief}></td>
-					</tr>
-					<tr>
-						<td>類型: 
-						<input type="radio" id="party" name="type" value="party"> 
-						<label for="party">酒吧派對</label> 
-						<input type="radio" id="show" name="type" value="show"> 
-						<label for="show">酒展</label>
-						<input type="radio" id="fake" name="type" checked>${errors.type}
-						</td>
-					</tr>
-					<tr>
-						<td>照片: <input type="file" name="uploadFile" />${errors.file}</td>
-					</tr>
-					<tr>	
-						<td><input type="submit" value="送出"></td>
-					</tr>
-				</table>
-			</fieldset>
-		</form>
-		<button id="cancel">取消座標</button>
-	</div>
-	 -->
 
 	<div id="map"></div>
 	<script src="./scripts/MapStyle.js"></script>
@@ -183,7 +153,8 @@ fieldset {
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<script>
-	console.log('preUrl=','${preUrl}');
+
+	//
 	var target = 'hidden';
 	$('#Bhidden').on('click',function(){
 		console.log('start');

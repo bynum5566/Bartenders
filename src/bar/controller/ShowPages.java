@@ -125,6 +125,11 @@ return "SubMessageBoard";
 	public String showUserFirstPage() {
 		return "UserFirstPage";
 	}
+	
+	@RequestMapping(path ="/SalesReportByExcel")
+	public String showSalesReportByExcel() {
+		return "SalesReportByExcel";
+	}
 	////////////////////----以下是物流----/////////////////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
 	public String logistic() {

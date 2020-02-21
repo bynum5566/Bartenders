@@ -98,7 +98,7 @@ public class ActivityDAO {
 	
 	
 	
-	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
+	public Activity saveActivity(Activity a,String userId, String name, String address, float lat, float lng, String type,
 			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
 		try {
 		Session session = sessionFactory.getCurrentSession();

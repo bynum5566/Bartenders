@@ -56,7 +56,7 @@ public class ChangeStatusOneToTwo
 		/* 下一頁 */
 		String msg = null;
 		printInputData(inputOrderId, // 新增20200131_0934
-				select1, input1, input2, inputAddress1, inputAddress2); /* 輸入參數列印 */
+				select1, input1, input2, inputAddress1, inputAddress2,totalPrice,Freight); /* 輸入參數列印 */
 
 		try {
 			/* Order自帶參數-開始 */
@@ -90,7 +90,33 @@ public class ChangeStatusOneToTwo
 			Orders orderX = oService.selectOrder(orderId);
 			companyId = orderX.getCompanyId();
 			userId = orderX.getUserId();
-			amount = Integer.valueOf(totalPrice) + Integer.valueOf(Freight);
+			
+			int intFreight = Integer.valueOf(select1);
+			CartService.printValueTypeTime("intFreight",intFreight);
+			
+			switch (intFreight) {
+			case 1:
+				intFreight = 80;
+				System.out.println("超商運費80");
+				break;
+			case 2:
+				intFreight = 60;
+				System.out.println("超商運費60");
+				break;
+			case 3:
+				intFreight = 0;
+				System.out.println("QR運費0");
+				break;
+			default:
+				intFreight = 0;
+				System.out.println("運費error");
+
+			}
+			CartService.printValueTypeTime("intFreight",intFreight);
+			
+			
+			//amount = Integer.valueOf(totalPrice) + Integer.valueOf(Freight);
+			amount = Integer.valueOf(totalPrice) + intFreight;
 			status = Integer.toString(orderX.getStatus());
 			shippingNumber = orderX.getShippingNumber();
 			printAllData(inputOrderId, createTimeString, select1, input1, input2, address1, address2, companyId, userId,
@@ -244,14 +270,16 @@ public class ChangeStatusOneToTwo
 	}
 
 	private void printInputData(String inputOrderId, // 新增20200131_0934
-			String select1, String input1, String input2, String address1, String address2) {
+			String select1, String input1, String input2, String address1, String address2 ,String totalPrice ,String Freight) {
 		CartService.Pf0();
 		CartService.Pf2("inputOrderId", inputOrderId); // 新增20200131_0934
 		CartService.Pf2("select1", select1);
 		CartService.Pf2("input1", input1);
 		CartService.Pf2("input2", input2);
 		CartService.Pf2("address1", address1);
-		CartService.Pf2("address2", address2);
+		CartService.Pf2("address2", address2);	
+		CartService.Pf2("totalPrice", totalPrice);
+		CartService.Pf2("Freight", Freight);
 		CartService.Pf0();
 	}
 

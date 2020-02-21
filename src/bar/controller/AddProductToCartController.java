@@ -39,6 +39,7 @@ public class AddProductToCartController
 	private CartService cartService;	/*新增20200201_1509*/
 	private OrdersDAO ordersDao;
 
+
 	public AddProductToCartController(
 			ProductDataService pService, 
 			ProductDataDAO productDataDAO,
@@ -151,7 +152,17 @@ public class AddProductToCartController
 					CartService.printValueTypeTime("StringDate", StringDate);
 					/*String版本時間，開始結束*/
 					
+					/*舊版orderid*/
 					orderId = userId +Long.toString(date.getTime());
+					
+//					String StringOfTime = Long.toString(date.getTime());
+//					CartService.printValueTypeTime("StringOfTime", StringOfTime);
+//					StringOfTime =  StringOfTime.substring(4,8);
+//					CartService.printValueTypeTime("StringOfTime", StringOfTime);
+//					
+//					orderId =  Integer.toString(userId).substring(3, 6) + StringOfTime;
+					
+					
 					System.out.println("orderId = ");
 					System.out.println(orderId);
 					//===

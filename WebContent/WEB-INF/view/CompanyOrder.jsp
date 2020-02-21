@@ -21,15 +21,9 @@ top: 80px;
 position: sticky;
 text-align: center;
 border-radius: 5px;
-background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%); 
-background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); 
--webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
--moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); 
 color: #E8CCFF;
 font-size: 18px;
+background-image: url(/Bartenders/images/bg21.png);
 }
 
 
@@ -82,13 +76,23 @@ padding-right: 3px;
 							<tr>
 								<td align="center" nowrap="nowrap"><a
 									href="<c:url value="/OrderList.controller"/>?orderId=${Corders[current.index].orderId}"
-									value="${Corders[current.index].orderId}">${Corders[current.index].orderId}</a>
+									value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
 								</td>
 								<td align="center" nowrap="nowrap">${user[current.index].account}</td>
 								<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
 								<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 								<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
-								<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+								
+									<c:choose>
+									<c:when
+										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
+									</c:when>
+									<c:otherwise>
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+									</c:otherwise>
+								</c:choose>
+
 								<c:choose>
 									<c:when
 										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
@@ -101,7 +105,7 @@ padding-right: 3px;
 								</c:choose>
 								<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
 								<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-								<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,19)}</td>
+								<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
 								<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
 
 								<c:choose>

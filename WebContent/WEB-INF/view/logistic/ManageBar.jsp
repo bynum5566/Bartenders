@@ -97,6 +97,23 @@ font-size:20px;
 	
 
 	<script>
+	//撈取登入者身分
+	console.log('preUrl=','${preUrl}');
+	var user = '${getUser.userId}';
+	console.log('userId is: ','${getUser.userId}');
+	var company = '${getCompany.companyId}';
+	console.log('companyId is: ','${getCompany.companyId}');
+	
+	var sendText;
+	<c:if test='${empty getUser.userId}'>
+		sendText = 'c${getCompany.companyId}';
+		<c:set var="finalText" scope="page" value='c${getCompany.companyId}'/>
+	</c:if>
+	<c:if test='${empty getCompany.companyId}'>
+		sendText = 'u${getUser.userId}';
+		<c:set var="finalText" scope="page" value='u${getUser.userId}'/>
+	</c:if>
+	console.log('searching userId: ','${finalText}')
 	
 		$(".search").on("click", function() {
 			var type = this.id;
@@ -111,8 +128,9 @@ font-size:20px;
 
 		$(".setting").on("click", function() {
 			var type = this.id;
+			
 			if(type=='Manage'){
-				window.location.href = '<c:url value="/queryActivity.do"/>?userId=1000';
+				window.location.href = '<c:url value="/queryActivityByUser.do"/>?userId=${finalText}';
 			}else{
 				window.location.href = '<c:url value="/create'+type+'"/>';
 			}
