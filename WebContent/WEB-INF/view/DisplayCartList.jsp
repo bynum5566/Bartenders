@@ -231,8 +231,10 @@ div.panel
 							 -->
 							 
 							<td align="center">
+								
 								<!-- 舊版修改數量 -->
-								<!--<a href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${listOfOrder[current.index].orderId}">修改數量</a>-->
+								<!-- 保存在:[舊版修改數量系統]資料夾 -->
+								<!-- 使用方式:<a href="<c:url value="/DisplayProductInCart.controller"/>?orderId=${listOfOrder[current.index].orderId}">修改數量</a>-->
 							</td>
 	
 							<!-- 小計，第一行空著 -->

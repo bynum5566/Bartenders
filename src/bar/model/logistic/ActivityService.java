@@ -18,6 +18,7 @@ public class ActivityService {
 	public List<Activity> queryJoker(Object Param,Object obj) {
 		//"from Activity where activityId=1002"
 		String condition = "from Activity where "+Param+"="+obj;
+		System.out.println("searching condition: "+condition);
 		List<Activity> first = aDao.simpleQuery(condition);
 		return first;
 	}
@@ -47,9 +48,20 @@ public class ActivityService {
 	}
 	
 	
-	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
+	public Activity saveActivity(Activity a,String userId, String name, String address, float lat, float lng, String type,
 			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
 		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief, beginTime, endTime, targetNum, actualNum);
+	}
+	
+	public boolean checkEndTime(List<Activity> list) {
+		return aDao.checkEndTime(list);
+	}
+	
+	public List<Activity> queryAll() {
+		String condition = "from Activity";
+		System.out.println("searching condition: "+condition);
+		List<Activity> all = aDao.simpleQuery(condition);
+		return all;
 	}
 
 }

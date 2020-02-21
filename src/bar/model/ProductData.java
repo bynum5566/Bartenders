@@ -20,31 +20,31 @@ public class ProductData {
 	private int pdStock;
 	private int pdPrice;
 	private String pdDetail;
-	private String picName1;
-	private byte[] pdPic1;
+//	private String picName1;
+//	private byte[] pdPic1;
 	private String productImageUrl;
-	private String picName2;
-	private byte[] pdPic2;
+//	private String picName2;
+//	private byte[] pdPic2;
 	private String productImageUrl2;
-	private String picName3;
-	private byte[] pdPic3;
+//	private String picName3;
+//	private byte[] pdPic3;
 	private String productImageUrl3;
 	private String autoLaunchTime;
 	private String autoPullTime;
-	private String pdAvailable;
+//	private String pdAvailable;
 	private int pdSoldQuantity;
 	private String pdSoldOut;
 	private String validDate;
 	private String expiryDate;
+	private String deleteTag;
 
 	public ProductData() {
 	}
 
 	public ProductData(int companyId, String pdId, String productName, String pdTag1, String pdTag2, String pdTag3,
-			int pdStock, int pdPrice, String pdDetail, String picName1, byte[] pdPic1, String productImageUrl,
-			String picName2, byte[] pdPic2, String productImageUrl2, String picName3, byte[] pdPic3,
-			String productImageUrl3, String autoLaunchTime, String autoPullTime, String pdAvailable, int pdSoldQuantity,
-			String pdSoldOut, String validDate, String expiryDate) {
+			int pdStock, int pdPrice, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3, 
+			String autoLaunchTime, String autoPullTime, String pdAvailable, int pdSoldQuantity, String pdSoldOut, 
+			String validDate, String expiryDate, String deleteTag) {
 		this.companyId = companyId;
 		this.pdId=pdId;
 		this.productName=productName;
@@ -54,18 +54,18 @@ public class ProductData {
 		this.pdStock=pdStock;
 		this.pdPrice=pdPrice;
 		this.pdDetail=pdDetail;
-		this.picName1=picName1;
-		this.pdPic1=pdPic1;
+//		this.picName1=picName1;
+//		this.pdPic1=pdPic1;
 		this.productImageUrl=productImageUrl;
-		this.picName2=picName2;
-		this.pdPic2=pdPic2;
+//		this.picName2=picName2;
+//		this.pdPic2=pdPic2;
 		this.productImageUrl2=productImageUrl2;
-		this.picName3=picName3;
-		this.pdPic3=pdPic3;
+//		this.picName3=picName3;
+//		this.pdPic3=pdPic3;
 		this.productImageUrl3=productImageUrl3;
 		this.autoLaunchTime=autoLaunchTime;
 		this.autoPullTime=autoPullTime;
-		this.pdAvailable = pdAvailable;
+//		this.pdAvailable = pdAvailable;
 		this.pdSoldQuantity=pdSoldQuantity;
 		this.pdSoldOut=pdSoldOut;
 		this.validDate=validDate;
@@ -154,23 +154,23 @@ public class ProductData {
 		this.pdDetail = pdDetail;
 	}
 
-	@Column(name = "PICNAME1")
-	public String getPicName1() {
-		return picName1;
-	}
-
-	public void setPicName1(String picName1) {
-		this.picName1 = picName1;
-	}
-
-	@Column(name = "PDPIC1")
-	public byte[] getPdPic1() {
-		return pdPic1;
-	}
-
-	public void setPdPic1(byte[] pdPic1) {
-		this.pdPic1 = pdPic1;
-	}
+//	@Column(name = "PICNAME1")
+//	public String getPicName1() {
+//		return picName1;
+//	}
+//
+//	public void setPicName1(String picName1) {
+//		this.picName1 = picName1;
+//	}
+//
+//	@Column(name = "PDPIC1")
+//	public byte[] getPdPic1() {
+//		return pdPic1;
+//	}
+//
+//	public void setPdPic1(byte[] pdPic1) {
+//		this.pdPic1 = pdPic1;
+//	}
 
 	@Column(name = "PRODUCTIMAGEURL")
 	public String getProductImageUrl() {
@@ -181,23 +181,23 @@ public class ProductData {
 		this.productImageUrl = productImageUrl;
 	}
 
-	@Column(name = "PICNAME2")
-	public String getPicName2() {
-		return picName2;
-	}
-
-	public void setPicName2(String picName2) {
-		this.picName2 = picName2;
-	}
-
-	@Column(name = "PDPIC2")
-	public byte[] getPdPic2() {
-		return pdPic2;
-	}
-
-	public void setPdPic2(byte[] pdPic2) {
-		this.pdPic2 = pdPic2;
-	}
+//	@Column(name = "PICNAME2")
+//	public String getPicName2() {
+//		return picName2;
+//	}
+//
+//	public void setPicName2(String picName2) {
+//		this.picName2 = picName2;
+//	}
+//
+//	@Column(name = "PDPIC2")
+//	public byte[] getPdPic2() {
+//		return pdPic2;
+//	}
+//
+//	public void setPdPic2(byte[] pdPic2) {
+//		this.pdPic2 = pdPic2;
+//	}
 
 	@Column(name = "PRODUCTIMAGEURL2")
 	public String getProductImageUrl2() {
@@ -208,23 +208,23 @@ public class ProductData {
 		this.productImageUrl2 = productImageUrl2;
 	}
 
-	@Column(name = "PICNAME3")
-	public String getPicName3() {
-		return picName3;
-	}
-
-	public void setPicName3(String picName3) {
-		this.picName3 = picName3;
-	}
-
-	@Column(name = "PDPIC3")
-	public byte[] getPdPic3() {
-		return pdPic3;
-	}
-
-	public void setPdPic3(byte[] pdPic3) {
-		this.pdPic3 = pdPic3;
-	}
+//	@Column(name = "PICNAME3")
+//	public String getPicName3() {
+//		return picName3;
+//	}
+//
+//	public void setPicName3(String picName3) {
+//		this.picName3 = picName3;
+//	}
+//
+//	@Column(name = "PDPIC3")
+//	public byte[] getPdPic3() {
+//		return pdPic3;
+//	}
+//
+//	public void setPdPic3(byte[] pdPic3) {
+//		this.pdPic3 = pdPic3;
+//	}
 
 	@Column(name = "PRODUCTIMAGEURL3")
 	public String getProductImageUrl3() {
@@ -253,14 +253,14 @@ public class ProductData {
 		this.autoPullTime = autoPullTime;
 	}
 
-	@Column(name = "PDAVAILABLE")
-	public String getPdAvailable() {
-		return pdAvailable;
-	}
-
-	public void setPdAvailable(String pdAvailable) {
-		this.pdAvailable = pdAvailable;
-	}
+//	@Column(name = "PDAVAILABLE")
+//	public String getPdAvailable() {
+//		return pdAvailable;
+//	}
+//
+//	public void setPdAvailable(String pdAvailable) {
+//		this.pdAvailable = pdAvailable;
+//	}
 
 	@Column(name = "PDSOLDQUANTITY")
 	public int getPdSoldQuantity() {
@@ -298,4 +298,13 @@ public class ProductData {
 		this.expiryDate = expiryDate;
 	}
 
+	@Column(name = "DELETETAG")
+	public String getDeleteTag() {
+		return deleteTag;
+	}
+
+	public void setDeleteTag(String deleteTag) {
+		this.deleteTag = deleteTag;
+	}
+	
 }
