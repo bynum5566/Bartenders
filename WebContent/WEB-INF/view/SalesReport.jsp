@@ -11,10 +11,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 <style type="text/css">
+
 body {
 	margin: 0;
 	padding: 0;
-	background-image: url(/Bartenders/images/bg4.jpg);
+	background-image: url(/Bartenders/images/bg12.jpg);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -25,20 +26,20 @@ body {
 
 .outwrap {
 	min-width: auto;
-	top: 80px;
+	top: 90px;
 	position: sticky;
 	text-align: center;
 	margin: auto;
 	width: 800px;
 	border-radius: 5px;
 	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
+		rgba(163, 163, 163, 0.3) 99%);
 	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
+		rgba(163, 163, 163, 0.3) 99%);
 	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
+		rgba(163, 163, 163, 0.3) 99%);
 	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
+		rgba(163, 163, 163, 0.3) 99%);
 	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
@@ -73,6 +74,7 @@ body {
     },
     options: {
       scales: {
+    	  scaleFontColor: "#000093",
         yAxes: [{
           ticks: {
             beginAtZero:true,
@@ -81,6 +83,9 @@ body {
       }
     }
   });
+  bar.defaults = {
+		  scaleFontColor: "#000093",
+  }
 </script>
 
 </body>

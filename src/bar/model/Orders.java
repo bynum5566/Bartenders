@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class Orders {
 
 	private String orderId; /* PK */
-	private Date createTime;
+	private String createTime;		/*Date*/
 	private int companyId; /* FK */
 	private int userId;/* FK */
 	private int amount;
@@ -42,7 +42,7 @@ public class Orders {
 
 	public Orders(String orderId, int companyId, int userId, String recipient, int status,
 			/* not null = F */
-			Date createTime, int amount, int shipping, /* (1:代表宅配 2:代表超商) */
+			String createTime, int amount, int shipping, /* (1:代表宅配 2:代表超商) */
 			String address1, /* (配合宅配地址) */
 			String address2, /* (配合超商) */
 			String phone, String shippingNumber 
@@ -74,11 +74,11 @@ public class Orders {
 	}
 
 	@Column(name = "CREATETIME")
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 

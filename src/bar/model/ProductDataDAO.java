@@ -33,14 +33,14 @@ public class ProductDataDAO {
 		}
 		return false;
 	}
-	/*找這個酒吧的一般上架商品，不含QR*/
+
 	public List<ProductData> selectPdsLaunched(int companyId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and  autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and  autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is null and deleteTag is null";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -68,7 +68,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is not null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is not null and deleteTag is null";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -94,10 +94,10 @@ public class ProductDataDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
 		Date date = new Date();	
 		String nowTime = sdf.format(date);
-		keyword= "%"+keyword+"%";
+//		keyword= "%"+keyword+"%";
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where (productName like :kWord or pdTag1 like :kWord or pdTag2 like :kWord or pdTag3 like :kWord) and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";
+		String hqlStr = "from ProductData where (upper(productName) like '%' || upper(:kWord)  || '%' or upper(pdTag1) like '%' || upper(:kWord)  || '%' or upper(pdTag2) like '%' || upper(:kWord)  || '%' or upper(pdTag3) like '%' || upper(:kWord)  || '%') and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("kWord",keyword);
 		query.setParameter("nowTime", nowTime);	
@@ -110,7 +110,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);	
 			
 		Session session = sessionFactory.getCurrentSession();	
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";	
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and deleteTag is null";	
 		Query query = session.createQuery(hqlStr);	
 		query.setParameter("cId", companyId);	
 		query.setParameter("nowTime", nowTime);	
@@ -208,98 +208,97 @@ public class ProductDataDAO {
 	}
 
 	public void editALaunchT(String autoLaunchTime, String pdId) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		Date date = new Date();
-		String strDate = sdf.format(date);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+//		Date date = new Date();
+//		String strDate = sdf.format(date);
 		Session session = sessionFactory.getCurrentSession();
-		try {
-			Date a = sdf.parse(autoLaunchTime);
-			Date b = sdf.parse(strDate);
-			if (a.after(b)) {
-				String hqlStr = "update ProductData set autoLaunchTime=:alTm, pdAvailable=:pdA where pdId=:pdId";
-				Query query = session.createQuery(hqlStr);
-				query.setParameter("alTm", autoLaunchTime);
-				query.setParameter("pdA", "Launched");
-				query.setParameter("pdId", pdId);
-				query.executeUpdate();
-			} else {
+//		try {
+//			Date a = sdf.parse(autoLaunchTime);
+//			Date b = sdf.parse(strDate);
+//			if (a.after(b)) {
 				String hqlStr = "update ProductData set autoLaunchTime=:alTm where pdId=:pdId";
 				Query query = session.createQuery(hqlStr);
 				query.setParameter("alTm", autoLaunchTime);
 				query.setParameter("pdId", pdId);
 				query.executeUpdate();
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//			} else {
+//				String hqlStr = "update ProductData set autoLaunchTime=:alTm where pdId=:pdId";
+//				Query query = session.createQuery(hqlStr);
+//				query.setParameter("alTm", autoLaunchTime);
+//				query.setParameter("pdId", pdId);
+//				query.executeUpdate();
+//			}
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void editAPullT(String autoPullTime, String pdId) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		Date date = new Date();
-		String strDate = sdf.format(date);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+//		Date date = new Date();
+//		String strDate = sdf.format(date);
 		Session session = sessionFactory.getCurrentSession();
-		try {
-			Date a = sdf.parse(autoPullTime);
-			Date b = sdf.parse(strDate);
-			if (a.before(b)) {
-				String hqlStr = "update ProductData set autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
-				Query query = session.createQuery(hqlStr);
-				query.setParameter("apTm", autoPullTime);
-				query.setParameter("pdA", "Pulled");
-				query.setParameter("pdId", pdId);
-				query.executeUpdate();
-			} else {
+//		try {
+//			Date a = sdf.parse(autoPullTime);
+//			Date b = sdf.parse(strDate);
+//			if (a.before(b)) {
+//				String hqlStr = "update ProductData set autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+//				Query query = session.createQuery(hqlStr);
+//				query.setParameter("apTm", autoPullTime);
+//				query.setParameter("pdA", "Pulled");
+//				query.setParameter("pdId", pdId);
+//				query.executeUpdate();
+//			} else {
 				String hqlStr = "update ProductData set autoPullTime=:apTm where pdId=:pdId";
 				Query query = session.createQuery(hqlStr);
 				query.setParameter("apTm", autoPullTime);
 				query.setParameter("pdId", pdId);
 				query.executeUpdate();
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//			}
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void editALaunchPullT(String autoLaunchTime, String autoPullTime, String pdId) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		Date date = new Date();
-		String strDate = sdf.format(date);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+//		Date date = new Date();
+//		String strDate = sdf.format(date);
 		Session session = sessionFactory.getCurrentSession();
-		try {
-			Date a = sdf.parse(autoPullTime);
-			Date c = sdf.parse(autoLaunchTime);
-			Date b = sdf.parse(strDate);
-			if (c.before(b)) {
-				if (a.after(b)) {
-					String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+//		try {
+//			Date a = sdf.parse(autoPullTime);
+//			Date c = sdf.parse(autoLaunchTime);
+//			Date b = sdf.parse(strDate);
+//			if (c.before(b)) {
+//				if (a.after(b)) {
+					String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm where pdId=:pdId";
 					Query query = session.createQuery(hqlStr);
 					query.setParameter("alTm", autoLaunchTime);
 					query.setParameter("apTm", autoPullTime);
-					query.setParameter("pdA", "Launched");
+//					query.setParameter("pdA", "Launched");
 					query.setParameter("pdId", pdId);
 					query.executeUpdate();
-				} else {
-					String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
-					Query query = session.createQuery(hqlStr);
-					query.setParameter("alTm", autoLaunchTime);
-					query.setParameter("apTm", autoPullTime);
-					query.setParameter("pdA", "Pulled");
-					query.setParameter("pdId", pdId);
-					query.executeUpdate();
-				}
-			} else {
-				String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
-				Query query = session.createQuery(hqlStr);
-				query.setParameter("alTm", autoLaunchTime);
-				query.setParameter("apTm", autoPullTime);
-				query.setParameter("pdA", "Pulled");
-				query.setParameter("pdId", pdId);
-				query.executeUpdate();
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//				} else {
+//					String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+//					Query query = session.createQuery(hqlStr);
+//					query.setParameter("alTm", autoLaunchTime);
+//					query.setParameter("apTm", autoPullTime);
+//					query.setParameter("pdA", "Pulled");
+//					query.setParameter("pdId", pdId);
+//					query.executeUpdate();
+//				}
+//			} else {
+//				String hqlStr = "update ProductData set autoLaunchTime=:alTm, autoPullTime=:apTm, pdAvailable=:pdA where pdId=:pdId";
+//				Query query = session.createQuery(hqlStr);
+//				query.setParameter("alTm", autoLaunchTime);
+//				query.setParameter("apTm", autoPullTime);
+//				query.setParameter("pdA", "Pulled");
+//				query.setParameter("pdId", pdId);
+//				query.executeUpdate();
+//			}
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public boolean launchP(String autoLaunchTime, String pdId) {
@@ -330,6 +329,15 @@ public class ProductDataDAO {
 			System.out.println("e" + e);
 		}
 		return false;
+	}
+	
+	public void removePd(String pdId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "update ProductData set deleteTag=:dTag where pdId=:pdId";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("dTag", "deleted");
+		query.setParameter("pdId", pdId);
+		query.executeUpdate();
 	}
 
 	public boolean updateSold(String pdId, int pdSoldQuantity) {

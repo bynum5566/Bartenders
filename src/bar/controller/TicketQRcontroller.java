@@ -107,11 +107,12 @@ public class TicketQRcontroller {
 		Date toDay = new Date();   
 		System.out.println("toDay="+toDay);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		
 		
 		Date validDate = sdf.parse(hsRequest.getParameter("validDate"));
 		System.out.println("validDate="+validDate);
-		Date expireDate = (Date)sdf.parse(hsRequest.getParameter("expireDate").toString());
+		Date expireDate = (Date)sdf.parse(hsRequest.getParameter("expireDate"));
 		System.out.println("expireDate="+expireDate);
 		
 		String orderId = (String)hsRequest.getParameter("orderId");
@@ -122,7 +123,7 @@ public class TicketQRcontroller {
     	System.out.println("orderCac="+orderCac);
     	
     	if (orderCac.equals(onlineCac)) {
-    		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.equals(validDate) ) {
+    		if (toDay.after(validDate) && toDay.before(expireDate) || toDay.after(validDate) || toDay.equals(validDate) ) {
     			Orders order = oService.selectOrder(orderId);
     			if(order.getStatus()==6) {
     				return "usedQR";

@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css">
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forSlideShow.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css">
 <title>Bartender- Preview ${productName}</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
@@ -110,7 +110,7 @@
 								<button class="bT">加入購物車+</button>
 							</div>
 						</div>
-						<div>
+						<div id="pdLk">
 							<button class="bT">加入我的最愛+</button>
 						</div>
 					</div>

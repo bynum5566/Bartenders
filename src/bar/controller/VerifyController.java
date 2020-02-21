@@ -31,10 +31,10 @@ public class VerifyController {
 			if (verifyStatus) {
 				return "VerifyPage";
 			}
-			return "LoginPage";
+			return "index";
 		}
 
-		return "LoginPage";
+		return "index";
 	}
 
 	@RequestMapping(path = { "/verifyCompany" }, method = { RequestMethod.GET })
@@ -50,10 +50,10 @@ public class VerifyController {
 			if (verifyStatus) {
 				return "VerifyPage";
 			}
-			return "CLoginPage";
+			return "index";
 		}
 
-		return "CLoginPage";
+		return "index";
 	}
 
 }

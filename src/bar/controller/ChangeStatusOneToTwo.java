@@ -2,7 +2,8 @@
 package bar.controller;
 
 //import java.util.Date;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class ChangeStatusOneToTwo
 		/* 下一頁 */
 		String msg = null;
 		printInputData(inputOrderId, // 新增20200131_0934
-				select1, input1, input2, inputAddress1, inputAddress2); /* 輸入參數列印 */
+				select1, input1, input2, inputAddress1, inputAddress2,totalPrice,Freight); /* 輸入參數列印 */
 
 		try {
 			/* Order自帶參數-開始 */
@@ -89,7 +90,33 @@ public class ChangeStatusOneToTwo
 			Orders orderX = oService.selectOrder(orderId);
 			companyId = orderX.getCompanyId();
 			userId = orderX.getUserId();
-			amount = Integer.valueOf(totalPrice) + Integer.valueOf(Freight);
+			
+			int intFreight = Integer.valueOf(select1);
+			CartService.printValueTypeTime("intFreight",intFreight);
+			
+			switch (intFreight) {
+			case 1:
+				intFreight = 80;
+				System.out.println("超商運費80");
+				break;
+			case 2:
+				intFreight = 60;
+				System.out.println("超商運費60");
+				break;
+			case 3:
+				intFreight = 0;
+				System.out.println("QR運費0");
+				break;
+			default:
+				intFreight = 0;
+				System.out.println("運費error");
+
+			}
+			CartService.printValueTypeTime("intFreight",intFreight);
+			
+			
+			//amount = Integer.valueOf(totalPrice) + Integer.valueOf(Freight);
+			amount = Integer.valueOf(totalPrice) + intFreight;
 			status = Integer.toString(orderX.getStatus());
 			shippingNumber = orderX.getShippingNumber();
 			printAllData(inputOrderId, createTimeString, select1, input1, input2, address1, address2, companyId, userId,
@@ -100,12 +127,63 @@ public class ChangeStatusOneToTwo
 			/* 寫入資料庫，狀態改變(status 1 > 2，開始) */
 			/* ================================================= */ // 新增20200131_1228
 			orderX = oService.selectOrder(orderId);
-			orderX.setCreateTime(createTime);
+			
+			String tempString ="2020-02-27 11:11:11.777";
+			
+			/*String版本時間，開始*/	
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date dateSource = new Date();
+			String StringDate = sdFormat.format(dateSource);
+			CartService.printValueTypeTime("date.getTime()", dateSource.getTime());
+			CartService.printValueTypeTime("StringDate", StringDate);
+			/*String版本時間，開始結束*/			
+			
+			orderX.setCreateTime(StringDate);
 			orderX.setShipping(Integer.valueOf(select1));
 			orderX.setRecipient(input1);
 			orderX.setPhone(input2);
-			orderX.setAddress1(address1);
-			orderX.setAddress2(address2);
+			
+			
+			/*根據配送方式寫入地址*/	
+			/*shipping 1，shipping 2 超取shipping 3， QR */
+			/*address1宅配，address2超商*/
+			
+			CartService.Pf("判斷前列印");
+			CartService.printValueTypeTime("select1", select1);
+			CartService.printValueTypeTime("shipping", address1);
+			CartService.printValueTypeTime("address1", address1);
+			int flag = 0;
+			if (select1.equals("1")) { /* select1 == "1" 錯誤 */
+				CartService.Pf("宅配");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1(address1);
+				orderX.setAddress2("");
+				flag = 1;
+			}
+			if (select1.equals("2")) {
+				CartService.Pf("超商");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2(address1);
+				flag = 1;
+			}
+			if (select1.equals("3")) {
+				CartService.Pf("QR");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2("");
+				flag = 1;
+			}
+			if(flag == 0)
+			{
+				CartService.Pf("例外狀況");
+				CartService.printValueTypeTime("address1", address1);
+				orderX.setAddress1("");
+				orderX.setAddress2("");
+			}
+			
+			
+			
 //			orderX.setCompanyId(companyId); //FK
 			orderX.setAmount(amount);
 //			orderX.setStatus(2);
@@ -192,14 +270,16 @@ public class ChangeStatusOneToTwo
 	}
 
 	private void printInputData(String inputOrderId, // 新增20200131_0934
-			String select1, String input1, String input2, String address1, String address2) {
+			String select1, String input1, String input2, String address1, String address2 ,String totalPrice ,String Freight) {
 		CartService.Pf0();
 		CartService.Pf2("inputOrderId", inputOrderId); // 新增20200131_0934
 		CartService.Pf2("select1", select1);
 		CartService.Pf2("input1", input1);
 		CartService.Pf2("input2", input2);
 		CartService.Pf2("address1", address1);
-		CartService.Pf2("address2", address2);
+		CartService.Pf2("address2", address2);	
+		CartService.Pf2("totalPrice", totalPrice);
+		CartService.Pf2("Freight", Freight);
 		CartService.Pf0();
 	}
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chat Room</title>
+<title>聊天室</title>
 
 <style type="text/css">
 .mydiv {
@@ -174,7 +174,8 @@ h2 {
 			document.getElementById('text').value = "";
 			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
 		}
-	</script>
+	</script>	
+	
 
 </body>
 </html>

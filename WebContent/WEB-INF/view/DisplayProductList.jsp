@@ -70,7 +70,21 @@
 		-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 		-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
 	}
-
+	
+	.sigmaFontSize20{
+		font-size:20px
+	}
+	
+	.sigmaFontSize12{
+		font-size:12px
+	}
+	.sigmaYellow{
+		color: yellow;
+	}	
+	.sigmaBlack{
+		color: black;
+	}
+	
 	.sigmaBlack{
 		color: black;
 	}
@@ -114,20 +128,22 @@
 	<div class = mydiv>
 	
 		<section >	<!-- level5 -->
-			<table border="1" >
+			<!-- 有框 <table border="1" > -->
+			<table class="sigmaFontSize20">	<!-- 無框 -->
 				<tr>
-					<td class="sigmaTd1">${CompanyName}</td>
-					<td class="sigmaTd1">
+					<td class="sigmaTd1" >${CompanyName}</td>
+					<td class="sigmaTd1">	<!-- 標記 -->
 		                <img 
+		                style="width:100px;height:100px"
 		                src="<c:out value="${myBarX.logoUrl}"
 		                />" />					
 					</td>	<!-- 酒吧logo -->
-					<td class="sigmaTd1">地圖按鈕</td>
-					<td class="sigmaTd1" onclick="displayMenu()">Menu</td>
+					<td class="sigmaTd1"></td>		<!-- 預留放地圖按鈕 -->
+					<td class="sigmaTd1 sigmaYellow" onclick="displayMenu()">Menu</td>
 					<!-- Rosalie Wu的我的最愛按鈕  -->	
 					<td class="sigmaTd1">
 						<button 
-						style="background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" 
+						style="width:50px;height:50px;background-image:url(/Bartenders/images/like_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;" 
 						onclick="location.href = '/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';" 
 						class="bT"> 
 						</button>
@@ -148,17 +164,18 @@
 		
 		
 		<section >	<!-- level5 -->
-			<table border="1">	<!-- level6 -->
+			<!-- 有框 <table border="1">-->
+			<table>	<!-- level6 -->
 				<tr>
-					<td class="sigmaTd6">最新活動</td>	<!-- 最新活動 標題 -->
+					<td class="sigmaTd6 sigmaFontSize20">最新活動</td>	<!-- 最新活動 標題 -->
 				</tr>
 
 					<!-- 事件event，開始 -->
 				<tr>
 					<td>
-						<div id="accordion" class="sigmaTransparent">
+						<div id="accordion" class="sigmaYellow sigmaTransparent">
 							<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">	<!-- 此酒吧的所有事件 -->
-								<h3 class="sigmaTransparent">${listOfEventOfOneBar[current.index].neTitle}</h3>	<!-- event標題 -->
+								<h3 class="sigmaTransparent sigmaYellow" style="color:yellow">${listOfEventOfOneBar[current.index].neTitle}</h3>	<!-- event標題 -->
 									<div class="sigmaTransparent">
 										<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>	<!-- event內文-->
 									</div>
@@ -172,7 +189,8 @@
 		</section>	<!-- level5 -->
 		
 		<section >	<!-- level5 -->
-			<table border="1">	<!-- 跑馬燈(圖片) -->					
+		<!-- 有框 <table border="1">-->
+			<table>	<!-- 跑馬燈(圖片) -->					
 				<tr>
 					<td>
 					<!-- 跑馬燈，開始 -->
@@ -182,7 +200,7 @@
 					            	<!-- "/Bartenders/images/圖片名稱.jpg"-->
 					            	<!-- px不寫，會無效 -->
 					                <img id="slider" 
-					               style="width:600px;height:300px"	
+					               style="width:550px;height:330px"	
 					                src="${myBarX.coverUrl1}">
 					            </figure>
 					        </div>
@@ -221,7 +239,8 @@
 		</section>
 			
 		<section>
-			<table border="1" >
+			<!-- 有框<table border="1" > -->
+			<table>
 				<tr>
 					<td class="sigmaTd6" style="text-align: left">
 						酒吧介紹：<br>
@@ -244,8 +263,15 @@
 			<div>
 				<table>
 					<tbody>
-						<tr align="center">
+						<!--  <tr align="center">-->
 							<c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
+							
+										<!-- 四個換一行 -->
+										<c:if test="${(current.index+1) %3  == '1' }">
+											<tr>
+										</c:if>
+
+
 
 								
 									<!-- 一組 -->
@@ -273,19 +299,17 @@
 															<!--一般的-->
 															<div>
 																<FORM action="<c:url value="/AddProductToCart.controller" />" method="get">
-									
-																	<select class="sigmaBlack" name='qty'>
-																		<option value="1">1</option>
-																		<option value="2">2</option>
-																		<option value="3">3</option>
-																		<option value="4">4</option>
-																		<option value="5">5</option>
-																		<option value="6">6</option>
-																		<option value="7">7</option>
-																		<option value="8">8</option>
-																		<option value="9">9</option>
-																		<option value="10">10</option>
-																	</select> 	
+																	
+																	<!-- 一般，上下式 -->
+																		<input type="number" 
+																		required="required"
+																		style="width:60px"
+																		name="qty" 
+																		value="1" 
+																		max="${listOfProduct[current.index].pdStock}"	
+																		min="1" 	
+																		/>		
+																	<!-- 一般，上下式 -->	
 																	
 																	<Input 	type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
 																	<Input 	type='hidden' name='ProductName'
@@ -312,10 +336,23 @@
 																		action="<c:url value="/AddProductToCart.controller" />"
 																		method="get">
 																
-																<select class="sigmaBlack" name='qty'>
+																<!-- QR，下拉式 -->
+																
+																<!--舊版下拉式-->
+																<!--<select class="sigmaBlack" name='qty'>-->
 																	<!-- QR票券只能買一張 -->
-																	<option value="1">1</option>
-																</select> 
+																	<!--<option value="1">1</option>-->
+																<!--</select> -->
+																
+																		<input type="number" 
+																		required="required"
+																		style="width:60px"
+																		name="qty" 
+																		value="1" 
+																		max="1"	
+																		min="1" 	
+																		/>	
+																
 																<Input 	type='hidden' name='PdId'
 																		value='${listOfProduct[current.index].pdId}'>
 																<Input 	type='hidden' name='ProductName'
@@ -343,17 +380,24 @@
 												${listOfProduct[current.index].pdDetail}
 												</p><br>
 													<!--<a href="<c:url value="/AddToCartButton.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>-->
-													<a href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+													<a class="sigmaYellow" href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
 													<!-- <a href="<c:url value="/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk2</a> -->
 													<!-- <a href="<c:url value="/Bartenders/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk3</a> -->
 													
 											</div>
 										</div>
 									</td>
+
 									<!-- 一組 -->
+									
+									
+										<c:if test="${(current.index+1) %3  == '0' }">
+											</tr>
+										</c:if>
+										<!-- 四個換一行 -->
 
 							</c:forEach>
-						</tr>
+						<!-- </tr>-->
 					</tbody>
 				</table>
 			</div>

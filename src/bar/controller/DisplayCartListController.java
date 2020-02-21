@@ -108,6 +108,7 @@ public class DisplayCartListController {
 			String orderId = oneOrder.getOrderId();	/*取得訂單id*/
 			printI("5");//5
 			Orders order = ordersService.selectOrder(orderId);	/*取得訂單物件*/
+
 			listOfOrders.add(order);	/*訂單物件加到 list中*/
 			
 			List<Cart> oneOrderCartsList = cartService.select(orderId);	/*用orderId取得cart list*/
@@ -176,8 +177,9 @@ public class DisplayCartListController {
 		
 		
 		
-		//return "DisplayCartList";	/*舊版使用單層foreach*/
+		
 		return "DisplayCartList";	/*試製雙層foreach*/
+		//return "DisplayCartListPrototype";
 
 	}
 	

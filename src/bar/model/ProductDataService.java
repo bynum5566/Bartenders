@@ -31,9 +31,10 @@ public class ProductDataService {
 		this.pdao = pdao;
 		this.proD = proD;
 	}
-	
+
 	public void addNewProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3, String Time) {
+			String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3,
+			String Time) {
 		try {
 			String pUrl1 = "";
 			if (productImageUrl.length() != 0) {
@@ -65,14 +66,6 @@ public class ProductDataService {
 				autoPullTime = null;
 			}
 
-			String pdAvailable = "";
-			boolean St = checkTime(autoLaunchTime);
-			if (St) {
-				pdAvailable = "Launched";
-			} else {
-				pdAvailable = "Pulled";
-			}
-
 			int pdSoldQuantity = 0;
 			String pdSoldOut = "";
 
@@ -82,7 +75,6 @@ public class ProductDataService {
 			proD.setPdId(pdId);
 			proD.setAutoLaunchTime(autoLaunchTime);
 			proD.setAutoPullTime(autoPullTime);
-			proD.setPdAvailable(pdAvailable);
 			proD.setPdSoldQuantity(pdSoldQuantity);
 			proD.setCompanyId(companyId);
 			proD.setProductName(productName);
@@ -102,7 +94,8 @@ public class ProductDataService {
 	}
 
 	public void addNewTKProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1,
-			String pdTag2, String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3, String TkTime, String Time) {
+			String pdTag2, String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2,
+			String productImageUrl3, String TkTime, String Time) {
 		try {
 			String pUrl1 = "";
 			if (productImageUrl.length() != 0) {
@@ -138,14 +131,6 @@ public class ProductDataService {
 				autoPullTime = null;
 			}
 
-			String pdAvailable = "";
-			boolean St = checkTime(autoLaunchTime);
-			if (St) {
-				pdAvailable = "Launched";
-			} else {
-				pdAvailable = "Pulled";
-			}
-
 			int pdSoldQuantity = 0;
 			String pdSoldOut = "";
 
@@ -155,7 +140,6 @@ public class ProductDataService {
 			proD.setPdId(pdId);
 			proD.setAutoLaunchTime(autoLaunchTime);
 			proD.setAutoPullTime(autoPullTime);
-			proD.setPdAvailable(pdAvailable);
 			proD.setPdSoldQuantity(pdSoldQuantity);
 			proD.setValidDate(validDate);
 			proD.setExpiryDate(expiryDate);
@@ -206,15 +190,17 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
-					+ "<a href=\"/Bartenders/Product.View?pdId="
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>"
-					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
-					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
-					+ "</div></td>" + "<form action=\"/Bartenders/Product.EditPDL\" method=\"GET\"><td class=\"RSide\">"
+					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
+					+ "<form action=\"/Bartenders/Product.EditPDL\" method=\"GET\"><td class=\"RSide\">"
 					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"編輯\"  class=\"bT2\"></td></form></tr>";
+					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
+					+ "<a href=\"/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
+					+ "</td></form></tr>";
 		}
 		return Launched;
 	}
@@ -230,15 +216,17 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
-					+ "<a href=\"/Bartenders/Product.View?pdId="
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>"
-					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
-					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
-					+ "</div></td>" + "<form action=\"/Bartenders/Product.EditPDP\" method=\"GET\"><td class=\"RSide\">"
+					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
+					+ "<form action=\"/Bartenders/Product.EditPDP\" method=\"GET\"><td class=\"RSide\">"
 					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"編輯\"  class=\"bT2\"><a></td></form></tr>";
+					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
+					+ "<a href=\"/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
+					+ "</td></form></tr>";
 		}
 		return Pulled;
 	}
@@ -254,16 +242,17 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
-					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>"
-					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
-					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
-					+ "</div></td>"
+					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
 					+ "<form action=\"/Bartenders/Product.EditTkPDL\" method=\"GET\"><td class=\"RSide\">"
 					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"編輯\"  class=\"bT2\"></td></form></tr>";
+					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
+					+ "<a href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
+					+ "</td></form></tr>";
 		}
 		return Launched;
 	}
@@ -279,26 +268,26 @@ public class ProductDataService {
 					+ "\" readonly=\"readonly\"/>"
 					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
-					+ "<a href=\"/Bartenders/ProductTicket.View?pdId="
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>"
-					+ "</div></td><td class=\"MidS2\">" + "<div name=\"pdPri1\">價格<br>" + product.getPdPrice()
-					+ "</div></td><td class=\"MidS3\">" + "<div name=\"pdStk1\">數量<br>" + product.getPdStock()
-					+ "</div></td>"
+					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
 					+ "<form action=\"/Bartenders/Product.EditTkPDP\" method=\"GET\"><td class=\"RSide\">"
 					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"編輯\"  class=\"bT2\"><a></td></form></tr>";
+					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png)no-repeat top left;\"  class=\"bT3\"><br>"
+					+ "<a href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
+					+ "</td></form></tr>";
 		}
 		return Pulled;
 	}
-	
-	
+
 	public String searchResult(String keyword) {
 		String res = "";
 		int x = 0;
 		List<ProductData> products = pdao.searchPds(keyword);
-		if(products.size()==0) {
+		if (products.size() == 0) {
 			res = "<tr><td><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></td></tr>";
 			return res;
 		}
@@ -384,7 +373,8 @@ public class ProductDataService {
 	}
 
 	public void editPd(String pdId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String autoLaunchTime, String autoPullTime) {
+			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String autoLaunchTime,
+			String autoPullTime) {
 		try {
 			String productImageUrl = "";
 			if (Url.length() != 0) {
@@ -399,11 +389,8 @@ public class ProductDataService {
 				productImageUrl3 = Url3;
 			}
 
-//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//			Date date = new Date();
-//			String strDate = sdFormat.format(date);
-
-			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl, productImageUrl2, productImageUrl3);
+			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl,
+					productImageUrl2, productImageUrl3);
 
 			if (autoLaunchTime != null && autoLaunchTime.length() != 0) {
 				if (autoPullTime != null && autoPullTime.length() != 0) {
@@ -422,8 +409,8 @@ public class ProductDataService {
 	}
 
 	public void editTKPd(String pdId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
-			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String validDate, String expiryDate, String autoLaunchTime,
-			String autoPullTime) {
+			String pdTag3, String pdDetail, String Url, String Url2, String Url3, String validDate, String expiryDate,
+			String autoLaunchTime, String autoPullTime) {
 		try {
 			String productImageUrl = "";
 			if (Url.length() != 0) {
@@ -438,11 +425,8 @@ public class ProductDataService {
 				productImageUrl3 = Url3;
 			}
 
-//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//			Date date = new Date();
-//			String strDate = sdFormat.format(date);
-
-			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl, productImageUrl2, productImageUrl3);
+			pdao.edit(pdId, productName, pdTag1, pdTag2, pdTag3, pdStock, pdPrice, pdDetail, productImageUrl,
+					productImageUrl2, productImageUrl3);
 
 			if (validDate != null && validDate.length() != 0) {
 				if (expiryDate != null && expiryDate.length() != 0) {
@@ -472,12 +456,16 @@ public class ProductDataService {
 		}
 	}
 
+	public void removeProduct(String pdId) {
+		pdao.removePd(pdId);
+	}
+	
+	
+	
 ////////////////////////////////////////////////////////	
+	
 	public ProductData select(String pdId) {// 豪
 		return pdao.selectP(pdId);
 	}
-	// public ProductData selectProductVer2(String pdId) {//豪
-	// ProductData pData = pdao.selectProductVer2(pdId);
-	// return pData;
-	// }
+
 }

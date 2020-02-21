@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chat Room</title>
+<title>聊天室</title>
 
 <style type="text/css">
 .mydiv {
@@ -125,56 +125,53 @@ h2 {
 	</div>
 
 
-	<script type="text/javascript">
+ 	<script type="text/javascript"> 
 		var websocket = null;
 
-		if ('WebSocket' in window) {
-			websocket = new WebSocket(
+ 		if ('WebSocket' in window) {
+ 			websocket = new WebSocket(
 					"ws://localhost:8080/Bartenders/websocketTest");
-		} else {
-			alert('當前瀏覽器不支持 websocket，請換瀏覽器開啟本網站')
+ 		} else {
+ 			alert('當前瀏覽器不支持 websocket，請換瀏覽器開啟本網站')
 		}
 
-		websocket.onmessage = function(event) {
-			debugger
+ 		websocket.onmessage = function(event) {
+ 			debugger
 			var messageJson = eval("(" + event.data + ")");
 			if (messageJson.messageType === "message") {
-				setMessageInnerHTML(messageJson.data);
-			}
+ 				setMessageInnerHTML(messageJson.data);
+ 			}
 			if (messageJson.messageType === "onlineCount") {
-				document.getElementById('onlineCount').innerHTML = messageJson.data;
+ 				document.getElementById('onlineCount').innerHTML = messageJson.data;
 				document.getElementById('onlineUser').innerHTML = '';
-			}
+		}
 
 			if (messageJson.messageType === "onlineUser") {
+<<<<<<< HEAD
 // 				alert(messageJson.data);
 				document.getElementById('onlineUser').innerHTML +=
 					'<div id="targetName">'+ messageJson.data + '</div>';
+=======
+ // 				alert(messageJson.data);
+				document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
+ 						+ messageJson.data + '</div>';
+>>>>>>> 7bbe020c95e75be44d5038b45391c68d0d0c78c7
 			}
 
 		}
 
-		window.onbeforeunload = function() {
-			closeWebSocket();
-			signOut();
-		}
-
 		function setMessageInnerHTML(innerHTML) {
-			document.getElementById('message').innerHTML += innerHTML + '<br/>';
-		}
-
-		function closeWebSocket() {
-			websocket.close();
+ 			document.getElementById('message').innerHTML += innerHTML + '<br/>';
 		}
 
 		function send() {
-			var message = document.getElementById('text').value;
-			var username = document.getElementById('username').value;
-			websocket.send(username + "@" + message);
+		var message = document.getElementById('text').value;
+ 			var username = document.getElementById('username').value;
+ 			websocket.send(username + "@" + message);
 			document.getElementById('text').value = "";
-			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
-		}
-	</script>
+ 			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
+ 		}
+	</script> 
 
 </body>
 </html>

@@ -15,22 +15,20 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
-<title>User Page</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
+<title>Bartenders</title>
 
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
 	;
 
-@font-face {
-	font-family: 111.otf;
-	src: url("/Bartenders/images/TaipeiSansTCBeta-Regular.ttf");
-}
-
 * {
 	outline: none;
 	top: 0px;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 strong {
@@ -59,7 +57,7 @@ header {
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	color: #CCBBFF;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 main {
@@ -212,7 +210,7 @@ main small {
 	font-size: 16px;
 	font-weight: 400;
 	color: #888;
-	font-family: 111.otf;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 .small a+a {
@@ -357,7 +355,7 @@ input[type=text]:focus {
 
 <body>
 
-	<header tabindex="0">Welcome back. Let's get legless.</header>
+	<header tabindex="0">Welcome back! Let's get legless!</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">
@@ -367,7 +365,8 @@ input[type=text]:focus {
 		<div id="nav-content" tabindex="0">
 			<ul>
 				<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
-				<li><a href=<c:url value="/DisplayBarList.controller"/>>精選酒吧</a></li>
+				<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+				<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 				<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 				<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 				<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
@@ -386,7 +385,7 @@ input[type=text]:focus {
 				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
 			</h2>
 			<h2 class="ml9" align="center">
-				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName},今天想喝甚麼呢?</span>
+				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
 				</span>
 			</h2>
 			<br>
@@ -401,8 +400,10 @@ input[type=text]:focus {
 							<form action="/Bartenders/search.Bar" method="GET">
 								<table class="searchbar">
 									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45" name="KWord" id="sBar"></td>
-										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+										<td class="searchbar"><input type="text" size="45"
+											name="KWord" id="sBar"></td>
+										<td class="searchbar sb"><input class="css_button"
+											type="submit" value="Search" /></td>
 									</tr>
 								</table>
 							</form>
@@ -413,8 +414,10 @@ input[type=text]:focus {
 							<form action="/Bartenders/search.Product" method="GET">
 								<table class="searchbar">
 									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45" name="keyword" id="sAlc"></td>
-										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+										<td class="searchbar"><input type="text" size="45"
+											name="keyword" id="sAlc"></td>
+										<td class="searchbar sb"><input class="css_button"
+											type="submit" value="Search" /></td>
 									</tr>
 								</table>
 							</form>
@@ -469,6 +472,9 @@ anime.timeline({loop: true})
     delay: 1000
   });
 </script>
+
+	<!-- 聊天通知 -->
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 
 </body>
 </html>
