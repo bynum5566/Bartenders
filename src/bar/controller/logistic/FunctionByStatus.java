@@ -36,25 +36,20 @@ public class FunctionByStatus {
 		
 	}
 	
-	@RequestMapping(path = "/testLogistic.do",method = RequestMethod.GET)
-	public String testLogistic() throws IOException {
-		String id = "1000001581943454337";
-		int type = 1;
-		String phone = "0921228145";
-		String name = "林靖";
-		int amount = 650;
-		String address = "住家";
-		lService.createLogistic( id, type, phone, name, amount, address);
-
-		return "logistic/LogisticGate";
+	@RequestMapping(path = "/logistic/searchPersonalOrder.do",method = RequestMethod.GET)
+	public String searchPersonalOrder(@RequestParam(name = "sID")String sID,Model m) throws IOException {
+		List<Logistic> rs = lService.queryBysID(sID);
+			m.addAttribute("logistic",rs);
+		return "logistic/searchOrder";
 	}
 	
-	@RequestMapping(path = "/createLogistic.do",method = RequestMethod.GET)
-	public String createLogistic() throws IOException {
-		Orders rs = oService.selectOrder("1000001581303140715");
+	@RequestMapping(path = "/logistic/createLogistic.do",method = RequestMethod.POST)
+	public String createLogistic(@RequestParam(name = "orderId")String orderId) throws IOException {
+		Orders rs = oService.selectOrder(orderId);
 		System.out.println(rs);
 		if(rs.getStatus()==3) {
-			String id = rs.getOrderId();
+			String oID = rs.getOrderId();
+			Integer cID = rs.getCompanyId();
 			int type = rs.getShipping();
 			String phone = rs.getPhone();
 			String name = rs.getRecipient();
@@ -65,11 +60,11 @@ public class FunctionByStatus {
 			}else if(type==2) {
 				address = rs.getAddress2();
 			}
-			lService.createLogistic(id, type, phone, name, amount, address);
-			System.out.println("create Logistic done");
+			lService.createLogistic(oID, cID.toString(), type, phone, name, amount, address);
+			System.out.println("test Logistic order created");
 		}
 		
-		return "UserOrder";
+		return "logistic/LogisticGate";
 	}
 	
 	@RequestMapping(path = "/logistic/queryByStatus.do",method = RequestMethod.GET)

@@ -29,6 +29,23 @@ public class ActivityDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public Activity uniqueQuery(String param,Object obj) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		String Param = param+"=:"+param;
+		String hqlStr = "from Activity where "+Param;
+		System.out.println("hqlStr:"+hqlStr);
+		Query query = session.createQuery(hqlStr);
+		query.setParameter(param, obj);
+		Activity rs = (Activity)query.uniqueResult();
+		System.out.println("unique result: "+rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+
 	public List<Activity> simpleQuery(String condition) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
@@ -98,7 +115,7 @@ public class ActivityDAO {
 	
 	
 	
-	public Activity saveActivity(Activity a,String userId, String name, String address, float lat, float lng, String type,
+	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
 			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
 		try {
 		Session session = sessionFactory.getCurrentSession();

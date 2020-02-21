@@ -28,16 +28,12 @@ public class LogisticService {
 		return lDao.queryAll();
 	}
 	
-//	public Logistic ChangeStatus(Integer Status,Integer ID) {
-//		return lDao.ChangeStatus(Status,ID);
-//	}
-//	
-//	public Logistic ChangeType(String type,Integer ID) {
-//		return lDao.ChangeType(type,ID);
-//	}
+	public List<Logistic> queryBysID(String sID) {
+		return lDao.queryBysID(sID);
+	}
 	
-	public String createLogistic(String id,int type,String phone,String name,int amount,String address) {
-		return lDao.createLogistic(id,type, phone, name, amount, address);
+	public String createLogistic(String oID,String cID,Integer type,String phone,String name,Integer amount,String address) {
+		return lDao.createLogistic(oID,cID,type, phone, name, amount, address);
 	}
 	
 	public Logistic deliverReady(String id) {

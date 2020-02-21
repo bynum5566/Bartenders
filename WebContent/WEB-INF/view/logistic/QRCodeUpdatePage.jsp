@@ -36,6 +36,8 @@ if(url.indexOf('?')!=-1)
 {
   var orderID = "";
   var orderStatus = "";
+  var sID = ${sender.senderId};
+	console.log('senderId is: ',sID);
   //在此直接將各自的參數資料切割放進ary中
   var ary = url.split('?')[1].split('&');
   console.log(ary);
@@ -50,7 +52,7 @@ if(url.indexOf('?')!=-1)
           console.log(orderStatus);
           if(orderID!=""&&orderStatus!=""){
         	  if(confirm("確實執行嗎?")){
-          		window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
+          		window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus+'&sID=' + sID;
           		
           	  }
           		else{

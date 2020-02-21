@@ -89,7 +89,8 @@ font-size:20px;
 				<td>
 					<button id="Marker" class="setting">設定酒吧地點</button>
 					<button id="Show" class="setting">舉辦活動</button>
-					<button id="Manage" class="setting">管理活動</button>
+					<button id="Search" class="setting">活動頁面</button>
+					<button class="return">回上一頁</button>
 				</td>
 			</tr>
 		</table>
@@ -129,14 +130,18 @@ font-size:20px;
 		$(".setting").on("click", function() {
 			var type = this.id;
 			
-			if(type=='Manage'){
-				window.location.href = '<c:url value="/queryActivityByUser.do"/>?userId=${finalText}';
+			if(type=='Search'){
+				window.location.href = '<c:url value="/queryAllActive.do"/>';
 			}else{
 				window.location.href = '<c:url value="/create'+type+'"/>';
 			}
 			
 		})
 		
+		//回上頁
+		$(".return").on("click", function() {
+			window.location.href = '<c:url value="/WelcomeCompany"/>';
+		})
 
 	</script>
 	</body>

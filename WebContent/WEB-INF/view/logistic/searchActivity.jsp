@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CreateActivity</title>
+<title>活動大廳</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
@@ -51,39 +51,34 @@ fieldset {
 	position: relative;
 	left: 50%;
 	float:left;
+	border:1px grey solid;
+	height:600px;
 }
 
 .img{
-width:350px;
-height:350px;
+width:100px;
+height:100px;
 border:lightgrey 1px solid;
-/*float:left;*/
+float:left;
 }
 
 .imgType {
 float:right;
 }
 
-.ActivityName{
+.name{
 color:orange;
 font-weight:bold;
 font-size:24px;
-border:lightgrey 1px solid;
+
 margin: 10px 10px 0px 10px;
-/*float:left;*/
-width:300px;
+float:left;
+width:120px;
 height:26px;
 
 overflow:hidden;/*超出的文本隐藏*/
 text-overflow:ellipsis;/*溢出用省略号显示*/
 white-space:nowrap;/*溢出不换行*/
-}
-.ActivityDate{
-margin: 0px;
-}
-
-.singleDate{
-display:inline-block;
 }
 
 .brief{
@@ -135,38 +130,38 @@ padding:5px;
 var number = 0;
 </script>
 <body >
-	<h1 align=center>管理活動</h1>
+	<h1 align=center>活動大廳</h1>
 	<div align=center>
 		<table>
 			<tr>
 				<td>
 					<button id="search" class="mapType">地圖搜尋</button>
-					<button class="return">返回活動大廳</button>
-					
+					<button id="manage" class="mapType">活動管理</button>
+					<button class="return">回上一頁</button>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<button id="1000" class="activity">查詢1000</button>
-					<button id="1001" class="activity">查詢1001</button>
-					<button id="1002" class="activity">查詢1002</button>
+					<button id="1000" class="activity">依類別搜尋</button>
+					<button id="1001" class="activity">依時間搜尋</button>
+					<button id="1002" class="activity">依人數搜尋</button>
 				</td>
 			</tr>
 		</table>
 	</div>
+	<input id="inputBox" type="text" value="<c:out value="${jQueryId}"/>" >
 	<section class="container">
 	<div class="float_center">
 	<c:forEach var="Activity" items="${activity}" varStatus="status">
 	<div class="each" id="${Activity.activityId}" >
-			<fieldset style="width: 350px" >
+		
+			<fieldset style="width: 350px;height:400px;" >
 				<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
 					<img class="img" alt="未選擇圖片" style="margin: 5px"  src="images/${Activity.img}" >
 					<img class="imgType" alt="未設定類型" title="${Activity.type}" src="images/beer.png" >
-					<div class="ActivityName" >${Activity.name}</div>
-					<div id="date${Activity.activityId}" class="ActivityDate" align=left >
-						<p id="changeFormat${status.index}"></p>
-					
-					</div>
+					<div class="name" >${Activity.name}</div>
+					<br>
+					<p id="date${Activity.activityId}" class="date" align=left style="margin: 10px;"></p>
 					<p align=left style="margin: 10px">${Activity.address}</p><button id="Bhidden${status.index}" type="button" >確認地圖</button>
 						<div class="showEachMap">
 							<div id="hidden${status.index}" class="hideMap" >
@@ -209,7 +204,6 @@ var number = 0;
 							
 
 					<script>
-					
 					//計算地圖個數
 					number++;
 					//個別地圖展開
@@ -244,20 +238,15 @@ var number = 0;
 					function hideTargetMap(target){
 						document.getElementById(target).style.display="none";
 					};
-					
+					//轉換時間格式
+					var beginT = '${Activity.beginTime}';
+					var endT = '${Activity.endTime}';
+					bT = beginT.split(' ');
+					eT = endT.split(' ');
+					document.getElementById('date${Activity.activityId}').innerHTML = '<br>'+bT[0]+'<br>'+bT[1]+' ~ '+eT[1] ;
 					//判斷EL是否為null
 					var people = document.getElementById('people${status.index}');
-					
-					//轉換時間格式
-					var beginD = '${Activity.beginTime}';
-					var endD = '${Activity.endTime}';
-					var exp = 'hello';
-					var bT = beginD.split(' ');//bT[0]開始的年月日2020/02/20 bT[1]開始的時分15:26
-					var eT = endD.split(' ');//eT[0]開始的年月日2020/02/20 eT[1]開始的時分15:26
-					console.log('bT[0] is: ',bT[0]);
-					var changeFormat = document.getElementById('changeFormat${status.index}');
-					console.log('item is: '+changeFormat);
-					changeFormat.value = bT[0]+' '+bT[1]+' ~ '+eT[0].substring(5)+' '+eT[1];
+				
 					</script>
 				
 			</fieldset>
@@ -270,15 +259,12 @@ var number = 0;
 	
 	<script>
 	
-	console.log('接收到的activity: ','${activity}');
-	var preUrl = "${preUrl}";
-	console.log(preUrl);
-	
 	//測試是否可以接收到登入參數
 	var user = '${getUserId}';
 	console.log('userId is: ','${getUserId}');
 	var company = '${getCompanyId}';
 	console.log('companyId is: ','${getCompanyId}');
+	console.log('preUrl=','${preUrl}');
 	var searchId;
 	<c:if test='${empty getUserId}'>
 	searchId = '${getCompanyId}';
@@ -292,10 +278,6 @@ var number = 0;
 	//個別搜尋
 	$(".activity").on("click",function() {
 		var activityId = this.id
-		/*
-		console.log('click');
-		reloadMarkers(userId);
-		*/
 		window.location.href = '<c:url value="/queryActivityByActivityId.do"/>?activityId='+ activityId;
 		})
 	//我想參加
@@ -303,28 +285,25 @@ var number = 0;
 		var activityId = this.id
 		window.location.href = '<c:url value="/closeActivity.do"/>?userId='+ userId + '&activityId=' + activityId;
 		})
-	//關閉活動
-	$(".close").on("click",function() {
-		var Str = this.id
-		var activityId = Str.substring(1,5);
-		var userId = Str.substring(5);
-		window.location.href = '<c:url value="/closeActivity.do"/>?userId='+ userId + '&activityId=' + activityId;
-		})
 	//地圖搜尋
 	$("#search").on("click",function() {
 		window.location.href = '<c:url value="/searchMarker"/>';
 		})
-	//編輯
-	$(".edit").on("click",function() {
-		var Str = this.id
-		var array = Str.split("-")
-		
-		window.location.href = '<c:url value="/editActivity.do"/>?activityId=' + array[1];
+	//活動管理
+	$("#manage").on("click",function() {
+		window.location.href = '<c:url value="/queryActivityByUser.do"/>?userId='+searchId;
 		})
-		
-		listButton = $('button[id^="O"][class*="visible"]');
-		listButton.attr("style", "display:block;");
-		
+	
+	$(".setting").on("click", function() {
+			var type = this.id;
+			
+			if(type=='Search'){
+				window.location.href = '<c:url value="/queryAllActive.do"/>';
+			}else{
+				window.location.href = '<c:url value="/create'+type+'"/>';
+			}
+			
+		})
 	//以下用於彈出視窗
 	var baseText = null;
 
@@ -352,7 +331,7 @@ var number = 0;
 	};
 	//回上頁
 	$(".return").on("click", function() {
-		window.location.href = '<c:url value="/searchActivity"/>';
+		window.location.href = '<c:url value="/ManageBar"/>';
 	})
 	/*
 	$('#showMap').on('click',function(){

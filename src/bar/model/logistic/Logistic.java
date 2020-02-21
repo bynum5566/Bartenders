@@ -13,19 +13,23 @@ import javax.persistence.Table;
 @Table(name = "logistic")
 public class Logistic {
 	
-	private int oNo;
+	private Integer oNo;
 	private String oID;
 	private String lID;
-	private int oType;
+	private String cID;
+	private String sID;
+	private Integer oType;
 	private String oAddr;
 	private String oName;
 	private String oPhone;
-	private int oAmount;
-	private int oStatus;
+	private Integer oAmount;
+	private Integer oStatus;
 	private String oTimeA;//訂單成立時間
 	private String oTimeB;//訂單收貨時間
 	private String oTimeC;//訂單送達時間
 	private Integer oComplete;
+	private Integer charge;
+	private Integer cost;
 	
 	public Logistic() {
 		
@@ -38,11 +42,11 @@ public class Logistic {
 	@Id
 	@Column(name="oNO")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getoNo() {
+	public Integer getoNo() {
 		return oNo;
 	}
 
-	public void setoNo(int oNo) {
+	public void setoNo(Integer oNo) {
 		this.oNo = oNo;
 	}
 	
@@ -64,12 +68,31 @@ public class Logistic {
 	public void setlID(String lID) {
 		this.lID = lID;
 	}
+	
+	@Column(name="cID")
+	public String getcID() {
+		return cID;
+	}
+
+	public void setcID(String cID) {
+		this.cID = cID;
+	}
+	@Column(name="sID")
+	public String getsID() {
+		return sID;
+	}
+
+	public void setsID(String sID) {
+		this.sID = sID;
+	}
+	
+	
 	@Column(name="oType")
-	public int getoType() {
+	public Integer getoType() {
 		return oType;
 	}
 
-	public void setoType(int oType) {
+	public void setoType(Integer oType) {
 		this.oType = oType;
 	}
 	@Column(name="oAddr")
@@ -97,19 +120,19 @@ public class Logistic {
 		this.oPhone = oPhone;
 	}
 	@Column(name="oAmount")
-	public int getoAmount() {
+	public Integer getoAmount() {
 		return oAmount;
 	}
 
-	public void setoAmount(int oAmount) {
+	public void setoAmount(Integer oAmount) {
 		this.oAmount = oAmount;
 	}
 	@Column(name="oStatus")
-	public int getoStatus() {
+	public Integer getoStatus() {
 		return oStatus;
 	}
 
-	public void setoStatus(int oStatus) {
+	public void setoStatus(Integer oStatus) {
 		this.oStatus = oStatus;
 	}
 
@@ -147,6 +170,22 @@ public class Logistic {
 
 	public void setoComplete(Integer oComplete) {
 		this.oComplete = oComplete;
+	}
+	@Column(name="charge")
+	public Integer getCharge() {
+		return charge;
+	}
+
+	public void setCharge(Integer charge) {
+		this.charge = charge;
+	}
+	@Column(name="cost")
+	public Integer getCost() {
+		return cost;
+	}
+	
+	public void setCost(Integer cost) {
+		this.cost = cost;
 	}
 	
 	

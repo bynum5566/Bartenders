@@ -1,5 +1,7 @@
 package bar.model.logistic;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ public class ActivityService {
 		System.out.println("searching condition: "+condition);
 		List<Activity> first = aDao.simpleQuery(condition);
 		return first;
+	}
+	
+	public Activity uniqueQuery(String Param,Object obj) {
+		Activity unique = aDao.uniqueQuery(Param, obj);
+		return unique;
 	}
 	
 	//addJoin(activityId,1002,1) 10/7 +4 10/11
@@ -48,7 +55,7 @@ public class ActivityService {
 	}
 	
 	
-	public Activity saveActivity(Activity a,String userId, String name, String address, float lat, float lng, String type,
+	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
 			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
 		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief, beginTime, endTime, targetNum, actualNum);
 	}
@@ -62,6 +69,24 @@ public class ActivityService {
 		System.out.println("searching condition: "+condition);
 		List<Activity> all = aDao.simpleQuery(condition);
 		return all;
+	}
+	
+	public static boolean DateIncluding(Date targetTime, Date startTime, Date endTime) {
+	    if (targetTime.getTime() == startTime.getTime()
+	            || targetTime.getTime() == endTime.getTime()) {
+	        return true;
+	    }
+	    Calendar date = Calendar.getInstance();
+	    date.setTime(targetTime);
+	    Calendar begin = Calendar.getInstance();
+	    begin.setTime(startTime);
+	    Calendar end = Calendar.getInstance();
+	    end.setTime(endTime);
+	    if (date.after(begin) && date.before(end)) {
+	        return true;
+	    } else {
+	        return false;
+	    }
 	}
 
 }

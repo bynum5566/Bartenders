@@ -25,13 +25,15 @@
 			tempMarkList.push(tempMark);
 		};
 		
-		async function autoLocating(){
+		async 
+		function autoLocating(){
 			
 			if (navigator.geolocation) {
 				for(var i=0;i<tempMarkList.length;i++){
 					tempMarkList[i].setMap(null);
 				};
-				await navigator.geolocation.getCurrentPosition(function(position) {
+				await 
+				navigator.geolocation.getCurrentPosition(function(position) {
 	                var pos = {
 	                    lat: position.coords.latitude,
 	                    lng: position.coords.longitude
@@ -45,11 +47,11 @@
 	                    map: map
 	                });
 	                tempMarkList.push(tempMark);
-	            })
+	            });
 	        } else {
 	            alert("未允許或遭遇錯誤！");
-	        };
-		};
+	        }
+		}
 		
 		function reloadMarkers(prefix,input) {
 		    for (var i=0; i<markers.length; i++) {
@@ -109,40 +111,8 @@
 					marker.addListener('click', function() {
 						infowindow.setContent(contentString);
 						infowindow.open(map, marker);
+						console.log('hello');
 					});
-					}else if(prefix=='ActivityUserId'||prefix=='ActivityType'||prefix=='ActivityActivityId'||prefix=='ActivityDate'||prefix=='ActivityJoker'){
-						var id = item.activityId;
-						var name = item.name;
-						var address = item.address;
-						var lat = item.lat;
-						var lng = item.lng;
-						var type = item.type;
-						
-						var img = item.img;
-						console.log('this is img: ', img);
-						var brief = item.brief;
-						var point = new google.maps.LatLng(lat, lng);
-						//建立個別marker
-						var marker = new google.maps.Marker({
-							map : map,
-							position : point,
-							icon: 'images/'+type+'.jpg'
-						});
-						
-						markers.push(marker);
-						//建立個別window
-						var contentString = 	'<div id="idiv">'+
-						'<h3 id="ih3" style="margin:10px 10px 0px 10px;display: inline-block">'+name+'</h3>'+
-						'<p id="ip" align="right" style="color:red;margin:10px 20px 10px 70px;display: inline">'+type+'</p>'+
-						'<p style="margin:5px">'+address+'</p>'+
-						'<img src="images/'+img+'">'+
-						'<p style="margin:5px">'+brief+'</p>'
-						'</div>';
-						
-						marker.addListener('click', function() {
-							infowindow.setContent(contentString);
-							infowindow.open(map, marker);
-						});
 					}//if結尾
 				})	
 			});

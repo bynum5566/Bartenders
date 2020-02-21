@@ -130,64 +130,73 @@ return "SubMessageBoard";
 	public String showSalesReportByExcel() {
 		return "SalesReportByExcel";
 	}
-	////////////////////----以下是物流----/////////////////////////////
-	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
-	public String logistic() {
-		return "logistic/loginSystem";
-	}
-	
-	@RequestMapping(path = "/logistic/loginSuccess", method = RequestMethod.GET)
-	public String loginSuccess() {
+////////////////////----以下是物流----/////////////////////////////
+@RequestMapping(path = "/logistic", method = RequestMethod.GET)
+public String logistic() {
+return "logistic/loginSystem";
+}
 
-		return "logistic/loginSuccess";
-	}
-	
-	@RequestMapping(path = "/logistic/LogisticGate", method = RequestMethod.GET)
-	public String LogisticGate() {
-		return "logistic/LogisticGate";
-	}
-	
-	@RequestMapping(path = "/logistic/QRCodeUpdatePage", method = RequestMethod.GET)
-	public String QRCodeUpdatePage() {
-		return "logistic/QRCodeUpdatePage";
-	}
+@RequestMapping(path = "/logistic/loginSuccess", method = RequestMethod.GET)
+public String loginSuccess() {
 
-	@RequestMapping(path = "/ManageBar", method = RequestMethod.GET)
-	public String LogisticOrder() {
-		return "logistic/ManageBar";
-	}
-	
-	@RequestMapping(path = "/ManageActivity", method = RequestMethod.GET)
-	public String ManageActivity() {
-		System.out.println("redirect to ManageActivity");
-		return "logistic/ManageActivity";
-	}
-	
-	@RequestMapping(path = "/createMarker", method = RequestMethod.GET)
-	public String createMarkerPage() {
-		return "logistic/createMarker";
-	}
-	
-	@RequestMapping(path = "/createActivity", method = RequestMethod.GET)
-	public String createActivityPage() {
-		return "logistic/createActivity";
-	}
-	
-	@RequestMapping(path = "/createShow", method = RequestMethod.GET)
-	public String createShow() {
-		return "logistic/createShow";
-	}
-	
-	@RequestMapping(path = "/editActivity", method = RequestMethod.GET)
-	public String editActivity() {
-		return "logistic/editActivity";
-	}
-	
-	@RequestMapping(path = "/searchMarker", method = RequestMethod.GET)
-	public String searchMarker() {
-		return "logistic/searchMarker";
-	}
-	
+return "logistic/loginSuccess";
+}
+
+@RequestMapping(path = "/logistic/LogisticGate", method = RequestMethod.GET)
+public String LogisticGate() {
+return "logistic/LogisticGate";
+}
+
+@RequestMapping(path = "/logistic/QRCodeUpdatePage", method = RequestMethod.GET)
+public String QRCodeUpdatePage() {
+return "logistic/QRCodeUpdatePage";
+}
+
+@RequestMapping(path = "/ManageBar", method = RequestMethod.GET)
+public String LogisticOrder() {
+return "logistic/ManageBar";
+}
+
+@RequestMapping(path = "/ManageActivity", method = RequestMethod.GET)
+public String ManageActivity() {
+System.out.println("redirect to ManageActivity");
+return "logistic/ManageActivity";
+}
+
+@RequestMapping(path = "/createMarker", method = RequestMethod.GET)
+public String createMarkerPage() {
+return "logistic/createMarker";
+}
+
+@RequestMapping(path = "/createActivity", method = RequestMethod.GET)
+public String createActivityPage() {
+return "logistic/createActivity";
+}
+
+@RequestMapping(path = "/createShow", method = RequestMethod.GET)
+public String createShow() {
+return "logistic/createShow";
+}
+
+@RequestMapping(path = "/editActivity", method = RequestMethod.GET)
+public String editActivity() {
+return "logistic/editActivity";
+}
+
+@RequestMapping(path = "/searchMarker", method = RequestMethod.GET)
+public String searchMarker() {
+return "logistic/searchMarker";
+}
+
+@RequestMapping(path = "/searchOrder", method = RequestMethod.GET)
+public String searchOrder() {
+return "logistic/searchOrder";
+}
+
+@RequestMapping(path = "/searchActivity", method = RequestMethod.GET)
+public String searchActivity() {
+return "logistic/searchActivity";
+}
 	//////////
 //	@RequestMapping(path = "/room.chat", method = RequestMethod.GET)
 //	public String ChatRoom() {

@@ -46,7 +46,7 @@ public class QRCodeDAO {
 		this.oService = oService;
 	}
 
-	public Logistic QRCodeAction(String ID, Integer status) {
+	public Logistic QRCodeAction(String ID, Integer status, String sID) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic where oID=:ID";
@@ -61,9 +61,10 @@ public class QRCodeDAO {
 					order.setoStatus(2);
 					String date = getTime();
 					order.setoTimeB(date);
+					order.setsID(sID);
 					System.out.println("update status");
-					String name = order.getoName();
-					CreateQR(ID,status+1,name);
+//					String name = order.getoName();
+//					CreateQR(ID,status+1,name);
 					Orders reUpdate = oService.selectOrder(ID);
 					reUpdate.setStatus(4);
 				}else if(order.getoStatus()==2&&order.getoComplete()==1) {
@@ -71,7 +72,7 @@ public class QRCodeDAO {
 					String date = getTime();
 					order.setoTimeC(date);
 					Orders reUpdate = oService.selectOrder(ID);
-					reUpdate.setStatus(5);
+					reUpdate.setStatus(6);
 					System.out.println("update status");
 				}
 			}

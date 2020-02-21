@@ -29,7 +29,7 @@ public class LogisticDAO {
 	}
 	
 	
-	public String createLogistic(String id,int type,String phone,String name,int amount,String address) {
+	public String createLogistic(String oID,String cID,Integer type,String phone,String name,Integer amount,String address) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
@@ -40,25 +40,27 @@ public class LogisticDAO {
 			SimpleDateFormat logisticNum = new SimpleDateFormat("yyyyMMdd");//20200217
 			String forTime = sdFormat.format(time);
 			String forNum = logisticNum.format(time);//20200217
-			String last = getLastNum();
+			System.out.println("forTime:"+forTime+"forNum:"+forNum);
+			String last = getLastNum();//2001
 			String finalLast;
 			if(last=="none") {
-				System.out.println("尚未有訂單,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
-				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+				System.out.println("尚未有訂單,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(2, 6));
+				finalLast = forNum.substring(2, 6)+forTime.substring(8, 10)+"01"; 
 			}else if(Integer.parseInt(forNum.substring(6))!=Integer.parseInt(last.substring(0, 2))){
 				System.out.println("上一個訂單日為: "+Integer.parseInt(forNum.substring(6))+"比"+Integer.parseInt(last.substring(0, 2)));
-				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
-				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(2, 6));
+				finalLast = forNum.substring(2, 6)+forTime.substring(8, 10)+"01"; 
 			}else{
 				int num = Integer.parseInt(last)+1;
 				String text = Integer.toString(num);
-				finalLast = forNum+text.substring(2); 
+				finalLast = forNum.substring(2)+text.substring(2); 
 			}
 			System.out.println("finalLast: "+finalLast);
 //			String lID = forNum
 			
-			logis.setoID(id);
+			logis.setoID(oID);
 			logis.setlID(finalLast);
+			logis.setcID(cID);
 			logis.setoType(type);
 			logis.setoAddr(address);
 			logis.setoName(name);
@@ -67,7 +69,7 @@ public class LogisticDAO {
 			logis.setoStatus(1);
 			logis.setoTimeA(forTime);
 			session.save(logis);
-			qdao.CreateQR(id, 1, name);
+			qdao.CreateQR(oID, 1, name);
 //			order.setShippingNumber(finalLast);
 			return finalLast;
 		}catch(Exception e) {
@@ -92,8 +94,8 @@ public class LogisticDAO {
 			return "none";
 		}else {
 			String last = rs.getlID();
-			String num = last.substring(6);
-			System.out.println("last 5 num:"+num);
+			String num = last.substring(4);
+			System.out.println("last 4 num:"+num);
 			return num;
 		}
 		
@@ -103,6 +105,22 @@ public class LogisticDAO {
 		}
 	}
 
+	public List<Logistic> queryBysID(String sID) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from Logistic where sID=:sID";
+		System.out.println("hqlStr:"+hqlStr);
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("sID", sID);
+		List<Logistic> rs = query.list();
+		System.out.println(rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
 	public List<Logistic> queryByStatus(Integer status) {
 		try {
 		Session session = sessionFactory.getCurrentSession();
