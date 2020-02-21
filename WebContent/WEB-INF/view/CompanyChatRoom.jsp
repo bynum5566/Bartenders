@@ -174,7 +174,8 @@ h2 {
 			document.getElementById('text').value = "";
 			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
 		}
-	</script>
+	</script>	
+	
 
 </body>
 </html>

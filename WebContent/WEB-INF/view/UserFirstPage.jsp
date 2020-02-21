@@ -15,15 +15,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
 <title>Bartenders</title>
 
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
 	;
-
-
 
 * {
 	outline: none;
@@ -400,8 +400,10 @@ input[type=text]:focus {
 							<form action="/Bartenders/search.Bar" method="GET">
 								<table class="searchbar">
 									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45" name="KWord" id="sBar"></td>
-										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+										<td class="searchbar"><input type="text" size="45"
+											name="KWord" id="sBar"></td>
+										<td class="searchbar sb"><input class="css_button"
+											type="submit" value="Search" /></td>
 									</tr>
 								</table>
 							</form>
@@ -412,8 +414,10 @@ input[type=text]:focus {
 							<form action="/Bartenders/search.Product" method="GET">
 								<table class="searchbar">
 									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45" name="keyword" id="sAlc"></td>
-										<td class="searchbar sb"><input class="css_button" type="submit" value="Search" /></td>
+										<td class="searchbar"><input type="text" size="45"
+											name="keyword" id="sAlc"></td>
+										<td class="searchbar sb"><input class="css_button"
+											type="submit" value="Search" /></td>
 									</tr>
 								</table>
 							</form>
@@ -468,6 +472,9 @@ anime.timeline({loop: true})
     delay: 1000
   });
 </script>
+
+	<!-- 聊天通知 -->
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 
 </body>
 </html>
