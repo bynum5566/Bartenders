@@ -215,10 +215,12 @@ div.panel
 					<td colspan="3" >運費</td>
 					<td id = "Freight">${ShippingNumToPrice[order.shipping]}</td>
 				</tr>
-				  <!--<tr align="center">-->
-					<!--<td colspan="3" id ="finalTotalPrice">訂單總金額</td>
-					<!--<td>${finalTotalPrice}</td>
-				<!--</tr>-->
+				<tr align="center">
+					<td colspan="3" >訂單總金額</td>
+					<td id ="finalTotalPrice">${finalTotalPrice}</td>
+				</tr>
+				
+
 				
 			</tbody>
 
@@ -236,6 +238,11 @@ div.panel
 	<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> --> 
 	<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
 	
+	
+	<!--finalTotalPrice		0 	QR		n/a		-->
+	<!--finalTotalPrice		80 	normal	不變		-->
+	<!--finalTotalPrice		60 	超商		減去20	-->
+		
 	<input  name="select1" type="radio" value="1" onclick="onclickFunction01()" checked required >
 	<label for="setTt1">宅配</label>
 	<input name="select1" type="radio" value="2" onclick="onclickFunction02()">
@@ -350,13 +357,22 @@ $(".flip").click(function(){
 <!--縮放用JS，結束-->
 
 
+	<!--finalTotalPrice		0 	QR		n/a		-->
+	<!--finalTotalPrice		80 	normal	不變		-->
+	<!--finalTotalPrice		60 	超商		減去20	-->
+
 <script type="text/javascript">
-function onclickFunction01() {
+function onclickFunction01() 
+{
 	document.getElementById("Freight").innerHTML = "80";
-	}
-function onclickFunction02() {
-	document.getElementById("Freight").innerHTML = "60";
+	document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};
 	
+	
+}
+function onclickFunction02() 
+{
+	document.getElementById("Freight").innerHTML = "60";
+	document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice - 20};
 }
 
 </script>

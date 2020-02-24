@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: GengHao
 Build-Jdk: 1.8.0_231
+=======
+Built-By: User
+Build-Jdk: 1.8.0_232
+>>>>>>> 70a817cd91893ed639603ebb57bf0853f910c365
 Created-By: Maven Integration for Eclipse
 

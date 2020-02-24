@@ -154,17 +154,8 @@ h2 {
 
 		}
 
-		window.onbeforeunload = function() {
-			closeWebSocket();
-			signOut();
-		}
-
 		function setMessageInnerHTML(innerHTML) {
 			document.getElementById('message').innerHTML += innerHTML + '<br/>';
-		}
-
-		function closeWebSocket() {
-			websocket.close();
 		}
 
 		function send() {
@@ -173,6 +164,10 @@ h2 {
 			websocket.send(username + "@" + message);
 			document.getElementById('text').value = "";
 			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
+		}
+		
+		window.onbeforeunload=function(){
+			websocket.send('${CName}');
 		}
 	</script>	
 	
