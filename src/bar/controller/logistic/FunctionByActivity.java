@@ -50,6 +50,11 @@ import bar.model.logistic.Bar;
 import bar.model.logistic.BarDAO;
 
 import net.coobird.thumbnailator.Thumbnails;
+<<<<<<< HEAD
+=======
+import bar.model.Company;
+import bar.model.CompanyService;
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 import bar.model.Users;
 import bar.model.UsersDAO;
 import bar.model.UsersService;
@@ -65,12 +70,22 @@ public class FunctionByActivity {
 	private ActivityService aSer;
 	private LogisticService lSer;
 	private UsersDAO uDao;
+<<<<<<< HEAD
 	
 	public FunctionByActivity(ActivityDAO aDao,ActivityService aSer,LogisticService lSer,UsersDAO uDao) {
+=======
+	private CompanyService cSer;
+	
+	public FunctionByActivity(ActivityDAO aDao,ActivityService aSer,LogisticService lSer,UsersDAO uDao,CompanyService cSer) {
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 		this.aDao=aDao;
 		this.aSer=aSer;
 		this.lSer=lSer;
 		this.uDao=uDao;
+<<<<<<< HEAD
+=======
+		this.cSer=cSer;
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	}
 
 	@RequestMapping(path = "searchMarker.do",method = RequestMethod.POST)
@@ -109,11 +124,29 @@ public class FunctionByActivity {
 			@RequestParam(name = "joinNum")Integer joinNum
 			) throws IOException, ParseException, ServletException {
 
+<<<<<<< HEAD
 		System.out.println("收到來自userId:"+userId+"對activityId: "+activityId+"報名人數: "+joinNum);
 //		aSer.addJoin("activityId",activityId,joinNum);
 		Users user = uDao.selectUser(userId);
 		System.out.println("user result: "+user);
 
+=======
+		System.out.println("收到來自Id:"+userId+"對activityId: "+activityId+"報名人數: "+joinNum);
+//		aSer.addJoin("activityId",activityId,joinNum);
+		
+		if(userId.toString().substring(0,1).equals("5")) {
+			Company company = cSer.selectCompany(userId);
+			System.out.println("company result: "+company);
+			aSer.saveParticipant(activityId, userId, company.getCompanyName(), company.getPhone(),joinNum);
+		}else if(userId.toString().substring(0,1).equals("1")) {
+			Users user = uDao.selectUser(userId);
+			System.out.println("user result: "+user);
+			aSer.saveParticipant(activityId, userId, user.getUserName(), user.getPhone(),joinNum);
+		}
+		
+		
+		
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 		List<Activity> target = aSer.queryJoker("activityId",activityId);
 		for(Activity activity:target) {
 			Integer actualNum = activity.getActualNum();
@@ -126,7 +159,11 @@ public class FunctionByActivity {
 		}
 		List<Activity> activity = aSer.queryJoker("activityId",activityId);
 		System.out.println("try to save: ");
+<<<<<<< HEAD
 		aSer.saveParticipant(activityId, userId, user.getUserName(), user.getPhone(),joinNum);
+=======
+		
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 		List<Participant> participant = aSer.queryParticipant(activityId);
 		m.addAttribute("activity",activity);
 		m.addAttribute("participant",participant);
@@ -322,8 +359,13 @@ public class FunctionByActivity {
 //		response.sendRedirect("ManageActivity");
 		return "logistic/ActivityHall";
 	}
+<<<<<<< HEAD
 	
 	
+=======
+	
+	
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	@RequestMapping(path = "editActivity.do",method = RequestMethod.GET)
 	public String editActivity(HttpServletRequest request, HttpServletResponse response, Model m,
 			@RequestParam(name = "activityId")Integer activityId

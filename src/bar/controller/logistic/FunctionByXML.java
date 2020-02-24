@@ -76,6 +76,7 @@ public class FunctionByXML {
 			) throws ParseException {
 		System.out.println("ActivityJoker start");
 		System.out.println("Object is: "+obj);
+<<<<<<< HEAD
 		List<Activity> all = aSer.queryAll();
 		boolean status = aSer.checkEndTime(all);
 		System.out.println("all activities is checked: "+status);
@@ -94,13 +95,62 @@ public class FunctionByXML {
 		//日期類
 		List<Activity> activity = new ArrayList<Activity>();
 		if(!obj.get(4).toString().equals("null")) {
+=======
+		//先更新時間
+		List<Activity> all = aSer.queryAll();
+		boolean status = aSer.checkEndTime(all);
+		System.out.println("all activities is checked: "+status);
+		
+		//預設找正開放的全部
+		List<Activity> finalList = aSer.queryJoker("status", "'O'");
+		//類型類
+		
+		
+		for(int i=0;i<4;i++) {
+			Object deleteType = obj.get(i);
+			if(deleteType.toString().equals("wanted")) {
+				System.out.println("object["+i+"] is qualify");
+			}else {
+				for(Activity a:finalList) {
+					String checkType = a.getType();
+					if(checkType.equals(deleteType.toString())) {
+						finalList.remove(a);
+					}
+				}
+			}
+		}
+		System.out.println("type with qualify result: "+finalList);
+//		List<Activity> checkList = new ArrayList<Activity>();
+//		List<Activity> temp;
+//		for(int i=0;i<4;i++) {
+//			Object x = obj.get(i);
+//			if(x.toString().equals("null")) {
+//				System.out.println("object["+i+"] is null");
+//			}else {
+//				temp = aSer.queryJoker("type","'"+x.toString()+"'");
+//				checkList.addAll(temp);
+//			}
+//		}
+//		System.out.println("type with qualify result: "+checkList);
+		//狀態類
+		
+		
+		//日期類
+		List<Activity> activity = new ArrayList<Activity>();
+		if(!obj.get(6).toString().equals("null")) {
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 			
 		
 		Date immediatlyD = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+<<<<<<< HEAD
 		Date beginD = sdf.parse(obj.get(4).toString());
 		Date endD = sdf.parse(obj.get(5).toString());
+=======
+		Date beginD = sdf.parse(obj.get(6).toString());
+		Date endD = sdf.parse(obj.get(7).toString());
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 		//進行轉換
 		long period = (endD.getTime()-beginD.getTime())/1000/60;
 		System.out.println("time diff between now & begin: "+period+"min");
@@ -134,7 +184,11 @@ public class FunctionByXML {
 		}
 		System.out.println("final result: "+activity);
 //		activity = aSer.queryJoker("userId",userId,"status","O");
+<<<<<<< HEAD
 		if(obj.get(4).toString().equals("null")) {
+=======
+		if(obj.get(6).toString().equals("null")) {
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 			return checkList;
 		}else {
 			return activity;

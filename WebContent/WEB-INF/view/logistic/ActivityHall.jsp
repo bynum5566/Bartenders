@@ -8,7 +8,13 @@
 <title>活動大廳</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBarForSingleActivity.css">
+=======
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
 <style>
 body {
@@ -130,7 +136,16 @@ var reach = [];
 				<label><input type="checkbox" class="multi" name="type2" value="party">派對</label>
 				<br>
 			</form>
+<<<<<<< HEAD
 
+=======
+			<form class="formBox">
+				<label>搜尋狀態:</label>
+				<label><input type="checkbox" class="multi" name="ready" value="ready">已成團</label>
+				<label><input type="checkbox" class="multi" name="available" value="available">還有空位</label>
+				<br>
+			</form>
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 			<form class="formBox">
 				<label>搜尋日期:</label>
 				<label><input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間"></label>
@@ -138,20 +153,36 @@ var reach = [];
 				<label><input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"></label>
 				<br>
 				<label><button id="clearTime" type="button" onclick="clearDate()" >清除時間</button></label>
+<<<<<<< HEAD
 			</form>
+=======
+				<br>
+			</form>
+			
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 			<hr>
 			<label><button id="jokerBtn" type="button" onclick="queryJoker()" >整合搜尋</button></label>
 		</div>
 	</div>
 	</section>
 	<script>
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	//複合搜尋
 	var beginTime = document.getElementById('beginTime');
 	var endTime = document.getElementById('endTime');
 	var checkBox = document.getElementsByClassName('multi');
 	var joker = document.getElementById('jokerBtn');
 		//檢查是否輸入時間區間
+<<<<<<< HEAD
 		beginTime.addEventListener('blur', function(){
+=======
+		beginTime.addEventListener('focus', function(){
+			
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 			  if(endTime.value==''){
 				  console.log('end not pick yet')
 				  endTime.style.background = 'pink';
@@ -187,7 +218,68 @@ var reach = [];
 			});
 		
 	
+<<<<<<< HEAD
 	
+=======
+		//時間格式化
+		function dateToStr(datetime){
+	        var dateTime = new Date(datetime);
+	        var year = dateTime.getFullYear();
+	        var month = dateTime.getMonth()+1;//js從0開始取
+	        var date = dateTime.getDate();
+	        var hour = dateTime.getHours();
+	        var minutes = dateTime.getMinutes();
+	        var second = dateTime.getSeconds();
+	        if(month<10){
+	            month = "0" + month;
+	        }
+	        if(date<10){
+	            date = "0" + date;
+	        }
+	        if(hour <10){
+	            hour = "0" + hour;
+	        }
+	        if(minutes <10){
+	            minutes = "0" + minutes;
+	        }
+	        if(second <10){
+	            second = "0" + second ;
+	        }
+	        return year+"-"+month+"-"+date+"-"+hour+"-"+minutes;
+	    }
+		// begin time
+		var today=new Date();
+		var current = today.getHours()+':'+today.getMinutes();
+		console.log('current time: ',current);
+		const myInput = document.getElementById("beginTime");
+		const fp = flatpickr(myInput, {
+			enableTime : true,
+			dateFormat : "yy/m/d H:i",
+			maxDate : new Date().fp_incr(30), // 30 days from now
+			minDate : "today",
+			minTime : current,
+			time_24hr: true
+		});
+		var endMinD;
+		var endMinT;
+		if(beginTime.value==''){
+			endMinD = "today";
+			endMinT = current;
+		}else{
+			endMinD = beginTime.value;
+			endMinT = beginTime.value;
+		}
+		// end time
+		const myInput2 = document.getElementById("endTime");
+		const fp2 = flatpickr(myInput2, {
+			enableTime : true,
+			dateFormat : "yy/m/d H:i",
+			maxDate : new Date().fp_incr(30), // 30 days from now
+			minDate : "today",
+			minTime : current,
+			time_24hr: true
+		});
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	function queryJoker(){
 		console.log('start queryJoker');
 		var jokerList = [];
@@ -216,6 +308,10 @@ var reach = [];
 		getMarkers("ActivityJoker",jokerList,0);
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	</script>
 	<section class="container">
 		<div class="float_center">
@@ -242,6 +338,7 @@ var reach = [];
 						</div>
 						<div align=left style="margin: 10px">
 							<c:choose>
+<<<<<<< HEAD
 								<c:when test="${empty Activity.targetNum}">
 									<p>活動人數不限</p>
 								</c:when>
@@ -267,15 +364,49 @@ var reach = [];
 								</c:when>
 								<c:otherwise>
 									<p>參加人數已滿</p>
+=======
+								<c:when test="${Activity.limitNum==999}">
+									<p>參加人數不限</p>
+									<c:if test="${Activity.actualNum>=Activity.targetNum}">
+										<p>已成團</p>
+									</c:if>
+									<c:if test="${Activity.actualNum<Activity.targetNum}">
+										<p>未成團</p>
+									</c:if>
+								</c:when>
+								<c:when test="${Activity.actualNum==Activity.limitNum}">
+									<p>活動人數已滿</p>
+									<c:if test="${Activity.actualNum>=Activity.targetNum}">
+										<p>已成團</p>
+									</c:if>
+									<c:if test="${Activity.actualNum<Activity.targetNum}">
+										<p>未成團</p>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									<p>目前人數${Activity.actualNum} / ${Activity.limitNum} </p>
+									<c:if test="${Activity.actualNum>=Activity.targetNum}">
+										<p>已成團</p>
+									</c:if>
+									<c:if test="${Activity.actualNum<Activity.targetNum}">
+										<p>未成團</p>
+									</c:if>
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 								</c:otherwise>
 							</c:choose>
 							
 						</div>
 						<div class="outer">
 							<div id="groundD" class="ground">
+<<<<<<< HEAD
 								<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
 								<div id="targetFor${status.index}" class="targetD">
 									<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>
+=======
+								<p id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
+								<div id="targetFor${status.index}" class="targetD">
+									<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>	
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 								</div>
 								<div id="currentFor${status.index}" class="currentD NP">
 									<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
@@ -307,6 +438,7 @@ var reach = [];
 					limitNum.push(${Activity.limitNum});
 					targetNum.push(${Activity.targetNum});
 					currentNum.push(${Activity.actualNum});
+<<<<<<< HEAD
 					console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
 					var fix = $('#groundD').width()-20;
 					console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
@@ -320,6 +452,29 @@ var reach = [];
 					if(currentNum['${status.index}']>=targetNum['${status.index}']){
 						console.log('target reached',typeof currentNum['${status.index}'],' > ',typeof targetNum['${status.index}']);
 						console.log('target reached',currentNum['${status.index}'],' > ',targetNum['${status.index}']);
+=======
+					//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
+					//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+					var fix = $('#groundD').width()-20;
+					if(${Activity.limitNum}==999){
+						if(${Activity.targetNum}!=0){
+							per = fix/targetNum['${status.index}'];
+							$('#targetFor${status.index}').width(fix);
+						}else if(${Activity.targetNum}==0){
+							per = fix/currentNum['${status.index}'];
+							$('#targetFor${status.index}').css('display','none');
+						}
+						$('#limitP${status.index}').css('display','none');
+					}else{
+						per = fix/limitNum['${status.index}'];
+						$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+					}
+					perNum.push(per);
+					$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
+					$('#currentFor${status.index}').css('background-color','pink');
+					//若成團
+					if(currentNum['${status.index}']>=targetNum['${status.index}']){
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 						$('#currentFor${status.index}').css('background-color','lightgreen');
 						$('#targetFor${status.index}').css('display','none');
 					}
@@ -335,6 +490,7 @@ var reach = [];
 	<input type="submit" onclick="reSet()" value="設定"><br>
 	<button id="per">增加1份</button>
 	<script>
+<<<<<<< HEAD
 	/*
 	var testAry = new Array(5);
 	for(var i=0; i<5;i++){
@@ -346,6 +502,8 @@ var reach = [];
 	console.log('this is test ary:',testAry);
 	console.log('this is test ary:',testAry[2].length);
 	*/
+=======
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	console.log('接收到的activity: ','${activity}');
 	var preUrl = "${preUrl}";
 	console.log(preUrl);
@@ -430,6 +588,10 @@ var reach = [];
 		}
 	})
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	//進入個別頁面
 	
 	$(".singlePage").on("click",function() {
@@ -437,6 +599,7 @@ var reach = [];
 		console.log('activityId is:',activityId);
 		window.location.href = '<c:url value="/queryActivityByActivityId.do"/>?activityId='+ activityId;
 		})
+<<<<<<< HEAD
 	//我想參加
 	$(".join").on("click",function() {
 		var activityId = this.id
@@ -449,6 +612,11 @@ var reach = [];
 		var userId = Str.substring(5);
 		window.location.href = '<c:url value="/closeActivity.do"/>?userId='+ userId + '&activityId=' + activityId;
 		})
+=======
+	
+		
+		
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	//地圖搜尋
 	$("#search").on("click",function() {
 		window.location.href = '<c:url value="/searchMarker"/>';
@@ -464,6 +632,7 @@ var reach = [];
 		listButton = $('button[id^="O"][class*="visible"]');
 		listButton.attr("style", "display:block;");
 		
+<<<<<<< HEAD
 	//以下用於彈出視窗
 	var baseText = null;
 
@@ -489,16 +658,22 @@ var reach = [];
 		console.log('click hide');
 		popUp.style.visibility = 'hidden';
 	};
+=======
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	//回上頁
 	$(".return").on("click", function() {
 		window.location.href = '<c:url value="/queryAllActive.do"/>';
 	})
+<<<<<<< HEAD
 	/*
 	$('#showMap').on('click',function(){
 		
 		showPopup(150,150);
 	})
 	*/
+=======
+
+>>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 	console.log('number is: ',number);
 	var pre=[];
 	for(var i=0;i<number;i++){
