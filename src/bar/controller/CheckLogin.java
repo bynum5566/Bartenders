@@ -3,6 +3,9 @@ package bar.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -15,9 +18,10 @@ import bar.model.Company;
 import bar.model.CompanyService;
 import bar.model.Users;
 import bar.model.UsersService;
+import util.WebSocketTest;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUserId","getCompanyId"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUser","getCompany"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -31,7 +35,7 @@ public class CheckLogin {
 
 	@RequestMapping(path = { "/UcheckLogin.controller" }, method = { RequestMethod.POST })
 	public String userProcessAction(@RequestParam(name = "userAccount") String account,
-			@RequestParam(name = "userPwd") String password, Model m ) {
+			@RequestParam(name = "userPwd") String password, Model m ,HttpServletRequest request) {
 
 		
 		Map<String, String> errors = new HashMap<String, String>();
@@ -64,7 +68,11 @@ public class CheckLogin {
 				Users user = uservice.select(account);
 				m.addAttribute("userName", user.getUserName());
 				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getUserId", user.getUserId());
+				m.addAttribute("getUser", user);
+				
+				HttpSession session = request.getSession();
+				WebSocketTest.setHttpSession(session);
+				
 				return "UserFirstPage";
 			}
 			
@@ -76,7 +84,7 @@ public class CheckLogin {
 
 	@RequestMapping(path = { "/CcheckLogin.controller" }, method = { RequestMethod.POST })
 	public String companyProcessAction(@RequestParam(name = "companyAccount") String account,
-			@RequestParam(name = "companyPwd") String password, Model m ) {
+			@RequestParam(name = "companyPwd") String password, Model m ,HttpServletRequest request) {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -109,7 +117,11 @@ public class CheckLogin {
 				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
 				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getCompanyId", Gcompany.getCompanyId());
+				m.addAttribute("getCompany", Gcompany);
+				
+				HttpSession session = request.getSession();
+				WebSocketTest.setHttpSession(session);
+				
 				return "WelcomeCompany";
 			} 
 

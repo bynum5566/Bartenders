@@ -16,6 +16,20 @@ public class LogisticService {
 		this.lDao = lDao;
 	}
 
+	public Logistic uniqueQuery(Object Param,Object obj) {
+		String condition = "from Logistic where "+Param+"="+obj;
+		System.out.println("searching condition: "+condition);
+		return lDao.uniqueQuery(condition);
+	}
+	
+	public List<Logistic> queryJoker(Object Param,Object obj){
+		String condition = "from Logistic where "+Param+"="+obj;
+		System.out.println("searching condition: "+condition);
+		return lDao.simpleQuery(condition);
+	}
+	
+	///////////////以下待整理
+	
 	public List<Logistic> queryByStatus(Integer status) {
 		return lDao.queryByStatus(status);
 	}
@@ -32,7 +46,7 @@ public class LogisticService {
 		return lDao.queryBysID(sID);
 	}
 	
-	public String createLogistic(String oID,String cID,Integer type,String phone,String name,Integer amount,String address) {
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
 		return lDao.createLogistic(oID,cID,type, phone, name, amount, address);
 	}
 	

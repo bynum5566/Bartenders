@@ -77,7 +77,7 @@ public class FunctionByLogin {
 //				
         		return null;
 			}
-			response.sendRedirect("LogisticGate");
+			response.sendRedirect("WelcomeLogistic");
 			return null;
 		}
 		errors.put("msg", "帳號或密碼不正確");

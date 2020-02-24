@@ -25,15 +25,13 @@
 			tempMarkList.push(tempMark);
 		};
 		
-		async 
-		function autoLocating(){
+		async function autoLocating(){
 			
 			if (navigator.geolocation) {
 				for(var i=0;i<tempMarkList.length;i++){
 					tempMarkList[i].setMap(null);
 				};
-				await 
-				navigator.geolocation.getCurrentPosition(function(position) {
+				await navigator.geolocation.getCurrentPosition(function(position) {
 	                var pos = {
 	                    lat: position.coords.latitude,
 	                    lng: position.coords.longitude
@@ -47,7 +45,7 @@
 	                    map: map
 	                });
 	                tempMarkList.push(tempMark);
-	            });
+	            })
 	        } else {
 	            alert("未允許或遭遇錯誤！");
 	        }
@@ -71,7 +69,7 @@
 				console.log('this is data: ', JSONdata);
 				
 				var all = JSONdata.forEach(function(item){
-					if(prefix=='Bar'||prefix=='OrderSearch'){
+					if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
 					var id = item.barId;
 					var name = item.name;
 					var address = item.address;

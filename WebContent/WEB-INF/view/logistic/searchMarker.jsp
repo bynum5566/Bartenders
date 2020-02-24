@@ -8,6 +8,8 @@
 <title>CreateActivity</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
 <style>
 
 
@@ -47,6 +49,8 @@ input{
 .date{
 width:130px;
 }
+
+
 
 </style>
 <link rel="stylesheet"

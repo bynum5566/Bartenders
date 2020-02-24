@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="logisticMenu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-a{
-color: #E8CCFF;
 
-}
-a:hover {
-color: 	#9F88FF;
-}
 .mydiv {
 	min-width: auto;
 	top: 80px;
@@ -65,6 +60,11 @@ fieldset {
 
 </head>
 <body class="center">
+<br>
+<br>
+<br>
+<br>
+
 	<h1 align=center style="color:white;font-size:48px">物流訂單管理</h1>
 
 		
@@ -75,7 +75,7 @@ fieldset {
 						<button id="status1" class="ByStatus" >查詢未收貨訂單</button>	<!-- status=1 -->
 						<button id="status2" class="ByStatus" >查詢配送中訂單</button>	<!-- status=2 -->
 						<button id="status3" class="ByStatus" >查詢已送達訂單</button>  <!-- status=3 -->
-						<button class="return">回酒吧</button>
+						<button class="return">回物流大廳</button>
 					<!-- 
 						<button id="test" class="create" >測試訂單</button>
 					 -->
@@ -306,7 +306,7 @@ fieldset {
 								
 	//回上頁
 	$(".return").on("click", function() {
-		window.location.href = '<c:url value="/WelcomeCompany"/>';
+		window.location.href = '<c:url value="/logistic/WelcomeLogistic"/>';
 	})
 				
 /*

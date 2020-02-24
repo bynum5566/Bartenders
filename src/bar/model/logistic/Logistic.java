@@ -15,9 +15,9 @@ public class Logistic {
 	
 	private Integer oNo;
 	private String oID;
-	private String lID;
-	private String cID;
-	private String sID;
+	private Integer lID;
+	private Integer cID;
+	private Integer sID;
 	private Integer oType;
 	private String oAddr;
 	private String oName;
@@ -35,7 +35,7 @@ public class Logistic {
 		
 	}
 	
-	public Logistic(int oNo, String oID) {
+	public Logistic(Integer oNo, String oID) {
 		this.oNo = oNo;
 		this.oID = oID;
 	}
@@ -61,28 +61,28 @@ public class Logistic {
 	}
 
 	@Column(name="lID")
-	public String getlID() {
+	public Integer getlID() {
 		return lID;
 	}
 
-	public void setlID(String lID) {
+	public void setlID(Integer lID) {
 		this.lID = lID;
 	}
 	
 	@Column(name="cID")
-	public String getcID() {
+	public Integer getcID() {
 		return cID;
 	}
 
-	public void setcID(String cID) {
+	public void setcID(Integer cID) {
 		this.cID = cID;
 	}
 	@Column(name="sID")
-	public String getsID() {
+	public Integer getsID() {
 		return sID;
 	}
 
-	public void setsID(String sID) {
+	public void setsID(Integer sID) {
 		this.sID = sID;
 	}
 	

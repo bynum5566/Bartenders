@@ -16,6 +16,16 @@ public class ActivityService {
 	public ActivityService(ActivityDAO aDao) {
 		this.aDao = aDao;
 	}
+	
+	
+	public Participant saveParticipant(Integer activityId,Integer userId, String name, String phone, Integer together) {
+		return aDao.saveParticipant(activityId,userId, name, phone, together);
+	}
+	
+	public List<Participant> queryParticipant(Integer activityId) {
+		return aDao.queryParticipant(activityId);
+	}
+	
 	//queryJoker(activityId,1002)
 	public List<Activity> queryJoker(Object Param,Object obj) {
 		//"from Activity where activityId=1002"
@@ -56,8 +66,8 @@ public class ActivityService {
 	
 	
 	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
-			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
-		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief, beginTime, endTime, targetNum, actualNum);
+			String img,String brief,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
+		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief, beginTime, endTime, limitNum, targetNum, actualNum);
 	}
 	
 	public boolean checkEndTime(List<Activity> list) {

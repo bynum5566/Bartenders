@@ -29,7 +29,33 @@ public class LogisticDAO {
 	}
 	
 	
-	public String createLogistic(String oID,String cID,Integer type,String phone,String name,Integer amount,String address) {
+	public Logistic uniqueQuery(String condition) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(condition);
+		Logistic rs = (Logistic)query.uniqueResult();
+		System.out.println("unique result: "+rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
+	public List<Logistic> simpleQuery(String condition) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(condition);
+			List<Logistic> rs = query.list();
+			System.out.println("query result: "+rs);
+			return rs;
+			}catch(Exception e) {
+				System.out.println("e:"+e);
+				return null;
+			}
+		}
+
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
@@ -55,11 +81,12 @@ public class LogisticDAO {
 				String text = Integer.toString(num);
 				finalLast = forNum.substring(2)+text.substring(2); 
 			}
+			int finalInput = Integer.parseInt(finalLast);
 			System.out.println("finalLast: "+finalLast);
 //			String lID = forNum
 			
 			logis.setoID(oID);
-			logis.setlID(finalLast);
+			logis.setlID(finalInput);
 			logis.setcID(cID);
 			logis.setoType(type);
 			logis.setoAddr(address);
@@ -93,8 +120,8 @@ public class LogisticDAO {
 			System.out.println("no logistic yet");
 			return "none";
 		}else {
-			String last = rs.getlID();
-			String num = last.substring(4);
+			Integer last = rs.getlID();
+			String num = last.toString().substring(4);
 			System.out.println("last 4 num:"+num);
 			return num;
 		}
@@ -179,53 +206,6 @@ public class LogisticDAO {
 //		}
 		return null;
 	}
-	
-//	public Logistic ChangeType(String type,int ID) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr="from Logistic where oType=:type and oID=:ID";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("type", type);
-//		query.setParameter("ID", ID);
-//		Logistic rs = (Logistic)query.uniqueResult();
-//		System.out.println("Query result:"+rs);
-//		if(rs!=null) {
-//			System.out.println("before update:"+rs.getoType());
-//			if(rs.getoType().equals("M")) {
-//				rs.setoType("H");
-//			}else {
-//				rs.setoType("M");
-//			}
-//			System.out.println("after update:"+rs.getoType());
-//		}
-//		System.out.println("Update completed");
-//		return rs;
-//	}
-	
-//	public Logistic ChangeStatus(int status,String ID) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr="from Logistic where oID=:ID and oStatus=:Status";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("ID", ID);
-//		query.setParameter("Status", status);
-//		Logistic rs = (Logistic)query.uniqueResult();
-//		System.out.println("Query result:"+rs);
-//		if(status==2) {
-//			String date = getTime();
-//			System.out.println("date:"+date);
-//			rs.setoTimeA(date);
-//			String name = rs.getoName();
-//			qdao.CreateQR(ID,status,name);
-//		}else if(status==3) {
-//			String date = getTime();
-//			System.out.println("date:"+date);
-//			rs.setoTimeB(date);
-//			String name = rs.getoName();
-//			qdao.CreateQR(ID,status,name);
-//		}else if(rs!=null&&rs.getoStatus()!=4) {
-//			rs.setoStatus(status+1);
-//		}
-//		return rs;
-//	}
 	
 	public Date getTime() {
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");

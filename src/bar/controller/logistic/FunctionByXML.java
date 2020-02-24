@@ -76,31 +76,55 @@ public class FunctionByXML {
 			) throws ParseException {
 		System.out.println("ActivityJoker start");
 		System.out.println("Object is: "+obj);
+		//先更新時間
 		List<Activity> all = aSer.queryAll();
 		boolean status = aSer.checkEndTime(all);
 		System.out.println("all activities is checked: "+status);
-		List<Activity> checkList = new ArrayList<Activity>();
-		List<Activity> temp;
+		
+		//預設找正開放的全部
+		List<Activity> finalList = aSer.queryJoker("status", "'O'");
+		//類型類
+		
+		
 		for(int i=0;i<4;i++) {
-			Object x = obj.get(i);
-			if(x.toString().equals("null")) {
-				System.out.println("object["+i+"] is null");
+			Object deleteType = obj.get(i);
+			if(deleteType.toString().equals("wanted")) {
+				System.out.println("object["+i+"] is qualify");
 			}else {
-				temp = aSer.queryJoker("type","'"+x.toString()+"'");
-				checkList.addAll(temp);
+				for(Activity a:finalList) {
+					String checkType = a.getType();
+					if(checkType.equals(deleteType.toString())) {
+						finalList.remove(a);
+					}
+				}
 			}
 		}
-		System.out.println("type with qualify result: "+checkList);
+		System.out.println("type with qualify result: "+finalList);
+//		List<Activity> checkList = new ArrayList<Activity>();
+//		List<Activity> temp;
+//		for(int i=0;i<4;i++) {
+//			Object x = obj.get(i);
+//			if(x.toString().equals("null")) {
+//				System.out.println("object["+i+"] is null");
+//			}else {
+//				temp = aSer.queryJoker("type","'"+x.toString()+"'");
+//				checkList.addAll(temp);
+//			}
+//		}
+//		System.out.println("type with qualify result: "+checkList);
+		//狀態類
+		
+		
 		//日期類
 		List<Activity> activity = new ArrayList<Activity>();
-		if(!obj.get(4).toString().equals("null")) {
+		if(!obj.get(6).toString().equals("null")) {
 			
 		
 		Date immediatlyD = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		Date beginD = sdf.parse(obj.get(4).toString());
-		Date endD = sdf.parse(obj.get(5).toString());
+		Date beginD = sdf.parse(obj.get(6).toString());
+		Date endD = sdf.parse(obj.get(7).toString());
 		//進行轉換
 		long period = (endD.getTime()-beginD.getTime())/1000/60;
 		System.out.println("time diff between now & begin: "+period+"min");
@@ -134,7 +158,7 @@ public class FunctionByXML {
 		}
 		System.out.println("final result: "+activity);
 //		activity = aSer.queryJoker("userId",userId,"status","O");
-		if(obj.get(4).toString().equals("null")) {
+		if(obj.get(6).toString().equals("null")) {
 			return checkList;
 		}else {
 			return activity;
@@ -235,25 +259,25 @@ public class FunctionByXML {
 		return activity;
 	}
 
-	@RequestMapping(path = "OrderSearch/{status}",method = RequestMethod.GET)
+	@RequestMapping(path = "logistic/OrderSearch/{status}",method = RequestMethod.GET)
 	public @ResponseBody List<Activity> searchOrder(@PathVariable Integer status,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
 		List<Logistic> newOrder = lSer.queryByStatus(status);
 		System.out.println("order numbers: "+newOrder.size());
-		HashMap<String,Integer> hashMap = new HashMap<>();
+		HashMap<Integer,Integer> hashMap = new HashMap<>();
 		List<Activity> activity = new ArrayList<Activity>();
 		Activity temp;
 		for(Logistic a:newOrder) {
-			String cID = a.getcID();
+			Integer cID = a.getcID();
 			hashMap.putIfAbsent(cID,0);
 			hashMap.put(cID,hashMap.get(cID)+1);
 			
 		}
 		System.out.println("hashMap is: "+hashMap);
-		Iterator<Map.Entry<String, Integer>> iterator = hashMap.entrySet().iterator();
+		Iterator<Map.Entry<Integer, Integer>> iterator = hashMap.entrySet().iterator();
 		while (iterator.hasNext()) {
-			Entry<String, Integer> entry = iterator.next();
-			Integer barId = Integer.parseInt(entry.getKey());
+			Entry<Integer, Integer> entry = iterator.next();
+			Integer barId = entry.getKey();
 			Integer orderNum = entry.getValue();
 			System.out.println("start query with userId: "+barId+" &set num:"+orderNum);
 			temp = aSer.uniqueQuery("userId", barId);

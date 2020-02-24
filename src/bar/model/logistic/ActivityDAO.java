@@ -29,6 +29,41 @@ public class ActivityDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public Participant saveParticipant(Integer activityId,Integer userId, String name, String phone,Integer together) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		Participant p = new Participant();
+		p.setActivityId(activityId);
+		p.setUserId(userId);
+		p.setName(name);
+		p.setPhone(phone);
+		p.setTogether(together);
+		session.save(p);
+		System.out.println("Participant has been saved!");
+		return p;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
+	public List<Participant> queryParticipant(Integer activityId) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from Participant where activityId=:activityId";
+		System.out.println("hqlStr:"+hqlStr);
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("activityId", activityId);
+		List<Participant> rs = query.list();
+		System.out.println("result: "+rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+
+
 	public Activity uniqueQuery(String param,Object obj) {
 		try {
 		Session session = sessionFactory.getCurrentSession();
@@ -116,7 +151,7 @@ public class ActivityDAO {
 	
 	
 	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
-			String img,String brief,String beginTime,String endTime,Integer targetNum,Integer actualNum) {
+			String img,String brief,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
 		try {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -131,7 +166,12 @@ public class ActivityDAO {
 		a.setBeginTime(beginTime);
 		a.setEndTime(endTime);
 		a.setStatus("O");
-		a.setTargetNum(targetNum);
+		if(limitNum==null) {
+			a.setLimitNum(999);
+		}
+		if(targetNum==null) {
+			a.setTargetNum(0);
+		}
 		if(actualNum==null) {
 			a.setActualNum(0);
 		}

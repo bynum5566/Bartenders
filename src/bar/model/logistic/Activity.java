@@ -26,8 +26,10 @@ public class Activity {
 	private String beginTime;
 	private String endTime;
 	private String status;
+	private Integer limitNum;
 	private Integer targetNum;
 	private Integer actualNum;
+	
 	private Integer orderNum;
 	
 	@Id
@@ -177,6 +179,14 @@ public class Activity {
 	@XmlElement
 	public void setOrderNum(Integer orderNum) {
 		this.orderNum = orderNum;
+	}
+	@Column(name="LIMITNUM")
+	public Integer getLimitNum() {
+		return limitNum;
+	}
+	@XmlElement
+	public void setLimitNum(Integer limitNum) {
+		this.limitNum = limitNum;
 	}
 
 	

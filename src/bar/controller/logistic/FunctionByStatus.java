@@ -3,7 +3,10 @@ package bar.controller.logistic;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import bar.model.logistic.Logistic;
 import bar.model.logistic.LogisticService;
@@ -43,6 +47,26 @@ public class FunctionByStatus {
 		return "logistic/searchOrder";
 	}
 	
+	@RequestMapping(path = "/searchTargetOrder.do",method = RequestMethod.POST)
+	public String searchTargetOrder(@RequestParam(name = "oID")String oID,Model m,
+			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
+//		List<Logistic> rs = lService.queryJoker("oID", "'"+oID+"'");
+		
+		Logistic rs = lService.uniqueQuery("oID", "'"+oID+"'");
+		//只保留到下一頁
+		System.out.println("step1");
+		if(rs!=null) {
+			System.out.println("result is: "+rs);
+			RedirectAttributes x = redirectAttrs.addFlashAttribute("result",rs);
+		}else {
+			RedirectAttributes x = redirectAttrs.addFlashAttribute("noData","no");
+		}
+		System.out.println("step3");
+		return "redirect:/CheckLogistic";
+//		m.addAttribute("logistic",rs);
+//		return "CheckLogistic";
+	}
+	
 	@RequestMapping(path = "/logistic/createLogistic.do",method = RequestMethod.POST)
 	public String createLogistic(@RequestParam(name = "orderId")String orderId) throws IOException {
 		Orders rs = oService.selectOrder(orderId);
@@ -60,7 +84,7 @@ public class FunctionByStatus {
 			}else if(type==2) {
 				address = rs.getAddress2();
 			}
-			lService.createLogistic(oID, cID.toString(), type, phone, name, amount, address);
+			lService.createLogistic(oID, cID, type, phone, name, amount, address);
 			System.out.println("test Logistic order created");
 		}
 		

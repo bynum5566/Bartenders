@@ -36,7 +36,7 @@ if(url.indexOf('?')!=-1)
 {
   var orderID = "";
   var orderStatus = "";
-  var sID = ${sender.senderId};
+  var sID = '${sender.senderId}';
 	console.log('senderId is: ',sID);
   //在此直接將各自的參數資料切割放進ary中
   var ary = url.split('?')[1].split('&');
@@ -47,12 +47,14 @@ if(url.indexOf('?')!=-1)
       if(ary[0].split('=')[0] == 'orderID')
     	  orderID = ary[0].split('=')[1];
      	  console.log(orderID);
+     	  /*
       if(ary[1].split('=')[0] == 'orderStatus')
     	  orderStatus = ary[1].split('=')[1];
           console.log(orderStatus);
-          if(orderID!=""&&orderStatus!=""){
+          */
+          if(orderID!=""){
         	  if(confirm("確實執行嗎?")){
-          		window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus+'&sID=' + sID;
+          		window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID='+ orderID +'&sID=' + sID;
           		
           	  }
           		else{
