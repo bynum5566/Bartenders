@@ -90,13 +90,21 @@ padding-right: 3px;
 								<tr>
 									<td align="center" nowrap="nowrap"><a
 										href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
-										value="${Corders[current.index].orderId}">${Corders[current.index].orderId}</a>
+										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
 									</td>
 									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
 									<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
 									<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
-									<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+										<c:choose>
+									<c:when
+										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
+									</c:when>
+									<c:otherwise>
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+									</c:otherwise>
+								</c:choose>
 									<c:choose>
 										<c:when
 											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
@@ -109,7 +117,7 @@ padding-right: 3px;
 									</c:choose>
 									<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
 									<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,19)}</td>
+									<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
 									<c:choose>
 										<c:when

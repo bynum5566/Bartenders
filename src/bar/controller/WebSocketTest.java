@@ -1,6 +1,7 @@
-package util;
+package bar.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,6 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
@@ -22,10 +24,14 @@ import bar.model.MessageDto;
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
 @SessionAttributes(value = { "userName", "CName" })
+@Controller
 public class WebSocketTest {
 	private static int onlineCount = 0;
 
-//存放所有登錄用戶的Map集合，鍵：每個用戶的唯一標識（用戶名） 
+//存所有進入聊天室者
+	public static ArrayList<String> chatList = new ArrayList<String>();
+
+//存放所有登錄用戶的Map集合，account:this 
 	private static Map<String, WebSocketTest> webSocketMap = new HashMap<String, WebSocketTest>();
 
 //session作為用戶建立連接的唯一會話，可以用來區別每個用戶 
@@ -126,24 +132,44 @@ public class WebSocketTest {
 			String targetname = messageStr.substring(0, messageStr.indexOf("@"));
 			String sourcename = "";
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
-//根據接收用戶名遍歷出接收對象 
+					//根據接收用戶名遍歷出接收對象 
 				if (targetname.equals(entry.getKey())) {
-					try {
-						for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
-//session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源 
-							if (entry1.getValue().session == session) {
-								sourcename = entry1.getKey();
+
+					//判斷對方是否在聊天室
+					for (String inRoom : WebSocketTest.chatList) {
+						if (targetname.equals(inRoom)) {
+
+							try {
+								for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
+										//session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源 
+									if (entry1.getValue().session == session) {
+										sourcename = entry1.getKey();
+									}
+								}
+								MessageDto md = new MessageDto();
+								md.setMessageType("message");
+								md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
+								entry.getValue().sendMessage(gson.toJson(md));
+							} catch (IOException e) {
+								e.printStackTrace();
+								continue;
+							}
+						} else {
+							try {
+								System.out.println("Noticify~~~");
+
+								MessageDto md = new MessageDto();
+								md.setMessageType("noticify");
+								md.setData("您有新訊息，請至聊天室確認");
+								entry.getValue().sendMessage(gson.toJson(md));
+							} catch (IOException e) {
+
+								e.printStackTrace();
 							}
 						}
-						MessageDto md = new MessageDto();
-						md.setMessageType("message");
-						md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
-						entry.getValue().sendMessage(gson.toJson(md));
-					} catch (IOException e) {
-						e.printStackTrace();
-						continue;
 					}
 				}
+
 			}
 		}
 	}
