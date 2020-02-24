@@ -5,23 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ChangeOrder</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
+<title>我的訂單</title>
 <style type="text/css">
 .mydiv {
-	width:100%;
-	margin:0 auto;
-	top: 80px;
-	position: sticky;
-	text-align: center;
-	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(15, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	color: #E8CCFF;
+min-width: auto;
+max-width: 700px;
+margin:100px auto;
+top: 80px;
+position: sticky;
+text-align: center;
+border-radius: 5px;
+color: #E8CCFF;
+font-size: 18px;
+background-image: url(/Bartenders/images/bg21.png);
 }
 
 body {
@@ -32,6 +31,7 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 .css_button {
@@ -74,6 +74,13 @@ body {
 .css_button:active {
 	top: 1px;
 	position: relative;
+}
+
+td,th{
+line-height: 25px;
+padding-left: 5px;
+padding-top: 5px;
+padding-right: 5px;
 }
 </style>
 </head>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ChartJs</title>
+<title>銷售量直條圖</title>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -26,31 +26,22 @@ body {
 
 .outwrap {
 	min-width: auto;
-	top: 90px;
+	top: 100px;
 	position: sticky;
 	text-align: center;
 	margin: auto;
-	width: 800px;
+	width: 900px;
 	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.3) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.3) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.3) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.3) 99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	color:#FFFFFF;
+	background-image: url(/Bartenders/images/bg21.png);
+	fontColor: "white";
 	
 }
 </style>
 
 </head>
 <body>
-	<div class="outwrap" >
+	<div class="outwrap" style="color: white">
+	<h1 style="color: white">銷售量直條圖</h1><br>
 		<canvas id="myChart"></canvas>
 	</div>
 
@@ -69,23 +60,44 @@ body {
         borderColor: [
         	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
         ],
-        borderWidth: 1
+        borderWidth: 2
+        
       }]
     },
     options: {
+    	legend: {
+    		position: 'top',
+    		labels: {
+    		boxWidth: 20,// 修改寬度
+    		fontSize: 20,
+    		fontColor: 'white'
+    		}
+    		},
       scales: {
-    	  scaleFontColor: "#000093",
+    	  scaleFontColor: "white",
+    	  
         yAxes: [{
           ticks: {
             beginAtZero:true,
+            fontColor: "white",
+            fontSize: 18, 
+            
           }
-        }]
+        }],
+        xAxes: [{
+            ticks: {
+              beginAtZero:true,
+              fontSize: 18, 
+              fontColor: "white",
+            }
+          }]
       }
     }
   });
-  bar.defaults = {
-		  scaleFontColor: "#000093",
-  }
+
+  
+ 
+ 
 </script>
 
 </body>

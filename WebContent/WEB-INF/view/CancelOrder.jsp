@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cancel Order</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
+<title>訂單管理</title>
 <style type="text/css">
 .mydiv {
 	width: 100%;
@@ -29,6 +32,7 @@ body {
 	background-size: cover;
 	overflow-y:hidden;
 	overflow-y:hidden;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 .css_button {

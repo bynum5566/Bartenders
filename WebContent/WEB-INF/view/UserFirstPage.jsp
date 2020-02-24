@@ -22,10 +22,12 @@
 
 <style type="text/css">
 @import
-	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
-	;
-
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
+	
 * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 	outline: none;
 	top: 0px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -42,7 +44,7 @@ strong {
 	font-family: 111.otf;
 	font-weight: 600;
 	letter-spacing: .03em;
-	color: #212121;
+	color: white;
 }
 
 header {
@@ -52,11 +54,10 @@ header {
 	width: 100%;
 	height: 70px;
 	background: #212121;
-	color: #fff;
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	color: #CCBBFF;
+	color: #FFEE99;
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
@@ -73,7 +74,7 @@ main>div {
 }
 
 main h2 span {
-	color: #CCBBFF;
+	color: white;
 }
 
 main p {
@@ -84,7 +85,7 @@ main p {
 
 main small {
 	font-weight: 300;
-	color: #CCBBFF;
+	color: white;
 }
 
 #nav-container {
@@ -221,11 +222,7 @@ main small {
 	transform: none;
 }
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+
 
 html, body {
 	height: 100%;
@@ -247,7 +244,7 @@ a {
 
 h1, h2, h3, h4 {
 	margin: 0;
-	color: #CCBBFF;
+	color: #EEFFBB;
 }
 
 ul {
@@ -297,7 +294,7 @@ input[type=text]:focus {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
-	color: #CCBBFF;
+	color: #FFEE99;
 	font-size: 16px;
 	font-family: 111.otf;
 	text-decoration: none;
@@ -325,8 +322,9 @@ input[type=text]:focus {
 
 .ml9 {
 	position: relative;
-	font-weight: bold;
-	font-size: 30px;
+	font-weight: 900;
+	font-size: 36px;
+	white-space:nowrap;
 }
 
 .ml9 .text-wrapper {
@@ -336,12 +334,23 @@ input[type=text]:focus {
 	padding-right: 0.05em;
 	padding-bottom: 0.1em;
 	overflow: hidden;
+	text-shadow: 0px 8px 1px black,
+
+                 0px 17px 10px rgba(0,0,0,0.15),
+
+                 0px 24px 2px rgba(0,0,0,0.1),
+
+                 0px 34px 30px rgba(0,0,0,0.1);
+     -webkit-text-stroke: 1px #800000;
+     color: #FFD700;
+     font-weight: 800;
 }
 
 .ml9 .letter {
-	transform-origin: 50% 100%;
 	display: inline-block;
-	line-height: 1em;
+	line-height: 2em;
+	color: #FFD700;
+	font-weight: 800;
 }
 </style>
 
@@ -384,10 +393,10 @@ input[type=text]:focus {
 			<h2 align="center">
 				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
 			</h2>
-			<h2 class="ml9" align="center">
-				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
+			<h1 class="ml9" align="center">
+				<span class="text-wrapper"><span class="letters" nowrap="nowrap" style="font-weight:800">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
 				</span>
-			</h2>
+			</h1>
 			<br>
 			<div id="tabs">
 				<ul>
@@ -425,7 +434,6 @@ input[type=text]:focus {
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</main>
 

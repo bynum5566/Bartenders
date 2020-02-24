@@ -7,7 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Orders</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
+<title>我的訂單</title>
 
 <style type="text/css">
 a {
@@ -19,24 +23,16 @@ a:hover {
 }
 
 .mydiv {
-	min-width: auto;
-	top: 80px;
-	position: sticky;
-	text-align: center;
-	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	color: #E8CCFF;
-	font-size: 18px;
+min-width: auto;
+max-width: 1550px;
+margin:100px auto;
+top: 80px;
+position: sticky;
+text-align: center;
+border-radius: 5px;
+color: #E8CCFF;
+font-size: 18px;
+background-image: url(/Bartenders/images/bg21.png);
 }
 
 body {
@@ -48,12 +44,28 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 td{
 line-height: 25px;
-padding-left: 3px;
-padding-right: 3px;
+padding-left: 5px;
+padding-right: 5px;
+}
+
+div.panel, td.flip {
+	margin: 0px;
+	padding: 5px;
+	text-align: center;
+	background: gray;
+	border: solid 1px #c3c3c3;
+	max-width: 1400px;
+}
+
+div.panel {
+	height: 120px;
+	display:none;
+	max-width: 1400px;
 }
 </style>
 
@@ -61,14 +73,14 @@ padding-right: 3px;
 <body>
 	<div class="mydiv">
 		<div align="center">
-			<h3>我的訂單</h3>
+			<h2>我的訂單</h2>
 			<br>
 			<form action="<c:url value="/userOrder.controller"/>" method="post">
 				<table class="myTable">
 					<thead>
 						<tr align="center">
 							<th nowrap="nowrap">訂單編號</th>
-							<th nowrap="nowrap">賣家名稱</th>
+							<th nowrap="nowrap">酒吧</th>
 							<th nowrap="nowrap">訂單內容</th>
 							<th nowrap="nowrap">金額</th>
 							<th nowrap="nowrap">收件人</th>
@@ -93,7 +105,13 @@ padding-right: 3px;
 										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
 									</td>
 									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
-									<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
+									<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
+									<div class="panel">
+									<c:forEach items="${productData[current.index]}" var="list" step="1"
+								varStatus="current1">
+										<p>${productData[current.index][current1.index].productName}</p></c:forEach>
+									</div>
+									</td>
 									<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 									<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
 										<c:choose>
@@ -185,6 +203,12 @@ padding-right: 3px;
 			</form>
 		</div>
 	</div>
+	 <script type="text/javascript">
+  $(".flip").click(function() {
+   <%--$(".panel").slideToggle("slow");--%>
+   $(this).siblings().slideToggle("slow");
+  });
+	</script>
 </body>
 <%@include file="UserMenu.jsp"%>
 </html>

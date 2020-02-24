@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>User Page</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
 
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -24,7 +27,7 @@
 * {
 	outline: none;
 	top: 0px;
-	font-family: TaipeiSansTCBeta;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 strong {
@@ -48,12 +51,11 @@ header {
 	width: 100%;
 	height: 70px;
 	background: #212121;
-	color: #fff;
+	color: #FFEE99;
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	color: #CCBBFF;
-	font-family: TaipeiSansTCBeta;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 main {
@@ -174,6 +176,7 @@ main small {
 	transition: transform .3s;
 	will-change: transform;
 	contain: paint;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 #nav-content ul {
@@ -187,6 +190,7 @@ main small {
 	display: block;
 	text-transform: uppercase;
 	transition: color .1s;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 #nav-content li a:hover {
@@ -224,7 +228,7 @@ main small {
 
 html, body {
 	height: 100%;
-	font-family: TaipeiSansTCBeta;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 a, a:visited, a:focus, a:active, a:link {
