@@ -5,28 +5,47 @@
 	position: relative;
 	border:2px yellow solid;
 	display:inline-block;
+
+	margin:20px;
+}
+
+.fieldset{
+	border-radius:30px;
+	height:700px;
+	width:350px;
+	
 }
 
 .img {
 	width: 350px;
 	height: 350px;
 	border: lightgrey 1px solid;
+	margin: 5px;
+	border-radius:20px;
 	/*float:left;*/
 }
 
 .imgType {
+	position:absolute;
+	right:0%;
+	margin: 0px 10px 0px 0px;
+	/*
 	float: right;
+	
+	*/
 }
 
 .ActivityName {
+	position:relative;
 	color: orange;
 	font-weight: bold;
 	font-size: 24px;
-	border: lightgrey 1px solid;
+	
 	margin: 10px 10px 0px 10px;
 	/*float:left;*/
-	width: 280px;
-	height: 26px;
+	left:15%;
+	width: 232px;
+	height: 28px;
 	overflow: hidden; /*超出的文本隐藏*/
 	text-overflow: ellipsis; /*溢出用省略号显示*/
 	white-space: nowrap; /*溢出不换行*/
@@ -41,8 +60,15 @@
 }
 
 .brief {
-	border: lightgrey 1px solid;
+	background-color:lightgrey;
+	border-radius:20px;
+	height:100px;
 	padding: 5px;
+	overflow: hidden; /*超出的文本隐藏*/
+	text-overflow: ellipsis; /*溢出用省略号显示*/
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
 }
 
 

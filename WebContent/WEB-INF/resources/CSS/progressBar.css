@@ -11,17 +11,10 @@ clear:both;
 
 .outer{
 position:relative;
-<<<<<<< HEAD
-border:1px red solid;
-width:280px;
-height:40px;
-margin:0px auto;
-=======
 width:280px;
 height:40px;
 margin:0px auto;
 
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 }
 .ground{
 position:absolute;
@@ -35,28 +28,6 @@ margin:0px auto;
 }
 
 .currentD{
-<<<<<<< HEAD
-position:relative;
-background:pink;
-width:0px;
-height:8px;
-margin:4px 10px 4px 10px;
-display:inline-block;
-border-radius:20px;
-
-}
-
-.targetD{
-position:absolute;
-background:lightyellow;
-
-width:0px;
-height:8px;
-margin:4px 10px 4px 10px;
-display:inline-block;
-border-radius:20px;
-
-=======
 
 background:pink;
 position: absolute;
@@ -75,41 +46,26 @@ margin:4px 10px 4px 10px;
 border-radius:20px;
 
 
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 }
 
 .limitP{
 position:absolute;
-<<<<<<< HEAD
-right:0px;
-bottom:-6px;
-=======
 right:1px;
 bottom:11px;
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 
 }
 
 .targetP{
 position:absolute;
 right:-10px;
-<<<<<<< HEAD
-bottom:-10px;
-=======
 bottom:7px;
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 
 }
 
 .currentP{
 position:absolute;
-<<<<<<< HEAD
-right:-10px;
-bottom:10px;
-=======
 right:-9px;
 bottom:7px;
 
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
 
 }

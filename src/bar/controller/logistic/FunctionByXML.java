@@ -76,26 +76,6 @@ public class FunctionByXML {
 			) throws ParseException {
 		System.out.println("ActivityJoker start");
 		System.out.println("Object is: "+obj);
-<<<<<<< HEAD
-		List<Activity> all = aSer.queryAll();
-		boolean status = aSer.checkEndTime(all);
-		System.out.println("all activities is checked: "+status);
-		List<Activity> checkList = new ArrayList<Activity>();
-		List<Activity> temp;
-		for(int i=0;i<4;i++) {
-			Object x = obj.get(i);
-			if(x.toString().equals("null")) {
-				System.out.println("object["+i+"] is null");
-			}else {
-				temp = aSer.queryJoker("type","'"+x.toString()+"'");
-				checkList.addAll(temp);
-			}
-		}
-		System.out.println("type with qualify result: "+checkList);
-		//日期類
-		List<Activity> activity = new ArrayList<Activity>();
-		if(!obj.get(4).toString().equals("null")) {
-=======
 		//先更新時間
 		List<Activity> all = aSer.queryAll();
 		boolean status = aSer.checkEndTime(all);
@@ -103,23 +83,52 @@ public class FunctionByXML {
 		
 		//預設找正開放的全部
 		List<Activity> finalList = aSer.queryJoker("status", "'O'");
+		System.out.println("there are: "+finalList.size()+" activities are currently open.");
+		
 		//類型類
-		
-		
-		for(int i=0;i<4;i++) {
-			Object deleteType = obj.get(i);
-			if(deleteType.toString().equals("wanted")) {
-				System.out.println("object["+i+"] is qualify");
-			}else {
-				for(Activity a:finalList) {
-					String checkType = a.getType();
-					if(checkType.equals(deleteType.toString())) {
-						finalList.remove(a);
-					}
+		boolean checking = false;
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+			checking=true;
+			System.out.println("start to check type");
+		}
+		if(checking) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				String checkType = a.getType();
+				System.out.println("this activity is: "+checkType);
+				if(!obj.contains(checkType)) {
+					listToRemove.add(a);
+					System.out.println(checkType+" is not wanted");
 				}
 			}
+			finalList.removeAll(listToRemove);
 		}
-		System.out.println("type with qualify result: "+finalList);
+//			for(int i=0;i<4;i++) {
+//				Object deleteType = obj.get(i);//bar
+//				obj.contains("");
+//				//["bar", "shop", "show", "checked"]
+//				if(!checkType.equals(deleteType.toString())) {
+//					finalList.remove(a);
+//				}
+//			}
+		
+		System.out.println("there are: "+finalList.size()+" activities are included after type check");
+		
+//		for(int i=0;i<4;i++) {
+//			Object deleteType = obj.get(i);
+//			if(!deleteType.toString().equals("checked")) {
+//				System.out.println("object["+i+"] is wanted");
+//			}else {
+//				for(Activity a:finalList) {
+//					String checkType = a.getType();
+//					if(checkType.equals(deleteType.toString())) {
+//						finalList.remove(a);
+//					}
+//				}
+//				System.out.println(deleteType+" is deleted");
+//			}
+//		}
+//		System.out.println("type with qualify result: "+finalList);
 //		List<Activity> checkList = new ArrayList<Activity>();
 //		List<Activity> temp;
 //		for(int i=0;i<4;i++) {
@@ -133,67 +142,94 @@ public class FunctionByXML {
 //		}
 //		System.out.println("type with qualify result: "+checkList);
 		//狀態類
+		if(obj.get(4).toString().equals("ready")) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				if(a.getActualNum()<a.getTargetNum()) {
+					listToRemove.add(a);
+				}
+			}
+			finalList.removeAll(listToRemove);
+			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
+		}
+		if(obj.get(5).toString().equals("available")) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				if(a.getActualNum()>=a.getLimitNum()) {
+					listToRemove.add(a);
+				}
+			}
+			finalList.removeAll(listToRemove);	
+			System.out.println("there are: "+finalList.size()+" activities are included after available check");
+		}
 		
+//		for(int i=4;i<6;i++) {
+//			Object deleteStatus = obj.get(i);
+//			//ready有勾才檢查
+//			if(deleteStatus.toString().equals("ready")) {
+//				for(Activity a:finalList) {
+//					if(a.getActualNum()<a.getTargetNum()) {
+//						finalList.remove(a);
+//					}
+//				}
+//			}else if(deleteStatus.toString().equals("available")){
+//				for(Activity a:finalList) {
+//					if(a.getActualNum()>=a.getLimitNum()) {
+//						finalList.remove(a);
+//					}
+//				}
+//			}
+//			System.out.println(deleteStatus.toString()+" is checked");
+//		}
 		
 		//日期類
-		List<Activity> activity = new ArrayList<Activity>();
 		if(!obj.get(6).toString().equals("null")) {
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			Date immediatlyD = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+			Date beginD = sdf.parse(obj.get(6).toString());
+			Date endD = sdf.parse(obj.get(7).toString());
+			//進行轉換
+//			long period = (endD.getTime()-beginD.getTime())/1000/60;
+//			System.out.println("time diff between now & begin: "+period+"min");
 			
-		
-		Date immediatlyD = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-<<<<<<< HEAD
-		Date beginD = sdf.parse(obj.get(4).toString());
-		Date endD = sdf.parse(obj.get(5).toString());
-=======
-		Date beginD = sdf.parse(obj.get(6).toString());
-		Date endD = sdf.parse(obj.get(7).toString());
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
-		//進行轉換
-		long period = (endD.getTime()-beginD.getTime())/1000/60;
-		System.out.println("time diff between now & begin: "+period+"min");
-		
-		for(Activity a:checkList) {
-			Date aBeginD = sdf2.parse(a.getBeginTime());
-			Date aEndD = sdf2.parse(a.getEndTime());
-			System.out.println("this activity's time is: "+aBeginD+" to "+aEndD);
-			Date x;
-			Date y;
-			if(beginD.before(aBeginD)) {
-				x = aBeginD;
-			}else {
-				x = beginD;
+			for(Activity a:finalList) {
+				Date aBeginD = sdf2.parse(a.getBeginTime());
+				Date aEndD = sdf2.parse(a.getEndTime());
+				System.out.println("this activity's time is: "+aBeginD+" to "+aEndD);
+				Date x;
+				Date y;
+				if(beginD.before(aBeginD)) {
+					x = aBeginD;
+				}else {
+					x = beginD;
+				}
+				if(endD.before(aEndD)) {
+					y = endD;
+				}else {
+					y = aEndD;
+				}
+				
+				long xLength = x.getTime()-immediatlyD.getTime();
+				long yLength = y.getTime()-immediatlyD.getTime();
+				if(yLength-xLength<=0) {
+					System.out.println("this activity is not qualify with selected time period");
+					listToRemove.add(a);
+				}
 			}
-			if(endD.before(aEndD)) {
-				y = endD;
-			}else {
-				y = aEndD;
-			}
-			
-			long xLength = x.getTime()-immediatlyD.getTime();
-			long yLength = y.getTime()-immediatlyD.getTime();
-			if(yLength-xLength>0) {
-				System.out.println("this activity is not qualify with selected time period");
-				activity.add(a);
-			}
-		}
+			finalList.removeAll(listToRemove);
 		}else {
 			System.out.println("time is not selected");
 		}
-		System.out.println("final result: "+activity);
+			System.out.println("final result: "+finalList);
 //		activity = aSer.queryJoker("userId",userId,"status","O");
-<<<<<<< HEAD
-		if(obj.get(4).toString().equals("null")) {
-=======
-		if(obj.get(6).toString().equals("null")) {
->>>>>>> 65c0a0269bef67bd7125633d0fe9b862e864222f
-			return checkList;
-		}else {
-			return activity;
-		}
-		
+//		if(obj.get(6).toString().equals("null")) {
+//			return checkList;
+//		}else {
+//			return activity;
+//		}
+		return finalList;
 	}
 	
 	

@@ -41,12 +41,32 @@
 					targetMap.panTo(point);
 					markers[mapIndex].push(marker);
 					//建立個別window
-					var contentString = 	'<div id="idiv">'+
-					'<h3 id="ih3" style="margin:10px 10px 0px 10px;display: inline-block">'+name+'</h3>'+
-					'<p id="ip" align="right" style="color:red;margin:10px 20px 10px 70px;display: inline">'+type+'</p>'+
-					'<p style="margin:5px">'+address+'</p>'+
-					'<img src="images/'+img+'">'+
-					'<p style="margin:5px">'+brief+'</p>'
+					var contentString = 	
+						
+						'<div class="infoDiv">'+
+						'<div class="infoTitle">'+
+							'<h1 class="infoH1">'+name+'</h1>'+
+						'</div>'+
+						'<img class="infoImg" alt="未設定照片" src="images/'+img+'">'+
+						'<div class="detailDiv">'+
+							'<p class="infoDetail">2020/02/21</p>'+
+							'<p class="infoDetail">16:00 ~ 20:00</p>'+
+							'<p class="infoDetail">'+address+'</p>'+
+						'</div>'+
+						
+							'<div class="outer">'+
+								'<div class="ground">'+
+									'<p class="limitP" class="num"><img src="images/arrowLimit.png"></p>'+
+									'<div class="targetD">'+
+										'<p class="targetP" class="num"><img src="images/arrowTarget.png"></p>'+
+									'</div>'+
+									'<div class="currentD">'+
+										'<img class="currentP" src="images/arrowCurrent.png">'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						
+						'<div class="infoBrief" >'+brief+'</div>'+
 					'</div>';
 					
 					marker.addListener('click', function() {
@@ -69,18 +89,38 @@
 						var marker = new google.maps.Marker({
 							map : targetMap,
 							position : point,
-							icon: 'images/'+type+'.jpg'
+							icon: 'images/'+type+'.png'
 						});
 						
 						targetMap.panTo(point);
 						markers[mapIndex].push(marker);
 						//建立個別window
-						var contentString = 	'<div id="idiv">'+
-						'<h3 id="ih3" style="margin:10px 10px 0px 10px;display: inline-block">'+name+'</h3>'+
-						'<p id="ip" align="right" style="color:red;margin:10px 20px 10px 70px;display: inline">'+type+'</p>'+
-						'<p style="margin:5px">'+address+'</p>'+
-						'<img src="images/'+img+'">'+
-						'<p style="margin:5px">'+brief+'</p>'
+						var contentString =
+							'<div class="infoDiv">'+
+							'<div class="infoTitle">'+
+								'<h1 class="infoH1">'+name+'</h1>'+
+							'</div>'+
+							'<img class="infoImg" alt="未設定照片" src="images/'+img+'">'+
+							'<div class="detailDiv">'+
+								'<p class="infoDetail">2020/02/21</p>'+
+								'<p class="infoDetail">16:00 ~ 20:00</p>'+
+								'<p class="infoDetail">'+address+'</p>'+
+								'<a href="/Bartenders/queryActivityByActivityId.do?activityId='+id+'"/>活動詳情</a>'+
+							'</div>'+
+							/*
+								'<div class="outer">'+
+									'<div class="ground">'+
+										'<p class="limitP" class="num"><img src="images/arrowLimit.png"></p>'+
+										'<div class="targetD">'+
+											'<p class="targetP" class="num"><img src="images/arrowTarget.png"></p>'+
+										'</div>'+
+										'<div class="currentD">'+
+											'<img class="currentP" src="images/arrowCurrent.png">'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							*/
+							'<div class="infoBrief" >'+brief+'</div>'+
 						'</div>';
 						
 						marker.addListener('click', function() {

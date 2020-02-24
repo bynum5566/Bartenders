@@ -10,6 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBarForSingleActivity.css">
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 <style>
 body {
 	margin: 0px auto;
@@ -46,6 +47,7 @@ height:500px;
 right:100px;
 border:1px solid black;
 }
+
 </style>
 <script>
 var number = 0;
