@@ -116,19 +116,19 @@ fieldset {
 						</div>
 					<script>
 						//測試是否可以接收到登入參數
-						var user = '${getUser.userId}';
-						console.log('userId is: ','${getUser.userId}');
-						var company = '${getCompany.companyId}';
-						console.log('companyId is: ','${getCompany.companyId}');
+						var user = '${getUserId}';
+						console.log('userId is: ','${getUserId}');
+						var company = '${getCompanyId}';
+						console.log('companyId is: ','${getCompanyId}');
 						console.log('preUrl=','${preUrl}');
 						var sendText;
-						<c:if test='${empty getUser.userId}'>
-							sendText = 'c${getCompany.companyId}';
-							<c:set var="finalText" scope="page" value='c${getCompany.companyId}'/>
+						<c:if test='${empty getUserId}'>
+							sendText = '${getCompanyId}';
+							<c:set var="finalText" scope="page" value='${getCompanyId}'/>
 						</c:if>
-						<c:if test='${empty getCompany.companyId}'>
-							sendText = 'u${getUser.userId}';
-							<c:set var="finalText" scope="page" value='u${getUser.userId}'/>
+						<c:if test='${empty getCompanyId}'>
+							sendText = '${getUserId}';
+							<c:set var="finalText" scope="page" value='${getUserId}'/>
 						</c:if>
 						
 						console.log('final sendText is: ',sendText);

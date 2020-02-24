@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Orders</title>
-
+<title>物流登入</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
 <style type="text/css">
 a{
 color: #E8CCFF;
@@ -42,7 +43,9 @@ body {
 	background-size: cover;
 }
 
-
+label{
+color:blue;
+}
 
 </style>
 
@@ -82,4 +85,82 @@ body {
 	</table>
 </form>
 </div>
+
+<div class="box">
+	<br>
+	<br>
+	<div class="outer">
+		
+		<div class="ground">
+			<p class="limitP" class="num"><img src="images/arrowLimit.png"></p>
+			<div class="targetD">
+				<p class="targetP" class="num"><img src="images/arrowTarget.png"></p>
+			</div>
+			<div class="currentD">
+				<img class="currentP" src="images/arrowCurrent.png">
+			</div>
+			
+		</div>
+	</div>
+	<br>
+	<br>
+		<label>輸入上限<input id="limitNum" type="text" name="limit"></label><br>
+		<label>輸入目標<input id="targetNum" type="text" name="target"></label><br>
+		<input type="submit" onclick="reSet()" value="設定"><br>
+	<button id="per">增加1份</button>
+	<button id="plus">增加10</button>
+	<button id="reduce">減少10</button>
+</div>
+<script>
+	var fix = $('#ground').width()-20;
+	console.log('fix width: ',fix);
+	var per;
+	var limitNum = document.getElementById('limitNum');
+	var targetNum = document.getElementById('targetNum');
+	var currentNum = 0;
+	var total = document.getElementById('currentD');
+	var current;
+	var reach;
+	var target;
+	function reSet(){
+		console.log(' limit is: ',limitNum.value,' target is: ',targetNum.value);
+		per = fix/limitNum.value;
+		reach = per*targetNum.value;
+		currentNum = 0;
+		console.log('per is:',per);
+		console.log('reach is:',reach);
+		$('#targetD').width(reach);
+		$('#currentD').width(0);
+		$('#currentD').css('background-color','pink');
+	}
+	
+	
+	
+	$('#per').on('click',function(){
+		currentNum++;
+		console.log('number is: ',currentNum,'/',targetNum.value)
+		current = $('#currentD').width();
+		console.log('jquery current is: ',current);
+		$('#currentD').width(current+per);
+		console.log('jquery after is: ',$('#total').width());
+		if(currentNum==targetNum.value){
+			console.log('target reached')
+			$('#currentD').css('background-color','lightgreen');
+			$('#targetP').css("display","none");
+		}
+		
+	})
+	
+	$('#plus').on('click',function(){
+		console.log('+10');
+		current = $('#currentD').width();
+		console.log('jquery current is: ',current);
+		$('#currentD').width(current+10);
+		console.log('jquery after is: ',$('#currentD').width());
+	})
+</script>
+<script>
+	
+</script>
 </body>
+</html>

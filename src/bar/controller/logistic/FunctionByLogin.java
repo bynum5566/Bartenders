@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import bar.model.logistic.LogisticAccount;
 import bar.model.logistic.LogisticAccountDAO;
 @Controller
-@SessionAttributes(names= {"username","errors","logisticLogin"})
+@SessionAttributes(names= {"username","errors","logisticLogin","sender"})
 public class FunctionByLogin {
 
 	private LogisticAccountDAO adao;
@@ -57,10 +58,12 @@ public class FunctionByLogin {
 		}
 		
 		boolean status = adao.checkLogin(username,userpwd);
+		LogisticAccount sender = adao.querySender(username,userpwd);
 		if(status==true) {
 //			m.addAttribute("logisticLogin","true");
 			session.setAttribute("logisticLogin", status);
 			System.out.println("create login session:"+status);
+			m.addAttribute("sender",sender);
 			m.addAttribute("username",username);
 			if(orderID!=""&&orderStatus!="") {
 //				int myId= Integer.parseInt(orderID);
@@ -74,7 +77,7 @@ public class FunctionByLogin {
 //				
         		return null;
 			}
-			response.sendRedirect("LogisticGate");
+			response.sendRedirect("WelcomeLogistic");
 			return null;
 		}
 		errors.put("msg", "帳號或密碼不正確");

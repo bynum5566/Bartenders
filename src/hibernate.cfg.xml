@@ -22,6 +22,7 @@
 		<mapping class="bar.model.logistic.Logistic" />
 		<mapping class="bar.model.logistic.Activity" />
 		<mapping class="bar.model.logistic.Bar" />
+		<mapping class="bar.model.logistic.Participant" />
 		<mapping class="bar.model.MessageBoard" />
 		<mapping class="bar.model.SubMessageBoard" />
 		<!-- <mapping class="bar.model.ProductDataDAO"/> -->

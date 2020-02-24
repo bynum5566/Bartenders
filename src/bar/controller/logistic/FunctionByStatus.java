@@ -3,7 +3,10 @@ package bar.controller.logistic;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import bar.model.logistic.Logistic;
 import bar.model.logistic.LogisticService;
@@ -36,25 +40,40 @@ public class FunctionByStatus {
 		
 	}
 	
-	@RequestMapping(path = "/testLogistic.do",method = RequestMethod.GET)
-	public String testLogistic() throws IOException {
-		String id = "1000001581943454337";
-		int type = 1;
-		String phone = "0921228145";
-		String name = "林靖";
-		int amount = 650;
-		String address = "住家";
-		lService.createLogistic( id, type, phone, name, amount, address);
-
-		return "logistic/LogisticGate";
+	@RequestMapping(path = "/logistic/searchPersonalOrder.do",method = RequestMethod.GET)
+	public String searchPersonalOrder(@RequestParam(name = "sID")String sID,Model m) throws IOException {
+		List<Logistic> rs = lService.queryBysID(sID);
+			m.addAttribute("logistic",rs);
+		return "logistic/searchOrder";
 	}
 	
-	@RequestMapping(path = "/createLogistic.do",method = RequestMethod.GET)
-	public String createLogistic() throws IOException {
-		Orders rs = oService.selectOrder("1000001581303140715");
+	@RequestMapping(path = "/searchTargetOrder.do",method = RequestMethod.POST)
+	public String searchTargetOrder(@RequestParam(name = "oID")String oID,Model m,
+			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
+//		List<Logistic> rs = lService.queryJoker("oID", "'"+oID+"'");
+		
+		Logistic rs = lService.uniqueQuery("oID", "'"+oID+"'");
+		//只保留到下一頁
+		System.out.println("step1");
+		if(rs!=null) {
+			System.out.println("result is: "+rs);
+			RedirectAttributes x = redirectAttrs.addFlashAttribute("result",rs);
+		}else {
+			RedirectAttributes x = redirectAttrs.addFlashAttribute("noData","no");
+		}
+		System.out.println("step3");
+		return "redirect:/CheckLogistic";
+//		m.addAttribute("logistic",rs);
+//		return "CheckLogistic";
+	}
+	
+	@RequestMapping(path = "/logistic/createLogistic.do",method = RequestMethod.POST)
+	public String createLogistic(@RequestParam(name = "orderId")String orderId) throws IOException {
+		Orders rs = oService.selectOrder(orderId);
 		System.out.println(rs);
 		if(rs.getStatus()==3) {
-			String id = rs.getOrderId();
+			String oID = rs.getOrderId();
+			Integer cID = rs.getCompanyId();
 			int type = rs.getShipping();
 			String phone = rs.getPhone();
 			String name = rs.getRecipient();
@@ -65,11 +84,11 @@ public class FunctionByStatus {
 			}else if(type==2) {
 				address = rs.getAddress2();
 			}
-			lService.createLogistic(id, type, phone, name, amount, address);
-			System.out.println("create Logistic done");
+			lService.createLogistic(oID, cID, type, phone, name, amount, address);
+			System.out.println("test Logistic order created");
 		}
 		
-		return "UserOrder";
+		return "logistic/LogisticGate";
 	}
 	
 	@RequestMapping(path = "/logistic/queryByStatus.do",method = RequestMethod.GET)

@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Activity {
 
 	private Integer activityId;
-	private String userId;
+	private Integer userId;
 	private String name;
 	private String address;
 	private float lat;
@@ -26,8 +26,11 @@ public class Activity {
 	private String beginTime;
 	private String endTime;
 	private String status;
+	private Integer limitNum;
 	private Integer targetNum;
 	private Integer actualNum;
+	
+	private Integer orderNum;
 	
 	@Id
 	@Column(name="ACTIVITYID")
@@ -42,12 +45,12 @@ public class Activity {
 	}
 
 	@Column(name="USERID")
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
 	@XmlElement
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -169,8 +172,24 @@ public class Activity {
 	public void setActualNum(Integer actualNum) {
 		this.actualNum = actualNum;
 	}
+	@Column(name="ORDERNUM")
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+	@XmlElement
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
+	@Column(name="LIMITNUM")
+	public Integer getLimitNum() {
+		return limitNum;
+	}
+	@XmlElement
+	public void setLimitNum(Integer limitNum) {
+		this.limitNum = limitNum;
+	}
 
-
+	
 
 	
 

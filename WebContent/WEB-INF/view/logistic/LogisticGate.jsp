@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="logisticMenu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-a{
-color: #E8CCFF;
 
-}
-a:hover {
-color: 	#9F88FF;
-}
 .mydiv {
 	min-width: auto;
 	top: 80px;
@@ -65,6 +60,11 @@ fieldset {
 
 </head>
 <body class="center">
+<br>
+<br>
+<br>
+<br>
+
 	<h1 align=center style="color:white;font-size:48px">物流訂單管理</h1>
 
 		
@@ -75,12 +75,33 @@ fieldset {
 						<button id="status1" class="ByStatus" >查詢未收貨訂單</button>	<!-- status=1 -->
 						<button id="status2" class="ByStatus" >查詢配送中訂單</button>	<!-- status=2 -->
 						<button id="status3" class="ByStatus" >查詢已送達訂單</button>  <!-- status=3 -->
+						<button class="return">回物流大廳</button>
 					<!-- 
 						<button id="test" class="create" >測試訂單</button>
 					 -->
 					</td>
 				</tr>
 			</table>
+			<div align="center">
+				<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
+					<table>
+						<tr>
+							<td>請輸入要測試的訂單號碼<input type="text" name="orderId"></td>
+							<td><input type="submit" value="建立"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div align="center">
+				<form action="<c:url value="/logistic/searchPersonalOrder.do" />" method="get">
+					<table>
+						<tr>
+							<td>請輸入要進入的配送員ID<input type="text" name="sID"></td>
+							<td><input type="submit" value="前往"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
 			<div align="center">
 			<form action="<c:url value="/logistic/LogisticLogout.do" />" method="post">
 				<table>
@@ -103,12 +124,14 @@ fieldset {
 						<td>序號</td>
 						<td>訂單號碼</td>
 						<td>物流號碼</td>
+						<td>商家號碼</td>
 						<td>送貨類型</td>
 						<td>送貨地址</td>
 						<td>取件人姓名</td>
 						<td>取件人手機</td>
 						<td>訂單金額</td>
 						<td>狀態</td>
+						<td>送貨員編號</td>
 						<td>出貨時間</td>
 						<td>送達物流中心時間</td>
 						<td>顧客取貨時間</td>
@@ -122,16 +145,18 @@ fieldset {
 							<td>${status.index+1}</td>
 							<td>${Logistic.oID}</td>
 							<td>${Logistic.lID}</td>
-							<td id="type${Logistic.oID}">${Logistic.oType}</td>
+							<td>${Logistic.cID}</td>
+							<td id="type${Logistic.lID}">${Logistic.oType}</td>
 							<td>${Logistic.oAddr}</td>
 							<td>${Logistic.oName}</td>
 							<td>${Logistic.oPhone}</td>
 							<td>${Logistic.oAmount}</td>
-							<td id="mystatus${Logistic.oID}">${Logistic.oStatus}</td>
+							<td id="ostatus${Logistic.lID}">${Logistic.oStatus}</td>
+							<td>${Logistic.sID}</td>
 							<td>${Logistic.oTimeA}</td>
 							<td>${Logistic.oTimeB}</td>
 							<td>${Logistic.oTimeC}</td>
-							<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
+							<td id="oComplete${Logistic.lID}">${Logistic.oComplete}</td>
 							<td><button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
 									class="Ready" style="display: none">貨物確認送達</button></td>
 							
@@ -151,34 +176,27 @@ fieldset {
 							 -->
 						</tr>
 						<script>
-							
-							
-							var type = document.getElementById('type${Logistic.oID}');
-							console.log('type column: ',type);
+							console.log('status is, ${Logistic.oStatus}')
+						
+							var type = document.getElementById('type${Logistic.lID}');
 							if(type.innerHTML=='1'){
 								type.innerHTML = '宅配';
-							}else if(type.innerHTML=='2'){
-								type.innerHTML = '超商';
 							}else if(type.innerHTML=='3'){
 								type.innerHTML = '票券';
 							};
-							console.log('oID is: ','${Logistic.oID}');
 							
-							var status = document.getElementById('mystatus${Logistic.oID}');
-							console.log('status is: ','mystatus${Logistic.oID}');
-							console.log('status.innerHTML: ',status);
-							console.log('status column: ',status.getHeaders());
-							if(status='1'){
-								status = '未取貨';
-							}else if(status.innerHTML=='2'){
-								
+							var status = document.getElementById('ostatus${Logistic.lID}');
+							if(status.innerHTML==1){
+								status.innerHTML = '未取貨';
+							}else if(status.innerHTML==2){
 								status.innerHTML = '運送中';
-							}else if(status=3){
-								status = '訂單完成';
+							}else if(status.innerHTML==3){
+								status.innerHTML = '訂單完成';
 							};
 							
-							var finish = document.getElementById('oComplete${Logistic.oID}');
+							var finish = document.getElementById('oComplete${Logistic.lID}');
 							if(finish.innerHTML=='1'){
+								console.log('finish');
 								finish.innerHTML = '送達';
 							}
 							</script>
@@ -260,10 +278,10 @@ fieldset {
 	</div>
 	 -->
 	<script>
-		$(".st1,.st2")
-				.on(
-						"click",
-						function() {
+	
+	var sID = '${sender.senderId}';
+	console.log('senderId is: ',sID);
+		$(".st1,.st2").on("click", function() {
 							var Str = this.id
 							orderID = Str.substring(2);
 							orderStatus = Str.substring(0, 1);
@@ -280,12 +298,16 @@ fieldset {
 							orderType = Str.substring(1, 2);
 							window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID='+ orderID + '&orderStatus=' + orderStatus;
 							})
-							$(".ByStatus").on("click", function() {
-								var Str = this.id
-								orderStatus = Str.substring(6);
-								window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
-								})
+	$(".ByStatus").on("click", function() {
+		var Str = this.id
+		orderStatus = Str.substring(6);
+		window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
+	})
 								
+	//回上頁
+	$(".return").on("click", function() {
+		window.location.href = '<c:url value="/logistic/WelcomeLogistic"/>';
+	})
 				
 /*
 

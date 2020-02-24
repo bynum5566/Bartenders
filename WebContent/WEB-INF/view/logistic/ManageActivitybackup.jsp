@@ -54,24 +54,24 @@ fieldset {
 }
 
 .img{
-width:100px;
-height:100px;
+width:350px;
+height:350px;
 border:lightgrey 1px solid;
-float:left;
+/*float:left;*/
 }
 
 .imgType {
 float:right;
 }
 
-.name{
+.ActivityName{
 color:orange;
 font-weight:bold;
 font-size:24px;
-
+border:lightgrey 1px solid;
 margin: 10px 10px 0px 10px;
-float:left;
-width:120px;
+/*float:left;*/
+width:300px;
 height:26px;
 
 overflow:hidden;/*超出的文本隐藏*/
@@ -134,7 +134,7 @@ var number = 0;
 			<tr>
 				<td>
 					<button id="search" class="mapType">地圖搜尋</button>
-					<button class="return">回上一頁</button>
+					<button class="return">返回活動大廳</button>
 					
 				</td>
 			</tr>
@@ -156,8 +156,7 @@ var number = 0;
 				<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
 					<img class="img" alt="未選擇圖片" style="margin: 5px"  src="images/${Activity.img}" >
 					<img class="imgType" alt="未設定類型" title="${Activity.type}" src="images/beer.png" >
-					<div class="name" >${Activity.name}</div>
-					<br>
+					<div class="ActivityName" >${Activity.name}</div>
 					<p id="date${Activity.activityId}" class="date" align=left style="margin: 10px;"></p>
 					<p align=left style="margin: 10px">${Activity.address}</p><button id="Bhidden${status.index}" type="button" >確認地圖</button>
 						<div class="showEachMap">
@@ -165,7 +164,6 @@ var number = 0;
 								<div id="map${status.index}" style="width:500px;height:500px;background:red"></div>
 							</div>
 						</div>
-						
 						<div>
 						<c:choose>
 						<c:when test="${empty Activity.targetNum}">
@@ -174,7 +172,6 @@ var number = 0;
 						<c:when test="${Activity.targetNum-Activity.actualNum>0}">
 						<p id="people${status.index}" class="number" align=left style="display:inline;margin: 0px;">參加人數: ${Activity.targetNum} / ${Activity.actualNum}  	</p>
 						<p align=right style="display:inline;margin: 0px;">   我想報名:</p>
-						
 						<form align=right action="joinActivity.do" method="post" style="display:inline;margin: 0px;">
 							<input type="hidden" name="userId" value="${Activity.userId}" >
 							<input type="hidden" name="activityId" value="${Activity.activityId}" >
@@ -186,14 +183,12 @@ var number = 0;
 							<p align=right style="display:inline;margin: 0px;">人</p>
 							<input type="submit" value="確定">
 						</form>
-						
 						</c:when>
 						<c:otherwise>
 					        <p>參加人數已滿</p>
 					    </c:otherwise>
 					</c:choose>
 						</div>
-						<!--  -->
 					<p class="brief" align=center style=";width:340px;margin: 5px;text-align:justify" >${Activity.brief}</p>
 					<span>
 					<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
@@ -326,7 +321,7 @@ var number = 0;
 	};
 	//回上頁
 	$(".return").on("click", function() {
-		window.location.href = '<c:url value="/ManageBar"/>';
+		window.location.href = '<c:url value="/searchActivity"/>';
 	})
 	/*
 	$('#showMap').on('click',function(){

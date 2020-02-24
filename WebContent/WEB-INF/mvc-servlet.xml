@@ -116,8 +116,8 @@
 				path="/logistic/LogisticLogin.do" />
 			<mvc:exclude-mapping
 				path="/logistic/LogisticLogout.do" />
-				
-
+			<mvc:exclude-mapping path="/scripts/MapStyle.js" />
+			<mvc:exclude-mapping path="/scripts/mapForOrder.js" />
 			<!-- 靜態資源 -->
 			<!-- <mvc:exclude-mapping path="/img/**" /> -->
 			<!-- <mvc:exclude-mapping path="/css/**" /> -->

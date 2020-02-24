@@ -110,8 +110,10 @@ public class finishPay {
 			}else if(order.getShipping()==2) {
 				lAddress = order.getAddress2();
 			}
+			
+			int cID = order.getCompanyId();
 			System.out.println("order found: "+order);
-			String logistic = lService.createLogistic(orderId,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			String logistic = lService.createLogistic(orderId,cID,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
 			System.out.println("logistic creation done");
 			order.setShippingNumber(logistic);
 			

@@ -89,7 +89,8 @@ font-size:20px;
 				<td>
 					<button id="Marker" class="setting">設定酒吧地點</button>
 					<button id="Show" class="setting">舉辦活動</button>
-					<button id="Manage" class="setting">管理活動</button>
+					<button id="Search" class="setting">活動頁面</button>
+					<button class="return">回上一頁</button>
 				</td>
 			</tr>
 		</table>
@@ -104,16 +105,16 @@ font-size:20px;
 	var company = '${getCompany.companyId}';
 	console.log('companyId is: ','${getCompany.companyId}');
 	
-	var sendText;
+	var targetId;
 	<c:if test='${empty getUser.userId}'>
-		sendText = 'c${getCompany.companyId}';
-		<c:set var="finalText" scope="page" value='c${getCompany.companyId}'/>
+		targetId = '${getCompany.companyId}';
+		<c:set var="targetId" scope="page" value='${getCompany.companyId}'/>
 	</c:if>
 	<c:if test='${empty getCompany.companyId}'>
-		sendText = 'u${getUser.userId}';
-		<c:set var="finalText" scope="page" value='u${getUser.userId}'/>
+		targetId = '${getUser.userId}';
+		<c:set var="targetId" scope="page" value='${getUser.userId}'/>
 	</c:if>
-	console.log('searching userId: ','${finalText}')
+	console.log('searching targetId: ','${targetId}')
 	
 		$(".search").on("click", function() {
 			var type = this.id;
@@ -129,14 +130,18 @@ font-size:20px;
 		$(".setting").on("click", function() {
 			var type = this.id;
 			
-			if(type=='Manage'){
-				window.location.href = '<c:url value="/queryActivityByUser.do"/>?userId=${finalText}';
+			if(type=='Search'){
+				window.location.href = '<c:url value="/queryAllActive.do"/>';
 			}else{
 				window.location.href = '<c:url value="/create'+type+'"/>';
 			}
 			
 		})
 		
+		//回上頁
+		$(".return").on("click", function() {
+			window.location.href = '<c:url value="/WelcomeCompany"/>';
+		})
 
 	</script>
 	</body>

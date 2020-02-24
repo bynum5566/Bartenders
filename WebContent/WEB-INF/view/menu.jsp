@@ -36,14 +36,18 @@
 				<li class="small"><a class="menu"
 					href="/Bartenders/Welcome.Company">前往首頁</a> <a class="menu"
 					href="javascript:signOut()">登出</a></li>
-				<li><a class="menu" href="/Bartenders/logistic/LogisticGate">物流</a></li>
-				<li><a class="menu" href="/Bartenders/ManageBar">管理活動</a></li>
+				<li><a class="menu" href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+				<li><a class="menu" href="/Bartenders/createShow">舉辦活動</a></li>
+				<li><a id="myActivity" class="menu" href="nodata">活動管理</a></li>
+				<li><a class="menu" href="">設定酒吧地點</a></li>
+				
 			</ul>
 		</div>
 	</div>
 
-
 	<script type="text/javascript">
+	console.log('this is test: ',company)
+	$('#myActivity').attr("href","/Bartenders/queryActivityByUser.do?userId="+company);
 	  function signOut() {
 			gapi.auth2.init().then( () => {
 		    var auth2 = gapi.auth2.getAuthInstance();
