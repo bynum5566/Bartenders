@@ -99,7 +99,8 @@ public class DisplayProductListController {
 		cartService.Pf("DisplayProductList，開始");
 		
 		String companyAccount = barAccount;	//【公司】【公司帳號】
-		Company companyX = companyService.select(companyAccount);		
+		Company companyX = companyService.select(companyAccount);	
+		
 		int companyId = companyX.getCompanyId();
 		
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();

@@ -144,7 +144,7 @@ html, body {
 	</div>
 
 	<!-- 聊天通知 -->
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+ 	<script src="/Bartenders/JS/OpenWebsocket.js"></script> 
 
 </body>
 </html>

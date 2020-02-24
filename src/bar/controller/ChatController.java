@@ -15,17 +15,23 @@ public class ChatController {
 
 	@RequestMapping(path = "/room.chat", method = RequestMethod.GET)
 	public String showChat(HttpServletRequest request,Model m) {
-		HttpSession session = request.getSession();
-		WebSocketTest.setHttpSession(session);
+//		HttpSession session = request.getSession();
+//		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("userName"));
+		for(String s:WebSocketTest.chatList) {
+			System.out.println("WebSocketTest.chatList:"+s);
+		}
 		return "ChatRoom";
 	}
 	
 	@RequestMapping(path = "/Croom.chat", method = RequestMethod.GET)
 	public String showCompanyChat(HttpServletRequest request,Model m) {
-		HttpSession session = request.getSession();
-		WebSocketTest.setHttpSession(session);
+//		HttpSession session = request.getSession();
+//		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("CName"));
+		for(String s:WebSocketTest.chatList) {
+			System.out.println("WebSocketTest.chatList:"+s);
+		}
 		return "CompanyChatRoom";
 	}
 }
