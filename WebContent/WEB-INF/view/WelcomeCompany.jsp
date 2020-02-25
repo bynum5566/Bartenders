@@ -115,6 +115,8 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	</body>
 
 </html>

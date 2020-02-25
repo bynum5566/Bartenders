@@ -44,9 +44,9 @@ public class WebSocketTest {
 //	public static void setHttpSession(HttpSession httpSession) {
 //		WebSocketTest.httpSession = httpSession;
 //	}
-	
+
 	private static Model m;
-	
+
 	public static void setModel(Model m) {
 		WebSocketTest.m = m;
 	}
@@ -59,9 +59,9 @@ public class WebSocketTest {
 
 		String onlineUser = (String) m.getAttribute("userName");
 		String onlineCompany = (String) m.getAttribute("CName");
-		
-		System.out.println("onlineUser:"+onlineUser);
-		System.out.println("onlineCompany:"+onlineCompany);
+
+		System.out.println("onlineUser:" + onlineUser);
+		System.out.println("onlineCompany:" + onlineCompany);
 
 		if (onlineUser != null && onlineUser.length() != 0) {
 			webSocketMap.put(onlineUser, this);
@@ -80,7 +80,7 @@ public class WebSocketTest {
 				md1.setData(entry.getKey());
 
 				sendAll(gson.toJson(md1));
-				System.out.println("online:"+entry.getKey());
+				System.out.println("online:" + entry.getKey());
 			}
 
 		} else if (onlineCompany != null && onlineCompany.length() != 0) {
@@ -100,7 +100,7 @@ public class WebSocketTest {
 				md1.setData(entry.getKey());
 
 				sendAll(gson.toJson(md1));
-				System.out.println("online:"+entry.getKey());
+				System.out.println("online:" + entry.getKey());
 			}
 		}
 
@@ -143,7 +143,7 @@ public class WebSocketTest {
 			String targetname = messageStr.substring(0, messageStr.indexOf("@"));
 			String sourcename = "";
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
-				
+
 				// 根據接收用戶名遍歷出接收對象
 				System.out.println("1.根據接收用戶名遍歷出接收對象 ");
 
@@ -198,6 +198,17 @@ public class WebSocketTest {
 					}
 				}
 			}
+		} else if (messageStr.indexOf("%") != -1) {
+			
+			System.out.println("push start.");
+			
+			String companyName = messageStr.substring(0, messageStr.indexOf("%"));
+			MessageDto md = new MessageDto();
+			md.setMessageType("push");
+			md.setData(companyName + ":" + message.substring(messageStr.indexOf("%") + 1));
+			sendAll(gson.toJson(md));
+
+			
 		} else {
 			chatList.remove(message);
 		}

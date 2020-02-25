@@ -35,6 +35,10 @@ websocket.onmessage = function(event) {
 	if (messageJson.messageType === "noticify") {
 		alert(messageJson.data);
 	}
+	
+	if (messageJson.messageType === "push") {
+		alert(messageJson.data);
+	}
 }
 
 function setMessageInnerHTML(innerHTML) {
