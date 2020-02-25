@@ -15,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
@@ -26,7 +27,7 @@ import bar.model.MessageDto;
 @SessionAttributes(value = { "userName", "CName" })
 @Controller
 public class WebSocketTest {
-	//	private static int onlineCount = 0;
+	// private static int onlineCount = 0;
 
 //存所有進入聊天室者
 	public static ArrayList<String> chatList = new ArrayList<String>();
@@ -38,10 +39,16 @@ public class WebSocketTest {
 	private Session session;
 
 //httpsession用以在建立連接的時候獲取登錄用戶的唯一標識（登錄名）,獲取到之後以鍵值對的方式存在Map對象裡面 
-	private static HttpSession httpSession;
-
-	public static void setHttpSession(HttpSession httpSession) {
-		WebSocketTest.httpSession = httpSession;
+//	private static HttpSession httpSession;
+//
+//	public static void setHttpSession(HttpSession httpSession) {
+//		WebSocketTest.httpSession = httpSession;
+//	}
+	
+	private static Model m;
+	
+	public static void setModel(Model m) {
+		WebSocketTest.m = m;
 	}
 
 	/** * 連接建立成功調用的方法 * @param session * 可選的參數。session為與某個客戶端的連接會話，需要通過它來給客戶端發送數據 */
@@ -50,19 +57,21 @@ public class WebSocketTest {
 		Gson gson = new Gson();
 		this.session = session;
 
-		String onlineUser = (String) httpSession.getAttribute("userName");
-		String onlineCompany = (String) httpSession.getAttribute("CName");
+		String onlineUser = (String) m.getAttribute("userName");
+		String onlineCompany = (String) m.getAttribute("CName");
+		
+		System.out.println("onlineUser:"+onlineUser);
+		System.out.println("onlineCompany:"+onlineCompany);
 
 		if (onlineUser != null && onlineUser.length() != 0) {
-			System.out.println("onlineUser:" + onlineUser);
 			webSocketMap.put(onlineUser, this);
 //			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
-			String count=Integer.toString(webSocketMap.size());
+			String count = Integer.toString(webSocketMap.size());
 			md.setData(count);
-			sendOnlineCount(gson.toJson(md));
+			sendAll(gson.toJson(md));
 			System.out.println(count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
@@ -70,20 +79,19 @@ public class WebSocketTest {
 				md1.setMessageType("onlineUser");
 				md1.setData(entry.getKey());
 
-				sendOnlineCount(gson.toJson(md1));
-				System.out.println(entry.getKey());
+				sendAll(gson.toJson(md1));
+				System.out.println("online:"+entry.getKey());
 			}
-			
+
 		} else if (onlineCompany != null && onlineCompany.length() != 0) {
-			System.out.println("onlineCompany:" + onlineCompany);
 			webSocketMap.put(onlineCompany, this);
 //			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
-			String count=Integer.toString(webSocketMap.size());
+			String count = Integer.toString(webSocketMap.size());
 			md.setData(count);
-			sendOnlineCount(gson.toJson(md));
+			sendAll(gson.toJson(md));
 			System.out.println(count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
@@ -91,15 +99,15 @@ public class WebSocketTest {
 				md1.setMessageType("onlineUser");
 				md1.setData(entry.getKey());
 
-				sendOnlineCount(gson.toJson(md1));
-				System.out.println(entry.getKey());
+				sendAll(gson.toJson(md1));
+				System.out.println("online:"+entry.getKey());
 			}
 		}
 
 	}
 
 	/** * 向所有在線用戶發送在線人數 * @param message */
-	public static void sendOnlineCount(String message) {
+	public static void sendAll(String message) {
 		for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 			try {
 				entry.getValue().sendMessage(message);
@@ -135,47 +143,62 @@ public class WebSocketTest {
 			String targetname = messageStr.substring(0, messageStr.indexOf("@"));
 			String sourcename = "";
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
-					//根據接收用戶名遍歷出接收對象 
+				
+				// 根據接收用戶名遍歷出接收對象
+				System.out.println("1.根據接收用戶名遍歷出接收對象 ");
+
 				if (targetname.equals(entry.getKey())) {
 
-					//判斷對方是否在聊天室
+					// 判斷對方是否在聊天室
+					System.out.println("2.判斷對方是否在聊天室");
+
 					for (String inRoom : WebSocketTest.chatList) {
-						if (targetname.equals(inRoom)) {
+						System.out.println("all in room:" + inRoom);
+					}
 
-							try {
-								for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
-										//session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源 
-									if (entry1.getValue().session == session) {
-										sourcename = entry1.getKey();
-									}
+					if (WebSocketTest.chatList.contains(targetname)) {
+
+						System.out.println("3.對方在聊天室");
+
+						try {
+							for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
+								// session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源
+								if (entry1.getValue().session == session) {
+									sourcename = entry1.getKey();
 								}
-								MessageDto md = new MessageDto();
-								md.setMessageType("message");
-								md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
-								entry.getValue().sendMessage(gson.toJson(md));
-								break;
-							} catch (IOException e) {
-								e.printStackTrace();
-								continue;
 							}
-						} else {
-							try {
-								System.out.println("Noticify~~~");
+							MessageDto md = new MessageDto();
+							md.setMessageType("message");
+							md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
+							entry.getValue().sendMessage(gson.toJson(md));
 
-								MessageDto md = new MessageDto();
-								md.setMessageType("noticify");
-								md.setData("您有新訊息，請至聊天室確認");
-								entry.getValue().sendMessage(gson.toJson(md));
-							} catch (IOException e) {
+							System.out.println("4.送出訊息");
 
-								e.printStackTrace();
-							}
+						} catch (IOException e) {
+							e.printStackTrace();
+							continue;
+						}
+						break;
+					} else {
+						System.out.println("3.對方不在聊天室");
+
+						try {
+							System.out.println("Noticify~~~");
+
+							MessageDto md = new MessageDto();
+							md.setMessageType("noticify");
+							md.setData("您有新訊息，請至聊天室確認");
+							entry.getValue().sendMessage(gson.toJson(md));
+
+							System.out.println("4.送出提醒訊息");
+
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
 					}
 				}
-
 			}
-		}else {
+		} else {
 			chatList.remove(message);
 		}
 	}

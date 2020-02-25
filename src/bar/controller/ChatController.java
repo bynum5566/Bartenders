@@ -18,9 +18,8 @@ public class ChatController {
 //		HttpSession session = request.getSession();
 //		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("userName"));
-		for(String s:WebSocketTest.chatList) {
-			System.out.println("WebSocketTest.chatList:"+s);
-		}
+		WebSocketTest.setModel(m);
+		
 		return "ChatRoom";
 	}
 	
@@ -29,9 +28,8 @@ public class ChatController {
 //		HttpSession session = request.getSession();
 //		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("CName"));
-		for(String s:WebSocketTest.chatList) {
-			System.out.println("WebSocketTest.chatList:"+s);
-		}
+		WebSocketTest.setModel(m);
+		
 		return "CompanyChatRoom";
 	}
 }

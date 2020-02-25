@@ -1,6 +1,7 @@
 package bar.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -191,7 +192,12 @@ return "SubMessageBoard";
 	//////////
 	
 	@RequestMapping(value = "/Welcome.Company" , method = RequestMethod.GET )
-	public String goWelcome() {
-	return "WelcomeCompany";
+	public String goWelcome(Model m) {
+		return "WelcomeCompany";
+	}
+	
+	@RequestMapping(value = "/Welcome.UserFirstPage" , method = RequestMethod.GET )
+	public String goUserFirstPage(Model m) {
+		return "UserFirstPage";
 	}
 }
