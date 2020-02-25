@@ -5,7 +5,6 @@
 <html>
 
 <head>
-<<<<<<< HEAD
 	<meta charset="UTF-8">
 	<title>ChartJs</title>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -13,10 +12,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
-=======
-<meta charset="UTF-8">
-<title>銷售量直條圖</title>
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 	<style type="text/css">
 	body {
@@ -66,34 +61,11 @@
 		font-family: 111.otf;
 	}
 
-<<<<<<< HEAD
 	.small a+a {
 		margin-left: 15px;
 	}
-=======
-.outwrap {
-	min-width: auto;
-	top: 100px;
-	position: sticky;
-	text-align: center;
-	margin: auto;
-	width: 900px;
-	border-radius: 5px;
-	background-image: url(/Bartenders/images/bg21.png);
-	fontColor: "white";
-	
-}
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 </style>
 </head>
-<<<<<<< HEAD
-=======
-<body>
-	<div class="outwrap" style="color: white">
-	<h1 style="color: white">銷售量直條圖</h1><br>
-		<canvas id="myChart"></canvas>
-	</div>
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 <body class="is-preload">
 	<div id="page-wrapper">
@@ -144,7 +116,6 @@
 	</div>
 	
 	<script>
-<<<<<<< HEAD
 		var ctx = document.getElementById("myChart");
 		var myChart = new Chart(ctx, {
 			type: 'bar',
@@ -187,63 +158,5 @@
 <script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
-=======
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels:${productNames},
-      datasets: [{
-        label: '產品銷售數量',
-        data:${productsSoldQuantity},
-        backgroundColor: [
-        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-        ],
-        borderColor: [
-        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-        ],
-        borderWidth: 2
-        
-      }]
-    },
-    options: {
-    	legend: {
-    		position: 'top',
-    		labels: {
-    		boxWidth: 20,// 修改寬度
-    		fontSize: 20,
-    		fontColor: 'white'
-    		}
-    		},
-      scales: {
-    	  scaleFontColor: "white",
-    	  
-        yAxes: [{
-          ticks: {
-            beginAtZero:true,
-            fontColor: "white",
-            fontSize: 18, 
-            
-          }
-        }],
-        xAxes: [{
-            ticks: {
-              beginAtZero:true,
-              fontSize: 18, 
-              fontColor: "white",
-            }
-          }]
-      }
-    }
-  });
-
-  
- 
- 
-</script>
-
-</body>
-
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 </html>

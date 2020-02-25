@@ -18,7 +18,6 @@ import bar.model.Company;
 import bar.model.CompanyService;
 import bar.model.Users;
 import bar.model.UsersService;
-import util.WebSocketTest;
 
 @Controller
 @SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUser","getCompany"})

@@ -94,11 +94,6 @@
 		</article>
 	</div>
 
-<<<<<<< HEAD
-=======
-	<!-- 聊天通知 -->
- 	<script src="/Bartenders/JS/OpenWebsocket.js"></script> 
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

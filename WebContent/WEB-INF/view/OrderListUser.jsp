@@ -4,7 +4,6 @@
 <html>
 
 <head>
-<<<<<<< HEAD
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>Order List</title>
@@ -12,25 +11,22 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<!-- <style type="text/css">
-=======
-<meta charset="UTF-8">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
-	rel="stylesheet">
-<title>我的訂單</title>
-<style type="text/css">
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 .mydiv {
-min-width: auto;
-max-width: 700px;
-margin:100px auto;
-top: 80px;
-position: sticky;
-text-align: center;
-border-radius: 5px;
-color: #E8CCFF;
-font-size: 18px;
-background-image: url(/Bartenders/images/bg21.png);
+	width:100%;
+	margin:0 auto;
+	top: 80px;
+	position: relative;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(15, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color: #E8CCFF;
+	font-size: 17px;
 }
 
 body {
@@ -41,7 +37,6 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	font-family: 'Noto Sans TC', sans-serif;
 }
 
 img{
