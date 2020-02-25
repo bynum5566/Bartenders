@@ -75,35 +75,30 @@ public class UserOrder {
 		Corders.addAll(ordersService.selectUser(userId, 3));
 		Corders.addAll(ordersService.selectUser(userId, 4));
 		Corders.addAll(ordersService.selectUser(userId, 6));
-//		List<Orders> Corders = ordersService.selectLoginUser(userId);
 		m.addAttribute("Corders", Corders);
 		m.addAttribute("statusNumToStr", getStatusNumToStr());
 		m.addAttribute("ShippingNumToStr", getShippingNumToStr());
 		List<Company> attr_company = new ArrayList<Company>();
 		List<String> attr_user_account = new ArrayList<String>();
 		List<String> attr_address = new ArrayList<String>();
-		List<ProductData> attr_product = new ArrayList<ProductData>();
-		List<Orders> attr_orders = new ArrayList<Orders>();
-		
+		List<List<ProductData>> attr_product = new ArrayList<List<ProductData>>();
+		List<Orders> attr_orders = new ArrayList<Orders>();	
 
 		for (Orders Corder : Corders) {
-
-			
+		
 			Orders order = ordersService.selectOrder(Corder.getOrderId());
 			attr_orders.add(order);
-			
-			
+					
 			Company company = ordersService.selectCompany(Corder.getCompanyId());
-//**		Company company = companyService.selectCompany(Corder.getCompanyId());
 			attr_company.add(company);
 		
 			List<Cart> carts = ordersService.select(Corder.getOrderId());
-//**		List<Cart> carts = cartService.select(Corder.getOrderId());
-			Cart first_chart = carts.get(0);
-
-			ProductData product = ordersService.selectP(first_chart.getPdId());
-//**		ProductData product = productService.select(first_chart.getPdId());
-			attr_product.add(product);
+			List<ProductData> tmp_attr_product = new ArrayList<ProductData>();
+			for (Cart cart : carts) {
+				ProductData product = ordersService.selectP(cart.getPdId());		
+				tmp_attr_product.add(product);	
+			}
+			attr_product.add(tmp_attr_product);
 			
 			if(Corder.getShipping()==1) {
 				attr_address.add(Corder.getAddress1());
@@ -112,7 +107,6 @@ public class UserOrder {
 			}else {
 				attr_address.add(Corder.getQrUrl());
 			}
-
 		}
 
 		m.addAttribute("company", attr_company);

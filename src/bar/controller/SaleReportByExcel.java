@@ -53,7 +53,6 @@ public class SaleReportByExcel {
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		Map<String, Integer> map2 = new HashMap<String, Integer>();
-		Map<String, List> map3 = new HashMap<String, List>();
 		List<String> productNames = new ArrayList<String>();
 		List<Integer> productsPrice = new ArrayList<Integer>();
 		List<Integer> productsSoldQuantity = new ArrayList<Integer>();
@@ -111,10 +110,11 @@ public class SaleReportByExcel {
 		//-------------------------------------
 		for(int i=0;i<productNames.size();i++) {
 			outputContent.add(productNames.get(i)+",");
-			String price = String.valueOf(productsPrice.get(i));
-			outputContent.add(price+",");	
 			String Quantity = String.valueOf(productsSoldQuantity.get(i));
 			outputContent.add(Quantity+",");
+			
+			String price = String.valueOf(productsPrice.get(i));
+			outputContent.add(price+",");
 			outputContent.add("\r\n");
 		}
 		

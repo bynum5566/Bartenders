@@ -68,8 +68,9 @@ public class MyFavoriteController {
 		ProductData prod = pdao.selectP(pdId);
 		String ALT = prod.getAutoLaunchTime();
 		String APT = prod.getAutoPullTime();
+		String barAccount = compS.selectCompany(pdao.selectP(pdId).getCompanyId()).getAccount();
 		String p = "目前無法購買此產品。";
-		String s = "<input class=\"bT\" type=\"submit\" value=\"加入購物車+\">";
+		String s = "<input class=\"button primary\" type=\"submit\" value=\"加入購物車+\">";
 		String pdVD = prod.getValidDate() + " ~ " + prod.getExpiryDate();
 		if (pdVD.equals("null ~ null")) {
 			pdVD = "";
@@ -112,6 +113,7 @@ public class MyFavoriteController {
 				request.setAttribute("Tag1", prod.getPdTag1());
 				request.setAttribute("Tag2", prod.getPdTag2());
 				request.setAttribute("Tag3", prod.getPdTag3());
+				request.setAttribute("barAccount", barAccount);
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -140,6 +142,7 @@ public class MyFavoriteController {
 				request.setAttribute("Tag1", prod.getPdTag1());
 				request.setAttribute("Tag2", prod.getPdTag2());
 				request.setAttribute("Tag3", prod.getPdTag3());
+				request.setAttribute("barAccount", barAccount);
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -172,6 +175,7 @@ public class MyFavoriteController {
 				request.setAttribute("Tag1", prod.getPdTag1());
 				request.setAttribute("Tag2", prod.getPdTag2());
 				request.setAttribute("Tag3", prod.getPdTag3());
+				request.setAttribute("barAccount", barAccount);
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());
@@ -197,6 +201,10 @@ public class MyFavoriteController {
 						request.setAttribute("pic3", prod.getProductImageUrl3());
 					}
 				}
+				request.setAttribute("Tag1", prod.getPdTag1());
+				request.setAttribute("Tag2", prod.getPdTag2());
+				request.setAttribute("Tag3", prod.getPdTag3());
+				request.setAttribute("barAccount", barAccount);
 				request.setAttribute("productId", prod.getPdId());
 				request.setAttribute("pdPri", prod.getPdPrice());
 				request.setAttribute("pdStk", prod.getPdStock());

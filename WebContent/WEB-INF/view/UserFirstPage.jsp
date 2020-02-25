@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+=======
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,10 +24,12 @@
 
 <style type="text/css">
 @import
-	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
-	;
-
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
+	
 * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 	outline: none;
 	top: 0px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -42,7 +46,7 @@ strong {
 	font-family: 111.otf;
 	font-weight: 600;
 	letter-spacing: .03em;
-	color: #212121;
+	color: white;
 }
 
 header {
@@ -52,11 +56,10 @@ header {
 	width: 100%;
 	height: 70px;
 	background: #212121;
-	color: #fff;
 	justify-content: center;
 	align-items: center;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	color: #CCBBFF;
+	color: #FFEE99;
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
@@ -73,7 +76,7 @@ main>div {
 }
 
 main h2 span {
-	color: #CCBBFF;
+	color: white;
 }
 
 main p {
@@ -84,7 +87,7 @@ main p {
 
 main small {
 	font-weight: 300;
-	color: #CCBBFF;
+	color: white;
 }
 
 #nav-container {
@@ -221,11 +224,7 @@ main small {
 	transform: none;
 }
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+
 
 html, body {
 	height: 100%;
@@ -247,7 +246,7 @@ a {
 
 h1, h2, h3, h4 {
 	margin: 0;
-	color: #CCBBFF;
+	color: #EEFFBB;
 }
 
 ul {
@@ -297,7 +296,7 @@ input[type=text]:focus {
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
-	color: #CCBBFF;
+	color: #FFEE99;
 	font-size: 16px;
 	font-family: 111.otf;
 	text-decoration: none;
@@ -325,8 +324,9 @@ input[type=text]:focus {
 
 .ml9 {
 	position: relative;
-	font-weight: bold;
-	font-size: 30px;
+	font-weight: 900;
+	font-size: 36px;
+	white-space:nowrap;
 }
 
 .ml9 .text-wrapper {
@@ -336,12 +336,23 @@ input[type=text]:focus {
 	padding-right: 0.05em;
 	padding-bottom: 0.1em;
 	overflow: hidden;
+	text-shadow: 0px 8px 1px black,
+
+                 0px 17px 10px rgba(0,0,0,0.15),
+
+                 0px 24px 2px rgba(0,0,0,0.1),
+
+                 0px 34px 30px rgba(0,0,0,0.1);
+     -webkit-text-stroke: 1px #800000;
+     color: #FFD700;
+     font-weight: 800;
 }
 
 .ml9 .letter {
-	transform-origin: 50% 100%;
 	display: inline-block;
-	line-height: 1em;
+	line-height: 2em;
+	color: #FFD700;
+	font-weight: 800;
 }
 </style>
 
@@ -350,9 +361,142 @@ input[type=text]:focus {
     $( "#tabs" ).tabs();
   } );
   </script>
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
+<head>
+	<meta charset="UTF-8">
+	<title>User Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
+	<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
+	
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
+		
+		main {
+			padding: 70px 20px 0;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+		
+		main>div {
+			margin: auto;
+			max-width: 600px;
+		}
+		
+		main h2 span {
+			color: #CCBBFF;
+		}
+		
+		main p {
+			line-height: 1.5;
+			font-weight: 200;
+			margin: 20px 0;
+		}
+		
+		main small {
+			font-weight: 300;
+			color: #CCBBFF;
+		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		html, body {
+			height: 100%;
+			background-image: url("/Bartenders/images/userFirstPage.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			background-color: transparent;
+			background-attachment: fixed;
+		}
+		
+		.wrapper.style5{
+			background-color: transparent;
+		}
+		
+		input#sBar, input#sAlc{
+			background-color: rgba(255, 255, 255, 0.375);
+			color: #0F0E0F;
+		}
+		
+		input#css_button1, input#css_button2{
+			color: #FFFFFF;
+		}
+		
+		input#css_button1:hover, input#css_button2:hover{
+			color: #FFFFFF;
+		}
+		
+		a, a:visited, a:focus, a:active, a:link {
+			text-decoration: none;
+			outline: 0;
+		}
+		
+		a {
+			color: currentColor;
+			transition: .2s ease-in-out;
+		}
+		
+		h2, h3, h4 {
+			margin: 0;
+			color: #CCBBFF;
+		}
+		
+		.ml9 {
+			position: relative;
+			font-weight: bold;
+			font-size: 27px;
+			text-shadow: 0px 2px 4px #222222;
+		}
+		
+		.ml9 .text-wrapper {
+			position: relative;
+			display: inline-block;
+			padding-top: 0.2em;
+			padding-right: 0.05em;
+			padding-bottom: 0.1em;
+			overflow: hidden;
+		}
+		
+		.ml9 .letter {
+			transform-origin: 50% 100%;
+			display: inline-block;
+			line-height: 1em;
+		}
+	</style>
 </head>
 
+<<<<<<< HEAD
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+			<h1><a href="index.jsp">Bartenders</a></h1>
+			<nav id="nav">
+=======
 <body>
 
 	<header tabindex="0">Welcome back! Let's get legless!</header>
@@ -384,48 +528,88 @@ input[type=text]:focus {
 			<h2 align="center">
 				<img src="img/Logo.png" style="width: 150px; margin: 20px" /> <br>
 			</h2>
-			<h2 class="ml9" align="center">
-				<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
+			<h1 class="ml9" align="center">
+				<span class="text-wrapper"><span class="letters" nowrap="nowrap" style="font-weight:800">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
 				</span>
-			</h2>
+			</h1>
 			<br>
 			<div id="tabs">
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 				<ul>
-					<li><a href="#tabs-1">Bar</a></li>
-					<li><a href="#tabs-2">Alcohol</a></li>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
 				</ul>
-				<div id="content">
-					<div id="tabs-1">
-						<div class="showSearch" id="sBarf" align="center">
-							<form action="/Bartenders/search.Bar" method="GET">
-								<table class="searchbar">
-									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45"
-											name="KWord" id="sBar"></td>
-										<td class="searchbar sb"><input class="css_button"
-											type="submit" value="Search" /></td>
-									</tr>
-								</table>
-							</form>
-						</div>
-					</div>
-					<div id="tabs-2">
-						<div class="hideSearch" id="sAlcf" align="center">
-							<form action="/Bartenders/search.Product" method="GET">
-								<table class="searchbar">
-									<tr class="searchbar">
-										<td class="searchbar"><input type="text" size="45"
-											name="keyword" id="sAlc"></td>
-										<td class="searchbar sb"><input class="css_button"
-											type="submit" value="Search" /></td>
-									</tr>
-								</table>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+			</nav>
+		</header>
 
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<main>
+							<div class="content">
+								<h2 align="center">
+									<img src="img/Logo.png" style="width: 150px; margin: 20px"/>
+									<br>
+								</h2>
+								<h2 class="ml9" align="center">
+									<span class="text-wrapper">
+										<span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
+									</span>
+								</h2>
+								<br>
+								
+								<div id="tabs">
+									<ul>
+										<li><a href="#tab1" name="#tab1">Bar</a></li>
+										<li><a href="#tab2" name="#tab2">Alcohol</a></li>
+									</ul>
+									<div id="content">
+										<div id="tab1">
+											<form action="/Bartenders/search.Bar" method="GET">
+												<ul class="actions">
+													<li><input type="text" size="45" name="KWord" id="sBar"/></li>
+													<li>&nbsp;&nbsp;</li>
+													<li><input id="css_button1" type="submit" value="Search"/></li>
+												</ul>
+											</form>
+										</div>
+										<div id="tab2">
+												<form action="/Bartenders/search.Product" method="GET">
+													<ul class="actions">
+														<li><input type="text" size="45" name="keyword" id="sAlc"/></li>
+														<li>&nbsp;&nbsp;</li>
+														<li><input id="css_button2" type="submit" value="Search"/></li>
+													</ul>
+												</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</main>
+					</section>
+				</div>
+<<<<<<< HEAD
+			</section>
+		</article>
+	</div>
+	
+=======
+			</div>
 		</div>
 	</main>
 
@@ -452,29 +636,38 @@ input[type=text]:focus {
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
 
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 	<script type="text/javascript">
-//Wrap every letter in a span
-var textWrapper = document.querySelector('.ml9 .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+		//Wrap every letter in a span
+		var textWrapper = document.querySelector('.ml9 .letters');
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-anime.timeline({loop: true})
-  .add({
-    targets: '.ml9 .letter',
-    scale: [0, 1],
-    duration: 1500,
-    elasticity: 600,
-    delay: (el, i) => 45 * (i+1)
-  }).add({
-    targets: '.ml9',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000
-  });
-</script>
-
-	<!-- 聊天通知 -->
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-
+		anime.timeline({ loop: true })
+			.add({
+				targets: '.ml9 .letter',
+				scale: [0, 1],
+				duration: 1500,
+				elasticity: 600,
+				delay: (el, i) => 45 * (i + 1)
+			}).add({
+				targets: '.ml9',
+				opacity: 0,
+				duration: 1000,
+				easing: "easeOutExpo",
+				delay: 1000
+			});
+	</script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/Bartenders/JS/forTabs.js"></script>
 </body>
+
 </html>
