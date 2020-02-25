@@ -7,10 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>User Page</title>
+<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+=======
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
+	rel="stylesheet">
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 
   <!-- <style type="text/css">
@@ -24,9 +30,15 @@
 }
 
 * {
+<<<<<<< HEAD
  outline: none;
  top: 0px;
 font-family:TaipeiSansTCBeta;
+=======
+	outline: none;
+	top: 0px;
+	font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 }
 
 strong {
@@ -44,6 +56,7 @@ font-family:TaipeiSansTCBeta;
 }
 
 header {
+<<<<<<< HEAD
  font-size: 20px;
  display: flex;
  position: fixed;
@@ -56,6 +69,19 @@ header {
  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
  color: #CCBBFF;
  font-family:TaipeiSansTCBeta;
+=======
+	font-size: 20px;
+	display: flex;
+	position: fixed;
+	width: 100%;
+	height: 70px;
+	background: #212121;
+	color: #FFEE99;
+	justify-content: center;
+	align-items: center;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 }
 
 main {
@@ -161,6 +187,7 @@ main small {
 }
 
 #nav-content {
+<<<<<<< HEAD
  margin-top: 70px;
  padding: 20px;
  width: 90%;
@@ -176,6 +203,24 @@ main small {
  transition: transform .3s;
  will-change: transform;
  contain: paint;
+=======
+	margin-top: 70px;
+	padding: 20px;
+	width: 90%;
+	max-width: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: calc(100% - 70px);
+	background: #ececec;
+	pointer-events: auto;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transform: translateX(-100%);
+	transition: transform .3s;
+	will-change: transform;
+	contain: paint;
+	font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 }
 
 #nav-content ul {
@@ -185,10 +230,18 @@ main small {
 }
 
 #nav-content li a {
+<<<<<<< HEAD
  padding: 10px 5px;
  display: block;
  text-transform: uppercase;
  transition: color .1s;
+=======
+	padding: 10px 5px;
+	display: block;
+	text-transform: uppercase;
+	transition: color .1s;
+	font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 }
 
 #nav-content li a:hover {
@@ -225,8 +278,13 @@ main small {
 }
 
 html, body {
+<<<<<<< HEAD
  height: 100%;
 font-family:TaipeiSansTCBeta;
+=======
+	height: 100%;
+	font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 }
 
 a, a:visited, a:focus, a:active, a:link {

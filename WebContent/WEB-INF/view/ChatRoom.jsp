@@ -176,6 +176,7 @@
 						</div>
 						<div class="col-6 col-12-medium">
 
+<<<<<<< HEAD
 							<div class="sendBox">
 								<h4>發送對象</h4>
 								<input id="username" type="text" width="50px" value="${targetName}" /> <br /> <br />
@@ -208,11 +209,24 @@
 		if ('WebSocket' in window) {
 			websocket = new WebSocket(
 				"ws://localhost:8080/Bartenders/websocketTest");
+=======
+	
+	<script type="text/javascript">
+ 		var websocket = null;
+
+		if ('WebSocket' in window) {
+			websocket = new WebSocket(
+					"ws://localhost:8080/Bartenders/websocketTest");
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 		} else {
 			alert('當前瀏覽器不支持 websocket，請換瀏覽器開啟本網站')
 		}
 
+<<<<<<< HEAD
 		websocket.onmessage = function (event) {
+=======
+		websocket.onmessage = function(event) {
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 			debugger
 			var messageJson = eval("(" + event.data + ")");
 			if (messageJson.messageType === "message") {
@@ -224,9 +238,15 @@
 			}
 
 			if (messageJson.messageType === "onlineUser") {
+<<<<<<< HEAD
 				// 				alert(messageJson.data);
 				document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
 					+ messageJson.data + '</div>';
+=======
+// 				alert(messageJson.data);
+				document.getElementById('onlineUser').innerHTML += 
+					'<div id="targetName">'+ messageJson.data + '</div>';
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 			}
 
 		}
@@ -238,10 +258,13 @@
 
 		function setMessageInnerHTML(innerHTML) {
 			document.getElementById('message').innerHTML += innerHTML + '<br/>';
+<<<<<<< HEAD
 		}
 
 		function closeWebSocket() {
 			websocket.close();
+=======
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 		}
 
 		function send() {
@@ -249,6 +272,7 @@
 			var username = document.getElementById('username').value;
 			websocket.send(username + "@" + message);
 			document.getElementById('text').value = "";
+<<<<<<< HEAD
 			document.getElementById('message').innerHTML += "me:" + message + '<br/>';
 		}
 	</script>
@@ -263,5 +287,15 @@
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
+=======
+			document.getElementById('message').innerHTML += "me:"+message + '<br/>';
+		}
+		
+		window.onbeforeunload=function(){
+			websocket.send('${userName}');
+		}
+	</script>	
+	
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 </html>

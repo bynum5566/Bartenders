@@ -26,7 +26,7 @@ import bar.model.MessageDto;
 @SessionAttributes(value = { "userName", "CName" })
 @Controller
 public class WebSocketTest {
-	private static int onlineCount = 0;
+	//	private static int onlineCount = 0;
 
 //存所有進入聊天室者
 	public static ArrayList<String> chatList = new ArrayList<String>();
@@ -56,13 +56,14 @@ public class WebSocketTest {
 		if (onlineUser != null && onlineUser.length() != 0) {
 			System.out.println("onlineUser:" + onlineUser);
 			webSocketMap.put(onlineUser, this);
-			addOnlineCount();
+//			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
-			md.setData(onlineCount + "");
+			String count=Integer.toString(webSocketMap.size());
+			md.setData(count);
 			sendOnlineCount(gson.toJson(md));
-			System.out.println(getOnlineCount());
+			System.out.println(count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 				MessageDto md1 = new MessageDto();
@@ -72,16 +73,18 @@ public class WebSocketTest {
 				sendOnlineCount(gson.toJson(md1));
 				System.out.println(entry.getKey());
 			}
+			
 		} else if (onlineCompany != null && onlineCompany.length() != 0) {
 			System.out.println("onlineCompany:" + onlineCompany);
 			webSocketMap.put(onlineCompany, this);
-			addOnlineCount();
+//			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
-			md.setData(onlineCount + "");
+			String count=Integer.toString(webSocketMap.size());
+			md.setData(count);
 			sendOnlineCount(gson.toJson(md));
-			System.out.println(getOnlineCount());
+			System.out.println(count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 				MessageDto md1 = new MessageDto();
@@ -115,7 +118,7 @@ public class WebSocketTest {
 				break;
 			}
 		}
-		subOnlineCount();
+//		subOnlineCount();
 // System.out.println(getOnlineCount()); 
 	}
 
@@ -150,6 +153,7 @@ public class WebSocketTest {
 								md.setMessageType("message");
 								md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
 								entry.getValue().sendMessage(gson.toJson(md));
+								break;
 							} catch (IOException e) {
 								e.printStackTrace();
 								continue;
@@ -171,6 +175,8 @@ public class WebSocketTest {
 				}
 
 			}
+		}else {
+			chatList.remove(message);
 		}
 	}
 
@@ -188,16 +194,16 @@ public class WebSocketTest {
 // this.session.getAsyncRemote().sendText(message); 
 	}
 
-	public static synchronized int getOnlineCount() {
-		return onlineCount;
-	}
-
-	public static synchronized void addOnlineCount() {
-		WebSocketTest.onlineCount++;
-	}
-
-	public static synchronized void subOnlineCount() {
-		WebSocketTest.onlineCount--;
-	}
+//	public static synchronized int getOnlineCount() {
+//		return onlineCount;
+//	}
+//
+//	public static synchronized void addOnlineCount() {
+//		WebSocketTest.onlineCount++;
+//	}
+//
+//	public static synchronized void subOnlineCount() {
+//		WebSocketTest.onlineCount--;
+//	}
 
 }

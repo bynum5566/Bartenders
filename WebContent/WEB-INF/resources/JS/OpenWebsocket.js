@@ -9,37 +9,37 @@ if ('WebSocket' in window) {
 websocket.onmessage = function(event) {
 	var messageJson = eval("(" + event.data + ")");
 
-	if (messageJson.messageType === "message") {
-		setMessageInnerHTML(messageJson.data);
-	}
-
-	if (messageJson.messageType === "onlineCount") {
-		document.getElementById('onlineCount').innerHTML = messageJson.data;
-		document.getElementById('onlineUser').innerHTML = '';
-	}
-
-	if (messageJson.messageType === "onlineUser") {
-		// alert(messageJson.data);
-		document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
-				+ messageJson.data + '</div>';
-	}
+//	if (messageJson.messageType === "message") {
+//		setMessageInnerHTML(messageJson.data);
+//	}
+//
+//	if (messageJson.messageType === "onlineCount") {
+//		document.getElementById('onlineCount').innerHTML = messageJson.data;
+//		document.getElementById('onlineUser').innerHTML = '';
+//	}
+//
+//	if (messageJson.messageType === "onlineUser") {
+//		// alert(messageJson.data);
+//		document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
+//				+ messageJson.data + '</div>';
+//	}
 
 	if (messageJson.messageType === "noticify") {
 		alert(messageJson.data);
 	}
 }
 
-function setMessageInnerHTML(innerHTML) {
-	document.getElementById('message').innerHTML += innerHTML + '<br/>';
-}
-
-function send() {
-	var message = document.getElementById('text').value;
-	var username = document.getElementById('username').value;
-	websocket.send(username + "@" + message);
-	document.getElementById('text').value = "";
-	document.getElementById('message').innerHTML += "me:" + message + '<br/>';
-}
+//function setMessageInnerHTML(innerHTML) {
+//	document.getElementById('message').innerHTML += innerHTML + '<br/>';
+//}
+//
+//function send() {
+//	var message = document.getElementById('text').value;
+//	var username = document.getElementById('username').value;
+//	websocket.send(username + "@" + message);
+//	document.getElementById('text').value = "";
+//	document.getElementById('message').innerHTML += "me:" + message + '<br/>';
+//}
 
 window.onbeforeunload = function() {
 	closeWebSocket();

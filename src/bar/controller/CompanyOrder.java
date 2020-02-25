@@ -61,6 +61,12 @@ public class CompanyOrder {
 		return returnShipping;
 	}
 	
+	String NameOf(Cart _cart) {
+		ProductData product = ordersService.selectP(_cart.getPdId());
+		String productName = product.getProductName();
+		return productName;
+	}
+	
 	@RequestMapping(path = { "/companyOrder.controller" })
 	public String companyOrdersProcessAction(@ModelAttribute(name = "Caccount") String account, Model m) {
 
@@ -79,11 +85,9 @@ public class CompanyOrder {
 		List<Users> attr_user = new ArrayList<Users>();
 		List<String> attr_user_account = new ArrayList<String>();
 		List<String> attr_address = new ArrayList<String>();
-		List<ProductData> attr_product = new ArrayList<ProductData>();
+		List<List<ProductData>> attr_product = new ArrayList<List<ProductData>>();
 		List<Orders> attr_orders = new ArrayList<Orders>();
-		
 
-//		for (Orders Corder : Corders) {
 		for (int index = 0; index < Corders.size(); index++) {
 			Orders Corder = Corders.get(index);
 			
@@ -91,33 +95,33 @@ public class CompanyOrder {
 			attr_orders.add(order);
 			
 			Users user = ordersService.selectUser(Corder.getUserId());
-//**		Users user = userService.selectUser(Corder.getUserId());
 			attr_user.add(user);
 			attr_user_account.add(user.getAccount());
-
 			
 			List<Cart> carts = ordersService.select(Corder.getOrderId());
-//**		List<Cart> carts = cartService.select(Corder.getOrderId());
-			Cart first_chart = carts.get(0);
-			ProductData product = ordersService.selectP(first_chart.getPdId());
-//**		ProductData product = productService.select(first_chart.getPdId());
-			attr_product.add(product);
 			
-			if(Corder.getShipping()==1) {
+			List<ProductData> tmp_attr_product = new ArrayList<ProductData>();
+			for (Cart cart : carts) {
+				ProductData product = ordersService.selectP(cart.getPdId());		
+				tmp_attr_product.add(product);	
+			}
+			attr_product.add(tmp_attr_product);
+			
+			if(Corder.getShipping() == 1) {
 				attr_address.add(Corder.getAddress1());
-			}else if(Corder.getShipping()==2){
+			} else if(Corder.getShipping() == 2){
 				attr_address.add(Corder.getAddress2());
-			}else {
+			} else {
 				attr_address.add(Corder.getQrUrl());
 			}
-
 		}
-
+	
 		m.addAttribute("user", attr_user);
 		m.addAttribute("userAccount", attr_user_account);
 		m.addAttribute("attrAddress", attr_address);
 		m.addAttribute("productData", attr_product);
 		m.addAttribute("orders", attr_orders);
+		
 		return "CompanyOrder";
 
 	}

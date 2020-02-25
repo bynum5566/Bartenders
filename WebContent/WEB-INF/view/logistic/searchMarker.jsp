@@ -241,6 +241,7 @@
 	</script>
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForSingleMapWithMarker.js"></script>
+<<<<<<< HEAD
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
@@ -253,4 +254,10 @@
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
 
+=======
+	<script type="text/javascript"
+		src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+<!-- 	安卓無法存取非加密連線（HTTP），所以將上面這句改為HTTPS -->
+</body>
+>>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 </html>
