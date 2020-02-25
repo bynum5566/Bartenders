@@ -226,29 +226,24 @@
 			}
 
 			if (messageJson.messageType === "onlineUser") {
-<<<<<<< HEAD
 				// 				alert(messageJson.data);
 				document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
 					+ messageJson.data + '</div>';
-=======
-// 				alert(messageJson.data);
-				document.getElementById('onlineUser').innerHTML += 
-					'<div id="targetName">'+ messageJson.data + '</div>';
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 			}
 
 		}
 
-<<<<<<< HEAD
 		window.onbeforeunload = function () {
 			closeWebSocket();
 			signOut();
 		}
 
-=======
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 		function setMessageInnerHTML(innerHTML) {
 			document.getElementById('message').innerHTML += innerHTML + '<br/>';
+		}
+
+		function closeWebSocket() {
+			websocket.close();
 		}
 
 		function send() {
@@ -258,7 +253,6 @@
 			document.getElementById('text').value = "";
 			document.getElementById('message').innerHTML += "me:" + message + '<br/>';
 		}
-<<<<<<< HEAD
 	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
@@ -271,13 +265,5 @@
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
-=======
-		
-		window.onbeforeunload=function(){
-			websocket.send('${CName}');
-		}
-	</script>	
-	
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 
 </html>

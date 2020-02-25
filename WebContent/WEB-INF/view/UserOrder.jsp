@@ -4,7 +4,6 @@
 
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
 <head>
 	<meta charset="UTF-8">
@@ -239,162 +238,6 @@
 												</c:forEach>
 											</tr>
 										</tbody>
-=======
-<head>
-<meta charset="UTF-8">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
-	rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
-<title>我的訂單</title>
-
-<style type="text/css">
-a {
-	color: #E8CCFF;
-}
-
-a:hover {
-	color: #9F88FF;
-}
-
-.mydiv {
-min-width: auto;
-max-width: 1550px;
-margin:100px auto;
-top: 80px;
-position: sticky;
-text-align: center;
-border-radius: 5px;
-color: #E8CCFF;
-font-size: 18px;
-background-image: url(/Bartenders/images/bg21.png);
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat
-		center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	font-family: 'Noto Sans TC', sans-serif;
-}
-
-td{
-line-height: 25px;
-padding-left: 5px;
-padding-right: 5px;
-}
-
-div.panel, td.flip {
-	margin: 0px;
-	padding: 5px;
-	text-align: center;
-	background: gray;
-	border: solid 1px #c3c3c3;
-	max-width: 1400px;
-}
-
-div.panel {
-	height: 120px;
-	display:none;
-	max-width: 1400px;
-}
-</style>
-
-</head>
-<body>
-	<div class="mydiv">
-		<div align="center">
-			<h2>我的訂單</h2>
-			<br>
-			<form action="<c:url value="/userOrder.controller"/>" method="post">
-				<table class="myTable">
-					<thead>
-						<tr align="center">
-							<th nowrap="nowrap">訂單編號</th>
-							<th nowrap="nowrap">酒吧</th>
-							<th nowrap="nowrap">訂單內容</th>
-							<th nowrap="nowrap">金額</th>
-							<th nowrap="nowrap">收件人</th>
-							<th nowrap="nowrap">配送方式</th>
-							<th nowrap="nowrap">配送地址/QRcode載點</th>
-							<th nowrap="nowrap">配送電話</th>
-							<th nowrap="nowrap">訂單狀態</th>
-							<th nowrap="nowrap">購買時間</th>
-							<th nowrap="nowrap">物流編號</th>
-							<th nowrap="nowrap">付款</th>
-							<th nowrap="nowrap">修改</th>
-							<th nowrap="nowrap">取消</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr align="center">
-							<c:forEach items="${Corders}" var="list" step="1"
-								varStatus="current">
-								<tr>
-									<td align="center" nowrap="nowrap"><a
-										href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
-										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
-									</td>
-									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
-									<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
-									<div class="panel">
-									<c:forEach items="${productData[current.index]}" var="list" step="1"
-								varStatus="current1">
-										<p>${productData[current.index][current1.index].productName}</p></c:forEach>
-									</div>
-									</td>
-									<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
-										<c:choose>
-									<c:when
-										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
-									</c:when>
-									<c:otherwise>
-										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
-									</c:otherwise>
-								</c:choose>
-									<c:choose>
-										<c:when
-											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-											<td align="center" nowrap="nowrap"><a
-												href="${attrAddress[current.index]}">QRcode載點</a></td>
-										</c:when>
-										<c:otherwise>
-											<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
-										</c:otherwise>
-									</c:choose>
-									<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
-									<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
-									<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
-									<c:choose>
-										<c:when
-											test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
-											<td align="center" nowrap="nowrap"><a
-												href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
-													去付款</a></td>
-										</c:when>
-										<c:otherwise>
-											<td nowrap="nowrap"><font color=gray>去付款</font></td>
-										</c:otherwise>
-									</c:choose>
-
-
-									<!--<td align="center" nowrap="nowrap"><a
-										href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
-											去付款</a></td>-->
-											
-									<!--<form:form action="doLPay" method="post">
-									<table>
-										<tr>
-											<td><input type="submit" value="去付款"></td>
-										</tr>
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 									</table>
 								</form>
 							</div>
@@ -405,7 +248,6 @@ div.panel {
 			</section>
 		</article>
 	</div>
-<<<<<<< HEAD
 	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
@@ -417,14 +259,4 @@ div.panel {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
-=======
-	 <script type="text/javascript">
-  $(".flip").click(function() {
-   <%--$(".panel").slideToggle("slow");--%>
-   $(this).siblings().slideToggle("slow");
-  });
-	</script>
-</body>
-<%@include file="UserMenu.jsp"%>
->>>>>>> 6b5a729a22323b3e68bd33ec51b58e4345211ee1
 </html>
