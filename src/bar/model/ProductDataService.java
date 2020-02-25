@@ -31,6 +31,11 @@ public class ProductDataService {
 		this.pdao = pdao;
 		this.proD = proD;
 	}
+	
+	public boolean updateQuantityByPid(String pdId, int pdSoldOut) {
+		boolean result = pdao.updateQuantityByPid(pdId, pdSoldOut);
+		return result;
+	}
 
 	public void addNewProduct(int companyId, String productName, int pdStock, int pdPrice, String pdTag1, String pdTag2,
 			String pdTag3, String pdDetail, String productImageUrl, String productImageUrl2, String productImageUrl3,
