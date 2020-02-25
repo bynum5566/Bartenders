@@ -43,11 +43,16 @@
 	max-width: 1400px;
 }
 
+td.flip h3{
+cursor: pointer;
+}
+
 div.panel {
 	height: auto;
 	display:none;
 	max-width: 1400px;
 }
+
 	</style>
 <!-- 	<style type="text/css"> -->
 <!-- /* 		a { */ -->
@@ -165,7 +170,7 @@ div.panel {
 										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
 									</td>
 									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
-									<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
+									<td align="center" nowrap="nowrap"><div class="flip" style="cursor: pointer;">${productData[current.index][0].productName}...</div>
 									<div class="panel">
 									<c:forEach items="${productData[current.index]}" var="list" step="1"
 								varStatus="current1">

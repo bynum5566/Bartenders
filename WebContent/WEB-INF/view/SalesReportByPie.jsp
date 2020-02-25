@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>ChartJs</title>
+	<title>營業額圓餅圖</title>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -14,6 +14,11 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	
 	<style type="text/css">
+	
+	.wrapper{
+	padding: 4em 0 4em 0;
+	}
+	
 	div.chart {
 		min-width: auto;
 /* 		top: 90px; */
@@ -48,6 +53,10 @@
 
 	.small a+a {
 		margin-left: 15px;
+	}
+	h1{
+	font-size: 30px;
+	margin: 0 0 0 0;
 	}
 </style>
 </head>
@@ -84,13 +93,14 @@
 		</nav>
 	</header>
 	
-		<article id="main">
+<!-- 		<article id="main"> -->
 			<section class="wrapper style5">
 				<div class="inner">
 					<section>
 						<div class="row">
 							<div class="col-6 col-12-medium">
 								<div class="chart" align="center" style="width:500px;">
+									<h1 style="color: white">營業額圓餅圖</h1><br>
 									<canvas align="center" id="myChart"></canvas>
 								</div>
 							</div>
@@ -98,37 +108,51 @@
 					</section>
 				</div>
 			</section>
-		</article>
+<!-- 		</article> -->
 	</div>
 	
 	<script>
-		var ctx = document.getElementById("myChart");
-		var myChart = new Chart(ctx, {
-			type: 'pie',
-			data: {
-				labels: ${ productNamesForPie },
-			datasets: [{
-				label: '產品銷售數量',
-				data: ${ productsPrice },
-			backgroundColor: [
-				"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-			],
-			borderColor: [
-				"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-			],
-			borderWidth: 1
-      }]
-    },
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-					}
-				}]
-			}
-		}
-  });
+	var ctx = document.getElementById("myChart");
+	  var myChart = new Chart(ctx, {
+	    type: 'pie',
+	    data: {
+	      labels:${productNamesForPie},
+	      fontColor: ["white"],
+	      datasets: [{
+	        label: '產品銷售數量',
+	        data:${productsPrice},
+	        backgroundColor: [
+	        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
+	        ],
+	        borderColor: [
+	        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
+	        ],
+	        borderWidth: 1
+	      }]
+	    },
+	    options: {
+	    	legend: {
+	    		position: 'top',
+	    		labels: {
+	    		boxWidth: 20,// 修改寬度
+	    		fontSize: 20,
+	    		fontColor: 'white'
+	    		}
+	    		},
+	        scales: {
+	      	  scaleFontColor: "white",
+	      	  
+	          yAxes: [{
+	            ticks: {
+	              beginAtZero:true,
+	              color: 'rgba(0, 0, 0, 0)',
+	              fontSize: 18, 
+	              
+	            }
+	          }]
+	        }
+	      }
+	  });
 	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

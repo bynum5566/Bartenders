@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>ChartJs</title>
+	<title>銷售量直條圖</title>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -64,6 +64,10 @@
 	.small a+a {
 		margin-left: 15px;
 	}
+	h1{
+	font-size: 30px;
+	margin: 0 0 0 0;
+	}
 </style>
 </head>
 
@@ -105,6 +109,7 @@
 						<div class="row">
 							<div class="col-6 col-12-medium">
 								<div class="outwrap">
+								<h1 style="color: white">銷售量直條圖</h1><br>
 									<canvas id="myChart"></canvas>
 								</div>
 							</div>
@@ -116,37 +121,54 @@
 	</div>
 	
 	<script>
-		var ctx = document.getElementById("myChart");
-		var myChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ${ productNames },
-			datasets: [{
-				label: '產品銷售數量',
-				data: ${ productsSoldQuantity },
-			backgroundColor: [
-				"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-			],
-			borderColor: [
-				"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
-			],
-			borderWidth: 1
-		  }]
-		},
-		options: {
-			scales: {
-				scaleFontColor: "#000093",
-					yAxes: [{
-						ticks: {
-							beginAtZero: true,
-						}
-					}]
-			}
-		}
+	var ctx = document.getElementById("myChart");
+	  var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	      labels:${productNames},
+	      datasets: [{
+	        label: '產品銷售數量',
+	        data:${productsSoldQuantity},
+	        backgroundColor: [
+	        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
+	        ],
+	        borderColor: [
+	        	"#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7ADBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"
+	        ],
+	        borderWidth: 2
+	        
+	      }]
+	    },
+	    options: {
+	    	legend: {
+	    		position: 'top',
+	    		labels: {
+	    		boxWidth: 20,// 修改寬度
+	    		fontSize: 20,
+	    		fontColor: 'white'
+	    		}
+	    		},
+	      scales: {
+	    	  scaleFontColor: "white",
+	    	  
+	        yAxes: [{
+	          ticks: {
+	            beginAtZero:true,
+	            fontColor: "white",
+	            fontSize: 18, 
+	            
+	          }
+	        }],
+	        xAxes: [{
+	            ticks: {
+	              beginAtZero:true,
+	              fontSize: 18, 
+	              fontColor: "white",
+	            }
+	          }]
+	      }
+	    }
 	  });
-		bar.defaults = {
-			scaleFontColor: "#000093",
-		}
 	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
