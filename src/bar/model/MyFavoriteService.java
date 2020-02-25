@@ -35,13 +35,14 @@ public class MyFavoriteService {
 			String pdid = idList.get(x);	
 			ProductData prod = pdao.selectP(pdid);	
 			favs = favs
-					+"<tr class=\"pdRow\"><td><button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/Product.show?PdId="
-					+prod.getPdId()
-					+"';\" class=\"bT\" /></td><td class=\"MidS1\"><div>"
-					+prod.getProductName()
-					+"</div></td><td class=\"RSide\"><button style=\"background-image:url(/Bartenders/images/delete_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/pdDisLike?pdidck="
-					+prod.getPdId()
-					+"';\" class=\"bT\" /></td></tr>";
+					+"<tr class=\"pdRow\"><td>"
+//					+ "<button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/Product.show?PdId="
+//					+prod.getPdId()
+//					+"';\" class=\"bT\" /></td><td class=\"MidS1\">"
+					+"<div><a href=\"/Bartenders/Product.show?PdId="+prod.getPdId()
+					+ "\">" + prod.getProductName() + "</a>"
+					+"</div></td><td class=\"RSide\"><img src=\"/Bartenders/images/delete.png\" onclick=\"location.href = '/Bartenders/pdDisLike?pdidck="
+					+prod.getPdId() + "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
 			
 //					+"<tr class=\"pdRow\"><td><a class=\"f1\" href=\"/Bartenders/Product.show?PdId="
 //					+prod.getPdId()

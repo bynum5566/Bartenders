@@ -1,13 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <title>註冊帳戶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 <style type="text/css">
 html, body {
@@ -30,90 +34,124 @@ html, body {
 	border: 1.5px groove rgb(255, 255, 255, 0.4);
 	border-radius: 2%;
 	font-size: 140%;
-	line-height:150%;
+	line-height: 150%;
 }
 
 table {
 	margin-left: 15%;
 }
 
-h5{
-	color:red;
+h5 {
+	color: red;
 }
 
+.small {
+	display: flex;
+	align-self: center;
+}
+
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
+}
+
+.small a+a {
+	margin-left: 15px;
+}
 </style>
-
 </head>
-<body>
-	<div class="content">
-		<h1>請填寫基本資料</h1>
-			 <h5>${errorMsg}</h5>
-		<form action="<c:url value="/Gregister.do" />" method="POST">
-			<table>
-				<tr>
-					<td>姓名:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="text" name="userName" placeholder="${Gname}" size="50"
-						disabled="disabled" /><br></td>
-				</tr>
-				<tr>
-					<td>帳號:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="text" name="newAccount" placeholder="${gid}" size="50"
-						disabled="disabled" /><br></td>
-				</tr>
-				<tr>
-					<td>密碼:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="password" name="newPassword" size="50"
-						placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
-						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" /><br></td>
-				</tr>
-				<tr>
-					<td>確認密碼:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="password" name="newPassword2" size="50"
-						placeholder="請再輸入一次密碼" required="required"
-						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" /><br></td>
-				</tr>
 
-				<tr>
-					<td>手機:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="tel" name="phone" autocomplete="off"
-						size="50" placeholder="請填寫正確的手機號碼" required="required"
-						pattern="^.{10}$" /><br></td>
-				</tr>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class="content">
+							<h1>請填寫基本資料</h1>
+							<h5>${errorMsg}</h5>
+							<form action="<c:url value="/Gregister.do"/>" method="POST">
+								<table>
+									<tr>
+										<td>姓名:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="text" name="userName"
+											placeholder="${Gname}" size="50" disabled="disabled"/><br></td>
+									</tr>
+									<tr>
+										<td>帳號:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="text" name="newAccount"
+											placeholder="${gid}" size="50" disabled="disabled"/><br></td>
+									</tr>
+									<tr>
+										<td>密碼:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="password" name="newPassword" size="50"
+											placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></td>
+									</tr>
+									<tr>
+										<td>確認密碼:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="password" name="newPassword2" size="50"
+											placeholder="請再輸入一次密碼" required="required"
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br>
+										</td>
+									</tr>
 
-				<tr>
-					<td>生日:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="date" name="birthday" size="50"
-						autocomplete="off" required="required" /><br></td>
-				</tr>
+									<tr>
+										<td>手機:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="tel" name="phone" autocomplete="off"
+											size="50" placeholder="請填寫正確的手機號碼" required="required"
+											pattern="^.{10}$"/><br></td>
+									</tr>
 
-				<tr>
-					<td>電子郵件:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="email" name="email" placeholder="${email}" size="50"
-						disabled="disabled" /><br></td>
-				</tr>
+									<tr>
+										<td>生日:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="date" name="birthday" size="50"
+											autocomplete="off" required="required"/><br></td>
+									</tr>
 
-				<tr>
-					<td>聯絡地址:</td>
-					<td>&emsp;&emsp;&emsp;&emsp;</td>
-					<td><input type="text" name="address" autocomplete="off"
-						size="50" placeholder="請填寫正確的住址"
-						pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required" /><br></td>
-				</tr>
-			</table>
-			<br/>			
-				<input type="submit" value="確認送出" />&nbsp;&nbsp;
-						<input type="reset" value="清除重填" />
+									<tr>
+										<td>電子郵件:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="email" name="email"
+											placeholder="${email}" size="50" disabled="disabled"/><br></td>
+									</tr>
 
-		</form>
-						
+									<tr>
+										<td>聯絡地址:</td>
+										<td>&emsp;&emsp;&emsp;&emsp;</td>
+										<td><input type="text" name="address" autocomplete="off"
+											size="50" placeholder="請填寫正確的住址"
+											pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required"/><br></td>
+									</tr>
+								</table>
+								<br /> <input type="submit" value="確認送出"/>&nbsp;&nbsp; <input
+									type="reset" value="清除重填"/>
+
+							</form>
+						</div>
+					</section>
+				</div>
+			</section>
 	</div>
+	</article>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
 
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
+
 </html>

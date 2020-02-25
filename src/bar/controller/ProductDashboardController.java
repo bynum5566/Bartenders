@@ -304,7 +304,7 @@ public class ProductDashboardController {
 		return "productViewPage2";
 	}
 
-	@RequestMapping(value = "/pulPD", method = RequestMethod.POST)
+	@RequestMapping(value = "/pulPD", method = RequestMethod.GET)
 	public String pPd(@RequestParam("pdidckL") String pdidckL) {
 		boolean x = pds.pdPull(pdidckL);
 		if (x) {
@@ -314,7 +314,7 @@ public class ProductDashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/lauPD", method = RequestMethod.POST)
+	@RequestMapping(value = "/lauPD", method = RequestMethod.GET)
 	public String lPd(@RequestParam("pdidckP") String pdidckP) {
 		boolean x = pds.pdLaunch(pdidckP);
 		if (x) {
@@ -334,7 +334,7 @@ public class ProductDashboardController {
 		return "redirect:/Dashboard.Products";
 	}
 
-	@RequestMapping(value = "/pulTkPD", method = RequestMethod.POST)
+	@RequestMapping(value = "/pulTkPD", method = RequestMethod.GET)
 	public String pTkPd(@RequestParam("pdidckL") String pdidckL) {
 		boolean x = pds.pdPull(pdidckL);
 		if (x) {
@@ -344,7 +344,7 @@ public class ProductDashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/lauTkPD", method = RequestMethod.POST)
+	@RequestMapping(value = "/lauTkPD", method = RequestMethod.GET)
 	public String lTkPd(@RequestParam("pdidckP") String pdidckP) {
 		boolean x = pds.pdLaunch(pdidckP);
 		if (x) {

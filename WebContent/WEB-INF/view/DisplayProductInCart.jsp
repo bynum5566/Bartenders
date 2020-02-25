@@ -1,252 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"　pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>修改數量</title>
-<%-- 畫面version 20200213_1650--%>
-    <link 
-    rel="stylesheet" 
-    type="text/css" 
-    href="/Bartenders/CSS/add_editView.css">
-	
-	<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet"></link>
-	
-	<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
-	rel="stylesheet"></link>
-	
-    <style type= "text/css">	
+	<meta charset="UTF-8">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>修改數量</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
-	.sigmaGray{
-		color: gray;
+<style>
+	.small {
+		display: flex;
+		align-self: center;
 	}
 
-	.sigmaTd1 {
-		width: 100px;
-		height: 50px;
-		text-align: center;
+	.small a {
+		font-size: 16px;
+		font-weight: 400;
+		color: #888;
+		font-family: 111.otf;
 	}
-	
-	.sigmaTd6 {
-		width: 600px;
-		height: 50px;
-		text-align: center;
+
+	.small a+a {
+		margin-left: 15px;
 	}
-.mydiv {
-	width: auto;
-	margin: auto;
-	top: 80px;
-	position: sticky;
-	text-align: center;
-	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-}
- 
-h{
-	color:white ;
-}
-
-td{
-	border-width: 1px;
-}
-
-* {
-    margin:0;
-    padding:0;
-    font-family :Microsoft JhengHei;
-}
-#allpage {
-    width:100%;
-    margin:0 auto;
-}
-header {
-    width:100%;
-}
-.logo-img {
-    width:100%;
-    
-}
-.menu {
-    width:100%;
-    overflow:auto;            
-    border-radius:5px;
-    list-style-type:none;
-   
-}
-.menu li {
-    width:7em;
-    line-height:2.5em;
-    float:left;
-    
-}
-.menu li a {
-    display:block;
-    text-align:center;
-    color:	#005AB5;
-}
-.menu li a:link {
-    text-decoration:none;
-}
-.menu li a:hover {
-    background-color:	#0080FF	;
-    color:	#ffffff;
-    border-radius:5px;
-}
-#content {
-    width:100%;
-    overflow:auto;
-    /* border:1px solid gray; */
-}
-.article {
-    width:100%;
-    float:left;
-}
-.section {
-    background-color:#ffffff;
-    border-radius:5px;
-    margin:10px 0;
-    padding:20px 26px;
-    line-height:2em;
-}
-
-.aside {
-    width:28%;
-    float:right;
-    
-}
-footer {
-    background-color:	#ACD6FF;
-    border-radius:5px;
-    text-align:center;
-    line-height:2.5em;
-    color:	#4F4F4F;
-}
-
-<!--縮放用CSS，開始-->
-div.panel,img.flip
-{
-	margin:0px;
-	padding:5px;
-	text-align:center;
-	background:#e5eecc;
-	border:solid 1px #c3c3c3;
-}
-div.panel
-{
-	height:300px;
-	width:300px;
-	display:none;
-}
-<!--縮放用CSS，結束-->
-
-  
-    </style>
-
-<!-- script src,開始 -->   
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-<!-- script src,結束-->
-    
+</style>
 </head>
-<body>
-<main>
 
-    <div class="mydiv" >
-        <header>
-			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
-        </header>
-        <div >
+<body class="is-preload">
+	<div id="page-wrapper">
+		    <header id="header">
+      <h1><a href="index.jsp">Bartenders</a></h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+                <li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+                <li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+                <li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+                <li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+                <li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+                <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+                <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+                <li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<form action="<c:url value="123456"/>" method="post">
+						<h2>修改數量</h2><BR>
+						<!-- 		<h2>(購物車編號:${orderId})</h2>  -->
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr align="center">
 
-<%-- 本體，開始 --%>
+										<!--		<td>產品id</td>	-->
+										<td class="sigmaTd1">產品名稱</td>
+										<td class="sigmaTd1">產品單價</td>
+										<td class="sigmaTd1">數量</td>
+										<td class="sigmaTd1">修改數量</td>
+										<td class="sigmaTd1">刪除</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr align="center">
+										<c:forEach items="${oneOrderCarts}" var="list" step="1" varStatus="current">
+									<tr>
+										<c:if test="${oneOrderCarts[current.index].quantity != '0' }">
 
-		<form action="<c:url value=" 123456" />" method="post">
-		<h2>修改數量</h2><BR>
-<!-- 		<h2>(購物車編號:${orderId})</h2>  -->
-		<table border="1">
-			<thead>
-				<tr align="center">
+											<!--	<td align="center">${oneOrderCarts[current.index].pdId}</td> -->
+											<td align="center">${listOfProduct[current.index].productName}</td>
+											<td align="center">${oneOrderCarts[current.index].checkoutPrice}
+											</td>
 
-			<!--		<td>產品id</td>	-->
-					<td class="sigmaTd1">產品名稱</td>
-					<td class="sigmaTd1">產品單價</td>
-					<td class="sigmaTd1">數量</td>
-					<td class="sigmaTd1">修改數量</td>
-					<td class="sigmaTd1">刪除</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr align="center">
-					<c:forEach items="${oneOrderCarts}" var="list" step="1" varStatus="current">
-				<tr>
-					<c:if test="${oneOrderCarts[current.index].quantity != '0' }">
-					
-					<!--	<td align="center">${oneOrderCarts[current.index].pdId}</td> -->
-						<td align="center">${listOfProduct[current.index].productName}</td>
-						<td align="center">${oneOrderCarts[current.index].checkoutPrice}</td>
+											<td align="center">${oneOrderCarts[current.index].quantity}</td>
 
+											<td align="center"><a href="<c:url value="/ChangeNumberOfProductInCart.controller"/>?num=${oneOrderCarts[current.index].num}">修改數量</a>
+											</td>
 
-						<td align="center">${oneOrderCarts[current.index].quantity}</td>
+											<td align="center">
+												<a class="button primary" href="<c:url value="/DeleteItemInCart.controller"/>?num=${oneOrderCarts[current.index].num}&orderId=${orderId}">刪除</a>
+											</td>
+										</c:if>
+									</tr>
+									<br>
+									</c:forEach>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</form>
+					</section>
+				</div>
+			</section>
+		</article>
+	</div>
 
-						<td align="center"><a
-								href="<c:url value="/ChangeNumberOfProductInCart.controller"/>?num=${oneOrderCarts[current.index].num}"
-								>修改數量</a>
-						</td>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	</body>
 
-						<td align="center">
-						<a href="<c:url value="/DeleteItemInCart.controller"/>?num=${oneOrderCarts[current.index].num}&orderId=${orderId}"
-								>刪除</a>
-						</td>
-
-
-					</c:if>
-				</tr>
-				<br>
-				</c:forEach>
-				</tr>
-			</tbody>
-		</table>
-		</form>
-		
-
-
-		
-<%-- 本體，結束 --%>
-        
-        </div>  <!--end content-->
-
-
-    </div>  <!--end allpage-->
-   
-<!--縮放用JS，開始-->
-<script type="text/javascript">
-$(".flip").click(function(){
-    $(".panel").slideToggle("slow");
-  });
-</script>
-<!--縮放用JS，結束-->
-
-</main> 
-</body>
 </html>
-
-<%--左側工具列，開始 --%>   
-<%@include file="UserMenu.jsp"%>
-<%--左側工具列，結束--%>    

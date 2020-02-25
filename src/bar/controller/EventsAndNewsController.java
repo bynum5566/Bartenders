@@ -81,7 +81,7 @@ public class EventsAndNewsController {
 		return "redirect:/NewsAndEvents.All";
 	}
 
-	@RequestMapping(value = "/EN.remove",method = RequestMethod.POST)
+	@RequestMapping(value = "/EN.remove",method = RequestMethod.GET)
 	public String removeTheEN(@RequestParam("ckEN2") String neId) {
 		eanS.delEN(neId);
 		try {

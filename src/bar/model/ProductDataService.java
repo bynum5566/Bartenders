@@ -185,22 +185,23 @@ public class ProductDataService {
 		String Launched = "";
 		for (ProductData product : products) {
 			Launched = Launched
-					+ "<tr class=\"pdRow\"><form action=\"/Bartenders/pulPD\" method=\"POST\"><td class=\"LSide\">"
-					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/>"
-					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
+					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/pulPD?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/down-arrow.png\">"
+					+ "</td><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/Product.View?pdId="
-					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
-					+ "<form action=\"/Bartenders/Product.EditPDL\" method=\"GET\"><td class=\"RSide\">"
-					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
-					+ "<a href=\"/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
-					+ "</td></form></tr>";
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
+					+ product.getPdId() + "';\">"
+					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<td class=\"RSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDL?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "</td></tr>";
 		}
 		return Launched;
 	}
@@ -211,22 +212,23 @@ public class ProductDataService {
 		String Pulled = "";
 		for (ProductData product : products) {
 			Pulled = Pulled
-					+ "<tr class=\"pdRow\"><form action=\"/Bartenders/lauPD\" method=\"POST\"><td class=\"LSide\">"
-					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/>"
-					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
+					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/lauPD?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/up-arrow.png\">"
+					+ "</td><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/Product.View?pdId="
-					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
-					+ "<form action=\"/Bartenders/Product.EditPDP\" method=\"GET\"><td class=\"RSide\">"
-					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
-					+ "<a href=\"/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
-					+ "</td></form></tr>";
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
+					+ product.getPdId() + "';\">"
+					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<td class=\"RSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDP?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "</td></tr>";
 		}
 		return Pulled;
 	}
@@ -237,22 +239,23 @@ public class ProductDataService {
 		String Launched = "";
 		for (ProductData product : products) {
 			Launched = Launched
-					+ "<tr class=\"pdRow\"><form action=\"/Bartenders/pulTkPD\" method=\"POST\"><td class=\"LSide\">"
-					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/>"
-					+ "<input type=\"submit\" value=\"下架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
+					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/pulTkPD?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/down-arrow.png\">"
+					+ "</td><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/ProductTicket.View?pdId="
-					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
-					+ "<form action=\"/Bartenders/Product.EditTkPDL\" method=\"GET\"><td class=\"RSide\">"
-					+ "<input type=\"text\" name=\"pdidckL\" class=\"pdidckLL\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png) no-repeat top left;\"  class=\"bT3\"><br>"
-					+ "<a href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
-					+ "</td></form></tr>";
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
+					+ product.getPdId() + "';\">"
+					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<td class=\"RSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDL?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "</td></tr>";
 		}
 		return Launched;
 	}
@@ -263,22 +266,23 @@ public class ProductDataService {
 		String Pulled = "";
 		for (ProductData product : products) {
 			Pulled = Pulled
-					+ "<tr class=\"pdRow\"><form action=\"/Bartenders/lauTkPD\" method=\"POST\"><td class=\"LSide\">"
-					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/>"
-					+ "<input type=\"submit\" value=\"上架\" class=\"bT2\"></td></form><td class=\"MidS1\">"
+					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/lauTkPD?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/up-arrow.png\">"
+					+ "</td><td class=\"MidS1\">"
 					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
-					+ "<div class=\"pdNm\" name=\"pdNm1\">" + "<a href=\"/Bartenders/ProductTicket.View?pdId="
-					+ product.getPdId() + "\" style=\"text-decoration:none; text-decoration-color:transparent;\">"
-					+ product.getProductName() + "</a>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\">價格<br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\">數量<br>" + product.getPdStock() + "</div></td>"
-					+ "<form action=\"/Bartenders/Product.EditTkPDP\" method=\"GET\"><td class=\"RSide\">"
-					+ "<input type=\"text\" name=\"pdidckP\" class=\"pdidckPP\" value=\"" + product.getPdId()
-					+ "\" readonly=\"readonly\"/><input type=\"submit\" value=\"\" style=\"background: url(/Bartenders/images/document.png)no-repeat top left;\"  class=\"bT3\"><br>"
-					+ "<a href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "\"><div class=\"bT3\"><img src=\"/Bartenders/images/delete.png\"><div></a>"
-					+ "</td></form></tr>";
+					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
+					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
+					+ product.getPdId() + "';\">"
+					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<td class=\"RSide\">"
+					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDP?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
+					+ "<img class=\"bT3\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "</td></tr>";
 		}
 		return Pulled;
 	}
@@ -288,12 +292,13 @@ public class ProductDataService {
 		int x = 0;
 		List<ProductData> products = pdao.searchPds(keyword);
 		if (products.size() == 0) {
-			res = "<tr><td><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></td></tr>";
+			res = "<div class=\"col-6\"><span class=\"image fit\"><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></span></div>";
 			return res;
 		}
 		for (ProductData product : products) {
-			res = res + "<a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
-					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a>";
+			res = res + "<div class=\"col-4\"><span class=\"image fit\"><a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
+					+ "\"><img class=\"pdImg\" src=\"" + product.getProductImageUrl() + "\"></a><br><a href=\"/Bartenders/Product.show?PdId=" + product.getPdId()
+					+ "\"><h4 class=\"ellipsis\">&nbsp;&nbsp;" + product.getProductName() + "</h4></a></span></div>";
 			if (x % 3 == 2) {
 				res = res + "</br>";
 			}
