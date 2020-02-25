@@ -1,6 +1,7 @@
 package bar.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -102,6 +103,15 @@ public class finishPay {
 			}
 			int status = 3;
 			oService.updateToCancel(orderId, status);
+			List<Cart> cars = carService.select(orderId);
+			for (Cart car: cars) {
+				String pdId = car.getPdId();
+				int quantity = car.getQuantity();
+				ProductData pd = pdService.select(pdId);
+				int oriSoldQuan = pd.getPdSoldQuantity();
+				int newSoldQuan = oriSoldQuan+quantity;
+				pdService.updateQuantityByPid(pdId, newSoldQuan);
+			}			
 			//以下會再付款成功後建立物流訂單
 			Orders order = oService.selectOrder(orderId);
 			String lAddress = null;
