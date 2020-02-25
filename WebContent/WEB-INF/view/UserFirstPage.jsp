@@ -59,6 +59,7 @@ header {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	color: #FFEE99;
 	font-family: 'Noto Sans TC', sans-serif;
+	font-weight: 800;
 }
 
 main {
@@ -226,10 +227,11 @@ main small {
 
 html, body {
 	height: 100%;
-	background-image: url("/Bartenders/images/userFirstPage.jpg");
+	background-image: url("/Bartenders/images/userFirstPage1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	background-size: 100% 100%;
 }
 
 a, a:visited, a:focus, a:active, a:link {
@@ -364,7 +366,7 @@ input[type=text]:focus {
 
 <body>
 
-	<header tabindex="0">Welcome back! Let's get legless!</header>
+	<header tabindex="0">Welcome back! Let's get legless!酒吧歡迎光臨</header>
 	<div id="nav-container">
 		<div class="bg"></div>
 		<div class="button" tabindex="0">
