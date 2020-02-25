@@ -99,19 +99,13 @@ public class finishPay {
 				m.addAttribute("orderId", orderId);
 				ModelAndView mav = new ModelAndView();
 				mav.setViewName("qrDelever");
+				updateSoldQuan(orderId);	
 				return mav;
 			}
 			int status = 3;
 			oService.updateToCancel(orderId, status);
-			List<Cart> cars = carService.select(orderId);
-			for (Cart car: cars) {
-				String pdId = car.getPdId();
-				int quantity = car.getQuantity();
-				ProductData pd = pdService.select(pdId);
-				int oriSoldQuan = pd.getPdSoldQuantity();
-				int newSoldQuan = oriSoldQuan+quantity;
-				pdService.updateQuantityByPid(pdId, newSoldQuan);
-			}			
+			updateSoldQuan(orderId);	
+			
 			//以下會再付款成功後建立物流訂單
 			Orders order = oService.selectOrder(orderId);
 			String lAddress = null;
@@ -124,9 +118,21 @@ public class finishPay {
 			String logistic = lService.createLogistic(orderId,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
 			System.out.println("logistic creation done");
 			order.setShippingNumber(logistic);
-			
 			//以上屬於物流部分 請勿刪除
+			
 			return new ModelAndView("redirect:/userOrder.controller");
 			}
 		}
+
+	private void updateSoldQuan(String orderId2) {
+		List<Cart> cars = carService.select(orderId2);
+		for (Cart car: cars) {
+			String pdId = car.getPdId();
+			int quantity = car.getQuantity();
+			ProductData pd = pdService.select(pdId);
+			int oriSoldQuan = pd.getPdSoldQuantity();
+			int newSoldQuan = oriSoldQuan+quantity;
+			pdService.updateQuantityByPid(pdId, newSoldQuan);
+		}		
+	}
 	}

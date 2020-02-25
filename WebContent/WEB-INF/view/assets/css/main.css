@@ -211,7 +211,8 @@ input, select, textarea {
 		}
 
 	h2 {
-		font-size: 1.35em;
+/* 		font-size: 1.35em; */
+		font-size: 1.75em;
 		line-height: 1.75em;
 	}
 
@@ -3324,7 +3325,7 @@ button,
 			.wrapper.style5 select,
 			.wrapper.style5 textarea {
 /* 				background-color: rgba(0, 0, 0, 0.0375); */
-				background-color: rgba(255, 255, 255, 0.0375);
+				background-color: rgba(255, 255, 255, 0.375);
 				font-family: 'Noto Sans TC', sans-serif;
 			}
 
@@ -3339,12 +3340,13 @@ button,
 
 			.wrapper.style5 input[type="checkbox"] + label,
 			.wrapper.style5 input[type="radio"] + label {
-				color: #4E4852;
+/* 				color: #4E4852; */
+				color: #FFF;
 			}
 
 				.wrapper.style5 input[type="checkbox"] + label:before,
 				.wrapper.style5 input[type="radio"] + label:before {
-					background: rgba(0, 0, 0, 0.0375);
+					background: rgba(0, 0, 0, 0.375);
 				}
 
 			.wrapper.style5 input[type="checkbox"]:checked + label:before,
@@ -3396,7 +3398,8 @@ button,
 				}
 
 			.wrapper.style5 table th {
-				color: #2E3842;
+				color: #FFF;
+/* 				color: #2E3842; */
 			}
 
 			.wrapper.style5 table thead {

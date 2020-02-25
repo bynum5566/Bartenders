@@ -243,6 +243,8 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/Bartenders/JS/forTabs.js"></script>
+	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 </body>
 
 </html>
