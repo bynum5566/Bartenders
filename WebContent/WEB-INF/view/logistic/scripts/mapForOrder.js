@@ -66,39 +66,52 @@
 						console.log('data get!');
 						return response.json();
 					}).then(function(JSONdata) {
-						console.log('this is data: ', JSONdata);
-						var all = JSONdata.forEach(function(item){
-							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
-							var lat = item.lat;
-							var lng = item.lng;
-							var orderNum = item.orderNum.toString();
-							var point = new google.maps.LatLng(lat, lng);
-							//建立個別marker
-							var marker = new google.maps.Marker({
-								map : map,
-								position : point,
-								//logistic頁面 所以要往上一層
-								icon : '../images/O1.png',
-								label : {
-								    text: orderNum,
-								    color: 'red',
-								    fontSize:'24px'
-								  }
-							});
-							
-							markers.push(marker);
-							//建立個別window
-							var contentString = 	'<div id="idiv">'+
-							'</div>';
-							/*
-							marker.addListener('click', function() {
-								infowindow.setContent(contentString);
-								infowindow.open(map, marker);
-							});
-							 */
-					}
-				}).then(function(){
-					console.log('this is then');
+				console.log('this is data: ', JSONdata);
+				
+				var all = JSONdata.forEach(function(item){
+					if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
+					var id = item.barId;
+					var name = item.name;
+					var address = item.address;
+					var lat = item.lat;
+					var lng = item.lng;
+					var type = item.type;
+					var orderNum = item.orderNum.toString();
+					console.log('this is pending order: ', orderNum);
+					var img = item.img;
+					console.log('this is img: ', img);
+					var brief = item.brief;
+					var point = new google.maps.LatLng(lat, lng);
+					//建立個別marker
+					var marker = new google.maps.Marker({
+						map : map,
+						position : point,
+						//logistic頁面 所以要往上一層
+						icon : '../images/O1.png',
+//						icon : '../images/'+type+'.png',
+						label : {
+						    text: orderNum,
+						    color: 'red',
+						    fontSize:'24px'
+						  }
+					});
+					
+					markers.push(marker);
+					//建立個別window
+					var contentString = 	'<div id="idiv">'+
+					'<h3 id="ih3" style="margin:10px 10px 0px 10px;display: inline-block">'+name+'</h3>'+
+					'<p id="ip" align="right" style="color:red;margin:10px 20px 10px 70px;display: inline">'+type+'</p>'+
+					'<p style="margin:5px">'+address+'</p>'+
+					'<img src="images/'+img+'">'+
+					'<p style="margin:5px">'+brief+'</p>'
+					'</div>';
+					
+					marker.addListener('click', function() {
+						infowindow.setContent(contentString);
+						infowindow.open(map, marker);
+						console.log('hello');
+					});
+					}//if結尾
 				})	
 			});
 		}

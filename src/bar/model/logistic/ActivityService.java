@@ -17,11 +17,11 @@ public class ActivityService {
 		this.aDao = aDao;
 	}
 	
-	
+	//儲存參加者名單
 	public Participant saveParticipant(Integer activityId,Integer userId, String name, String phone, Integer together) {
 		return aDao.saveParticipant(activityId,userId, name, phone, together);
 	}
-	
+	//搜尋參加者名單
 	public List<Participant> queryParticipant(Integer activityId) {
 		return aDao.queryParticipant(activityId);
 	}
@@ -30,6 +30,14 @@ public class ActivityService {
 	public List<Activity> queryJoker(Object Param,Object obj) {
 		//"from Activity where activityId=1002"
 		String condition = "from Activity where "+Param+"="+obj;
+		System.out.println("searching condition: "+condition);
+		List<Activity> first = aDao.simpleQuery(condition);
+		return first;
+	}
+	
+	public List<Activity> queryJoker(Object Param,Object obj,Object Param2,Object obj2) {
+		//"from Activity where activityId=1002"
+		String condition = "from Activity where "+Param+"="+obj+" and "+Param2+"="+obj2;
 		System.out.println("searching condition: "+condition);
 		List<Activity> first = aDao.simpleQuery(condition);
 		return first;

@@ -4,9 +4,13 @@
 .each {
 	position: relative;
 	border:2px yellow solid;
+	margin:10px;
 	display:inline-block;
-
-	margin:20px;
+	vertical-align: top;
+	/*
+	
+	
+	*/
 }
 
 .fieldset{

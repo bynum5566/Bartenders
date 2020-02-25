@@ -17,48 +17,32 @@
 body {
 	margin: 0px auto;
 }
-
-.container {
-	position: relative;
-	border:1px solid red;
-	width: 1650px;
-	margin: 20px auto;
-	padding: 20px;
-	border-radius: 10px;
+.container{
+	margin: 0px auto;
+	text-align: center;
 }
 
-
-.float_center {
-
-	position: relative;
-	left: 0%;
-	text-align: left;
-	
-	
-	/*
-	
-		position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	border:1px solid black;
-*/
-}
 
 /* 以下是搜尋地圖設定*/
 .searchDiv {
 	margin: auto;
-	border:2px black solid;
 	width:800px;
 	height: 800px;
 	display:none;
 }
+.mapDiv {
+	height: 800px;
+	width: 800px;
+}
 
+
+/*以下是搜尋框設定*/
 .chooseType{
-	border:2px black solid;
+	position:fixed;
+	right:0%;
+	background-color:lightgrey;
 	width:150px;
 	height: 400px;
-	display: inline-block;
-	vertical-align:top;
 	padding:5px;
 	margin:15px;
 
@@ -75,27 +59,8 @@ input{
 }
 
 .date{
-width:130px;
+width:120px;
 }
-
-table {
-	border-collapse: collapse;
-}
-
-td {
-	border: 1px solid black;
-}
-
-fieldset {
-	text-align: center;
-	width: 1200px;
-}
-.mapDiv {
-	height: 600px;
-	width: 600px;
-	display: inline-block;
-}
-
 </style>
 <script>
 var number = 0;
@@ -119,12 +84,7 @@ var reach = [];
 	<br>
 	<br>
 	<h1 align=center>活動大廳</h1>
-
-	<button id="openSearch" type="button" >地圖搜尋</button>
-	<section>
-		<div class="searchDiv" align=center>
-		<div id="map0" class="mapDiv"></div>
-		<div id="choose" class="chooseType" >
+	<div id="choose" class="chooseType" >
 			<form class="formBox">
 				<label>搜尋類型:</label>
 				<label><input type="checkbox" class="multi" name="type2" value="bar">酒吧</label>
@@ -151,9 +111,13 @@ var reach = [];
 			
 			<hr>
 			<label><button id="jokerBtn" type="button" onclick="queryJoker()" >整合搜尋</button></label>
+			<button id="openSearch" type="button" >地圖搜尋</button>
 		</div>
+	
+	<div class="searchDiv" align=center>
+		<div id="map0" class="mapDiv"></div>
 	</div>
-	</section>
+	
 	<script>
 	
 	
@@ -279,16 +243,21 @@ var reach = [];
 			jokerList.push(dateToStr(endTime.value));
 		}
 		
+		if($('.searchDiv').css('display')=='block'){
+			jokerList.push('open');
+		}else{
+			jokerList.push('close');
+		}
+		
 		console.log('jokerList: ',jokerList,' ;',typeof jokerList);
-		//window.location.href = '<c:url value="/Activitytest.do"/>?Object='+jokerList;
+		//window.location.href = '<c:url value="/ActivityJoker.do"/>?Object='+jokerList;
 		reloadMarkers("ActivityJoker",jokerList,0);
 		getMarkers("ActivityJoker",jokerList,0);
 	}
 	
 	
 	</script>
-	<section class="container">
-		<div class="float_center">
+		<div class="container">
 			<c:forEach var="Activity" items="${activity}" varStatus="status">
 				<div class="each" id="${Activity.activityId}">
 					<fieldset class="fieldset">
@@ -342,7 +311,7 @@ var reach = [];
 							
 						</div>
 						<div class="outer">
-							<div id="groundD" class="ground">
+							<div id="groundD${status.index}" class="ground">
 								<p id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
 								<div id="targetFor${status.index}" class="targetD">
 									<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>	
@@ -379,7 +348,7 @@ var reach = [];
 					currentNum.push(${Activity.actualNum});
 					//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
 					//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
-					var fix = $('#groundD').width()-20;
+					var fix = $('#groundD${status.index}').width()-20;
 					if(${Activity.limitNum}==999){
 						if(${Activity.targetNum}!=0){
 							per = fix/targetNum['${status.index}'];
@@ -407,7 +376,6 @@ var reach = [];
 					</script>
 			</c:forEach>
 		</div>
-	</section>
 	<script>
 	console.log('接收到的activity: ','${activity}');
 	var preUrl = "${preUrl}";
@@ -431,43 +399,6 @@ var reach = [];
 		<c:set var="targetId" scope="page" value='${getUser.userId}'/>
 	</c:if>
 	console.log('searching targetId: ','${targetId}')
-	
-	//進度條
-	var fix = $('#ground').width()-20;
-	console.log('fix width: ',fix);
-	var per;
-	var limitNum = document.getElementById('limitNum');
-	var targetNum = document.getElementById('targetNum');
-	var currentNum = 0;
-	var total = document.getElementById('currentD');
-	var current;
-	var reach;
-	var target;
-	function reSet(){
-		console.log(' limit is: ',limitNum.value,' target is: ',targetNum.value);
-		per = fix/limitNum.value;
-		reach = per*targetNum.value;
-		currentNum = 0;
-		console.log('per is:',per);
-		console.log('reach is:',reach);
-		$('#targetD').width(reach);
-		$('#currentD').width(0);
-		$('#currentD').css('background-color','pink');
-	}
-	$('#per').on('click',function(){
-		currentNum++;
-		console.log('number is: ',currentNum,'/',targetNum.value)
-		current = $('#currentD').width();
-		console.log('jquery current is: ',current);
-		$('#currentD').width(current+per);
-		console.log('jquery after is: ',$('#total').width());
-		if(currentNum==targetNum.value){
-			console.log('target reached')
-			$('#currentD').css('background-color','lightgreen');
-			$('#targetP').css("display","none");
-		}
-		
-	})
 	//打開搜尋地圖
 	$('#openSearch').on('click', function(){
 		if($('.searchDiv').css('display')=='none'){
@@ -502,12 +433,7 @@ var reach = [];
 		window.location.href = '<c:url value="/queryActivityByActivityId.do"/>?activityId='+ activityId;
 		})
 	
-		
-		
-	//地圖搜尋
-	$("#search").on("click",function() {
-		window.location.href = '<c:url value="/searchMarker"/>';
-		})
+
 	//編輯
 	$(".edit").on("click",function() {
 		var Str = this.id
@@ -540,12 +466,30 @@ var reach = [];
 	
 	 -->
 	<script src="scripts/mapForActivity.js"></script>
-	<script>
 	
-	</script>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<%@ include file="../menu.jsp"%>
-
+	<script>
+	console.log('jokerList is: ','${jokerList}')
+	if(${empty jokerList}){
+		var defaultList = ["checked","checked","checked","checked","checked","checked","null","null","close"];
+		reloadMarkers("ActivityJoker",defaultList,0);
+		getMarkers("ActivityJoker",defaultList,0);
+		
+	}else{
+		var getList = '${jokerList}';
+		queryList = getList.slice(1,getList.length-1).split(", ");
+		reloadMarkers("ActivityJoker",queryList,0);
+		getMarkers("ActivityJoker",queryList,0);
+		if(queryList[8].toString()=='open'){
+			$('.searchDiv').css('display','block');
+		}else{
+			$('.searchDiv').css('display','none');
+		}
+	}
+	
+	
+	</script>
 </body>
 </html>

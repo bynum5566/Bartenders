@@ -107,7 +107,7 @@ var reach = [];
 									<p align=right style="display: inline; margin: 0px;">我想報名:</p>
 									
 									<form align=right action="joinActivity.do" method="post" style="display: inline; margin: 0px;">
-										<input id="userInput" type="text" name="userId" value="disconnect">
+										
 										<input type="hidden" name="activityId" value="${Activity.activityId}"> 
 										<select name="joinNum">
 											<c:forEach begin="1"
@@ -140,6 +140,7 @@ var reach = [];
 						<p class="brief" align=center
 							style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
 								<input type="hidden" name="preUrl" value="${preUrl}">
+								<input id="userInput" type="text" name="userId" value="${getUserId}${getCompanyId}">
 					</fieldset>
 				</div>
 				<script>
@@ -213,7 +214,7 @@ var reach = [];
 	console.log('userId is: ','${getUser.userId}');
 	var company = '${getCompany.companyId}';
 	console.log('companyId is: ','${getCompany.companyId}');
-	
+	/*
 	var targetId;
 	<c:if test='${empty getUser.userId}'>
 		targetId = '${getCompany.companyId}';
@@ -224,7 +225,7 @@ var reach = [];
 		<c:set var="targetId" scope="page" value='${getUser.userId}'/>
 	</c:if>
 	console.log('searching targetId: ','${targetId}')
-	$('#userInput').val('${targetId}');
+	*/
 	
 	//個別地圖展開
 	$('.closeAndOpen').on('click', function(){

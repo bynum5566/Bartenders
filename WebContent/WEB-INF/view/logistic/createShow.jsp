@@ -10,54 +10,73 @@
 
 </style>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-body {
-	margin: 0px auto;
-}
 
-table {
-	border-collapse: collapse;
-}
-
-td {
-	border: 1px solid black;
-}
-
-div {
-	margin: 0px auto;
+#wholeDiv{
+position:relative;
+top:10%;
 }
 
 fieldset {
 	text-align: center;
-	width: 1200px;
+	width: 900px;
 }
 
-#map {
-	height: 600px;
-	width: 600px;
+input{
+height:50px;
+font-size:24px;
+border-radius:10px;
+border:1px black solid;
 }
 
+label{
+border:1px black solid;
+height:50px;
+font-size:24px;
+}
+
+#name{
+	width:500px;
+}
+#typeDiv{
+	position:absolute;
+	right:20%;
+	top:-5%;
+	height:80px;
+	width:200px;
+	border:1px red solid;
+	display:inline-block;
+}
+.perType{
+	height:70px;
+	width:190px;
+	border:1px blue solid;
+}
+
+.type{
+	height:24px;
+}
 .errors{
 	margin: 0px auto;
 	color:red;
 }
-
+/*以下是地圖開關設定*/
 .showEachMap{
-		width: auto;
+		width: 550px;
+		height:550px;
         display: block;
         margin: 0 auto;
         /*网页中内容居中显示*/
-        padding: 5px;
         font-size: 9pt;
         /* 9pt的字体是没有锯齿的  */
         height: auto;
         /*因整个div部分，会有一部分动态显示或者隐藏，所以将高度设为auto*/
     }
-    #hiddenx{
-        display: none;
-    }
+#map {
+	height: 550px;
+	width: 550px;
+}
     .hideMap{
     	display: none;
     }
@@ -89,103 +108,159 @@ fieldset {
 		</table>
 	</div>
 	
-	<div id="idiv" align=center>
+	<div id="wholeDiv" align=center>
 		<form action="saveActivity.do" method="post" enctype="multipart/form-data">
-			<fieldset style="width: 500px">
+			<fieldset>
 				<legend>建立活動</legend>
-					<h3 id="ih3" style="margin: 10px 10px 0px 10px; display: inline-block"><input type="text" name="name" value="${Activity.name}"></h3>
-					<p id="ip" align="right" style="color: red; margin: 10px 20px 10px 70px; display: inline">
-					<input type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
-					<input type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
-					<input type="hidden" id="no" name="type" value="no"><label for="no"></label></p>
+					<input id="name" type="text" name="name" placeholder="活動名稱"><p class="errors">${errors.name}</p>
+					<div id="typeDiv">
+					<table>
+						<tr>
+							<td>
+								<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
+							</td>
+							<td>
+								<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
+							</td>
+							<td>
+								<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
+							</td>
+						</tr>
+					</table>
+					<!-- 
+						<div class="perType">
+							<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
+						<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
+							
+						</div>
+						<div class="perType">
+						<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
+						<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
+						</div>
+						 -->
+					</div>
 					
-					<p style="margin: 5px"><input id="beginTime" type="text" name="beginTime"
-							placeholder="請選擇開始時間"> ~ <input
-							id="endTime" type="text" name="endTime"
-							placeholder="結束時間"></p>
-					<p style="margin: 5px"><input type="text" name="address" placeholder="活動地址" style="width:350px"></p>
-					<p style="margin: 5px"><input type="text" name="targetNum" placeholder="參加人數上限" style="width:100px"> /
-										<input type="text" name="actualNum" placeholder="內建人數" style="width:100px">
+					<p class="errors">${errors.type}</p>
+					<p><input id="beginTime" type="text" name="beginTime" placeholder="請選擇開始時間">
+					 ~ <input id="endTime" type="text" name="endTime" placeholder="結束時間">
 					</p>
-					<p>地圖位置: <button id="Bhidden" type="button">確認地圖</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"><input id="lat" type="hidden" name="lat" >
-					<input id="lng" type="hidden" name="lng" ></p>
+					<p class="errors">${errors.time}</p>
+					<p><input type="text" name="address" placeholder="活動地址"></p>
+					<p class="errors">${errors.address}</p>
+					<p><input type="text" name="limitNum" placeholder="參加人數上限">
+					 /
+					<input type="text" name="actualNum" placeholder="內建人數">
+					 / 
+					<input type="text" name="targetNum" placeholder="成團人數">
+					</p>
+					<p>地圖位置: <button id="Bhidden" type="button" >點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
+					<p class="errors">${errors.map}</p>
 					<div class="showEachMap">
 						<div id="hidden" class="hideMap" >
-								<div id="map" style="width:500px;height:500px;background:red"></div>
-							</div>
+							<div id="map"></div>
 						</div>
-					<script>
-						//測試是否可以接收到登入參數
-						var user = '${getUserId}';
-						console.log('userId is: ','${getUserId}');
-						var company = '${getCompanyId}';
-						console.log('companyId is: ','${getCompanyId}');
-						console.log('preUrl=','${preUrl}');
-						var sendText;
-						<c:if test='${empty getUserId}'>
-							sendText = '${getCompanyId}';
-							<c:set var="finalText" scope="page" value='${getCompanyId}'/>
-						</c:if>
-						<c:if test='${empty getCompanyId}'>
-							sendText = '${getUserId}';
-							<c:set var="finalText" scope="page" value='${getUserId}'/>
-						</c:if>
-						
-						console.log('final sendText is: ',sendText);
-
-					</script>
-			
-					<br>
-					
+					</div>
 					<input type="file" name="uploadFile" />
+					<textarea  type="text" placeholder="輸入活動簡介" name="brief"></textarea>
 					
-					<p><input type="text" placeholder="輸入活動簡介" style="width:400px;height:250px" name="brief"></p>
+					<br>
+					<div>
+					<input id="lat" type="text" name="lat" value="0">
+					<input id="lng" type="text" name="lng" value="0">
 					<input type="text" name="preUrl" value="${preUrl}">
+					<input type="text" name="userId" value="${getUserId}${getCompanyId}">
+					<!-- 
 					<input type="text" name="userId" value="<c:out value="${finalText}"/>">
+					 -->
+					<input type="text" id="realType" name="realType" value="no">
+					</div>
 					<input type="submit" value="確認">
 			</fieldset>
 		</form>
 	</div>
-
-	<div id="map"></div>
 	<script src="./scripts/MapStyle.js"></script>
-	<script src="./scripts/mapForLocation.js"></script>
+	<script src="./scripts/mapForCreateActivity.js"></script>
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<script>
 
-	//
-	var target = 'hidden';
-	$('#Bhidden').on('click',function(){
-		console.log('start');
-		if($('#hidden').css('display') == 'none'){
-			console.log('try to show');
-			showTargetMap();
-			console.log('reload done: ');
-		}else if($('#hidden').css('display') == 'block'){
-			console.log('try to hide');
-			hideTargetMap();
+	//若沒有選擇活動 預設為no 會報錯
+	var typeRadio = document.getElementsByClassName('type');
+	var realType = document.getElementById('realType');
+	var tempValue;
+	$('.type').on('click',function(){
+		tempValue = this.id
+		inputType(tempValue);	
+	})
+	function inputType(testValue){
+		for(var i=0;i<typeRadio.length;i++){
+			if(typeRadio[i].checked==true){
+				console.log('real type is: ',tempValue)
+				realType.value = tempValue;
+			}
 		}
-	});
+	}
 	
-	function showTargetMap(){
-		document.getElementById('hidden').style.display="block";
-	};
-	function hideTargetMap(){
-		document.getElementById('hidden').style.display="none";
-	};
+	//測試是否可以接收到登入參數
+	var user = '${getUserId}';
+	console.log('userId is: ','${getUserId}');
+	var company = '${getCompanyId}';
+	console.log('companyId is: ','${getCompanyId}');
+	console.log('preUrl=','${preUrl}');
+	var sendText;
+	
+	/**/
+	<c:if test='${empty getUserId}'>
+		sendText = '${getCompanyId}';
+		<c:set var="finalText" scope="page" value='${getCompanyId}'/>
+	</c:if>
+	<c:if test='${empty getCompanyId}'>
+		sendText = '${getUserId}';
+		<c:set var="finalText" scope="page" value='${getCompanyId}'/>
+	</c:if>
+	
+	console.log('final sendText is: ',sendText);
+	
+
+	//地圖開關
 		//小OK顯示
+		var ok = document.getElementById("smallok")
+		var checklat = document.getElementById("lat")
 		$('#map').on("click", function(){
-			checkMap()
+			checkMap();
+			reloadMarkers(lat.value,lng.value,realType.value);
+			getMarkers(lat.value,lng.value,realType.value);
+			console.log('temp marker:',lat.value,lng.value,realType.value)
 		});
 		function checkMap(){
 			console.log("checkMap");
-			var ok = document.getElementById("smallok")
-			var checklat = document.getElementById("lat")
 			if(checklat.value!=0){
 				ok.style.visibility = 'visible';
 			}
 		}
+	var mapBtn = document.getElementById('Bhidden');
+	$('#Bhidden').on('click',function(){
+		console.log('start');
+		if($('#hidden').css('display') == 'none'){
+			document.getElementById('hidden').style.display="block";
+			mapBtn.innerHTML = '收起地圖';
+		}else if($('#hidden').css('display') == 'block'){
+			document.getElementById('hidden').style.display="none";
+			if(checklat.value!=0){
+				mapBtn.innerHTML = '修改地圖位置';
+			}else{
+				mapBtn.innerHTML = '尚未選擇地圖位置';
+			}
+			
+		}
+	});
+
+		
 		
 			
 		// begin time
@@ -198,7 +273,6 @@ fieldset {
 			dateFormat : "yy/m/d H:i",
 			maxDate : new Date().fp_incr(14), // 14 days from now
 			minDate : "today",
-			minTime : current,
 			time_24hr: true
 		});
 
@@ -209,7 +283,6 @@ fieldset {
 			dateFormat : "yy/m/d H:i",
 			maxDate : new Date().fp_incr(14), // 14 days from now
 			minDate : "today",
-			minTime : current,
 			time_24hr: true
 		});
 
@@ -223,5 +296,6 @@ fieldset {
 			console.log('click on cancel locating');
 		})
 	</script>
+	<%@ include file="../menu.jsp"%>
 </body>
 </html>

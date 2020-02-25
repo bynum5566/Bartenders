@@ -47,6 +47,20 @@ label{
 color:blue;
 }
 
+.ccle {
+  margin: 0px auto;/*div對齊效果*/
+  text-align: center;/*display: inline對齊效果*/
+}
+
+.each {
+  display: inline-block;/*讓div並排*/ 
+  vertical-align: top;/*就算個個div行數不同，也一律向上對齊*/ 
+  width: 130px;
+  height: 150px;
+  border: 1px solid #FF0000;
+  border-radius:3px;margin: 2px;
+  }
+
 </style>
 
 </head>
@@ -111,6 +125,15 @@ color:blue;
 	<button id="plus">增加10</button>
 	<button id="reduce">減少10</button>
 </div>
+<div class="ccle">
+  <div class="each">12345<br/>12</div>
+  <div class="each">123</div>
+  <div class="each">123</div>
+  <div class="each">123</div>
+  <div class="each">123</div>
+  <div class="each">123</div>
+</div>
+
 <script>
 	var fix = $('#ground').width()-20;
 	console.log('fix width: ',fix);

@@ -28,6 +28,12 @@ public class LogisticService {
 		return lDao.simpleQuery(condition);
 	}
 	
+	public List<Logistic> queryJoker(Object Param,Object obj,Object Param2,Object obj2){
+		String condition = "from Logistic where "+Param+"="+obj+" and "+Param2+"="+obj2;
+		System.out.println("searching condition: "+condition);
+		return lDao.simpleQuery(condition);
+	}
+	
 	///////////////以下待整理
 	
 	public List<Logistic> queryByStatus(Integer status) {

@@ -21,7 +21,7 @@ import bar.model.UsersService;
 import util.WebSocketTest;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUser","getCompany"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUserId","getCompanyId"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -68,7 +68,7 @@ public class CheckLogin {
 				Users user = uservice.select(account);
 				m.addAttribute("userName", user.getUserName());
 				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getUser", user);
+				m.addAttribute("getUserId", user.getUserId());
 				
 				HttpSession session = request.getSession();
 				WebSocketTest.setHttpSession(session);
@@ -117,7 +117,7 @@ public class CheckLogin {
 				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
 				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getCompany", Gcompany);
+				m.addAttribute("getCompanyId", Gcompany.getCompanyId());
 				
 				HttpSession session = request.getSession();
 				WebSocketTest.setHttpSession(session);

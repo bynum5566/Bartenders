@@ -77,7 +77,111 @@ public class FunctionByActivity {
 		this.uDao=uDao;
 		this.cSer=cSer;
 	}
+	
+	@RequestMapping(path = "ActivityJoker.do",method = RequestMethod.GET)
+	public String ActivityJoker(Model m,HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "Object")List obj
+			) throws ParseException, IOException {
+		System.out.println("ActivityJoker start");
+		System.out.println("Object is: "+obj);
+		//先更新時間
+		List<Activity> all = aSer.queryAll();
+		boolean status = aSer.checkEndTime(all);
+		System.out.println("all activities is checked: "+status);
+		
+		//預設找正開放的全部
+		List<Activity> finalList = aSer.queryJoker("status", "'O'");
+		System.out.println("there are: "+finalList.size()+" activities are currently open.");
+		
+		//類型類
+		boolean checking = false;
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+			checking=true;
+			System.out.println("start to check type");
+		}
+		if(checking) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				String checkType = a.getType();
+				System.out.println("this activity is: "+checkType);
+				if(!obj.contains(checkType)) {
+					listToRemove.add(a);
+					System.out.println(checkType+" is not wanted");
+				}
+			}
+			finalList.removeAll(listToRemove);
+		}
+		
+		System.out.println("there are: "+finalList.size()+" activities are included after type check");
 
+		//狀態類
+		if(obj.get(4).toString().equals("ready")) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				if(a.getActualNum()<a.getTargetNum()) {
+					listToRemove.add(a);
+				}
+			}
+			finalList.removeAll(listToRemove);
+			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
+		}
+		if(obj.get(5).toString().equals("available")) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			for(Activity a:finalList) {
+				if(a.getActualNum()>=a.getLimitNum()) {
+					listToRemove.add(a);
+				}
+			}
+			finalList.removeAll(listToRemove);	
+			System.out.println("there are: "+finalList.size()+" activities are included after available check");
+		}
+		
+		//日期類
+		if(!obj.get(6).toString().equals("null")) {
+			List<Activity> listToRemove = new ArrayList<Activity>();
+			Date immediatlyD = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+			Date beginD = sdf.parse(obj.get(6).toString());
+			Date endD = sdf.parse(obj.get(7).toString());
+			//進行轉換
+			for(Activity a:finalList) {
+				Date aBeginD = sdf2.parse(a.getBeginTime());
+				Date aEndD = sdf2.parse(a.getEndTime());
+				System.out.println("this activity's time is: "+aBeginD+" to "+aEndD);
+				Date x;
+				Date y;
+				if(beginD.before(aBeginD)) {
+					x = aBeginD;
+				}else {
+					x = beginD;
+				}
+				if(endD.before(aEndD)) {
+					y = endD;
+				}else {
+					y = aEndD;
+				}
+				
+				long xLength = x.getTime()-immediatlyD.getTime();
+				long yLength = y.getTime()-immediatlyD.getTime();
+				if(yLength-xLength<=0) {
+					System.out.println("this activity is not qualify with selected time period");
+					listToRemove.add(a);
+				}
+			}
+			finalList.removeAll(listToRemove);
+		}else {
+			System.out.println("time is not selected");
+		}
+		System.out.println("final result: "+finalList);
+		m.addAttribute("activity",finalList);
+		m.addAttribute("jokerList",obj);
+		m.addAttribute("mapOpen","true");
+//		response.sendRedirect("/Bartenders/ActivityHall");
+//		return null;
+		return "logistic/ActivityHall";
+	}
+	
 	@RequestMapping(path = "searchMarker.do",method = RequestMethod.POST)
 	public String searchMarker(HttpServletRequest request, HttpServletResponse response, Model m,
 			@RequestParam(name = "type")String type
@@ -165,7 +269,7 @@ public class FunctionByActivity {
 			@RequestParam(name = "lat")float lat,
 			@RequestParam(name = "lng")float lng,
 			@RequestParam(name = "brief")String brief,
-			@RequestParam(name = "type")String type,
+			@RequestParam(name = "realType")String type,
 //			@RequestParam(name = "img")String img,
 			@RequestParam(name = "beginTime")String beginTime,
 			@RequestParam(name = "endTime")String endTime,
@@ -173,7 +277,7 @@ public class FunctionByActivity {
 			@RequestParam(name = "targetNum")Integer targetNum,
 			@RequestParam(name = "actualNum")Integer actualNum
 			) throws IOException, ParseException {
-		System.out.println("type值: "+type);
+		System.out.println("beginTime: "+beginTime);
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 		
@@ -181,21 +285,27 @@ public class FunctionByActivity {
 			errors.put("name", "請輸入名稱");
 		}
 
+		if (type.equals("no")) {
+			errors.put("type", "尚未選擇類型");
+		}
+		
+		if (beginTime.length() ==0||endTime.length() ==0) {
+			errors.put("time", "尚未完整設定時間");
+		}
+		
 		if (address == null || address.length() == 0) {
 			errors.put("address", "請輸入地點");
 		}
 		
 		if ((lat==0)||(lng==0)) {
-			errors.put("lat", "請點選地圖設定地點");
+			errors.put("map", "請點選地圖設定地點");
 		}
 		
 		if (brief == null || brief.length() == 0) {
 			errors.put("brief", "請輸入簡介");
 		}
 		
-		if (type.equals("on")) {
-			errors.put("type", "尚未選擇類型");
-		}
+		
 		
 		if (userId==null) {
 //			errors.put("type", "尚未選擇類型");
@@ -205,7 +315,7 @@ public class FunctionByActivity {
 
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
-			return "createShow";
+			return "logistic/createShow";
 		}
 		
 		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);
@@ -227,12 +337,12 @@ public class FunctionByActivity {
 			System.out.println("Thumbnails complete");
 		}else {
 			System.out.println("no file selected");
-			filename="noImage";
+			filename="noImage.png";
 		}
 		
 
 		Activity activity = new Activity();
-		aDao.saveActivity(activity,userId, name, address, lat, lng, type, filename, brief, beginTime, endTime, limitNum, targetNum, actualNum);
+		aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, brief, beginTime, endTime, limitNum, targetNum, actualNum);
 		
 		
 		if(preUrl!=null&&preUrl.equals("/createShow")) {

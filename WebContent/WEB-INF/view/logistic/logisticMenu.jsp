@@ -19,7 +19,7 @@
 		<div id="nav-content" tabindex="0">
 			<ul>
 				<li><a class="menu" href="/Bartenders/logistic/LogisticGate">訂單管理</a></li>
-				<li><a class="menu" href="searchOrder">訂單搜尋</a></li>
+				<li><a class="menu" href="/Bartenders/logistic/searchOrder">訂單搜尋</a></li>
 				<li class="small">
 				<a class="menu" href="WelcomeLogistic">回到物流大廳</a>
 				<a class="menu" href="javascript:signOut()">登出</a>

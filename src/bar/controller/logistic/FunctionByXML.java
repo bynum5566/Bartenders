@@ -233,11 +233,12 @@ public class FunctionByXML {
 	}
 	
 	
+	
+	
 	@RequestMapping(path = "ActivityUserId/{userId}",method = RequestMethod.GET)
 	public @ResponseBody List<Activity> ActivityUserId(@PathVariable Integer userId,Model m,
 			HttpServletRequest request, HttpServletResponse response) throws ParseException {
 		System.out.println("start to query");
-//		System.out.println("this is url: Activity/"+search+"/"+userId);
 		List<Activity> list = aDao.query("userId",userId);
 		boolean status = aDao.checkEndTime(list);
 		System.out.println("all activities is checked: "+status);
@@ -332,7 +333,7 @@ public class FunctionByXML {
 		System.out.println("order numbers: "+newOrder.size());
 		HashMap<Integer,Integer> hashMap = new HashMap<>();
 		List<Activity> activity = new ArrayList<Activity>();
-		Activity temp;
+		List<Activity> temp;
 		for(Logistic a:newOrder) {
 			Integer cID = a.getcID();
 			hashMap.putIfAbsent(cID,0);
@@ -345,10 +346,13 @@ public class FunctionByXML {
 			Entry<Integer, Integer> entry = iterator.next();
 			Integer barId = entry.getKey();
 			Integer orderNum = entry.getValue();
-			System.out.println("start query with userId: "+barId+" &set num:"+orderNum);
-			temp = aSer.uniqueQuery("userId", barId);
-			temp.setOrderNum(orderNum);
-			activity.add(temp);
+			System.out.println("start query with userId=: "+barId+" &set num=:"+orderNum);
+			temp = aSer.queryJoker("userId", barId, "type","'bar'");
+			for(Activity bar:temp) {
+				bar.setOrderNum(orderNum);
+			}
+			
+			activity.addAll(temp);
 		}
 
 		m.addAttribute("activity",activity);

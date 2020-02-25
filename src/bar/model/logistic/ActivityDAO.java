@@ -162,19 +162,26 @@ public class ActivityDAO {
 		a.setLng(lng);
 		a.setType(type);
 		a.setImg(img);
-		a.setBrief(brief);
+		String newBrief = brief.replace("\n", "<br>");
+		a.setBrief(newBrief);
 		a.setBeginTime(beginTime);
 		a.setEndTime(endTime);
 		a.setStatus("O");
 		if(limitNum==null) {
 			a.setLimitNum(999);
-		}
+		}else {
+			a.setLimitNum(limitNum);
+		};
 		if(targetNum==null) {
 			a.setTargetNum(0);
-		}
+		}else {
+			a.setTargetNum(targetNum);
+		};
 		if(actualNum==null) {
 			a.setActualNum(0);
-		}
+		}else {
+			a.setActualNum(actualNum);
+		};
 		
 		session.save(a);
 		System.out.println("Activity has been saved!");
