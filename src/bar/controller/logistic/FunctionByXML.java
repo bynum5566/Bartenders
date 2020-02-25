@@ -359,6 +359,16 @@ public class FunctionByXML {
 		return activity;
 	}
 	
+	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
+	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
+			) throws IOException, ParseException {
+		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'");
+		
+		m.addAttribute("activity",orderList);
+		return orderList;
+	}
+	
+	
 	
 
 }

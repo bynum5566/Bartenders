@@ -73,21 +73,6 @@ width:130px;
 	<div class="container" align=center>
 		<div id="map" class="mapDiv"></div>
 		<div id="choose" class="chooseType" >
-		<!-- 
-			<form action="searchMarker.do" method="post">
-				<label>搜尋類型:</label>
-				<label><input type="checkbox" name="type" value="bar">酒吧</label>
-				<label><input type="checkbox" name="type" value="shop">專賣店</label>
-				<label><input type="checkbox" name="type" value="show">酒展</label>
-				<label><input type="checkbox" name="type" value="party">派對</label>
-				
-				<hr>
-				<label><input type="submit"  value="查詢"></label>
-			</form>
-			<br>
-			<br>
-			<br>
-			 -->
 			<form class="formBox">
 				<label>搜尋類型:</label>
 				<label><input type="checkbox" class="multi" name="type2" value="bar">酒吧</label>
@@ -95,9 +80,6 @@ width:130px;
 				<label><input type="checkbox" class="multi" name="type2" value="show">酒展</label>
 				<label><input type="checkbox" class="multi" name="type2" value="party">派對</label>
 				<br>
-				<!-- 
-				<label><button type="button" onclick="chooseType()" >查詢</button></label>
-				 -->
 			</form>
 
 			<form class="formBox">
@@ -107,9 +89,6 @@ width:130px;
 				<label><input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"></label>
 				<br>
 				<label><button id="clearTime" type="button" onclick="clearDate()" >清除時間</button></label>
-				<!-- 
-				<label><button type="button" onclick="chooseDate()" >查詢</button></label>
-				 -->
 			</form>
 			<hr>
 			<label><button id="jokerBtn" type="button" onclick="queryJoker()" >整合搜尋</button></label>
@@ -318,7 +297,7 @@ width:130px;
 					locationLat = item.geometry.location.lat;
 					locationLng = item.geometry.location.lng;
 					
-				})
+				});
 			});//fetch結束
 			console.log("指定位置",locationLat,'; ',locationLng);
 			relocate(locationLat,locationLng);
@@ -340,7 +319,7 @@ width:130px;
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForSingleMapWithMarker.js"></script>
 	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+		src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	
 </body>
 </html>

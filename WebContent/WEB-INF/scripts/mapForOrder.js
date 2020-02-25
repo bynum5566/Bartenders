@@ -97,9 +97,48 @@
 							});
 							 */
 					}
-				}).then(function(){
-					console.log('this is then');
-				})	
+				})
+			});
+		}
+		//讀取特定訂單
+		function getOrders(prefix,input){
+			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
+					function(response) {
+						console.log('data get!');
+						return response.json();
+					}).then(function(JSONdata) {
+						console.log('this is data: ', JSONdata);
+						var all = JSONdata.forEach(function(item){
+							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
+							var lat = item.lat;
+							var lng = item.lng;
+							var orderNum = item.orderNum.toString();
+							var point = new google.maps.LatLng(lat, lng);
+							//建立個別marker
+							var marker = new google.maps.Marker({
+								map : map,
+								position : point,
+								//logistic頁面 所以要往上一層
+								icon : '../images/O1.png',
+								label : {
+								    text: orderNum,
+								    color: 'red',
+								    fontSize:'24px'
+								  }
+							});
+							
+							markers.push(marker);
+							//建立個別window
+							var contentString = 	'<div id="idiv">'+
+							'</div>';
+							/*
+							marker.addListener('click', function() {
+								infowindow.setContent(contentString);
+								infowindow.open(map, marker);
+							});
+							 */
+					}
+				})
 			});
 		}
 
