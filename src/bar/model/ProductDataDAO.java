@@ -24,6 +24,26 @@ public class ProductDataDAO {
 	public ProductDataDAO(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+	public boolean updateQuantityByPid(String pdId, int pdSoldOut) {//	used by finishPay
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			String hqlStr = "update ProductData set pdSoldOut=:pdSoldOut where pdId=:pdId";
+			Query query = session.createQuery(hqlStr);
+			query.setParameter("pdId", pdId);
+			query.setParameter("pdSoldOut", pdSoldOut);
+			query.executeUpdate();
+			return true;
+		} catch (Exception e)
+		{
+			System.out.println("【pdDAO.updateQuantityByPid】【error】");
+			System.out.println("【Exception = 】" + e);
+			System.out.println("【e.printStackTrace = 】" + e);
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public boolean insert(ProductData proD) {
 		Session session = sessionFactory.getCurrentSession();
