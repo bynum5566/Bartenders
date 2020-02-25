@@ -81,6 +81,11 @@ table {
 
 body {
 	-webkit-text-size-adjust: none;
+	background-image: url("/Bartenders/images/bg21.png");
+	background-attachment: fixed;
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 mark {
@@ -3260,12 +3265,8 @@ button,
 /* 			color: #4E4852; */
 /* 			background-color: #141314; */
 /* 			color: #9F9BA0; */
+			background:none;
 			color: #FFFFFF;
-			background-image: url("/Bartenders/images/bg22.png");
-			background-attachment: scroll;
-			background-position: top;
-			background-repeat: no-repeat;
-			background-size: cover;
 		}
 
 			.wrapper.style5 strong, .wrapper.style5 b {

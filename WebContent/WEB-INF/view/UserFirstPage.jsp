@@ -22,6 +22,10 @@
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
 		
+		div.content{
+			width: 800px;
+		}
+		
 		main {
 			padding: 70px 20px 0;
 			display: flex;
@@ -159,7 +163,7 @@
 
 		<article id="main">
 			<section class="wrapper style5">
-				<div class="inner">
+<!-- 				<div class="inner"> -->
 					<section>
 						<main>
 							<div class="content">
@@ -203,7 +207,7 @@
 							</div>
 						</main>
 					</section>
-				</div>
+<!-- 				</div> -->
 			</section>
 		</article>
 	</div>

@@ -8,6 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Orders</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
@@ -33,6 +34,20 @@
 		.row{
 			margin-left: 8%;
 		}
+		div.panel, td.flip {
+	margin: 0px;
+	padding: 5px;
+	text-align: center;
+	background: gray;
+	border: solid 1px #c3c3c3;
+	max-width: 1400px;
+}
+
+div.panel {
+	height: auto;
+	display:none;
+	max-width: 1400px;
+}
 	</style>
 <!-- 	<style type="text/css"> -->
 <!-- /* 		a { */ -->
@@ -118,128 +133,134 @@
 					
 <!-- 						<div class="mydiv"> -->
 <!-- 							<div align="center"> -->
-								<h3>我的訂單</h3>
-								<br>
-								<form action="<c:url value="/userOrder.controller"/>" method="post">
-									<table class="myTable">
-										<thead>
-											<tr align="center">
-												<th nowrap="nowrap">訂單編號</th>
-												<th nowrap="nowrap">賣家名稱</th>
-												<th nowrap="nowrap">訂單內容</th>
-												<th nowrap="nowrap">金額</th>
-												<th nowrap="nowrap">收件人</th>
-												<th nowrap="nowrap">配送方式</th>
-												<th nowrap="nowrap">配送地址/QRcode載點</th>
-												<th nowrap="nowrap">配送電話</th>
-												<th nowrap="nowrap">訂單狀態</th>
-												<th nowrap="nowrap">購買時間</th>
-												<th nowrap="nowrap">物流編號</th>
-												<th nowrap="nowrap">付款</th>
-												<th nowrap="nowrap">修改</th>
-												<th nowrap="nowrap">取消</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr align="center">
-												<c:forEach items="${Corders}" var="list" step="1"
-													varStatus="current">
-													<tr>
-														<td align="center" nowrap="nowrap"><a
-															href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
-															value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
-														</td>
-														<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
-														<td align="center" nowrap="nowrap">${productData[current.index].productName}等</td>
-														<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
-														<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
-															<c:choose>
-														<c:when
-															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
-														</c:when>
-														<c:otherwise>
-															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
-														</c:otherwise>
-													</c:choose>
-														<c:choose>
-															<c:when
-																test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-																<td align="center" nowrap="nowrap"><a
-																	href="${attrAddress[current.index]}">QRcode載點</a></td>
-															</c:when>
-															<c:otherwise>
-																<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
-															</c:otherwise>
-														</c:choose>
-														<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
-														<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-														<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
-														<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
-														<c:choose>
-															<c:when
-																test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
-																<td align="center" nowrap="nowrap"><a
-																	href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
-																		去付款</a></td>
-															</c:when>
-															<c:otherwise>
-																<td nowrap="nowrap"><font color=gray>去付款</font></td>
-															</c:otherwise>
-														</c:choose>
-					
-					
-														<!--<td align="center" nowrap="nowrap"><a
-															href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
-																去付款</a></td>-->
-																
-														<!--<form:form action="doLPay" method="post">
-														<table>
-															<tr>
-																<td><input type="submit" value="去付款"></td>
-															</tr>
-														</table>
-													</form:form>-->
-														<c:choose>
-															<c:when
-																test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
-																<td nowrap="nowrap"><font color=gray>修改</font></td>
-															</c:when>
-															<c:when
-																test="${statusNumToStr[Corders[current.index].status]=='配送中'}">
-																<td nowrap="nowrap"><font color=gray>修改</font></td>
-															</c:when>
-															<c:when
-																test="${statusNumToStr[Corders[current.index].status]=='已到貨'}">
-																<td nowrap="nowrap"><font color=gray>修改</font></td>
-															</c:when>
-															<c:when
-																test="${statusNumToStr[Corders[current.index].status]=='已取消'}">
-																<td nowrap="nowrap"><font color=gray>修改</font></td>
-															</c:when>
-															<c:otherwise>
-																<td align="center" nowrap="nowrap"><a
-																	href="<c:url value="/ShowChangeOrderUser.controller"/>?orderId=${Corders[current.index].orderId}"
-																	value="${Corders[current.index].orderId}">修改</a></td>
-															</c:otherwise>
-														</c:choose>
-														<c:choose>
-															<c:when
-																test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
-																<td nowrap="nowrap"><a
-																	href="<c:url value="/CancelOrderUser.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
-																	value="${Corders[current.index].orderId}">取消</a></td>
-															</c:when>
-															<c:otherwise>
-																<td nowrap="nowrap"><font color=gray>取消</font></td>
-															</c:otherwise>
-														</c:choose>
-													</tr>
-												</c:forEach>
-											</tr>
-										</tbody>
+			<h2>我的訂單</h2>
+			<br>
+			<form action="<c:url value="/userOrder.controller"/>" method="post">
+				<table class="myTable">
+					<thead>
+						<tr align="center">
+							<th nowrap="nowrap">訂單編號</th>
+							<th nowrap="nowrap">酒吧</th>
+							<th nowrap="nowrap">訂單內容</th>
+							<th nowrap="nowrap">金額</th>
+							<th nowrap="nowrap">收件人</th>
+							<th nowrap="nowrap">配送方式</th>
+							<th nowrap="nowrap">配送地址/QRcode載點</th>
+							<th nowrap="nowrap">配送電話</th>
+							<th nowrap="nowrap">訂單狀態</th>
+							<th nowrap="nowrap">購買時間</th>
+							<th nowrap="nowrap">物流編號</th>
+							<th nowrap="nowrap">付款</th>
+							<th nowrap="nowrap">修改</th>
+							<th nowrap="nowrap">取消</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr align="center">
+							<c:forEach items="${Corders}" var="list" step="1"
+								varStatus="current">
+								<tr>
+									<td align="center" nowrap="nowrap"><a
+										href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
+										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
+									</td>
+									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
+									<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
+									<div class="panel">
+									<c:forEach items="${productData[current.index]}" var="list" step="1"
+								varStatus="current1">
+										<p>${productData[current.index][current1.index].productName}</p></c:forEach>
+									</div>
+									</td>
+									<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
+									<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
+										<c:choose>
+									<c:when
+										test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
+									</c:when>
+									<c:otherwise>
+										<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+									</c:otherwise>
+								</c:choose>
+									<c:choose>
+										<c:when
+											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+											<td align="center" nowrap="nowrap"><a
+												href="${attrAddress[current.index]}">QRcode載點</a></td>
+										</c:when>
+										<c:otherwise>
+											<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
+										</c:otherwise>
+									</c:choose>
+									<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
+									<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
+									<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
+									<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
+									<c:choose>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
+											<td align="center" nowrap="nowrap"><a
+												href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
+													去付款</a></td>
+										</c:when>
+										<c:otherwise>
+											<td nowrap="nowrap"><font color=gray>去付款</font></td>
+										</c:otherwise>
+									</c:choose>
+
+
+									<!--<td align="center" nowrap="nowrap"><a
+										href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">
+											去付款</a></td>-->
+											
+									<!--<form:form action="doLPay" method="post">
+									<table>
+										<tr>
+											<td><input type="submit" value="去付款"></td>
+										</tr>
 									</table>
-								</form>
+								</form:form>-->
+									<c:choose>
+										<c:when
+											test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
+										</c:when>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='配送中'}">
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
+										</c:when>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='已到貨'}">
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
+										</c:when>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='已取消'}">
+											<td nowrap="nowrap"><font color=gray>修改</font></td>
+										</c:when>
+										<c:otherwise>
+											<td align="center" nowrap="nowrap"><a
+												href="<c:url value="/ShowChangeOrderUser.controller"/>?orderId=${Corders[current.index].orderId}"
+												value="${Corders[current.index].orderId}">修改</a></td>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when
+											test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
+											<td nowrap="nowrap"><a
+												href="<c:url value="/CancelOrderUser.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
+												value="${Corders[current.index].orderId}">取消</a></td>
+										</c:when>
+										<c:otherwise>
+											<td nowrap="nowrap"><font color=gray>取消</font></td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 							</div>
 						</div>
 	
@@ -248,7 +269,12 @@
 			</section>
 		</article>
 	</div>
-	
+	 <script type="text/javascript">
+  $(".flip").click(function() {
+   <%--$(".panel").slideToggle("slow");--%>
+   $(this).siblings().slideToggle("slow");
+  });
+	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
