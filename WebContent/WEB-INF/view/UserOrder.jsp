@@ -102,7 +102,7 @@ div.panel {
 								<tr>
 									<td align="center" nowrap="nowrap"><a
 										href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
-										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(9,19)}</a>
+										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
 									</td>
 									<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
 									<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
