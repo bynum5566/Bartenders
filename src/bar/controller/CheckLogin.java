@@ -69,8 +69,9 @@ public class CheckLogin {
 				////////新增回傳整個Bean方便撈其他資料////////////
 				m.addAttribute("getUser", user);
 				
-				HttpSession session = request.getSession();
-				WebSocketTest.setHttpSession(session);
+//				HttpSession session = request.getSession();
+//				WebSocketTest.setHttpSession(session);
+				WebSocketTest.setModel(m);
 				
 				return "UserFirstPage";
 			}
@@ -118,8 +119,9 @@ public class CheckLogin {
 				////////新增回傳整個Bean方便撈其他資料////////////
 				m.addAttribute("getCompany", Gcompany);
 				
-				HttpSession session = request.getSession();
-				WebSocketTest.setHttpSession(session);
+//				HttpSession session = request.getSession();
+//				WebSocketTest.setHttpSession(session);
+				WebSocketTest.setModel(m);
 				
 				return "WelcomeCompany";
 			} 

@@ -76,7 +76,7 @@
 										<div class="col-6 col-12-xsmall">
 											<div>
 												<label>標題</label>
-												<input type="text" name="neTitle" value="<c:out value="${neTitle}"></c:out>" required="required"/>
+												<input type="text" name="neTitle" value="<c:out value="${neTitle}"></c:out>" required="required" id="neTitle"/>
 											</div>
 
 											<div>
@@ -98,6 +98,9 @@
 												</a>
 											</li>
 											<li><input class="button primary" type="submit" value="更新"></li>
+											
+											<!-- 推播功能 -->
+											<li><input class="button primary" onclick="push();" value="推廣活動"></li>
 										</ul>
 									</div>
 								</form>
@@ -108,6 +111,14 @@
 			</section>
 		</article>
 	</div>
+
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	<script type="text/javascript">
+		function push(){
+			var title = document.getElementById('neTitle').value;
+			websocket.send('${CName}'+'%'+title);
+		}
+	</script>
 
 	<script>
 		$('#neId').hide();
