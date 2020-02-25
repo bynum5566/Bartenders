@@ -1,124 +1,239 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
-<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css">
-<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
-<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-<title>Add new product</title>
+	<meta charset="UTF-8">
+	<meta  http-equiv="Expires"  CONTENT="0">   
+	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
+	<meta  http-equiv="Pragma"  CONTENT="no-cache">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
+	<title>Add new product</title>
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.B1 {
+			display:  flex;
+			align-items: center;
+			justify-content:  center;
+		}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"></link>
-
+		#Input{
+			width: 40px;
+			height: 40px;
+		}
+	</style>
 </head>
 
-<body>
-	<div class="outwrap">
-		<button style="width:40px; height:40px; background-color: transparent; border-color: transparent; border: none; background-image: url(/Bartenders/images/contract.png);" align="right" id="Input"></button>
-		<div class="inwrap">
-			<h1>新增商品</h1>
-			<form action="<c:url value="/addPD"></c:url>" method="POST" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td><label>商品名稱</label></td>
-						<td><input id="pdName" class="bt0" name="pdNm" type="text" required="required"></td>
-					</tr>
-					<tr>
-						<td><label>商品數量</label></td>
-						<td><input id="pdStock" class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required"></td>
-					</tr>
-					<tr>
-						<td><label>商品價格</label></td>
-						<td><input id="pdPrice" class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required"></td>
-					</tr>
-					<tr>
-						<td><label>Tag1</label></td>
-						<td><input id="pdTag1" class="bt0" name="pdTg1" type="text" max="10"></td>
-					</tr>
-					<tr>
-						<td><label>Tag2</label></td>
-						<td><input id="pdTag2" class="bt0" name="pdTg2" type="text" max="10"></td>
-					</tr>
-					<tr>
-						<td><label>Tag3</label></td>
-						<td><input id="pdTag3" class="bt0" name="pdTg3" type="text" max="10"></td>
-					</tr>
-					<tr>
-						<td><label>商品詳細</label></td>
-						<td><textarea id="pdDetail" class="bt0" name="pdDta"></textarea></td>
-					</tr>
-					<tr>
-						<td><label>商品圖片</label></td>
-						<td>
-							<div id="imgs">
-								<div id="img1">
-									<div class="dropzone1">
-										<div class="info1"></div>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+			<h1>
+				<a href="index.jsp">Bartenders</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
+								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<img src="/Bartenders/images/contract.png" align="right" id="Input">
+						<div class="inwrap">
+							<h2>新增商品</h2>
+							<form action="<c:url value="/addPD"/>" method="POST" enctype="multipart/form-data">
+								<div class="row gtr-uniform">
+									<div class="col-6 col-12-xsmall">
+										<ul>
+											<li>
+												<h3>商品名稱</h3>
+											</li>
+											<li><input id="pdName" class="bt0" name="pdNm" type="text" required="required"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>商品數量</h3>
+											</li>
+											<li><input id="pdStock" class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>商品價格</h3>
+											</li>
+											<li><input id="pdPrice" class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>Tag1</h3>
+											</li>
+											<li><input id="pdTag1" class="bt0" name="pdTg1" type="text" max="10"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>Tag2</h3>
+											</li>
+											<li><input id="pdTag2" class="bt0" name="pdTg2" type="text" max="10"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>Tag3</h3>
+											</li>
+											<li><input id="pdTag3" class="bt0" name="pdTg3" type="text" max="10"></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>商品詳細</h3>
+											</li>
+											<li><textarea id="pdDetail" class="bt0" name="pdDta"></textarea></li>
+										</ul>
+										<ul>
+											<li>
+												<h3>商品圖片</h3>
+											</li>
+											<li>
+												<div id="imgs">
+													<div id="img1">
+														<ul>
+															<li class="B1">
+																<div class="dropzone1">
+																	<div class="info1"></div>
+																</div>
+															</li>
+														</ul>
+														<input id="imgPlace001" name="pdImg" class="image-url"/>
+														<script type="text/javascript" src="/Bartenders/JS/imgur1-1.js"></script>
+														<script type="text/javascript" src="/Bartenders/JS/uploadPd1.js"></script>
+													</div>
+													<div id="img2">
+														<ul>
+															<li class="B1">
+																<div class="dropzone2">
+																	<div class="info2"></div>
+																</div>
+															</li>
+														</ul>
+														<input id="imgPlace002" name="pdImg2" class="image-url"/>
+														<script type="text/javascript" src="/Bartenders/JS/imgur2.js"></script>
+														<script type="text/javascript" src="/Bartenders/JS/uploadPd2.js"></script>
+													</div>
+													<div id="img3">
+														<ul>
+															<li class="B1">
+																<div class="dropzone3">
+																	<div class="info3"></div>
+																</div>
+															</li>
+														</ul>
+														<input id="imgPlace003" name="pdImg3" class="image-url"/>
+														<script type="text/javascript" src="/Bartenders/JS/imgur3.js"></script>
+														<script type="text/javascript" src="/Bartenders/JS/uploadPd3.js"></script>
+													</div>
+												</div>
+											</li>
+										</ul>
+										<div class="col-4 col-12-small">
+											<input class="bt0" id="setTt1" name="tm" type="radio" value="1" checked required onfocus="showT1()">
+											<label for="setTt1">設定自動上架時間</label>
+										</div>
+										<div class="col-4 col-12-small">
+											<input class="bt0" id="setTt2" name="tm" type="radio" value="2" onfocus="showT2()">
+											<label for="setTt2">設定自動上/下架時間</label>
+										</div>
+										<div class="col-6 col-12-xsmall">
+											<ul id="setA" class="sho">
+												<li class="setT1">
+													<h3>上架時間</h3>
+												</li>
+												<li>
+													<input name="setTimeAct" id="setA1" class="dateRange form-control" type="text"/>
+												</li>
+											</ul>
+										</div>
+										<div class="col-6 col-12-xsmall">
+											<ul id="setB" class="nosho">
+												<li class="setT2">
+													<h3>上/下架時間</h3>
+												</li>
+												<li>
+													<input name="setTimeNon" id="setB1" class="dateRange2 form-control" type="text"/>
+												</li>
+											</ul>
+										</div>
 									</div>
-									<input id="imgPlace001" name="pdImg" class="image-url"/>
-									<script type="text/javascript" src="/Bartenders/JS/imgur1-1.js"></script>
-									<script type="text/javascript" src="/Bartenders/JS/uploadPd1.js"></script>
-								</div>
-								<div id="img2">
-									<div class="dropzone2">
-										<div class="info2"></div>
+									<div class="col-12">
+										<ul class="actions">
+											<li id="bT"><a style="text-decoration: none;"
+												href="/Bartenders/Dashboard.Products" class="button">回上頁</a></li>
+											<li><a style="text-decoration: none;"
+												href="/Bartenders/Product.Add" class="button">重填</a></li>
+											<li><input class="button primary" type="submit"
+												value="新增商品"/></li>
+										</ul>
 									</div>
-									<input id="imgPlace002" name="pdImg2" class="image-url"/>
-									<script type="text/javascript" src="/Bartenders/JS/imgur2.js"></script>
-									<script type="text/javascript" src="/Bartenders/JS/uploadPd2.js"></script>
 								</div>
-								<div id="img3">
-									<div class="dropzone3">
-										<div class="info3"></div>
-									</div>
-									<input id="imgPlace003" name="pdImg3" class="image-url"/>
-									<script type="text/javascript" src="/Bartenders/JS/imgur3.js"></script>
-									<script type="text/javascript" src="/Bartenders/JS/uploadPd3.js"></script>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input class="bt0" id="setTt1" name="tm" type="radio" value="1" checked required onfocus="showT1()">
-							<label for="setTt1">設定自動上架時間</label><br>
-							<input class="bt0" id="setTt2" name="tm" type="radio" value="2" onfocus="showT2()">
-							<label	for="setTt2">設定自動上/下架時間</label>
-						</td>
-					</tr>
-					<tr id="setA" class="sho">
-						<td class="setT1"><label>上架時間</label></td>
-						<td><input name="setTimeAct" id="setA1" class="dateRange form-control" type="text" /></td>
-					</tr>
-					<tr id="setB" class="nosho">
-						<td class="setT2"><label>上/下架時間</label></td>
-						<td><input name="setTimeNon" id="setB1" class="dateRange2 form-control" type="text" /></td>
-					</tr>
-					<tr>
-						<td colspan="2" id="bT">
-							<a href="/Bartenders/Dashboard.Products">
-								<div class="bT">回上頁</div>
-							</a>
-							<a href="/Bartenders/Product.Add">
-								<div class="bT">重填</div>
-							</a>
-							<input class="bT" type="submit" value="新增商品" />
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
+							</form>
+						</div>
+					</section>
+				</div>
+			</section>
+		</article>
 	</div>
 
 
-<script>
-	$('#Input').click(function(){
+	<script>
+		$('#Input').click(function() {
 			$('#pdName').val('完美馬丁尼');
 			$('#pdStock').val('1000');
 			$('#pdPrice').val('300');
@@ -126,10 +241,8 @@
 			$('#pdTag2').val('Martini');
 			$('#pdTag3').val('馬丁尼');
 			$('#pdDetail').val('在馬丁尼中加入1:1的不甜香艾酒與甜香艾酒製作而成。<br>完美馬丁尼適合完美的你<br>試飲瓶新裝上市，憑3個任意品項試飲瓶至本店可兌換會員卡乙張。');
-	})
-</script>
-
-	<%@ include file="menu.jsp"%>
+		})
+	</script>
 
 	<script>
 		$('.sho').show();
@@ -226,16 +339,26 @@
 
 		$(function() {
 			if (window.history && window.history.pushState) {
-			$(window).on('popstate', function () {
-			window.history.pushState('forward', null, '#');
-			window.history.forward(1);
-			});
+				$(window).on('popstate', function() {
+					window.history.pushState('forward', null, '#');
+					window.history.forward(1);
+				});
 			}
 			window.history.pushState('forward', null, '#');
 			window.history.forward(1);
-			})
+		})
 	</script>
 
 
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
+
 </html>

@@ -38,8 +38,27 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
+	background-color: #141314;
 	line-height: 1;
 	font-family: 'Noto Sans TC', sans-serif;
+}
+
+*::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+	background-color: rgb(0, 0, 0);
+}
+
+*::-webkit-scrollbar {
+	-webkit-box-shadow: inset 0 0 6px rgb(26, 26, 26);
+	border-radius: 10px;
+	width: 12px;
+	background-color: rgb(0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgb(80, 80, 80);
+	background-color: rgb(119, 119, 119);
 }
 
 ol, ul {
@@ -1841,6 +1860,8 @@ input, select, textarea {
 	input[type="email"],
 	input[type="tel"],
 	input[type="number"],
+	input[type="date"],
+	input[type="url"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -1858,6 +1879,7 @@ input, select, textarea {
 		width: 100%;
 		line-height: 24px;
 		font-size: 20px;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 		input[type="text"]:invalid,
@@ -1865,9 +1887,12 @@ input, select, textarea {
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
 		input[type="number"]:invalid,
+		input[type="date"]:invalid,
+		input[type="url"]:invalid,
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
+			font-family: 'Noto Sans TC', sans-serif;
 		}
 
 		input[type="text"]:focus,
@@ -1875,9 +1900,12 @@ input, select, textarea {
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
 		input[type="number"]:focus,
+		input[type="date"]:focus,
+		input[type="url"]:focus,
 		select:focus,
 		textarea:focus {
 			box-shadow: 0 0 0 2px #21b2a6;
+			font-family: 'Noto Sans TC', sans-serif;
 		}
 
 	select {
@@ -1902,8 +1930,11 @@ input, select, textarea {
 	input[type="email"],
 	input[type="tel"],
 	input[type="number"],
+	input[type="date"],
+	input[type="url"],
 	select {
 		height: 2.75em;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 	textarea {
@@ -1990,21 +2021,25 @@ input, select, textarea {
 	::-webkit-input-placeholder {
 		color: rgba(255, 255, 255, 0.5) !important;
 		opacity: 1.0;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 	:-moz-placeholder {
 		color: rgba(255, 255, 255, 0.5) !important;
 		opacity: 1.0;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 	::-moz-placeholder {
 		color: rgba(255, 255, 255, 0.5) !important;
 		opacity: 1.0;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 	:-ms-input-placeholder {
 		color: rgba(255, 255, 255, 0.5) !important;
 		opacity: 1.0;
+		font-family: 'Noto Sans TC', sans-serif;
 	}
 
 /* Box */
@@ -2379,7 +2414,7 @@ input, select, textarea {
 
 /* Table */
 
-	/* .table-wrapper {
+	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
 	}
@@ -2443,148 +2478,146 @@ input, select, textarea {
 
 			table.alt tfoot {
 				border-top: 0;
-			} */
+			}
 
 /* Button */
 
-	input[type="submit"],
-	input[type="reset"],
-	input[type="button"],
-	button,
-	a.button,
-	.button {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: transparent;
-		border-radius: 3px;
-		border: 0;
-		box-shadow: inset 0 0 0 2px #fff;
-		color: #fff;
-		cursor: pointer;
-		display: inline-block;
-		font-size: 20px;
-		font-weight: 600;
-		height: 3.125em;
-		letter-spacing: 0.225em;
-		line-height: 24px;
-		max-width: 30em;
-		/* padding: 0 2.75em; */
-		padding: 20px;
-		text-align: center;
-		text-decoration: none;
-		text-transform: uppercase;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+/* 	background-color: transparent; */
+	background-color: rgb(223, 223, 223, 0.15);
+	border-radius: 3px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #fff;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1em;
+	font-weight: 600;
+	height: 3.125em;
+	letter-spacing: 0.225em;
+	line-height: 3.125em;
+	max-width: 30em;
+	padding: 0 2.75em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+	input[type="submit"]:hover,
+	input[type="reset"]:hover,
+	input[type="button"]:hover,
+	button:hover,
+	.button:hover {
+		background-color: rgba(144, 144, 144, 0.25);
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			background-color: rgba(144, 144, 144, 0.25);
-			text-decoration: none;
+	input[type="submit"]:active,
+	input[type="reset"]:active,
+	input[type="button"]:active,
+	button:active,
+	.button:active {
+		background-color: rgba(144, 144, 144, 0.5);
+	}
+
+	input[type="submit"].icon:before,
+	input[type="reset"].icon:before,
+	input[type="button"].icon:before,
+	button.icon:before,
+	.button.icon:before {
+		margin-right: 0.5em;
+	}
+
+	input[type="submit"].fit,
+	input[type="reset"].fit,
+	input[type="button"].fit,
+	button.fit,
+	.button.fit {
+		width: 100%;
+	}
+
+	input[type="submit"].small,
+	input[type="reset"].small,
+	input[type="button"].small,
+	button.small,
+	.button.small {
+		font-size: 0.8em;
+	}
+
+	input[type="submit"].large,
+	input[type="reset"].large,
+	input[type="button"].large,
+	button.large,
+	.button.large {
+		font-size: 1.35em;
+	}
+
+	input[type="submit"].primary,
+	input[type="reset"].primary,
+	input[type="button"].primary,
+	button.primary,
+	.button.primary {
+		background-color: #ed4933;
+		box-shadow: none !important;
+		color: #ffffff !important;
+	}
+
+		input[type="submit"].primary:hover,
+		input[type="reset"].primary:hover,
+		input[type="button"].primary:hover,
+		button.primary:hover,
+		.button.primary:hover {
+			background-color: #ef5e4a !important;
 		}
 
-		input[type="submit"]:active,
-		input[type="reset"]:active,
-		input[type="button"]:active,
-		button:active,
-		.button:active {
-			background-color: rgba(144, 144, 144, 0.5);
-			text-decoration: none;
+		input[type="submit"].primary:active,
+		input[type="reset"].primary:active,
+		input[type="button"].primary:active,
+		button.primary:active,
+		.button.primary:active {
+			background-color: #eb341c !important;
 		}
 
-		input[type="submit"].icon:before,
-		input[type="reset"].icon:before,
-		input[type="button"].icon:before,
-		button.icon:before,
-		.button.icon:before {
-			margin-right: 0.5em;
+	input[type="submit"].disabled, input[type="submit"]:disabled,
+	input[type="reset"].disabled,
+	input[type="reset"]:disabled,
+	input[type="button"].disabled,
+	input[type="button"]:disabled,
+	button.disabled,
+	button:disabled,
+	.button.disabled,
+	.button:disabled {
+		pointer-events: none;
+		opacity: 0.25;
+	}
+
+	@media screen and (max-width: 736px) {
+
+		input[type="submit"],
+		input[type="reset"],
+		input[type="button"],
+		button,
+		.button {
+			height: 3.75em;
+			line-height: 3.75em;
 		}
 
-		input[type="submit"].fit,
-		input[type="reset"].fit,
-		input[type="button"].fit,
-		button.fit,
-		.button.fit {
-			width: 100%;
-		}
-
-		input[type="submit"].small,
-		input[type="reset"].small,
-		input[type="button"].small,
-		button.small,
-		.button.small {
-			font-size: 0.8em;
-		}
-
-		input[type="submit"].large,
-		input[type="reset"].large,
-		input[type="button"].large,
-		button.large,
-		.button.large {
-			font-size: 1.35em;
-		}
-
-		input[type="submit"].primary,
-		input[type="reset"].primary,
-		input[type="button"].primary,
-		button.primary,
-		.button.primary {
-			background-color: #ed4933;
-			box-shadow: none !important;
-			color: #ffffff !important;
-		}
-
-			input[type="submit"].primary:hover,
-			input[type="reset"].primary:hover,
-			input[type="button"].primary:hover,
-			button.primary:hover,
-			.button.primary:hover {
-				background-color: #ef5e4a !important;
-			}
-
-			input[type="submit"].primary:active,
-			input[type="reset"].primary:active,
-			input[type="button"].primary:active,
-			button.primary:active,
-			.button.primary:active {
-				background-color: #eb341c !important;
-			}
-
-		input[type="submit"].disabled, input[type="submit"]:disabled,
-		input[type="reset"].disabled,
-		input[type="reset"]:disabled,
-		input[type="button"].disabled,
-		input[type="button"]:disabled,
-		button.disabled,
-		button:disabled,
-		.button.disabled,
-		.button:disabled {
-			pointer-events: none;
-			opacity: 0.25;
-		}
-
-		@media screen and (max-width: 736px) {
-
-			input[type="submit"],
-			input[type="reset"],
-			input[type="button"],
-			button,
-			.button {
-				height: 3.75em;
-				line-height: 3.75em;
-			}
-
-		}
+	}
 
 /* Features */
 
@@ -2918,9 +2951,12 @@ input, select, textarea {
 			.wrapper.style1 input[type="email"],
 			.wrapper.style5 input[type="tel"],
 			.wrapper.style5 input[type="number"],
+			.wrapper.style5 input[type="date"],
+			.wrapper.style5 input[type="url"],
 			.wrapper.style1 select,
 			.wrapper.style1 textarea {
 				background-color: rgba(255, 255, 255, 0.075);
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 select {
@@ -2950,22 +2986,27 @@ input, select, textarea {
 
 			.wrapper.style1 ::-webkit-input-placeholder {
 				color: #a6e0db !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 :-moz-placeholder {
 				color: #a6e0db !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 ::-moz-placeholder {
 				color: #a6e0db !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 :-ms-input-placeholder {
 				color: #a6e0db !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 .formerize-placeholder {
 				color: #a6e0db !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style1 .icon.major {
@@ -3085,9 +3126,12 @@ input, select, textarea {
 			.wrapper.style3 input[type="email"],
 			.wrapper.style3 input[type="tel"],
 			.wrapper.style3 input[type="number"],
+			.wrapper.style5 input[type="date"],
+			.wrapper.style5 input[type="url"],
 			.wrapper.style3 select,
 			.wrapper.style3 textarea {
 				background-color: rgba(255, 255, 255, 0.075);
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 select {
@@ -3117,22 +3161,27 @@ input, select, textarea {
 
 			.wrapper.style3 ::-webkit-input-placeholder {
 				color: #b9bad4 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 :-moz-placeholder {
 				color: #b9bad4 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 ::-moz-placeholder {
 				color: #b9bad4 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 :-ms-input-placeholder {
 				color: #b9bad4 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 .formerize-placeholder {
 				color: #b9bad4 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style3 .icon.major {
@@ -3207,16 +3256,27 @@ input, select, textarea {
 		}
 
 		.wrapper.style5 {
-			background-color: #ffffff;
-			color: #4E4852;
+/* 			background-color: #ffffff; */
+/* 			color: #4E4852; */
+/* 			background-color: #141314; */
+/* 			color: #9F9BA0; */
+			color: #FFFFFF;
+			background-image: url("/Bartenders/images/bg22.png");
+			background-attachment: scroll;
+			background-position: top;
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
 
 			.wrapper.style5 strong, .wrapper.style5 b {
-				color: #2E3842;
+/* 				color: #2E3842; */
+				color: #9F9BA0;
 			}
 
 			.wrapper.style5 h2, .wrapper.style5 h3, .wrapper.style5 h4, .wrapper.style5 h5, .wrapper.style5 h6 {
-				color: #2E3842;
+/* 				color: #2E3842; */
+/* 				color: #9F9BA0; */
+				color: #FFFFFF;
 			}
 
 			.wrapper.style5 hr {
@@ -3232,7 +3292,9 @@ input, select, textarea {
 			}
 
 			.wrapper.style5 header p {
-				color: #8E8892;
+/* 				color: #8E8892; */
+/* 				color: #9F9BA0; */
+				color: #FFFFFF;
 			}
 
 			.wrapper.style5 header.major h2, .wrapper.style5 header.major h3, .wrapper.style5 header.major h4, .wrapper.style5 header.major h5, .wrapper.style5 header.major h6 {
@@ -3240,11 +3302,15 @@ input, select, textarea {
 			}
 
 			.wrapper.style5 header.major p {
-				color: #4E4852;
+/* 				color: #4E4852; */
+/* 				color: #9F9BA0; */
+				color: #FFFFFF;
 			}
 
 			.wrapper.style5 label {
-				color: #2E3842;
+/* 				color: #2E3842; */
+/* 				color: #9F9BA0; */
+				color: #FFFFFF;
 			}
 
 			.wrapper.style5 input[type="text"],
@@ -3252,9 +3318,13 @@ input, select, textarea {
 			.wrapper.style5 input[type="email"],
 			.wrapper.style5 input[type="tel"],
 			.wrapper.style5 input[type="number"],
+			.wrapper.style5 input[type="date"],
+			.wrapper.style5 input[type="url"],
 			.wrapper.style5 select,
 			.wrapper.style5 textarea {
-				background-color: rgba(0, 0, 0, 0.0375);
+/* 				background-color: rgba(0, 0, 0, 0.0375); */
+				background-color: rgba(255, 255, 255, 0.0375);
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 select {
@@ -3284,22 +3354,27 @@ input, select, textarea {
 
 			.wrapper.style5 ::-webkit-input-placeholder {
 				color: #8E8892 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 :-moz-placeholder {
 				color: #8E8892 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 ::-moz-placeholder {
 				color: #8E8892 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 :-ms-input-placeholder {
 				color: #8E8892 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 .formerize-placeholder {
 				color: #8E8892 !important;
+				font-family: 'Noto Sans TC', sans-serif;
 			}
 
 			.wrapper.style5 .icon.major {
@@ -3341,7 +3416,9 @@ input, select, textarea {
 			.wrapper.style5 button,
 			.wrapper.style5 .button {
 				box-shadow: inset 0 0 0 2px #dfdfdf;
-				color: #2E3842;
+/* 				color: #2E3842; */
+/* 				color: #9F9BA0; */
+				color: #FFFFFF;
 			}
 
 				.wrapper.style5 input[type="submit"]:hover,

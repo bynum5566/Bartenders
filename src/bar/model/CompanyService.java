@@ -48,13 +48,14 @@ public class CompanyService {
 		String res = "";
 		List<Company> comps = companyDAO.searchBar(keyword);
 		if(comps.size()==0) {
-			res = "<tr><td><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></td></tr>";
+			res = "<div class=\"box alt\"><div class=\"row gtr-50 gtr-uniform\"><div class=\"col-4\"><span class=\"image fit\"><img width=\"500px\" src=\"/Bartenders/images/No_Result_Icon2.png\"></span></div></div></div>";
 			return res;
 		}
 		for (Company comp : comps) {
-			res = res + "<tr><td><a href=\"/Bartenders/DisplayProductList.controller?barAccount=" + comp.getAccount()
-					+ "\">" + comp.getCompanyName() + "</a></td></tr>";
+			res = res + "<li><a href=\"/Bartenders/DisplayProductList.controller?barAccount=" + comp.getAccount()
+					+ "\">" + comp.getCompanyName() + "</a></li>";
 		}
+		res= "<ul class=\"alt\">" + res + "<ul>";
 		return res;
 	}
 	

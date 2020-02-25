@@ -1,166 +1,289 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" type="text/css"
-	href="/Bartenders/CSS/add_editView.css">
-<title>主題留言板</title>
+	<meta charset="UTF-8">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
+	<title>主題留言板</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	
+	<style>
+		h1.panel, form.flip {
+			margin: 0px;
+			padding: 5px;
+			text-align: center;
+			border: solid 1px #c3c3c3;
+		}
+		
+		form.panel {
+/* 			height: 600px; */
+			height: auto;
+			width: 900px;
+			background-color: transparent;
+		}
+		
+		#wordPicture {
+			height: 200px;
+			width: 800px;
+		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		img.loading-image{
+			align-self: center;
+			margin-left: 50%;
+			margin-top: 5%;
+		}
+		
+		.dropzone {
+			background-color: rgb(0, 0, 0, 0.5);
+			border: 4px dashed #ccc;
+			position: relative;
+			margin-right: auto;
+			margin-left: auto;
+			height: 100px;
+			width: 100px;
+			padding: 10px;
+			margin: 15px;
+			display: inline-block;
+		}
+		
+		.info {
+			margin-top: 11%;
+		}
+		
+		.dropzone p {
+			margin: 0%;
+			text-align: center;
+			width: 100%
+		}
+		
+		.input {
+			height: 100%;
+			left: 0;
+			outline: 0;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			width: 100%
+		}
+		
+		.status {
+			border-radius: 5px;
+			text-align: center;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.image-url {
+			width: 50%;
+		}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet"></link>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
-	rel="stylesheet"></link>
+		.loading-modal {
+			background-color: rgba(255, 255, 255, .8);
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%
+		}
+		
+		.loading-table {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 15%;
+			margin-bottom: 15%;
+		}
+		
+		img.img {
+			max-width: 200px;
+			max-height: 300px;
+		}
 
-<style>
-h1.panel, form.flip {
-	margin: 0px;
-	padding: 5px;
-	text-align: center;
-	border: solid 1px #c3c3c3;
-}
-
-form.panel {
-	height: 600px;
-	width: 900px;
-	background-color: transparent;
-}
-
-#wordPicture {
-	height: 200px;
-	width: 800px;
-}
-</style>
-
-
+	</style>
 </head>
 
-<body>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+			<h1>
+				<a href="index.jsp">Bartenders</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div></li>
+				</ul>
+			</nav>
+		</header>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
 
-	<main>
+						<main>
 
-		<h1 style="color: WhiteSmoke;" class="flip" align="right">縮放主題留言按此</h1>
+							<h1 class="flip" align="right">縮放主題留言按此</h1>
 
-		<!--縮放用JS，開始-->
-		<script type="text/javascript">
-			$(".flip").click(function() {
-				$(".panel").slideToggle("slow");
-			});
-		</script>
-		<!--縮放用JS，結束-->
+							<!--縮放用JS，開始-->
+							<script type="text/javascript">
+								$(".flip").click(function() {
+									$(".panel").slideToggle("slow");
+								});
+							</script>
+							<!--縮放用JS，結束-->
+						<ul>
+							<li>
+							<form action='subMessageBoard.controller' method='post' class="panel">
+<!-- 								<table border='1'> -->
 
-		<form action='subMessageBoard.controller' method='post' class="panel">
-			<table border='1'>
+									<ul class="alt">
+										<li><b>文章</b></li>
+										<li width='700'>
+											<textarea rows='8' cols='70' name='blabla' placeholder="請輸入文章" required="required"></textarea>
+										</li>
+<!-- 									</tr> -->
 
-				<tr>
-					<td><b>文章</b></td>
-					<td width='700'><textarea rows='30' cols='70' name='blabla'
-							placeholder="請輸入文章" required="required"></textarea></td>
-				</tr>
+<!-- 									<tr> -->
+										<li><b>刪除碼</b></li>
+										<li>
+											<input type="password" name="deletePassword" size="16" maxlength="8" placeholder="請輸入刪除碼" required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+										</li>
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+										<li><b>圖片</b></td>
+										<li>
+											<div class="dropzone" id="wordPicture" required="required">
+												<div class="info"></div>
+											</div> <input id="imgPlace" name="pdImg" class="image-url"/>
+<!-- 									</tr> -->
 
-				<tr>
-					<td><b>刪除碼</b></td>
-					<td><input type="password" name="deletePassword" size="16"
-						maxlength="8" placeholder="請輸入刪除碼" required="required"> <small>(留言刪除用，英文數字最多8個)</small>
-					</td>
-				</tr>
-				<tr>
-					<td align="center"><b>圖片</b></td>
-					<td>
-						<div class="dropzone" id="wordPicture" required="required">
-							<div class="info"></div>
-						</div> <input id="imgPlace" name="pdImg" class="image-url" />
-					</td>
-				</tr>
+<!-- 									<tr> -->
+											<br>
+											<input type='submit' value='提交'>
+										</li>
+									</ul>
+<!-- 								</table> -->
+						<hr>
+							</form>
+						</li>
+						<li>
+							<div style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
+								<div>
+									<div id="fb-root"></div>
+									<c:forEach var="messageBoard" items="${newest}">
 
-				<tr>
-					<td><input type='submit' value='提交'></td>
-				</tr>
-			</table>
-		</form>
-		<hr>
+										<div>
+											<img height="150" width="300" id="pdPicture" src="<c:out value="${messageBoard.picture}"/>">
+										</div>
+
+										<div style="margin: 10px;">
+											<h4 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}&nbsp; &nbsp;名稱:${messageBoard.userName}</h4>
+
+										</div>
+
+										<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
+										<div style="margin: 10px;" id="">${messageBoard.blabla}</div>
+									</c:forEach>
+								</div>
+
+								<c:forEach var="subMessageBoard" items="${subnewest}">
+<!-- 									<table> -->
+										<div style="margin: 10px;">
+											<ul>
+												<li rowspan="3">
+													<img style="height: 150px; width: 300px;" id="pdPicture" src="<c:out value="${subMessageBoard.picture}"/>">
+												</li>
+												<li style="vertical-align: top">
+													帳號:${subMessageBoard.account}&nbsp &nbsp
+													名稱:${subMessageBoard.userName}&nbsp &nbsp
+													SubID:${subMessageBoard.subId}
+												</li>
+
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+												<li>${subMessageBoard.blabla}</td>
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+												<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
+											</ul>
+
+										</div>
+<!-- 									</table> -->
+
+								</c:forEach>
+							</li>
 
 
 
-		<div
-			style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
-			<div style="color: white">
-				<div id="fb-root"></div>
-				<c:forEach var="messageBoard" items="${newest}">
+							<li>
+								<form action='subMessageBoardDelete.controller' method='post'>
 
-					<div>
-						<img height="150" width="300" id="pdPicture"
-							src="<c:out value="${messageBoard.picture}" />">
-					</div>
-
-					<div style="margin: 10px;">
-						<h4 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}
-							&nbsp; &nbsp;名稱:${messageBoard.userName}</h4>
-
-					</div>
-
-					<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
-					<div style="margin: 10px;" id=""><${messageBoard.blabla}</div>
-			</div>
-			</c:forEach>
-		</div>
-
-		<c:forEach var="subMessageBoard" items="${subnewest}">
-			<table>
-				<div style="color: white; margin: 10px;">
-				<tr>
-					<td rowspan="3"><img style="height: 150px; width: 300px;"
-						id="pdPicture" src="<c:out value="${subMessageBoard.picture}"/>"></td>
-					<td style="vertical-align: top">
-						帳號:${subMessageBoard.account}&nbsp &nbsp
-						名稱:${subMessageBoard.userName}&nbsp &nbsp
-						SubID:${subMessageBoard.subId}</td>
-
-				</tr>
-				<tr>
-					<td>${subMessageBoard.blabla}</td>
-				</tr>
-				<tr>
-					<td style="vertical-align: bottom;">${subMessageBoard.time}</td>
-				</tr>
-
+									<div id="del">
+										<table style="float: right;">
+											<tbody>
+												<tr>
+													<td style="white-space: nowrap;">
+														<ul>
+															<li><br><br></li>
+															<li>刪除留言:</li>
+															<li><input type="text" name="subId" placeholder="留言subId"><br></li>
+															<li><input type="password" name="deletePassword" size="8" maxlength="8" placeholder="刪除碼"><br></li>
+															<li><input type="submit" value=" 送出 "></li>
+														</ul>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</form>
+								</li>					
+							</ul>
+						</main>
+					</section>
 				</div>
-			</table>
-		
-		</c:forEach>
+			</section>
+		</article>
+	</div>
 
 
-
-
-
-		<form action='subMessageBoardDelete.controller' method='post'>
-
-			<div id="del">
-				<table style="float: right;">
-					<tbody>
-						<tr>
-							<td align="center" style="white-space: nowrap;">刪除留言: <input
-								type="text" name="subId" placeholder="留言subId"><input
-								type="password" name="deletePassword" size="8" maxlength="8"
-								placeholder="刪除碼"> <input type="submit" value=" 送出 "></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</form>
-
-	</main>
 
 
 
@@ -403,108 +526,16 @@ form.panel {
 			clientid : 'ceb59faf76db10f',
 			callback : feedback
 		});
-
-		// Origin
-		$('.sho').show();
-		$('.nosho').hide();
-
-		function showT1() {
-			var T1 = document.getElementById("setA");
-			var T2 = document.getElementById("setB");
-			T1.className = "sho";
-			T1.name = "setTimeAct";
-			T2.className = "nosho";
-			T2.name = "setTimeNon";
-			console.log(T1.className + "/" + T1.name);
-			console.log(T2.className + "/" + T2.name);
-			$('.sho').show();
-			$('.nosho').hide();
-		}
-
-		function showT2() {
-			var T1 = document.getElementById("setA");
-			var T2 = document.getElementById("setB");
-			T2.className = "sho";
-			T2.name = "setTimeAct";
-			T1.className = "nosho";
-			T1.name = "setTimeNon";
-			console.log(T1.className + "/" + T1.name);
-			console.log(T2.className + "/" + T2.name);
-			$('.sho').show();
-			$('.nosho').hide();
-		}
-
-		var d = new Date();
-
-		var month = d.getMonth() + 1;
-		var day = d.getDate();
-
-		var output = d.getFullYear() + '/' + (month < 10 ? '0' : '') + month
-				+ '/' + (day < 10 ? '0' : '') + day + " " + d.getHours() + ":"
-				+ d.getMinutes() + ":" + d.getSeconds();
-
-		$("input.dateRange").daterangepicker(
-				{
-					"alwaysShowCalendars" : true,
-					opens : "left",
-					timePicker : true,
-					timePickerIncrement : 1,
-					singleDatePicker : true,
-					showDropdowns : true,
-					minDate : output,
-					startDate : output,
-					locale : {
-						format : "YYYY/MM/DD HH:mm:ss",
-						separator : " ~ ",
-						applyLabel : "確定",
-						cancelLabel : "清除",
-						fromLabel : "開始日期",
-						toLabel : "結束日期",
-						customRangeLabel : "自訂日期區間",
-						daysOfWeek : [ "日", "一", "二", "三", "四", "五", "六" ],
-						monthNames : [ "1月", "2月", "3月", "4月", "5月", "6月",
-								"7月", "8月", "9月", "10月", "11月", "12月" ],
-						firstDay : 1
-					}
-				});
-
-		$("input.dateRange").on("cancel.daterangepicker", function(ev, picker) {
-			$(this).val("");
-		});
-
-		$("input.dateRange2").daterangepicker(
-				{
-					"alwaysShowCalendars" : true,
-					opens : "left",
-					timePicker : true,
-					timePickerIncrement : 1,
-					showDropdowns : true,
-					minDate : output,
-					startDate : output,
-					locale : {
-						format : "YYYY/MM/DD HH:mm:ss",
-						separator : " ~ ",
-						applyLabel : "確定",
-						cancelLabel : "清除",
-						fromLabel : "開始日期",
-						toLabel : "結束日期",
-						customRangeLabel : "自訂日期區間",
-						daysOfWeek : [ "日", "一", "二", "三", "四", "五", "六" ],
-						monthNames : [ "1月", "2月", "3月", "4月", "5月", "6月",
-								"7月", "8月", "9月", "10月", "11月", "12月" ],
-						firstDay : 1
-					}
-				});
-
-		$("input.dateRange2").on("cancel.daterangepicker",
-				function(ev, picker) {
-					$(this).val("");
-				});
 	</script>
-
-	<%--左側工具列，開始 --%>
-	<%@include file="UserMenu.jsp"%>
-	<%--左側工具列，結束--%>
-
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
+
 </html>

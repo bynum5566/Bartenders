@@ -1,26 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap"
-	rel="stylesheet">
-<title>訂單管理</title>
-<style type="text/css">
+	<meta charset="UTF-8">
+	<title>Order List</title>
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- <style type="text/css">
 .mydiv {
-min-width: auto;
-max-width: 700px;
-margin:100px auto;
-top: 80px;
-position: sticky;
-text-align: center;
-border-radius: 5px;
-color: #E8CCFF;
-font-size: 18px;
-background-image: url(/Bartenders/images/bg21.png);
+	width:100%;
+	margin:0 auto;
+	top: 80px;
+	position: relative;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
+	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	-webkit-box-shadow: 0px 11px 7px rgba(15, 9, 9, 0.6);
+	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
+	color: #E8CCFF;
+	font-size: 17px;
 }
 
 body {
@@ -31,7 +37,6 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	font-family: 'Noto Sans TC', sans-serif;
 }
 
 
@@ -57,7 +62,7 @@ width:130;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
-	color: #FFEE99;
+	color: #CCBBFF;
 	font-size: 16px;
 	font-family: 111.otf;
 	text-decoration: none;
@@ -89,69 +94,145 @@ padding-left: 5px;
 padding-right: 5px;
 }
 
+</style> -->
+<style>
+	.small {
+		display: flex;
+		align-self: center;
+	}
+
+	.small a {
+		font-size: 16px;
+		font-weight: 400;
+		color: #888;
+		font-family: 111.otf;
+	}
+
+	.small a+a {
+		margin-left: 15px;
+	}
+	
+	.row{
+	margin-left: 8%;
+	}
 </style>
 </head>
-<body>
-<div class="mydiv">
-	<div align="center">
 
-		<form action="<c:url value="/OrderList.controller"/>" method="post">
-			<h2>訂單明細</h2>
-			<table>
-				<thead>
-					<tr align="center">
-						<th>產品縮圖</th>
-						<th>產品名稱</th>
-						<th>產品單價</th>
-						<th>產品數量</th>
-						<th>產品金額</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr align="center">
-						<c:forEach items="${oneOrderCarts}" var="list" step="1"
-							varStatus="current">
-							<tr>
-								<td align="center" height="90" width="130"><img height="90" width="130" id="pdPicture"
-       src="<c:out value="${productData[current.index].productImageUrl}" />"></td>
-								<td align="center">${productData[current.index].productName}</td>
-								<td align="center">$${oneOrderCarts[current.index].checkoutPrice}</td>
-								<td align="center">${oneOrderCarts[current.index].quantity}</td>
-								<td align="center">$${productsPrice[current.index]}</td>
-								<!--<td colspan="3">合計  ${totalPrice}</td> -->
-						        
-							</tr>
-							<br>
-						</c:forEach>
-					</tr>
-					
-					<tr align="center">
-						<th colspan="4">產品合計</th>
-						<td>$${totalPrice}</td>
-					</tr>
-					<tr align="center">
-						<th colspan="4">運費</th>
-						<td>$${ShippingNumToPrice[order.shipping]}</td>
-					</tr>
-					<tr align="center">
-						<th colspan="4">訂單總金額</th>
-						<td>$${finalTotalPrice}</td>
-					</tr>
-						
-				</tbody>
-			</table>
-			<br>
-				<div align="center">
-					<h3>
-					<a href="<c:url value="/companyOrder.controller"/>"> <input
-							class="css_button" type="button" value="返回訂單頁面" />
-						</a>
-					</h3>
-				</div>
-		</form>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+			<h1><a href="index.jsp">Bartenders</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
+								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		
+		<article id="main">
+			<section class="wrapper style5">
+<!-- 				<div class="inner"> -->
+					<section>
+						<div class="row">
+							<div class="col-12 col-12-medium">
+<!-- 						<div class="mydiv"> -->
+<!-- 							<div align="center"> -->
+
+								<form action="<c:url value="/OrderList.controller"/>" method="post">
+								<h2>訂單明細</h2>
+								<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr align="center">
+											<th>產品縮圖</th>
+											<th>產品名稱</th>
+											<th>產品單價</th>
+											<th>產品數量</th>
+											<th>產品金額</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr align="center">
+											<c:forEach items="${oneOrderCarts}" var="list" step="1" varStatus="current">
+										<tr>
+											<td align="center" height="90" width="130">
+												<img height="90" width="130" id="pdPicture" src="<c:out value="${productData[current.index].productImageUrl}"/>">
+											</td>
+											<td align="center">${productData[current.index].productName}</td>
+											<td align="center">$${oneOrderCarts[current.index].checkoutPrice}</td>
+											<td align="center">${oneOrderCarts[current.index].quantity}</td>
+											<td align="center">$${productsPrice[current.index]}</td>
+											<!--<td colspan="3">合計  ${totalPrice}</td> -->
+
+										</tr>
+										<br>
+										</c:forEach>
+										</tr>
+
+										<tr align="center">
+											<th colspan="4">產品合計</th>
+											<td>$${totalPrice}</td>
+										</tr>
+										<tr align="center">
+											<th colspan="4">運費</th>
+											<td>$${ShippingNumToPrice[order.shipping]}</td>
+										</tr>
+										<tr align="center">
+											<th colspan="4">訂單總金額</th>
+											<td>$${finalTotalPrice}</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+								<br>
+								<div align="center">
+									<h3>
+										<a href="<c:url value="/companyOrder.controller"/>">
+											<input class="css_button" type="button" value="返回訂單頁面"/>
+										</a>
+									</h3>
+								</div>
+								</form>
+							</div>
+						</div>
+
+					</section>
+<!-- 				</div> -->
+			</section>
+		</article>
 	</div>
-</div>
+	
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	</body>
 
-</body>
-<%@include file="menu.jsp"%>
 </html>

@@ -1,152 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <title>會員中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
-<style type="text/css">
-@font-face {
-	font-family: FangBold;
-	src: url(/Bartenders/CSS/方正卓越體-繁U-ExtraBold.TTF);
+<style>
+.small {
+	display: flex;
+	align-self: center;
 }
 
-html, body {
-	font-family: FangBold;
-	margin: 0;
-	padding: 0;
-	background: url("/Bartenders/images/bg15.png") no-repeat center center
-		fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
 }
 
-.mydiv {
-	width: 50%;
-	height: 500px;
-	margin: 0px auto;
-	padding: 15px;
-	top: 80px;
-	position: relative;
-	text-align: center;
-	background-position: center;
-	align-content: center;
-	background-color: rgb(255, 255, 255, 0.4);
-	border-radius: 3px;
-	font-family: FangBold;
-}
-
-.content {
-	font-family: FangBold;
-	margin: 15px auto;
-	line-height: 300%;
-	font-size: 130%;
-}
-
-.btn-three {
-	color: #FFF;
-	transition: all 0.5s;
-	position: relative;
-	width: 250px;
-	height: 80px;
-	font-family: FangBold;
-	line-height: 50px;
-	font-size: 20px;
-	margin: auto;
-}
-
-.btn-three::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	background-color: rgba(255, 255, 255, 0.1);
-	transition: all 0.3s;
-}
-
-.btn-three:hover::before {
-	opacity: 0;
-	transform: scale(0.5, 0.5);
-}
-
-.btn-three::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: all 0.3s;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	transform: scale(1.2, 1.2);
-}
-
-.btn-three:hover::after {
-	opacity: 1;
-	transform: scale(1, 1);
+.small a+a {
+	margin-left: 15px;
 }
 </style>
-
 </head>
 
-<body>
-
-	<div class="mydiv">
-		<h2>個人資料</h2>
-
-
-		<table class="content">
-			<tr>
-				<td>帳號:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showAccount}</td>
-			</tr>
-			<tr>
-				<td>姓名:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showName}</td>
-			</tr>
-			<tr>
-				<td>生日:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showBirthday}</td>
-			</tr>
-			<tr>
-				<td>連絡電話:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showPhone}</td>
-			</tr>
-			<tr>
-				<td>電子郵件:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showEmail}</td>
-			</tr>
-			<tr>
-				<td>聯絡地址:</td>
-				<td>&emsp;&emsp;&emsp;</td>
-				<td>${showAddress}</td>
-			</tr>
-
-		</table>
-
-		<div class="btn btn-three">
-			<a style="line-height: 80px; font-family: FangBold"
-				href="/Bartenders/resetInfo"> 修改個人資料 </a>
-		</div>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+			<h1>
+				<a href="index.jsp">Bartenders</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<!-- <section class="wrapper style5"> -->
+						<!-- <section> -->
+						<!-- <div class="mydiv"> -->
+						<h2>個人資料</h2>
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-medium">
+								<!-- <div class="content"> -->
+								<ul class="alt">
+									<li>帳號:&nbsp;${showAccount}</li>
+									<li>姓名:&nbsp;${showName}</li>
+									<li>生日:&nbsp;${showBirthday}</li>
+									<li>連絡電話:&nbsp;${showPhone}</li>
+									<li>電子郵件:&nbsp;${showEmail}</li>
+									<li>聯絡地址:&nbsp;${showAddress}</li>
+								</ul>
+								<ul class="actions">
+									<li><a class="button primary" href="/Bartenders/resetInfo">修改個人資料</a>
+									</li>
+								</ul>
+								<!-- </div> -->
+								<!-- <div class="btn btn-three"> -->
+								<!-- </div> -->
+							</div>
+						</div>
+						<!-- </div> -->
+						<!-- </section> -->
+						<!-- </section> -->
+					</section>
+				</div>
+			</section>
+		</article>
 	</div>
 
-	<!-- 聊天通知 -->
- 	<script src="/Bartenders/JS/OpenWebsocket.js"></script> 
 
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
-</html>
 
-<%@include file="UserMenu.jsp"%>
+</html>
