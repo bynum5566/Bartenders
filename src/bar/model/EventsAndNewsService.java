@@ -50,18 +50,24 @@ public class EventsAndNewsService {
 		List<EventsAndNews> evNnes = enDao.selectAllEN(companyId);
 		for(EventsAndNews eAn:evNnes) {
 			EN = EN
-					+"<tr class=\"pdRow\"><td class=\"MidS1\"><form action=\"/Bartenders/NewsAndEvents.Edit\" method=\"GET\">" + 
-					"<input type=\"text\" name=\"ckEN1\" class=\"pdidckLL\" value=\""
-					+ eAn.getNeId()
-					+ "\" readonly=\"readonly\">" + 
-					"<div><input type=\"submit\" value=\""
+					+"<tr class=\"pdRow\"><td class=\"MidS1\">"
 					+ eAn.getNeTitle()
-					+ "\"/>" + 
-					"</div></form></td><td class=\"RSide\"><form action=\"/Bartenders/EN.remove\" method=\"POST\">" + 
-					"<input type=\"text\" name=\"ckEN2\" class=\"pdidckLL\" value=\""
+//					+ "<form action=\"/Bartenders/NewsAndEvents.Edit\" method=\"GET\">" 
+					+ "</td>"
+					+ "<td><img src=\"/Bartenders/images/document.png\" onclick=\"location.href='/Bartenders/NewsAndEvents.Edit?ckEN1="
 					+ eAn.getNeId()
-					+ "\" readonly=\"readonly\">" + 
-					"<input type=\"submit\" value=\"刪除\"></form></td></tr>";
+					+ "';\" style=\"width: 40px; height: 40px; cursor: pointer;\"></td>"
+//					+ "<input type=\"submit\" value=\""
+//					+ "\"/>" 
+//					+ "</form>"
+					+ "<td class=\"RSide\">"
+//					+ "<form action=\"/Bartenders/EN.remove\" method=\"POST\">"
+//					+ "<input type=\"text\" name=\"ckEN2\" class=\"pdidckLL\" value=\""
+					+"<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href='/Bartenders/EN.remove?ckEN2="
+					+ eAn.getNeId()
+					+ "'\" style=\"width: 40px; height: 40px; cursor: pointer;\">"
+//					+ "\" readonly=\"readonly\"><input type=\"submit\" value=\"刪除\"></form>"
+					+ "</td></tr>";
 		}
 		return EN;
 	}

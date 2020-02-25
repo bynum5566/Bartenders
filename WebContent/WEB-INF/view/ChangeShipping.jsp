@@ -1,274 +1,160 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>修改配送資訊</title>
-<%-- 畫面version 20200213_1650--%>
-    <link 
-    rel="stylesheet" 
-    type="text/css" 
-    href="/Bartenders/CSS/add_editView.css">
+	<meta charset="UTF-8">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>修改配送資訊</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
 	
-	<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet"></link>
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
 	
-	<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css"
-	rel="stylesheet"></link>
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
 	
-    <style type= "text/css">	
-
-	.sigmaGray{
-		color: gray;
-	}
-
-	.sigmaTd1 {
-		width: 100px;
-		height: 50px;
-		text-align: center;
-	}
-	
-	.sigmaTd6 {
-		width: 600px;
-		height: 50px;
-		text-align: center;
-	}
-.mydiv {
-	width: auto;
-	margin: auto;
-	top: 80px;
-	position: sticky;
-	text-align: center;
-	border-radius: 5px;
-	background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%,
-		rgba(163, 163, 163, 0.5) 99%);
-	box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-	-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-}
- 
-h{
-	color:white ;
-}
-
-td{
-	border-width: 1px;
-}
-
-* {
-    margin:0;
-    padding:0;
-    font-family :Microsoft JhengHei;
-}
-#allpage {
-    width:100%;
-    margin:0 auto;
-}
-header {
-    width:100%;
-}
-.logo-img {
-    width:100%;
-    
-}
-.menu {
-    width:100%;
-    overflow:auto;            
-    border-radius:5px;
-    list-style-type:none;
-   
-}
-.menu li {
-    width:7em;
-    line-height:2.5em;
-    float:left;
-    
-}
-.menu li a {
-    display:block;
-    text-align:center;
-    color:	#005AB5;
-}
-.menu li a:link {
-    text-decoration:none;
-}
-.menu li a:hover {
-    background-color:	#0080FF	;
-    color:	#ffffff;
-    border-radius:5px;
-}
-#content {
-    width:100%;
-    overflow:auto;
-    /* border:1px solid gray; */
-}
-.article {
-    width:100%;
-    float:left;
-}
-.section {
-    background-color:#ffffff;
-    border-radius:5px;
-    margin:10px 0;
-    padding:20px 26px;
-    line-height:2em;
-}
-
-.aside {
-    width:28%;
-    float:right;
-    
-}
-footer {
-    background-color:	#ACD6FF;
-    border-radius:5px;
-    text-align:center;
-    line-height:2.5em;
-    color:	#4F4F4F;
-}
-
-<!--縮放用CSS，開始-->
-div.panel,img.flip
-{
-	margin:0px;
-	padding:5px;
-	text-align:center;
-	background:#e5eecc;
-	border:solid 1px #c3c3c3;
-}
-div.panel
-{
-	height:300px;
-	width:300px;
-	display:none;
-}
-<!--縮放用CSS，結束-->
-
-  
-    </style>
-
-<!-- script src,開始 -->   
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-<!-- script src,結束-->
-    
+		.small a+a {
+			margin-left: 15px;
+		}
+	</style>
 </head>
-<body>
-<main>
 
-    <div class="mydiv" >
-        <header>
-			<jsp:include page="/WEB-INF/view/cartTopMenu.jsp" /> 
-        </header>
-        <div >
-
-<%-- 本體，開始 --%>
+<body class="is-preload">
+	<div id="page-wrapper">
+		    <header id="header">
+      <h1><a href="index.jsp">Bartenders</a></h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href=<c:url value="/Users.Info" />>會員中心</a></li>
+                <li><a href=<c:url value="/DisplayBarList.controller" />>所有酒吧</a></li>
+                <li><a href=<c:url value="/DisplayRandomBarList.controller" />>精選酒吧</a></li>
+                <li><a href=<c:url value="/DisplayCartList.controller" />>我的購物車</a></li>
+                <li><a href=<c:url value="/userOrder.controller" />>我的訂單</a></li>
+                <li><a href=<c:url value="/Dashboard.MyFavorite" />>我的最愛</a></li>
+                <li><a href=<c:url value="/messageBoardShow.controller" />>討論區</a></li>
+                <li><a href=<c:url value="/room.chat" />>聊天室</a></li>
+                <li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<h1>修改配送資訊</h1>
+						<form action="<c:url value=" /doChangeShipping.controller" />" method="POST">
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-medium">
+								<h2>原配送資訊:</h2>
+								<ul class="alt">
+									<li>
+										<h3>訂單編號:</h3>
+										<h3>${orderId}</h3>
+									</li>
+									<li>
+										<h3>商品名稱:</h3>
+										<h3>${listOfProduct[0].productName}等</h3>
+									</li>
+									<li>
+										<h3>訂單總價:</h3>
+										<h3>${orderX.amount}</h3>
+									</li>
+									<li>
+										<h3>原選擇之配送方式:</h3>
+										<h3>${ShippingType[orderX.shipping]}</h3>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+								<h2>修改配送資訊:</h2>
+								<ul>
+									<li>
+										<h3>收件人:</h3>
+									</li>
+									<li><input type="text" size="40" name="recipient" value="${orderX.recipient}" /><br>
+									</li>
+									<li>
+										<h3>配送方式:</h3>
+									</li>
+									<li>
+										<div class="col-12">
+											<select name="shippingType">
+												<c:choose>
+													<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
+														<option value="QR" width="10">3.QR</option>
+													</c:when>
+													<c:otherwise>
+														<option value="HomeDelivery" width="10">1.宅配</option>
+														<option value="ConvenienceStore" width="10">2.超商取貨
+														</option>
+													</c:otherwise>
+												</c:choose>
+											</select><br>
+										</div>
+									</li>
+									<c:choose>
+										<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
+											<li>
+											<Input type='hidden' name='address' value='${Address}'></li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<h3>地址/門市:</h3>
+											</li>
+											<li><input type="text" name="address" size="40" value="${Address}" /><br>
+											</li>
+										</c:otherwise>
+									</c:choose>
+									<li>
+										<h3>收件人電話:</h3>
+									</li>
+									<li><input type="text" size="40" name="phone" value="${orderX.phone}" /><br>
+									</li>
+								</ul>
+								<ul class="actions">
+									<li><input class="button" type="reset" value="清除重填" /></li>
+									<li><input class="button primary" type="submit" value="確認送出" /></li>
+								</ul>
+							</div>
+						</div>
+						</form>
+					</section>
+				</div>
+			</section>
+		</article>
+	</div>
 	
-	
-		<h1>修改配送資訊</h1>
-		<form action="<c:url value="/doChangeShipping.controller"/>" method="POST">
-			<table>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	</body>
 
-				<tr>
-					<td>訂單編號:</td>
-					<td><input type="text" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></td>
-				</tr>
-				<tr>
-					<td>商品名稱:</td>
-					<td><input type="text" size="40" name="name" value="${listOfProduct[0].productName}等"
-							readonly="readonly" /><br></td>
-				</tr>
-				<tr>
-					<td>訂單總價:</td>
-					<td><input type="text" size="40" name="price" value="${orderX.amount}" readonly="readonly" /><br>
-					</td>
-				</tr>
-				<tr>
-					<td>原選擇之配送方式:</td>
-					<td><input type="text" size="40" name="price" value="${ShippingType[orderX.shipping]}"
-							readonly="readonly" /><br></td>
-				</tr>
-				<tr>
-					<td>===============</td>
-					<td>================================<br></td>
-				</tr>
-				<tr>
-					<td>收件人:</td>
-					<td><input type="text" size="40" name="recipient" value="${orderX.recipient}" /><br></td>
-				</tr>
-
-				<tr>
-					<td>配送方式:</td>
-					<td><select name="shippingType">
-							<c:choose>
-								<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
-									<option value="QR" width="10">3.QR</option>
-								</c:when>
-								<c:otherwise>
-									<option value="HomeDelivery" width="10">1.宅配</option>
-									<option value="ConvenienceStore" width="10">2.超商取貨</option>
-								</c:otherwise>
-							</c:choose>
-						</select><br></td>
-				</tr>
-				<tr>
-
-					<c:choose>
-						<c:when test="${ShippingType[orderX.shipping]=='QR票券'}">
-							<td></td>
-							<td><br></td>
-							<Input type='hidden' name='address' value='${Address}'>
-						</c:when>
-						<c:otherwise>
-							<td>地址/門市:</td>
-							<td><input type="text" name="address" size="40" value="${Address}" /><br></td>
-						</c:otherwise>
-					</c:choose>
-
-				</tr>
-				<tr>
-					<td>收件人電話:</td>
-					<td><input type="text" size="40" name="phone" value="${orderX.phone}" /><br></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="確認送出" /> <input type="reset" value="清除重填" /></td>
-				</tr>
-
-			</table>
-		</form>
-		
-<%-- 本體，結束 --%>
-        
-        </div>  <!--end content-->
-
-
-    </div>  <!--end allpage-->
-   
-<!--縮放用JS，開始-->
-<script type="text/javascript">
-$(".flip").click(function(){
-    $(".panel").slideToggle("slow");
-  });
-</script>
-<!--縮放用JS，結束-->
-
-</main> 
-</body>
 </html>
-
-<%--左側工具列，開始 --%>   
-<%@include file="UserMenu.jsp"%>
-<%--左側工具列，結束--%>    

@@ -2,356 +2,358 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"></link>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>酒吧</title>
 
-<style>
-	div.panel, img.flip {
-		margin: 0px;
-		padding: 5px;
-		background:rgba(0,0,0,0.6);
-		border: solid 1px #c3c3c3;
+<head>
+	<meta charset="UTF-8">
+	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<title>酒吧</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+
+	<style>
+		div.panel,
+		img.flip {
+			margin: 0px;
+			padding: 5px;
+			background: rgba(0, 0, 0, 0.6);
+			border: solid 1px #c3c3c3;
+		}
+
+		div.panel {
+			height: 300px;
+			width: 300px;
+			display: none;
+		}
+
+		.sigmaTd1 img {
+			width: 100px;
+		}
+
+	.small {
+		display: flex;
+		align-self: center;
 	}
-	div.panel {
-		height: 300px;
-		width: 300px;	
-		display: none;
+
+	.small a {
+		font-size: 16px;
+		font-weight: 400;
+		color: #888;
+		font-family: 111.otf;
 	}
-	.mydiv {
-		width: 600px !important;
-		margin: auto;
-		top: 80px;
-		position: relative;
-		text-align: center;
-		border-radius: 5px;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-		background-position: top;
-		background-image: url(/Bartenders/images/bg21.png);
-/* 		background: linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
-/* 		background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
-/* 		background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
-/* 		background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5) 34%, rgba(163, 163, 163, 0.5) 99%); */
-/* 		box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
-/* 		-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
-/* 		-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6); */
-	}
-	.sigmaBlack{
-		color: black;
-	}
-	.sigmaGray{
-		color: gray;
-	}
-	.sigmaTransparent{
-		background:rgba(0,0,0,0.1);
-		margin-bottom:10px;
-		color:white;		
-	}
-	.sigmaTd1 {
-		width: 100px;
-		height: 50px;
-		text-align: center;
-	}
-	.sigmaTd6 {
-		width: 600px;
-		height: 50px;
-		text-align: center;
-	}
-	section {
-    border-radius:5px;
-    margin:10px 0;
-    padding:20px 26px;
-    line-height:2em;
-	}
-	#circle table, #circle tr{
-	width:150px !important;
-	display: none;
-	}
-	#circle td{
-	width: 30px !important;
-	}
-	.sigmaTd1 img{
-	width: 100px;
+
+	.small a+a {
+		margin-left: 15px;
 	}
 	
-	.BT{
-	min-width: 40px;
-	min-height: 40px;
-	background-image: url(/Bartenders/images/like_icon.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	border: none;
-	border-color: transparent;
-	background-color: transparent;
+	#barName{
+		font-size: 50px;
+		font-weight: 600;
 	}
+	
+	#favbT{
+		width: 100px;
+		height: 100px;
+	}
+	
+	#myBtn:hover {
+		color: #ECECED;
+	}
+	
+	.modal {
+	  display: none;
+	  position: fixed;
+	  z-index: 1;
+	  padding-top: 100px;
+	  left: 0;
+	  top: 0;
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+	  background-color: rgb(0,0,0);
+	  background-color: rgba(0,0,0,0.4);
+	  color: #9F9BA0;
+	}
+	
+	.modal-content {
+	  position: relative;
+/* 	  background-color: #A19CA8; */
+	  margin: auto;
+	  padding: 0;
+	  border: 1px solid #888;
+	  width: 40%;
+	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	  -webkit-animation-name: animatetop;
+	  -webkit-animation-duration: 0.4s;
+	  animation-name: animatetop;
+	  animation-duration: 0.4s;
+/* 	  color: #9F9BA0; */
+	}
+	
+	@-webkit-keyframes animatetop {
+	  from {top:-300px; opacity:0} 
+	  to {top:0; opacity:1}
+	}
+	
+	@keyframes animatetop {
+	  from {top:-300px; opacity:0}
+	  to {top:0; opacity:1}
+	}
+	
+	.close {
+	  float: right;
+	  font-size: 28px;
+	  font-weight: bold;
+	}
+	
+	.close:hover,
+	.close:focus {
+	  text-decoration: none;
+	  cursor: pointer;
+	}
+	
+	.modal-header {
+	  padding: 2px 16px;
+	  background-color: #443E44;
+	}
+	
+	.modal-body {
+		background-color: #A19CA8;
+		padding: 2px 16px;
+		color: #0F0E0F;
+	}
+	
+	.accordion {
+	  background-color: #443E44;
+ 	  color: #9F9BA0;
+	  cursor: pointer;
+	  padding: 18px;
+	  width: 100%;
+	  border: none;
+	  text-align: left;
+	  outline: none;
+	  font-size: 22px;
+	  font-weight: 600;
+	  transition: 0.4s;
+	  border: 1px solid #554F55;
+	}
+	
+	.active, .accordion:hover {
+	  background-color: #554F55;
+	  color: #ECECED;
+	}
+	
+	.accordion:after {
+	  content: '\002B';
+ 	  color: #ECECED;
+	  font-weight: bold;
+	  float: right;
+	  margin-left: 5px;
+	}
+	
+	.active:after {
+  		content: "\2212";
+	}
+	
+	.thePanels {
+	  padding: 0 18px;
+	  background-color: #76727B;
+	  max-height: 0;
+	  overflow: hidden;
+	  transition: max-height 0.2s ease-out;
+	  color: #ECECED;
+	}
+	
 </style>
 </head>
 
-<body>
-	<main>	
-	<div class = mydiv>
-		<section>
-			<table>
-				<tr>
-					<td class="sigmaTd1">${CompanyName}</td>
-					<td class="sigmaTd1">
-		                <img src="<c:out value="${myBarX.logoUrl}"/>" />					
-					</td>
-					<td class="sigmaTd1">地圖按鈕</td>
-					<td class="sigmaTd1" onclick="displayMenu()">Menu</td>
-					<td class="sigmaTd1">
-						<button class="BT" id="<c:out value="${companyId}"/>"></button>
-					</td>
-					<td class="sigmaTd1"></td>
-				</tr>
-				<tr>
-					<td>			
-						<div id="dialog" title="Menu">
-  							<p>${myBarX.barMenu}</p>
-						</div>
-					</td>	
-				</tr>
-			</table>	
-		</section>
-		<section >
-			<table>
-				<tr>
-					<td class="sigmaTd6">最新活動</td>
-				</tr>
-				<tr>
-					<td>
-						<div id="accordion" class="sigmaTransparent">
-							<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">
-								<h3 class="sigmaTransparent">${listOfEventOfOneBar[current.index].neTitle}</h3>
-									<div class="sigmaTransparent">
-										<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>
-									</div>
-							</c:forEach>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</section>
-		<section >
-			<table>
-				<tr>
-					<td>
-					    <div>
-					        <div>
-					            <figure >
-					                <img id="slider" style="width:550px;height:330px"	src="${myBarX.coverUrl1}">
-					            </figure>
-					        </div>
-					        <div>
-					        	<table id="circle" width="150px">
-					        		<tr width="150px">
-					        			<td style="background-color:gray" width="30px" >
-					            			<img onmouseover="choose1(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st1" src="/Bartenders/images/Circle.png">
-					            </td>
-					        	<td style="background-color:gray" width="30px">
-					            	<img onmouseover="choose2(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st2" src="/Bartenders/images/Circle.png">
-					            </td>
-					        	<td style="background-color:gray" width="30px">
-					            	<img onmouseover="choose3(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st3" src="/Bartenders/images/Circle.png">
-					            </td>
-					        	<td style="background-color:gray" width="30px">
-					            	<img onmouseover="choose4(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st4" src="/Bartenders/images/Circle.png">
-					            </td>
-					        	<td style="background-color:gray" width="30px">
-					            	<img onmouseover="choose5(this,event)" onmouseout="chooseout(this,event)" class="Sts" id="st5" src="/Bartenders/images/Circle.png">
-					            </td>
-								</tr>
-								</table>
-					        </div>
-					    </div>
-					</td>				
-				</tr>
-			</table>
-		</section>
-		<section>
-			<table>
-				<tr>
-					<td class="sigmaTd6" style="text-align: left">
-						酒吧介紹：<br>
-						${myBarX.aboutBar}<br>
-						<br>				
-						FB:${myBarX.barFb}<br>
-						Line:${myBarX.barLine}<br>
-						Instgram:${myBarX.barIg}<br>
-					</td>					
-				</tr>		
-			</table>
-		</section>
-	<div >
-		<section >
-			<div>
-				<table>
-					<tbody>
-						<c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
-						<c:if test="${(current.index+1) %3  == '1' }">
-						<tr>
-							</c:if>
-								<td style="vertical-align:text-top">
-									<div style="vertical-align:text-top">
-										<div>${listOfProduct[current.index].productName}<br>
-												 $ ${listOfProduct[current.index].pdPrice}<br>
-											<img class="flip" style="vertical-align:text-top;width:100px;height:100px" src="${listOfProduct[current.index].productImageUrl}"/>
-											<c:choose>	
-											<c:when test="${listOfProduct[current.index].validDate == null}">
-												<div>
-													<FORM action="<c:url value="/AddProductToCart.controller" />" method="get">
-														<input type="number" required="required" style="width:60px" name="qty" value="1" max="${listOfProduct[current.index].pdStock}"	 min="1" />		
-														<Input 	type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
-														<Input 	type='hidden' name='ProductName' value='${listOfProduct[current.index].productName}'>
-														<Input 	type='hidden' name='PdStock' value='${listOfProduct[current.index].pdStock}'>
-														<Input 	type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
-														<Input 	type='hidden' name='barAccount' value='${barAccount}'>		
-														<Input type='submit' style="font-size:12px" value='加入購物車'>
-													</FORM>
+<body class="is-preload">
+	<div id="page-wrapper">
+		<header id="header">
+		<h1><a href="index.jsp">Bartenders</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
+							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+    
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class=mydiv>
+							<section>
+								<ul class="actions">
+									<li >&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
+									<li><img style="width:100px;height:100px" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
+									<li></li> <!-- 預留放地圖按鈕 -->
+									<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
+									<li>&emsp;&emsp;</li>
+									<li><img id="favbT" src="/Bartenders/images/like_icon.png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
+									<li></li>
+								</ul>
+								<ul>
+									<li>
+										<div id="myModal" class="modal">
+											<div class="modal-content">
+												<div class="modal-header">
+													<span class="close">&times;</span>
+													<h2>Menu</h2>
 												</div>
-											</c:when>
-											<c:otherwise>
-												<div>
-													<FORM action="<c:url value="/AddProductToCart.controller" />" method="get">
-														<input type="number" required="required" style="width:60px" name="qty" value="1" max="1" min="1" />	
-														<Input 	type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
-														<Input 	type='hidden' name='ProductName' value='${listOfProduct[current.index].productName}'>
-														<Input 	type='hidden' name='PdStock' value='${listOfProduct[current.index].pdStock}'>
-														<Input 	type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
-														<Input 	type='hidden' name='barAccount' value='${barAccount}'>																			
-														<Input type='submit' style="font-size:12px" value='加入購物車'>
-													</FORM>
+												<div class="modal-body">
+													<p>${myBarX.barMenu}</p>
 												</div>
-											</c:otherwise>
-										</c:choose>
-									</div>
-									<div class="panel" style="vertical-align:text-top">
-										<p>
-										簡介：<br>
-										${listOfProduct[current.index].pdDetail}
-										</p><br>
-										<a href="<c:url value="/DisplayProductDetail.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
-									</div>
-								</div>
-							</td>
-							<c:if test="${(current.index+1) %3  == '0' }">
-								</tr>
-							</c:if>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</section>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul class="alt">
+									<li><h2>最新活動<h2></h2></li>
+									<li>
+										<div>
+											<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">
+												<div  class="accordion">${listOfEventOfOneBar[current.index].neTitle}</div>
+												<div class="thePanels">
+													<br>
+													<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>
+												</div>
+											</c:forEach>
+										</div>
+									</li>
+									<li>
+										<figure align="center">
+											<img id="slider" style="width:550px;height:330px" src="${myBarX.coverUrl1}">
+										</figure>
+									</li>
+									<li class="sigmaTd6" style="text-align: left">
+										<div class="row">
+											<div class="col-6 col-12-medium">
+												<ul>
+													<li>
+														<h3>酒吧介紹:</h3>
+														<h3>${myBarX.aboutBar}</h3>
+													</li>
+												</ul>
+											</div>
+											<div class="col-6 col-12-medium">
+												<ul>
+													<li><h3>FB:${myBarX.barFb}</h3></li>
+													<li><h3>Line:${myBarX.barLine}</h3></li>
+													<li><h3>Instgram:${myBarX.barIg}</h3></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li>
+										<table>
+											<tbody>
+												<c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
+													<c:if test="${(current.index+1) %3  == '1' }">
+														<tr>
+													</c:if>
+													<td style="vertical-align:text-top">
+														<div style="vertical-align:text-top">
+															<div>
+																${listOfProduct[current.index].productName}
+																<br>
+																$ ${listOfProduct[current.index].pdPrice}
+																<br>
+																<img class="flip" style="vertical-align:text-top;width:100px;height:100px" src="${listOfProduct[current.index].productImageUrl}"/>
+																<c:choose>
+																	<c:when test="${listOfProduct[current.index].validDate == null}">
+																		<div>
+																			<form action="<c:url value="/AddProductToCart.controller"/>" method="get">
+																				<input type="number" required="required" style="width:60px" name="qty" value="1" max="${listOfProduct[current.index].pdStock}" min="1"/>
+																				<input type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
+																				<input type='hidden' name='ProductName' value='${listOfProduct[current.index].productName}'>
+																				<input type='hidden' name='PdStock' value='${listOfProduct[current.index].pdStock}'>
+																				<input type='hidden' name='account' value='${account}'>
+																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
+																				<input type='hidden' name='barAccount' value='${barAccount}'>
+																				<input type='submit' style="font-size:12px" value='加入購物車'>
+																			</form>
+																			<div>
+																	</c:when>
+																	<c:otherwise>
+																		<div>
+																			<form action="<c:url value="/AddProductToCart.conroller"/>" method="get">
+																				<input type="number" required="required" style="width:60px;" name="qty" value="1" max="1" min="1"/>
+																				<input type='hidden' name='PdId' value='${listOfProuct[current.index].pdId}'>
+																				<input type='hidden' name='ProductName' value='${lisOfProduct[current.index].productName}'>
+																				<input type='hidden' name='PdStock' value='${listOfPrduct[current.index].pdStock}'>
+																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
+																				<input type='hidden' name='barAccount' value='${barAccount}'>
+																				<input type='submit' style="font-size:12px" value='加入購物車'>
+																			</form>
+																		</div>
+																	</c:otherwise>
+																</c:choose>
+															</div>
+															<div class="panel" style="vertical-align:text-top">
+																<p>
+																	簡介：<br>
+																	${listOfProduct[current.index].pdDetail}
+																</p><br>
+																<a href="<c:url value="/Product.show"/>?PdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+															</div>
+														</div>
+													</td>
+													<c:if test="${(current.index+1) %3  == '0' }">
+														</tr>
+													</c:if>
+												</c:forEach>
+											</tbody>
+										</table>
+									</li>
+								</ul>
+							</section>
+						</div>
+					</section>
+				</div>
+			</section>
+		</article>
 	</div>
-</div>
-</main>
-	<script>
-	$(".flip").click(function(){
-	    $(this).closest("div").siblings().slideToggle("slow");
-	  });
-	$( function() {
-	  $( "#accordion" ).accordion({
-	    collapsible: true
-	  });
-	} );
-	 $( function() {
-		   $( "#dialog" ).dialog();
-		   $( "#dialog" ).dialog('close');
-		 } );
-	 function displayMenu() {
-		  $( "#dialog" ).dialog('open');
-		}
-var images = ["${myBarX.coverUrl1}", "${myBarX.coverUrl2}", "${myBarX.coverUrl3}", "${myBarX.coverUrl4}", "${myBarX.coverUrl5}"];
-var num = 0;
-function nex() {
-    var slider = document.getElementById("slider");
-    num++;
-    if (num >= images.length) {
-        num = 0;
-    }
-    slider.src = images[num];
-}
-function prev() {
-    var slider = document.getElementById("slider");
-    num--;
-    if (num < 0) {
-        num = images.length - 1;
-    }
-    slider.src = images[num];
-}
-var P = document.getElementById("slider");
-var t = setInterval(changeP, 5000);
-function choose1(obj, oEvent) {
-    var e = oEvent || window.event;
-    var target = e.target || e.srcElement;
-    var pArrays = obj.getElementsByTagName("img");
-    slider.src = images[0];
-    window.clearInterval(t);
-}
-function choose2(obj, oEvent) {
-    var e = oEvent || window.event;
-    var target = e.target || e.srcElement;
-    var pArrays = obj.getElementsByTagName("img");
-    slider.src = images[1];
-    window.clearInterval(t);
-}
-function choose3(obj, oEvent) {
-    var e = oEvent || window.event;
-    var target = e.target || e.srcElement;
-    var pArrays = obj.getElementsByTagName("img");
-    slider.src = images[2];
-    window.clearInterval(t);
-}
-function choose4(obj, oEvent) {
-    var e = oEvent || window.event;
-    var target = e.target || e.srcElement;
-    var pArrays = obj.getElementsByTagName("img");
-    slider.src = images[3];
-    window.clearInterval(t);
-}
-function choose5(obj, oEvent) {
-    var e = oEvent || window.event;
-    var target = e.target || e.srcElement;
-    var pArrays = obj.getElementsByTagName("img");
-    slider.src = images[4];
-    window.clearInterval(t);
-}
-function chooseout() {
-    t = setInterval(changeP, 5000);	
-}
-function changeP() {
-    num++;
-    if (num >= images.length) {
-        num = 0;
-    }
-    slider.src = images[num];
-}
-let flag;
-flag2 = true;
-function pl() {
-    if (flag2) {
-        flag2 = false;
-        window.clearInterval(t);
-    }
-    else {
-        flag2 = true;
-        t = setInterval(changeP, 5000);
-    }
-}
-	</script>	
-</body>
+
+	<script src="/Bartenders/JS/forBarPage.js"></script>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	</body>
+
 </html>
-<%@include file="menu.jsp"%>
