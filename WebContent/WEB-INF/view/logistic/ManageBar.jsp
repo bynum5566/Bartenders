@@ -134,7 +134,7 @@
 		console.log('userId is: ', '${getUser.userId}');
 		var company = '${getCompany.companyId}';
 		console.log('companyId is: ', '${getCompany.companyId}');
-
+/*
 		var sendText;
 		<c: if test='${empty getUser.userId}'>
 			sendText = 'c${getCompany.companyId}';
@@ -145,7 +145,7 @@
 		<c: set var="finalText" scope="page" value='u${getUser.userId}'/>
 	</c: if>
 				console.log('searching userId: ', '${finalText}')
-	
+	*/
 		$(".search").on("click", function () {
 					var type = this.id;
 					if (type == 'bar' || type == 'shop') {

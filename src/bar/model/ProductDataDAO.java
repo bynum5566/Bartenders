@@ -32,7 +32,7 @@ public class ProductDataDAO {
 			String hqlStr = "update ProductData set pdSoldOut=:pdSoldOut where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("pdId", pdId);
-			query.setParameter("pdSoldOut", pdSoldOut);
+			query.setParameter("pdSoldOut", String.valueOf(pdSoldOut));
 			query.executeUpdate();
 			return true;
 		} catch (Exception e)

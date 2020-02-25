@@ -155,6 +155,7 @@ return "SubMessageBoard";
 
 	@RequestMapping(path = "/ManageBar", method = RequestMethod.GET)
 	public String LogisticOrder() {
+		System.out.println("try to redir");
 		return "logistic/ManageBar";
 	}
 	
