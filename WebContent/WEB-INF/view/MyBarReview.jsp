@@ -271,9 +271,9 @@
 											</div>
 											<div class="col-6 col-12-medium">
 												<ul>
-													<li><h3>FB:${myBarX.barFb}</h3></li>
-													<li><h3>Line:${myBarX.barLine}</h3></li>
-													<li><h3>Instgram:${myBarX.barIg}</h3></li>
+													<li><img src="/Bartenders/images/iconfinder_facebook_986944.png"><h3>${myBarX.barFb}</h3></li>
+													<li><img src="/Bartenders/images/iconfinder_line_986949.png"><h3>${myBarX.barLine}</h3></li>
+													<li><img src="/Bartenders/images/iconfinder_Instagram_381384.png"><h3>${myBarX.barIg}</h3></li>
 												</ul>
 											</div>
 										</div>

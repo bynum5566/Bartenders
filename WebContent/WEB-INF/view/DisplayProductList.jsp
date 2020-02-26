@@ -336,17 +336,15 @@
 											<div class="row">
 												<div class="col-6 col-12-medium">
 													<ul>
-														<li>
-															<h3>酒吧介紹:</h3>
-															<h3>${myBarX.aboutBar}</h3>
-														</li>
+														<li><h3>酒吧介紹:</h3></li>
+														<li><h3>${myBarX.aboutBar}</h3></li>
 													</ul>
 												</div>
 												<div class="col-6 col-12-medium">
-													<ul>
-														<li><h3>FB:${myBarX.barFb}</h3></li>
-														<li><h3>Line:${myBarX.barLine}</h3></li>
-														<li><h3>Instgram:${myBarX.barIg}</h3></li>
+													<ul class="icons">
+														<li><img class="" src="/Bartenders/images/iconfinder_facebook_986944.png"><span class="label" id="${myBarX.barFb}">Twitter</span></li>
+														<li><img src="/Bartenders/images/iconfinder_line_986949.png"><span class="label">${myBarX.barLine}</span></li>
+														<li><img src="/Bartenders/images/iconfinder_Instagram_381384.png"><span class="label">${myBarX.barIg}</span></li>
 													</ul>
 												</div>
 											</div>
