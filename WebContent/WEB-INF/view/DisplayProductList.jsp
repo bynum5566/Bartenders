@@ -28,7 +28,8 @@
 		}
 
 		div.panel {
-			height: 300px;
+/* 			height: 300px; */
+			height: auto;
 			width: 300px;
 			display: none;
 		}
@@ -61,6 +62,7 @@
 	#favbT{
 		width: 100px;
 		height: 100px;
+		cursor: pointer;
 	}
 	
 	#myBtn:hover {
@@ -81,10 +83,8 @@
 	  background-color: rgba(0,0,0,0.4);
 	}
 	
-	/* Modal Content */
 	.modal-content {
 	  position: relative;
-/* 	  background-color: #A19CA8; */
 	  margin: auto;
 	  padding: 0;
 	  border: 1px solid #888;
@@ -94,7 +94,6 @@
 	  -webkit-animation-duration: 0.4s;
 	  animation-name: animatetop;
 	  animation-duration: 0.4s;
-/* 	  color: #9F9BA0; */
 	}
 	
 	@-webkit-keyframes animatetop {
@@ -127,12 +126,14 @@
 	.modal-body {
 		background-color: #A19CA8;
 		padding: 2px 16px;
-		color: #0F0E0F;
+		color: #FFFFFF;
+/* 		color: #0F0E0F; */
 	}
 	
 	.accordion {
 	  background-color: #443E44;
- 	  color: #9F9BA0;
+/*  	  color: #9F9BA0; */
+ 	  color: #FFFFFF;
 	  cursor: pointer;
 	  padding: 18px;
 	  width: 100%;
@@ -147,12 +148,14 @@
 	
 	.active, .accordion:hover {
 	  background-color: #554F55;
-	  color: #ECECED;
+/* 	  color: #ECECED; */
+	  color: #FFFFFF;
 	}
 	
 	.accordion:after {
 	  content: '\002B';
- 	  color: #ECECED;
+/*  	  color: #ECECED; */
+ 	  color: #FFFFFF;
 	  font-weight: bold;
 	  float: right;
 	  margin-left: 5px;
@@ -168,7 +171,8 @@
 	  max-height: 0;
 	  overflow: hidden;
 	  transition: max-height 0.2s ease-out;
-	  color: #ECECED;
+/* 	  color: #ECECED; */
+	  color: #FFFFFF;
 	}
 	
 </style>
@@ -209,12 +213,12 @@
 								<!-- level5 -->
 								<!-- 有框 <table border="1" > -->
 									<ul class="actions">
+										<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 										<li >&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
-										<li><img style="width:100px;height:100px" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 										<li></li> <!-- 預留放地圖按鈕 -->
 										<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
 										<li>&emsp;&emsp;</li>
-										<li><img id="favbT" src="/Bartenders/images/like_icon.png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
+										<li><img id="favbT" src="/Bartenders/images/heart (1).png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
 										<li></li>
 									</ul>
 									<ul>

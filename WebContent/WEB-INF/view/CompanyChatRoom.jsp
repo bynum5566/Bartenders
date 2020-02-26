@@ -111,10 +111,22 @@
 		font-weight: 400;
 		color: #888;
 		font-family: 111.otf;
+		display: inline-block;
 	}
 
 	.small a+a {
 		margin-left: 15px;
+	}
+	#menu ul > li > a {
+	    border: 0;
+	    color: inherit;
+	    display: inline-block;
+	    font-size: 0.8em;
+	    letter-spacing: 0.225em;
+	    outline: 0;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    list-style-type: none;
 	}
 </style>
 <script type="text/javascript">

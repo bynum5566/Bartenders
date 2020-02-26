@@ -35,13 +35,17 @@ public class MyFavoriteBarsService {
 			int companyId = idList.get(x);	
 			Company comp = Cdao.selectCompany(companyId);	
 			favbs = favbs	
-					+"<tr class=\"pdRow\"><td><button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/DisplayProductList.controller?barAccount="
-					+comp.getAccount()
-					+"';\" class=\"bT\"/></td><td class=\"MidS1\"><div>"
-					+comp.getCompanyName()
-					+"</div></td><td class=\"RSide\"><button style=\"background-image:url(/Bartenders/images/delete_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
-					+comp.getCompanyId()
-					+"';\" class=\"bT\"/></td></tr>";
+					+"<tr class=\"pdRow\"><td>"
+//					+ "<button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/DisplayProductList.controller?barAccount="
+					+"<div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/DisplayProductList.controller?barAccount="
+					+comp.getAccount() + "';\">" +comp.getCompanyName() + "</h3></div></td><td class=\"RSide\">"
+//					+ "<td class=\"MidS1\"><div>"
+//					+"</div></td>"
+					+"<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
+					+comp.getCompanyId() 
+					+ "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
+//					+ "<button style=\"background-image:url(/Bartenders/images/delete_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
+//					+"';\" class=\"bT\"/></td></tr>";
 					
 //					+"<tr class=\"pdRow\"><td><a class=\"f1\" href=\"/Bartenders/DisplayProductList.controller?barAccount="
 //					+comp.getAccount()

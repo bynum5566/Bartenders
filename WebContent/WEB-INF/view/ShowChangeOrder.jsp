@@ -7,10 +7,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>ChangeOrder</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<title>訂單管理</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
 	<style>
 		.small {
 			display: flex;
@@ -26,6 +26,10 @@
 		
 		.small a+a {
 			margin-left: 15px;
+		}
+		
+		.wrapper {
+			padding: 3em 0 2em 0;
 		}
 	</style>
 </head>
@@ -62,43 +66,46 @@
 				</ul>
 			</nav>
 		</header>
-		
+
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
 					<section>
 						<h2>請填寫要修改的訂單資料</h2>
-						<form action="<c:url value="/doChangeOrder.controller"/>" method="POST">
+						<form action="<c:url value="/doChangeOrder.controller"/>"
+							method="POST">
 							<div class="row gtr-uniform">
 								<div class="col-6 col-12-xsmall">
 									<ul>
-										<li>訂單編號:</li>
-										<li><input type="text" size="40" name="orderId" value="${orderId}" readonly="readonly"/><br></li>
-										<li>商品名稱:</li>
-										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly"/><br>
-										</li>
-										<li>訂單總價:</li>
-										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly"/><br></li>
-										<li>收件人:</li>
-										<li><input type="text" size="40" name="recipient" value="${order.recipient}"/><br></li>
-										<li>原選擇之配送方式:</li>
-										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly"/><br></li>
+										<li>訂單編號:${orderId}</li>
+<%-- 										<li><input type="text" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></li> --%>
+										<li>商品名稱:${productData[0].productName}等</li>
+<%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
+										<li>訂單總價:${order.amount}</li>
+<%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
+										<li>收件人:${order.recipient}</li>
+<%-- 										<li><input type="text" size="40" name="recipient" value="${order.recipient}" /><br></li> --%>
+										<li>原選擇之配送方式:${ShippingNumToStr[order.shipping]}</li>
+<%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly" /><br></li> --%>
 										<li>配送方式:</li>
-										<li><select name="shippingType">
+										<li>
+											<select name="shippingType">
 												<option value="HomeDelivery" width="10">1.宅配</option>
 												<option value="ConvenienceStore" width="10">2.超商取貨</option>
-										</select><br></li>
+											</select>
+											<br>
+										</li>
 										<li>配送地址:</li>
-										<li><input type="text" name="address" size="40" value="${attrAddress}"/><br></li>
+										<li><input type="text" name="address" size="40" value="${attrAddress}" /><br></li>
 										<li>收件人電話:</li>
-										<li><input type="text" size="40" name="phone" value="${order.phone}"/><br></li>
+										<li><input type="text" size="40" name="phone" value="${order.phone}" /><br></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-6 col-12-medium">
 								<ul class="actions">
-									<li><input class="css_button" type="submit" value="確認送出"/></li>
-									<li><input class="button primary" type="reset" value="清除重填"/></li>
+									<li><input class="button primary" type="submit" value="確認送出" /></li>
+									<li><input class="css_button" type="reset" value="清除重填" /></li>
 								</ul>
 							</div>
 						</form>
@@ -107,7 +114,6 @@
 			</section>
 		</article>
 	</div>
-
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

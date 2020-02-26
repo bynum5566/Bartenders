@@ -29,6 +29,10 @@
 	.small a+a {
 		margin-left: 15px;
 	}
+	
+	h3.nameLink{
+		cursor: pointer;
+	}
 </style>
 </head>
 
