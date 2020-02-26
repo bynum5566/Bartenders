@@ -122,7 +122,7 @@ h2, h3, h4 {
 
 .ml9 {
 	position: relative;
-	font-size: 40px;
+	font-size: 35px;
 	white-space: nowrap;
 	text-align: center;
 }
@@ -137,7 +137,7 @@ h2, h3, h4 {
 	text-shadow: 0px 8px 1px black, 0px 17px 10px rgba(0, 0, 0, 0.15), 0px
 		24px 2px rgba(0, 0, 0, 0.1), 0px 34px 30px rgba(0, 0, 0, 0.1);
 	-webkit-text-stroke: 0.001px #FFF;
-	color: #FFCC22;
+	color: #FFF;
 	font-weight: 350;
 }
 
@@ -145,12 +145,12 @@ h2, h3, h4 {
 	transform-origin: 50% 100%;
 	display: inline-block;
 	line-height: 1em;
-	color: #FFCC22;
+	color: #FFF;
 	font-weight: 600;
 }
 
 .wrapper {
-	padding: 3em 0 0 0;
+	padding: 1em 0 0 0;
 }
 
 main {
@@ -197,7 +197,7 @@ main {
 								<img src="img/Logo.png" style="width: 160px; margin: 40px"/> <br>
 							</h2>
 							<h2 class="ml9" align="center">
-								<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
+								<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，<br>今天想喝甚麼呢?</span>
 								</span>
 							</h2>
 							<br>
