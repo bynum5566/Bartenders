@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +9,6 @@
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
@@ -29,7 +29,6 @@
 		}
 
 		div.panel {
-/* 			height: 300px; */
 			height: auto;
 			width: 300px;
 			display: none;
@@ -313,6 +312,7 @@
 																				<input type='hidden' name='PdId' value='${listOfProuct[current.index].pdId}'>
 																				<input type='hidden' name='ProductName' value='${lisOfProduct[current.index].productName}'>
 																				<input type='hidden' name='PdStock' value='${listOfPrduct[current.index].pdStock}'>
+																				<input type='hidden' name='account' value='${account}'>
 																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
 																				<input type='hidden' name='barAccount' value='${barAccount}'>
 																				<input type='button' style="font-size:12px" value='加入購物車'>
@@ -345,6 +345,11 @@
 		</article>
 	</div>
 
+	<script>
+		$(".flip").click(function () {
+			$(this).closest("div").siblings().slideToggle("slow");
+		});
+	</script>
 	<script src="/Bartenders/JS/forBarPage.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
