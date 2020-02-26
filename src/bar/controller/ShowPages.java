@@ -131,6 +131,17 @@ return "SubMessageBoard";
 	public String showSalesReportByExcel() {
 		return "SalesReportByExcel";
 	}
+	
+	@RequestMapping(path ="/OrderShippingDetail")
+	public String OrderShippingDetail() {
+		return "OrderShippingDetail";
+	}
+	
+	@RequestMapping(path ="/OrderShippingDetailUser")
+	public String OrderShippingDetailUser() {
+		return "OrderShippingDetailUser";
+	}
+	
 	////////////////////----以下是物流----/////////////////////////////
 	@RequestMapping(path = "/logistic", method = RequestMethod.GET)
 	public String logistic() {
