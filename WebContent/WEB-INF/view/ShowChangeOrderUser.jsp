@@ -65,17 +65,36 @@
 							<div class="row gtr-uniform">
 								<div class="col-6 col-12-xsmall">
 									<ul>
-										<li>訂單編號:</li>
-										<li><input type="text" size="40" name="orderId" value="${orderId}" readonly="readonly"/><br></li>
-										<li>商品名稱:</li>
-										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly"/><br>
+										<li>訂單編號:
+<!-- 										</li> -->
+<!-- 										<li> -->
+										${orderId}
+<%-- 											<input type="text" size="40" name="orderId" value="${orderId}" readonly="readonly"/><br> --%>
 										</li>
-										<li>訂單總價:</li>
-										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly"/><br></li>
-										<li>收件人:</li>
-										<li><input type="text" size="40" name="recipient" value="${order.recipient}"/><br></li>
-										<li>原選擇之配送方式:</li>
-										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly"/><br></li>
+										<li>商品名稱:
+<!-- 										</li> -->
+<!-- 										<li> -->
+										${productData[0].productName}等
+<%-- 											<input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly"/><br> --%>
+										</li>
+										<li>訂單總價:
+<!-- 										</li> -->
+<!-- 										<li> -->
+										${order.amount}
+<%-- 											<input type="text" size="40" name="price" value="${order.amount}" readonly="readonly"/><br> --%>
+										</li>
+										<li>收件人:
+<!-- 										</li> -->
+<!-- 										<li> -->
+										${order.recipient}
+<%-- 											<input type="text" size="40" name="recipient" value="${order.recipient}"/><br> --%>
+										</li>
+										<li>原選擇之配送方式:
+<!-- 										</li> -->
+<!-- 										<li> -->
+										${ShippingNumToStr[order.shipping]}
+<%-- 											<input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly"/><br> --%>
+										</li>
 										<li>配送方式:</li>
 										<li><select name="shippingType">
 												<option value="HomeDelivery" width="10">1.宅配</option>
