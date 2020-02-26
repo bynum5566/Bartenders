@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>Cancel Order For User</title>
+	<title>我的訂單</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -61,6 +61,7 @@
 				<div class="inner">
 					<section>
 						<h2>${msg}</h2>
+						<br>
 						<form action="<c:url value="/CancelOrderUser.controller"/>" method="POST">
 						<h3>
 							<a href="<c:url value="/userOrder.controller"/>">

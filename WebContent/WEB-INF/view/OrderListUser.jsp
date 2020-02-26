@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>Order List</title>
+	<title>我的訂單</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -109,6 +109,35 @@ padding-right: 5px;
 	.small a+a {
 		margin-left: 15px;
 	}
+	.wrapper {
+    padding: 4em 0 4em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.225em;
+    text-transform: uppercase;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+h2 {
+    font-size: 1.35em;
+    font-size: 1.75em;
+    line-height: 1.75em;
+}
+table th {
+    color: #fff;
+    font-weight: 600;
+    padding: 0 0.75em 0.75em 1.7em;
+    text-align: left;
+    font-size: 18px;
+}
 </style>
 </head>
 

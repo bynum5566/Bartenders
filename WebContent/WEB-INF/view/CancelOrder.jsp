@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>Cancel Order</title>
+	<title>訂單管理</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -67,6 +67,7 @@
 					<section>
 						<div class="col-6 col-12-xsmall">
 								<h2>${msg}</h2>
+								<br>
 								<form action="<c:url value="/CancelOrder.controller"/>" method="POST">
 									<h2>
 										<a style="text-decoration: none;" class="button" href="<c:url value="/companyOrder.controller"/>">返回訂單頁面</a>
