@@ -3,11 +3,30 @@
 		var cancelLocating=false;
 		var infowindow;
 		var markers = [];
+		var orders = [];
 		var tempMarkList = [];
+		var orderLat;
+		var orderLng;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map'),mapStyle);
 			infowindow = new google.maps.InfoWindow;
 		}
+		
+		//地址轉成座標
+		async function getInput(address){	
+			//等fetch做完再繼續
+			
+			await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
+				function(response) {
+					return response.json();
+				}).then(function(JSONdata) {
+				//console.log("this is location's latlng: ", JSONdata.address_components);
+					var all = JSONdata.results.forEach(function(item){
+						orderLat = item.geometry.location.lat;
+						orderLng = item.geometry.location.lng;
+					});
+				});//fetch結束
+		};
 		
 		function relocate(lat,lng){
 			for(var i=0;i<tempMarkList.length;i++){
@@ -24,6 +43,8 @@
             });
 			tempMarkList.push(tempMark);
 		};
+		
+		
 		
 		async function autoLocating(){
 			
@@ -60,6 +81,15 @@
 		    markers = [];
 		}
 		
+		function reloadOrders() {
+		    for (var i=0; i<orders.length; i++) {
+		    	console.log(orders[i]);
+		    	orders[i].setMap(null);
+		    }
+		    console.log('order clear!');
+		    orders = [];
+		}
+		
 		function getMarkers(prefix,input){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
@@ -69,9 +99,17 @@
 						console.log('this is data: ', JSONdata);
 						var all = JSONdata.forEach(function(item){
 							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
+							var barId = item.userId;
+							var name = item.name;
+							var address = item.address;
 							var lat = item.lat;
 							var lng = item.lng;
+							var type = item.type;
 							var orderNum = item.orderNum.toString();
+							console.log('this is pending order: ', orderNum);
+							var img = item.img;
+							console.log('this is img: ', img);
+							var brief = item.brief;
 							var point = new google.maps.LatLng(lat, lng);
 							//建立個別marker
 							var marker = new google.maps.Marker({
@@ -79,6 +117,7 @@
 								position : point,
 								//logistic頁面 所以要往上一層
 								icon : '../images/O1.png',
+//								icon : '../images/'+type+'.png',
 								label : {
 								    text: orderNum,
 								    color: 'red',
@@ -88,58 +127,72 @@
 							
 							markers.push(marker);
 							//建立個別window
-							var contentString = 	'<div id="idiv">'+
+							var contentString = 	'<div>'+
+							'<h3 class="infoH3">'+name+'</h3>'+
+							'<img class="infoType" alt="未設定類型" src="../images/'+type+'.png">'+
+							'<div class="infoAddr" >'+address+'</div>'+
+							'<img class="infoImg" alt="未設定照片" src="../images/'+img+'">'+
+							'<div class="infoBrief" >'+brief+'</div>'
 							'</div>';
-							/*
+							
 							marker.addListener('click', function() {
 								infowindow.setContent(contentString);
 								infowindow.open(map, marker);
+								var prefix = 'logistic/OrderSearchByBar'
+									input = barId;
+								reloadOrders();
+								getOrders(prefix,input);
+								
 							});
-							 */
-					}
-				})
-			});
-		}
+							}//if結尾
+						})	
+					});
+				}
+
+						
 		//讀取特定訂單
-		function getOrders(prefix,input){
+		 function getOrders(prefix,input){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
 						console.log('data get!');
 						return response.json();
-					}).then(function(JSONdata) {
-						console.log('this is data: ', JSONdata);
-						var all = JSONdata.forEach(function(item){
-							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
-							var lat = item.lat;
-							var lng = item.lng;
-							var orderNum = item.orderNum.toString();
+					}).then(function(OrderJSON) {
+						console.log('this is OrderJSON: ', OrderJSON);
+						//<c:set var="orderData" scope="page" value="OrderJSON" />;
+						var all = OrderJSON.forEach(async function(item){
+							
+							var address = item.oAddr;
+							var lID = item.lID;
+							//進行座標轉換
+							await getInput(address);
+							var lat = orderLat;
+							var lng = orderLng;
 							var point = new google.maps.LatLng(lat, lng);
 							//建立個別marker
 							var marker = new google.maps.Marker({
 								map : map,
 								position : point,
 								//logistic頁面 所以要往上一層
-								icon : '../images/O1.png',
-								label : {
-								    text: orderNum,
-								    color: 'red',
-								    fontSize:'24px'
-								  }
+								icon : '../images/defaultMarker.png',
 							});
 							
-							markers.push(marker);
+							orders.push(marker);
 							//建立個別window
-							var contentString = 	'<div id="idiv">'+
+							var contentString = 	'<div id="odiv">'+
+							'<p>物流單號: '+lID+'</p>'+
+							'<p>運送地址: '+address+'</p>'+
 							'</div>';
-							/*
 							marker.addListener('click', function() {
 								infowindow.setContent(contentString);
 								infowindow.open(map, marker);
+								
 							});
-							 */
-					}
+							
 				})
+				getOrderJSON(OrderJSON);
 			});
 		}
+		 
+		 
 
 		

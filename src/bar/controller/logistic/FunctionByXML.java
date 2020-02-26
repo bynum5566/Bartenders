@@ -362,7 +362,7 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
-		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'");
+		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
 		
 		m.addAttribute("activity",orderList);
 		return orderList;
