@@ -69,9 +69,9 @@
 								<h2>${msg}</h2>
 								<br>
 								<form action="<c:url value="/CancelOrder.controller"/>" method="POST">
-									<h2>
+									<h3>
 										<a style="text-decoration: none;" class="button" href="<c:url value="/companyOrder.controller"/>">返回訂單頁面</a>
-									</h2>
+									</h3>
 								</form>
 						</div>
 					</section>

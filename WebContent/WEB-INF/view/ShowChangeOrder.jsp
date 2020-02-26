@@ -78,11 +78,11 @@
 								<div class="col-6 col-12-xsmall">
 									<ul>
 										<li><h3>原訂單資訊:</h3></li>
-										<li>訂單編號:${orderId}</li>
+										<li>訂單編號:${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
 										<li><input type="hidden" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></li>
 										<li>商品名稱:${productData[0].productName}…</li>
 <%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
-										<li>訂單總價:${order.amount}</li>
+										<li>訂單總價:$${order.amount}</li>
 <%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
 										<li>原選擇之配送方式:${ShippingNumToStr[order.shipping]}</li>
 <%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly" /><br></li> --%>
