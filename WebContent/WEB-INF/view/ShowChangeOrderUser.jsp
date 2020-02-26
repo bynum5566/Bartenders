@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>我的訂單</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<style>
 		.small {
 			display: flex;
@@ -38,7 +38,7 @@
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -53,7 +53,7 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -72,16 +72,16 @@
 									<ul>
 										<li><h3>原訂單資訊:</h3></li>
 										<li>訂單編號:${orderId}</li>
-										<li><input type="hidden" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></li>
+										<li><input type="hidden" size="40" name="orderId" value="${orderId}" readonly="readonly"/><br></li>
 										<li>商品名稱:${productData[0].productName}…</li>
-<%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
+<%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly"/><br></li> --%>
 										<li>訂單總價:${order.amount}</li>
-<%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
+<%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly"/><br></li> --%>
 										<li>原選擇之配送方式:${ShippingNumToStr[order.shipping]}</li>
-<%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"readonly="readonly" /><br></li> --%>
+<%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"readonly="readonly"/><br></li> --%>
 										<li><br><h3>修改訂單資訊:</h3></li>
 										<li>收件人:</li>
-										<li><input type="text" size="40" name="recipient" value="${order.recipient}" /><br></li>
+										<li><input type="text" size="40" name="recipient" value="${order.recipient}"/><br></li>
 										<li>配送方式:</li>
 										<li>
 											<select name="shippingType">
@@ -91,16 +91,16 @@
 											<br>
 										</li>
 										<li>配送地址:</li>
-										<li><input type="text" name="address" size="40" value="${attrAddress}" /><br></li>
+										<li><input type="text" name="address" size="40" value="${attrAddress}"/><br></li>
 										<li>收件人電話:</li>
-										<li><input type="text" size="40" name="phone" value="${order.phone}" /><br></li>
+										<li><input type="text" size="40" name="phone" value="${order.phone}"/><br></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-6 col-12-medium">
 								<ul class="actions">
-									<li><input class="button" type="reset" value="清除重填" /></li>
-									<li><input class="button primary" type="submit" value="確認送出" /></li>
+									<li><input class="button" type="reset" value="清除重填"/></li>
+									<li><input class="button primary" type="submit" value="確認送出"/></li>
 								</ul>
 							</div>
 						</form>

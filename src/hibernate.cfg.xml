@@ -9,21 +9,21 @@
 		<property name="format_sql">true</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 
-		<mapping class="bar.model.ProductData" />
-		<mapping class="bar.model.MyFavorite" />
-		<mapping class="bar.model.MyFavoriteBars" />
-		<mapping class="bar.model.MyBar" />
-		<mapping class="bar.model.EventsAndNews" />
-		<mapping class="bar.model.Users" />
-		<mapping class="bar.model.Company" />
-		<mapping class="bar.model.Orders" />
-		<mapping class="bar.model.Cart" />
-		<mapping class="bar.model.logistic.LogisticAccount" />
-		<mapping class="bar.model.logistic.Logistic" />
-		<mapping class="bar.model.logistic.Activity" />
-		<mapping class="bar.model.logistic.Bar" />
-		<mapping class="bar.model.MessageBoard" />
-		<mapping class="bar.model.SubMessageBoard" />
+		<mapping class="bar.model.ProductData"/>
+		<mapping class="bar.model.MyFavorite"/>
+		<mapping class="bar.model.MyFavoriteBars"/>
+		<mapping class="bar.model.MyBar"/>
+		<mapping class="bar.model.EventsAndNews"/>
+		<mapping class="bar.model.Users"/>
+		<mapping class="bar.model.Company"/>
+		<mapping class="bar.model.Orders"/>
+		<mapping class="bar.model.Cart"/>
+		<mapping class="bar.model.logistic.LogisticAccount"/>
+		<mapping class="bar.model.logistic.Logistic"/>
+		<mapping class="bar.model.logistic.Activity"/>
+		<mapping class="bar.model.logistic.Bar"/>
+		<mapping class="bar.model.MessageBoard"/>
+		<mapping class="bar.model.SubMessageBoard"/>
 		<!-- <mapping class="bar.model.ProductDataDAO"/> -->
 		<!-- <mapping class="bar.model.ProductDataService"/> -->
 	</session-factory>

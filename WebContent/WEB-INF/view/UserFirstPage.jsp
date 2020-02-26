@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>User Page</title>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+	content="width=device-width, initial-scale=1, user-scalable=no"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -19,9 +19,9 @@
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript>
-	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>
 </noscript>
 <link rel="stylesheet" href="/Bartenders/CSS/forTabs.css">
 
@@ -163,7 +163,7 @@ main {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -179,7 +179,7 @@ main {
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a
+								<li class="small"><a href="UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -194,7 +194,7 @@ main {
 					<main>
 						<div class="content">
 							<h2 align="center">
-								<img src="img/Logo.png" style="width: 160px; margin: 40px" /> <br>
+								<img src="img/Logo.png" style="width: 160px; margin: 40px"/> <br>
 							</h2>
 							<h2 class="ml9" align="center">
 								<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，今天想喝甚麼呢?</span>
@@ -211,10 +211,10 @@ main {
 									<div id="tab1">
 										<form action="/Bartenders/search.Bar" method="GET">
 											<ul class="actions">
-												<li><input type="text" size="45" name="KWord" id="sBar" /></li>
+												<li><input type="text" size="45" name="KWord" id="sBar"/></li>
 												<li>&nbsp;&nbsp;</li>
 												<li><input id="css_button1" type="submit"
-													value="Search" /></li>
+													value="Search"/></li>
 											</ul>
 										</form>
 									</div>
@@ -222,10 +222,10 @@ main {
 										<form action="/Bartenders/search.Product" method="GET">
 											<ul class="actions">
 												<li><input type="text" size="45" name="keyword"
-													id="sAlc" /></li>
+													id="sAlc"/></li>
 												<li>&nbsp;&nbsp;</li>
 												<li><input id="css_button2" type="submit"
-													value="Search" /></li>
+													value="Search"/></li>
 											</ul>
 										</form>
 									</div>

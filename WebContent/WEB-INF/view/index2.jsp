@@ -14,7 +14,7 @@
 
 <title>Bartenders' place</title>
 
-<link rel="shortcut icon" href="#" />
+<link rel="shortcut icon" href="#"/>
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="css/index.css">
 
 <!-- ----------------------------------------------↓網頁title icon複製這句link -->
-    <link rel="icon" href="img/smallLogo.ico" type="image/x-icon" / >
+    <link rel="icon" href="img/smallLogo.ico" type="image/x-icon"/ >
 <!-- ----------------------------------------------↑網頁title icon複製這句link -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,7 +67,7 @@
           <div class="p-2"></div>
         <!-- ----------------------------------------------一般會員 -->
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">        
-            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
@@ -135,7 +135,7 @@
           </div>
         <!-- ----------------------------------------------酒吧專區 -->
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
@@ -341,7 +341,7 @@
           <div class="p-2"></div>
         <!-- ----------------------------------------------一般會員 -->
           <div class="tab-pane fade show active" id="nav-home2" role="tabpanel" aria-labelledby="nav-home-tab">        
-            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
@@ -409,7 +409,7 @@
           </div>
         <!-- ----------------------------------------------酒吧專區 -->
           <div class="tab-pane fade" id="nav-profile2" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+            <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">

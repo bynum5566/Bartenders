@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style>
@@ -93,7 +93,7 @@ if(url.indexOf('?')!=-1)
 	</h3>
 <h3>物流大廳</h3>
 
-<form action="<c:url value="/logistic/LogisticGate" />" method="get">
+<form action="<c:url value="/logistic/LogisticGate"/>" method="get">
 	<table>
 		<tr>
 			<td><input type="submit" value="查看訂單"></td>
@@ -101,7 +101,7 @@ if(url.indexOf('?')!=-1)
 	</table>
 </form>
 
-<form action="<c:url value="/logistic/LogisticLogout.do" />" method="post">
+<form action="<c:url value="/logistic/LogisticLogout.do"/>" method="post">
 	<table>
 		<tr>
 			<td><input type="submit" value="登出"></td>

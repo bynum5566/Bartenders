@@ -176,13 +176,26 @@
 	  color: #FFFFFF;
 	}
 	
+	.social{
+		width: 40px;
+		height: 40px;
+	}
+	
+	.B1 {
+			display:  flex;
+			align-items: center;
+			justify-content: left;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: left;
+		}
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -203,7 +216,7 @@
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -271,9 +284,10 @@
 											</div>
 											<div class="col-6 col-12-medium">
 												<ul>
-													<li><img src="/Bartenders/images/iconfinder_facebook_986944.png"><h3>${myBarX.barFb}</h3></li>
-													<li><img src="/Bartenders/images/iconfinder_line_986949.png"><h3>${myBarX.barLine}</h3></li>
-													<li><img src="/Bartenders/images/iconfinder_Instagram_381384.png"><h3>${myBarX.barIg}</h3></li>
+													<li><h3>社群網站</h3></li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png">&nbsp;${myBarX.barFb}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png">&nbsp;${myBarX.barLine}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png">&nbsp;${myBarX.barIg}</li>
 												</ul>
 											</div>
 										</div>
@@ -304,7 +318,7 @@
 																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
 																				<input type='hidden' name='barAccount' value='${barAccount}'>
 																				<input type='button' style="font-size:12px" value='加入購物車'>
-																			<div>
+																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div>
@@ -325,7 +339,14 @@
 																	簡介：<br>
 																	${listOfProduct[current.index].pdDetail}
 																</p><br>
-																<a href="<c:url value="/Product.show"/>?PdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																<c:choose>
+																	<c:when test="${listOfProduct[current.index].validDate == null}">
+																		<a href="<c:url value="/Product.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:when>
+																	<c:otherwise>
+																		<a href="<c:url value="/ProductTicket.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:otherwise>
+																</c:choose>															
 															</div>
 														</div>
 													</td>
@@ -345,11 +366,6 @@
 		</article>
 	</div>
 
-	<script>
-		$(".flip").click(function () {
-			$(this).closest("div").siblings().slideToggle("slow");
-		});
-	</script>
 	<script src="/Bartenders/JS/forBarPage.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

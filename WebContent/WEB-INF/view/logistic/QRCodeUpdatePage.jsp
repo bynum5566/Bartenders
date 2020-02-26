@@ -6,9 +6,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>CodeUpdate</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 	<style>
@@ -137,7 +137,7 @@
 								</table>
 							</fieldset>
 						</div>
-						<form action="<c:url value=" /logistic/loginSuccess" />" method="get">
+						<form action="<c:url value="/logistic/loginSuccess"/>" method="get">
 						<table>
 							<tr>
 								<td><input type="submit" value="確定"></td>

@@ -12,10 +12,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+	content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript>
-	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>
 </noscript>
 <style>
 .small {
@@ -65,15 +65,14 @@ p {
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1>
-				<a href="index.jsp">Bartenders</a>
-			</h1>
-			<nav id="nav">
-				<ul>
-					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
-							<ul>
-								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
@@ -87,7 +86,7 @@ p {
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a
+								<li class="small"><a href="WelcomeCompany">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>

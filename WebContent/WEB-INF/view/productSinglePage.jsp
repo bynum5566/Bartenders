@@ -7,13 +7,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forSlideShow.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css"> -->
 	<title>Bartender- Preview ${productName}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<style>
 		.small {
@@ -38,7 +38,7 @@
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -53,7 +53,7 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -77,27 +77,27 @@
 												<input type="radio" name="radio-btn" id="img-1" checked />
 												<li class="slide-container">
 													<div class="slide">
-														<img src="<c:out value="${pic1}"/>" />
+														<img src="<c:out value="${pic1}"/>"/>
 													</div>
 													<div class="nav">
 														<label for="img-3" class="prev">&#x2039;</label>
 														<label for="img-2" class="next">&#x203a;</label>
 													</div>
 												</li>
-												<input type="radio" name="radio-btn" id="img-2" />
+												<input type="radio" name="radio-btn" id="img-2"/>
 												<li class="slide-container">
 													<div class="slide">
-														<img src="<c:out value="${pic2}"/>" />
+														<img src="<c:out value="${pic2}"/>"/>
 													</div>
 													<div class="nav">
 														<label for="img-1" class="prev">&#x2039;</label>
 														<label for="img-3" class="next">&#x203a;</label>
 													</div>
 												</li>
-												<input type="radio" name="radio-btn" id="img-3" />
+												<input type="radio" name="radio-btn" id="img-3"/>
 												<li class="slide-container">
 													<div class="slide">
-														<img src="<c:out value="${pic3}"/>" />
+														<img src="<c:out value="${pic3}"/>"/>
 													</div>
 													<div class="nav">
 														<label for="img-2" class="prev">&#x2039;</label>

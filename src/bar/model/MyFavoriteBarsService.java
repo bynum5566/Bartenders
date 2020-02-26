@@ -93,7 +93,11 @@ public class MyFavoriteBarsService {
 		mfb.setUserId(userId);
 		mfbD.addToFavBar(mfb);
 		}else {
-			disLreLB(userId, companyId);
+			String Like = myFvb.getDisliked();
+			if(Like.equals("L")) {
+			}else {
+				disLreLB(userId, companyId);
+			}
 		}
 	}
 	public void disLreLB(int userId, int companyId) {

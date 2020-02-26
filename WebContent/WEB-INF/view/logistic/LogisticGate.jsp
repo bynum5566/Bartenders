@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>LogisticGate</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
 		a {
@@ -111,7 +111,7 @@
 							</tr>
 						</table>
 						<div align="center">
-							<form action="<c:url value=" /logistic/LogisticLogout.do" />" method="post">
+							<form action="<c:url value="/logistic/LogisticLogout.do"/>" method="post">
 							<table>
 								<tr>
 									<td><input type="submit" value="登出"></td>

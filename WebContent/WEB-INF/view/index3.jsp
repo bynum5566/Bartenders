@@ -15,7 +15,7 @@
 
 <title>Bartenders' place</title>
 
-<link rel="shortcut icon" href="#" />
+<link rel="shortcut icon" href="#"/>
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -52,7 +52,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+        <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
           <div class="form-group row">
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
             <div class="col-10 input_bgg">
@@ -239,7 +239,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<c:url value="/UcheckLogin.controller" />" method="post">
+        <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
           <div class="form-group row">
             <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
             <div class="col-10 input_bgg">

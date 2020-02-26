@@ -33,7 +33,7 @@
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="index.jsp">Bartenders</a></h1>
+			<h1><a href="/Bartenders/login">Bartenders</a></h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">
