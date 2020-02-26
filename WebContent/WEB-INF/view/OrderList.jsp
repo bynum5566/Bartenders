@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Order List</title>
+	<title>訂單管理</title>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
@@ -111,10 +111,35 @@ padding-right: 5px;
 	.small a+a {
 		margin-left: 15px;
 	}
-	
-	.row{
-	margin-left: 8%;
-	}
+	.wrapper {
+    padding: 4em 0 4em 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.225em;
+    text-transform: uppercase;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+h2 {
+    font-size: 1.35em;
+    font-size: 1.75em;
+    line-height: 1.75em;
+}
+table th {
+    color: #fff;
+    font-weight: 600;
+    padding: 0 0em 0.75em 1.7em;
+    text-align: left;
+    font-size: 18px;
+}
+
 </style>
 </head>
 
@@ -152,12 +177,12 @@ padding-right: 5px;
 		
 		<article id="main">
 			<section class="wrapper style5">
-<!-- 				<div class="inner"> -->
+ 				<div class="inner"> 
 					<section>
-						<div class="row">
-							<div class="col-12 col-12-medium">
-<!-- 						<div class="mydiv"> -->
-<!-- 							<div align="center"> -->
+<!--  						<div class="row">
+							<div class="col-12 col-12-medium">-->
+						<div class="mydiv"> 
+							<div align="center"> 
 
 								<form action="<c:url value="/OrderList.controller"/>" method="post">
 								<h2>訂單明細</h2>
@@ -179,7 +204,7 @@ padding-right: 5px;
 											<td align="center" height="90" width="130">
 												<img height="90" width="130" id="pdPicture" src="<c:out value="${productData[current.index].productImageUrl}"/>">
 											</td>
-											<td align="center">${productData[current.index].productName}</td>
+											<td align="center" style="line-height:50px">${productData[current.index].productName}</td>
 											<td align="center">$${oneOrderCarts[current.index].checkoutPrice}</td>
 											<td align="center">${oneOrderCarts[current.index].quantity}</td>
 											<td align="center">$${productsPrice[current.index]}</td>
@@ -219,7 +244,7 @@ padding-right: 5px;
 						</div>
 
 					</section>
-<!-- 				</div> -->
+ 				</div> 
 			</section>
 		</article>
 	</div>

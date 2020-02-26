@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<title>Orders</title>
+<title>訂單管理</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <meta name="viewport"
@@ -35,7 +35,7 @@
 }
 
 .row {
-	margin-left: 0.05%;
+	margin-left: 2%;
 	margin-right: 1%;
 }
 
@@ -53,7 +53,12 @@ div.panel {
 	display: none;
 	max-width: 1400px;
 }
-
+.wrapper {
+    padding: 3em 0 2em 0;
+}
+p {
+    margin: 0 0 0 0;
+}
 </style>
 </head>
 
@@ -128,7 +133,7 @@ div.panel {
 										value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
 									</td>
 									<td align="center" nowrap="nowrap">${user[current.index].account}</td>
-								<td align="center" nowrap="nowrap"><div class="flip">${productData[current.index][0].productName}...</div>
+								<td align="center" nowrap="nowrap"><div class="flip" style="cursor: pointer;">${productData[current.index][0].productName}...</div>
 									<div class="panel">
 									<c:forEach items="${productData[current.index]}" var="list" step="1"
 								varStatus="current1">
