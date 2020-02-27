@@ -6,6 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <title>註冊酒吧帳戶</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -140,6 +141,27 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script type="text/javascript">
+		window.onbeforeunload = function() {
+			signOut()
+		}
+		
+		function signOut() {
+	    gapi.auth2.init().then( () => {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	           });
+	    })
+	    document.location.href="http://localhost:8080/Bartenders/logout";
+	  }
+	  
+	  function onLoad() {
+	      gapi.load('auth2', function() {
+	        gapi.auth2.init();
+	      });
+	   }
+	</script>
 	</body>
 
 </html>

@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>聊天室</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -159,7 +160,8 @@
 						<div class="col-6 col-12-medium">
 
 <!-- 		<div class="mydiv"> -->
-							<h2>哈囉，${userName} 歡迎來到聊天室</h2>
+							<h2>哈囉，${userName}<br/>
+								 歡迎來到聊天室</h2>
 							<br />
 				
 							<div class="onlineBox">
