@@ -105,6 +105,11 @@ input, select, textarea {
 	appearance: none;
 }
 
+.highlight{
+	color: #A5DEE4;
+	text-shadow: 2px 3px 0px #0F2540;
+}
+
 /* Basic */
 
 	@-ms-viewport {
