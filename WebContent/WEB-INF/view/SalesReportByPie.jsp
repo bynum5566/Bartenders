@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>營業額圓餅圖</title>
+<title>營業額圓餅圖 / Bartenders</title>
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <script

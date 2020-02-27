@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -6,80 +7,89 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>我的訂單</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	
-	<style>
-	.small {
-		display: flex;
-		align-self: center;
-	}
-	
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-	
-	.small a+a {
-		margin-left: 15px;
-	}
-	
-	.row {
-		margin-left: 8%;
-	}
-	
-	div.panel, td.flip {
-		margin: 0px;
-		padding: 5px;
-		text-align: center;
-		background: gray;
-		border: solid 1px #c3c3c3;
-		max-width: 1400px;
-	}
-	
-	td.flip h3 {
-		cursor: pointer;
-	}
-	
-	div.panel {
-		height: auto;
-		display: none;
-		max-width: 1400px;
-	}
-	
-	.wrapper {
-		padding: 3em 0 2em 0;
-	}
-	
-	p {
-		margin: 0 0 0 0;
-	}
-	
-	table th {
-	    color: #fff;
-	    font-size: 1.08em;
-	    font-weight: 600;
-	    padding: 0 0.75em 0.75em 0.75em;
-	    text-align: left;
-	}
+<meta charset="UTF-8">
+<title>我的訂單 / Bartenders</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<meta name="google-signin-client_id"
+	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+<noscript>
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+</noscript>
 
-	.wrapper.style5 td.highlight {
-		color: #A5DEE4;
-		text-shadow: 1px 2px 0px #0F2540;
-		cursor: pointer;
-	}
+<style>
+.small {
+	display: flex;
+	align-self: center;
+}
 
-	.wrapper.style5 td.highlight:hover {
-		color: #DAC9A6;
-		text-shadow: 1px 2px 0px #8E354A
-	}
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
+}
+
+.small a+a {
+	margin-left: 15px;
+}
+
+.row {
+	margin-left: 6%;
+}
+
+div.panel, td.flip {
+	margin: 0px;
+	padding: 5px;
+	text-align: center;
+	background: gray;
+	border: solid 1px #c3c3c3;
+	max-width: 1400px;
+}
+
+td.flip h3 {
+	cursor: pointer;
+}
+
+div.panel {
+	height: auto;
+	display: none;
+	max-width: 1400px;
+}
+
+.wrapper {
+	padding: 3em 0 2em 0;
+}
+
+p {
+	margin: 0 0 0 0;
+}
+
+table th {
+	color: #fff;
+	font-size: 1.09em;
+	font-weight: 600;
+	padding: 0 0.75em 0.75em 0.75em;
+	text-align: left;
+}
+
+table td {
+	font-size: 18px;
+}
+
+.wrapper.style5 td.highlight {
+	color: #A5DEE4;
+	text-shadow: 1px 2px 0px #0F2540;
+	cursor: pointer;
+}
+
+.wrapper.style5 td.highlight:hover {
+	color: #DAC9A6;
+	text-shadow: 1px 2px 0px #8E354A
+}
 </style>
 </head>
 
@@ -96,13 +106,15 @@
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a
+									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="UserFirstPage">首頁</a><a
+									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -136,22 +148,28 @@
 									</thead>
 									<tbody>
 										<tr align="center">
-											<c:forEach items="${Corders}" var="list" step="1" varStatus="current">
+											<c:forEach items="${Corders}" var="list" step="1"
+												varStatus="current">
 												<tr>
 													<td class="highlight" align="center" nowrap="nowrap">
-														<a href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}" value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
+														<a
+														href="<c:url value="/OrderListUser.controller"/>?orderId=${Corders[current.index].orderId}"
+														value="${Corders[current.index].orderId}">${Corders[current.index].orderId.substring(3,6)}${Corders[current.index].orderId.substring(12,19)}</a>
 													</td>
 													<td align="center" nowrap="nowrap">${company[current.index].companyName}</td>
 													<td class="highlight" align="center" nowrap="nowrap">
 														<div class="flip" style="cursor: pointer;">${productData[current.index][0].productName}...</div>
 														<div class="panel">
-															<c:forEach items="${productData[current.index]}" var="list" step="1" varStatus="current1">
+															<c:forEach items="${productData[current.index]}"
+																var="list" step="1" varStatus="current1">
 																<p>${productData[current.index][current1.index].productName}</p>
 															</c:forEach>
-														</div></td>
+														</div>
+													</td>
 													<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
 													<c:choose>
-														<c:when test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+														<c:when
+															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
 														</c:when>
 														<c:otherwise>
@@ -160,14 +178,17 @@
 														</c:otherwise>
 													</c:choose>
 													<c:choose>
-														<c:when test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+														<c:when
+															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 															<td class="highlight" align="center" nowrap="nowrap">
 																<a href="${attrAddress[current.index]}">QRcode載點</a>
 															</td>
 														</c:when>
 														<c:otherwise>
 															<td class="highlight" align="center" nowrap="nowrap">
-																<a href="<c:url value="/orderShippingDetailUser.controller"/>?orderId=${Corders[current.index].orderId}" value="${Corders[current.index].orderId}">配送詳情</a>
+																<a
+																href="<c:url value="/orderShippingDetailUser.controller"/>?orderId=${Corders[current.index].orderId}"
+																value="${Corders[current.index].orderId}">配送詳情</a>
 															</td>
 														</c:otherwise>
 													</c:choose>
@@ -177,7 +198,8 @@
 														<c:when
 															test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
 															<td class="highlight" align="center" nowrap="nowrap">
-																<a href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">去付款</a>
+																<a
+																href="<c:url value="/doLPay"/>?orderId=${Corders[current.index].orderId}">去付款</a>
 															</td>
 														</c:when>
 														<c:otherwise>
@@ -185,29 +207,36 @@
 														</c:otherwise>
 													</c:choose>
 													<c:choose>
-														<c:when test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
+														<c:when
+															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 															<td nowrap="nowrap"><font color=gray>修改</font></td>
 														</c:when>
-														<c:when test="${statusNumToStr[Corders[current.index].status]=='配送中'}">
+														<c:when
+															test="${statusNumToStr[Corders[current.index].status]=='配送中'}">
 															<td nowrap="nowrap"><font color=gray>修改</font></td>
 														</c:when>
-														<c:when test="${statusNumToStr[Corders[current.index].status]=='已到貨'}">
+														<c:when
+															test="${statusNumToStr[Corders[current.index].status]=='已到貨'}">
 															<td nowrap="nowrap"><font color=gray>修改</font></td>
 														</c:when>
-														<c:when test="${statusNumToStr[Corders[current.index].status]=='已取消'}">
+														<c:when
+															test="${statusNumToStr[Corders[current.index].status]=='已取消'}">
 															<td nowrap="nowrap"><font color=gray>修改</font></td>
 														</c:when>
 														<c:otherwise>
 															<td class="highlight" align="center" nowrap="nowrap">
-																<a href="<c:url value="/ShowChangeOrderUser.controller"/>?orderId=${Corders[current.index].orderId}" value="${Corders[current.index].orderId}">修改</a>
+																<a
+																href="<c:url value="/ShowChangeOrderUser.controller"/>?orderId=${Corders[current.index].orderId}"
+																value="${Corders[current.index].orderId}">修改</a>
 															</td>
 														</c:otherwise>
 													</c:choose>
 													<c:choose>
-														<c:when test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
-															<td class="highlight" nowrap="nowrap">
-																<a href="<c:url value="/CancelOrderUser.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}" value="${Corders[current.index].orderId}">取消</a>
-															</td>
+														<c:when
+															test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
+															<td class="highlight" nowrap="nowrap"><a
+																href="<c:url value="/CancelOrderUser.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
+																value="${Corders[current.index].orderId}">取消</a></td>
 														</c:when>
 														<c:otherwise>
 															<td nowrap="nowrap"><font color=gray>取消</font></td>
@@ -225,7 +254,7 @@
 			</section>
 		</article>
 	</div>
-	
+
 	<script type="text/javascript">
 		$(".flip").click(function() {
 	<%--$(".panel").slideToggle("slow");--%>
@@ -240,6 +269,7 @@
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
+		async defer></script>
 </body>
 </html>
