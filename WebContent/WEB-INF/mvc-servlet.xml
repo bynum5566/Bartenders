@@ -11,13 +11,13 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="bar.model"/>
+	<context:component-scan base-package="bar.model" />
 	<context:component-scan
-		base-package="bar.controller"/>
+		base-package="bar.controller" />
 	<context:component-scan
-		base-package="bar.model.logistic"/>
+		base-package="bar.model.logistic" />
 	<context:component-scan
-		base-package="bar.controller.logistic"/>
+		base-package="bar.controller.logistic" />
 	<mvc:annotation-driven />
 
 	<mvc:resources location="/WEB-INF/view/js/"
@@ -28,13 +28,14 @@
 		mapping="css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/css/"
 		mapping="assets/css/**"></mvc:resources>
-	<mvc:resources location="/WEB-INF/view/assets/css/images/"
+	<mvc:resources
+		location="/WEB-INF/view/assets/css/images/"
 		mapping="assets/css/images/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/js/"
 		mapping="assets/js/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/sass/"
 		mapping="assets/sass/**"></mvc:resources>
-		<mvc:resources location="/WEB-INF/view/assets/sass/libs/"
+	<mvc:resources location="/WEB-INF/view/assets/sass/libs/"
 		mapping="assets/sass/libs/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/webfonts/"
 		mapping="assets/webfonts/**"></mvc:resources>
@@ -48,7 +49,7 @@
 		mapping="/scripts/**"></mvc:resources>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
 	<!-- <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> 
@@ -79,62 +80,70 @@
 
 
 
-			<mvc:mapping path="/**"/>
+			<mvc:mapping path="/**" />
 
-			<mvc:exclude-mapping path="/images/**"/>
-			<mvc:exclude-mapping path="/js/**"/>
-			<mvc:exclude-mapping path="/css/**"/>
-			<mvc:exclude-mapping path="/img/**"/>
-			
-			<mvc:exclude-mapping path="/CSS/**"/>
-			<mvc:exclude-mapping path="/JS/**"/>
-			<mvc:exclude-mapping path="/assets/**/**"/>
-			<mvc:exclude-mapping path="/assets/css/**"/>
-			<mvc:exclude-mapping path="/assets/js/**"/>
-			<mvc:exclude-mapping path="/assets/sass/**"/>
-			<mvc:exclude-mapping path="/assets/webfonts/**"/>
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/img/**" />
 
-			<mvc:exclude-mapping path="/login"/>
-			<mvc:exclude-mapping path="/Register"/>
-			<mvc:exclude-mapping path="/CRegister"/>
-			<mvc:exclude-mapping path="/CLogin"/>
+			<mvc:exclude-mapping path="/CSS/**" />
+			<mvc:exclude-mapping path="/JS/**" />
+			<mvc:exclude-mapping path="/assets/**/**" />
+			<mvc:exclude-mapping path="/assets/css/**" />
+			<mvc:exclude-mapping path="/assets/js/**" />
+			<mvc:exclude-mapping path="/assets/sass/**" />
+			<mvc:exclude-mapping path="/assets/webfonts/**" />
+
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/Register" />
+			<mvc:exclude-mapping path="/CRegister" />
+			<mvc:exclude-mapping path="/CLogin" />
 			<mvc:exclude-mapping
-				path="/UcheckLogin.controller"/>
-			<mvc:exclude-mapping path="/register.do"/>
-			<mvc:exclude-mapping path="/Cregister.do"/>
+				path="/UcheckLogin.controller" />
+			<mvc:exclude-mapping path="/register.do" />
+			<mvc:exclude-mapping path="/Cregister.do" />
 			<mvc:exclude-mapping
-				path="/CcheckLogin.controller"/>
+				path="/CcheckLogin.controller" />
 
 
-			<mvc:exclude-mapping path="/googleVerify"/>
-			<mvc:exclude-mapping path="/checkGLogin"/>
-			<mvc:exclude-mapping path="/checkCGLogin"/>
-			<mvc:exclude-mapping path="/Gregister.do"/>
-			<mvc:exclude-mapping path="/GCregister.do"/>
+			<mvc:exclude-mapping path="/googleVerify" />
+			<mvc:exclude-mapping path="/checkGLogin" />
+			<mvc:exclude-mapping path="/checkCGLogin" />
+			<mvc:exclude-mapping path="/Gregister.do" />
+			<mvc:exclude-mapping path="/GCregister.do" />
 
 
-			<mvc:exclude-mapping path="/VerifyPage"/>
-			<mvc:exclude-mapping path="/verify"/>
-			<mvc:exclude-mapping path="/verifyCompany"/>
-			<mvc:exclude-mapping path="/ResetPassword"/>
+			<mvc:exclude-mapping path="/VerifyPage" />
+			<mvc:exclude-mapping path="/verify" />
+			<mvc:exclude-mapping path="/verifyCompany" />
+			<mvc:exclude-mapping path="/ResetPassword" />
 			<mvc:exclude-mapping
-				path="/resetPassword.controller"/>
-			<mvc:exclude-mapping path="/ResetCompanyPassword"/>
+				path="/resetPassword.controller" />
+			<mvc:exclude-mapping path="/ResetCompanyPassword" />
 			<mvc:exclude-mapping
-				path="/resetCompanyPassword.controller"/>	
+				path="/resetCompanyPassword.controller" />
 			<mvc:exclude-mapping
-				path="/messageBoardShow.controller"/>	
-				<mvc:exclude-mapping
-				path="/submessageBoardShow.controller"/>	
+				path="/messageBoardShow.controller" />
+			<mvc:exclude-mapping
+				path="/submessageBoardShow.controller" />
+			<mvc:exclude-mapping path="/MessageBoardListMode" />
+
+			<mvc:exclude-mapping
+				path="/messageBoardShowList.controller" />
+
+			<mvc:exclude-mapping path="/JavaMailPage" />
+
+			<mvc:exclude-mapping path="/VerifyMailPage" />
 
 
-			<mvc:exclude-mapping path="/logistic"/>
+			<mvc:exclude-mapping path="/logistic" />
 			<mvc:exclude-mapping
-				path="/logistic/LogisticLogin.do"/>
+				path="/logistic/LogisticLogin.do" />
 			<mvc:exclude-mapping
-				path="/logistic/LogisticLogout.do"/>
-				
-				
+				path="/logistic/LogisticLogout.do" />
+
+
 
 			<!-- 靜態資源 -->
 			<!-- <mvc:exclude-mapping path="/img/**"/> -->

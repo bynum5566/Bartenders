@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>訂單管理</title>
+	<title>訂單管理 / Bartenders</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
@@ -63,11 +63,15 @@
 	
 	table th {
 	    color: #fff;
-	    font-size: 1.08em;
+	    font-size: 1.09em;
 	    font-weight: 600;
 	    padding: 0 0.75em 0.75em 0.75em;
 	    text-align: left;
 	}
+	
+	table td {
+    font-size: 18px;
+}
 	
 	.wrapper.style5 td.highlight {
 		color: #A5DEE4;

@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>訂單管理</title>
+	<title>訂單管理 / Bartenders</title>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
@@ -140,6 +140,9 @@ table th {
     font-size: 18px;
 }
 
+table td {
+    padding: 0.5em 0.5em;
+}
 </style>
 </head>
 

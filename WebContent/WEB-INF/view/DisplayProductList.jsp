@@ -210,6 +210,7 @@
 							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               			</ul>
               			</div>
