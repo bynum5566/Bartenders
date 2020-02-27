@@ -12,7 +12,6 @@
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/dashboardView.css"> -->
 	<title>DashBoard</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
@@ -36,12 +35,15 @@
 		margin-left: 15px;
 	}
 	
-	.bT3{
+	.wrapper.style5 h4.bT3 {
 		cursor: pointer;
+		color: #A5DEE4;
+		text-shadow: 1px 2px 0px #0F2540;
 	}
 	
-	h4.bT3:hover{
-		color: #ECECED;
+	.wrapper.style5 h4.bT3:hover {
+		color: #DAC9A6;
+		text-shadow: 1px 2px 0px #8E354A; 
 	}
 	
 	.Tl{

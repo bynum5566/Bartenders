@@ -12,17 +12,14 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
-<noscript>
-	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>
-</noscript>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 <style type="text/css">
 body {
-	margin: 0;
-	padding: 0;
+/* 	margin: 0; */
+/* 	padding: 0; */
 	/* 		background-image: url(/Bartenders/images/bg12.jpg); */
 	/* 		background-repeat: no-repeat; */
 	/* 		background-attachment: fixed; */
@@ -70,12 +67,12 @@ body {
 	margin-left: 15px;
 }
 
-h1 {
+.title {
 	font-size: 30px;
 	margin: 0 0 0 0;
 }
 .wrapper {
-    padding: 4em 0 4em 0;
+    padding: 3em 0 1em 0;
 }
 </style>
 </head>
@@ -118,7 +115,7 @@ h1 {
 						<div class="row">
 							<div class="col-6 col-12-medium">
 								<div class="outwrap">
-									<h1 style="color: white">銷售量直條圖</h1>
+									<h1 class="title">銷售量直條圖</h1>
 									<br>
 									<canvas id="myChart"></canvas>
 								</div>
@@ -205,8 +202,7 @@ h1 {
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
-		async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 
 </html>
