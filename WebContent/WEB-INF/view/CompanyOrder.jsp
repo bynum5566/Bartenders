@@ -35,7 +35,7 @@
 }
 
 .row {
-	margin-left: 2%;
+	margin-left: 8%;
 }
 
 div.panel, td.flip {
@@ -63,6 +63,14 @@ div.panel {
 
 p {
 	margin: 0 0 0 0;
+}
+
+table th {
+    color: #fff;
+    font-size: 1.08em;
+    font-weight: 600;
+    padding: 0 0.75em 0.75em 0.75em;
+    text-align: left;
 }
 </style>
 </head>
@@ -117,7 +125,7 @@ p {
 											<th nowrap="nowrap">金額</th>
 											<!-- <th nowrap="nowrap">收件人</th> -->
 											<th nowrap="nowrap">配送方式</th>
-											<th nowrap="nowrap">配送詳情/QRcode載點</th>
+											<th nowrap="nowrap">配送詳情/QRcode</th>
 											<!-- <th nowrap="nowrap">配送電話</th> -->
 											<th nowrap="nowrap">訂單狀態</th>
 											<th nowrap="nowrap">購買時間</th>
