@@ -30,13 +30,13 @@
 <body>
 <h1>&nbsp;</h1>
 <h1>&nbsp;</h1>
-		<div>
+		<div >
 			<div style="color: WhiteSmoke;">
-				["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+				[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 			</div>
 		</div>
 
-		<div id="contents" style="color: WhiteSmoke; ">
+		<div id="contents" style="color: WhiteSmoke; margin: 20px;">
 			<h3 align="center">列表模式</h3>
 			<form action="xxx" method="post">
 				<table width="1000" height="80" >
