@@ -35,13 +35,17 @@
 	.small a+a {
 		margin-left: 15px;
 	}
-	 
-	.bT3{
+	
+	.wrapper.style5 h4.bT3 {
+/* 		color: #ECECED; */
 		cursor: pointer;
+		color: #A5DEE4;
+		text-shadow: 1px 2px 0px #0F2540;
 	}
 	
-	h4.bT3:hover{
-		color: #ECECED;
+	.wrapper.style5 h4.bT3:hover {
+		color: #DAC9A6;
+		text-shadow: 1px 2px 0px #8E354A;
 	}
 	
 	.Tl{

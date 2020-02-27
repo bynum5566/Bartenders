@@ -30,8 +30,15 @@
 		margin-left: 15px;
 	}
 	
-	h3.nameLink{
+	.wrapper.style5 h3.nameLink {
 		cursor: pointer;
+		color: #A5DEE4;
+		text-shadow: 1px 2px 0px #0F2540;
+	}
+	
+	.wrapper.style5 h3.nameLink:hover {
+		color: #DAC9A6;
+		text-shadow: 1px 2px 0px #8E354A;
 	}
 </style>
 </head>
