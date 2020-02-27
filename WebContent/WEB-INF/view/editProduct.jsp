@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<title>編輯商品/Bartenders</title>
+	<title>編輯商品 / Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>

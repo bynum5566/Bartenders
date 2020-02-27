@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<title>新增最新消息/Bartenders</title>
+	<title>新增最新消息 / Bartenders</title>
 	<style>
 		.small {
 			display: flex;

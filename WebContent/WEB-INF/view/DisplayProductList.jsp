@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>酒吧/Bartenders</title>
+	<title>酒吧 / Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>

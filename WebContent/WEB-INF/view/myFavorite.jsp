@@ -15,34 +15,34 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
 
-<style>
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
 	
-	.wrapper.style5 h3.nameLink {
-		cursor: pointer;
-		color: #A5DEE4;
-		text-shadow: 1px 2px 0px #0F2540;
-	}
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
 	
-	.wrapper.style5 h3.nameLink:hover {
-		color: #DAC9A6;
-		text-shadow: 1px 2px 0px #8E354A;
-	}
-</style>
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.wrapper.style5 h3.nameLink {
+			cursor: pointer;
+			color: #A5DEE4;
+			text-shadow: 1px 2px 0px #0F2540;
+		}
+		
+		.wrapper.style5 h3.nameLink:hover {
+			color: #DAC9A6;
+			text-shadow: 1px 2px 0px #8E354A;
+		}
+	</style>
 </head>
 
 <body class="is-preload">

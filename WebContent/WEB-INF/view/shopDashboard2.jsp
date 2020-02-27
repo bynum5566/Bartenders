@@ -13,7 +13,7 @@
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<title>票券管理/Bartenders</title>
+	<title>票券管理 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -119,8 +119,6 @@
 									<div id="content">
 										<div id="tab1" class="outwrapper">
 											<ul class="alt">
-<!-- 												<li class="Tl"> -->
-<!-- 												</li> -->
 												<li>
 													<div class="Tl"><h2>上架中票券</h2></div>
 													<table class="pd0">${Launched}</table>
@@ -129,8 +127,6 @@
 										</div>
 										<div id="tab2" class="outwrapper">
 											<ul class="alt">
-<!-- 												<li class="Tl"> -->
-<!-- 												</li> -->
 												<li>
 													<div class="Tl"><h2>下架中票券</h2></div>
 													<table class="pd0">${Pulled}</table>
@@ -170,7 +166,7 @@
 	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
-<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	</body>
 
