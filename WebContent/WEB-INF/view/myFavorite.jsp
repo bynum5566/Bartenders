@@ -1,46 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>DashBoard</title>
+	<title>我的最愛/Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
 
-<style>
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
 	
-	.wrapper.style5 h3.nameLink {
-		cursor: pointer;
-		color: #A5DEE4;
-		text-shadow: 1px 2px 0px #0F2540;
-	}
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
 	
-	.wrapper.style5 h3.nameLink:hover {
-		color: #DAC9A6;
-		text-shadow: 1px 2px 0px #8E354A;
-	}
-</style>
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.wrapper.style5 h3.nameLink {
+			cursor: pointer;
+			color: #A5DEE4;
+			text-shadow: 1px 2px 0px #0F2540;
+		}
+		
+		.wrapper.style5 h3.nameLink:hover {
+			color: #DAC9A6;
+			text-shadow: 1px 2px 0px #8E354A;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -61,6 +63,7 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>

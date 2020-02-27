@@ -65,6 +65,23 @@ public class ShowPages {
 		return "SubMessageBoard";
 	}
 
+@RequestMapping(path = "/MessageBoardListMode", method = RequestMethod.GET)
+public String showMessageBoardListMode() {
+
+	return "MessageBoardListMode";
+}
+
+@RequestMapping(path = "/JavaMailPage", method = RequestMethod.GET)
+public String showJavaMailPage() {	
+	return "JavaMailPage";
+}
+
+@RequestMapping(path = "/VerifyMailPage", method = RequestMethod.GET)
+public String showVerifyMailPage() {	
+	return "VerifyMailPage";
+}
+
+
 ////////////////////////	
 
 	@RequestMapping(path = "/productViewPage", method = RequestMethod.GET)
