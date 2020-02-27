@@ -38,7 +38,7 @@ public class MyFavoriteService {
 					+"<tr class=\"pdRow\"><td>"
 //					+ "<button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/Product.show?PdId="
 //					+prod.getPdId()
-//					+"';\" class=\"bT\" /></td><td class=\"MidS1\">"
+//					+"';\" class=\"bT\"/></td><td class=\"MidS1\">"
 					+"<div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/Product.show?PdId="+prod.getPdId()
 					+ "';\">" + prod.getProductName() + "</h3>"
 					+"</div></td><td class=\"RSide\">"

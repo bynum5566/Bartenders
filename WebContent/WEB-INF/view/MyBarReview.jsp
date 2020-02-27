@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +9,6 @@
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
@@ -29,7 +29,6 @@
 		}
 
 		div.panel {
-/* 			height: 300px; */
 			height: auto;
 			width: 300px;
 			display: none;
@@ -177,13 +176,26 @@
 	  color: #FFFFFF;
 	}
 	
+	.social{
+		width: 40px;
+		height: 40px;
+	}
+	
+	.B1 {
+			display:  flex;
+			align-items: center;
+			justify-content: left;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: left;
+		}
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -204,7 +216,7 @@
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -272,9 +284,10 @@
 											</div>
 											<div class="col-6 col-12-medium">
 												<ul>
-													<li><h3>FB:${myBarX.barFb}</h3></li>
-													<li><h3>Line:${myBarX.barLine}</h3></li>
-													<li><h3>Instgram:${myBarX.barIg}</h3></li>
+													<li><h3>社群網站</h3></li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png">&nbsp;${myBarX.barFb}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png">&nbsp;${myBarX.barLine}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png">&nbsp;${myBarX.barIg}</li>
 												</ul>
 											</div>
 										</div>
@@ -305,7 +318,7 @@
 																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
 																				<input type='hidden' name='barAccount' value='${barAccount}'>
 																				<input type='button' style="font-size:12px" value='加入購物車'>
-																			<div>
+																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div>
@@ -313,6 +326,7 @@
 																				<input type='hidden' name='PdId' value='${listOfProuct[current.index].pdId}'>
 																				<input type='hidden' name='ProductName' value='${lisOfProduct[current.index].productName}'>
 																				<input type='hidden' name='PdStock' value='${listOfPrduct[current.index].pdStock}'>
+																				<input type='hidden' name='account' value='${account}'>
 																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
 																				<input type='hidden' name='barAccount' value='${barAccount}'>
 																				<input type='button' style="font-size:12px" value='加入購物車'>
@@ -325,7 +339,14 @@
 																	簡介：<br>
 																	${listOfProduct[current.index].pdDetail}
 																</p><br>
-																<a href="<c:url value="/Product.show"/>?PdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																<c:choose>
+																	<c:when test="${listOfProduct[current.index].validDate == null}">
+																		<a href="<c:url value="/Product.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:when>
+																	<c:otherwise>
+																		<a href="<c:url value="/ProductTicket.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:otherwise>
+																</c:choose>															
 															</div>
 														</div>
 													</td>

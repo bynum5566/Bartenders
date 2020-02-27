@@ -14,9 +14,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="bar.model" />
+	<context:component-scan base-package="bar.model"/>
 	<context:component-scan
-		base-package="bar.controller" />
+		base-package="bar.controller"/>
 	<mvc:annotation-driven />
 
 	<!-- Spring Quartz -->
@@ -25,8 +25,8 @@
 	
 <!-- 	<bean name="schedulingJob" -->
 <!-- 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean"> -->
-<!-- 		<property name="jobClass" value="bar.model.updateJob2_1" /> -->
-<!-- 		<property name="durability" value="true" /> -->
+<!-- 		<property name="jobClass" value="bar.model.updateJob2_1"/> -->
+<!-- 		<property name="durability" value="true"/> -->
 <!-- 	</bean> -->
 	
 	
@@ -35,8 +35,8 @@
 	
 <!-- 	<bean id="triggerJob" -->
 <!-- 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> -->
-<!-- 		<property name="jobDetail" ref="schedulingJob" /> -->
-<!-- 		<property name="cronExpression" value="*/5 * * * * ?" /> -->
+<!-- 		<property name="jobDetail" ref="schedulingJob"/> -->
+<!-- 		<property name="cronExpression" value="*/5 * * * * ?"/> -->
 <!-- 	</bean> -->
 	
 	
@@ -46,10 +46,10 @@
 <!-- 	<bean id="scheduleController" -->
 <!-- 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean" -->
 <!-- 		lazy-init="true"> -->
-<!-- 		<property name="schedulerName" value="monitorScheduler" /> -->
+<!-- 		<property name="schedulerName" value="monitorScheduler"/> -->
 <!-- 		<property name="triggers"> -->
 <!-- 			<list> -->
-<!-- 				<ref bean="triggerJob" /> -->
+<!-- 				<ref bean="triggerJob"/> -->
 <!-- 			</list> -->
 <!-- 		</property> -->
 <!-- 	</bean> -->

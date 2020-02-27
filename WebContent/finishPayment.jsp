@@ -171,7 +171,7 @@ height:375px;
 </style>
 </head>
 <body>
-	<img class="pic" src="<c:url value="/images/lpLogo.png"></c:url>" />
+	<img class="pic" src="<c:url value="/images/lpLogo.png"></c:url>"/>
 	<br />
 	<h3>LINE Pay已收到您的付款授權，請完成本站付款手續</h3>
 	<br>

@@ -5,75 +5,37 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>${barName}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	
-	<style type="text/css">
-		.pdImg {
-			min-width: 180px;
-			max-width: 200px;
-			height: 200px;
-		}
-		
-		div.inwrap1 {
-			width: 700px;
-			margin: auto;
-		}
-		
-		table.inwrap1 {
-			color: ghostwhite;
-			text-align: center;
-			margin: auto;
-			width: 700px;
-		}
-		
-		.inwrap1 tr, .inwrap1 td {
-			padding: 10px;
-			font-size: 18px;
-			font-weight: 600;
-			color: ghostwhite;
-		}
-		
-		#outwrap {
-			text-align: center;
-			margin: auto;
-			width: 750px;
-			top: 80px;
-			position: relative;
-			padding-top: 10px;
-		}
-		
-		.small {
-			display: flex;
-			align-self: center;
-		}
-		
-		.small a {
-			font-size: 16px;
-			font-weight: 400;
-			color: #888;
-			font-family: 111.otf;
-		}
-		
-		.small a+a {
-			margin-left: 15px;
-		}
-		
-		.col-12-medium a:hover {
-			color: #ECECED;
-		}
-	</style>
+<meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<title>我的訂單</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+
+<style>
+.small {
+	display: flex;
+	align-self: center;
+}
+
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
+}
+
+.small a+a {
+	margin-left: 15px;
+}
+</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="index.jsp">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -88,22 +50,32 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</nav>
 		</header>
-		
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
 					<section>
-						<div class="row">
-							<div class="col-9 col-12-medium">
-								<h2>${kWord}的相關搜尋結果:</h2>
-								<h2>${barRes}</h2>
+						<h2>我的訂單</h2>
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-medium">
+								<ul class="alt">
+									<li>訂單編號:&nbsp;${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
+									<li>收件人:&nbsp;${order.recipient}</li>
+									<li>配送方式:&nbsp;${ShippingNumToStr[order.shipping]}</li>
+									<li>配送地址:&nbsp;${attrAddress}</li>
+									<li>配送電話:&nbsp;${order.phone}</li>
+									<li>物流編號:&nbsp;${order.shippingNumber}</li>
+								</ul>
+								<ul class="actions">
+									<li><a class="button primary" href="<c:url value="/userOrder.controller"/>">返回訂單頁面</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</section>
@@ -111,7 +83,7 @@
 			</section>
 		</article>
 	</div>
-	
+
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>

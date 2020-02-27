@@ -9,9 +9,9 @@
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>CreateMarker</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<style>
 		body {
 			margin: 0px auto;
@@ -98,7 +98,7 @@
 													disabled> <input id="lng" type="hidden" name="lng"></td>
 										</tr>
 										<tr>
-											<td>照片: <input type="file" name="uploadFile" /></td>
+											<td>照片: <input type="file" name="uploadFile"/></td>
 										</tr>
 										<tr>
 											<td>簡介: <input type="text" name="brief"></td>

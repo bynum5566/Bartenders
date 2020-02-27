@@ -64,7 +64,7 @@
 <body class="is-preload">
 	<div id="page-wrapper">
 	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -85,7 +85,7 @@
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</ul>
 					</div>
 				</li>

@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 <style>
 	.small {
@@ -30,7 +30,7 @@
 </head>
  <body>
 	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -51,7 +51,7 @@
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</ul>
 					</div>
 				</li>

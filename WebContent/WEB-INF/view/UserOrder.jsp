@@ -14,10 +14,10 @@
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+	content="width=device-width, initial-scale=1, user-scalable=no"/>
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript>
-	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>
 </noscript>
 
 <style>
@@ -59,12 +59,13 @@ div.panel {
 	display: none;
 	max-width: 1400px;
 }
+
 .wrapper {
-    padding: 3em 0 2em 0;
+	padding: 3em 0 2em 0;
 }
 
 p {
-    margin: 0 0 0 0;
+	margin: 0 0 0 0;
 }
 </style>
 <!-- 	<style type="text/css"> -->
@@ -120,7 +121,7 @@ p {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -136,7 +137,7 @@ p {
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a
+								<li class="small"><a href="UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -164,13 +165,13 @@ p {
 											<th nowrap="nowrap">酒吧</th>
 											<th nowrap="nowrap">訂單內容</th>
 											<th nowrap="nowrap">金額</th>
-											<th nowrap="nowrap">收件人</th>
+										<!--  	<th nowrap="nowrap">收件人</th>-->
 											<th nowrap="nowrap">配送方式</th>
-											<th nowrap="nowrap">配送地址/QRcode載點</th>
-											<th nowrap="nowrap">配送電話</th>
+											<th nowrap="nowrap">配送詳情/QRcode載點</th>
+										<!-- 	<th nowrap="nowrap">配送電話</th> -->
 											<th nowrap="nowrap">訂單狀態</th>
 											<th nowrap="nowrap">購買時間</th>
-											<th nowrap="nowrap">物流編號</th>
+										<!--  	<th nowrap="nowrap">物流編號</th>-->
 											<th nowrap="nowrap">付款</th>
 											<th nowrap="nowrap">修改</th>
 											<th nowrap="nowrap">取消</th>
@@ -195,14 +196,18 @@ p {
 															</c:forEach>
 														</div></td>
 													<td align="center" nowrap="nowrap">$${Corders[current.index].amount}</td>
-													<td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>
+												<!--  <td align="center" nowrap="nowrap">${Corders[current.index].recipient}</td>-->
 													<c:choose>
 														<c:when
 															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping].substring(0,6)}<br>${ShippingNumToStr[Corders[current.index].shipping].substring(6,10)}</td>
 														</c:when>
 														<c:otherwise>
+															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}
+															</td>
+															<!--
 															<td align="center" nowrap="nowrap">${ShippingNumToStr[Corders[current.index].shipping]}</td>
+														-->
 														</c:otherwise>
 													</c:choose>
 													<c:choose>
@@ -212,13 +217,15 @@ p {
 																href="${attrAddress[current.index]}">QRcode載點</a></td>
 														</c:when>
 														<c:otherwise>
-															<td align="center" nowrap="nowrap">${attrAddress[current.index]}</td>
+															<td align="center" nowrap="nowrap"><a
+																href="<c:url value="/orderShippingDetailUser.controller"/>?orderId=${Corders[current.index].orderId}"
+																value="${Corders[current.index].orderId}">配送詳情</a></td>
 														</c:otherwise>
 													</c:choose>
-													<td align="center" nowrap="nowrap">${Corders[current.index].phone}</td>
+												<!-- <td align="center" nowrap="nowrap">${Corders[current.index].phone}</td> -->	
 													<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
 													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
-													<td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td>
+												<!-- <td align="center" nowrap="nowrap">${Corders[current.index].shippingNumber}</td> -->	
 													<c:choose>
 														<c:when
 															test="${statusNumToStr[Corders[current.index].status]=='未付款'}">

@@ -35,7 +35,7 @@
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-	      <h1><a href="index.jsp">Bartenders</a></h1>
+	      <h1><a href="UserFirstPage">Bartenders</a></h1>
 	      <nav id="nav">
 	        <ul>
 	          <li class="special">
@@ -50,7 +50,7 @@
 	                <li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 	                <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 	                <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-	                <li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+	                <li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 	              </ul>
 	            </div>
 	          </li>

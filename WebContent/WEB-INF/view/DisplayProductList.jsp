@@ -175,13 +175,26 @@
 	  color: #FFFFFF;
 	}
 	
+	.social{
+		width: 40px;
+		height: 40px;
+	}
+	
+	.B1 {
+			display:  flex;
+			align-items: center;
+			justify-content: left;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: left;
+		}
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-      		<h1><a href="index.jsp">Bartenders</a></h1>
+      		<h1><a href="UserFirstPage">Bartenders</a></h1>
       		<nav id="nav">
         		<ul>
           			<li class="special">
@@ -196,7 +209,7 @@
 							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-							<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               			</ul>
               			</div>
           			</li>
@@ -336,17 +349,16 @@
 											<div class="row">
 												<div class="col-6 col-12-medium">
 													<ul>
-														<li>
-															<h3>酒吧介紹:</h3>
-															<h3>${myBarX.aboutBar}</h3>
-														</li>
+														<li><h3>酒吧介紹</h3></li>
+														<li><h3>${myBarX.aboutBar}</h3></li>
 													</ul>
 												</div>
 												<div class="col-6 col-12-medium">
 													<ul>
-														<li><h3>FB:${myBarX.barFb}</h3></li>
-														<li><h3>Line:${myBarX.barLine}</h3></li>
-														<li><h3>Instgram:${myBarX.barIg}</h3></li>
+														<li><h3>社群網站</h3></li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png">&nbsp;${myBarX.barFb}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png">&nbsp;${myBarX.barLine}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png">&nbsp;${myBarX.barIg}</li>
 													</ul>
 												</div>
 											</div>

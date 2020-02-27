@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>CreateActivity</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />	<noscript>
-		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>	<noscript>
+		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
 		body {
@@ -138,7 +138,7 @@
 											</div>
 										</div>
 										<img alt="" src="images/${Activity.img}">
-										<input type="file" name="uploadFile" />
+										<input type="file" name="uploadFile"/>
 										<p><input type="text" value="${Activity.brief}" style="width:400px;height:250px"
 												name="brief"></p>
 										<input type="hidden" name="preUrl" value="${preUrl}">

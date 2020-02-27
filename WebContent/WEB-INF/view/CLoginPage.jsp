@@ -17,17 +17,17 @@
 
 	<div align="center">
 		<h3>老闆登入</h3>
-		<form action="<c:url value="/CcheckLogin.controller" />" method="post">
+		<form action="<c:url value="/CcheckLogin.controller"/>" method="post">
 			<table>
 				<tr>
 					<td>帳號:</td>
-					<td><input type="text" name="companyAccount" /></td>
+					<td><input type="text" name="companyAccount"/></td>
 					<td>${errors.Caccount}</td>
 				</tr>
 
 				<tr>
 					<td>密碼:</td>
-					<td><input type="password" name="companyPwd" /></td>
+					<td><input type="password" name="companyPwd"/></td>
 					<td>${errors.Cpassword}</td>
 				</tr>
 				<tr align="center">

@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>Orders</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />	<noscript>
-		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>	<noscript>
+		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 	<style type="text/css">
 		a {
@@ -77,7 +77,7 @@
 					<section>
 						<h1 style="color:white;font-size:48px" align="center">物流登入</h1>
 						<div align="center">
-							<form action="<c:url value=" /logistic/LogisticLogin.do" />" method="post" >
+							<form action="<c:url value="/logistic/LogisticLogin.do"/>" method="post" >
 							<table>
 								<tr>
 									<td style="color:white;font-size:24px">物流帳號:</td>
