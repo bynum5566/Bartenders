@@ -29,7 +29,7 @@ public class ChatController {
 //		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("CName"));
 		WebSocketTest.setModel(m);
-		
+
 		return "CompanyChatRoom";
 	}
 }

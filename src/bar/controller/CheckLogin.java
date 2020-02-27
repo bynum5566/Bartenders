@@ -20,7 +20,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUser","getCompany"})
+@SessionAttributes(names = { "LoginStatus", "account" , "Caccount","userName","CName","getUserId","getCompanyId"})
 @EnableTransactionManagement
 public class CheckLogin {
 
@@ -66,12 +66,13 @@ public class CheckLogin {
 				
 				Users user = uservice.select(account);
 				m.addAttribute("userName", user.getUserName());
-				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getUser", user);
+				////////新增回傳Id方便撈其他資料////////////
+				m.addAttribute("getUserId", user.getUserId());
 				
 //				HttpSession session = request.getSession();
 //				WebSocketTest.setHttpSession(session);
 				WebSocketTest.setModel(m);
+				
 				
 				return "UserFirstPage";
 			}
@@ -116,12 +117,14 @@ public class CheckLogin {
 				m.addAttribute("Caccount", account);
 				m.addAttribute("CName", Gcompany.getCompanyName());
 				m.addAttribute("LoginStatus", "true");
-				////////新增回傳整個Bean方便撈其他資料////////////
-				m.addAttribute("getCompany", Gcompany);
+				////////新增回傳Id方便撈其他資料////////////
+				m.addAttribute("getCompanyId", Gcompany.getCompanyId());
 				
 //				HttpSession session = request.getSession();
 //				WebSocketTest.setHttpSession(session);
 				WebSocketTest.setModel(m);
+				
+				
 				
 				return "WelcomeCompany";
 			} 

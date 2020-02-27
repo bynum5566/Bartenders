@@ -12,6 +12,8 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
@@ -21,15 +23,7 @@
 
 <style type="text/css">
 .wrapper {
-	padding: 3em 0 4em 0;
-}
-
-div.chart {
-	min-width: auto;
-	/* 		top: 90px; */
-	/* 		position: sticky; */
-	text-align: center;
-	margin: auto;
+	padding: 3em 0 1em 0;
 }
 
 body {
@@ -40,8 +34,8 @@ body {
 	/* 		background-attachment: fixed; */
 	/* 		background-size: cover; */
 	/* 		background-position: top; */
-	overflow-y: hidden;
-	overflow-y: hidden;
+	/* overflow-y: hidden;
+	overflow-y: hidden;*/
 }
 
 .small {
@@ -63,6 +57,20 @@ body {
 .title {
 	font-size: 30px;
 	margin: 0 0 0 0;
+}
+
+.outwrap {
+	min-width: auto;
+	text-align: center;
+	margin: auto;
+}
+
+.myChart {
+	width: 600px;
+}
+
+.row {
+	margin-left: 20%;
 }
 </style>
 </head>
@@ -100,23 +108,41 @@ body {
 			</nav>
 		</header>
 
-		<!-- 		<article id="main"> -->
-		<section class="wrapper style5">
-			<div class="inner">
-				<section>
-					<div class="row">
-						<div class="col-6 col-12-medium">
-							<div class="chart" align="center" style="width: 500px;">
-								<h1 class="title">營業額圓餅圖</h1>
-								<br>
-								<canvas align="center" id="myChart"></canvas>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<div class="outwrap" align="center" style="width: 500px;">
+									<h1 class="title">營業額圓餅圖</h1>
+									<br>
+									<canvas align="center" id="myChart"></canvas>
+								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-			</div>
-		</section>
-		<!-- 		</article> -->
+					</section>
+				</div>
+			</section>
+		</article>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<div class="outwrap">
+									<h3>
+										<a style="text-decoration: none;" class="button"
+											href="<c:url value="SaleReportByExcel.controller"/>">匯出Excel</a>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</section>
+		</article>
 	</div>
 
 	<script>

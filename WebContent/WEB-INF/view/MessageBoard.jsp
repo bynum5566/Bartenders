@@ -13,6 +13,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>討論區</title>
+
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
@@ -24,6 +27,8 @@
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
 <style>
 h1.panel, form.flip {
 	margin: 0px;
@@ -73,7 +78,7 @@ form.panel {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -90,7 +95,7 @@ form.panel {
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a
+								<li class="small"><a href="UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -104,7 +109,7 @@ form.panel {
 						<main>
 							<div>
 								<div style="color: WhiteSmoke;">
-									["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 								</div>
 
 							</div>
@@ -164,7 +169,7 @@ form.panel {
 														style="padding: 10px;">ID:${messageBoard.id}</span> <span
 														style="padding: 10px;">${messageBoard.time}</span> <span
 														style="margin: 25px; padding: 10px; font-size: 20px; color: white">
-														<a style="color: red"
+														<a style="color: red; font-size: 1.3em;"
 														href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">回覆</a>
 													</span>
 												</div>

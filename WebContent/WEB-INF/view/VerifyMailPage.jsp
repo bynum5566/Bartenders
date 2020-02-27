@@ -10,7 +10,10 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<title>討論區</title>
+<title>寄信成功</title>
+
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />

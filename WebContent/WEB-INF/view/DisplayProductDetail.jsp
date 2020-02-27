@@ -10,7 +10,9 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css"> -->
-	<title>商品詳情 ${productName}</title>
+	<title>商品詳情 ${productName}／Bartenders</title>
+	<%--豪--%>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>

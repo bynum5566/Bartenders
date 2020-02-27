@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,50 +7,41 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>Orders</title>
+	<title>Welcome</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 	<style type="text/css">
-		a {
-			color: #E8CCFF;
-
-		}
-
-		a:hover {
-			color: #9F88FF;
-		}
-
-		.mydiv {
-			min-width: auto;
-			top: 80px;
-			position: sticky;
-			text-align: center;
-			border-radius: 5px;
-			background: linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-			background: -moz-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-			background: -webkit-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-			background: -o-linear-gradient(270deg, rgba(12, 10, 10, 0.5)34%, rgba(163, 163, 163, 0.5)99%);
-			box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-			-webkit-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-			-moz-box-shadow: 0px 11px 7px rgba(10, 9, 9, 0.6);
-			color: #E8CCFF;
-		}
-
-
 		body {
-			margin: 0;
-			padding: 0;
-			background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
 			background-size: cover;
+			background-position: top;
+			background-image: url(/Bartenders/images/bg16.png);
+			background-color: transparent;
 		}
-	</style>
+		
+		.wrapper.style5{
+			background-color: transparent;
+		}
+		
+		.welcome {
+/* 			top: 80px; */
+			position: relative;
+			margin-top: 10px;
+			text-align: center;
+			margin: auto;
+			color: white;
+			padding: 117px;
+		}
 
-<style>
+		#logo {
+			position: relative;
+			width: 150px;
+			margin: 20px;
+		}
+
 	.small {
 		display: flex;
 		align-self: center;
@@ -72,12 +62,34 @@
 
 <body class="is-preload">
 	<div id="page-wrapper">
+		<header id="header">
+		<h1><a href="index.jsp">Bartenders</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="/Bartenders/logistic/LogisticGate">訂單管理</a></li>
+							<li><a href="/Bartenders/logistic/LogisticSearch">搜尋訂單</a></li>
+							<li><a href="/Bartenders/Example">測試</a></li>
+							<li class="small"><a href="/Bartenders/WelcomeLogistic">首頁</a><a href="javascript:signOut()">登出</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
-					<section>
-						<h3>物流訂單管理</h3>
-					</section>
+<!-- 					<section> -->
+						<div class="welcome">
+							<img id="logo" src="../img/Logo.png" style="width: 150px; margin: 20px"/>
+							<h2>辛苦了，${sender.logisticName}。</h2>
+						</div>
+<!-- 					</section> -->
 				</div>
 			</section>
 		</article>
@@ -92,6 +104,8 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	</body>
 
 </html>

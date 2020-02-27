@@ -12,6 +12,8 @@
 	href="/Bartenders/CSS/add_editView.css">
 <title>討論列表</title>
 
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -30,13 +32,13 @@
 <body>
 <h1>&nbsp;</h1>
 <h1>&nbsp;</h1>
-		<div>
+		<div >
 			<div style="color: WhiteSmoke;">
-				["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+				[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 			</div>
 		</div>
 
-		<div id="contents" style="color: WhiteSmoke; ">
+		<div id="contents" style="color: WhiteSmoke; margin: 20px;">
 			<h3 align="center">列表模式</h3>
 			<form action="xxx" method="post">
 				<table width="1000" height="80" >
