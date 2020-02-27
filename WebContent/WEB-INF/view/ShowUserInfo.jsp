@@ -6,6 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <title>會員中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -28,6 +29,15 @@
 .small a+a {
 	margin-left: 15px;
 }
+
+#bell{
+	height: 90px;
+	width: 90px;
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	_position:absolute;
+}
 </style>
 </head>
 
@@ -37,6 +47,7 @@
 			<h1>
 				<a href="UserFirstPage">Bartenders</a>
 			</h1>
+			<img id="bell" src="/Bartenders/images/bell.png" onclick="location.href='/Bartenders/notice';">
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -94,8 +105,9 @@
 			</section>
 		</article>
 	</div>
-
-
+	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>

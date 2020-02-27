@@ -96,6 +96,8 @@
 			</section>
 		</article>
 	</div>
+	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 
 	<script>
 		$('.pdidckLL').hide();

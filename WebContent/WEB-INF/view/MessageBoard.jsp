@@ -14,6 +14,8 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>討論區</title>
 
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
@@ -93,7 +95,7 @@ form.panel {
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a
+								<li class="small"><a href="UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>

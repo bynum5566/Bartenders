@@ -12,6 +12,8 @@
 	href="/Bartenders/CSS/add_editView.css">
 <title>討論列表</title>
 
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
