@@ -21,7 +21,7 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-	<title>新增商品/Bartenders</title>
+	<title>新增商品 / Bartenders</title>
 	<style>
 		.small {
 			display: flex;

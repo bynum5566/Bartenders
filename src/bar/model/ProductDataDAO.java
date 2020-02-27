@@ -29,10 +29,12 @@ public class ProductDataDAO {
 		try
 		{
 			Session session = sessionFactory.getCurrentSession();
-			String hqlStr = "update ProductData set pdSoldOut=:pdSoldOut where pdId=:pdId";
+			String hqlStr = "update ProductData set pdSoldQuantity=:pdSoldQuantity where pdId=:pdId";
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("pdId", pdId);
-			query.setParameter("pdSoldOut", String.valueOf(pdSoldOut));
+			System.out.println(pdId);
+			query.setParameter("pdSoldQuantity", pdSoldOut);
+			System.out.println(pdSoldOut);
 			query.executeUpdate();
 			return true;
 		} catch (Exception e)
