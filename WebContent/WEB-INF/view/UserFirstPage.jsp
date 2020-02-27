@@ -19,6 +19,7 @@
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript>
 	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>

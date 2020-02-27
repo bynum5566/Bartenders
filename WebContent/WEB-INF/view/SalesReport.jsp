@@ -12,6 +12,7 @@
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -25,8 +26,8 @@ body {
 	/* 		background-attachment: fixed; */
 	/* 		background-size: cover; */
 	/* 		background-position: top; */
-	overflow-y: hidden;
-	overflow-y: hidden;
+	/*overflow-y: hidden;
+	overflow-y: hidden;*/
 }
 
 .outwrap {
@@ -74,6 +75,10 @@ body {
 .wrapper {
     padding: 3em 0 1em 0;
 }
+
+	.row {
+		margin-left: 9%;
+	}
 </style>
 </head>
 
