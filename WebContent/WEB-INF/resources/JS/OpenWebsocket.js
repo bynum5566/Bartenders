@@ -1,10 +1,18 @@
 var websocket = null;
+var count=true;
 
-if ('WebSocket' in window) {
-	websocket = new WebSocket("ws://localhost:8080/Bartenders/websocketTest");
-} else {
-	alert('當前瀏覽器不支持 websocket，請換瀏覽器開啟本網站')
+if(count){
+
+	if ('WebSocket' in window) {
+		websocket = new WebSocket("ws://localhost:8080/Bartenders/websocketTest");
+		count=false;
+	} else {
+		alert('當前瀏覽器不支持 websocket，請換瀏覽器開啟本網站')
+	}
+
 }
+
+console.log("count:",count);
 
 websocket.onopen = function(event){
 	console.log("onopen:",event);
@@ -59,6 +67,7 @@ websocket.onerror = function(event){
 
 websocket.onclose = function(event){
 	console.log("onclose",event);
+	count=true;
 }
 
 //window.onbeforeunload = function() {

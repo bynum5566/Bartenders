@@ -18,7 +18,7 @@ public class ChatController {
 //		HttpSession session = request.getSession();
 //		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("userName"));
-		WebSocketTest.setModel(m);
+//		WebSocketTest.setModel(m);
 		
 		return "ChatRoom";
 	}
@@ -28,7 +28,7 @@ public class ChatController {
 //		HttpSession session = request.getSession();
 //		WebSocketTest.setHttpSession(session);
 		WebSocketTest.chatList.add((String)m.getAttribute("CName"));
-		WebSocketTest.setModel(m);
+//		WebSocketTest.setModel(m);
 		
 		return "CompanyChatRoom";
 	}

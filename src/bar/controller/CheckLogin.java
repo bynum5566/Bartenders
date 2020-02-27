@@ -71,7 +71,9 @@ public class CheckLogin {
 				
 //				HttpSession session = request.getSession();
 //				WebSocketTest.setHttpSession(session);
-				WebSocketTest.setModel(m);
+				WebSocketTest websocket = new WebSocketTest();
+				websocket.setM(m);
+				
 				
 				return "UserFirstPage";
 			}
@@ -121,7 +123,10 @@ public class CheckLogin {
 				
 //				HttpSession session = request.getSession();
 //				WebSocketTest.setHttpSession(session);
-				WebSocketTest.setModel(m);
+//				WebSocketTest.setModel(m);
+				WebSocketTest websocket = new WebSocketTest();
+				websocket.setM(m);
+				
 				
 				return "WelcomeCompany";
 			} 

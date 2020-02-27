@@ -25,7 +25,6 @@ import bar.model.MessageDto;
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
 @SessionAttributes(value = { "userName", "CName" })
-@Controller
 public class WebSocketTest {
 	// private static int onlineCount = 0;
 
@@ -45,10 +44,16 @@ public class WebSocketTest {
 //		WebSocketTest.httpSession = httpSession;
 //	}
 
-	private static Model m;
-
-	public static void setModel(Model m) {
-		WebSocketTest.m = m;
+//	private static Model m;
+//
+//	public static void setModel(Model m) {
+//		WebSocketTest.m = m;
+//	}
+	
+	private Model m;
+	
+	public void setM(Model m) {
+		this.m = m;
 	}
 
 	/** * 連接建立成功調用的方法 * @param session * 可選的參數。session為與某個客戶端的連接會話，需要通過它來給客戶端發送數據 */
@@ -102,6 +107,7 @@ public class WebSocketTest {
 				sendAll(gson.toJson(md1));
 				System.out.println("online:" + entry.getKey());
 			}
+			
 		}
 
 	}
