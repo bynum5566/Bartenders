@@ -14,7 +14,8 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>酒吧</title>
+	<title>酒吧/Bartenders</title>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -34,7 +35,7 @@
 			display: none;
 		}
 
-		.sigmaTd1 img {
+	.sigmaTd1 img {
 			width: 100px;
 		}
 
@@ -209,6 +210,7 @@
 							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               			</ul>
               			</div>
@@ -229,7 +231,7 @@
 										<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 										<li >&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
 										<li></li> <!-- 預留放地圖按鈕 -->
-										<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
+										<li>&emsp;&emsp;<div id="myBtn"><img src="/Bartenders/images/menu_icon.png"></div></li>
 										<li>&emsp;&emsp;</li>
 										<li><img id="favbT" src="/Bartenders/images/heart (1).png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
 										<li></li>
@@ -356,9 +358,9 @@
 												<div class="col-6 col-12-medium">
 													<ul>
 														<li><h3>社群網站</h3></li>
-														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png">&nbsp;${myBarX.barFb}</li>
-														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png">&nbsp;${myBarX.barLine}</li>
-														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png">&nbsp;${myBarX.barIg}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png" onclick="location.href='https://www.facebook.com/${myBarX.barFb}';">&nbsp;${myBarX.barFb}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png" onclick="location.href='https://line.me/ti/p/${myBarX.barLine}';">&nbsp;${myBarX.barLine}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png" onclick="location.href='https://instagram.com/${myBarX.barIg}';">&nbsp;${myBarX.barIg}</li>
 													</ul>
 												</div>
 											</div>
