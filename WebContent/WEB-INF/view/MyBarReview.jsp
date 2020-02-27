@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -60,7 +61,7 @@
 			font-weight: 600;
 		}
 		
-		#favbT{
+		#favbT, img.myMenu{
 			width: 100px;
 			height: 100px;
 			cursor: pointer;
@@ -180,6 +181,7 @@
 		.social{
 			width: 40px;
 			height: 40px;
+			cursor: pointer;
 		}
 		
 		.B1 {
@@ -190,6 +192,34 @@
 				line-height: 24px;
 				text-align: left;
 			}
+
+		.swiper-container {
+		  width: 640px;
+	      height: 360px;
+	    }
+	    .swiper-slide {
+	      text-align: center;
+	      font-size: 18px;
+	      background: #fff;
+	      display: -webkit-box;
+	      display: -ms-flexbox;
+	      display: -webkit-flex;
+	      display: flex;
+	      -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	      -webkit-justify-content: center;
+	      justify-content: center;
+	      -webkit-box-align: center;
+	      -ms-flex-align: center;
+	      -webkit-align-items: center;
+	      align-items: center;
+	    }
+	    div.swiper-slide img {
+	    width: 100%;
+	    height: 100%;
+	    margin: auto;
+	    object-fit: cover;
+	}			
 	</style>
 </head>
 
@@ -205,9 +235,6 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -235,7 +262,8 @@
 									<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 									<li>&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
 									<li></li> <!-- 預留放地圖按鈕 -->
-									<li>&emsp;&emsp;<div id="myBtn"><img src="/Bartenders/images/menu_icon.png"></div></li>
+									<li>&emsp;&emsp;</li>
+									<li><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 									<li>&emsp;&emsp;</li>
 									<li><img id="favbT" src="/Bartenders/images/heart (1).png"></li>
 									<li></li>
@@ -269,9 +297,18 @@
 										</div>
 									</li>
 									<li>
-										<figure align="center">
-											<img id="slider" style="width:550px;height:330px" src="${myBarX.coverUrl1}">
-										</figure>
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img src="${myBarX.coverUrl1}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl2}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl3}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl4}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl5}" /></div>
+											</div>
+											<div class="swiper-pagination"></div>
+											<div class="swiper-button-next"></div>
+											<div class="swiper-button-prev"></div>
+										</div>
 									</li>
 									<li class="sigmaTd6" style="text-align: left">
 										<div class="row">
@@ -366,7 +403,26 @@
 			</section>
 		</article>
 	</div>
-
+	
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			spaceBetween: 30,
+			centeredSlides: true,
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+	</script>
 	<script src="/Bartenders/JS/forBarPage.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

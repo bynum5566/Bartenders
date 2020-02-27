@@ -31,8 +31,9 @@
 			margin-left: 15px;
 		}
 		
-		.col-12-medium a:hover {
-			color: #ECECED;
+		h2 a:hover {
+			color: #DAC9A6;
+			text-shadow: 1px 2px 0px #8E354A;
 		}
 	</style>
 </head>

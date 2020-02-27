@@ -42,6 +42,9 @@
 			color: #DAC9A6;
 			text-shadow: 1px 2px 0px #8E354A;
 		}
+		.pd0{
+			text-align: left;
+		}
 	</style>
 </head>
 

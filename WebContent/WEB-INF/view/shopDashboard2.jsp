@@ -19,38 +19,38 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
-<style>
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
 	
-	.wrapper.style5 h4.bT3 {
-		cursor: pointer;
-		color: #A5DEE4;
-		text-shadow: 1px 2px 0px #0F2540;
-	}
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
 	
-	.wrapper.style5 h4.bT3:hover {
-		color: #DAC9A6;
-		text-shadow: 1px 2px 0px #8E354A; 
-	}
-	
-	.Tl{
-		text-align: left;
-	}
-</style>
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.wrapper.style5 h4.bT3 {
+			cursor: pointer;
+			color: #A5DEE4;
+			text-shadow: 1px 2px 0px #0F2540;
+		}
+		
+		.wrapper.style5 h4.bT3:hover {
+			color: #DAC9A6;
+			text-shadow: 1px 2px 0px #8E354A; 
+		}
+		
+		.Tl{
+			text-align: left;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -65,9 +65,9 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
+								
+								
+								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
