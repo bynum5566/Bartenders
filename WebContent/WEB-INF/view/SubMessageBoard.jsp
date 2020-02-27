@@ -1,138 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
-	<title>主題留言板</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	
-	<style>
-		h1.panel, form.flip {
-			margin: 0px;
-			padding: 5px;
-			text-align: center;
-			border: solid 1px #c3c3c3;
-		}
-		
-		form.panel {
-/* 			height: 600px; */
-			height: auto;
-			width: 900px;
-			background-color: transparent;
-		}
-		
-		#wordPicture {
-			height: 200px;
-			width: 800px;
-		}
-		
-		.small {
-			display: flex;
-			align-self: center;
-		}
-		
-		.small a {
-			font-size: 16px;
-			font-weight: 400;
-			color: #888;
-			font-family: 111.otf;
-		}
-		
-		.small a+a {
-			margin-left: 15px;
-		}
-		
-		img.loading-image{
-			align-self: center;
-			margin-left: 50%;
-			margin-top: 5%;
-		}
-		
-		.dropzone {
-			background-color: rgb(0, 0, 0, 0.5);
-			border: 4px dashed #ccc;
-			position: relative;
-			margin-right: auto;
-			margin-left: auto;
-			height: 100px;
-			width: 100px;
-			padding: 10px;
-			margin: 15px;
-			display: inline-block;
-		}
-		
-		.info {
-			margin-top: 11%;
-		}
-		
-		.dropzone p {
-			margin: 0%;
-			text-align: center;
-			width: 100%
-		}
-		
-		.input {
-			height: 100%;
-			left: 0;
-			outline: 0;
-			opacity: 0;
-			position: absolute;
-			top: 0;
-			width: 100%
-		}
-		
-		.status {
-			border-radius: 5px;
-			text-align: center;
-			width: 50%;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-		.image-url {
-			width: 50%;
-		}
+<meta charset="UTF-8">
+<meta name="google-signin-client_id"
+	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+<noscript>
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+</noscript>
+<link rel="stylesheet" type="text/css"
+	href="/Bartenders/CSS/mobile-style.css">
+<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
+<title>主題留言板</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-		.loading-modal {
-			background-color: rgba(255, 255, 255, .8);
-			display: none;
-			position: fixed;
-			z-index: 1000;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%
-		}
-		
-		.loading-table {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 15%;
-			margin-bottom: 15%;
-		}
-		
-		img.img {
-			max-width: 200px;
-			max-height: 300px;
-		}
+<style>
+h1.panel, form.flip {
+	margin: 0px;
+	padding: 5px;
+	text-align: center;
+	border: solid 1px #c3c3c3;
+}
 
-	</style>
+form.panel {
+	/* 			height: 600px; */
+	height: auto;
+	width: 900px;
+	background-color: transparent;
+}
+
+#wordPicture {
+	height: 200px;
+	width: 800px;
+}
+
+.dropzone {
+	background-color: rgb(0, 0, 0, 0.5);
+	border: 4px dashed #ccc;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	height: 100px;
+	width: 100px;
+	padding: 10px;
+	margin: 15px;
+	display: inline-block;
+}
+
+.dropzone p {
+	margin: 0%;
+	text-align: center;
+	width: 100%
+}
+</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="index.jsp">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -141,13 +75,16 @@
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a
+									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
-								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>				
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+								<li class="small"><a href="UserFirstPage">返回首頁</a><a
+									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -160,6 +97,12 @@
 
 						<main>
 
+							<div>
+								<div style="color: WhiteSmoke;">
+									["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+								</div>
+							</div>
+
 							<h1 class="flip" align="right">縮放主題留言按此</h1>
 
 							<!--縮放用JS，開始-->
@@ -169,112 +112,113 @@
 								});
 							</script>
 							<!--縮放用JS，結束-->
-						<ul>
-							<li>
-							<form action='subMessageBoard.controller' method='post' class="panel">
-<!-- 								<table border='1'> -->
+							<ul>
+								<li style="color: white; font-weight: bold;">
+									<form action='subMessageBoard.controller' method='post'
+										class="panel">
+										<ul class="alt">
+											<li>文章</li>
+											<li width='700'><textarea rows='8' cols='70'
+													name='blabla' placeholder="請輸入文章" required="required"></textarea>
+											</li>
 
-									<ul class="alt">
-										<li><b>文章</b></li>
-										<li width='700'>
-											<textarea rows='8' cols='70' name='blabla' placeholder="請輸入文章" required="required"></textarea>
-										</li>
-<!-- 									</tr> -->
+											<li>刪除碼</li>
+											<li><input type="password" name="deletePassword"
+												size="16" maxlength="8" placeholder="請輸入刪除碼"
+												required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+											</li>
 
-<!-- 									<tr> -->
-										<li><b>刪除碼</b></li>
-										<li>
-											<input type="password" name="deletePassword" size="16" maxlength="8" placeholder="請輸入刪除碼" required="required"> <small>(留言刪除用，英文數字最多8個)</small>
-										</li>
-<!-- 									</tr> -->
-<!-- 									<tr> -->
-										<li><b>圖片</b></td>
-										<li>
-											<div class="dropzone" id="wordPicture" required="required">
-												<div class="info"></div>
-											</div> <input id="imgPlace" name="pdImg" class="image-url"/>
-<!-- 									</tr> -->
+											<li>圖片</li>
 
-<!-- 									<tr> -->
-											<br>
-											<input type='submit' value='提交'>
-										</li>
-									</ul>
-<!-- 								</table> -->
-						<hr>
-							</form>
-						</li>
-						<li>
-							<div style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
-								<div>
-									<div id="fb-root"></div>
-									<c:forEach var="messageBoard" items="${newest}">
-
+											<li>
+												<div class="dropzone" id="wordPicture" required="required">
+													<div class="info"></div>
+												</div> <input id="imgPlace" name="pdImg" class="image-url" /> <br>
+												<input type='submit' value='提交'>
+											</li>
+										</ul>
+										<!-- 								</table> -->
+										<hr>
+									</form>
+								</li>
+								<li>
+									<div
+										style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
 										<div>
-											<img height="150" width="300" id="pdPicture" src="<c:out value="${messageBoard.picture}"/>">
+											<div id="fb-root"></div>
+											<c:forEach var="messageBoard" items="${newest}">
+
+												<div>
+													<img height="400" width="800" id="pdPicture"
+														src="<c:out value="${messageBoard.picture}"/>">
+												</div>
+
+												<div style="margin: 10px;">
+													<h5 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}&nbsp;
+														&nbsp;名稱:${messageBoard.userName}</h5>
+
+												</div>
+
+												<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
+												<div style="margin: 10px;" id="">${messageBoard.blabla}</div>
+												<!-- face按讚 -->
+												<div id="fb-root"></div>
+												<script async defer crossorigin="anonymous"
+													src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
+												<div class="fb-like"
+													data-href="http://11129henry.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}
+			"
+													data-width="" data-layout="button_count" data-action="like"
+													data-size="small" data-share="true"></div>
+
+											</c:forEach>
 										</div>
 
-										<div style="margin: 10px;">
-											<h4 style="margin: 10px; text-decoration: 10px;">帳號:${messageBoard.account}&nbsp; &nbsp;名稱:${messageBoard.userName}</h4>
 
-										</div>
+										<c:forEach var="subMessageBoard" items="${subnewest}">
+											<div style="margin: 10px;">
+												<ul>
+													<li rowspan="3"><img
+														style="height: 150px; width: 300px;" id="pdPicture"
+														src="<c:out value="${subMessageBoard.picture}"/>"></li>
+													<li style="vertical-align: top">
+														帳號:${subMessageBoard.account}&nbsp &nbsp
+														名稱:${subMessageBoard.userName}&nbsp &nbsp
+														SubID:${subMessageBoard.subId}</li>
 
-										<h3 align="center">&lt; ${messageBoard.title} &gt;</h3>
-										<div style="margin: 10px;" id="">${messageBoard.blabla}</div>
-									</c:forEach>
-								</div>
-
-								<c:forEach var="subMessageBoard" items="${subnewest}">
-<!-- 									<table> -->
-										<div style="margin: 10px;">
-											<ul>
-												<li rowspan="3">
-													<img style="height: 150px; width: 300px;" id="pdPicture" src="<c:out value="${subMessageBoard.picture}"/>">
-												</li>
-												<li style="vertical-align: top">
-													帳號:${subMessageBoard.account}&nbsp &nbsp
-													名稱:${subMessageBoard.userName}&nbsp &nbsp
-													SubID:${subMessageBoard.subId}
-												</li>
-
-<!-- 											</tr> -->
-<!-- 											<tr> -->
-												<li>${subMessageBoard.blabla}</td>
-<!-- 											</tr> -->
-<!-- 											<tr> -->
-												<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
-											</ul>
-
-										</div>
-<!-- 									</table> -->
-
-								</c:forEach>
-							</li>
-
-
-
-							<li>
-								<form action='subMessageBoardDelete.controller' method='post'>
-
-									<div id="del">
-										<table style="float: right;">
-											<tbody>
-												<tr>
-													<td style="white-space: nowrap;">
-														<ul>
-															<li><br><br></li>
-															<li>刪除留言:</li>
-															<li><input type="text" name="subId" placeholder="留言subId"><br></li>
-															<li><input type="password" name="deletePassword" size="8" maxlength="8" placeholder="刪除碼"><br></li>
-															<li><input type="submit" value=" 送出 "></li>
-														</ul>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+													<li>${subMessageBoard.blabla}</li>
+													<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
+												</ul>
+											</div>
+										</c:forEach>
 									</div>
-								</form>
-								</li>					
+								</li>
+
+
+
+								<li>
+
+									<div id="del"
+										style="position: fixed; right: 0; top: 94%; margin-top: -1em;">
+										<form action='subMessageBoardDelete.controller' method='post'>
+
+											<div id="del">
+												<table style="float: right;">
+													<tbody>
+														<tr>
+															<td><input type="text" name="id" size="8"
+																placeholder="留言ID"></td>
+															<td><input type="password" name="deletePassword"
+																size="8" maxlength="8" placeholder="刪除密碼"></td>
+															<td><input type="submit" value="刪除留言"></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</form>
+									</div>
+
+								</li>
 							</ul>
 						</main>
 					</section>
@@ -535,7 +479,8 @@
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
+		async defer></script>
 </body>
 
 </html>

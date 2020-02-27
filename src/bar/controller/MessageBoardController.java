@@ -1,6 +1,8 @@
 package bar.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import bar.model.MessageBoard;
 import bar.model.MessageBoardDAO;
 import bar.model.MessageBoardService;
+import bar.model.SubMessageBoard;
 import bar.model.UsersDAO;
 import bar.model.UsersService;
 import bar.model.Users;
@@ -69,7 +72,7 @@ public class MessageBoardController {
 		
 
 		MessageBoard messageBoard = new MessageBoard(1, title, account, time, rightblabla, picture, deletePassword,
-				userName);
+				userName,0);
 		messageBoardService.createMessage(messageBoard);
 
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
@@ -81,7 +84,7 @@ public class MessageBoardController {
 	}
 
 	public String getDateTime() {
-		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss ");
 		Date date = new Date();
 		String strDate = sdFormat.format(date);
 		// System.out.println(strDate);
@@ -91,11 +94,34 @@ public class MessageBoardController {
 	@RequestMapping(path = { "messageBoardShow.controller" })
 	public String processActionShow(Model m) {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
-
 		m.addAttribute("newest", newest);
 
+		
 		return "MessageBoard";
 	}
+	
+	@RequestMapping(path = { "messageBoardShowList.controller" })
+	public String processActionShowList(Model m) {
+		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
+			
+		for (int i = 0; i < newest.size(); i++) {
+			int id = newest.get(i).getId();
+			List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(id);
+			int subMessageAmount = subnewest.size();
+			newest.get(i).setSubMessageAmount(subMessageAmount);
+		}		
+		Collections.sort(newest,
+		        new Comparator<MessageBoard>() {
+		            public int compare(MessageBoard o1, MessageBoard o2) {
+		                return o2.getSubMessageAmount()-o1.getSubMessageAmount();
+		            }
+		        });
+			
+		m.addAttribute("newest", newest);
+		return "MessageBoardListMode";
+	}
+	
+	
 
 	@RequestMapping(path = { "messageBoardDelete.controller" }, method = { RequestMethod.POST })
 	public String processActionDelete(@RequestParam(name = "id") int id,
