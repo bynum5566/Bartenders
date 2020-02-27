@@ -46,6 +46,10 @@
 		mapping="/JS/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/scripts/"
 		mapping="/scripts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/scripts/"
+		mapping="/logistic/scripts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/images/"
+		mapping="/logistic/images/**"></mvc:resources>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"/>
