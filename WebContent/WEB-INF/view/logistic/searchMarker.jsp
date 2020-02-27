@@ -241,7 +241,7 @@
 	</script>
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForSingleMapWithMarker.js"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
