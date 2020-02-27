@@ -8,9 +8,8 @@
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
-	<title>Edit Product</title>
-
+	<title>編輯票券/Bartenders</title>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
@@ -72,10 +71,10 @@
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
@@ -107,43 +106,43 @@
 												<li>
 													<h3>商品名稱</h3>
 												</li>
-												<li><input class="bt0" name="pdNm" type="text" required="required" value="<c:out value="${pdNm}"/>"></li>
+												<li><input class="bt0" name="pdNm" placeholder="請填寫商品名稱" type="text" required="required" value="<c:out value="${pdNm}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>商品數量</h3>
 												</li>
-												<li><input class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required" value="<c:out value="${pdStk}"/>"></li>
+												<li><input class="bt0" name="pdStk" placeholder="請填寫商品數量" id="pdamount" type="number" min="1" required="required" value="<c:out value="${pdStk}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>商品價格</h3>
 												</li>
-												<li><input class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required" value="<c:out value="${pdPri}"/>"></li>
+												<li><input class="bt0" name="pdPri" placeholder="請填寫商品價格" id="pdprice" type="number" min="1" required="required" value="<c:out value="${pdPri}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>Tag1</h3>
 												</li>
-												<li><input class="bt0" name="pdTg1" type="text" max="10" value="<c:out value="${pdT1}"/>"></li>
+												<li><input class="bt0" name="pdTg1" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT1}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>Tag2</h3>
 												</li>
-												<li><input class="bt0" name="pdTg2" type="text" max="10" value="<c:out value="${pdT2}"/>"></li>
+												<li><input class="bt0" name="pdTg2" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT2}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>Tag3</h3>
 												</li>
-												<li><input class="bt0" name="pdTg3" type="text" max="10" value="<c:out value="${pdT3}"/>"></li>
+												<li><input class="bt0" name="pdTg3" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT3}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>商品詳細</h3>
 												</li>
-												<li><textarea class="bt0" name="pdDta"><c:out value="${pdDT}"/></textarea>
+												<li><textarea class="bt0" name="pdDta" placeholder="請填寫商品詳細介紹" cols="10" rows="8"><c:out value="${pdDT}"/></textarea>
 												</li>
 											</ul>
 											<ul>
