@@ -14,7 +14,8 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>酒吧</title>
+	<title>我的酒吧/Bartenders</title>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -27,169 +28,169 @@
 			background: rgba(0, 0, 0, 0.6);
 			border: solid 1px #c3c3c3;
 		}
-
+	
 		div.panel {
 			height: auto;
 			width: 300px;
 			display: none;
 		}
-
+	
 		.sigmaTd1 img {
 			width: 100px;
 		}
-
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
 	
-	#barName{
-		font-size: 50px;
-		font-weight: 600;
-	}
-	
-	#favbT{
-		width: 100px;
-		height: 100px;
-		cursor: pointer;
-	}
-	
-	#myBtn:hover {
-		color: #ECECED;
-	}
-	
-	.modal {
-	  display: none;
-	  position: fixed;
-	  z-index: 1;
-	  padding-top: 100px;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	  height: 100%;
-	  overflow: auto;
-	  background-color: rgb(0,0,0);
-	  background-color: rgba(0,0,0,0.4);
-	  color: #9F9BA0;
-	}
-	
-	.modal-content {
-	  position: relative;
-	  margin: auto;
-	  padding: 0;
-	  border: 1px solid #888;
-	  width: 40%;
-	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-	  -webkit-animation-name: animatetop;
-	  -webkit-animation-duration: 0.4s;
-	  animation-name: animatetop;
-	  animation-duration: 0.4s;
-	}
-	
-	@-webkit-keyframes animatetop {
-	  from {top:-300px; opacity:0} 
-	  to {top:0; opacity:1}
-	}
-	
-	@keyframes animatetop {
-	  from {top:-300px; opacity:0}
-	  to {top:0; opacity:1}
-	}
-	
-	.close {
-	  float: right;
-	  font-size: 28px;
-	  font-weight: bold;
-	}
-	
-	.close:hover,
-	.close:focus {
-	  text-decoration: none;
-	  cursor: pointer;
-	}
-	
-	.modal-header {
-	  padding: 2px 16px;
-	  background-color: #443E44;
-	}
-	
-	.modal-body {
-		background-color: #A19CA8;
-		padding: 2px 16px;
-/* 		color: #0F0E0F; */
-		color: #FFFFFF;
-	}
-	
-	.accordion {
-	  background-color: #443E44;
-/*  	  color: #9F9BA0; */
- 	  color: #FFFFFF;
-	  cursor: pointer;
-	  padding: 18px;
-	  width: 100%;
-	  border: none;
-	  text-align: left;
-	  outline: none;
-	  font-size: 22px;
-	  font-weight: 600;
-	  transition: 0.4s;
-	  border: 1px solid #554F55;
-	}
-	
-	.active, .accordion:hover {
-	  background-color: #554F55;
-/* 	  color: #ECECED; */
-	  color: #FFFFFF;
-	}
-	
-	.accordion:after {
-	  content: '\002B';
-/*  	  color: #ECECED; */
- 	  color: #FFFFFF;
-	  font-weight: bold;
-	  float: right;
-	  margin-left: 5px;
-	}
-	
-	.active:after {
-  		content: "\2212";
-	}
-	
-	.thePanels {
-	  padding: 0 18px;
-	  background-color: #76727B;
-	  max-height: 0;
-	  overflow: hidden;
-	  transition: max-height 0.2s ease-out;
-/* 	  color: #ECECED; */
-	  color: #FFFFFF;
-	}
-	
-	.social{
-		width: 40px;
-		height: 40px;
-	}
-	
-	.B1 {
-			display:  flex;
-			align-items: center;
-			justify-content: left;
-			font-size: 20px;
-			line-height: 24px;
-			text-align: left;
+		.small {
+			display: flex;
+			align-self: center;
 		}
-</style>
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		#barName{
+			font-size: 50px;
+			font-weight: 600;
+		}
+		
+		#favbT{
+			width: 100px;
+			height: 100px;
+			cursor: pointer;
+		}
+		
+		#myBtn:hover {
+			color: #ECECED;
+		}
+		
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 1;
+		  padding-top: 100px;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow: auto;
+		  background-color: rgb(0,0,0);
+		  background-color: rgba(0,0,0,0.4);
+		  color: #9F9BA0;
+		}
+		
+		.modal-content {
+		  position: relative;
+		  margin: auto;
+		  padding: 0;
+		  border: 1px solid #888;
+		  width: 40%;
+		  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		  -webkit-animation-name: animatetop;
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: animatetop;
+		  animation-duration: 0.4s;
+		}
+		
+		@-webkit-keyframes animatetop {
+		  from {top:-300px; opacity:0} 
+		  to {top:0; opacity:1}
+		}
+		
+		@keyframes animatetop {
+		  from {top:-300px; opacity:0}
+		  to {top:0; opacity:1}
+		}
+		
+		.close {
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.modal-header {
+		  padding: 2px 16px;
+		  background-color: #443E44;
+		}
+		
+		.modal-body {
+			background-color: #A19CA8;
+			padding: 2px 16px;
+	/* 		color: #0F0E0F; */
+			color: #FFFFFF;
+		}
+		
+		.accordion {
+		  background-color: #443E44;
+	/*  	  color: #9F9BA0; */
+	 	  color: #FFFFFF;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 22px;
+		  font-weight: 600;
+		  transition: 0.4s;
+		  border: 1px solid #554F55;
+		}
+		
+		.active, .accordion:hover {
+		  background-color: #554F55;
+	/* 	  color: #ECECED; */
+		  color: #FFFFFF;
+		}
+		
+		.accordion:after {
+		  content: '\002B';
+	/*  	  color: #ECECED; */
+	 	  color: #FFFFFF;
+		  font-weight: bold;
+		  float: right;
+		  margin-left: 5px;
+		}
+		
+		.active:after {
+	  		content: "\2212";
+		}
+		
+		.thePanels {
+		  padding: 0 18px;
+		  background-color: #76727B;
+		  max-height: 0;
+		  overflow: hidden;
+		  transition: max-height 0.2s ease-out;
+	/* 	  color: #ECECED; */
+		  color: #FFFFFF;
+		}
+		
+		.social{
+			width: 40px;
+			height: 40px;
+		}
+		
+		.B1 {
+				display:  flex;
+				align-items: center;
+				justify-content: left;
+				font-size: 20px;
+				line-height: 24px;
+				text-align: left;
+			}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -206,10 +207,10 @@
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
@@ -234,7 +235,7 @@
 									<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 									<li>&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
 									<li></li> <!-- 預留放地圖按鈕 -->
-									<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
+									<li>&emsp;&emsp;<div id="myBtn"><img src="/Bartenders/images/menu_icon.png"></div></li>
 									<li>&emsp;&emsp;</li>
 									<li><img id="favbT" src="/Bartenders/images/heart (1).png"></li>
 									<li></li>
@@ -285,9 +286,9 @@
 											<div class="col-6 col-12-medium">
 												<ul>
 													<li><h3>社群網站</h3></li>
-													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png">&nbsp;${myBarX.barFb}</li>
-													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png">&nbsp;${myBarX.barLine}</li>
-													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png">&nbsp;${myBarX.barIg}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png" onclick="location.href='https://www.facebook.com/${myBarX.barFb}';">&nbsp;${myBarX.barFb}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png" onclick="location.href='https://line.me/ti/p/${myBarX.barLine}';">&nbsp;${myBarX.barLine}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png" onclick="location.href='https://instagram.com/${myBarX.barIg}';">&nbsp;${myBarX.barIg}</li>
 												</ul>
 											</div>
 										</div>

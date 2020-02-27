@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta  http-equiv="Expires"  CONTENT="0">   
 	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
@@ -13,8 +15,7 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="Bartenders/CSS/add_editView.css"> -->
-	<title>Add News and Event</title>
+	<title>新增最新消息 / Bartenders</title>
 	<style>
 		.small {
 			display: flex;
@@ -53,10 +54,10 @@
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
@@ -84,20 +85,19 @@
 											<li>
 												<h3>標題</h3>
 											</li>
-											<li><input id="newsTitle" type="text" name="neTitle"
-												required="required"></li>
+											<li><input id="newsTitle" type="text" name="neTitle" placeholder="請填寫標題"  required="required"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>詳細</h3>
 											</li>
-											<li><textarea cols="10" rows="8" id="newsDetail" name="neText" required="required"></textarea></li>
+											<li><textarea cols="10" rows="8" id="newsDetail" name="neText" placeholder="請填寫消息詳細內容" required="required"></textarea></li>
 										</ul>
 									</div>
 									<div class="col-12">
 										<ul class="actions">
 											<li><a style="text-decoration: none;" class="button" href="/Bartenders/NewsAndEvents.All">取消</a></li>
-											<li><input class="button primary" type="submit" value="發表"></li>
+											<li><input class="button primary" type="submit" value="發佈"></li>
 										</ul>
 									</div>
 								</div>

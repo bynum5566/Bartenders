@@ -48,7 +48,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             		System.out.println("user login status:"+logisticLogin);
             		System.out.println("start update database");
 //            		response.sendRedirect("/LogisticSystem/loginSuccess");
-            		RequestDispatcher rd = request.getRequestDispatcher("/logistic/QRCodeUpdatePage");
+            		RequestDispatcher rd = request.getRequestDispatcher("/logistic/LogisticUpdate");
             		rd.forward(request, response);
                     return false;
             	}

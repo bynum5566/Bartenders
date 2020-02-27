@@ -7,7 +7,11 @@
 
 <head>
 <meta charset="UTF-8">
-<title>User Page</title>
+
+
+
+<title>Drinkers</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +23,7 @@
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript>
 	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/>
@@ -172,16 +177,17 @@ main {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li><a href="/Bartenders/notice">通知</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a
-									href="javascript:signOut()">登出</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+								<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+								<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -259,6 +265,17 @@ main {
 				easing: "easeOutExpo",
 				delay: 1000
 			});
+		
+		//測試是否可以接收到登入參數
+		var user = '${getUserId}';
+		var company = '${getCompanyId}';
+
+		console.log('preUrl=','${preUrl}');
+		var currentId = '${getCompanyId}${getUserId}';
+		console.log('currentId is: ',currentId);
+		//設定currentId給超連結
+		$('#myActivity').attr("href","/Bartenders/queryActivityByUser.do?currentId="+currentId);
+		
 	</script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"

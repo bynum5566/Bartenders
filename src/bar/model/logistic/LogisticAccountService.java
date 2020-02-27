@@ -16,15 +16,12 @@ public class LogisticAccountService {
 		this.aDao = aDao;
 	}
 
-//	public boolean checkLogin(Account users) {
-//		return aDao.checkLogin(users);
-//	}
-//
-//	public int countUser(int number) {
-//		return aDao.countUser(number);
-//	}
-//	
-//	public List<Account> showUser(int number) {
-//		return aDao.showUser(number);
-//	}
+	public boolean checkLogin(String logisticName, String logisticPwd) {
+		return aDao.checkLogin(logisticName,logisticPwd);
+	}
+	
+	public LogisticAccount querySender(String logisticName, String logisticPwd) {
+		return aDao.querySender(logisticName,logisticPwd);
+	}
+
 }
