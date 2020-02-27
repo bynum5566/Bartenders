@@ -46,13 +46,13 @@ public class QRCodeDAO {
 		this.oService = oService;
 	}
 
-	public Logistic QRCodeAction(String ID, Integer status) {
+	public Logistic QRCodeAction(String oID, Integer sID) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			String hqlStr = "from Logistic where oID=:ID";
+			String hqlStr = "from Logistic where oID=:oID";
 			System.out.println("hqlStr:" + hqlStr);
 			Query query = session.createQuery(hqlStr);
-			query.setParameter("ID", ID);
+			query.setParameter("oID", oID);
 //			query.setParameter("Status", status);
 			Logistic order = (Logistic)query.uniqueResult();
 			System.out.println("order query result:"+order);
@@ -61,17 +61,18 @@ public class QRCodeDAO {
 					order.setoStatus(2);
 					String date = getTime();
 					order.setoTimeB(date);
+					order.setsID(sID);
 					System.out.println("update status");
-					String name = order.getoName();
-					CreateQR(ID,status+1,name);
-					Orders reUpdate = oService.selectOrder(ID);
+//					String name = order.getoName();
+//					CreateQR(ID,status+1,name);
+					Orders reUpdate = oService.selectOrder(oID);
 					reUpdate.setStatus(4);
 				}else if(order.getoStatus()==2&&order.getoComplete()==1) {
 					order.setoStatus(3);
 					String date = getTime();
 					order.setoTimeC(date);
-					Orders reUpdate = oService.selectOrder(ID);
-					reUpdate.setStatus(5);
+					Orders reUpdate = oService.selectOrder(oID);
+					reUpdate.setStatus(6);
 					System.out.println("update status");
 				}
 			}
@@ -87,8 +88,9 @@ public class QRCodeDAO {
 	public void CreateQR(String orderID, Integer orderStatus, String name) {
 //基本引數
 		int width = 500, height = 500;
-		String format = "png", contents = "http://localhost:8080/Bartenders/logistic/QRCodeAction.do?orderID="+orderID+"&orderStatus="+orderStatus;
-//存放二維碼引數
+		String format = "png", contents = "http://localhost:8080/Bartenders/logistic/QRCodeAction.do?orderID="+orderID;
+		System.out.println("QR code: "+contents);
+		//存放二維碼引數
 		HashMap hashMap = new HashMap();
 //內容的字符集編碼
 		hashMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -101,12 +103,12 @@ public class QRCodeDAO {
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, width, height,
 					hashMap);
 //檔案生成路徑
-			File file = new File("C:/test/"+orderID+name+orderStatus+".png");
+			File file = new File("C:/test/"+orderID+name+".png");
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 			MatrixToImageWriter.writeToPath(bitMatrix, format, file.toPath());
-			System.out.println("Create code success:"+orderID+name+orderStatus+".png");
+			System.out.println("Create code success:"+orderID+name+".png");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "logisticAccount")
 public class LogisticAccount {
 
-	private int userId;
+	private Integer senderId;
 	private String logisticName;
 	private String logisticPwd;
 
@@ -23,14 +23,14 @@ public class LogisticAccount {
 		this.logisticPwd = logisticPwd;
 	}
 	@Id
-	@Column(name="USERID")
+	@Column(name="SENDERID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getUserId() {
-		return userId;
+	public Integer getSenderId() {
+		return senderId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setSenderId(Integer senderId) {
+		this.senderId = senderId;
 	}
 	@Column(name="LOGISTICNAME")
 	public String getLogisticName() {

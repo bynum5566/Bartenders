@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta  http-equiv="Expires"  CONTENT="0">   
 	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
@@ -18,10 +19,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-	<title>Add new product</title>
+	<title>新增商品 / Bartenders</title>
 	<style>
 		.small {
 			display: flex;
@@ -66,10 +66,10 @@
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
@@ -98,43 +98,43 @@
 											<li>
 												<h3>商品名稱</h3>
 											</li>
-											<li><input id="pdName" class="bt0" name="pdNm" type="text" required="required"></li>
+											<li><input id="pdName" class="bt0" name="pdNm" placeholder="請填寫商品名稱" type="text" required="required"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>商品數量</h3>
 											</li>
-											<li><input id="pdStock" class="bt0" name="pdStk" id="pdamount" type="number" min="1" required="required"></li>
+											<li><input id="pdStock" class="bt0" name="pdStk" placeholder="請填寫商品數量"  id="pdamount" type="number" min="1" required="required"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>商品價格</h3>
 											</li>
-											<li><input id="pdPrice" class="bt0" name="pdPri" id="pdprice" type="number" min="1" required="required"></li>
+											<li><input id="pdPrice" class="bt0" name="pdPri" placeholder="請填寫商品價格"  id="pdprice" type="number" min="1" required="required"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>Tag1</h3>
 											</li>
-											<li><input id="pdTag1" class="bt0" name="pdTg1" type="text" max="10"></li>
+											<li><input id="pdTag1" class="bt0" name="pdTg1" placeholder="請填寫標籤名稱" type="text" max="10"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>Tag2</h3>
 											</li>
-											<li><input id="pdTag2" class="bt0" name="pdTg2" type="text" max="10"></li>
+											<li><input id="pdTag2" class="bt0" name="pdTg2" placeholder="請填寫標籤名稱" type="text" max="10"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>Tag3</h3>
 											</li>
-											<li><input id="pdTag3" class="bt0" name="pdTg3" type="text" max="10"></li>
+											<li><input id="pdTag3" class="bt0" name="pdTg3" placeholder="請填寫標籤名稱" type="text" max="10"></li>
 										</ul>
 										<ul>
 											<li>
 												<h3>商品詳細</h3>
 											</li>
-											<li><textarea id="pdDetail" class="bt0" name="pdDta"></textarea></li>
+											<li><textarea id="pdDetail" class="bt0" name="pdDta" placeholder="請填寫商品詳細介紹" cols="10" rows="8"></textarea></li>
 										</ul>
 										<ul>
 											<li>
@@ -212,12 +212,9 @@
 									</div>
 									<div class="col-12">
 										<ul class="actions">
-											<li id="bT"><a style="text-decoration: none;"
-												href="/Bartenders/Dashboard.Products" class="button">回上頁</a></li>
-											<li><a style="text-decoration: none;"
-												href="/Bartenders/Product.Add" class="button">重填</a></li>
-											<li><input class="button primary" type="submit"
-												value="新增商品"/></li>
+											<li id="bT"><a style="text-decoration: none;" href="/Bartenders/Dashboard.Products" class="button">回上頁</a></li>
+											<li><a style="text-decoration: none;" href="/Bartenders/Product.Add" class="button">重填</a></li>
+											<li><input class="button primary" type="submit" value="新增商品"/></li>
 										</ul>
 									</div>
 								</div>

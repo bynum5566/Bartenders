@@ -13,6 +13,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>討論區</title>
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
@@ -24,6 +25,8 @@
 <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
 <style>
 h1.panel, form.flip {
 	margin: 0px;
@@ -73,7 +76,7 @@ form.panel {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -104,7 +107,7 @@ form.panel {
 						<main>
 							<div>
 								<div style="color: WhiteSmoke;">
-									["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 								</div>
 
 							</div>
@@ -164,7 +167,7 @@ form.panel {
 														style="padding: 10px;">ID:${messageBoard.id}</span> <span
 														style="padding: 10px;">${messageBoard.time}</span> <span
 														style="margin: 25px; padding: 10px; font-size: 20px; color: white">
-														<a style="color: red"
+														<a style="color: red; font-size: 1.3em;"
 														href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">回覆</a>
 													</span>
 												</div>

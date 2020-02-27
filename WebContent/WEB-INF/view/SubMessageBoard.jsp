@@ -66,7 +66,7 @@ form.panel {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -80,7 +80,7 @@ form.panel {
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
-								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>				
+								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a href="UserFirstPage">返回首頁</a><a
@@ -99,7 +99,7 @@ form.panel {
 
 							<div>
 								<div style="color: WhiteSmoke;">
-									["<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>""]
+									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 								</div>
 							</div>
 
@@ -166,15 +166,16 @@ form.panel {
 												<script async defer crossorigin="anonymous"
 													src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
 												<div class="fb-like"
-													data-href="http://11129henry.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}
-			"
-													data-width="" data-layout="button_count" data-action="like"
+													data-href="http://11129henry.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
+													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
 
 											</c:forEach>
 										</div>
 
-
+									</div>
+									
+									<div style="border-style: double; background: hsla(200, 50%, 50%, 0.2); padding: 10px; margin: 50px;">
 										<c:forEach var="subMessageBoard" items="${subnewest}">
 											<div style="margin: 10px;">
 												<ul>
@@ -206,7 +207,7 @@ form.panel {
 												<table style="float: right;">
 													<tbody>
 														<tr>
-															<td><input type="text" name="id" size="8"
+															<td><input type="text" name="subId" size="8"
 																placeholder="留言ID"></td>
 															<td><input type="password" name="deletePassword"
 																size="8" maxlength="8" placeholder="刪除密碼"></td>

@@ -6,14 +6,14 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta  http-equiv="Expires"  CONTENT="0">   
 	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forSlideShow.css">
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/productView.css"> -->
-	<title>Bartender- Preview ${productName}</title>
+	<title>${productName} / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -52,10 +52,10 @@
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>

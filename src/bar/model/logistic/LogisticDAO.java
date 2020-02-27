@@ -29,7 +29,33 @@ public class LogisticDAO {
 	}
 	
 	
-	public String createLogistic(String id,int type,String phone,String name,int amount,String address) {
+	public Logistic uniqueQuery(String condition) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(condition);
+		Logistic rs = (Logistic)query.uniqueResult();
+		System.out.println("unique result: "+rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
+	public List<Logistic> simpleQuery(String condition) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(condition);
+			List<Logistic> rs = query.list();
+			System.out.println("query result: "+rs);
+			return rs;
+			}catch(Exception e) {
+				System.out.println("e:"+e);
+				return null;
+			}
+		}
+
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
@@ -40,25 +66,28 @@ public class LogisticDAO {
 			SimpleDateFormat logisticNum = new SimpleDateFormat("yyyyMMdd");//20200217
 			String forTime = sdFormat.format(time);
 			String forNum = logisticNum.format(time);//20200217
-			String last = getLastNum();
+			System.out.println("forTime:"+forTime+"forNum:"+forNum);
+			String last = getLastNum();//2001
 			String finalLast;
 			if(last=="none") {
-				System.out.println("尚未有訂單,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
-				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+				System.out.println("尚未有訂單,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(2, 6));
+				finalLast = forNum.substring(2, 6)+forTime.substring(8, 10)+"01"; 
 			}else if(Integer.parseInt(forNum.substring(6))!=Integer.parseInt(last.substring(0, 2))){
 				System.out.println("上一個訂單日為: "+Integer.parseInt(forNum.substring(6))+"比"+Integer.parseInt(last.substring(0, 2)));
-				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(0, 6));
-				finalLast = forNum.substring(0, 6)+forTime.substring(8, 10)+"001"; 
+				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(2, 6));
+				finalLast = forNum.substring(2, 6)+forTime.substring(8, 10)+"01"; 
 			}else{
 				int num = Integer.parseInt(last)+1;
 				String text = Integer.toString(num);
-				finalLast = forNum+text.substring(2); 
+				finalLast = forNum.substring(2)+text.substring(2); 
 			}
+			int finalInput = Integer.parseInt(finalLast);
 			System.out.println("finalLast: "+finalLast);
 //			String lID = forNum
 			
-			logis.setoID(id);
-			logis.setlID(finalLast);
+			logis.setoID(oID);
+			logis.setlID(finalInput);
+			logis.setcID(cID);
 			logis.setoType(type);
 			logis.setoAddr(address);
 			logis.setoName(name);
@@ -67,7 +96,7 @@ public class LogisticDAO {
 			logis.setoStatus(1);
 			logis.setoTimeA(forTime);
 			session.save(logis);
-			qdao.CreateQR(id, 1, name);
+			qdao.CreateQR(oID, 1, name);
 //			order.setShippingNumber(finalLast);
 			return finalLast;
 		}catch(Exception e) {
@@ -91,9 +120,9 @@ public class LogisticDAO {
 			System.out.println("no logistic yet");
 			return "none";
 		}else {
-			String last = rs.getlID();
-			String num = last.substring(6);
-			System.out.println("last 5 num:"+num);
+			Integer last = rs.getlID();
+			String num = last.toString().substring(4);
+			System.out.println("last 4 num:"+num);
 			return num;
 		}
 		
@@ -103,6 +132,22 @@ public class LogisticDAO {
 		}
 	}
 
+	public List<Logistic> queryBysID(String sID) {
+		try {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from Logistic where sID=:sID";
+		System.out.println("hqlStr:"+hqlStr);
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("sID", sID);
+		List<Logistic> rs = query.list();
+		System.out.println(rs);
+		return rs;
+		}catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
 	public List<Logistic> queryByStatus(Integer status) {
 		try {
 		Session session = sessionFactory.getCurrentSession();
@@ -161,53 +206,6 @@ public class LogisticDAO {
 //		}
 		return null;
 	}
-	
-//	public Logistic ChangeType(String type,int ID) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr="from Logistic where oType=:type and oID=:ID";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("type", type);
-//		query.setParameter("ID", ID);
-//		Logistic rs = (Logistic)query.uniqueResult();
-//		System.out.println("Query result:"+rs);
-//		if(rs!=null) {
-//			System.out.println("before update:"+rs.getoType());
-//			if(rs.getoType().equals("M")) {
-//				rs.setoType("H");
-//			}else {
-//				rs.setoType("M");
-//			}
-//			System.out.println("after update:"+rs.getoType());
-//		}
-//		System.out.println("Update completed");
-//		return rs;
-//	}
-	
-//	public Logistic ChangeStatus(int status,String ID) {
-//		Session session = sessionFactory.getCurrentSession();
-//		String hqlStr="from Logistic where oID=:ID and oStatus=:Status";
-//		Query query = session.createQuery(hqlStr);
-//		query.setParameter("ID", ID);
-//		query.setParameter("Status", status);
-//		Logistic rs = (Logistic)query.uniqueResult();
-//		System.out.println("Query result:"+rs);
-//		if(status==2) {
-//			String date = getTime();
-//			System.out.println("date:"+date);
-//			rs.setoTimeA(date);
-//			String name = rs.getoName();
-//			qdao.CreateQR(ID,status,name);
-//		}else if(status==3) {
-//			String date = getTime();
-//			System.out.println("date:"+date);
-//			rs.setoTimeB(date);
-//			String name = rs.getoName();
-//			qdao.CreateQR(ID,status,name);
-//		}else if(rs!=null&&rs.getoStatus()!=4) {
-//			rs.setoStatus(status+1);
-//		}
-//		return rs;
-//	}
 	
 	public Date getTime() {
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.logistic.Logistic;
+import bar.model.logistic.LogisticAccount;
+import bar.model.logistic.LogisticService;
 import bar.model.logistic.QRCodeDAO;
 
 @Controller
@@ -25,10 +27,12 @@ import bar.model.logistic.QRCodeDAO;
 public class FunctionByQRCode {
 
 	private QRCodeDAO qdao;
-	
+	private LogisticService lSer;
+
 	@Autowired
-	public FunctionByQRCode(QRCodeDAO qdao) {
+	public FunctionByQRCode(QRCodeDAO qdao,LogisticService lSer) {
 		this.qdao = qdao;
+		this.lSer = lSer;
 	}
 	
 //	@RequestMapping(path="/CreateQRCode.do", method = RequestMethod.GET)
@@ -40,42 +44,36 @@ public class FunctionByQRCode {
 //	}
 	
 	
-	@RequestMapping(path="/ReadQRCode.do", method = RequestMethod.GET)
-	public String processAction2(Model m) {
-		
-		String code = qdao.readQR();
-		m.addAttribute("code",code);
-		System.out.println("QRCode已建立");
-		return "LogisticGate";
-	}
-	
 	@RequestMapping(path="logistic/QRCodeUpdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String processAction3(@RequestParam(name = "orderID")String orderID, 
-			@RequestParam(name = "orderStatus")Integer orderStatus,Model m,
+	public String processAction3(
+			@RequestParam(name = "sID")Integer sID,
+			@RequestParam(name = "orderID")String oID, Model m,
 			HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		Logistic order = qdao.QRCodeAction(orderID,orderStatus);
-		System.out.println("get retrun result:"+order);
-		if(order==null) {
+		System.out.println("sender's id: "+sID);
+		Logistic update = qdao.QRCodeAction(oID,sID);
+		System.out.println("get retrun result:"+update);
+		if(update==null) {
+			Logistic valid = lSer.uniqueQuery("oID", "'"+oID+"'");
 			System.out.println("result is null");
+			m.addAttribute("valid",valid);
 			return "logistic/QRCodeInvalid";
 		}else {
 			System.out.println("order is created");
 		}
-		m.addAttribute("update",order);
-		m.addAttribute("test","this is result: "+order);
+		m.addAttribute("update",update);
+		m.addAttribute("test","this is result: "+update);
 //		m.addAttribute("orderID",orderID);
 //		m.addAttribute("orderStatus",orderStatus);
 //		RequestDispatcher rd = request.getRequestDispatcher("/QRCodeUpdate");
 //		rd.forward(request, response);
-		response.sendRedirect("/Bartenders/logistic/QRCodeUpdatePage");
+		response.sendRedirect("/Bartenders/logistic/LogisticUpdate");
 
 //		return "QRCodeUpdate";
 		return null;
 	}
-	
+	//過濾頁
 	@RequestMapping(path="/logistic/QRCodeAction.do", method = RequestMethod.GET)
-	public String processAction4(@RequestParam(name = "orderID")Integer orderID, 
-			@RequestParam(name = "orderStatus")Integer orderStatus,Model m) {
+	public String processAction4(@RequestParam(name = "orderID")String oID, Model m) {
 //		Logistic order = qdao.QRCodeAction(orderID,orderStatus);
 //		System.out.println("get retrun result:"+order);
 //		if(order==null) {
@@ -83,10 +81,10 @@ public class FunctionByQRCode {
 //			return "QRCodeInvalid";
 //		}
 //		m.addAttribute("update",order);
-		m.addAttribute("orderID",orderID);
-		m.addAttribute("orderStatus",orderStatus);
+		m.addAttribute("orderID",oID);
+//		m.addAttribute("orderStatus",orderStatus);
 		System.out.println("return to page");
-		return "logistic/QRCodeUpdate";
+		return "logistic/LogisticUpdate";
 	}
 
 }

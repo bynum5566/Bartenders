@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<!-- <link rel="stylesheet" type="text/css" href="/Bartenders/CSS/add_editView.css"> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<title>My bar</title>
+	<title>編輯酒吧 / Bartenders</title>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -140,10 +140,10 @@
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
 								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
@@ -293,38 +293,36 @@
 											</ul>
 											<ul>
 												<li><label>關於</label></li>
-												<li><textarea name="aboutBar">${aboutBar}</textarea></li>
+												<li><textarea name="aboutBar" placeholder="關於酒吧">${aboutBar}</textarea></li>
 											</ul>
 											<ul>
 												<li><label>Menu</label></li>
-												<li><textarea name="barMenu">${barMenu}</textarea></li>
+												<li><textarea name="barMenu" placeholder="請填寫酒吧菜單">${barMenu}</textarea></li>
 											</ul>
 											<ul>
 												<li><label>地址</label></li>
 												<li>
-													<input type="text" name="barAddress" required="required" value="<c:out value="${barAdd}"/>">
+													<input type="text" name="barAddress"  placeholder="請填寫酒吧地址" required="required" value="<c:out value="${barAdd}"/>">
 												</li>
 											</ul>
 											<ul>
 												<li><label>電話</label></li>
 												<li>
-													<input type="tel" name="barPhone" required="required" value="<c:out value="${barPhone}"/>">
+													<input type="tel" name="barPhone"  placeholder="請填寫酒吧電話" required="required" value="<c:out value="${barPhone}"/>">
 												</li>
 											</ul>
 											<ul>
-												<li><label>Facebook連結</label></li>
-												<li><input type="url" name="barFb" value="<c:out value="${barFb}"/>"></li>
+												<li><label>Facebook粉專帳號</label></li>
+												<li><input type="text" name="barFb" placeholder="請填寫Facebook帳號"  value="<c:out value="${barFb}"/>"></li>
 											</ul>
 											<ul>
 												<li><label>Line帳號</label></li>
-												<li><input type="text" name="barLine" value="<c:out value="${barLine}"/>">
+												<li><input type="text" name="barLine" placeholder="請填寫Line帳號"  value="<c:out value="${barLine}"/>">
 												</li>
 											</ul>
 											<ul>
-												<li><label>Instgram連結</label></li>
-												<li>
-													<input type="url" name="barIG" value="<c:out value="${barIg}"/>">
-												</li>
+												<li><label>Instgram帳號</label></li>
+												<li><input type="text" name="barIG" placeholder="請填寫Instgram帳號"  value="<c:out value="${barIg}"/>"></li>
 											</ul>
 										</div>
 										<div class="col-12">
