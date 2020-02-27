@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>我的訂單</title>
+	<title>我的訂單 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -137,6 +137,10 @@ table th {
     padding: 0 0.75em 0.75em 1.7em;
     text-align: left;
     font-size: 18px;
+}
+
+table td {
+    padding: 0.5em 0.5em;
 }
 </style>
 </head>

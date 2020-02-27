@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>User Page</title>
+<title>Drinkers</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
