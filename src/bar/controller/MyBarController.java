@@ -66,6 +66,7 @@ public class MyBarController {
 			List<EventsAndNews> listOfEventOfOneBar = eAnDAO.selectAllEN(companyId);
 			m.addAttribute("myBarX", Cservice.selectMyBarByCompanyId(companyId));
 			m.addAttribute("CompanyName", companyX.getCompanyName());
+			m.addAttribute("Address", companyX.getAddress());
 			m.addAttribute("listOfProduct", listOfProduct);
 			m.addAttribute("barAccount", account);
 			m.addAttribute("companyId", companyId);
@@ -78,6 +79,7 @@ public class MyBarController {
 			List<EventsAndNews> listOfEventOfOneBar = eAnDAO.selectAllEN(companyId);
 			m.addAttribute("myBarX", Cservice.selectMyBarByCompanyId(companyId));
 			m.addAttribute("CompanyName", companyX.getCompanyName());
+			m.addAttribute("Address", companyX.getAddress());
 			m.addAttribute("listOfProduct", listOfProduct);
 			m.addAttribute("barAccount", account);
 			m.addAttribute("companyId", companyId);
@@ -128,6 +130,8 @@ public class MyBarController {
 		}
 		Company Data = mBS.selectBarData(companyId);
 
+		String about = Detail.getAboutBar().replaceAll("<br>", "");
+		
 		request.setAttribute("barId", companyId);
 
 		request.setAttribute("barName", Data.getCompanyName());
@@ -140,7 +144,7 @@ public class MyBarController {
 		request.setAttribute("barImgUrl3", Detail.getCoverUrl3());
 		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
 		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
-		request.setAttribute("aboutBar", Detail.getAboutBar());
+		request.setAttribute("aboutBar", about);
 		request.setAttribute("barMenu", Detail.getBarMenu());
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());

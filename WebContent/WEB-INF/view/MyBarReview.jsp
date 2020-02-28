@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -12,9 +11,10 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- 	<link rel="stylesheet" href="/resources/demos/style.css"> -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 	<title>我的酒吧/Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -99,31 +99,38 @@
 		  animation-duration: 0.4s;
 		}
 		
+		#modal-content1{
+        	width: 80%;
+        	height: 80%;
+        }
+		
 		@-webkit-keyframes animatetop {
-		  from {top:-300px; opacity:0} 
-		  to {top:0; opacity:1}
+			from {top:-300px; opacity:0} 
+			to {top:0; opacity:1}
 		}
 		
 		@keyframes animatetop {
-		  from {top:-300px; opacity:0}
-		  to {top:0; opacity:1}
+			from {top:-300px; opacity:0}
+			to {top:0; opacity:1}
 		}
 		
-		.close {
-		  float: right;
-		  font-size: 28px;
-		  font-weight: bold;
+		.close, #close1 {
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
 		}
 		
-		.close:hover,
-		.close:focus {
-		  text-decoration: none;
-		  cursor: pointer;
+		.close:hover, 
+		.close:focus, 
+		#close1:hover, 
+        #close1:focus {
+			text-decoration: none;
+			cursor: pointer;
 		}
 		
 		.modal-header {
-		  padding: 2px 16px;
-		  background-color: #443E44;
+			padding: 2px 16px;
+			background-color: #443E44;
 		}
 		
 		.modal-body {
@@ -133,35 +140,42 @@
 			color: #FFFFFF;
 		}
 		
+		#myBtn1{
+            width: 100px;
+            height: 100px;
+        }
+		
+		#map { height: 90%; }
+		
 		.accordion {
-		  background-color: #443E44;
-	/*  	  color: #9F9BA0; */
-	 	  color: #FFFFFF;
-		  cursor: pointer;
-		  padding: 18px;
-		  width: 100%;
-		  border: none;
-		  text-align: left;
-		  outline: none;
-		  font-size: 22px;
-		  font-weight: 600;
-		  transition: 0.4s;
-		  border: 1px solid #554F55;
+			background-color: #443E44;
+	/*  	color: #9F9BA0; */
+	 	 	color: #FFFFFF;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 22px;
+			font-weight: 600;
+			transition: 0.4s;
+			border: 1px solid #554F55;
 		}
 		
 		.active, .accordion:hover {
-		  background-color: #554F55;
-	/* 	  color: #ECECED; */
-		  color: #FFFFFF;
+			background-color: #554F55;
+	/* 		color: #ECECED; */
+			color: #FFFFFF;
 		}
 		
 		.accordion:after {
-		  content: '\002B';
-	/*  	  color: #ECECED; */
-	 	  color: #FFFFFF;
-		  font-weight: bold;
-		  float: right;
-		  margin-left: 5px;
+			content: '\002B';
+	/*  	color: #ECECED; */
+	 		color: #FFFFFF;
+			font-weight: bold;
+			float: right;
+			margin-left: 5px;
 		}
 		
 		.active:after {
@@ -169,13 +183,13 @@
 		}
 		
 		.thePanels {
-		  padding: 0 18px;
-		  background-color: #76727B;
-		  max-height: 0;
-		  overflow: hidden;
-		  transition: max-height 0.2s ease-out;
-	/* 	  color: #ECECED; */
-		  color: #FFFFFF;
+			padding: 0 18px;
+			background-color: #76727B;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.2s ease-out;
+	/* 		color: #ECECED; */
+			color: #FFFFFF;
 		}
 		
 		.social{
@@ -185,72 +199,74 @@
 		}
 		
 		.B1 {
-				display:  flex;
-				align-items: center;
-				justify-content: left;
-				font-size: 20px;
-				line-height: 24px;
-				text-align: left;
-			}
+			display:  flex;
+			align-items: center;
+			justify-content: left;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: left;
+		}
 
 		.swiper-container {
-		  width: 640px;
-	      height: 360px;
+			width: 640px;
+	    	height: 360px;
 	    }
+	    
 	    .swiper-slide {
-	      text-align: center;
-	      font-size: 18px;
-	      background: #fff;
-	      display: -webkit-box;
-	      display: -ms-flexbox;
-	      display: -webkit-flex;
-	      display: flex;
-	      -webkit-box-pack: center;
-	      -ms-flex-pack: center;
-	      -webkit-justify-content: center;
-	      justify-content: center;
-	      -webkit-box-align: center;
-	      -ms-flex-align: center;
-	      -webkit-align-items: center;
-	      align-items: center;
+	    	text-align: center;
+	    	font-size: 18px;
+	    	background: #fff;
+	    	display: -webkit-box;
+	    	display: -ms-flexbox;
+	     	display: -webkit-flex;
+	    	display: flex;
+	    	-webkit-box-pack: center;
+	    	-ms-flex-pack: center;
+	    	-webkit-justify-content: center;
+	    	justify-content: center;
+	    	-webkit-box-align: center;
+	    	-ms-flex-align: center;
+	    	-webkit-align-items: center;
+			align-items: center;
 	    }
-	    div.swiper-slide img {
-	    width: 100%;
-	    height: 100%;
-	    margin: auto;
-	    object-fit: cover;
-	}			
+	    
+		div.swiper-slide img {
+			width: 100%;
+			height: 100%;
+			margin: auto;
+			object-fit: cover;
+		}			
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-		<h1><a href="WelcomeCompany">Bartenders</a></h1>
-		<nav id="nav">
-			<ul>
-				<li class="special">
-					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
-						<ul>
-							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
-							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
-							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
-							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
-							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
-							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
-							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</header>
+			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
+								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
     
 		<article id="main">
 			<section class="wrapper style5">
@@ -261,28 +277,14 @@
 								<ul class="actions">
 									<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 									<li>&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
-									<li></li> <!-- 預留放地圖按鈕 -->
+									<li><img id="myBtn1" src="/Bartenders/images/map.png"></li>
 									<li>&emsp;&emsp;</li>
 									<li><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 									<li>&emsp;&emsp;</li>
 									<li><img id="favbT" src="/Bartenders/images/heart (1).png"></li>
 									<li></li>
 								</ul>
-								<ul>
-									<li>
-										<div id="myModal" class="modal">
-											<div class="modal-content">
-												<div class="modal-header">
-													<span class="close">&times;</span>
-													<h2>Menu</h2>
-												</div>
-												<div class="modal-body">
-													<p>${myBarX.barMenu}</p>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
+								
 								<ul class="alt">
 									<li><h2>最新活動<h2></h2></li>
 									<li>
@@ -396,6 +398,35 @@
 										</table>
 									</li>
 								</ul>
+								<ul>
+									<li>
+										<div id="myModal" class="modal">
+											<div class="modal-content">
+												<div class="modal-header">
+													<span class="close">&times;</span>
+													<h2>Menu</h2>
+												</div>
+												<div class="modal-body">
+													<p>${myBarX.barMenu}</p>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<input id="bNm" type="hidden" value="<c:out value="${CompanyName}" />" readonly="readonly">
+								<input id="bAd" type="hidden" value="<c:out value="${Address}" />" readonly="readonly">
+								<input id="bImg" type="hidden" value="<c:out value="${myBarX.coverUrl1}" />" readonly="readonly">
+								<div id="myModal1" class="modal">
+							        <div id="modal-content1" class="modal-content">
+							            <div class="modal-header">
+							                <span id="close1">&times;</span>
+							                <h2>酒吧地圖資訊</h2>
+							            </div>
+							            <div class="modal-body">
+							            </div>
+							                <%@ include file="googleMap.jsp" %>
+							        </div>
+							    </div>
 							</section>
 						</div>
 					</section>
@@ -405,24 +436,6 @@
 	</div>
 	
 	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-	<script>
-		var swiper = new Swiper('.swiper-container', {
-			spaceBetween: 30,
-			centeredSlides: true,
-			autoplay: {
-				delay: 2500,
-				disableOnInteraction: false,
-			},
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-			},
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-		});
-	</script>
 	<script src="/Bartenders/JS/forBarPage.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
