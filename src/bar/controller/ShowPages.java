@@ -4,8 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes(names = {"userName" , "CName"})
 public class ShowPages {
 
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -205,11 +207,13 @@ return "SubMessageBoard";
 	
 	@RequestMapping(value = "/Welcome.Company" , method = RequestMethod.GET )
 	public String goWelcome(Model m) {
+		WebSocketTest.setModel(m);
 		return "WelcomeCompany";
 	}
 	
 	@RequestMapping(value = "/Welcome.UserFirstPage" , method = RequestMethod.GET )
 	public String goUserFirstPage(Model m) {
+		WebSocketTest.setModel(m);
 		return "UserFirstPage";
 	}
 }

@@ -50,6 +50,8 @@ public class WebSocketTest {
 	public static void setModel(Model m) {
 		WebSocketTest.m = m;
 	}
+	
+
 
 	/** * 連接建立成功調用的方法 * @param session * 可選的參數。session為與某個客戶端的連接會話，需要通過它來給客戶端發送數據 */
 	@OnOpen
