@@ -41,11 +41,17 @@ public class UserInformationController {
 		m.addAttribute("showEmail", ruser.getEmail());
 		m.addAttribute("showAddress",ruser.getAddress());
 		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "ShowUserInfo";
 	}
 	
 	@RequestMapping(path="/resetInfo" , method = RequestMethod.GET)
-	public String showResetInfo() {
+	public String showResetInfo(Model m) {
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "ResetUserInfo";
 	}
 	

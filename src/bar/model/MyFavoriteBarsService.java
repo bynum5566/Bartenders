@@ -35,38 +35,10 @@ public class MyFavoriteBarsService {
 			int companyId = idList.get(x);	
 			Company comp = Cdao.selectCompany(companyId);	
 			favbs = favbs	
-					+"<tr class=\"pdRow\"><td>"
-//					+ "<button style=\"background-image:url(/Bartenders/images/more_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/DisplayProductList.controller?barAccount="
-					+"<div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/DisplayProductList.controller?barAccount="
+					+"<tr class=\"pdRow\"><td><div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/DisplayProductList.controller?barAccount="
 					+comp.getAccount() + "';\">" +comp.getCompanyName() + "</h3></div></td><td class=\"RSide\">"
-//					+ "<td class=\"MidS1\"><div>"
-//					+"</div></td>"
 					+"<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
-					+comp.getCompanyId() 
-					+ "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
-//					+ "<button style=\"background-image:url(/Bartenders/images/delete_icon.png);background-repeat: no-repeat; background-size: cover; background-position: center;\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
-//					+"';\" class=\"bT\"/></td></tr>";
-					
-//					+"<tr class=\"pdRow\"><td><a class=\"f1\" href=\"/Bartenders/DisplayProductList.controller?barAccount="
-//					+comp.getAccount()
-//					+"\"><div class=\"bT2\"><input class=\"bT\" type=\"image\" alt=\"button\" src=\"/Bartenders/images/more_icon.png\"></div></a></td><td class=\"MidS1\"><div>"
-//					+comp.getCompanyName()
-//					+"</div></td><td class=\"RSide\"><a class=\"f1\" href=\"/Bartenders/barDisLike?cidck="
-//					+comp.getCompanyId()
-//					+"\"><div class=\"bT2\"><input class=\"bT\" type=\"image\" alt=\"button\" src=\"/Bartenders/images/delete_icon.png\"></div></a></td></tr>";
-
-//					+"<tr class=\"pdRow\"><td>"	
-//					+"<form action=\"/Bartenders/Product.show\" method=\"GET\">"	
-//					+"<input type=\"text\" name=\"CId\" class=\"pdidckLL\" value=\""	
-//					+ comp.getCompanyId() + "\" readonly=\"readonly\">" 	
-//					+ "<div class=\"pdId\" name=\"pdId1\">編號:</div>"	
-//					+"<div><input type=\"submit\" value=\"" + comp.getCompanyId() + "\"/></div></form></td>"	
-//					+"<td class=\"MidS1\"><div class=\"pdNm\" name=\"pdNm1\">名稱:</div><div>"	
-//					+ comp.getCompanyName() + "</div></td>"	
-//					+"<td class=\"RSide\"><form action=\"/Bartenders/pdDisLike\" method=\"POST\">"	
-//					+ "<input type=\"text\" name=\"pdidck\" class=\"pdidckLL\" value=\"" + comp.getCompanyId()	
-//					+ "\" readonly=\"readonly\"><input type=\"submit\" value=\"刪除\"></form></td>"	
-//					+"</tr>";	
+					+comp.getCompanyId() + "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
 		}
 		return favbs;
 	}
@@ -93,7 +65,11 @@ public class MyFavoriteBarsService {
 		mfb.setUserId(userId);
 		mfbD.addToFavBar(mfb);
 		}else {
-			disLreLB(userId, companyId);
+			String Like = myFvb.getDisliked();
+			if(Like.equals("L")) {
+			}else {
+				disLreLB(userId, companyId);
+			}
 		}
 	}
 	public void disLreLB(int userId, int companyId) {

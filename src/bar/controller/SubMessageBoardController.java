@@ -110,8 +110,8 @@ public class SubMessageBoardController {
 			@ModelAttribute(name = "account") String account, @ModelAttribute(name = "resId") int resId,
 			@ModelAttribute(name = "resAccount") String resAccount) {
 
-		messageBoardService.subDelete(subId, deletePassword);
-		if (messageBoardService.subDelete(subId, deletePassword)) {
+		boolean status = messageBoardService.subDelete(subId, deletePassword);
+		if (status) {
 			List<MessageBoard> theMessage = messageBoardService.selectTheMessage(resAccount, resId);
 			m.addAttribute("newest", theMessage);
 

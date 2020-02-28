@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<title>註冊酒吧帳戶</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -33,7 +34,7 @@
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="index.jsp">Bartenders</a></h1>
+			<h1><a href="/Bartenders/login">Bartenders</a></h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">

@@ -6,8 +6,9 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>${barName}</title>
+	<title>搜尋${kWord}的結果 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -73,7 +74,7 @@
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="UserFirstPage">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -88,7 +89,8 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>

@@ -7,8 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>訂單管理</title>
+	<title>訂單管理 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
 	<style>
@@ -38,7 +39,7 @@
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="index.jsp">Bartenders</a>
+				<a href="WelcomeCompany">Bartenders</a>
 			</h1>
 			<nav id="nav">
 				<ul>
@@ -47,19 +48,19 @@
 							<ul>
 								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+								
+								
+								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -78,11 +79,11 @@
 								<div class="col-6 col-12-xsmall">
 									<ul>
 										<li><h3>原訂單資訊:</h3></li>
-										<li>訂單編號:${orderId}</li>
+										<li>訂單編號:${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
 										<li><input type="hidden" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></li>
 										<li>商品名稱:${productData[0].productName}…</li>
 <%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
-										<li>訂單總價:${order.amount}</li>
+										<li>訂單總價:$${order.amount}</li>
 <%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
 										<li>原選擇之配送方式:${ShippingNumToStr[order.shipping]}</li>
 <%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}" readonly="readonly" /><br></li> --%>

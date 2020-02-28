@@ -16,7 +16,7 @@ import bar.model.CompanyService;
 import bar.model.EventsAndNews;
 import bar.model.EventsAndNewsService;
 
-@SessionAttributes(names= {"Caccount"})
+@SessionAttributes(names= {"Caccount","userName", "CName"})
 @Controller
 public class EventsAndNewsController {
 	private EventsAndNewsService eanS;
@@ -39,6 +39,10 @@ public class EventsAndNewsController {
 		int companyId = comp.getCompanyId();
 		String EN = eanS.showAllEN(companyId);
 		m.addAttribute("NewsEvents", EN);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "EventsAndNews";
 	}
 	

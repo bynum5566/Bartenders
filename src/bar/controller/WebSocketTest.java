@@ -14,6 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,7 +26,6 @@ import bar.model.MessageDto;
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
 @SessionAttributes(value = { "userName", "CName" })
-@Controller
 public class WebSocketTest {
 	// private static int onlineCount = 0;
 
@@ -37,13 +37,6 @@ public class WebSocketTest {
 
 //session作為用戶建立連接的唯一會話，可以用來區別每個用戶 
 	private Session session;
-
-//httpsession用以在建立連接的時候獲取登錄用戶的唯一標識（登錄名）,獲取到之後以鍵值對的方式存在Map對象裡面 
-//	private static HttpSession httpSession;
-//
-//	public static void setHttpSession(HttpSession httpSession) {
-//		WebSocketTest.httpSession = httpSession;
-//	}
 
 	private static Model m;
 
@@ -58,6 +51,7 @@ public class WebSocketTest {
 	public void onOpen(Session session) {
 		Gson gson = new Gson();
 		this.session = session;
+		
 
 		String onlineUser = (String) m.getAttribute("userName");
 		String onlineCompany = (String) m.getAttribute("CName");
@@ -67,7 +61,6 @@ public class WebSocketTest {
 
 		if (onlineUser != null && onlineUser.length() != 0) {
 			webSocketMap.put(onlineUser, this);
-//			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
@@ -94,7 +87,7 @@ public class WebSocketTest {
 			String count = Integer.toString(webSocketMap.size());
 			md.setData(count);
 			sendAll(gson.toJson(md));
-			System.out.println(count);
+			System.out.println("online count:"+count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 				MessageDto md1 = new MessageDto();
@@ -104,6 +97,7 @@ public class WebSocketTest {
 				sendAll(gson.toJson(md1));
 				System.out.println("online:" + entry.getKey());
 			}
+			
 		}
 
 	}
@@ -125,12 +119,13 @@ public class WebSocketTest {
 		for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 			if (entry.getValue().session == this.session) {
 				webSocketMap.remove(entry.getKey());
+				System.out.println(entry.getKey()+"已離線");
 				break;
 			}
 		}
-//		subOnlineCount();
-// System.out.println(getOnlineCount()); 
+		System.out.println("websocket close...");
 	}
+
 
 	/**
 	 * * 伺服器接收到客戶端消息時調用的方法，（通過「@」截取接收用戶的用戶名） * * @param message * 客戶端發送過來的消息

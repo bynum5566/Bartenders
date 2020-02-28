@@ -19,13 +19,14 @@ public class MessageBoard {
 	private String picture;
 	private String deletePassword;
 	private String userName;
+	private Integer subMessageAmount;
 
 	public MessageBoard() {
 
 	}
 
 	public MessageBoard(Integer id, String title, String account, String time, String blabla, String picture,
-			String deletePassword, String userName) {
+			String deletePassword, String userName, Integer subMessageAmount) {
 		this.id = id;
 		this.title = title;
 		this.account = account;
@@ -34,7 +35,7 @@ public class MessageBoard {
 		this.picture = picture;
 		this.deletePassword = deletePassword;
 		this.userName = userName;
-
+		this.subMessageAmount = subMessageAmount;
 	}
 
 	@Id
@@ -109,6 +110,15 @@ public class MessageBoard {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	@Column(name = "subMessageAmount")
+	public Integer getSubMessageAmount() {
+		return subMessageAmount;
+	}
+
+	public void setSubMessageAmount(Integer subMessageAmount) {
+		this.subMessageAmount = subMessageAmount;
 	}
 
 }

@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,7 +15,9 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>酒吧</title>
+	<title>${CompanyName}／Bartenders</title>
+	<%--豪--%>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -34,7 +37,7 @@
 			display: none;
 		}
 
-		.sigmaTd1 img {
+	.sigmaTd1 img {
 			width: 100px;
 		}
 
@@ -59,7 +62,7 @@
 		font-weight: 600;
 	}
 	
-	#favbT{
+	#favbT, img.myMenu {
 		width: 100px;
 		height: 100px;
 		cursor: pointer;
@@ -175,13 +178,55 @@
 	  color: #FFFFFF;
 	}
 	
+	.social{
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+	}
+	
+	.B1 {
+			display:  flex;
+			align-items: center;
+			justify-content: left;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: left;
+		}
+
+	.swiper-container {
+	  width: 640px;
+      height: 360px;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    div.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
+}
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-      		<h1><a href="index.jsp">Bartenders</a></h1>
+      		<h1><a href="UserFirstPage">Bartenders</a></h1>
       		<nav id="nav">
         		<ul>
           			<li class="special">
@@ -196,7 +241,8 @@
 							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-							<li class="small"><a href="UserFirstPage">返回首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               			</ul>
               			</div>
           			</li>
@@ -210,13 +256,12 @@
 					<section>
 						<div class=mydiv>
 							<section>
-								<!-- level5 -->
-								<!-- 有框 <table border="1" > -->
 									<ul class="actions">
 										<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 										<li >&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
 										<li></li> <!-- 預留放地圖按鈕 -->
-										<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
+										<li>&emsp;&emsp;</li>
+										<li><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 										<li>&emsp;&emsp;</li>
 										<li><img id="favbT" src="/Bartenders/images/heart (1).png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
 										<li></li>
@@ -235,159 +280,72 @@
 												</div>
 											</div>
 										</li>
-<!-- 										<li> -->
-<!-- 											<div id="dialog" title="Menu"> -->
-<%-- 												<p>${myBarX.barMenu}</p> --%>
-<!-- 											</div> -->
-<!-- 										</li> -->
 									</ul>
-<!-- 								<table class="sigmaFontSize20"> -->
-									<!-- 無框 -->
-									<!-- (Menu) Dialog開始 -->
-									<!-- (Menu) Dialog結束 -->
-<!-- 								</table> -->
-<!-- 							</section> level5 -->
-<!-- 							<section> -->
-								<!-- level5 -->
-								<!-- 有框 <table border="1">-->
-<!-- 								<table> -->
-									<!-- level6 -->
 									<ul class="alt">
-										<li><h2>最新活動<h2></h2></li> <!-- 最新活動 標題 -->
-									<!-- 事件event，開始 -->
+										<li><h2>最新活動<h2></h2></li>
 										<li>
 											<div>
 												<c:forEach items="${listOfEventOfOneBar}" var="list" step="1" varStatus="current">
-													<!-- 此酒吧的所有事件 -->
 													<div  class="accordion">${listOfEventOfOneBar[current.index].neTitle}</div>
-													<!-- event標題 -->
 													<div class="thePanels">
 														<br>
 														<p class="sigmaTransparent">${listOfEventOfOneBar[current.index].neText}</p>
-														<!-- event內文-->
 													</div>
 												</c:forEach>
 											</div>
 										</li>
-									<!-- 事件，結束 -->
-<!-- 								</table> -->
-<!-- 							</section> level5 -->
-<!-- 							<section> -->
-								<!-- level5 -->
-								<!-- 有框 <table border="1">-->
-<!-- 								<table> -->
-									<!-- 跑馬燈(圖片) -->
-<!-- 									<tr> -->
-<!-- 										<td> -->
-											<!-- 跑馬燈，開始 -->
-<!-- 											<div> -->
 										<li>
-											<figure align="center">
-																<!-- 跑馬燈，第一張圖 -->
-																<!-- "/Bartenders/images/圖片名稱.jpg"-->
-																<!-- px不寫，會無效 -->
-												<img id="slider" style="width:550px;height:330px" src="${myBarX.coverUrl1}">
-											</figure>
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img src="${myBarX.coverUrl1}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl2}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl3}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl4}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl5}" /></div>
+											</div>
+											<div class="swiper-pagination"></div>
+											<div class="swiper-button-next"></div>
+											<div class="swiper-button-prev"></div>
+										</div>
 										</li>
-<!-- 												<div> -->
-													<!-- 跑馬燈，選擇紐 -->
-													<!-- north_star.png改成  /Bartenders/images/north_star.png -->
-<!-- 													<table> -->
-<!-- 														<tr> -->
-<!-- 															<td> -->
-<!-- 																<img onmouseover="choose1(this,event)" -->
-<!-- 																	onmouseout="chooseout(this,event)" class="Sts" -->
-<!-- 																	id="st1" src="/Bartenders/images/Circle.png"> -->
-<!-- 															</td> -->
-<!-- 															<td> -->
-<!-- 																<img onmouseover="choose2(this,event)" -->
-<!-- 																	onmouseout="chooseout(this,event)" class="Sts" -->
-<!-- 																	id="st2" src="/Bartenders/images/Circle.png"> -->
-<!-- 															</td> -->
-<!-- 															<td> -->
-<!-- 																<img onmouseover="choose3(this,event)" -->
-<!-- 																	onmouseout="chooseout(this,event)" class="Sts" -->
-<!-- 																	id="st3" src="/Bartenders/images/Circle.png"> -->
-<!-- 															</td> -->
-<!-- 															<td> -->
-<!-- 																<img onmouseover="choose4(this,event)" -->
-<!-- 																	onmouseout="chooseout(this,event)" class="Sts" -->
-<!-- 																	id="st4" src="/Bartenders/images/Circle.png"> -->
-<!-- 															</td> -->
-<!-- 															<td> -->
-<!-- 																<img onmouseover="choose5(this,event)" -->
-<!-- 																	onmouseout="chooseout(this,event)" class="Sts" -->
-<!-- 																	id="st5" src="/Bartenders/images/Circle.png"> -->
-<!-- 															</td> -->
-<!-- 														</tr> -->
-<!-- 													</table> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-											<!-- 跑馬燈，結束 -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-<!-- 								</table> -->
-<!-- 							</section> -->
-<!-- 							<section> -->
-								<!-- 有框<table border="1" > -->
-<!-- 								<table> -->
-<!-- 									<tr> -->
 										<li class="sigmaTd6" style="text-align: left">
 											<div class="row">
 												<div class="col-6 col-12-medium">
 													<ul>
-														<li><h3>酒吧介紹:</h3></li>
+														<li><h3>酒吧介紹</h3></li>
 														<li><h3>${myBarX.aboutBar}</h3></li>
 													</ul>
 												</div>
 												<div class="col-6 col-12-medium">
-													<ul class="icons">
-														<li><img class="" src="/Bartenders/images/iconfinder_facebook_986944.png"><span class="label" id="${myBarX.barFb}">Twitter</span></li>
-														<li><img src="/Bartenders/images/iconfinder_line_986949.png"><span class="label">${myBarX.barLine}</span></li>
-														<li><img src="/Bartenders/images/iconfinder_Instagram_381384.png"><span class="label">${myBarX.barIg}</span></li>
+													<ul>
+														<li><h3>社群網站</h3></li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png" onclick="location.href='https://www.facebook.com/${myBarX.barFb}';">&nbsp;${myBarX.barFb}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png" onclick="location.href='https://line.me/ti/p/${myBarX.barLine}';">&nbsp;${myBarX.barLine}</li>
+														<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png" onclick="location.href='https://instagram.com/${myBarX.barIg}';">&nbsp;${myBarX.barIg}</li>
 													</ul>
 												</div>
 											</div>
 										</li>
-<!-- 									</tr> -->
-<!-- 								</table> -->
-<!-- 							</section> -->
-							<%-- 本體，開始 --%>
-<!-- 							<div> -->
-<%-- 								<section> 縮放版本的商品列表，開始 --%>
 										<li>
 											<table>
 												<tbody>
-													<!--  <tr align="center">-->
 													<c:forEach items="${listOfProduct}" var="list" step="1" varStatus="current">
-	
-														<!-- 四個換一行 -->
 														<c:if test="${(current.index+1) %3  == '1' }">
 															<tr>
 														</c:if>
-	
-														<!-- 一組 -->
-														<!-- 點這個區塊(class="flip")會縮放下面的(class="panel") -->
 														<td style="vertical-align:text-top">
 															<div style="vertical-align:text-top">
 																<div>
-																	<!-- 商品名稱 -->
 																	${listOfProduct[current.index].productName}
 																	<br>
-																	<!-- 單價 -->
 																	$ ${listOfProduct[current.index].pdPrice}
 																	<br>
 																	<img class="flip" style="vertical-align:text-top;width:100px;height:100px" src="${listOfProduct[current.index].productImageUrl}"/>
-																	<!--下拉選單，開始 -->
-																	<!-- 產品種類不同，能買的東西不同 -->
 																	<c:choose>
 																		<c:when test="${listOfProduct[current.index].validDate == null}">
-																			<!--一般的-->
 																			<div>
 																				<form action="<c:url value="/AddProductToCart.controller"/>" method="get">
-																				<!-- 一般，上下式 -->
 																					<input type="number" required="required" style="width:60px" name="qty" value="1" max="${listOfProduct[current.index].pdStock}" min="1"/>
-																					<!-- 一般，上下式 -->
 																					<input type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
 																					<input type='hidden' name='ProductName' value='${listOfProduct[current.index].productName}'>
 																					<input type='hidden' name='PdStock' value='${listOfProduct[current.index].pdStock}'>
@@ -399,18 +357,9 @@
 																			</div>
 																		</c:when>
 																		<c:otherwise>
-																			<!-- QR -->
 																			<div>
 																				<form action="<c:url value="/AddProductToCart.controller"/>" method="get">
-																				<!-- QR，下拉式 -->
-	
-																				<!--舊版下拉式-->
-																				<!--<select class="sigmaBlack" name='qty'>-->
-																				<!-- QR票券只能買一張 -->
-																				<!--<option value="1">1</option>-->
-																				<!--</select> -->
 																				<input type="number" required="required" style="width:60px" name="qty" value="1" max="1" min="1"/>
-	
 																				<input type='hidden' name='PdId' value='${listOfProduct[current.index].pdId}'>
 																				<input type='hidden' name='ProductName' value='${listOfProduct[current.index].productName}'>
 																				<input type='hidden' name='PdStock' value='${listOfProduct[current.index].pdStock}'>
@@ -422,42 +371,51 @@
 																			</div>
 																		</c:otherwise>
 																	</c:choose>
-																	<!--下拉選單，結束 -->
 																</div>
 																<div class="panel" style="vertical-align:text-top">
 																	<p>
 																		簡介：<br>
 																		${listOfProduct[current.index].pdDetail}
 																	</p><br>
-																	<!--<a href="<c:url value="/AddToCartButton.controller"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>-->
 																	<a href="<c:url value="/Product.show"/>?PdId=${listOfProduct[current.index].pdId}">商品詳情</a>
-																	<!-- <a href="<c:url value="/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk2</a> -->
-																	<!-- <a href="<c:url value="/Bartenders/Product.show"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情mk3</a> -->
 																</div>
 															</div>
 														</td>
-														<!-- 一組 -->
 														<c:if test="${(current.index+1) %3  == '0' }">
 															</tr>
 														</c:if>
-														<!-- 四個換一行 -->
 													</c:forEach>
-													<!-- </tr>-->
 												</tbody>
 											</table>
 										</li>
 									</ul>
 								</section>
-								<%-- 縮放版本的商品列表，結束 --%>
-							<%-- 本體，結束 --%>
 						</div>
 					</section>
 				</div>
 			</section>
 		</article>
 	</div>
-
+	
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 	<script>
+			var swiper = new Swiper('.swiper-container', {
+				spaceBetween: 30,
+				centeredSlides: true,
+				autoplay: {
+					delay: 2500,
+					disableOnInteraction: false,
+				},
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			});
+		
 			var modal = document.getElementById("myModal");
 			var btn = document.getElementById("myBtn");
 			var span = document.getElementsByClassName("close")[0];
@@ -495,21 +453,6 @@
 				$(this).closest("div").siblings().slideToggle("slow");
 			});
 	
-// 			$(function () {
-// 				$("#accordion").accordion({
-// 					collapsible: true
-// 				});
-// 			});
-	
-// 			$(function () {
-// 				$("#dialog").dialog();
-// 				$("#dialog").dialog('close');
-// 			});
-
-// 		function displayMenu() {
-// 			$("#dialog").dialog('open');
-// 		}
-
 		var images = ["${myBarX.coverUrl1}", "${myBarX.coverUrl2}", "${myBarX.coverUrl3}", "${myBarX.coverUrl4}", "${myBarX.coverUrl5}"];
 		var num = 0;
 

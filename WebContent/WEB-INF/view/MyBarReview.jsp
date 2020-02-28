@@ -6,6 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,7 +15,8 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>酒吧</title>
+	<title>我的酒吧/Bartenders</title>
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -27,162 +29,204 @@
 			background: rgba(0, 0, 0, 0.6);
 			border: solid 1px #c3c3c3;
 		}
-
+	
 		div.panel {
 			height: auto;
 			width: 300px;
 			display: none;
 		}
-
+	
 		.sigmaTd1 img {
 			width: 100px;
 		}
+	
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		#barName{
+			font-size: 50px;
+			font-weight: 600;
+		}
+		
+		#favbT, img.myMenu{
+			width: 100px;
+			height: 100px;
+			cursor: pointer;
+		}
+		
+		#myBtn:hover {
+			color: #ECECED;
+		}
+		
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 1;
+		  padding-top: 100px;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow: auto;
+		  background-color: rgb(0,0,0);
+		  background-color: rgba(0,0,0,0.4);
+		  color: #9F9BA0;
+		}
+		
+		.modal-content {
+		  position: relative;
+		  margin: auto;
+		  padding: 0;
+		  border: 1px solid #888;
+		  width: 40%;
+		  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		  -webkit-animation-name: animatetop;
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: animatetop;
+		  animation-duration: 0.4s;
+		}
+		
+		@-webkit-keyframes animatetop {
+		  from {top:-300px; opacity:0} 
+		  to {top:0; opacity:1}
+		}
+		
+		@keyframes animatetop {
+		  from {top:-300px; opacity:0}
+		  to {top:0; opacity:1}
+		}
+		
+		.close {
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.modal-header {
+		  padding: 2px 16px;
+		  background-color: #443E44;
+		}
+		
+		.modal-body {
+			background-color: #A19CA8;
+			padding: 2px 16px;
+	/* 		color: #0F0E0F; */
+			color: #FFFFFF;
+		}
+		
+		.accordion {
+		  background-color: #443E44;
+	/*  	  color: #9F9BA0; */
+	 	  color: #FFFFFF;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 22px;
+		  font-weight: 600;
+		  transition: 0.4s;
+		  border: 1px solid #554F55;
+		}
+		
+		.active, .accordion:hover {
+		  background-color: #554F55;
+	/* 	  color: #ECECED; */
+		  color: #FFFFFF;
+		}
+		
+		.accordion:after {
+		  content: '\002B';
+	/*  	  color: #ECECED; */
+	 	  color: #FFFFFF;
+		  font-weight: bold;
+		  float: right;
+		  margin-left: 5px;
+		}
+		
+		.active:after {
+	  		content: "\2212";
+		}
+		
+		.thePanels {
+		  padding: 0 18px;
+		  background-color: #76727B;
+		  max-height: 0;
+		  overflow: hidden;
+		  transition: max-height 0.2s ease-out;
+	/* 	  color: #ECECED; */
+		  color: #FFFFFF;
+		}
+		
+		.social{
+			width: 40px;
+			height: 40px;
+			cursor: pointer;
+		}
+		
+		.B1 {
+				display:  flex;
+				align-items: center;
+				justify-content: left;
+				font-size: 20px;
+				line-height: 24px;
+				text-align: left;
+			}
 
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
-	
-	#barName{
-		font-size: 50px;
-		font-weight: 600;
-	}
-	
-	#favbT{
-		width: 100px;
-		height: 100px;
-		cursor: pointer;
-	}
-	
-	#myBtn:hover {
-		color: #ECECED;
-	}
-	
-	.modal {
-	  display: none;
-	  position: fixed;
-	  z-index: 1;
-	  padding-top: 100px;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	  height: 100%;
-	  overflow: auto;
-	  background-color: rgb(0,0,0);
-	  background-color: rgba(0,0,0,0.4);
-	  color: #9F9BA0;
-	}
-	
-	.modal-content {
-	  position: relative;
-	  margin: auto;
-	  padding: 0;
-	  border: 1px solid #888;
-	  width: 40%;
-	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-	  -webkit-animation-name: animatetop;
-	  -webkit-animation-duration: 0.4s;
-	  animation-name: animatetop;
-	  animation-duration: 0.4s;
-	}
-	
-	@-webkit-keyframes animatetop {
-	  from {top:-300px; opacity:0} 
-	  to {top:0; opacity:1}
-	}
-	
-	@keyframes animatetop {
-	  from {top:-300px; opacity:0}
-	  to {top:0; opacity:1}
-	}
-	
-	.close {
-	  float: right;
-	  font-size: 28px;
-	  font-weight: bold;
-	}
-	
-	.close:hover,
-	.close:focus {
-	  text-decoration: none;
-	  cursor: pointer;
-	}
-	
-	.modal-header {
-	  padding: 2px 16px;
-	  background-color: #443E44;
-	}
-	
-	.modal-body {
-		background-color: #A19CA8;
-		padding: 2px 16px;
-/* 		color: #0F0E0F; */
-		color: #FFFFFF;
-	}
-	
-	.accordion {
-	  background-color: #443E44;
-/*  	  color: #9F9BA0; */
- 	  color: #FFFFFF;
-	  cursor: pointer;
-	  padding: 18px;
-	  width: 100%;
-	  border: none;
-	  text-align: left;
-	  outline: none;
-	  font-size: 22px;
-	  font-weight: 600;
-	  transition: 0.4s;
-	  border: 1px solid #554F55;
-	}
-	
-	.active, .accordion:hover {
-	  background-color: #554F55;
-/* 	  color: #ECECED; */
-	  color: #FFFFFF;
-	}
-	
-	.accordion:after {
-	  content: '\002B';
-/*  	  color: #ECECED; */
- 	  color: #FFFFFF;
-	  font-weight: bold;
-	  float: right;
-	  margin-left: 5px;
-	}
-	
-	.active:after {
-  		content: "\2212";
-	}
-	
-	.thePanels {
-	  padding: 0 18px;
-	  background-color: #76727B;
-	  max-height: 0;
-	  overflow: hidden;
-	  transition: max-height 0.2s ease-out;
-/* 	  color: #ECECED; */
-	  color: #FFFFFF;
-	}
-	
-</style>
+		.swiper-container {
+		  width: 640px;
+	      height: 360px;
+	    }
+	    .swiper-slide {
+	      text-align: center;
+	      font-size: 18px;
+	      background: #fff;
+	      display: -webkit-box;
+	      display: -ms-flexbox;
+	      display: -webkit-flex;
+	      display: flex;
+	      -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	      -webkit-justify-content: center;
+	      justify-content: center;
+	      -webkit-box-align: center;
+	      -ms-flex-align: center;
+	      -webkit-align-items: center;
+	      align-items: center;
+	    }
+	    div.swiper-slide img {
+	    width: 100%;
+	    height: 100%;
+	    margin: auto;
+	    object-fit: cover;
+	}			
+	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -191,19 +235,16 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
 							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -221,7 +262,8 @@
 									<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
 									<li>&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
 									<li></li> <!-- 預留放地圖按鈕 -->
-									<li>&emsp;&emsp;<div id="myBtn"><h3>Menu</h3></div></li>
+									<li>&emsp;&emsp;</li>
+									<li><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 									<li>&emsp;&emsp;</li>
 									<li><img id="favbT" src="/Bartenders/images/heart (1).png"></li>
 									<li></li>
@@ -255,9 +297,18 @@
 										</div>
 									</li>
 									<li>
-										<figure align="center">
-											<img id="slider" style="width:550px;height:330px" src="${myBarX.coverUrl1}">
-										</figure>
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img src="${myBarX.coverUrl1}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl2}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl3}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl4}" /></div>
+												<div class="swiper-slide"><img src="${myBarX.coverUrl5}" /></div>
+											</div>
+											<div class="swiper-pagination"></div>
+											<div class="swiper-button-next"></div>
+											<div class="swiper-button-prev"></div>
+										</div>
 									</li>
 									<li class="sigmaTd6" style="text-align: left">
 										<div class="row">
@@ -271,9 +322,10 @@
 											</div>
 											<div class="col-6 col-12-medium">
 												<ul>
-													<li><img src="/Bartenders/images/iconfinder_facebook_986944.png"><h3>${myBarX.barFb}</h3></li>
-													<li><img src="/Bartenders/images/iconfinder_line_986949.png"><h3>${myBarX.barLine}</h3></li>
-													<li><img src="/Bartenders/images/iconfinder_Instagram_381384.png"><h3>${myBarX.barIg}</h3></li>
+													<li><h3>社群網站</h3></li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_facebook_986944.png" onclick="location.href='https://www.facebook.com/${myBarX.barFb}';">&nbsp;${myBarX.barFb}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_line_986949.png" onclick="location.href='https://line.me/ti/p/${myBarX.barLine}';">&nbsp;${myBarX.barLine}</li>
+													<li class="B1"><img class="social" src="/Bartenders/images/iconfinder_Instagram_381384.png" onclick="location.href='https://instagram.com/${myBarX.barIg}';">&nbsp;${myBarX.barIg}</li>
 												</ul>
 											</div>
 										</div>
@@ -304,7 +356,7 @@
 																				<input type='hidden' name='pdPrice' value='${listOfProduct[current.index].pdPrice}'>
 																				<input type='hidden' name='barAccount' value='${barAccount}'>
 																				<input type='button' style="font-size:12px" value='加入購物車'>
-																			<div>
+																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div>
@@ -325,7 +377,14 @@
 																	簡介：<br>
 																	${listOfProduct[current.index].pdDetail}
 																</p><br>
-																<a href="<c:url value="/Product.show"/>?PdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																<c:choose>
+																	<c:when test="${listOfProduct[current.index].validDate == null}">
+																		<a href="<c:url value="/Product.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:when>
+																	<c:otherwise>
+																		<a href="<c:url value="/ProductTicket.View"/>?pdId=${listOfProduct[current.index].pdId}">商品詳情</a>
+																	</c:otherwise>
+																</c:choose>															
 															</div>
 														</div>
 													</td>
@@ -344,10 +403,24 @@
 			</section>
 		</article>
 	</div>
-
+	
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 	<script>
-		$(".flip").click(function () {
-			$(this).closest("div").siblings().slideToggle("slow");
+		var swiper = new Swiper('.swiper-container', {
+			spaceBetween: 30,
+			centeredSlides: true,
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
 		});
 	</script>
 	<script src="/Bartenders/JS/forBarPage.js"></script>

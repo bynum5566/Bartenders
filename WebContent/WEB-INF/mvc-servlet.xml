@@ -28,13 +28,14 @@
 		mapping="css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/css/"
 		mapping="assets/css/**"></mvc:resources>
-	<mvc:resources location="/WEB-INF/view/assets/css/images/"
+	<mvc:resources
+		location="/WEB-INF/view/assets/css/images/"
 		mapping="assets/css/images/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/js/"
 		mapping="assets/js/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/sass/"
 		mapping="assets/sass/**"></mvc:resources>
-		<mvc:resources location="/WEB-INF/view/assets/sass/libs/"
+	<mvc:resources location="/WEB-INF/view/assets/sass/libs/"
 		mapping="assets/sass/libs/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/view/assets/webfonts/"
 		mapping="assets/webfonts/**"></mvc:resources>
@@ -46,6 +47,10 @@
 		mapping="/JS/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/scripts/"
 		mapping="/scripts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/scripts/"
+		mapping="/logistic/scripts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/images/"
+		mapping="/logistic/images/**"></mvc:resources>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8" />
@@ -70,9 +75,9 @@
 
 	<mvc:interceptors>
 		<!-- <mvc:interceptor> -->
-		<!-- <mvc:mapping path="/download/**" /> -->
-		<!-- <mvc:mapping path="/upload/**" /> -->
-		<!-- <bean class="com.xxxx.interceptor.AuthInterceptor" /> -->
+		<!-- <mvc:mapping path="/download/**"/> -->
+		<!-- <mvc:mapping path="/upload/**"/> -->
+		<!-- <bean class="com.xxxx.interceptor.AuthInterceptor"/> -->
 		<!-- </mvc:interceptor> -->
 
 		<mvc:interceptor>
@@ -85,7 +90,7 @@
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/img/**" />
-			
+
 			<mvc:exclude-mapping path="/CSS/**" />
 			<mvc:exclude-mapping path="/JS/**" />
 			<mvc:exclude-mapping path="/assets/**/**" />
@@ -121,11 +126,19 @@
 				path="/resetPassword.controller" />
 			<mvc:exclude-mapping path="/ResetCompanyPassword" />
 			<mvc:exclude-mapping
-				path="/resetCompanyPassword.controller" />	
+				path="/resetCompanyPassword.controller" />
 			<mvc:exclude-mapping
-				path="/messageBoardShow.controller" />	
-				<mvc:exclude-mapping
-				path="/submessageBoardShow.controller" />	
+				path="/messageBoardShow.controller" />
+			<mvc:exclude-mapping
+				path="/submessageBoardShow.controller" />
+			<mvc:exclude-mapping path="/MessageBoardListMode" />
+
+			<mvc:exclude-mapping
+				path="/messageBoardShowList.controller" />
+
+			<mvc:exclude-mapping path="/JavaMailPage" />
+
+			<mvc:exclude-mapping path="/VerifyMailPage" />
 
 
 			<mvc:exclude-mapping path="/logistic" />
@@ -133,19 +146,19 @@
 				path="/logistic/LogisticLogin.do" />
 			<mvc:exclude-mapping
 				path="/logistic/LogisticLogout.do" />
-				
-				
+
+
 
 			<!-- 靜態資源 -->
-			<!-- <mvc:exclude-mapping path="/img/**" /> -->
-			<!-- <mvc:exclude-mapping path="/css/**" /> -->
-			<!-- <mvc:exclude-mapping path="/bootstrap/**" /> -->
-			<!-- <mvc:exclude-mapping path="/js/**" /> -->
-			<!-- <mvc:exclude-mapping path="/My97DatePicker/**" /> -->
-			<!-- <mvc:exclude-mapping path="/ueditorFile/**" /> -->
+			<!-- <mvc:exclude-mapping path="/img/**"/> -->
+			<!-- <mvc:exclude-mapping path="/css/**"/> -->
+			<!-- <mvc:exclude-mapping path="/bootstrap/**"/> -->
+			<!-- <mvc:exclude-mapping path="/js/**"/> -->
+			<!-- <mvc:exclude-mapping path="/My97DatePicker/**"/> -->
+			<!-- <mvc:exclude-mapping path="/ueditorFile/**"/> -->
 			<!-- 客戶端文件上傳下載 -->
-			<!-- <mvc:exclude-mapping path="/download/**" /> <mvc:exclude-mapping -->
-			<!-- path="/upload/**" /> -->
+			<!-- <mvc:exclude-mapping path="/download/**"/> <mvc:exclude-mapping -->
+			<!-- path="/upload/**"/> -->
 			<!-- 用戶是否已登入檢查 -->
 			<bean id="loginInterceptor" class="util.LoginInterceptor"></bean>
 		</mvc:interceptor>

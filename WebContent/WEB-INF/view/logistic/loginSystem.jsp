@@ -77,7 +77,7 @@
 					<section>
 						<h1 style="color:white;font-size:48px" align="center">物流登入</h1>
 						<div align="center">
-							<form action="<c:url value=" /logistic/LogisticLogin.do" />" method="post" >
+							<form action="<c:url value="/logistic/LogisticLogin.do" />" method="post" >
 							<table>
 								<tr>
 									<td style="color:white;font-size:24px">物流帳號:</td>
