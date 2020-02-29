@@ -222,7 +222,7 @@
 		})
 
 		$(function() {
-			$("input:checkbox[name='pdCheckL']").change(
+			$("input:checkbox[name='pdCheckL']").click(
 					function() {
 						listL = $("input:checkbox[name='pdCheckL']:checked")
 								.map(function(index, elem) {
@@ -234,7 +234,7 @@
 		});
 
 		$(function() {
-			$("input:checkbox[name='pdCheckP']").change(
+			$("input:checkbox[name='pdCheckP']").click(
 					function() {
 						listP = $("input:checkbox[name='pdCheckP']:checked")
 								.map(function(index, elem) {

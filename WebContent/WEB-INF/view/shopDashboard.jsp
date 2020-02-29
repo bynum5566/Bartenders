@@ -230,7 +230,7 @@
 		})
 		
 		$(function(){ 
-	        $("input:checkbox[name='pdCheckL']").change(function() {
+	        $("input:checkbox[name='pdCheckL']").click(function() {
 	            listL = $("input:checkbox[name='pdCheckL']:checked").map(function(index,elem) {
 	                return $(elem).val();
 	            }).get().join(',');
@@ -239,7 +239,7 @@
 	        });
 	    });
 		$(function(){ 
-	        $("input:checkbox[name='pdCheckP']").change(function() {
+	        $("input:checkbox[name='pdCheckP']").click(function() {
 	            listP = $("input:checkbox[name='pdCheckP']:checked").map(function(index,elem) {
 	                return $(elem).val();
 	            }).get().join(',');
