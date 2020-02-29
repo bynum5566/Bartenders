@@ -78,6 +78,7 @@ public class ProductDashboardController {
 		request.setAttribute("Tag1", pdTag1);
 		request.setAttribute("Tag2", pdTag2);
 		request.setAttribute("Tag3", pdTag3);
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 
 		return "productViewPage";
@@ -118,6 +119,7 @@ public class ProductDashboardController {
 		request.setAttribute("Tag1", pdTag1);
 		request.setAttribute("Tag2", pdTag2);
 		request.setAttribute("Tag3", pdTag3);
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
 
@@ -259,6 +261,7 @@ public class ProductDashboardController {
 				request.setAttribute("pic3", productImageUrl3);
 			}
 		}
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		return "productViewPage";
 	}
@@ -299,6 +302,7 @@ public class ProductDashboardController {
 				request.setAttribute("pic3", productImageUrl3);
 			}
 		}
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
 		return "productViewPage2";
@@ -371,6 +375,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -378,7 +383,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
 		request.setAttribute("autoPT", pd.getAutoPullTime());
 		request.setAttribute("pic1", pd.getProductImageUrl());
@@ -394,6 +399,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -401,7 +407,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
 		request.setAttribute("autoPT", pd.getAutoPullTime());
 		request.setAttribute("pic1", pd.getProductImageUrl());
@@ -417,6 +423,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -424,7 +431,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("valideT", pd.getValidDate());
 		request.setAttribute("expiryT", pd.getExpiryDate());
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
@@ -442,6 +449,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -449,7 +457,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("valideT", pd.getValidDate());
 		request.setAttribute("expiryT", pd.getExpiryDate());
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());

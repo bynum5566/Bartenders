@@ -194,7 +194,7 @@
 															</div>
 														</li>
 													</ul>
-													<input id="imgPlace2" type="text" name="pdImg" class="image-url" value="<c:out value="${barLogoUrl}"/>" readonly="readonly"/>
+													<input id="imgPlace2" type="text" name="pdImg" class="image-url" value="<c:out value="${barLogoUrl}"/>"/>
 													<script type="text/javascript" src="/Bartenders/JS/imgur.js"></script>
 													<script type="text/javascript" src="/Bartenders/JS/upload.js"></script>
 												</li>
