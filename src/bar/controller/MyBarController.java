@@ -131,6 +131,7 @@ public class MyBarController {
 		Company Data = mBS.selectBarData(companyId);
 
 		String about = Detail.getAboutBar().replaceAll("<br>", "");
+		String menu = Detail.getBarMenu().replaceAll("<br>", "");
 		
 		request.setAttribute("barId", companyId);
 
@@ -145,7 +146,7 @@ public class MyBarController {
 		request.setAttribute("barImgUrl4", Detail.getCoverUrl4());
 		request.setAttribute("barImgUrl5", Detail.getCoverUrl5());
 		request.setAttribute("aboutBar", about);
-		request.setAttribute("barMenu", Detail.getBarMenu());
+		request.setAttribute("barMenu", menu);
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());
 		request.setAttribute("barIg", Detail.getBarIg());

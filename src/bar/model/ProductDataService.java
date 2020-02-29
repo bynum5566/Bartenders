@@ -54,10 +54,12 @@ public class ProductDataService {
 				pUrl3 = productImageUrl3;
 			}
 
-			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date = new Date();
-			String strDate = sdFormat.format(date);
-			String pdId = companyId + strDate + ((int) (Math.random() * 9999 + 1));
+			String size = String.valueOf(pdao.selectAllProducts(companyId).size());
+			
+//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//			Date date = new Date();
+//			String strDate = sdFormat.format(date);
+			String pdId = String.valueOf(companyId) + ((int) (Math.random() * 999 + 1)) + size;
 
 			String autoLaunchTime = "";
 			String autoPullTime = "";
@@ -114,11 +116,13 @@ public class ProductDataService {
 			if (productImageUrl3.length() != 0) {
 				pUrl3 = productImageUrl3;
 			}
+			
+			String size = String.valueOf(pdao.selectAllProducts(companyId).size());
 
-			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-			Date date = new Date();
-			String strDate = sdFormat.format(date);
-			String pdId = companyId + strDate + ((int) (Math.random() * 9999 + 1));
+//			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//			Date date = new Date();
+//			String strDate = sdFormat.format(date);
+			String pdId = String.valueOf(companyId) + ((int) (Math.random() * 999 + 1)) + size;
 
 			String autoLaunchTime = "";
 			String autoPullTime = "";
