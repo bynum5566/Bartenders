@@ -40,6 +40,7 @@ import bar.model.Users;
 			"address1",
 			"phone",
 			"orders" 
+			,"userName"
 	}
 )
 @EnableTransactionManagement
@@ -175,7 +176,8 @@ public class DisplayCartListController {
 		m.addAttribute("listOflistOfProduct",listOflistOfProduct);
 		
 		
-		
+		//for websocket
+		WebSocketTest.setModel(m);
 		
 		
 		return "DisplayCartList";	/*試製雙層foreach*/

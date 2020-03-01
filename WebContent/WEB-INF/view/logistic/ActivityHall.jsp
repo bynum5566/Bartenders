@@ -19,6 +19,9 @@
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
@@ -41,7 +44,8 @@
 	    /* 以下是搜尋地圖設定*/
 		.searchDiv {
 			margin: auto;
-			width:800px;
+/* 			width:800px; */
+			width:70%;
 			height: auto;
 			display:none;
 		}
@@ -54,10 +58,11 @@
 		
 		#choose{
 			position:fixed;
-			top:20%;
+			top:10%;
 			right:0%;
 			background-color:lightgrey;
-			width:150px;
+/* 			width:150px; */
+			width:15%;
 			height:auto;
 			padding:5px;
 			margin:15px;
@@ -80,6 +85,134 @@
 		
 		#endTime{
 			height:25px;
+		}
+		
+		div.col-12.col-12-medium {
+			margin-left: 1%;
+			text-align: center;
+		}
+		
+		/*RWD for Map*/
+		@media screen and (max-width: 1680px) {
+			.col-12.col-12-medium {
+				width:50%;
+				margin-left: 5%;
+			}
+		}
+		
+		@media screen and (max-width: 1480px) {
+			.col-12.col-12-medium {
+				width:50%;
+				margin-left: 9%;
+			}
+			
+		}
+		
+		@media screen and (max-width: 960px) {
+			.col-12.col-12-medium {
+				margin-left: 8%;
+			}
+			#choose{
+				width:18%;
+			}
+			.searchDiv{
+				width: 850px;
+			}
+			#map0 {
+				width: 80%;
+			}
+		}
+		
+		@media screen and (max-width: 800px) {
+			.col-12.col-12-medium {
+				margin-left: 4%;
+			}
+			#choose{
+				width:20%;
+			}
+			.searchDiv{
+				width: 750px;
+			}
+			#map0 {
+				width: 80%;
+			}
+		}
+		
+		@media screen and (max-width: 736px) {
+			.col-12.col-12-medium {
+				margin-left: 5%;
+			}
+			#choose{
+				width:20%;
+			}
+			.searchDiv{
+				width: 650px;
+			}
+			#map0 {
+				width: 80%;
+			}
+		}
+		
+		@media screen and (max-width: 667px) {
+			.col-12.col-12-medium {
+				width:60%;
+				margin-left: 4%;
+			}
+			#choose{
+				width:25%;
+			}
+			.searchDiv{
+				width: 550px;
+			}
+			#map0 {
+				width: 80%;
+			}
+		}
+		
+		@media screen and (max-width: 620px) {
+			.col-12.col-12-medium {
+				width:60%;
+				margin-left: 4%;
+			}
+			#choose{
+				width:25%;
+			}
+			.searchDiv{
+				width: 500px;
+			}
+			#map0 {
+				width: 80%;
+			}
+		}
+		
+		@media screen and (max-width: 568px) {
+			.col-12.col-12-medium {
+				width:50%;
+				margin-left: 3%;
+			}
+			.searchDiv{
+				width: 400px;
+			}
+			#map0 {
+				width: 80%;
+			}
+			#choose{
+				width:30%;
+			}
+		}
+		
+		@media screen and (max-width: 414px) {
+			.col-12.col-12-medium {
+				width:50%;
+				margin-left: 2%;
+			}
+		}
+		
+		@media screen and (max-width: 320px) {
+			.col-12.col-12-medium {
+				width:50%;
+				margin-left: 1%;
+			}
 		}
 	</style>
 	
@@ -159,10 +292,10 @@
 	
 		<article id="main">
 			<section class="wrapper style5">
-				<div class="inner">
+<!-- 				<div class="inner"> -->
 					<section>
 						<div class="row">
-							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
+							<div class="col-12 col-6-medium"><!-- 這裡開始 -->
 								<h1 align=center style="font-size:48px;">活動大廳</h1>
 								
 								<div class="searchDiv" align=center>
@@ -307,20 +440,23 @@
 								</div>
 								
 								<div id="choose" class="chooseType" >
-									<form class="formBox">
-										搜尋類型:
-										<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label>
-										<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label>
-										<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label>
-										<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label>
-										<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label>
-										<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label>
-										<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" >
-										<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間">
-										<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px">清除時間</button>
-										<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >整合搜尋</button>
-										<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >檢視地圖</button>
-									</form>
+									<span data-toggle="collapse" data-target="#collap" style="text-align:left; cursor:pointer;">&times;</span>
+									<div id="collap" class="collapse in" style="text-align: left;">
+										<form class="formBox">
+											搜尋類型:<br>
+											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label><br>
+											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label><br>
+											<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label><br>
+											<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label><br>
+											<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label><br>
+											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label><br>
+											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" ><br>
+											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"><br>
+											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >整合搜尋</button><br>
+											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >檢視地圖</button><br>
+										</form>
+									</div>
 									
 								</div>
 							
@@ -497,7 +633,7 @@
 							</div><!-- 這裡結束 -->
 						</div>
 					</section>
-				</div>
+<!-- 				</div> -->
 			</section>
 		</article>
 	</div>

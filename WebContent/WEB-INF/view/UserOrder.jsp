@@ -91,6 +91,28 @@ table td {
 	color: #DAC9A6;
 	text-shadow: 1px 2px 0px #8E354A
 }
+
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+
 </style>
 </head>
 
@@ -98,8 +120,19 @@ table td {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
+			
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -114,7 +147,7 @@ table td {
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -272,5 +305,13 @@ table td {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
+		
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	
 </body>
 </html>

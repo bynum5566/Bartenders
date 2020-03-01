@@ -16,7 +16,7 @@ import bar.model.OrdersService;
 import bar.model.ProductData;
 
 @Controller
-@SessionAttributes(names = "Caccount")
+@SessionAttributes(names = { "Caccount", "CName"})
 @EnableTransactionManagement
 public class SalesReport {
 
@@ -51,6 +51,10 @@ public class SalesReport {
 
 		m.addAttribute("productNames", productNames);
 		m.addAttribute("productsSoldQuantity", productsSoldQuantity);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "SalesReport";
 	}
 }

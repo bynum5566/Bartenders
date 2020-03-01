@@ -23,7 +23,7 @@ import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
 @Controller
-@SessionAttributes(names = "account")
+@SessionAttributes(names = {"account","userName"})
 @EnableTransactionManagement
 public class DisplayCartController
 {
@@ -161,6 +161,10 @@ public class DisplayCartController
 		System.out.println("address is: "+st_addr);
 		//==================================
 //		return "OrderList";
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "DisplayCartDetail";
 		// ===========================【結束】
 //		return "TestPage";
