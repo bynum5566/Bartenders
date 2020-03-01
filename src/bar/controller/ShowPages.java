@@ -242,15 +242,5 @@ public String showVerifyMailPage() {
 		return "UserFirstPage";
 	}
 	
-	@RequestMapping(value = "/notice" , method = RequestMethod.GET )
-	public String showNotice(Model m) {
-		WebSocketTest.setModel(m);
-		return "Notice";
-	}
-	
-	@RequestMapping(value = "/cnotice" , method = RequestMethod.GET )
-	public String showcNotice(Model m) {
-		WebSocketTest.setModel(m);
-		return "CNotice";
-	}
+
 }

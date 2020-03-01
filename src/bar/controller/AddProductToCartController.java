@@ -26,7 +26,7 @@ import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
 @Controller
-@SessionAttributes(names = "account")
+@SessionAttributes(names = {"account","userName"})
 @EnableTransactionManagement
 public class AddProductToCartController
 {
@@ -378,6 +378,10 @@ public class AddProductToCartController
 				//return "AddToCartButton";		//Wu
 				//return "redirect:/Product.show";//Wu
 				//"redirect:/Product.show"	//商品詳情
+				
+				//for websocket
+				WebSocketTest.setModel(m);
+				
 				return "ResultOfAddToCart";
 				
 			}
