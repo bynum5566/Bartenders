@@ -91,7 +91,9 @@
 								</tr>
 								<tr>
 									<td><input type="hidden" name="orderID" value="${orderID}"></td>
+									<!-- 
 									<td><input type="hidden" name="orderStatus" value="${orderStatus}"></td>
+									 -->
 								</tr>
 								<tr>
 									<td><input type="submit"></td>
@@ -100,10 +102,10 @@
 								<tr>
 									<td>${msg}</td>
 								</tr>
-								<tr style="display:none">
+								<tr style="display:block;color:white;">
 									<td>orderID:${orderID}</td>
 								</tr>
-								<tr style="display:none">
+								<tr style="display:block;color:white;">
 									<td>orderStatus:${orderStatus}</td>
 								</tr>
 							</table>

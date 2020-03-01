@@ -70,10 +70,9 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
-							<li><a href="/Bartenders/logistic/LogisticGate">訂單管理</a></li>
-							<li><a href="/Bartenders/logistic/LogisticSearch">搜尋訂單</a></li>
-							<li><a href="/Bartenders/Example">測試</a></li>
-							<li class="small"><a href="/Bartenders/WelcomeLogistic">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li><a href="/Bartenders/logistic/searchPersonalOrder.do?sID=${getSenderId}">訂單管理</a></li>
+							<li><a href="/Bartenders/logistic/OrderSearch.do/1">搜尋訂單</a></li>
+							<li class="small"><a href="/Bartenders/logistic/WelcomeLogistic">首頁</a><a href="/Bartenders/logistic/LogisticLogout.do">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -104,8 +103,9 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-	
+	<!-- 
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	 -->
 	</body>
 
 </html>

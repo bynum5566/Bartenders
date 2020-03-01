@@ -28,6 +28,7 @@
 			}
 			var point = new google.maps.LatLng(lat, lng);
 			//建立暫時marker
+			
 			var marker = new google.maps.Marker({
 				map : map,
 				position : point,
@@ -35,14 +36,19 @@
 			});
 			markers.push(marker);	
 		}
-		function relocate(lat,lng){
+		
+		function relocate(lat,lng,type){
 			reloadMarkers()
-			
+			if(type=='no'){
+				icon = 'defaultMarker';
+			}else{
+				icon = type;
+			}
 			var place = new google.maps.LatLng(lat, lng);
 			map.panTo(place); 
 			marker = new google.maps.Marker({
                 position: place,
-                icon:'images/defaultMarker.png',
+                icon:'images/'+icon+'.png',
                 map: map
             });
 			markers.push(marker);

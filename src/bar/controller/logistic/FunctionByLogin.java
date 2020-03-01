@@ -37,11 +37,9 @@ public class FunctionByLogin {
 	@RequestMapping(path="logistic/LogisticLogin.do", method = RequestMethod.POST)
 	public String processAction3(@RequestParam(name = "username")String username, 
 			@RequestParam(name = "userpwd")String userpwd,
-			@RequestParam(name = "orderID")String orderID,
-			@RequestParam(name = "orderStatus")String orderStatus,Model m,
+			@RequestParam(name = "orderID")String orderID,Model m,
 			HttpServletRequest request, HttpServletResponse response,HttpSession session) throws ServletException, IOException {
 		System.out.println("orderID:"+orderID);
-		System.out.println("orderStatus:"+orderStatus);
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -65,12 +63,12 @@ public class FunctionByLogin {
 			System.out.println("create login session:"+status);
 			m.addAttribute("getSenderId",sender.getSenderId());
 			m.addAttribute("username",username);
-			if(orderID!=""&&orderStatus!="") {
+			if(orderID!="") {
 //				int myId= Integer.parseInt(orderID);
 //				int myStatus= Integer.parseInt(orderStatus);
 //				m.addAttribute("orderID",myId);
 //				m.addAttribute("orderStatus",myStatus);
-				response.sendRedirect("/Bartenders/logistic/QRCodeAction.do?orderID="+orderID+"&orderStatus="+orderStatus);
+				response.sendRedirect("/Bartenders/logistic/QRCodeAction.do?orderID="+orderID+"&senderId="+sender.getSenderId());
 //				return "QRCodeUpdate";
 //				RequestDispatcher rd = request.getRequestDispatcher("/QRCodeUpdate.do");
 //				rd.forward(request, response);

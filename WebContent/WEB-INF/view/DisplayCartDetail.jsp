@@ -8,9 +8,8 @@
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>確認訂單資訊頁面／Bartenders</title>
-	<%--豪--%>
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<title>確認訂單資訊頁面</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>	<noscript>
 		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -100,7 +99,14 @@
 									</div>
 								</div>
 								</form>
-
+								
+								<!------------- 新增超商按鈕  ------------------->
+								<form action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
+									<input id="marketUrl" type="hidden" name="rtURL" value="http://localhost:8080/Bartenders/DisplayCart.controller?orderId=${orderId}&status=${order.status}">
+									<input type="submit" value="選擇超商">
+								</form>
+								
+								
 								<form action="<c:url value="/ChangeStatusOneToTwo.controller"/>" method="get">
 								<div class="row">
 									<div class="col-6 col-12-medium">
@@ -117,6 +123,7 @@
 												<label for="setTt1">宅配</label>
 												<input id="setTt2" name="select1" type="radio" value="2">
 												<label for="setTt2">超商</label>
+												
 											</div>
 
 										</c:if>
@@ -161,6 +168,8 @@
 												value="${defaultAddress}"/>
 											<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 											<br>
+											<!-- 新增超商回傳地址  -->
+											<Input type='text' name='testtest' value='${marketAddr}'>
 										</c:if>
 
 
@@ -229,9 +238,18 @@
 
 	<!--縮放用JS，開始-->
 	<script type="text/javascript">
+	var url = document.getElementById('marketUrl');
+	console.log('url is:',url.value);
+	console.log('orderId is:','${orderId}');
+	console.log('status is:','${order.status}');
+	function insertUrl(){
+		url.value = 'http://localhost:8080/Bartenders/DisplayCart.controller?orderId='+${orderId}+'&status='+${order.status};
+	}
 		$(".flip").click(function () {
 			$(".panel").slideToggle("slow");
 		});
+		
+		
 	</script>
 	<!--縮放用JS，結束-->
 

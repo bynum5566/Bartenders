@@ -3,6 +3,7 @@ package bar.controller.logistic;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,20 +20,23 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.logistic.Logistic;
 import bar.model.logistic.LogisticAccount;
+import bar.model.logistic.LogisticAccountService;
 import bar.model.logistic.LogisticService;
 import bar.model.logistic.QRCodeDAO;
 
 @Controller
-@SessionAttributes(names= {"code","update"})
+@SessionAttributes(names= {"code"})
 public class FunctionByQRCode {
 
 	private QRCodeDAO qdao;
 	private LogisticService lSer;
+	private LogisticAccountService laSer;
 
 	@Autowired
-	public FunctionByQRCode(QRCodeDAO qdao,LogisticService lSer) {
+	public FunctionByQRCode(QRCodeDAO qdao,LogisticService lSer,LogisticAccountService laSer) {
 		this.qdao = qdao;
 		this.lSer = lSer;
+		this.laSer = laSer;
 	}
 	
 //	@RequestMapping(path="/CreateQRCode.do", method = RequestMethod.GET)
@@ -50,26 +54,28 @@ public class FunctionByQRCode {
 			@RequestParam(name = "orderID")String oID, Model m,
 			HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("sender's id: "+sID);
-		Logistic update = qdao.QRCodeAction(oID,sID);
-		System.out.println("get retrun result:"+update);
-		if(update==null) {
-			Logistic valid = lSer.uniqueQuery("oID", "'"+oID+"'");
-			System.out.println("result is null");
-			m.addAttribute("valid",valid);
-			return "logistic/QRCodeInvalid";
-		}else {
-			System.out.println("order is created");
-		}
-		m.addAttribute("update",update);
-		m.addAttribute("test","this is result: "+update);
-//		m.addAttribute("orderID",orderID);
-//		m.addAttribute("orderStatus",orderStatus);
-//		RequestDispatcher rd = request.getRequestDispatcher("/QRCodeUpdate");
-//		rd.forward(request, response);
-		response.sendRedirect("/Bartenders/logistic/LogisticUpdate");
+		Logistic check = lSer.uniqueQuery("oID", "'"+oID+"'");
 
-//		return "QRCodeUpdate";
-		return null;
+		if(check.getsID().equals(sID)) {
+			if(check.getoComplete()==0&&check.getoTimeB()!=null) {
+				System.out.println("有找到訂單 但是狀態不對 可能是重複刷or忘了按出貨送達");
+				m.addAttribute("update",check);
+				m.addAttribute("repeatText","你重複刷訂單了喔；若確定已送達，請先按送達確認鈕");
+				return "logistic/LogisticUpdate";
+			}else {
+				Logistic update = qdao.QRCodeAction(oID,sID);
+				System.out.println("get retrun result:"+update);
+				m.addAttribute("update",update);
+
+				return "logistic/LogisticUpdate";
+			}
+		}else {
+			LogisticAccount realSender = laSer.querySender(check.getsID());
+			System.out.println("訂單號碼or運送人不對");
+			m.addAttribute("valid",check);
+			m.addAttribute("realSender",realSender);
+			return "logistic/QRCodeInvalid";
+		}
 	}
 	//過濾頁
 	@RequestMapping(path="/logistic/QRCodeAction.do", method = RequestMethod.GET)
