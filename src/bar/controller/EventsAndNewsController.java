@@ -47,7 +47,11 @@ public class EventsAndNewsController {
 	}
 	
 	@RequestMapping(value = "/NewsAndEvents.Add",method = RequestMethod.GET)
-	public String addEnPage() {
+	public String addEnPage(Model m) {
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "addEventsAndNews";
 	}
 	
@@ -71,6 +75,9 @@ public class EventsAndNewsController {
 		m.addAttribute("neTitle", eAn.getNeTitle());
 		m.addAttribute("neText", eAn.getNeText());
 		m.addAttribute("neId", eAn.getNeId());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 		return "editEventsAndNews";
 	}
 	

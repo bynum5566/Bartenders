@@ -1,20 +1,15 @@
 package bar.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import bar.model.Company;
 import bar.model.CompanyService;
@@ -36,12 +31,20 @@ public class ProductDashboardController {
 	}
 
 	@RequestMapping(value = "/Product.Add", method = RequestMethod.GET)
-	public String showAddPD() {
+	public String showAddPD(Model m) {
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "addProduct";
 	}
 
 	@RequestMapping(value = "/TicketProduct.Add", method = RequestMethod.GET)
-	public String showAddTkPD() {
+	public String showAddTkPD(Model m) {
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "addTicketProduct";
 	}
 
@@ -52,7 +55,8 @@ public class ProductDashboardController {
 			@RequestParam("pdTg3") String pdTag3, @RequestParam("pdDta") String pdDetail,
 			@RequestParam(value = "pdImg", required = false) String productImageUrl,
 			@RequestParam("pdImg2") String productImageUrl2, @RequestParam("pdImg3") String productImageUrl3,
-			@RequestParam("setTimeAct1") String autoLaunchTime, @RequestParam("setTimeAct2") String autoPullTime) {
+			@RequestParam("setTimeAct1") String autoLaunchTime, @RequestParam("setTimeAct2") String autoPullTime
+			,Model m) {
 		pds.editPd(pdId, productName, pdStock, pdPrice, pdTag1, pdTag2, pdTag3, pdDetail, productImageUrl,
 				productImageUrl2, productImageUrl3, autoLaunchTime, autoPullTime);
 
@@ -80,6 +84,9 @@ public class ProductDashboardController {
 		request.setAttribute("Tag3", pdTag3);
 		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "productViewPage";
 	}
@@ -92,7 +99,7 @@ public class ProductDashboardController {
 			@RequestParam(value = "pdImg", required = false) String productImageUrl,
 			@RequestParam("pdImg2") String productImageUrl2, @RequestParam("pdImg3") String productImageUrl3,
 			@RequestParam("setTKTime1") String validDate, @RequestParam("setTKTime2") String expiryDate,
-			@RequestParam("setTimeAct1") String autoLaunchTime, @RequestParam("setTimeAct2") String autoPullTime) {
+			@RequestParam("setTimeAct1") String autoLaunchTime, @RequestParam("setTimeAct2") String autoPullTime,Model m) {
 		pds.editTKPd(pdId, productName, pdStock, pdPrice, pdTag1, pdTag2, pdTag3, pdDetail, productImageUrl,
 				productImageUrl2, productImageUrl3, validDate, expiryDate, autoLaunchTime, autoPullTime);
 
@@ -122,12 +129,15 @@ public class ProductDashboardController {
 		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "productViewPage2";
 	}
 
 	@RequestMapping(value = "/Product.View", method = RequestMethod.GET)
-	public String showViewPD(@RequestParam("pdId") String pdId) {
+	public String showViewPD(@RequestParam("pdId") String pdId,Model m) {
 		ProductData prod = pds.select(pdId);
 		request.setAttribute("productName", prod.getProductName());
 		request.setAttribute("pdStk", prod.getPdStock());
@@ -153,11 +163,14 @@ public class ProductDashboardController {
 		request.setAttribute("Tag3", prod.getPdTag3());
 		request.setAttribute("pdDetail", prod.getPdDetail());
 
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "productViewPage";
 	}
 
 	@RequestMapping(value = "/ProductTicket.View", method = RequestMethod.GET)
-	public String showViewTKPD(@RequestParam("pdId") String pdId) {
+	public String showViewTKPD(@RequestParam("pdId") String pdId,Model m) {
 		ProductData prod = pds.select(pdId);
 		String TkTime = prod.getValidDate() + " ~ " + prod.getExpiryDate();
 		request.setAttribute("productName", prod.getProductName());
@@ -184,12 +197,15 @@ public class ProductDashboardController {
 		request.setAttribute("Tag3", prod.getPdTag3());
 		request.setAttribute("pdDetail", prod.getPdDetail());
 		request.setAttribute("pdValD", TkTime);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "productViewPage2";
 	}
 
 	@RequestMapping(value = "/Dashboard.Products", method = RequestMethod.GET)
-	public String showDashboard(@ModelAttribute(name = "Caccount") String account) {
+	public String showDashboard(@ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -200,6 +216,10 @@ public class ProductDashboardController {
 
 			request.setAttribute("Launched", Launched);
 			request.setAttribute("Pulled", Pulled);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "shopDashboard";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,7 +228,7 @@ public class ProductDashboardController {
 	}
 
 	@RequestMapping(value = "/Dashboard.TkProducts", method = RequestMethod.GET)
-	public String showDashboard2(@ModelAttribute(name = "Caccount") String account) {
+	public String showDashboard2(@ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -219,6 +239,10 @@ public class ProductDashboardController {
 
 			request.setAttribute("Launched", Launched);
 			request.setAttribute("Pulled", Pulled);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "shopDashboard2";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -232,7 +256,7 @@ public class ProductDashboardController {
 			@RequestParam("pdTg2") String pdTag2, @RequestParam("pdTg3") String pdTag3,
 			@RequestParam("pdDta") String pdDetail, @RequestParam("pdImg") String productImageUrl,
 			@RequestParam("pdImg2") String productImageUrl2, @RequestParam("pdImg3") String productImageUrl3,
-			@RequestParam("setTimeAct") String Time, @ModelAttribute(name = "Caccount") String account) {
+			@RequestParam("setTimeAct") String Time, @ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -263,6 +287,10 @@ public class ProductDashboardController {
 		}
 		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "productViewPage";
 	}
 
@@ -273,7 +301,7 @@ public class ProductDashboardController {
 			@RequestParam("pdDta") String pdDetail, @RequestParam("pdImg") String productImageUrl,
 			@RequestParam("pdImg2") String productImageUrl2, @RequestParam("pdImg3") String productImageUrl3,
 			@RequestParam("setTKTime") String TkTime, @RequestParam("setTimeAct") String Time,
-			@ModelAttribute(name = "Caccount") String account) {
+			@ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -305,6 +333,10 @@ public class ProductDashboardController {
 		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "productViewPage2";
 	}
 
@@ -369,7 +401,7 @@ public class ProductDashboardController {
 	}
 
 	@RequestMapping(value = "/Product.EditPDL", method = RequestMethod.GET)
-	public String editProdL(@RequestParam("pdidckL") String pdId, @ModelAttribute(name = "Caccount") String account) {
+	public String editProdL(@RequestParam("pdidckL") String pdId, @ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -389,11 +421,15 @@ public class ProductDashboardController {
 		request.setAttribute("pic1", pd.getProductImageUrl());
 		request.setAttribute("pic2", pd.getProductImageUrl2());
 		request.setAttribute("pic3", pd.getProductImageUrl3());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "editProduct";
 	}
 
 	@RequestMapping(value = "/Product.EditPDP", method = RequestMethod.GET)
-	public String editProdP(@RequestParam("pdidckP") String pdId, @ModelAttribute(name = "Caccount") String account) {
+	public String editProdP(@RequestParam("pdidckP") String pdId, @ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -413,11 +449,15 @@ public class ProductDashboardController {
 		request.setAttribute("pic1", pd.getProductImageUrl());
 		request.setAttribute("pic2", pd.getProductImageUrl2());
 		request.setAttribute("pic3", pd.getProductImageUrl3());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "editProduct";
 	}
 
 	@RequestMapping(value = "/Product.EditTkPDL", method = RequestMethod.GET)
-	public String editTkProdL(@RequestParam("pdidckL") String pdId, @ModelAttribute(name = "Caccount") String account) {
+	public String editTkProdL(@RequestParam("pdidckL") String pdId, @ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -439,11 +479,15 @@ public class ProductDashboardController {
 		request.setAttribute("pic1", pd.getProductImageUrl());
 		request.setAttribute("pic2", pd.getProductImageUrl2());
 		request.setAttribute("pic3", pd.getProductImageUrl3());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "editTicketProduct";
 	}
 
 	@RequestMapping(value = "/Product.EditTkPDP", method = RequestMethod.GET)
-	public String editTkProdP(@RequestParam("pdidckP") String pdId, @ModelAttribute(name = "Caccount") String account) {
+	public String editTkProdP(@RequestParam("pdidckP") String pdId, @ModelAttribute(name = "Caccount") String account,Model m) {
 
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
@@ -465,6 +509,10 @@ public class ProductDashboardController {
 		request.setAttribute("pic1", pd.getProductImageUrl());
 		request.setAttribute("pic2", pd.getProductImageUrl2());
 		request.setAttribute("pic3", pd.getProductImageUrl3());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "editTicketProduct";
 	}
 	
@@ -481,10 +529,14 @@ public class ProductDashboardController {
 	}
 
 	@RequestMapping(value = "/search.Product", method = RequestMethod.GET)
-	public String getSearchResult(@RequestParam("keyword") String keyword) {
+	public String getSearchResult(@RequestParam("keyword") String keyword,Model m) {
 		String res = pds.searchResult(keyword);
 		request.setAttribute("kWord", keyword);
 		request.setAttribute("drinkPd", res);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "searchProductsResult";
 	}
 }

@@ -20,6 +20,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 
 	<style>
 		div.panel,
@@ -235,14 +238,47 @@
 			height: 100%;
 			margin: auto;
 			object-fit: cover;
-		}			
+		}	
+		
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+				
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
+			
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -260,7 +296,7 @@
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -446,6 +482,15 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 	</body>
 
 </html>

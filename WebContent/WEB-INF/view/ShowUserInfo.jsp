@@ -44,8 +44,8 @@
 }
 
 .bell .bellImg{
-	height: 90px;
-	width: 90px;
+	height: 70px;
+	width: 70px;
 	float:right;
 }
 
@@ -55,9 +55,6 @@
 	height: auto;
 	float:right;
 	display: none;
-/* 	position: fixed; */
-/* 	top: 60px; */
-/* 	right: 30px; */
 }
 
 
@@ -68,7 +65,7 @@
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
 
 			<div class="noticeBox">
@@ -95,7 +92,7 @@
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -142,10 +139,8 @@
 	<script type="text/javascript">
 			$(".bell").click(function(){
 				$(".notice").slideToggle("slow");
-			});
-		
+			})
 	</script>
-
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>

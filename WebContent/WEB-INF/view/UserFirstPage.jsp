@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 
-
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <title>Drinkers</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -161,6 +162,28 @@ h2, h3, h4 {
 main {
 	padding: 40px 0px 0;
 }
+
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+
 </style>
 </head>
 
@@ -168,8 +191,19 @@ main {
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
+			
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -187,7 +221,7 @@ main {
 								<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
 								<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -291,6 +325,12 @@ main {
 	<script type="text/javascript" src="/Bartenders/JS/forTabs.js"></script>
 
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
 </body>
 
 </html>

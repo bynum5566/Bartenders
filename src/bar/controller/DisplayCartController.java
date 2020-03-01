@@ -20,7 +20,7 @@ import bar.model.ProductDataService;
 import bar.model.UsersService;
 import bar.model.Users;
 @Controller
-@SessionAttributes(names = "account")
+@SessionAttributes(names = {"account","userName"})
 @EnableTransactionManagement
 public class DisplayCartController
 {
@@ -155,6 +155,10 @@ public class DisplayCartController
 		
 		//==================================
 //		return "OrderList";
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "DisplayCartDetail";
 		// ===========================【結束】
 //		return "TestPage";

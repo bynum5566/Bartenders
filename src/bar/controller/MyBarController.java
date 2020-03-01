@@ -25,7 +25,7 @@ import bar.model.ProductData;
 import bar.model.ProductDataDAO;
 import bar.model.ProductDataService;
 
-@SessionAttributes(names = { "Caccount" })
+@SessionAttributes(names = { "Caccount" , "CName"})
 @Controller
 public class MyBarController {
 	@Autowired
@@ -72,6 +72,9 @@ public class MyBarController {
 			m.addAttribute("companyId", companyId);
 			m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);
 
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "MyBarReview";
 		} else {
 			listOfProduct.addAll(pdao.selectPdsLaunched(companyId));
@@ -85,12 +88,15 @@ public class MyBarController {
 			m.addAttribute("companyId", companyId);
 			m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);
 
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "MyBarReview";
 		}
 	}
 
 	@RequestMapping(value = "/Bar.edit", method = RequestMethod.GET)
-	public String editBarPage(@ModelAttribute(name = "Caccount") String account) {
+	public String editBarPage(@ModelAttribute(name = "Caccount") String account,Model m) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
 
@@ -126,6 +132,9 @@ public class MyBarController {
 			request.setAttribute("barLine", Detail2.getBarLine());
 			request.setAttribute("barIg", Detail2.getBarIg());
 
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "myBar";
 		}
 		Company Data = mBS.selectBarData(companyId);
@@ -150,6 +159,9 @@ public class MyBarController {
 		request.setAttribute("barFb", Detail.getBarFb());
 		request.setAttribute("barLine", Detail.getBarLine());
 		request.setAttribute("barIg", Detail.getBarIg());
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "editMyBar";
 	}
@@ -195,7 +207,7 @@ public class MyBarController {
 
 	@RequestMapping(value = "/Product.All", method = RequestMethod.GET)
 	public String allPdPage(@ModelAttribute(name = "Caccount") String account,
-			@RequestParam("barName") String companyName) {
+			@RequestParam("barName") String companyName,Model m) {
 		Company comp = companyService.select(account);
 		int companyId = comp.getCompanyId();
 
@@ -203,6 +215,9 @@ public class MyBarController {
 		String tickets = pds.selectTickets(companyId);
 		request.setAttribute("drinkPd", drinks);
 		request.setAttribute("ticketPd", tickets);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "allProducts";
 	}

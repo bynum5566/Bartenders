@@ -33,13 +33,13 @@ websocket.onmessage = function(event) {
 	}
 
 	if (messageJson.messageType === "noticify") {
-		alert(messageJson.data);
+//		alert(messageJson.data);
 		document.getElementById('notice').innerHTML += '<li>'
 				+ messageJson.data + '</li>';
 	}
 
 	if (messageJson.messageType === "push") {
-		alert(messageJson.data);
+//		alert(messageJson.data);
 		document.getElementById('notice').innerHTML += '<li>'
 				+ messageJson.data + '</li>';
 	}
