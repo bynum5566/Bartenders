@@ -210,7 +210,7 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDL?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
@@ -239,7 +239,7 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDP?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
@@ -268,7 +268,7 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDL?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
@@ -297,7 +297,7 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDP?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT3\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "<div><img class=\"bT4\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}

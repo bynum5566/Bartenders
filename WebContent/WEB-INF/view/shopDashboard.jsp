@@ -12,13 +12,16 @@
 	<meta http-equiv="Cache-Control" CONTENT="no-cache">   
 	<meta http-equiv="Pragma" CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<title>商品管理 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	
 	<style>
 		.small {
 			display: flex;
@@ -47,23 +50,45 @@
 			text-shadow: 1px 2px 0px #8E354A;
 		}
 		
-		.Tl{
+		.Tl {
 			text-align: left;
 		}
 		
 		.B1 {
-			display:  flex;
+			display: flex;
 			align-items: center;
-			justify-content:  right;
+			justify-content: right;
 		}
 		
+		.swal2-modal .swal2-styled {
+		    border: 0;
+		    border-radius: 3px;
+		    -webkit-box-shadow: none;
+		    box-shadow: none;
+		    color: #fff;
+		    cursor: pointer;
+		    font-size: 17px;
+		    font-weight: 500;
+		    margin: 15px 5px 0;
+		    padding: 0 40px;
+		}
+		
+		button.swal2-confirm.swal2-styled {
+			background-color: #ed4933 !important;
+		}
+		
+		button.swal2-confirm.swal2-styled:hover {
+			background-color: #ef5e4a !important;
+		}
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<h1>
+				<a href="WelcomeCompany">Bartenders</a>
+			</h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -123,21 +148,21 @@
 									<div id="content">
 										<div id="tab1" class="outwrapper">
 											<ul class="alt">
-												<li class="inwrapper blurred-box0">
+												<li>
 													<div class="Tl">
 														<h2>上架中商品</h2>
 														&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
 													</div>
 													<table class="pd0">${Launched}</table>
 													<ul class="actions B1">
-														<li style="border-color:transparent;">
-															<form action="/Bartenders/delMultiLPD" method="post">
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/delMultiLPD" method="post" id="lMultiDel">
 																<input type="text" id="list1" name="listForDelete1">
 																<input type="submit" value="批量刪除">
 															</form>
 														</li>
-														<li style="border-color:transparent;">&emsp;</li>
-														<li style="border-color:transparent;">
+														<li style="border-color: transparent;">&emsp;</li>
+														<li style="border-color: transparent;">
 															<form action="/Bartenders/pulMultiPD" method="post">
 																<input type="text" id="list2" name="listForPull">
 																<input type="submit" value="批量下架">
@@ -149,21 +174,21 @@
 										</div>
 										<div id="tab2" class="outwrapper">
 											<ul class="alt">
-												<li class="inwrapper blurred-box2">
+												<li>
 													<div class="Tl">
 														<h2>下架中商品</h2>
 														&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
 													</div>
 													<table class="pd0">${Pulled}</table>
 													<ul class="actions B1">
-														<li style="border-color:transparent;">
-															<form action="/Bartenders/delMultiPPD" method="post">
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/delMultiPPD" method="post" id="pMultiDel">
 																<input type="text" id="list3" name="listForDelete2">
 																<input type="submit" value="批量刪除">
 															</form>
 														</li>
-														<li style="border-color:transparent;">&emsp;</li>
-														<li style="border-color:transparent;">
+														<li style="border-color: transparent;">&emsp;</li>
+														<li style="border-color: transparent;">
 															<form action="/Bartenders/lauMultiPD" method="post">
 																<input type="text" id="list4" name="listForLaunch">
 																<input type="submit" value="批量上架">
@@ -186,24 +211,25 @@
 	<script>
 		$('.pdidckPP').hide();
 		$('.pdidckLL').hide();
-		 $('#list1').hide();
-         $('#list2').hide();
-         $('#list3').hide();
-         $('#list4').hide();
-		
-		$(document).ready(function(){
-			$("#CheckAllL").click(function(){
-				if($("#CheckAllL").prop("checked")){//如果全選按鈕有被選擇的話（被選擇是true）
+		$('#list1').hide();
+        $('#list2').hide();
+        $('#list3').hide();
+        $('#list4').hide();
+        $.noConflict();
+        
+		$(document).ready(function() {
+			$("#CheckAllL").click(function() {
+				if($("#CheckAllL").prop("checked")) {
 					var ListL = [];
-					$("input[name='pdCheckL']").each(function(){
-						$(this).prop("checked",true);//把所有的核取方框的property都變成勾選
+					$("input[name='pdCheckL']").each(function() {
+						$(this).prop("checked", true);
 						ListL.push($(this).val());
 					})
 			        $('#list1').val(ListL);
 			        $('#list2').val(ListL);
-				}else{
-					$("input[name='pdCheckL']").each(function(){
-						$(this).prop("checked",false);//把所有的核方框的property都取消勾選
+				}else {
+					$("input[name='pdCheckL']").each(function() {
+						$(this).prop("checked", false);
 					})
 			            $('#list1').val('');
 			            $('#list2').val('');
@@ -211,17 +237,17 @@
 			});
 			
 			$("#CheckAllP").click(function(){
-				if($("#CheckAllP").prop("checked")){//如果全選按鈕有被選擇的話（被選擇是true）
+				if($("#CheckAllP").prop("checked")){
 					var ListP = [];
 					$("input[name='pdCheckP']").each(function(){
-						$(this).prop("checked",true);//把所有的核取方框的property都變成勾選
+						$(this).prop("checked",true);
 						ListP.push($(this).val());
 					})
 				            $('#list3').val(ListP);
 				            $('#list4').val(ListP);
 				}else{
 					$("input[name='pdCheckP']").each(function(){
-						$(this).prop("checked",false);//把所有的核方框的property都取消勾選
+						$(this).prop("checked",false);
 					})
 				            $('#list3').val('');
 				            $('#list4').val('');
@@ -238,6 +264,7 @@
 	            $('#list2').val(listL);
 	        });
 	    });
+		
 		$(function(){ 
 	        $("input:checkbox[name='pdCheckP']").click(function() {
 	            listP = $("input:checkbox[name='pdCheckP']:checked").map(function(index,elem) {
@@ -247,7 +274,64 @@
 	            $('#list4').val(listP);
 	        });
 	    });
-	
+
+		$("#lMultiDel").submit(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
+		$("#pMultiDel").submit(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
+		$(".bT4").click(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
 		$(function() {
 			if (window.history && window.history.pushState) {
 				$(window).on('popstate', function() {
