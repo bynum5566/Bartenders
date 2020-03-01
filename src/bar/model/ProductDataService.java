@@ -195,21 +195,23 @@ public class ProductDataService {
 		for (ProductData product : products) {
 			Launched = Launched
 					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/pulPD?pdidckL=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/down-arrow.png\">"
+					+ "<div>&emsp;&nbsp;<input type=\"checkbox\" name=\"pdCheckL\" id=\""+ product.getPdId() 
+					+ "\" value=\"" + product.getPdId() + "\"/><label for=\"" + product.getPdId() + "\"></label></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/pulPD?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/down-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
+					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "';\">"
 					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"></div><br><div>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"></div><br><div>" + product.getPdStock() + "</div></td>"
 					+ "<td class=\"RSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDL?pdidckL=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDL?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
 		return Launched;
@@ -222,21 +224,23 @@ public class ProductDataService {
 		for (ProductData product : products) {
 			Pulled = Pulled
 					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/lauPD?pdidckP=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/up-arrow.png\">"
+					+ "<div>&emsp;&nbsp;<input type=\"checkbox\" name=\"pdCheckP\" id=\"" + product.getPdId() 
+					+ "\" value=\"" + product.getPdId() + "\"/><label for=\"" + product.getPdId() + "\"></label></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/lauPD?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/up-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
+					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "';\">"
 					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"></div><br><div>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"></div><br><div>" + product.getPdStock() + "</div></td>"
 					+ "<td class=\"RSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDP?pdidckP=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDP?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
 		return Pulled;
@@ -249,21 +253,23 @@ public class ProductDataService {
 		for (ProductData product : products) {
 			Launched = Launched
 					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/pulTkPD?pdidckL=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/down-arrow.png\">"
+					+ "<div>&emsp;&nbsp;<input type=\"checkbox\" name=\"pdCheckL\" id=\"" + product.getPdId() 
+					+ "\" value=\"" + product.getPdId() + "\"/><label for=\"" + product.getPdId() + "\"></label></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/pulTkPD?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/down-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
+					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "';\">"
 					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"></div><br><div>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"></div><br><div>" + product.getPdStock() + "</div></td>"
 					+ "<td class=\"RSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDL?pdidckL=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDL?pdidckL=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
 		return Launched;
@@ -276,21 +282,23 @@ public class ProductDataService {
 		for (ProductData product : products) {
 			Pulled = Pulled
 					+ "<tr class=\"pdRow\"><td class=\"LSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/lauTkPD?pdidckP=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/up-arrow.png\">"
+					+ "<div>&emsp;&nbsp;<input type=\"checkbox\" name=\"pdCheckP\" id=\"" + product.getPdId()
+					+ "\" value=\""  + product.getPdId()+ "\"/><label for=\"" + product.getPdId() + "\"></label></div><br>"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/lauTkPD?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/up-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div>"
+					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "';\">"
 					+ product.getProductName() + "</h4>" + "</div></td><td class=\"MidS2\">"
-					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"><br>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
-					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"><br>" + product.getPdStock() + "</div></td>"
+					+ "<div name=\"pdPri1\"><img src=\"/Bartenders/images/coin.png\"></div><br><div>" + product.getPdPrice() + "</div></td><td class=\"MidS3\">"
+					+ "<div name=\"pdStk1\"><img src=\"/Bartenders/images/stock.png\"></div><br><div>" + product.getPdStock() + "</div></td>"
 					+ "<td class=\"RSide\">"
-					+ "<img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDP?pdidckP=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/document.png\"><br>"
-					+ "<img class=\"bT3\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\">"
+					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDP?pdidckP=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
+					+ "<div><img class=\"bT3\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
+					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
 					+ "</td></tr>";
 		}
 		return Pulled;
