@@ -14,13 +14,13 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 <!-- 小鈴鐺 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -105,9 +105,6 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							
-							
-							
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
