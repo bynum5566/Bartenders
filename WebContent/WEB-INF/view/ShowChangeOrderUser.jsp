@@ -142,10 +142,10 @@
 											value="${order.recipient}" /><br></li>
 										<li>配送方式:</li>
 										<li><select id="mySelect" name="shippingType">
-												<option value="HomeDelivery" width="10">1.宅配</option>
-												<option value="ConvenienceStore" width="10">2.超商取貨</option>
-										</select> <br></li>
-										
+												<option value="ConvenienceStore" width="10">1.超商取貨</option>
+												<option value="HomeDelivery" width="10">2.宅配</option>
+												
+										</select> <br></li>				
 										<li>配送地址:</li>
 										<c:if test="${not empty marketAddress}">
 											<li><input type="text" name="address" size="40"
@@ -196,14 +196,14 @@
 		}
 	})
 	</script>
-	<!-- 小鈴鐺 -->
-	<!--  
+	
+	<!-- 小鈴鐺 -->  
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	-->
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 </body>
 
 </html>
