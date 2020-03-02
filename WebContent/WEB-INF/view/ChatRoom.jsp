@@ -220,8 +220,8 @@
 
 							<div class="sendBox">
 								<h4>發送對象</h4>
-								<input id="username" type="text" width="50px"
-									value="${targetName}" /> <br /> <br />
+								<input id="targetName" type="text" width="50px"
+									 /> <br /> <br />
 
 								<div class="chatBox">
 									<div id="message" style="overflow: auto; height: 300px;"></div>
@@ -252,6 +252,15 @@
 				websocket.send('${userName}');
 			}
 		</script>
+		
+		<script type="text/javascript">
+			function chatwith(){
+				var tarName=$(this).val;
+				alert(tarName);
+				$("#targetName").val=tarName;
+			}
+		</script>
+		
 		<!-- 小鈴鐺 -->
 		<script type="text/javascript">
 			$(".bell").click(function() {

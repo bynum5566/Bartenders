@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<title>註冊帳戶</title>
+<title>註冊帳戶/ Bartenders</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -68,33 +68,33 @@
 										</li>
 										<li><input type="text" name="userName"
 											required="required" size="50" placeholder="請輸入您的姓名"
-											pattern="^.{3,30}$"/><br></li>
+											pattern="^.{3,30}$" id="name"/><br></li>
 										<li>
 											<h3>帳號:</h3>
 										</li>
 										<li><input type="text" name="newAccount"
 											autocomplete="off" size="50"
 											placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
-											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></li>
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="account"/><br></li>
 										<li>
 											<h3>密碼:</h3>
 										</li>
 										<li><input type="password" name="newPassword" size="50"
 											placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
-											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></li>
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd"/><br></li>
 										<li>
 											<h3>確認密碼:</h3>
 										</li>
 										<li><input type="password" name="newPassword2" size="50"
 											placeholder="請再輸入一次密碼" required="required"
-											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br>
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd2"/><br>
 										</li>
 										<li>
 											<h3>手機:</h3>
 										</li>
 										<li><input type="tel" name="phone" autocomplete="off"
 											size="50" placeholder="請填寫正確的手機號碼" required="required"
-											pattern="^.{10}$"/><br></li>
+											pattern="^.{10}$" id="phone"/><br></li>
 										<li>
 											<h3>生日:</h3>
 										</li>
@@ -105,16 +105,17 @@
 										</li>
 										<li><input type="email" name="email" autocomplete="off"
 											size="50" placeholder="請填寫正確的郵件地址" required="required"
-											pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"/><br></li>
+											pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" id="email"/><br></li>
 										<li>
 											<h3>聯絡地址:</h3>
 										</li>
 										<li><input type="text" name="address" autocomplete="off"
 											size="50" placeholder="請填寫正確的住址"
-											pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required"/><br></li>
+											pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required" id="add"/><br></li>
 									</ul>
 									<!-- </table> -->
 									<ul class="actions">
+										<li><input class="button" type="button" value="demo" id="demo"/></li>
 										<li><a class="button" href="/Bartenders/login">回主頁</a></li>
 										<li><input class="button" type="reset" value="清除重填"/></li>
 										<li><input class="button primary" type="submit" value="確認送出"/></li>
@@ -138,6 +139,19 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	<script type="text/javascript">
+		$('#demo').click(function(){
+			$('#name').val('李雲揚');
+			$('#account').val('11129Henry');
+			$('#pwd').val('11129Henry');
+			$('#pwd2').val('11129Henry');
+			$('#phone').val('0987564251');
+			$('#email').val('11129henry@gamil.com');
+			$('#add').val('台北市大安區信義路三段147巷5弄17-1');
+		});
+	</script>
+
 </body>
 
 </html>
