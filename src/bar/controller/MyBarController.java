@@ -55,7 +55,7 @@ public class MyBarController {
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 		MyBar Detail = mBS.selectBarDetail(companyId);
 		if (Detail == null) {
-			mBS.insertBar(companyId);
+			mBS.insertBar(companyId, "https://i.imgur.com/C56KNDu.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png");
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -102,7 +102,7 @@ public class MyBarController {
 
 		MyBar Detail = mBS.selectBarDetail(companyId);
 		if (Detail == null) {
-			mBS.insertBar(companyId);
+			mBS.insertBar(companyId, "https://i.imgur.com/C56KNDu.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png");
 
 			try {
 				Thread.sleep(3000);

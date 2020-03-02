@@ -38,7 +38,7 @@ public class EventsAndNewsDAO {
 	
 	public List<EventsAndNews> selectAllEN(int companyId){
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr="from EventsAndNews where companyId=:cId and deleteTag is null";
+		String hqlStr="from EventsAndNews where companyId=:cId and deleteTag is null order by nePostDate DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		return (List<EventsAndNews>)query.list();
