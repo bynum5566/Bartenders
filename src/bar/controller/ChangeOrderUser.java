@@ -3,6 +3,8 @@ package bar.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -41,7 +43,7 @@ public class ChangeOrderUser {
 	
 
 	@RequestMapping(path = { "/ShowChangeOrderUser.controller" })
-	public String ChangeOrderProcessAction(@RequestParam(name = "orderId") String orderId,Model m) {
+	public String ChangeOrderProcessAction(@RequestParam(name = "orderId") String orderId,Model m,HttpServletRequest request) {
 		m.addAttribute("orderId", orderId);
 		Orders order = ordersService.selectOrder(orderId);
 		
@@ -59,6 +61,10 @@ public class ChangeOrderUser {
 		}else{
 			attr_address = order.getAddress2();
 		}
+		////新增選擇超商///
+		String st_addr = request.getParameter("stAddr") == null ? "" : request.getParameter("stAddr");
+		m.addAttribute("marketAddress",st_addr);
+		System.out.println("address is: "+st_addr);
 		
 		m.addAttribute("order", order);
 		m.addAttribute("product", product);

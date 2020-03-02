@@ -32,8 +32,8 @@ public class ProductDataService {
 		this.proD = proD;
 	}
 	
-	public boolean updateQuantityByPid(String pdId, int pdSoldOut) {
-		boolean result = pdao.updateQuantityByPid(pdId, pdSoldOut);
+	public boolean updateQuantityByPid(String pdId, int pdSoldQuantity) {
+		boolean result = pdao.updateQuantityByPid(pdId, pdSoldQuantity);
 		return result;
 	}
 
