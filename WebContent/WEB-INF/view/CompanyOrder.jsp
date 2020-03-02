@@ -126,7 +126,7 @@
 							<h2>訂單管理</h2>
 							<br>
 							<form action="<c:url value="/companyOrder.controller"/>" method="post">
-								<table>
+								<table class="sortable">
 									<thead>
 										<tr align="center">
 											<th nowrap="nowrap">訂單編號</th>
@@ -179,7 +179,7 @@
 														</c:otherwise>
 													</c:choose>
 													<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
+													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,4)}/${Corders[current.index].createTime.substring(5,7)}/${Corders[current.index].createTime.substring(8,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
 													<c:choose>
 														<c:when test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
 															<td nowrap="nowrap"><font color=gray>修改</font></td>
@@ -236,6 +236,9 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	<script src="/Bartenders/JS/sorttable.js"></script>
+	    
 </body>
 
 </html>

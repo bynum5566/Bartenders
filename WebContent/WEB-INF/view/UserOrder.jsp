@@ -131,7 +131,7 @@ table td {
 							<br>
 							<form action="<c:url value="/userOrder.controller"/>"
 								method="post">
-								<table class="myTable">
+								<table class="sortable">
 									<thead>
 										<tr align="center">
 											<th nowrap="nowrap">訂單編號</th>
@@ -194,7 +194,7 @@ table td {
 														</c:otherwise>
 													</c:choose>
 													<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
+													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,4)}/${Corders[current.index].createTime.substring(5,7)}/${Corders[current.index].createTime.substring(8,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
 													<c:choose>
 														<c:when
 															test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
@@ -272,5 +272,7 @@ table td {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
+		
+	<script src="/Bartenders/JS/sorttable.js"></script>
 </body>
 </html>
