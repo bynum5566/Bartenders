@@ -1,46 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>我的訂單 / Bartenders</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
-	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
-	<style>
-		.small {
-			display: flex;
-			align-self: center;
-		}
-		
-		.small a {
-			font-size: 16px;
-			font-weight: 400;
-			color: #888;
-			font-family: 111.otf;
-		}
-		
-		.small a+a {
-			margin-left: 15px;
-		}
-		
-		.wrapper {
-			padding: 3em 0 2em 0;
-		}
-	</style>
+<meta charset="UTF-8">
+<meta name="google-signin-client_id"
+	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<title>我的訂單 / Bartenders</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
+
+<!-- 小鈴鐺 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<noscript>
+	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
+</noscript>
+<style>
+.small {
+	display: flex;
+	align-self: center;
+}
+
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
+}
+
+.small a+a {
+	margin-left: 15px;
+}
+
+.wrapper {
+	padding: 3em 0 2em 0;
+}
+
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
 			<h1>
-				<a href="UserFirstPage">Bartenders</a>
+				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
+			
+		<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>	
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -48,17 +90,18 @@
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a
+									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
+									href="javascript:signOut()">登出</a></li>
 							</ul>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</nav>
 		</header>
@@ -68,41 +111,63 @@
 				<div class="inner">
 					<section>
 						<h2>請填寫要修改的訂單資料</h2>
-						<form action="<c:url value="/doChangeOrderUser.controller"/>" method="POST">
+						<!------------- 新增超商按鈕  ------------------->
+						
+						<script>
+							$('#testBtn').on('click',function(){
+								console.log('click send');
+								window.location.href = 'http://map.ezship.com.tw/ezship_map_web.jsp?rtURL=http://localhost:8080/Bartenders/ShowChangeOrderUser.controller?orderId=${orderId}';
+							})
+
+						</script>
+						<form action="<c:url value="/doChangeOrderUser.controller"/>"
+							method="POST">
 							<div class="row gtr-uniform">
 								<div class="col-6 col-12-xsmall">
 									<ul>
 										<li><h3>原訂單資訊:</h3></li>
 										<li>訂單編號:${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
-										<li><input type="hidden" size="40" name="orderId" value="${orderId}" readonly="readonly" /><br></li>
+										<li><input type="hidden" size="40" name="orderId"
+											value="${orderId}" readonly="readonly" /><br></li>
 										<li>商品名稱:${productData[0].productName}…</li>
-<%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
+										<%-- 										<li><input type="text" size="40" name="name" value="${productData[0].productName}等" readonly="readonly" /><br></li> --%>
 										<li>訂單總價:$${order.amount}</li>
-<%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
+										<%-- 										<li><input type="text" size="40" name="price" value="${order.amount}" readonly="readonly" /><br></li> --%>
 										<li>原選擇之配送方式:${ShippingNumToStr[order.shipping]}</li>
-<%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"readonly="readonly" /><br></li> --%>
-										<li><br><h3>修改訂單資訊:</h3></li>
+										<%-- 										<li><input type="text" size="40" name="price" value="${ShippingNumToStr[order.shipping]}"readonly="readonly" /><br></li> --%>
+										<li><br>
+										<h3>修改訂單資訊:</h3></li>
 										<li>收件人:</li>
-										<li><input type="text" size="40" name="recipient" value="${order.recipient}" /><br></li>
+										<li><input type="text" size="40" name="recipient"
+											value="${order.recipient}" /><br></li>
 										<li>配送方式:</li>
-										<li>
-											<select name="shippingType">
-												<option value="HomeDelivery" width="10">1.宅配</option>
-												<option value="ConvenienceStore" width="10">2.超商取貨</option>
-											</select>
-											<br>
-										</li>
+										<li><select id="mySelect" name="shippingType">
+												<option value="ConvenienceStore" width="10">1.超商取貨</option>
+												<option value="HomeDelivery" width="10">2.宅配</option>
+												
+										</select> <br></li>				
 										<li>配送地址:</li>
-										<li><input type="text" name="address" size="40" value="${attrAddress}" /><br></li>
+										<c:if test="${not empty marketAddress}">
+											<li><input type="text" name="address" size="40"
+											value="${marketAddress}" /><br></li>
+										</c:if>
+										<c:if test="${empty marketAddress}">
+											<li><input type="text" name="address" size="40"
+											value="${attrAddress}" /><br></li>
+										</c:if>
+								
+										
 										<li>收件人電話:</li>
-										<li><input type="text" size="40" name="phone" value="${order.phone}" /><br></li>
+										<li><input type="text" size="40" name="phone"
+											value="${order.phone}" /><br></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-6 col-12-medium">
 								<ul class="actions">
 									<li><input class="button" type="reset" value="清除重填" /></li>
-									<li><input class="button primary" type="submit" value="確認送出" /></li>
+									<li><input class="button primary" type="submit"
+										value="確認送出" /></li>
 								</ul>
 							</div>
 						</form>
@@ -120,7 +185,25 @@
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
+		async defer></script>
+	<script>
+	var mySelect = $('#mySelect');
+	mySelect.on('blur',function() {
+		console.log('select')
+		if(mySelect.val()=='ConvenienceStore'){
+			window.location.href = 'http://map.ezship.com.tw/ezship_map_web.jsp?rtURL=http://localhost:8080/Bartenders/ShowChangeOrderUser.controller?orderId=${orderId}';
+		}
+	})
+	</script>
+	
+	<!-- 小鈴鐺 -->  
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 </body>
 
 </html>

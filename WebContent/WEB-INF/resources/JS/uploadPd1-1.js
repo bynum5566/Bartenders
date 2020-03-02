@@ -1,12 +1,15 @@
 $('#imgPlace02').hide();
+var urlinputPd11 = document.getElementById("imgPlace02");
 
 var feedback = function(res) {
     if (res.success === true) {
     	$('#imgPlace01').hide();
-		$('#imgPlace02').name = "na";
-        var get_link = res.data.link.replace(/^http:\/\//i, 'https://').replace(',','');
+//		$('#imgPlace02').name = "na";
+        var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
         document.querySelector('.status1').innerHTML =
-            '<input id="realImg" name="pdImg" style="display:none;" class="image-url" value=\"' + get_link + '\"/>' + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
+        	'<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
+        urlinputPd11.value = get_link;
+//            '<input id="realImg" name="pdImg" style="display:none;" class="image-url" value=\"' + get_link + '\"/>' + 
     }
 };
 

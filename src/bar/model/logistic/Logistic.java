@@ -27,6 +27,7 @@ public class Logistic {
 	private String oTimeA;//訂單成立時間
 	private String oTimeB;//訂單收貨時間
 	private String oTimeC;//訂單送達時間
+	private String oTimeR;//訂單送達時間
 	private Integer oComplete;
 	private Integer charge;
 	private Integer cost;
@@ -161,6 +162,15 @@ public class Logistic {
 
 	public void setoTimeC(String oTimeC) {
 		this.oTimeC = oTimeC;
+	}
+
+	@Column(name="oTimeR")
+	public String getoTimeR() {
+		return oTimeR;
+	}
+
+	public void setoTimeR(String oTimeR) {
+		this.oTimeR = oTimeR;
 	}
 
 	@Column(name="oComplete")

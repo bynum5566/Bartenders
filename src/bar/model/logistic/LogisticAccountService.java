@@ -20,6 +20,9 @@ public class LogisticAccountService {
 		return aDao.checkLogin(logisticName,logisticPwd);
 	}
 	
+	public LogisticAccount querySender(Integer senderId) {
+		return aDao.querySender(senderId);
+	}
 	public LogisticAccount querySender(String logisticName, String logisticPwd) {
 		return aDao.querySender(logisticName,logisticPwd);
 	}

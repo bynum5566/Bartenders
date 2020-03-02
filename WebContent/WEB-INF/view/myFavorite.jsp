@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<style>
 		.small {
@@ -45,13 +47,80 @@
 		.pd0{
 			text-align: left;
 		}
+	
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.B1 {
+			display: flex;
+			align-items: center;
+			justify-content: left;
+		}
+		
+		.B1.leftSide{
+			width:400px;
+		}
+				
+		.sweet-alert button.confirm, .sweet-alert button.cancel {
+		    border: 0;
+		    border-radius: 3px;
+		    -webkit-box-shadow: none;
+		    box-shadow: none;
+		    color: #fff;
+		    cursor: pointer;
+		    font-size: 17px;
+		    font-weight: 500;
+		    margin: 15px 5px 0;
+		    padding: 0 40px;
+		}
+		
+		.sweet-alert button.confirm {
+			background-color: #ed4933 !important;
+		}
+		
+		.sweet-alert button.confirm:hover {
+			background-color: #ef5e4a !important;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
+
+        #content {
+		    margin-top: 0;
+		}
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="UserFirstPage">Bartenders</a></h1>
+			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+			
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -67,7 +136,7 @@
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -80,29 +149,29 @@
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-6 col-12-medium">
+							<div class="col-7 col-12-medium">
 								<div id="tabs">
 									<ul class="fav">
-										<li><a href="#tab1" name="#tab1">Bar</a></li>
-										<li><a href="#tab2" name="#tab2">Alcohol</a></li>
+										<li><a class="tab" href="#tab1" name="#tab1">Bar</a></li>
+										<li><a class="tab" href="#tab2" name="#tab2">Alcohol</a></li>
 									</ul>
-									<div id="content">
-										<div id="tab1" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒吧清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${MyfavB}</table>
-												</li>
-											</ul>
-										</div>
-										<div id="tab2" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒類清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${Myfav}</table>
-												</li>
-											</ul>
-										</div>
+								</div>
+								<div id="content">
+									<div id="tab1" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒吧清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${MyfavB}</table>
+											</li>
+										</ul>
+									</div>
+									<div id="tab2" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒類清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${Myfav}</table>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -127,6 +196,36 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+		
+		$('a.bT4').click(function(e){
+            e.preventDefault();
+            var link = $(this).attr('href');
+
+            swal({
+                title: "刪除",
+                text: "確定要刪除選擇的項目嗎?",
+                type: "warning",
+                confirmButtonText: "確定",
+				cancelButtonText: "取消",
+                showCancelButton: true
+            },
+            function(isConfirm) {
+				if (isConfirm) {
+                	window.location.href = link;
+				}
+            });
+        });
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	</body>
 
 </html>

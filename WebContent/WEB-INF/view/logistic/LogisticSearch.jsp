@@ -22,10 +22,19 @@
 		#orderDiv{
 			position:absolute;
 			left:0px;
+			border:1px red solid;
 		}
-		
+		#container{
+		position:relative;
+		top:-100px;
+		padding:10px;
+		margin: 0px auto;/*div對齊效果*/
+  		text-align: center;
+
+  		border:1px blue solid;
+		}
 		td{
-		border:1px white solid;
+
 		padding:5px;
 		}
 		
@@ -33,6 +42,8 @@
 		.searchDiv {
 			margin: auto;
 			display:none;
+			height:auto;
+			border:1px yellow solid;
 		}
 		
 		.mapDiv {
@@ -51,10 +62,9 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
-							<li><a href="/Bartenders/logistic/LogisticGate">訂單管理</a></li>
-							<li><a href="/Bartenders/logistic/LogisticSearch">搜尋訂單</a></li>
-							<li><a href="/Bartenders/Example">測試</a></li>
-							<li class="small"><a href="/Bartenders/WelcomeLogistic">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li><a href="/Bartenders/logistic/searchPersonalOrder.do?sID=${getSenderId}">訂單管理</a></li>
+							<li><a href="/Bartenders/logistic/OrderSearch.do/1">搜尋訂單</a></li>
+							<li class="small"><a href="/Bartenders/logistic/WelcomeLogistic">首頁</a><a href="/Bartenders/logistic/LogisticLogout.do">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -68,59 +78,65 @@
 					<section>
 						<div class="row">
 							<div class="col-12 col-12-medium">
-								<h1 align=center style="color:white;font-size:48px">訂單搜尋</h1>
-								<div class="searchDiv" align=center>
-									<div id="map" class="mapDiv"></div>
+								<div id="container">
+									<h1 align=center style="color:white;font-size:48px">訂單搜尋</h1>
+									<div class="searchDiv" align=center>
+										<button id="renewSearch" type="button" style="margin:0px auto;"onclick="queryJoker()">更新訂單</button>
+										<div id="map" class="mapDiv"></div>
+									</div>
+									<button id="openSearch" type="button" style="margin:0px auto;">打開地圖</button>
 								</div>
+									<div id="orderDiv" align=center >
+									
 								
-								<div id="orderDiv" align=center >
-								<button id="openSearch" type="button" style="margin:0px auto;">打開地圖</button>
-								<button id="openSearch" type="button" style="margin:0px auto;"onclick="queryJoker()">搜尋訂單</button>
-									<fieldset>
-										<legend style="color:white;font-size:24px">查詢結果</legend>
-										<table align=center>
-											<thead>
-												<tr>
-													<td style="width:80px;padding:10px">序號</td>
-													<td>訂單號碼</td>
-													<td>物流號碼</td>
-													<td style="width:80px;padding:10px">類型</td>
-													<td style="width:250px;">送貨地址</td>
-													<td style="width:150px;padding:10px">取件人姓名</td>
-													<td style="width:150px;padding:10px">取件人手機</td>
-													<td style="width:80px;padding:10px">金額</td>
-													<td style="width:100px;padding:10px">進度</td>
-													<td style="width:150px;padding:10px">出貨時間</td>
-													<td style="width:150px;padding:10px">物流取貨</td>
-													<td style="width:150px;padding:10px">送達時間</td>
-													<td style="width:80px;padding:10px">狀態</td>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="Logistic" items="${logistic}" varStatus="status">
-													<tr>
-														<td>${status.index+1}</td>
-														<td>${Logistic.oID}</td>
-														<td>${Logistic.lID}</td>
-														<td class="myType">${Logistic.oType}</td>
-														<td>${Logistic.oAddr}</td>
-														<td>${Logistic.oName}</td>
-														<td>${Logistic.oPhone}</td>
-														<td>${Logistic.oAmount}</td>
-														<td class="myStatus">${Logistic.oStatus}</td>
-														<td>${Logistic.oTimeA}</td>
-														<td>${Logistic.oTimeB}</td>
-														<td>${Logistic.oTimeC}</td>
-														<!-- 
-														<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
-														 -->
-														<td><button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
-																class="Ready" style="display: none">貨物確認送達</button></td>
+										<fieldset>
+											<legend style="color:white;font-size:24px">查詢結果</legend>
+											<table id="targetTable" align=center >
+												<thead>
+													<tr align="center">
+														<td style="width:80px;padding:10px">序號</td>
+														<td style="width:270px;padding:10px">訂單號碼</td>
+														<td style="width:100px;padding:10px">物流號碼</td>
+														<td style="width:80px;padding:10px">類型</td>
+														<td style="width:250px;">送貨地址</td>
+														<td style="width:120px;padding:10px">收件人</td>
+														<td style="width:150px;padding:10px">收件人手機</td>
+														<td style="width:80px;padding:10px">金額</td>
+														<td style="width:100px;padding:10px">進度</td>
+														<td style="width:150px;padding:10px">出貨時間</td>
+														<td style="width:150px;padding:10px">物流取貨</td>
+														<td style="width:150px;padding:10px">送達時間</td>
+														<td style="width:100px;padding:10px">狀態</td>
 													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</fieldset>
+												</thead>
+												<tbody id="tbody" align="center">
+													<c:forEach var="Logistic" items="${logistic}" varStatus="status">
+														<tr >
+															<td>${status.index+1}</td>
+															<td>${Logistic.oID}</td>
+															<td>${Logistic.lID}</td>
+															<td class="myType">${Logistic.oType}</td>
+															<td>${Logistic.oAddr}</td>
+															<td>${Logistic.oName}</td>
+															<td>${Logistic.oPhone}</td>
+															<td>${Logistic.oAmount}</td>
+															<td class="myStatus">${Logistic.oStatus}</td>
+															<td>${Logistic.oTimeA}</td>
+															<td>${Logistic.oTimeB}</td>
+															<td>${Logistic.oTimeC}</td>
+															<!-- 
+															<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
+															 -->
+															<td>
+															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
+																	class="reserve" style="padding:0px;">接單</button>		
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</fieldset>
+									
 								</div>
 							</div>
 						</div>
@@ -137,75 +153,110 @@
 			$('.searchDiv').css('display','block');
 			var prefix = 'logistic/OrderSearch';
 			reloadMarkers(prefix,1);
-			getMarkers(prefix,1);
+			getMarkers(prefix,1,${getSenderId});
 		}else {
 			$('.searchDiv').css('display','none');	
 		}
+
 	})
 	var OrderJSON;
 	function getOrderJSON(OrderJSON){
-		console.log('order JSON catched',OrderJSON);
-		var testd = OrderJSON;
-		console.log('this is testd',OrderJSON);
-		/*
-
-		console.log('this is testd2',${orderData}[0].oID);
-		
+		document.getElementById('tbody').remove();
+		var targetBody = document.createElement("tbody");
+		targetBody.id = 'tbody';
+		targetBody.align = 'center';
+		document.getElementById('targetTable').appendChild(targetBody);
+		var index = 1;
 		var selectOrder = OrderJSON.forEach(function(item){
-			var address = item.oAddr;
-			console.log(address);
-
+			var newTr = document.createElement("tr");
+			var newTd = document.createElement("td"); 
+			newTd.innerHTML = index;
+			newTr.appendChild(newTd);
+			index++;
+			for(var t in item){
+				var txt = item[t];
+				if(t!='oNo'&&t!='cID'&&t!='sID'&&t!='oComplete'&&t!='charge'&&t!='cost'&&t!='oTimeR'){
+				var newTd = document.createElement("td"); 
+				newTd.innerHTML = txt;
+					if(t=='oType'){
+						newTd.className = 'myType';
+					}
+					if(t=='oStatus'){
+						newTd.className = 'myStatus';
+					}
+				newTr.appendChild(newTd);
+				}
+				
+			}
+			var newTd = document.createElement("td"); 
+			var newBtn = document.createElement("button");
+			newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+			newBtn.className = 'reserve';
+			newBtn.innerHTML = '接單';
+			//newBtn.style.display = 'none';
+			newTd.appendChild(newBtn);
+			newTr.appendChild(newTd);
+			document.getElementById('tbody').appendChild(newTr);
+			
 		})
-		*/
+		changeHTML();
+		changeDisplay();
 	}
 	//訂單搜尋
 	function queryJoker(){
 		console.log('click joker');
 		var prefix = 'logistic/OrderSearch';
-		window.location.href = '<c:url value="/logistic/OrderSearch.do/'+1+'"/>';
-		
+		//window.location.href = '<c:url value="/logistic/OrderSearch.do/'+1+'"/>';
+		reloadMarkers(prefix,1);
+		reloadOrders();
+		getMarkers(prefix,1,${getSenderId});
 	}
 	//狀態轉文字
-	var type = document.getElementsByClassName('myType');
-	console.log('type column: ', type);
-	for(var i=0;i<type.length;i++){
-		if (type[i].innerHTML == '1') {
-			type[i].innerHTML = '宅配';
-		} else if (type[i].innerHTML == '2') {
-			type[i].innerHTML = '超商';
-		} else if (type[i].innerHTML == '3') {
-			type[i].innerHTML = '票券';
-		};
-	}
+	function changeHTML(){
+		var type = document.getElementsByClassName('myType');
+		for(var i=0;i<type.length;i++){
+			if (type[i].innerHTML == '1') {
+				type[i].innerHTML = '宅配';
+			} else if (type[i].innerHTML == '2') {
+				type[i].innerHTML = '超商';
+			} else if (type[i].innerHTML == '3') {
+				type[i].innerHTML = '票券';
+			};
+		}
 
-	var myStatus = document.getElementsByClassName('myStatus');
-	console.log('status column: ', myStatus);
-	for(var i=0;i<myStatus.length;i++){
-		if (myStatus[i].innerHTML == '1') {
-			myStatus[i].innerHTML = '未收貨';
-		} else if (myStatus[i].innerHTML == '2') {
-			myStatus[i].innerHTML = '配送中';
-		} else if (myStatus[i].innerHTML == '3') {
-			myStatus[i].innerHTML = '已送達';
-		};
+		var myStatus = document.getElementsByClassName('myStatus');
+		for(var i=0;i<myStatus.length;i++){
+			if (myStatus[i].innerHTML == '1') {
+				myStatus[i].innerHTML = '未收貨';
+			} else if (myStatus[i].innerHTML == '2') {
+				myStatus[i].innerHTML = '配送中';
+			} else if (myStatus[i].innerHTML == '3') {
+				myStatus[i].innerHTML = '已送達';
+			};
+		}
 	}
 	
-	listR = $('button[id^="2"][class="Ready"]');
-	listR.attr("style", "display:block;");
-	console.log(listR);
-	//按鈕設定
-	$(".Ready").on("click", function () {
+	//接單按鈕
+	function changeDisplay(){
+	$(".reserve").on("click", function () {
 		var Str = this.id
-		orderID = Str.substring(2);
-		orderStatus = Str.substring(0, 1);
-		orderType = Str.substring(1, 2);
-		window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus;
+		orderID = Str.substring(8);
+		console.log('orderId is: ',orderID)
+		window.location.href = '<c:url value="/logistic/orderReserve.do"/>?oID=' + orderID + '&sID=${getSenderId}';
 	})
-	$(".ByStatus").on("click", function () {
-		var Str = this.id
-		orderStatus = Str.substring(6);
-		window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
-	})
+	
+		listR = $('button[id^="9"][class="reserve"]');
+		listR.attr("disabled",true);
+		console.log('class length: ',listR.length);
+		for(var i=0;i<listR.length;i++){
+			listR[i].innerHTML = '已接單';
+		}
+		
+		//listR.attr("style", "display:block;");
+	}
+	//初始轉換 & 初始隱藏
+	changeHTML();
+	changeDisplay();
 	
 	
 

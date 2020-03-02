@@ -74,8 +74,8 @@ public class ActivityService {
 	
 	
 	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
-			String img,String brief,String content,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
-		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief,content, beginTime, endTime, limitNum, targetNum, actualNum);
+			String img,String brief,String detail,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
+		return aDao.saveActivity(a, userId, name, address, lat, lng, type, img, brief,detail, beginTime, endTime, limitNum, targetNum, actualNum);
 	}
 	
 	public boolean checkEndTime(List<Activity> list) {

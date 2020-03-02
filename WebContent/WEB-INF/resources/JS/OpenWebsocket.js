@@ -1,4 +1,5 @@
 var websocket = null;
+var i=0;
 
 if ('WebSocket' in window) {
 	websocket = new WebSocket("ws://localhost:8080/Bartenders/websocketTest");
@@ -24,25 +25,28 @@ websocket.onmessage = function(event) {
 	if (messageJson.messageType === "onlineCount") {
 		document.getElementById('onlineCount').innerHTML = messageJson.data;
 		document.getElementById('onlineUser').innerHTML = '';
+		i=0;
 	}
 
 	if (messageJson.messageType === "onlineUser") {
 		// alert(messageJson.data);
-		document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
-				+ messageJson.data + '</div>';
+		i++;
+		document.getElementById('onlineUser').innerHTML += '<li><a onclick="chatWith()" id="on'+i+'" href="#">'
+				+ messageJson.data + '</a></li>';
 	}
 
 	if (messageJson.messageType === "noticify") {
-		alert(messageJson.data);
+//		alert(messageJson.data);
 		document.getElementById('notice').innerHTML += '<li>'
 				+ messageJson.data + '</li>';
 	}
 
 	if (messageJson.messageType === "push") {
-		alert(messageJson.data);
+//		alert(messageJson.data);
 		document.getElementById('notice').innerHTML += '<li>'
 				+ messageJson.data + '</li>';
 	}
+	
 }
 
 function setMessageInnerHTML(innerHTML) {
@@ -63,7 +67,6 @@ websocket.onerror = function(event) {
 
 websocket.onclose = function(event) {
 	console.log("onclose", event);
-
 	if (event.code != 4500) {
 		// 4500為服務端在開啟多tab時主動關閉返回的編碼
 		reconnect();// 重連

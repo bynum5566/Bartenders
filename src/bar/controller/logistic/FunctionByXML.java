@@ -330,6 +330,7 @@ public class FunctionByXML {
 	public @ResponseBody List<Activity> searchOrder(@PathVariable Integer status,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
 		List<Logistic> newOrder = lSer.queryByStatus(status);
+		lSer.checkReserveTime(newOrder);
 		System.out.println("order numbers: "+newOrder.size());
 		HashMap<Integer,Integer> hashMap = new HashMap<>();
 		List<Activity> activity = new ArrayList<Activity>();
@@ -363,12 +364,16 @@ public class FunctionByXML {
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
 		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
-		
+		lSer.checkReserveTime(orderList);
 		m.addAttribute("activity",orderList);
 		return orderList;
 	}
 	
-	
+	@RequestMapping(path = "logistic/LogisticCheck/{oID}",method = RequestMethod.GET)
+	public @ResponseBody Logistic uniqueQuery(@PathVariable(value = "oID") String oID) {
+		String Param = "oID";
+		return lSer.uniqueQuery(Param,oID);
+	}
 	
 
 }

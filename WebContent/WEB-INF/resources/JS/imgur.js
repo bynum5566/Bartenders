@@ -206,5 +206,3 @@
 							};
 							return Imgur;
 						}));
-
-		$('#imgPlace2').hide();

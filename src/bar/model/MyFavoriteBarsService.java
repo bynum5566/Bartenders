@@ -35,10 +35,11 @@ public class MyFavoriteBarsService {
 			int companyId = idList.get(x);	
 			Company comp = Cdao.selectCompany(companyId);	
 			favbs = favbs	
-					+"<tr class=\"pdRow\"><td><div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/DisplayProductList.controller?barAccount="
-					+comp.getAccount() + "';\">" +comp.getCompanyName() + "</h3></div></td><td class=\"RSide\">"
-					+"<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href = '/Bartenders/barDisLike?cidck="
-					+comp.getCompanyId() + "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
+					+"<tr class=\"B1 pdRow\"><td class=\"B1 leftSide\"><div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/DisplayProductList.controller?barAccount="
+					+ comp.getAccount() + "';\">" +comp.getCompanyName() + "</h3></div></td><td class=\"B1 RSide\">"
+					+ "<a href=\"/Bartenders/barDisLike?cidck=" + comp.getCompanyId() + "\" class=\"bT4\">"
+					+"<img src=\"/Bartenders/images/delete.png\" style=\"width:40px; height:40px; cursor: pointer;\"/>"
+					+ "</a></td></tr>";
 		}
 		return favbs;
 	}

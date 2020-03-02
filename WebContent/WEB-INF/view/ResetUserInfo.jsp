@@ -6,12 +6,14 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>修改個人資訊</title>
+	<title>修改個人資訊 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<!-- <style type="text/css">
 html, body {
 	margin: 0;
@@ -58,13 +60,46 @@ html, body {
 	.small a+a {
 		margin-left: 15px;
 	}
+	
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+	
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		    <header id="header">
-      <h1><a href="UserFirstPage">Bartenders</a></h1>
+      <h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+      
+      <!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+      
       <nav id="nav">
         <ul>
           <li class="special">
@@ -79,7 +114,7 @@ html, body {
                 <li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
                 <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
                 <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-                <li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+                <li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               </ul>
             </div>
           </li>
@@ -104,7 +139,7 @@ html, body {
 										<h3>姓名:</h3>
 									</li>
 									<li><input type="text" name="userName" required="required" size="50"
-											placeholder="請輸入您的姓名" pattern="^.{3,30}$"/><br></li>
+											placeholder="請輸入您的姓名" pattern="^.{3,30}$" id="name"/><br></li>
 									<li>
 										<h3>帳號:</h3>
 									</li>
@@ -114,13 +149,13 @@ html, body {
 										<h3>手機:</h3>
 									</li>
 									<li><input type="tel" name="phone" autocomplete="off" size="50"
-											placeholder="請填寫欲更改的手機號碼" required="required" pattern="^.{10}$"/><br>
+											placeholder="請填寫欲更改的手機號碼" required="required" pattern="^.{10}$" id="phone"/><br>
 									</li>
 									<li>
 										<h3>生日:</h3>
 									</li>
 									<li><input type="date" name="birthday" size="50" autocomplete="off"
-											required="required"/><br></li>
+											required="required" /><br></li>
 									<li>
 										<h3>電子郵件:</h3>
 									</li>
@@ -131,10 +166,11 @@ html, body {
 									</li>
 									<li><input type="text" name="address" autocomplete="off" size="50"
 											placeholder="請填寫欲更改的的住址" pattern="^[0-9-\u4e00-\u9fa5].{10,}$"
-											required="required"/><br></li>
+											required="required" id="add"/><br></li>
 								</ul>
 								<!-- </table> -->
 								<ul class="actions">
+									<li><input class="button" type="button" value="demo" id="demo"/></li>
 									<li><input class="button" type="reset" value="清除重填"/></li>
 									<li><input class="button primary" type="submit" value="確認送出"/></li>
 								</ul>
@@ -159,6 +195,23 @@ html, body {
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
+	<script type="text/javascript">
+		$('#demo').click(function(){
+			$('#name').val('陳曉明');
+			$('#phone').val('0919569231');
+			$('#add').val('台北市萬華區興寧街66巷2弄');
+		});
+	</script>
 	</body>
 
 </html>

@@ -29,7 +29,7 @@ import bar.model.UsersService;
 
 @Controller
 @SessionAttributes(names = { "account", "recipient", "orderId", "productName", "amount", "shippingNumber", "address1",
-		"phone","orders" })
+		"phone","orders","userName" })
 @EnableTransactionManagement
 public class UserOrder {
 
@@ -114,6 +114,9 @@ public class UserOrder {
 		m.addAttribute("attrAddress", attr_address);
 		m.addAttribute("productData", attr_product);
 		m.addAttribute("orders", attr_orders);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 		
 		return "UserOrder";
 

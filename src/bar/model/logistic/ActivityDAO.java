@@ -151,7 +151,7 @@ public class ActivityDAO {
 	
 	
 	public Activity saveActivity(Activity a,Integer userId, String name, String address, float lat, float lng, String type,
-			String img,String brief,String content,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
+			String img,String brief,String detail,String beginTime,String endTime,Integer limitNum,Integer targetNum,Integer actualNum) {
 		try {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -164,7 +164,7 @@ public class ActivityDAO {
 		a.setImg(img);
 		
 		a.setBrief(brief);
-		a.setContent(content);
+		a.setDetail(detail);
 		a.setBeginTime(beginTime);
 		a.setEndTime(endTime);
 		a.setStatus("O");

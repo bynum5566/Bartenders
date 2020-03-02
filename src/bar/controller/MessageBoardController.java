@@ -29,7 +29,7 @@ import bar.model.UsersService;
 import bar.model.Users;
 
 @Controller
-@SessionAttributes({ "LoginStatus", "account" })
+@SessionAttributes({ "LoginStatus", "account" ,"userName"})
 @EnableTransactionManagement
 public class MessageBoardController {
 
@@ -78,6 +78,9 @@ public class MessageBoardController {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 		m.addAttribute("newest", newest);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "MessageBoard";
 
@@ -95,7 +98,9 @@ public class MessageBoardController {
 	public String processActionShow(Model m) {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 		m.addAttribute("newest", newest);
-
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 		
 		return "MessageBoard";
 	}
@@ -117,6 +122,15 @@ public class MessageBoardController {
 		            }
 		        });
 			
+		String famousMessageRank1PitcureUrl = newest.get(0).getPicture();	
+		String famousMessageRank2PitcureUrl = newest.get(1).getPicture();
+		String famousMessageRank3PitcureUrl = newest.get(2).getPicture();
+		
+		
+		m.addAttribute("famousMessageRank1PitcureUrl", famousMessageRank1PitcureUrl);		
+		m.addAttribute("famousMessageRank2PitcureUrl", famousMessageRank2PitcureUrl);
+		m.addAttribute("famousMessageRank3PitcureUrl", famousMessageRank3PitcureUrl);
+		
 		m.addAttribute("newest", newest);
 		return "MessageBoardListMode";
 	}

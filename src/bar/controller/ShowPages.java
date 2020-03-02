@@ -220,6 +220,11 @@ public String showVerifyMailPage() {
 	public String ActivityEdit() {
 		return "logistic/ActivityEdit";
 	}
+	
+	@RequestMapping(path = "/BarCreate", method = RequestMethod.GET)
+	public String BarCreate() {
+		return "logistic/BarCreate";
+	}
 
 	@RequestMapping(path = "/Example", method = RequestMethod.GET)
 	public String Example() {
@@ -242,15 +247,5 @@ public String showVerifyMailPage() {
 		return "UserFirstPage";
 	}
 	
-	@RequestMapping(value = "/notice" , method = RequestMethod.GET )
-	public String showNotice(Model m) {
-		WebSocketTest.setModel(m);
-		return "Notice";
-	}
-	
-	@RequestMapping(value = "/cnotice" , method = RequestMethod.GET )
-	public String showcNotice(Model m) {
-		WebSocketTest.setModel(m);
-		return "CNotice";
-	}
+
 }
