@@ -11,19 +11,21 @@
 	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
+	
+	<!-- 小鈴鐺 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 	<title>新增商品 / Bartenders</title>
-	<!-- 小鈴鐺 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	
 	<style>
 		.small {
@@ -47,32 +49,82 @@
 			align-items: center;
 			justify-content:  center;
 		}
+		
+		div.daterangepicker.dropdown-menu.ltr.single.show-calendar.opensleft, div.daterangepicker.dropdown-menu.ltr.show-calendar.opensleft {
+			background-color: #565656;
+		}
+		
+		.daterangepicker:after {
+			border-bottom: 6px solid #565656;
+		}
+		
+		.glyphicon-time:before {
+		    content: none;
+		}
+		
+		div.calendar-time{
+			background-color: #565656;
+			color: #fff;
+		}
+		
+		input.input-mini.form-control{
+			color: #fff;
+		}
+		
+		select.hourselect, select.minuteselect, select.ampmselect {
+			color: #fff;
+			padding: 10px;
+			font-size: 16px;
+			margin-right: 5px;
+			display: inline-block
+		}
+		
+		div.calendar.left.single, .daterangepicker .calendar.single .calendar-table, .daterangepicker .calendar-table {
+			color: #fff;
+		}
+		
+		.daterangepicker .calendar-table {
+			background-color: transparent;
+		}
+		
+		td.available:hover, td.off.available:hover {
+			color: #565656 !important;
+		}
+		
+		select.monthselect, select.yearselect{
+			margin-right: 5px;
+			display: inline-block
+		}
+		
+		active.start-date.available.in-range{
+			background-color: #4E4F97;
+		}
 
 		#Input{
 			width: 40px;
 			height: 40px;
 		}
 		
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 		
 	</style>
 </head>

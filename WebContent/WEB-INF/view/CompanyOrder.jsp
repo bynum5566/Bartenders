@@ -165,9 +165,8 @@ table td {
 						<div class="col-6 col-12-medium">
 							<h2>訂單管理</h2>
 							<br>
-							<form action="<c:url value="/companyOrder.controller"/>"
-								method="post">
-								<table>
+							<form action="<c:url value="/companyOrder.controller"/>" method="post">
+								<table class="sortable">
 									<thead>
 										<tr align="center">
 											<th nowrap="nowrap">訂單編號</th>
@@ -229,7 +228,7 @@ table td {
 														</c:otherwise>
 													</c:choose>
 													<td align="center" nowrap="nowrap">${statusNumToStr[Corders[current.index].status]}</td>
-													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
+													<td align="center" nowrap="nowrap">${Corders[current.index].createTime.substring(0,4)}/${Corders[current.index].createTime.substring(5,7)}/${Corders[current.index].createTime.substring(8,10)}<br>${Corders[current.index].createTime.substring(11,19)}</td>
 													<c:choose>
 														<c:when
 															test="${ShippingNumToStr[Corders[current.index].shipping]=='QRcode電子票券'}">
@@ -285,6 +284,7 @@ table td {
 		$(this).siblings().slideToggle("slow");
 		});
 	</script>
+	<script src="/Bartenders/JS/sorttable.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
