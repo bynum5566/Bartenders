@@ -1,7 +1,10 @@
 package bar.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,6 +81,7 @@ public class ProductDashboardController {
 		request.setAttribute("Tag1", pdTag1);
 		request.setAttribute("Tag2", pdTag2);
 		request.setAttribute("Tag3", pdTag3);
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 
 		return "productViewPage";
@@ -118,6 +122,7 @@ public class ProductDashboardController {
 		request.setAttribute("Tag1", pdTag1);
 		request.setAttribute("Tag2", pdTag2);
 		request.setAttribute("Tag3", pdTag3);
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
 
@@ -259,6 +264,7 @@ public class ProductDashboardController {
 				request.setAttribute("pic3", productImageUrl3);
 			}
 		}
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		return "productViewPage";
 	}
@@ -299,6 +305,7 @@ public class ProductDashboardController {
 				request.setAttribute("pic3", productImageUrl3);
 			}
 		}
+		pdDetail = pdDetail.replaceAll("\n", "<br>");
 		request.setAttribute("pdDetail", pdDetail);
 		request.setAttribute("pdValD", TkTime);
 		return "productViewPage2";
@@ -322,6 +329,28 @@ public class ProductDashboardController {
 		} else {
 			return "index";
 		}
+	}
+	
+	@RequestMapping(value = "/pulMultiPD", method = RequestMethod.POST)
+	public String pMulPd(@RequestParam("listForPull") String pdIdList) {
+		ArrayList<String> listForPull = new ArrayList<String>();
+		listForPull.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForPull.size() ; x++ ) {
+			pds.pdPull(listForPull.get(x));
+		}
+			return "redirect:/reFr";
+	}
+	
+	@RequestMapping(value = "/lauMultiPD", method = RequestMethod.POST)
+	public String lMulPd(@RequestParam("listForLaunch") String pdIdList) {
+		ArrayList<String> listForLaunch = new ArrayList<String>();
+		listForLaunch.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForLaunch.size() ; x++ ) {
+			pds.pdLaunch(listForLaunch.get(x));
+		}
+			return "redirect:/reFr";
 	}
 
 	@RequestMapping(value = "/reFr", method = RequestMethod.GET)
@@ -353,6 +382,29 @@ public class ProductDashboardController {
 			return "index";
 		}
 	}
+	
+	@RequestMapping(value = "/pulMultiTkPD", method = RequestMethod.POST)
+	public String pMulTkPd(@RequestParam("listForTkPull") String pdIdList) {
+		ArrayList<String> listForTkPull = new ArrayList<String>();
+		listForTkPull.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForTkPull.size() ; x++ ) {
+			System.out.println(listForTkPull.get(x));
+			pds.pdPull(listForTkPull.get(x));
+		}
+		return "redirect:/reFrT";
+	}
+	
+	@RequestMapping(value = "/lauMultiTkPD", method = RequestMethod.POST)
+	public String lMulTkPd(@RequestParam("listForTkLaunch") String pdIdList) {
+		ArrayList<String> listForTkLaunch = new ArrayList<String>();
+		listForTkLaunch.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForTkLaunch.size() ; x++ ) {
+			pds.pdLaunch(listForTkLaunch.get(x));
+		}
+		return "redirect:/reFrT";
+	}
 
 	@RequestMapping(value = "/reFrT", method = RequestMethod.GET)
 	public String reFreshT() {
@@ -371,6 +423,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -378,7 +431,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
 		request.setAttribute("autoPT", pd.getAutoPullTime());
 		request.setAttribute("pic1", pd.getProductImageUrl());
@@ -394,6 +447,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -401,7 +455,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
 		request.setAttribute("autoPT", pd.getAutoPullTime());
 		request.setAttribute("pic1", pd.getProductImageUrl());
@@ -417,6 +471,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -424,7 +479,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("valideT", pd.getValidDate());
 		request.setAttribute("expiryT", pd.getExpiryDate());
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
@@ -442,6 +497,7 @@ public class ProductDashboardController {
 		int companyId = comp.getCompanyId();
 
 		ProductData pd = pds.editThisTkPd(companyId, pdId);
+		String detail = pd.getPdDetail().replaceAll("<br>", "");
 		request.setAttribute("pdId", pd.getPdId());
 		request.setAttribute("pdNm", pd.getProductName());
 		request.setAttribute("pdStk", pd.getPdStock());
@@ -449,7 +505,7 @@ public class ProductDashboardController {
 		request.setAttribute("pdT1", pd.getPdTag1());
 		request.setAttribute("pdT2", pd.getPdTag2());
 		request.setAttribute("pdT3", pd.getPdTag3());
-		request.setAttribute("pdDT", pd.getPdDetail());
+		request.setAttribute("pdDT", detail);
 		request.setAttribute("valideT", pd.getValidDate());
 		request.setAttribute("expiryT", pd.getExpiryDate());
 		request.setAttribute("autoLT", pd.getAutoLaunchTime());
@@ -471,7 +527,51 @@ public class ProductDashboardController {
 		pds.removeProduct(pdId);
 		return "redirect:/reFrT";
 	}
-
+	
+	@RequestMapping(value = "/delMultiLPD", method = RequestMethod.POST)
+	public String dMulLPd(@RequestParam("listForDelete1") String pdIdList) {
+		ArrayList<String> listForDelete1 = new ArrayList<String>();
+		listForDelete1.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForDelete1.size() ; x++ ) {
+			pds.removeProduct(listForDelete1.get(x));
+		}
+		return "redirect:/reFr";
+	}
+	
+	@RequestMapping(value = "/delMultiPPD", method = RequestMethod.POST)
+	public String dMulPPd(@RequestParam("listForDelete2") String pdIdList) {
+		ArrayList<String> listForDelete2 = new ArrayList<String>();
+		listForDelete2.addAll(Arrays.asList(pdIdList.split(",")));
+		
+		for(int x=0 ; x < listForDelete2.size() ; x++ ) {
+			pds.removeProduct(listForDelete2.get(x));
+		}
+		return "redirect:/reFr";
+	}
+	
+	@RequestMapping(value = "/delMultiLTkPD", method = RequestMethod.POST)
+	public String dMulLTkPd(@RequestParam("listForTkDelete1") String pdIdList) {
+		ArrayList<String> listForTkDelete1 = new ArrayList<String>();
+		listForTkDelete1.addAll(Arrays.asList(pdIdList.split(",")));
+	
+		for(int x=0 ; x < listForTkDelete1.size() ; x++ ) {
+			pds.removeProduct(listForTkDelete1.get(x));
+		}
+			return "redirect:/reFrT";
+	}
+	
+	@RequestMapping(value = "/delMultiPTkPD", method = RequestMethod.POST)
+	public String dMulPTkPd(@RequestParam("listForTkDelete2") String pdIdList) {
+		ArrayList<String> listForTkDelete2 = new ArrayList<String>();
+		listForTkDelete2.addAll(Arrays.asList(pdIdList.split(",")));
+	
+		for(int x=0 ; x < listForTkDelete2.size() ; x++ ) {
+			pds.removeProduct(listForTkDelete2.get(x));
+		}
+			return "redirect:/reFrT";
+	}
+	
 	@RequestMapping(value = "/search.Product", method = RequestMethod.GET)
 	public String getSearchResult(@RequestParam("keyword") String keyword) {
 		String res = pds.searchResult(keyword);

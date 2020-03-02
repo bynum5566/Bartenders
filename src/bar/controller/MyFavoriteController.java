@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +25,7 @@ import bar.model.ProductDataService;
 import bar.model.Users;
 import bar.model.UsersService;
 
-@SessionAttributes(names = { "account" })
+@SessionAttributes(names = { "account" ,"userName" })
 @Controller
 public class MyFavoriteController {
 	@Autowired
@@ -51,7 +52,7 @@ public class MyFavoriteController {
 	}
 
 	@RequestMapping(value = "/Dashboard.MyFavorite", method = RequestMethod.GET)
-	public String showMyFavsPage(@ModelAttribute(name = "account") String account) {
+	public String showMyFavsPage(@ModelAttribute(name = "account") String account,Model m) {
 		Users user = usersS.select(account);
 		int userId = user.getUserId();
 
@@ -60,11 +61,15 @@ public class MyFavoriteController {
 		
 		String myFavs = mfs.showAllFav(userId);
 		request.setAttribute("Myfav", myFavs);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "myFavorite";
 	}
 
 	@RequestMapping(value = "/Product.show", method = RequestMethod.GET)
-	public String showProductPage(@RequestParam(value = "PdId", required = false) String pdId) throws ParseException {
+	public String showProductPage(@RequestParam(value = "PdId", required = false) String pdId , Model m) throws ParseException {
 		ProductData prod = pdao.selectP(pdId);
 		String ALT = prod.getAutoLaunchTime();
 		String APT = prod.getAutoPullTime();
@@ -120,6 +125,10 @@ public class MyFavoriteController {
 				request.setAttribute("pdValD", pdVD);
 				request.setAttribute("pdDetail", prod.getPdDetail());
 				request.setAttribute("bT", s);
+				
+				//for websocket
+				WebSocketTest.setModel(m);
+				
 				return "productSinglePage";
 			} else {
 				request.setAttribute("productName", prod.getProductName());
@@ -149,6 +158,10 @@ public class MyFavoriteController {
 				request.setAttribute("pdValD", pdVD);
 				request.setAttribute("pdDetail", prod.getPdDetail());
 				request.setAttribute("bT", p);
+				
+				//for websocket
+				WebSocketTest.setModel(m);
+				
 				return "productSinglePage";
 			}
 
@@ -182,6 +195,10 @@ public class MyFavoriteController {
 				request.setAttribute("pdValD", pdVD);
 				request.setAttribute("pdDetail", prod.getPdDetail());
 				request.setAttribute("bT", s);
+				
+				//for websocket
+				WebSocketTest.setModel(m);
+				
 				return "productSinglePage";
 			} else {
 				request.setAttribute("productName", prod.getProductName());
@@ -211,6 +228,10 @@ public class MyFavoriteController {
 				request.setAttribute("pdValD", pdVD);
 				request.setAttribute("pdDetail", prod.getPdDetail());
 				request.setAttribute("bT", p);
+				
+				//for websocket
+				WebSocketTest.setModel(m);
+				
 				return "productSinglePage";
 			}
 		}

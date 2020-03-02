@@ -97,7 +97,7 @@
 		    orders = [];
 		}
 		
-		function getMarkers(prefix,input){
+		function getMarkers(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
 						console.log('data get!');
@@ -151,7 +151,7 @@
 									input = barId;
 								changeIcon(index);
 								reloadOrders();
-								getOrders(prefix,input);
+								getOrders(prefix,input,senderId);
 								
 							});
 							defaultIndex++;
@@ -162,7 +162,7 @@
 
 						
 		//讀取特定訂單
-		 function getOrders(prefix,input){
+		 function getOrders(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
 						console.log('data get!');
@@ -173,26 +173,43 @@
 						var all = OrderJSON.forEach(async function(item){
 							
 							var address = item.oAddr;
+							var oID = item.oID;
 							var lID = item.lID;
+							var sID = item.sID;
 							//進行座標轉換
 							await getInput(address);
 							var lat = orderLat;
 							var lng = orderLng;
+							
 							var point = new google.maps.LatLng(lat, lng);
+							var iconImg;
 							//建立個別marker
+							/**/
+							if(sID!=null){
+								iconImg = '../images/reserveMarker.png';
+								var contentString = 	'<div id="odiv">'+
+								'<p class="oinfoDetail">物流單號: '+lID+'</p>'+
+								'<p class="oinfoDetail">運送地址: '+address+'</p>'+
+								'</div>';
+							}else{
+								iconImg = '../images/defaultMarker.png';
+								var contentString = 	'<div id="odiv">'+
+								'<p class="oinfoDetail">物流單號: '+lID+'</p>'+
+								'<p class="oinfoDetail">運送地址: '+address+'</p>'+
+								'<a style="color:blue;" href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'">我要接單</a>'+
+								'</div>';
+							};
+							
 							var marker = new google.maps.Marker({
 								map : map,
 								position : point,
 								//logistic頁面 所以要往上一層
-								icon : '../images/defaultMarker.png',
+								icon : iconImg
 							});
 							
 							orders.push(marker);
 							//建立個別window
-							var contentString = 	'<div id="odiv">'+
-							'<p class="oinfoDetail">物流單號: '+lID+'</p>'+
-							'<p class="oinfoDetail">運送地址: '+address+'</p>'+
-							'</div>';
+							
 							marker.addListener('click', function() {
 								infowindow.setContent(contentString);
 								infowindow.open(map, marker);

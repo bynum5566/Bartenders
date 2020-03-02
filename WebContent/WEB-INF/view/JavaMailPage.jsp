@@ -9,6 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>聯絡我們</title>
 <%-- 畫面version 20200213_1650--%>
+
+<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
+
 <link rel="stylesheet" type="text/css"
 	href="/Bartenders/CSS/add_editView.css">
 

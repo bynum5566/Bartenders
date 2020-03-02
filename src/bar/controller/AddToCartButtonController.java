@@ -24,7 +24,7 @@ import bar.model.Users;
 
 /*===*/
 @Controller
-@SessionAttributes(names = "account")
+@SessionAttributes(names = {"account","userName"})
 
 //
 
@@ -93,6 +93,10 @@ public class AddToCartButtonController {
 		orderList = ordersDAO.selectListUserCompanyStatusOrderNormal(companyId, status, userId, shipping);
 		System.out.println(orderList.size());
 		/*====*/
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "AddToCartButton";
 	}
 }

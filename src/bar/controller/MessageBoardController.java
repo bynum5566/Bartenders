@@ -29,7 +29,7 @@ import bar.model.UsersService;
 import bar.model.Users;
 
 @Controller
-@SessionAttributes({ "LoginStatus", "account" })
+@SessionAttributes({ "LoginStatus", "account" ,"userName"})
 @EnableTransactionManagement
 public class MessageBoardController {
 
@@ -78,6 +78,9 @@ public class MessageBoardController {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 		m.addAttribute("newest", newest);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "MessageBoard";
 
@@ -95,7 +98,9 @@ public class MessageBoardController {
 	public String processActionShow(Model m) {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 		m.addAttribute("newest", newest);
-
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 		
 		return "MessageBoard";
 	}

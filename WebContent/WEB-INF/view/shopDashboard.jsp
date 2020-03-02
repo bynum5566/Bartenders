@@ -1,89 +1,118 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
-	<meta  http-equiv="Expires"  CONTENT="0">   
-	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
-	<meta  http-equiv="Pragma"  CONTENT="no-cache">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+	<meta http-equiv="Expires" CONTENT="0">   
+	<meta http-equiv="Cache-Control" CONTENT="no-cache">   
+	<meta http-equiv="Pragma" CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<title>商品管理 / Bartenders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
-<style>
-	.small {
-		display: flex;
-		align-self: center;
-	}
-
-	.small a {
-		font-size: 16px;
-		font-weight: 400;
-		color: #888;
-		font-family: 111.otf;
-	}
-
-	.small a+a {
-		margin-left: 15px;
-	}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 	
-	.wrapper.style5 h4.bT3 {
-		cursor: pointer;
-		color: #A5DEE4;
-		text-shadow: 1px 2px 0px #0F2540;
-	}
+	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
 	
-	.wrapper.style5 h4.bT3:hover {
-		color: #DAC9A6;
-		text-shadow: 1px 2px 0px #8E354A;
-	}
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
 	
-	.Tl{
-		text-align: left;
-	}
-</style>
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.wrapper.style5 h4.bT3 {
+			cursor: pointer;
+			color: #A5DEE4;
+			text-shadow: 1px 2px 0px #0F2540;
+		}
+		
+		.wrapper.style5 h4.bT3:hover {
+			color: #DAC9A6;
+			text-shadow: 1px 2px 0px #8E354A;
+		}
+		
+		.Tl {
+			text-align: left;
+		}
+		
+		.B1 {
+			display: flex;
+			align-items: center;
+			justify-content: right;
+		}
+		
+		.swal2-modal .swal2-styled {
+		    border: 0;
+		    border-radius: 3px;
+		    -webkit-box-shadow: none;
+		    box-shadow: none;
+		    color: #fff;
+		    cursor: pointer;
+		    font-size: 17px;
+		    font-weight: 500;
+		    margin: 15px 5px 0;
+		    padding: 0 40px;
+		}
+		
+		button.swal2-confirm.swal2-styled {
+			background-color: #ed4933 !important;
+		}
+		
+		button.swal2-confirm.swal2-styled:hover {
+			background-color: #ef5e4a !important;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-		<h1><a href="WelcomeCompany">Bartenders</a></h1>
-		<nav id="nav">
-			<ul>
-				<li class="special">
-					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
-						<ul>
-							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
-							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
-							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
-							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
-							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
-							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
-							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
-							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-							<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-							<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</header>
+			<h1>
+				<a href="WelcomeCompany">Bartenders</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
+								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
 	
 		<article id="main">
 			<section class="wrapper style5">
@@ -94,7 +123,7 @@
 								<ul class="actions">
 									<li class="flos1">
 										<a class="f1" href="/Bartenders/Product.Add">
-											<div class="btn btn-one ">
+											<div class="btn btn-one">
 												<input class="button" type="button" value="新增商品+">
 											</div>
 										</a>
@@ -119,19 +148,55 @@
 									<div id="content">
 										<div id="tab1" class="outwrapper">
 											<ul class="alt">
-												<li class="inwrapper blurred-box0">
-													<div class="Tl"><h2>上架中商品</h2></div>
+												<li>
+													<div class="Tl">
+														<h2>上架中商品</h2>
+														&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
+													</div>
 													<table class="pd0">${Launched}</table>
+													<ul class="actions B1">
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/delMultiLPD" method="post" id="lMultiDel">
+																<input type="text" id="list1" name="listForDelete1">
+																<input type="submit" value="批量刪除">
+															</form>
+														</li>
+														<li style="border-color: transparent;">&emsp;</li>
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/pulMultiPD" method="post">
+																<input type="text" id="list2" name="listForPull">
+																<input type="submit" value="批量下架">
+															</form>
+														</li>
+													</ul>
 												</li>
 											</ul>
 										</div>
 										<div id="tab2" class="outwrapper">
 											<ul class="alt">
-												<li class="inwrapper blurred-box2">
-													<div class="Tl"><h2>下架中商品</h2></div>
+												<li>
+													<div class="Tl">
+														<h2>下架中商品</h2>
+														&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
+													</div>
 													<table class="pd0">${Pulled}</table>
+													<ul class="actions B1">
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/delMultiPPD" method="post" id="pMultiDel">
+																<input type="text" id="list3" name="listForDelete2">
+																<input type="submit" value="批量刪除">
+															</form>
+														</li>
+														<li style="border-color: transparent;">&emsp;</li>
+														<li style="border-color: transparent;">
+															<form action="/Bartenders/lauMultiPD" method="post">
+																<input type="text" id="list4" name="listForLaunch">
+																<input type="submit" value="批量上架">
+															</form>
+														</li>
+													</ul>
 												</li>
-											</ul>											
+											</ul>								
 										</div>
 									</div>
 								</div>
@@ -146,6 +211,127 @@
 	<script>
 		$('.pdidckPP').hide();
 		$('.pdidckLL').hide();
+		$('#list1').hide();
+        $('#list2').hide();
+        $('#list3').hide();
+        $('#list4').hide();
+        $.noConflict();
+        
+		$(document).ready(function() {
+			$("#CheckAllL").click(function() {
+				if($("#CheckAllL").prop("checked")) {
+					var ListL = [];
+					$("input[name='pdCheckL']").each(function() {
+						$(this).prop("checked", true);
+						ListL.push($(this).val());
+					})
+			        $('#list1').val(ListL);
+			        $('#list2').val(ListL);
+				}else {
+					$("input[name='pdCheckL']").each(function() {
+						$(this).prop("checked", false);
+					})
+			            $('#list1').val('');
+			            $('#list2').val('');
+				}
+			});
+			
+			$("#CheckAllP").click(function(){
+				if($("#CheckAllP").prop("checked")){
+					var ListP = [];
+					$("input[name='pdCheckP']").each(function(){
+						$(this).prop("checked",true);
+						ListP.push($(this).val());
+					})
+				            $('#list3').val(ListP);
+				            $('#list4').val(ListP);
+				}else{
+					$("input[name='pdCheckP']").each(function(){
+						$(this).prop("checked",false);
+					})
+				            $('#list3').val('');
+				            $('#list4').val('');
+				}
+			});
+		})
+		
+		$(function(){ 
+	        $("input:checkbox[name='pdCheckL']").click(function() {
+	            listL = $("input:checkbox[name='pdCheckL']:checked").map(function(index,elem) {
+	                return $(elem).val();
+	            }).get().join(',');
+	            $('#list1').val(listL);
+	            $('#list2').val(listL);
+	        });
+	    });
+		
+		$(function(){ 
+	        $("input:checkbox[name='pdCheckP']").click(function() {
+	            listP = $("input:checkbox[name='pdCheckP']:checked").map(function(index,elem) {
+	                return $(elem).val();
+	            }).get().join(',');
+	            $('#list3').val(listP);
+	            $('#list4').val(listP);
+	        });
+	    });
+
+		$("#lMultiDel").submit(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
+		$("#pMultiDel").submit(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
+		$(".bT4").click(function(e) {
+			e.preventDefault();
+			var form = this;
+			
+			swal({
+				title: "確定要刪除嗎?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "確定",
+				cancelButtonText: "取消",
+				closeOnConfirm: true
+			},function(isConfirm) {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+		});
+		
 		$(function() {
 			if (window.history && window.history.pushState) {
 				$(window).on('popstate', function() {

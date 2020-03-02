@@ -38,6 +38,10 @@ public class GRegister {
 		if (Guser != null) {
 			m.addAttribute("userName", Guser.getUserName());
 			m.addAttribute("account", gid);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "UserFirstPage";
 		} else {
 			return "GRegister";
@@ -84,6 +88,10 @@ public class GRegister {
 		}
 		m.addAttribute("userName", userName);
 		m.addAttribute("account", account);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "UserFirstPage";
 	}
 
@@ -95,6 +103,10 @@ public class GRegister {
 		if (Gcompany != null) {
 			m.addAttribute("CName", Gcompany.getCompanyName());
 			m.addAttribute("Caccount", gid);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "WelcomeCompany";
 		} else {
 			return "CGRegister";
@@ -129,6 +141,10 @@ public class GRegister {
 
 		m.addAttribute("CName", companyName);
 		m.addAttribute("Caccount", account);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "WelcomeCompany";
 	}
 }

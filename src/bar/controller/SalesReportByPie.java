@@ -19,7 +19,7 @@ import bar.model.OrdersService;
 import bar.model.ProductData;
 
 @Controller
-@SessionAttributes(names = "Caccount")
+@SessionAttributes(names = {"Caccount", "CName"})
 @EnableTransactionManagement
 public class SalesReportByPie {
 	
@@ -78,6 +78,9 @@ public class SalesReportByPie {
 		System.out.println("productsPrice(pie):"+productsPrice+"------------------");
 		m.addAttribute("productNamesForPie", productNames);
 		m.addAttribute("productsPrice", productsPrice);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 
 		return "SalesReportByPie";
 	}

@@ -21,52 +21,56 @@
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<style>
-		input{
-			color:white;
-		}
+
 		.errors{
 			margin: 0px auto;
 			color:red;
 		}
 		
+		label{
+		margin:15px;
+		}
 		.wrapper.style5 ::-webkit-input-placeholder {
-
 		color: #eee !important;
 		font-family: 'Noto Sans TC', sans-serif;
 		}
 		
+		#alter{
+			position:absolute;
+			top:10%;
+			left:0%;
+			width:100%;
+		}
+		
+		
 		#beginTime{
-		width:250px;
+		width:210px;
 		display:inline;
 		}
 		
 		#endTime{
-		width:250px;
+		width:210px;
 		display:inline;
 		}
-		
-		.numSetting{
-		width:150px;
-		display:inline;
-		}
-		
+
 		#limitNum{
-		width:150px;
+		width:108px;
 		display:inline;
 		}
 		
 		#targetNum{
-		width:150px;
+		width:108px;
 		display:inline;
 		}
 		
 		#actualNum{
-		width:150px;
+		width:108px;
 		display:inline;
 		}
+		
 		/*以下是地圖開關設定*/
 		.showEachMap{
-			width: 550px;
+			width: 800px;
 			height:550px;
 	        display: block;
 	        margin: 0 auto;
@@ -74,8 +78,8 @@
 	        height: auto;
 	    }
 		#map {
+			width: 800px;
 			height: 550px;
-			width: 550px;
 		}
 	    .hideMap{
 	    	display: none;
@@ -91,6 +95,16 @@
 	</style>
 </head>
 <body class="is-preload">
+<script>
+//測試是否可以接收到登入參數
+var user = '${getUserId}';
+var company = '${getCompanyId}';
+
+console.log('preUrl=','${preUrl}');
+var currentId = '${getCompanyId}${getUserId}';
+console.log('currentId is: ',currentId);
+<c:set var="testV" value="${getCompanyId}${getUserId}"/>
+</script>
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
@@ -100,6 +114,10 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
+						<c:if test="${testV>499999}">
+							<!-- 
+							<c:out value="${testV}"/>
+							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
@@ -118,6 +136,25 @@
 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+						</c:if>
+						<c:if test="${testV<499999}">
+							<!-- 
+							<c:out value="${testV}"/>
+							 -->
+							<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+							<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+							<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+							<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+							<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+						</c:if>
 						</ul>
 					</div>
 				</li>
@@ -131,16 +168,21 @@
 					<section>
 						<div class="row">
 							<div class="col-12 col-12-medium">
-							<!-- 
-								<h1>酒吧舉辦活動</h1>
-							 -->
-								<div id="wholeDiv" align=center>
+							<!-- -->
+								
+							 
+								<div id="alter" align="center">
+									<h1 style="font-size:36px;" align="center">酒吧舉辦活動</h1>
 									<form action="saveActivity.do" method="post" enctype="multipart/form-data">
-										<fieldset>
-											<legend style="font-size:36px;">建立活動</legend>
-												<br>
-												<input id="name" type="text" name="name" placeholder="輸入活動名稱" ><p class="errors">${errors.name}</p>
-												<div id="typeDiv">
+										<fieldset style="width: 800px">
+												<input id="name" class="classTest" type="text" name="name" placeholder="輸入活動名稱">
+												<div id="typeDiv" style="margin:10px;">
+													<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
+													<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
+													<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
+													<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
+												</div>
+														<!-- 
 												<table>
 													<tr>
 														<td>
@@ -156,35 +198,41 @@
 															<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
 														</td>
 													</tr>
-
 												</table>
-												</div>
-												
+												 -->
+												<!-- 
 												<p class="errors">${errors.type}</p>
+												 -->
+												
 												<input id="beginTime" type="text" name="beginTime" placeholder="開始時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="結束時間">
-												
-												
+												<p></p>
+												<!-- 
 												<p class="errors">${errors.time}</p>
+												 -->
 												<input id="address" type="text" name="address" placeholder="活動地址">
-												<p>地圖位置: <button id="Bhidden" type="button" >點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
+												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
+												<!-- 
 												<p class="errors">${errors.map}</p>
+												 -->
 												<div class="showEachMap">
-													
 													<div id="hidden" class="hideMap" >
-														<button id="addressBtn" type="button" onclick="getInput()">自動設定</button>
+														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button>
 														<div id="map"></div>
 													</div>
 												</div>
+												<!-- 
 												<p class="errors">${errors.address}</p>
+												 -->
+												<label style="display:inline;">(選填)</label>
 												<input id="limitNum" class="numSetting" type="text" name="limitNum" placeholder="人數上限"> /
 												<input id="actualNum" class="numSetting" type="text" name="actualNum" placeholder="內建人數"> / 
 												<input id="targetNum" class="numSetting" type="text" name="targetNum" placeholder="成團人數">
 												<br>
 												<br>
-												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:100px;"/></p>
-												<textarea  type="text" placeholder="輸入活動簡介" name="brief" rows="1">輸入活動簡介</textarea>
+												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
+												<textarea id="brief" placeholder="輸入活動簡介" name="brief" rows="1"></textarea>
 												<br>
-												<textarea  type="text" placeholder="輸入活動內容" name="content" rows="6">輸入活動內容</textarea>
+												<textarea id="detail" placeholder="輸入活動內容" name="detail" rows="6"></textarea>
 												<br>
 												<div style="display:block">
 												<input id="lat" type="text" name="lat" value="0">
@@ -205,37 +253,30 @@
 		</article>
 	</div>
 	
-	<script type="text/javascript">
+	<script type="text/javascript" >
 	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
 	//window.open(dlLink);
 		//更改placeholder
-		console.log('this is errors: ','${errors}');
-		//地址按鈕
-		/**/
-		var locationLat;
-		var locationLng;
-		async function getInput() {
-			var address = document.getElementById('address').value
-			
-			//等fetch做完再繼續
-			await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
-				function (response) {
-					return response.json();
-				}).then(function (JSONdata) {
-					console.log('this is data results: ', JSONdata.results);
-					//console.log("this is location's latlng: ", JSONdata.address_components);
-					var all = JSONdata.results.forEach(function (item) {
-						locationLat = item.geometry.location.lat;
-						locationLng = item.geometry.location.lng;
+		
+		
+		
+		
+		//檢查地址是否輸入 限制定位按鈕
+		var addressBtn = document.getElementById('addressBtn')
+		if(document.getElementById('address').value==''){
+				addressBtn.disabled=true;
+			}else{
+				addressBtn.disabled=false;
+			}
+		$('#address').on('blur',function(){
+			if(document.getElementById('address').value==''){
+				addressBtn.disabled=true;
+			}else{
+				addressBtn.disabled=false;
+			}	
+		})
 
-					})
-				});//fetch結束
-			console.log("指定位置", locationLat, '; ', locationLng);
-			document.getElementById('lat').value = locationLat;
-			document.getElementById('lng').value = locationLng;
-			relocate(locationLat, locationLng);
-			checkMap();
-		}
+
 		
 	//若沒有選擇活動 預設為no 會報錯
 	var typeRadio = document.getElementsByClassName('type');
@@ -243,8 +284,10 @@
 	var tempValue;
 	$('.type').on('click',function(){
 		tempValue = this.id
-		inputType(tempValue);	
+		realType.value = tempValue;
+		//inputType(tempValue);	
 	})
+	/*
 	function inputType(testValue){
 		for(var i=0;i<typeRadio.length;i++){
 			if(typeRadio[i].checked==true){
@@ -253,22 +296,14 @@
 			}
 		}
 	}
+	*/
 	
-	//測試是否可以接收到登入參數
-	var user = '${getUserId}';
-	var company = '${getCompanyId}';
-
-	console.log('preUrl=','${preUrl}');
-	var currentId = '${getCompanyId}${getUserId}';
-	console.log('currentId is: ',currentId);
-	
-	
-	//小OK顯示
+	//點地圖儲存座標+小OK顯示
 	var ok = document.getElementById("smallok")
 	var checklat = document.getElementById("lat")
 	$('#map').on("click", function(){
 		checkMap();
-		reloadMarkers(lat.value,lng.value,realType.value);
+		reloadMarkers();
 		getMarkers(lat.value,lng.value,realType.value);
 		console.log('temp marker:',lat.value,lng.value,realType.value)
 	});
@@ -277,6 +312,33 @@
 		if(checklat.value!=0){
 			ok.style.visibility = 'visible';
 		}
+	}
+	
+	//地址按鈕
+	/**/
+	var locationLat;
+	var locationLng;
+	async function getInput() {
+		var address = document.getElementById('address').value
+		
+		//等fetch做完再繼續
+		await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
+			function (response) {
+				return response.json();
+			}).then(function (JSONdata) {
+				console.log('this is data results: ', JSONdata.results);
+				//console.log("this is location's latlng: ", JSONdata.address_components);
+				var all = JSONdata.results.forEach(function (item) {
+					locationLat = item.geometry.location.lat;
+					locationLng = item.geometry.location.lng;
+
+				})
+			});//fetch結束
+		console.log("指定位置", locationLat, '; ', locationLng);
+		document.getElementById('lat').value = locationLat;
+		document.getElementById('lng').value = locationLng;
+		relocate(locationLat, locationLng,realType.value);
+		checkMap();
 	}
 	//地圖開關
 	var mapBtn = document.getElementById('Bhidden');
@@ -332,5 +394,88 @@
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForCreateActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	<script>
+	console.log('this is errors: ','${errors}');
+	console.log('this is temp: ','${temp}');
+	console.log('this is temp.name: ','${temp.name}');
+	<c:if test="${not empty errors}">
+		console.log('errors has data');
+		if('${errors.name}'!=''){
+			document.getElementById('name').placeholder = '${errors.name}';
+			document.getElementById('name').style.border = '1px red solid';
+		}
+		if('${errors.type}'!=''){
+			document.getElementById('typeDiv').style.border = '1px red solid';
+		}
+		if('${errors.beginTime}'!=''){
+			document.getElementById('beginTime').placeholder = '${errors.beginTime}';
+			document.getElementById('beginTime').style.border = '1px red solid';
+		}
+		if('${errors.endTime}'!=''){
+			document.getElementById('endTime').placeholder = '${errors.endTime}';
+			document.getElementById('endTime').style.border = '1px red solid';
+		}
+		if('${errors.address}'!=''){
+			document.getElementById('address').placeholder = '${errors.address}';
+			document.getElementById('address').style.border = '1px red solid';
+		}
+		if('${errors.map}'=='尚未點選地圖設定地點'){
+			mapBtn.style.border = '2px red solid';
+			mapBtn.innerHTML = '尚未點選地圖設定地點';
+		}
+
+		if('${errors.brief}'!=''){
+			document.getElementById('brief').placeholder = '${errors.brief}';
+			document.getElementById('brief').style.border = '1px red solid';
+		}
+		if('${errors.detail}'!=''){
+			document.getElementById('detail').placeholder = '${errors.detail}';
+			document.getElementById('detail').style.border = '1px red solid';
+		}
+	</c:if>
+	<c:if test="${not empty temp}">
+		console.log('temp has data');
+		/**/
+		if('${temp.name}'!=''){
+			document.getElementById('name').value = '${temp.name}';
+		}
+		if('${temp.type}'!='no'){
+			document.getElementById('${temp.type}').checked = true;
+			realType.value = '${temp.type}';
+		}
+		if('${temp.beginTime}'!=''){
+			document.getElementById('beginTime').value = '${temp.beginTime}';
+		}
+		if('${temp.endTime}'!=''){
+			document.getElementById('endTime').value = '${temp.endTime}';
+		}
+		if('${temp.address}'!=''){
+			document.getElementById('address').value = '${temp.address}';
+		}
+		if('${temp.lat}'!='0.0'&&'${temp.lng}'!='0.0'){
+			document.getElementById('lat').value = '${temp.lat}';
+			document.getElementById('lng').value = '${temp.lng}';
+			getMarkers(lat.value,lng.value,realType.value);
+			checkMap();
+			mapBtn.innerHTML = '修改地圖位置';
+		}
+		if('${temp.limitNum}'!='null'){
+			document.getElementById('limitNum').value = '${temp.limitNum}';
+		}
+		if('${temp.targetNum}'!='null'){
+			document.getElementById('targetNum').value = '${temp.targetNum}';
+		}
+		if('${temp.actualNum}'!='null'){
+			document.getElementById('actualNum').value = '${temp.actualNum}';
+		}
+		if('${temp.brief}'!=''){
+			document.getElementById('brief').value = '${temp.brief}';
+		}
+		if('${temp.detail}'!=''){
+			document.getElementById('detail').value = '${temp.detail}';
+		}
+		
+	</c:if>
+	</script>
 </body>
 </html>

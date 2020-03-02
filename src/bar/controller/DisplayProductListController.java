@@ -135,6 +135,7 @@ public class DisplayProductListController {
 		
 		m.addAttribute("CompanyName", companyX.getCompanyName());
 		m.addAttribute("listOfProduct", listOfProduct);
+		m.addAttribute("Address", companyX.getAddress());
 		m.addAttribute("account", account);
 		m.addAttribute("barAccount", barAccount);
 		/*Rosalie Wu的[我的最愛]按鈕會用到:companyId"*/

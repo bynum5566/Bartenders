@@ -27,7 +27,7 @@ import bar.model.UsersService;
 import bar.model.Users;
 
 @Controller
-@SessionAttributes(names = "Caccount")
+@SessionAttributes(names = { "Caccount", "CName"})
 @EnableTransactionManagement
 public class CompanyOrder {
 
@@ -121,6 +121,9 @@ public class CompanyOrder {
 		m.addAttribute("attrAddress", attr_address);
 		m.addAttribute("productData", attr_product);
 		m.addAttribute("orders", attr_orders);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
 		
 		return "CompanyOrder";
 

@@ -150,7 +150,7 @@ table td {
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -159,9 +159,9 @@ table td {
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
+								
+								
+								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -171,7 +171,7 @@ table td {
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
