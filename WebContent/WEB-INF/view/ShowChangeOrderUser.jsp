@@ -111,6 +111,15 @@
 				<div class="inner">
 					<section>
 						<h2>請填寫要修改的訂單資料</h2>
+						<!------------- 新增超商按鈕  ------------------->
+						
+						<script>
+							$('#testBtn').on('click',function(){
+								console.log('click send');
+								window.location.href = 'http://map.ezship.com.tw/ezship_map_web.jsp?rtURL=http://localhost:8080/Bartenders/ShowChangeOrderUser.controller?orderId=${orderId}';
+							})
+
+						</script>
 						<form action="<c:url value="/doChangeOrderUser.controller"/>"
 							method="POST">
 							<div class="row gtr-uniform">
@@ -132,13 +141,22 @@
 										<li><input type="text" size="40" name="recipient"
 											value="${order.recipient}" /><br></li>
 										<li>配送方式:</li>
-										<li><select name="shippingType">
+										<li><select id="mySelect" name="shippingType">
 												<option value="HomeDelivery" width="10">1.宅配</option>
 												<option value="ConvenienceStore" width="10">2.超商取貨</option>
 										</select> <br></li>
+										
 										<li>配送地址:</li>
-										<li><input type="text" name="address" size="40"
+										<c:if test="${not empty marketAddress}">
+											<li><input type="text" name="address" size="40"
+											value="${marketAddress}" /><br></li>
+										</c:if>
+										<c:if test="${empty marketAddress}">
+											<li><input type="text" name="address" size="40"
 											value="${attrAddress}" /><br></li>
+										</c:if>
+								
+										
 										<li>收件人電話:</li>
 										<li><input type="text" size="40" name="phone"
 											value="${order.phone}" /><br></li>
@@ -169,14 +187,23 @@
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
-		
+	<script>
+	var mySelect = $('#mySelect');
+	mySelect.on('blur',function() {
+		console.log('select')
+		if(mySelect.val()=='ConvenienceStore'){
+			window.location.href = 'http://map.ezship.com.tw/ezship_map_web.jsp?rtURL=http://localhost:8080/Bartenders/ShowChangeOrderUser.controller?orderId=${orderId}';
+		}
+	})
+	</script>
 	<!-- 小鈴鐺 -->
+	<!--  
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	-->
 </body>
 
 </html>
