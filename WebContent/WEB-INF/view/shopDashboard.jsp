@@ -52,6 +52,7 @@
 		
 		.Tl {
 			text-align: left;
+/* 			padding-left: 2px; */
 		}
 		
 		.B1 {
@@ -60,7 +61,7 @@
 			justify-content: right;
 		}
 		
-		.swal2-modal .swal2-styled {
+		button.confirm, button.cancel {
 		    border: 0;
 		    border-radius: 3px;
 		    -webkit-box-shadow: none;
@@ -73,12 +74,66 @@
 		    padding: 0 40px;
 		}
 		
-		button.swal2-confirm.swal2-styled {
+		button.confirm {
 			background-color: #ed4933 !important;
 		}
 		
-		button.swal2-confirm.swal2-styled:hover {
+		button.confirm:hover {
 			background-color: #ef5e4a !important;
+		}
+		
+		#tabs a.bT4 {
+            float: none;
+            position: inherit;
+            padding: inherit;
+            height: auto;
+            line-height: inherit;
+            text-transform: none;
+            text-decoration: none;
+            color: transparent;
+            border-right: none;
+            border-bottom: none;
+            border-bottom-color: transparent;
+            opacity: 1;
+            filter: none;
+        }
+
+        #tabs a.bT4:hover,
+        #tabs a.bT4:focus {
+            border-bottom-color: transparent;
+            opacity: 1;
+            filter: none;
+        }
+
+        #tabs a.tab:focus {
+            outline: none;
+        }
+
+        #tabs a.bT4 {
+            height: auto;
+            line-height: inherit;
+            border-right: none;
+            border-bottom: none;
+            border: none;
+        }
+        
+        td.MidS1{
+        	width: 310px;
+        	overflow: hidden;
+        }
+        
+        div.pdId p, div.pdNm h4{
+        	overflow:hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+        }
+        
+        p{
+        	margin: 0px 0px;
+        }
+        
+        #content {
+		    margin-top: 0;
 		}
 	</style>
 </head>
@@ -142,62 +197,66 @@
 							<div class="col-10 col-12-medium">
 								<div id="tabs">
 									<ul class="fav">
-										<li><a href="#tab1" name="#tab1">上架中</a></li>
-										<li><a href="#tab2" name="#tab2">下架中</a></li>
+										<li><a class="tab" href="#tab1" name="#tab1">上架中</a></li>
+										<li><a class="tab" href="#tab2" name="#tab2">下架中</a></li>
 									</ul>
-									<div id="content">
-										<div id="tab1" class="outwrapper">
-											<ul class="alt">
-												<li>
-													<div class="Tl">
-														<h2>上架中商品</h2>
-														&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
+								</div>
+								<div id="content">
+									<div id="tab1" class="outwrapper">
+										<ul class="alt">
+											<li>
+												<div class="Tl">
+													<h2>上架中商品</h2>
+													<div>
+														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
 													</div>
-													<table class="pd0">${Launched}</table>
-													<ul class="actions B1">
-														<li style="border-color: transparent;">
-															<form action="/Bartenders/delMultiLPD" method="post" id="lMultiDel">
-																<input type="text" id="list1" name="listForDelete1">
-																<input type="submit" value="批量刪除">
-															</form>
-														</li>
-														<li style="border-color: transparent;">&emsp;</li>
-														<li style="border-color: transparent;">
-															<form action="/Bartenders/pulMultiPD" method="post">
-																<input type="text" id="list2" name="listForPull">
-																<input type="submit" value="批量下架">
-															</form>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										<div id="tab2" class="outwrapper">
-											<ul class="alt">
-												<li>
-													<div class="Tl">
-														<h2>下架中商品</h2>
-														&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
+												</div>
+												<table class="pd0">${Launched}</table>
+												<ul class="actions B1">
+													<li style="border-color: transparent;">
+														<form action="/Bartenders/delMultiLPD" method="post" id="lMultiDel">
+															<input type="text" id="list1" name="listForDelete1">
+															<input type="submit" value="批量刪除">
+														</form>
+													</li>
+													<li style="border-color: transparent;">&emsp;</li>
+													<li style="border-color: transparent;">
+														<form action="/Bartenders/pulMultiPD" method="post">
+															<input type="text" id="list2" name="listForPull">
+															<input type="submit" value="批量下架">
+														</form>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+									<div id="tab2" class="outwrapper">
+										<ul class="alt">
+											<li>
+												<div class="Tl">
+													<h2>下架中商品</h2>
+													<div>
+														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
 													</div>
-													<table class="pd0">${Pulled}</table>
-													<ul class="actions B1">
-														<li style="border-color: transparent;">
-															<form action="/Bartenders/delMultiPPD" method="post" id="pMultiDel">
-																<input type="text" id="list3" name="listForDelete2">
-																<input type="submit" value="批量刪除">
-															</form>
-														</li>
-														<li style="border-color: transparent;">&emsp;</li>
-														<li style="border-color: transparent;">
-															<form action="/Bartenders/lauMultiPD" method="post">
-																<input type="text" id="list4" name="listForLaunch">
-																<input type="submit" value="批量上架">
-															</form>
-														</li>
-													</ul>
-												</li>
-											</ul>								
-										</div>
+												</div>
+												<table class="pd0">${Pulled}</table>
+												<ul class="actions B1">
+													<li style="border-color: transparent;">
+														<form action="/Bartenders/delMultiPPD" method="post" id="pMultiDel">
+															<input type="text" id="list3" name="listForDelete2">
+															<input type="submit" value="批量刪除">
+														</form>
+													</li>
+													<li style="border-color: transparent;">&emsp;</li>
+													<li style="border-color: transparent;">
+														<form action="/Bartenders/lauMultiPD" method="post">
+															<input type="text" id="list4" name="listForLaunch">
+															<input type="submit" value="批量上架">
+														</form>
+													</li>
+												</ul>
+											</li>
+										</ul>								
 									</div>
 								</div>
 							</div>
@@ -280,7 +339,8 @@
 			var form = this;
 			
 			swal({
-				title: "確定要刪除嗎?",
+				title: "刪除",
+				text: "確定要刪除選擇的項目嗎?",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -299,7 +359,8 @@
 			var form = this;
 			
 			swal({
-				title: "確定要刪除嗎?",
+				title: "刪除",
+				text: "確定要刪除選擇的項目嗎?",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
@@ -313,24 +374,24 @@
 			});
 		});
 		
-		$(".bT4").click(function(e) {
-			e.preventDefault();
-			var form = this;
-			
-			swal({
-				title: "確定要刪除嗎?",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "確定",
+		$('a.bT4').click(function(e){
+            e.preventDefault();
+            var link = $(this).attr('href');
+
+            swal({
+                title: "刪除",
+                text: "確定要刪除選擇的項目嗎?",
+                type: "warning",
+                confirmButtonText: "確定",
 				cancelButtonText: "取消",
-				closeOnConfirm: true
-			},function(isConfirm) {
+                showCancelButton: true
+            },
+            function(isConfirm) {
 				if (isConfirm) {
-					form.submit();
+                	window.location.href = link;
 				}
-			});
-		});
+            });
+        });
 		
 		$(function() {
 			if (window.history && window.history.pushState) {
@@ -342,6 +403,7 @@
 			window.history.pushState('forward', null, '#');
 			window.history.forward(1);
 		})
+		
 	</script>
 	<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/Bartenders/JS/forTabs.js"></script>

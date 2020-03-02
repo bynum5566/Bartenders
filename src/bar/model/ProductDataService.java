@@ -32,8 +32,8 @@ public class ProductDataService {
 		this.proD = proD;
 	}
 	
-	public boolean updateQuantityByPid(String pdId, int pdSoldOut) {
-		boolean result = pdao.updateQuantityByPid(pdId, pdSoldOut);
+	public boolean updateQuantityByPid(String pdId, int pdSoldQuantity) {
+		boolean result = pdao.updateQuantityByPid(pdId, pdSoldQuantity);
 		return result;
 	}
 
@@ -200,7 +200,7 @@ public class ProductDataService {
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/pulPD?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/down-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
+					+ "<div class=\"pdId\" name=\"pdId1\"><p>" + product.getPdId() + "</p></div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "';\">"
@@ -210,9 +210,8 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDL?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
-					+ "</td></tr>";
+					+ "<div><a class=\"bT4\" href=\"/Bartenders/Product.Del?pdId=" + product.getPdId() + "\">"
+					+ "<img src=\"/Bartenders/images/delete.png\"></a></div></td></tr>";
 		}
 		return Launched;
 	}
@@ -229,7 +228,7 @@ public class ProductDataService {
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/lauPD?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/up-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
+					+ "<div class=\"pdId\" name=\"pdId1\"><p>" + product.getPdId() + "</p></div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/Product.View?pdId="
 					+ product.getPdId() + "';\">"
@@ -239,9 +238,8 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditPDP?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/Product.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
-					+ "</td></tr>";
+					+ "<div><a class=\"bT4\" href=\"/Bartenders/Product.Del?pdId=" + product.getPdId() + "\">"
+					+ "<img src=\"/Bartenders/images/delete.png\"></a></div></td></tr>";
 		}
 		return Pulled;
 	}
@@ -258,7 +256,7 @@ public class ProductDataService {
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/pulTkPD?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/down-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
+					+ "<div class=\"pdId\" name=\"pdId1\"><p>" + product.getPdId() + "</p></div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "';\">"
@@ -268,9 +266,8 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDL?pdidckL=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT4\" onclick=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
-					+ "</td></tr>";
+					+ "<div><a class=\"bT4\" href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId() + "\">"
+					+ "<img src=\"/Bartenders/images/delete.png\"></a></div></td></tr>";
 		}
 		return Launched;
 	}
@@ -287,7 +284,7 @@ public class ProductDataService {
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/lauTkPD?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/up-arrow.png\"></div>"
 					+ "</td><td class=\"MidS1\">"
-					+ "<div class=\"pdId\" name=\"pdId1\">" + product.getPdId() + "</div><br>"
+					+ "<div class=\"pdId\" name=\"pdId1\"><p>" + product.getPdId() + "</p></div><br>"
 					+ "<div class=\"pdNm\" name=\"pdNm1\">" 
 					+ "<h4 class=\"bT3\" onclick=\"location.href='/Bartenders/ProductTicket.View?pdId="
 					+ product.getPdId() + "';\">"
@@ -297,9 +294,8 @@ public class ProductDataService {
 					+ "<td class=\"RSide\">"
 					+ "<div><img class=\"bT3\" onclick=\"location.href='/Bartenders/Product.EditTkPDP?pdidckP=" + product.getPdId()
 					+ "';\" src=\"/Bartenders/images/document.png\"></div><br>"
-					+ "<div><img class=\"bT4\" onclock=\"location.href='/Bartenders/TicketProduct.Del?pdId=" + product.getPdId()
-					+ "';\" src=\"/Bartenders/images/delete.png\"></div>"
-					+ "</td></tr>";
+					+ "<div><a class=\"bT4\" href=\"/Bartenders/TicketProduct.Del?pdId=" + product.getPdId() + "\">"
+					+ "<img src=\"/Bartenders/images/delete.png\"></a></div></td></tr>";
 		}
 		return Pulled;
 	}
