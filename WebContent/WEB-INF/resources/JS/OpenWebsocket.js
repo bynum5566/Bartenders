@@ -25,14 +25,14 @@ websocket.onmessage = function(event) {
 	if (messageJson.messageType === "onlineCount") {
 		document.getElementById('onlineCount').innerHTML = messageJson.data;
 		document.getElementById('onlineUser').innerHTML = '';
-		i--;
+		i=0;
 	}
 
 	if (messageJson.messageType === "onlineUser") {
 		// alert(messageJson.data);
 		i++;
-		document.getElementById('onlineUser').innerHTML += '<div id="onlineName'+i+'" onclick="chatwith()">'
-				+ messageJson.data + '</div>';
+		document.getElementById('onlineUser').innerHTML += '<li><a onclick="chatWith()" id="on'+i+'" href="#">'
+				+ messageJson.data + '</a></li>';
 	}
 
 	if (messageJson.messageType === "noticify") {
@@ -46,6 +46,7 @@ websocket.onmessage = function(event) {
 		document.getElementById('notice').innerHTML += '<li>'
 				+ messageJson.data + '</li>';
 	}
+	
 }
 
 function setMessageInnerHTML(innerHTML) {

@@ -217,7 +217,7 @@
 			
 						<div class="onlineBox">
 							<h4>在線者</h4>
-							<div id="onlineUser"></div>
+							<ul id="onlineUser"></ul>
 							<div class="countBox">
 								<h5>在線人數:</h5>
 								<h5>
@@ -263,11 +263,9 @@
 	</script>
 	
 	<script type="text/javascript">
-			function chatwith(){
-				var tarName=$(this).val;
-				alert(tarName);
-				$("#targetName").val=tarName;
-			}
+		$('#onlineUser li').click(function(){
+			$('#targetName').val($(this).text());
+		});
 	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
