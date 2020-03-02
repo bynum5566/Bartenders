@@ -127,11 +127,21 @@
 												<br>
 											</c:forEach>
 										</table>
-										<ul class="alt">
-											<li colspan="3">產品合計:&nbsp;${totalPrice}</li>
-											<li colspan="3">運費:&nbsp;${ShippingNumToPrice[order.shipping]}</li>
-											<li colspan="3">訂單總金額:&nbsp;${finalTotalPrice}</li>
-										</ul>
+										<br>
+										<table align="center">
+											<tr class="actions">
+												<td>產品合計:&nbsp;</td>
+												<td>${totalPrice}</td>
+											</tr>
+											<tr class="actions">
+												<td >運費:&nbsp;</td>
+												<td id = "Freight">${ShippingNumToPrice[order.shipping]}</td>
+											</tr>
+											<tr class="actions">
+												<td>訂單總金額:&nbsp;</td>
+												<td id = "finalTotalPrice">${finalTotalPrice}</td>
+											</tr>										
+										</table>
 									</div>
 								</div>
 								</form>
@@ -155,9 +165,9 @@
 											<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> -->
 											<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
 											<div class="col-4 col-12-small">
-												<input id="setTt1" name="select1" type="radio" value="1" checked >
+												<input id="setTt1" name="select1" type="radio" value="1" checked onclick="onclickFunction01()">
 												<label for="setTt1">宅配</label>
-												<input id="setTt2" name="select1" type="radio" value="2">
+												<input id="setTt2" name="select1" type="radio" value="2" onclick="onclickFunction02()">
 												<label for="setTt2">超商</label>
 												
 											</div>
@@ -257,7 +267,7 @@
 											value='${ShippingNumToPrice[order.shipping]}'>
 										<!-- 新增2020131_1634 -->
 										<input class="button primary" type='submit' value='資訊無誤，確認訂購'>
-										<p style="color:red">請注意，一經確認，即無法修改。</p>
+										<!--<p style="color:red">請注意，一經確認，即無法修改。</p>-->
 									</div>
 								</div>
 								</form>
@@ -284,8 +294,21 @@
 		$(".flip").click(function () {
 			$(".panel").slideToggle("slow");
 		});
-		
-		
+		<%--動態顯示運費，總金額。開始--%>
+		<!--finalTotalPrice		0 	QR		n/a		-->
+		<!--finalTotalPrice		80 	normal	不變		-->
+		<!--finalTotalPrice		60 	超商		減去20	-->
+		function onclickFunction01() 
+		{
+			document.getElementById("Freight").innerHTML = "80";
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};	
+		}
+		function onclickFunction02() 
+		{
+			document.getElementById("Freight").innerHTML = "60";
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice - 20};
+		}
+		<%--動態顯示運費，總金額。結束--%>
 	</script>
 	<!--縮放用JS，結束-->
 

@@ -1,4 +1,5 @@
 var websocket = null;
+var i=0;
 
 if ('WebSocket' in window) {
 	websocket = new WebSocket("ws://localhost:8080/Bartenders/websocketTest");
@@ -24,11 +25,13 @@ websocket.onmessage = function(event) {
 	if (messageJson.messageType === "onlineCount") {
 		document.getElementById('onlineCount').innerHTML = messageJson.data;
 		document.getElementById('onlineUser').innerHTML = '';
+		i--;
 	}
 
 	if (messageJson.messageType === "onlineUser") {
 		// alert(messageJson.data);
-		document.getElementById('onlineUser').innerHTML += '<div id="targetName">'
+		i++;
+		document.getElementById('onlineUser').innerHTML += '<div id="onlineName'+i+'" onclick="chatwith()">'
 				+ messageJson.data + '</div>';
 	}
 
@@ -63,7 +66,6 @@ websocket.onerror = function(event) {
 
 websocket.onclose = function(event) {
 	console.log("onclose", event);
-
 	if (event.code != 4500) {
 		// 4500為服務端在開啟多tab時主動關閉返回的編碼
 		reconnect();// 重連
