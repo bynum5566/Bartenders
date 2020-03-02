@@ -2,6 +2,9 @@
 package bar.controller;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
@@ -38,10 +41,11 @@ public class DisplayCartController
 		this.cService = cService;
 		this.cDao = cDao;
 	}
-	@RequestMapping(path = "/DisplayCart.controller", method = RequestMethod.GET)
+	@RequestMapping(path = "/DisplayCart.controller", method = {RequestMethod.GET,RequestMethod.POST})
 	public String DisplayCartProcessAction(
 	//		@RequestParam("account") String account,
 			@RequestParam("orderId") String orderId,
+			HttpServletRequest request,
 			Model m)
 	{
 
@@ -151,8 +155,10 @@ public class DisplayCartController
 		m.addAttribute("defaultPhone", phone);
 		m.addAttribute("defaultAddress", address);	
 		m.addAttribute("orderId",orderId);	//新增20200131_0934
-
-		
+		////新增選擇超商///
+		String st_addr = request.getParameter("stAddr") == null ? "" : request.getParameter("stAddr");
+		m.addAttribute("marketAddr",st_addr);
+		System.out.println("address is: "+st_addr);
 		//==================================
 //		return "OrderList";
 		

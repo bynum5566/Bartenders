@@ -23,7 +23,7 @@ public class Activity {
 	private String type;
 	private String img;
 	private String brief;
-	private String content;
+	private String detail;
 	private String beginTime;
 	private String endTime;
 	private String status;
@@ -133,13 +133,13 @@ public class Activity {
 		this.brief = brief;
 	}
 	
-	@Column(name="CONTENT")
-	public String getContent() {
-		return content;
+	@Column(name="DETAIL")
+	public String getDetail() {
+		return detail;
 	}
 	@XmlElement
-	public void setContent(String content) {
-		this.content = content;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	@Column(name="BEGINTIME")

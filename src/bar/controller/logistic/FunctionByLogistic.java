@@ -2,7 +2,9 @@ package bar.controller.logistic;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,11 +54,13 @@ public class FunctionByLogistic {
 	}
 	
 	@RequestMapping(path = "/logistic/searchPersonalOrder.do",method = RequestMethod.GET)
-	public String searchPersonalOrder(@RequestParam(name = "sID")String sID,Model m) throws IOException {
-		List<Logistic> rs = lSer.queryBysID(sID);
+	public String searchPersonalOrder(@RequestParam(name = "sID")Integer sID,Model m) throws IOException {
+		List<Logistic> rs = lSer.queryJoker("sID","'"+sID+"'");
 			m.addAttribute("logistic",rs);
-		return "logistic/searchOrder";
+		return "logistic/LogisticGate";
 	}
+	
+
 	
 	@RequestMapping(path = "/searchTargetOrder.do",method = RequestMethod.POST)
 	public String searchTargetOrder(@RequestParam(name = "oID")String oID,Model m,
@@ -102,16 +106,25 @@ public class FunctionByLogistic {
 		return "logistic/LogisticGate";
 	}
 	
+	@RequestMapping(path = "/logistic/searchPersonalStatus.do",method = RequestMethod.GET)
+	public String searchPersonalStatus(@RequestParam(name = "sID")Integer sID,
+			@RequestParam(name = "status")Integer status,Model m) throws IOException {
+		List<Logistic> rs = lSer.queryJoker("sID","'"+sID+"'","oStatus","'"+status+"'");
+			m.addAttribute("logistic",rs);
+		return "logistic/LogisticGate";
+	}
+	
 	@RequestMapping(path = "/logistic/queryByStatus.do",method = RequestMethod.GET)
-	public String processAction1(@RequestParam(name = "orderStatus")int status,Model m,
+	public String processAction1(@RequestParam(name = "sID")Integer sID,
+			@RequestParam(name = "orderStatus")Integer status,Model m,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<Logistic> statusList;
 		if(status==0) {
 			System.out.println("query all logistic");
-			statusList = lSer.queryAll();
+			statusList = lSer.queryJoker("sID","'"+sID+"'");
 		}else {
 			System.out.println("query logistic status="+status);
-			statusList = lSer.queryByStatus(status);
+			statusList = lSer.queryJoker("sID","'"+sID+"'","oStatus","'"+status+"'");
 		}
 
 		m.addAttribute("logistic",statusList);
@@ -125,22 +138,34 @@ public class FunctionByLogistic {
 		
 	}
 	
-	@RequestMapping(path = "/logistic/ChangeStatus.do",method = RequestMethod.GET)
-	public String processAction2(@RequestParam(name = "orderStatus")int status,
-			@RequestParam(name = "orderID")String ID,Model m) {
-//		Logistic statusList = lSer.ChangeStatus(status,ID);
-		
-		List<Logistic> orders = lSer.queryAll();
-		m.addAttribute("logistic",orders);
-//		m.addAttribute("type",orders);
-		if(orders!=null) {
-			return "logistic/LogisticGate";
+	@RequestMapping(path = "/logistic/orderReserve.do",method = RequestMethod.GET)
+	public String orderReserve(@RequestParam(name = "oID")String oID,Model m,
+			@RequestParam(name = "sID")Integer sID,
+			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
+		Logistic rs = lSer.uniqueQuery("oID", "'"+oID+"'");
+		Date current = new Date();
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		String reserve = sdFormat.format(current);
+		Calendar beforeTime = Calendar.getInstance();
+		beforeTime.add(Calendar.MINUTE, +1);
+		Date beforeD = beforeTime.getTime();
+		String after5 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(beforeD);
+		System.out.println("current is: "+reserve);
+		System.out.println("after 5 is: "+after5);
+		//只保留到下一頁
+		System.out.println("step1");
+		if(rs.getsID()!=null) {
+			System.out.println("order has been reserverd by others");
+			return "logistic/LogisticUpdate";
 		}else {
-			m.addAttribute("null","no Order found");
-			return "logistic/LogisticGate";
+			rs.setsID(sID);
+			rs.setoTimeR(after5);
+			System.out.println("order reserver success");
+			return "redirect:/logistic/OrderSearch.do/1";
 		}
-		
+
 	}
+	
 	
 	@RequestMapping(path = "/logistic/DeliverReady.do",method = RequestMethod.GET)
 	public String DeliverReady(@RequestParam(name = "orderStatus")int status,
@@ -164,6 +189,7 @@ public class FunctionByLogistic {
 	public String searchOrder(@PathVariable Integer status,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
 		List<Logistic> newOrder = lSer.queryByStatus(status);
+		lSer.checkReserveTime(newOrder);
 		System.out.println("order numbers: "+newOrder.size());
 		HashMap<Integer,Integer> hashMap = new HashMap<>();
 		List<Activity> activity = new ArrayList<Activity>();

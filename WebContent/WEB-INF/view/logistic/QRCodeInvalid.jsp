@@ -17,14 +17,10 @@
 <style>
 		#orderDiv{
 			position:absolute;
-			left:0px;
+			left:3%;
+			margin:0px auto;
 		}
-		
-		#bt1{
-			position:fixed;
-			top:20%;
-			display:none;
-		}
+
 </style>
 </head>
 
@@ -36,49 +32,49 @@
 					<section>
 						<div class="row">
 							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align="center" style="font-size:36px;">這項商品正在配送中</h1>
-								<div id="orderDiv">
-								<fieldset>
-									<legend>訂單明細</legend>
-									<table align=center>
-										<thead>
-											<tr>
-												<td style="width:80px;padding:10px">序號</td>
-												<td>訂單號碼</td>
-												<td>物流號碼</td>
-												<td style="width:80px;padding:10px">類型</td>
-												<td style="width:250px;">送貨地址</td>
-												<td style="width:150px;padding:10px">取件人姓名</td>
-												<td style="width:150px;padding:10px">取件人手機</td>
-												<td style="width:80px;padding:10px">金額</td>
-												<td style="width:100px;padding:10px">進度</td>
-												<td style="width:150px;padding:10px">出貨時間</td>
-												<td style="width:150px;padding:10px">物流取貨</td>
-												<td style="width:150px;padding:10px">送達時間</td>
-												<td style="width:80px;padding:10px">狀態</td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>${status.index+1}</td>
-												<td>${valid.oID}</td>
-												<td>${valid.lID}</td>
-												<td>${valid.oType}</td>
-												<td>${valid.oAddr}</td>
-												<td>${valid.oName}</td>
-												<td>${valid.oPhone}</td>
-												<td>${valid.oAmount}</td>
-												<td class="status">${valid.oStatus}</td>
-												<td>${valid.oTimeA}</td>
-												<td>${valid.oTimeB}</td>
-												<td>${valid.oTimeC}</td>
-												<td>${valid.oComplete}</td>
-											</tr>
-										</tbody>
-									</table>
-								</fieldset>
-							</div>
-							<button id="bt1" class="Code" >返回</button><br>
+								<h1 align="center" style="font-size:36px;">這張訂單已交由配送員編號: ${realSender.senderId} 配送中</h1>
+								
+								<div id="orderDiv" >
+									<fieldset >
+										<table align=center>
+											<thead>
+												<tr align=center>
+													<td style="width:80px;padding:10px">序號</td>
+													<td style="width:270px;padding:10px">訂單號碼</td>
+													<td style="width:100px;padding:10px">物流號碼</td>
+													<td style="width:80px;padding:10px">類型</td>
+													<td style="width:250px;">送貨地址</td>
+													<td style="width:120px;padding:10px">收件人</td>
+													<td style="width:150px;padding:10px">收件人手機</td>
+													<td style="width:80px;padding:10px">金額</td>
+													<td style="width:100px;padding:10px">進度</td>
+													<td style="width:150px;padding:10px">出貨時間</td>
+													<td style="width:150px;padding:10px">物流取貨</td>
+													<td style="width:150px;padding:10px">送達時間</td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr align=center>
+													<td>${status.index+1}</td>
+													<td>${valid.oID}</td>
+													<td>${valid.lID}</td>
+													<td class="myType">${valid.oType}</td>
+													<td>***************</td>
+													<td>********</td>
+													<td>********</td>
+													<td>${valid.oAmount}</td>
+													<td class="myStatus">${valid.oStatus}</td>
+													<td>${valid.oTimeA}</td>
+													<td>${valid.oTimeB}</td>
+													<td>${valid.oTimeC}</td>
+												</tr>
+											</tbody>
+										</table>
+										<div align="center">
+											<button id="bt1" class="Code" >返回</button>
+										</div>
+									</fieldset>
+								</div>
 							</div><!-- 這裡結束 -->
 						</div>
 					</section>
@@ -88,8 +84,31 @@
 	</div>
 	<script>
 		$("#bt1").on("click", function () {
-			window.location.href = '<c:url value="/logistic/LogisticGate"/>';
+			window.location.href = '<c:url value="/logistic/WelcomeLogistic"/>';
 		})
+		
+		//狀態轉換
+	var type = document.getElementsByClassName('myType');
+	for(var i=0;i<type.length;i++){
+		if (type[i].innerHTML == '1') {
+			type[i].innerHTML = '宅配';
+		} else if (type[i].innerHTML == '2') {
+			type[i].innerHTML = '超商';
+		} else if (type[i].innerHTML == '3') {
+			type[i].innerHTML = '票券';
+		};
+	}
+
+	var myStatus = document.getElementsByClassName('myStatus');
+	for(var i=0;i<myStatus.length;i++){
+		if (myStatus[i].innerHTML == '1') {
+			myStatus[i].innerHTML = '未收貨';
+		} else if (myStatus[i].innerHTML == '2') {
+			myStatus[i].innerHTML = '配送中';
+		} else if (myStatus[i].innerHTML == '3') {
+			myStatus[i].innerHTML = '已送達';
+		};
+	}
 	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

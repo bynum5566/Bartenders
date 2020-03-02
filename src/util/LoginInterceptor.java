@@ -28,16 +28,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         	System.out.println("loginStatus:"+logisticLogin);
         	if(url.contains("/QRCodeAction.do")) {
             	String orderID = request.getParameter("orderID");
-            	String orderStatus = request.getParameter("orderStatus");
             	System.out.println("step1:check loginstatus: "+logisticLogin);
             	if(logisticLogin==null) {
-            		if(orderID!=null&&orderStatus!=null) {
+            		if(orderID!=null) {
             			
             			request.setAttribute("orderID",orderID);
-                		request.setAttribute("orderStatus",orderStatus);
-                		
              			System.out.println("orderID:"+orderID);
-                		System.out.println("orderStatus:"+orderStatus);
             		}
             		System.out.println("user not login, return to loginSystem");
 //            		response.sendRedirect("/LogisticSystem/loginSystem");

@@ -228,6 +228,17 @@
 	</script>
 </head>
 <body class="is-preload">
+<script>
+	//測試是否可以接收到登入參數
+	var user = '${getUserId}';
+	var company = '${getCompanyId}';
+	
+	console.log('preUrl=','${preUrl}');
+	var currentId = '${getCompanyId}${getUserId}';
+	console.log('currentId is: ',currentId);
+	<c:set var="testV" value="${getCompanyId}${getUserId}"/>
+</script>
+
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
@@ -237,6 +248,7 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
+							<c:if test="${testV>499999}">
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
 							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
@@ -253,8 +265,24 @@
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
-							<li><a href="/Bartenders/Example">測試</a></li>
+							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</c:if>
+							<c:if test="${testV<499999}">
+							<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+							<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+							<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+							<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+							<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</li>
@@ -615,14 +643,7 @@
 	//window.open(dlLink);
 
 	
-	//測試是否可以接收到登入參數
-	var user = '${getUserId}';
-	var company = '${getCompanyId}';
 
-	console.log('preUrl=','${preUrl}');
-	var currentId = '${getCompanyId}${getUserId}';
-	console.log('currentId is: ',currentId);
-	
 	//小OK顯示
 	var ok = document.getElementById("smallok")
 	var checklat = document.getElementById("lat")

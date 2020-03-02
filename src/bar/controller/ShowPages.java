@@ -220,6 +220,11 @@ public String showVerifyMailPage() {
 	public String ActivityEdit() {
 		return "logistic/ActivityEdit";
 	}
+	
+	@RequestMapping(path = "/BarCreate", method = RequestMethod.GET)
+	public String BarCreate() {
+		return "logistic/BarCreate";
+	}
 
 	@RequestMapping(path = "/Example", method = RequestMethod.GET)
 	public String Example() {
