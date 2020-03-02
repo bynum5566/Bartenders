@@ -48,27 +48,30 @@
 			text-align: left;
 		}
 	
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
-	
+        #content {
+		    margin-top: 0;
+		}
 	</style>
 </head>
 
@@ -118,26 +121,26 @@
 							<div class="col-6 col-12-medium">
 								<div id="tabs">
 									<ul class="fav">
-										<li><a href="#tab1" name="#tab1">Bar</a></li>
-										<li><a href="#tab2" name="#tab2">Alcohol</a></li>
+										<li><a class="tab" href="#tab1" name="#tab1">Bar</a></li>
+										<li><a class="tab" href="#tab2" name="#tab2">Alcohol</a></li>
 									</ul>
-									<div id="content">
-										<div id="tab1" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒吧清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${MyfavB}</table>
-												</li>
-											</ul>
-										</div>
-										<div id="tab2" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒類清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${Myfav}</table>
-												</li>
-											</ul>
-										</div>
+								</div>
+								<div id="content">
+									<div id="tab1" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒吧清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${MyfavB}</table>
+											</li>
+										</ul>
+									</div>
+									<div id="tab2" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒類清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${Myfav}</table>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</div>
