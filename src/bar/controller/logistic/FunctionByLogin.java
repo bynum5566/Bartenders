@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import bar.model.logistic.LogisticAccount;
 import bar.model.logistic.LogisticAccountDAO;
 @Controller
-@SessionAttributes(names= {"username","errors","logisticLogin","getSenderId"})
+@SessionAttributes(names= {"senderName","errors","logisticLogin","getSenderId"})
 public class FunctionByLogin {
 
 	private LogisticAccountDAO adao;
@@ -62,7 +62,7 @@ public class FunctionByLogin {
 			session.setAttribute("logisticLogin", status);
 			System.out.println("create login session:"+status);
 			m.addAttribute("getSenderId",sender.getSenderId());
-			m.addAttribute("username",username);
+			m.addAttribute("senderName",username);
 			if(orderID!="") {
 //				int myId= Integer.parseInt(orderID);
 //				int myStatus= Integer.parseInt(orderStatus);

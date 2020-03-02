@@ -3,8 +3,8 @@
 
 .each {
 	position: relative;
-	border:2px yellow solid;
-	margin:10px;
+	border:2px white solid;
+	margin:30px;
 	display:inline-block;
 	vertical-align: top;
 	height:auto;
@@ -15,7 +15,7 @@
 .fieldset{
 	border-radius:30px;
 	height:auto;
-	width:350px;
+	width:360px;
 	
 }
 
@@ -53,6 +53,7 @@
 	text-overflow: ellipsis; /*溢出用省略号显示*/
 	white-space: nowrap; /*溢出不换行*/
 }
+
 
 .ActivityDate {
 	margin: 0px;

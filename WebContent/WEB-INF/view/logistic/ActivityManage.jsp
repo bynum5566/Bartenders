@@ -32,10 +32,15 @@
 			color:red;
 		}
 		.container{
-		border:1px red solid;
-		width: 1250px;
+		position:absolute;
+		width:1400px;
+		left:50%;
 		padding:10px;
-	
+		margin: 0px auto;/*div對齊效果*/
+		margin-left:-700px;
+  		text-align: center;
+  		
+  		/*border:1px red solid;*/
 		}
 	    /* 以下是搜尋地圖設定*/
 		.searchDiv {
@@ -158,7 +163,7 @@
 					<section>
 						<div class="row">
 							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align=center>活動管理</h1>
+								<h1 align=center style="font-size:48px;">活動管理</h1>
 								<div class="container">
 									<c:forEach var="Activity" items="${activity}" varStatus="status">
 										<div class="each" id="${Activity.activityId}">
@@ -172,7 +177,8 @@
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
 						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} <button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button">確認地圖</button></p>
+												<p align=left style="margin: 10px">${Activity.address}</p>
+												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">檢視地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
 														<div id="map${status.index}"
@@ -182,31 +188,32 @@
 												<div align=left style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
-															<p>參加人數不限</p>
+															<span>參加人數不限</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:when test="${Activity.actualNum==Activity.limitNum}">
-															<p>活動人數已滿</p>
+															<span>活動人數已滿</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:otherwise>
-															<p>目前人數${Activity.actualNum} / ${Activity.limitNum} </p>
+															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
+															
 														</c:otherwise>
 													</c:choose>
 													
@@ -223,14 +230,14 @@
 														</div>
 													</div>
 												</div>
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												<p class="brief" align=center style="width: 350px;height:40px;line-height:40px;padding:0px 20px 0px 20px; margin: 5px; text-align: center">${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
-												<button id="single${Activity.activityId}" class="singlePage">進入活動頁面</button>
+												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
-													class="edit visible" style="display: none">編輯</button>
+													class="edit visible" style="display: none;width:200px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">編輯</button>
 												<button id="${Activity.status}${Activity.activityId}${Activity.userId}"
-													class="close visible" style="display: none">結束活動</button>
+													class="close visible" style="display: none;width:200px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">結束活動</button>
 											</fieldset>
 										</div>
 										<script>
@@ -343,7 +350,7 @@
 	})
 
 	listButton = $('button[id^="O"][class*="visible"]');
-	listButton.attr("style", "display:block;");
+	listButton.css("display", "block");
 
 	
 	//設定currentId給超連結

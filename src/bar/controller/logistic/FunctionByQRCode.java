@@ -63,6 +63,7 @@ public class FunctionByQRCode {
 				m.addAttribute("repeatText","你重複刷訂單了喔；若確定已送達，請先按送達確認鈕");
 				return "logistic/LogisticUpdate";
 			}else {
+				System.out.println("有找到訂單 進行物流收貨or貨物送達");
 				Logistic update = qdao.QRCodeAction(oID,sID);
 				System.out.println("get retrun result:"+update);
 				m.addAttribute("update",update);
