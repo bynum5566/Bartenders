@@ -19,13 +19,19 @@
 	<style>
 		#orderDiv{
 			position:absolute;
+			top:30%;
 			left:0px;
-			
+
 		}
-		
+		#container{
+		position:relative;
+		top:-30%;
+		padding:10px;
+		margin: 0px auto;/*div對齊效果*/
+  		text-align: center;
+		}
 		td{
 		border:1px white solid;
-		padding:5px;
 		}
 	</style>
 </head>
@@ -39,11 +45,9 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
-							<li><a href="/Bartenders/logistic/LogisticGate">訂單管理</a></li>
-							<li><a href="/Bartenders/logistic/LogisticSearch">搜尋訂單</a></li>
-							<li><a href="/Bartenders/logistic/SelectLogisticPOST">選擇超商</a></li>
-							<li><a href="/Bartenders/Example">測試</a></li>
-							<li class="small"><a href="/Bartenders/WelcomeLogistic">首頁</a><a href="javascript:signOut()">登出</a></li>
+							<li><a href="/Bartenders/logistic/searchPersonalOrder.do?sID=${getSenderId}">訂單管理</a></li>
+							<li><a href="/Bartenders/logistic/OrderSearch.do/1">搜尋訂單</a></li>
+							<li class="small"><a href="/Bartenders/logistic/WelcomeLogistic">首頁</a><a href="/Bartenders/logistic/LogisticLogout.do">登出</a></li>
 						</ul>
 					</div>
 				</li>
@@ -57,76 +61,83 @@
 					<section>
 						<div class="row">
 							<div class="col-12 col-12-medium">
-								<h1 align=center style="color:white;font-size:48px">物流訂單管理</h1>
-								<table align=center>
-									<tr>
-										<td style="border:1px transparent solid">
-											<button id="status0" class="ByStatus">管理所有訂單</button>
-											<button id="status1" class="ByStatus">查詢未收貨訂單</button> <!-- status=1 -->
-											<button id="status2" class="ByStatus">查詢配送中訂單</button> <!-- status=2 -->
-											<button id="status3" class="ByStatus">查詢已送達訂單</button> <!-- status=3 -->
-										</td>
-									</tr>
-								</table>
-								<!-- 
-								<div align="center">
-									<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
-										<table>
-											<tr>
-												<td>請輸入要測試的訂單號碼<input type="text" name="orderId"></td>
-												<td><input type="submit" value="建立"></td>
-											</tr>
-										</table>
-									</form>
+								<div id="container">
+									<h1 align=center style="color:white;font-size:48px">訂單管理</h1>
+									<table align=center>
+										<tr>
+											<td style="border:1px transparent solid">
+												<button id="status0" class="ByStatus">管理所有訂單</button>
+												<button id="status1" class="ByStatus">查詢未收貨訂單</button> <!-- status=1 -->
+												<button id="status2" class="ByStatus">查詢配送中訂單</button> <!-- status=2 -->
+												<button id="status3" class="ByStatus">查詢已送達訂單</button> <!-- status=3 -->
+											</td>
+										</tr>
+									</table>
 								</div>
-								 -->
-								<div id="orderDiv" align=center >
-									<fieldset>
-										<legend style="color:white;font-size:24px">查詢結果</legend>
-										<table align=center>
-											<thead>
+									<!-- 
+									<div align="center">
+										<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
+											<table>
 												<tr>
-													<td style="width:80px;padding:10px">序號</td>
-													<td>訂單號碼</td>
-													<td>物流號碼</td>
-													<td style="width:80px;padding:10px">類型</td>
-													<td style="width:250px;">送貨地址</td>
-													<td style="width:150px;padding:10px">取件人姓名</td>
-													<td style="width:150px;padding:10px">取件人手機</td>
-													<td style="width:80px;padding:10px">金額</td>
-													<td style="width:100px;padding:10px">進度</td>
-													<td style="width:150px;padding:10px">出貨時間</td>
-													<td style="width:150px;padding:10px">物流取貨</td>
-													<td style="width:150px;padding:10px">送達時間</td>
-													<td style="width:80px;padding:10px">狀態</td>
+													<td>請輸入要測試的訂單號碼<input type="text" name="orderId"></td>
+													<td><input type="submit" value="建立"></td>
 												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="Logistic" items="${logistic}" varStatus="status">
-													<tr>
-														<td>${status.index+1}</td>
-														<td>${Logistic.oID}</td>
-														<td>${Logistic.lID}</td>
-														<td class="myType">${Logistic.oType}</td>
-														<td>${Logistic.oAddr}</td>
-														<td>${Logistic.oName}</td>
-														<td>${Logistic.oPhone}</td>
-														<td>${Logistic.oAmount}</td>
-														<td class="myStatus">${Logistic.oStatus}</td>
-														<td>${Logistic.oTimeA}</td>
-														<td>${Logistic.oTimeB}</td>
-														<td>${Logistic.oTimeC}</td>
-														<!-- 
-														<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
-														 -->
-														<td><button id="${Logistic.oStatus}${Logistic.oType}${Logistic.oID}"
-																class="Ready" style="display: none">貨物確認送達</button></td>
+											</table>
+										</form>
+									</div>
+									 -->
+									<div id="orderDiv" align=center style="margin:15px" >
+										<fieldset >
+											<legend style="color:white;font-size:24px">查詢結果</legend>
+											<table >
+												<thead>
+													<tr align=center>
+														<td style="width:80px;padding:10px">序號</td>
+														<td style="width:270px;padding:10px">訂單號碼</td>
+														<td style="width:100px;padding:10px">物流號碼</td>
+														<td style="width:80px;padding:10px">類型</td>
+														<td style="width:250px;">送貨地址</td>
+														<td style="width:120px;padding:10px">收件人</td>
+														<td style="width:150px;padding:10px">收件人手機</td>
+														<td style="width:80px;padding:10px">金額</td>
+														<td style="width:100px;padding:10px">進度</td>
+														<td style="width:150px;padding:10px">出貨時間</td>
+														<td style="width:150px;padding:10px">物流取貨</td>
+														<td style="width:150px;padding:10px">送達時間</td>
+														<td style="width:100px;padding:10px">狀態</td>
 													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</fieldset>
-								</div>
+												</thead>
+												<tbody>
+													<c:forEach var="Logistic" items="${logistic}" varStatus="status">
+														<tr align="center">
+															<td>${status.index+1}</td>
+															<td>${Logistic.oID}</td>
+															<td>${Logistic.lID}</td>
+															<td class="myType">${Logistic.oType}</td>
+															<td>${Logistic.oAddr}</td>
+															<td>${Logistic.oName}</td>
+															<td>${Logistic.oPhone}</td>
+															<td>${Logistic.oAmount}</td>
+															<td class="myStatus">${Logistic.oStatus}</td>
+															<td>${Logistic.oTimeA}</td>
+															<td>${Logistic.oTimeB}</td>
+															<td>${Logistic.oTimeC}</td>
+															<!-- 
+															<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
+															 -->
+															<td style="vertical-align:bottom;">
+															<button id="${Logistic.oStatus}-${Logistic.oID}-${Logistic.oComplete}"
+																	class="Ready" style="width:80px;display:none;padding:0px;">送達</button>
+														
+															</td>
+															
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</fieldset>
+									</div>
+								
 							</div>
 						</div>
 					</section>
@@ -136,9 +147,22 @@
 	</div>
 	
 	<script type="text/javascript">
-	//狀態轉文字
+	
+	//貨物送達按鈕
+	$(".Ready").on("click", function () {
+		var Str = this.id
+		item = Str.split('-');
+		orderStatus = item[0];
+		orderID = item[1];
+		orderComplete = item[2];
+		window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus;
+	})
+	listR = $('button[id^="2"][class="Ready"]');
+	listR.css("display", "block");
+	listRN = $('button[id$="1"][class="Ready"]');
+	listRN.attr("disabled", "true");
+	//狀態轉換
 	var type = document.getElementsByClassName('myType');
-	console.log('type column: ', type);
 	for(var i=0;i<type.length;i++){
 		if (type[i].innerHTML == '1') {
 			type[i].innerHTML = '宅配';
@@ -150,7 +174,6 @@
 	}
 
 	var myStatus = document.getElementsByClassName('myStatus');
-	console.log('status column: ', myStatus);
 	for(var i=0;i<myStatus.length;i++){
 		if (myStatus[i].innerHTML == '1') {
 			myStatus[i].innerHTML = '未收貨';
@@ -161,21 +184,10 @@
 		};
 	}
 	
-	listR = $('button[id^="2"][class="Ready"]');
-	listR.attr("style", "display:block;");
-	console.log(listR);
-	
-	$(".Ready").on("click", function () {
-		var Str = this.id
-		orderID = Str.substring(2);
-		orderStatus = Str.substring(0, 1);
-		orderType = Str.substring(1, 2);
-		window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus;
-	})
 	$(".ByStatus").on("click", function () {
 		var Str = this.id
 		orderStatus = Str.substring(6);
-		window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus;
+		window.location.href = '<c:url value="/logistic/queryByStatus.do"/>?orderStatus=' + orderStatus + '&sID=${getSenderId}';
 	})
 
 	</script>

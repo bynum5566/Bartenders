@@ -43,15 +43,37 @@ public class LogisticAccountDAO {
 		}
 	}
 	
-	
 	public LogisticAccount querySender(String logisticName, String logisticPwd) {
 		try {
 			
 		Session session = sessionFactory.getCurrentSession();
 		String hqlStr = "from LogisticAccount where logisticName=:name and logisticPwd=:pwd";
 		Query query = session.createQuery(hqlStr);
+//		query.setParameter("senderId", senderId);
 		query.setParameter("name", logisticName);
 		query.setParameter("pwd", logisticPwd);
+		LogisticAccount account = (LogisticAccount)query.uniqueResult();
+		if(account!=null) {
+			return account;
+		}else {
+			return null;
+		}
+		
+		} catch(Exception e) {
+			System.out.println("e:"+e);
+			return null;
+		}
+	}
+	
+	public LogisticAccount querySender(Integer senderId) {
+		try {
+			
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from LogisticAccount where senderId=:senderId";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("senderId", senderId);
+//		query.setParameter("name", logisticName);
+//		query.setParameter("pwd", logisticPwd);
 		LogisticAccount account = (LogisticAccount)query.uniqueResult();
 		if(account!=null) {
 			return account;

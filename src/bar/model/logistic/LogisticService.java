@@ -34,6 +34,10 @@ public class LogisticService {
 		return lDao.simpleQuery(condition);
 	}
 	
+	
+	public boolean checkReserveTime(List<Logistic> list) {
+		return lDao.checkReserveTime(list);
+	}
 	///////////////以下待整理
 	
 	public List<Logistic> queryByStatus(Integer status) {
@@ -48,9 +52,7 @@ public class LogisticService {
 		return lDao.queryAll();
 	}
 	
-	public List<Logistic> queryBysID(String sID) {
-		return lDao.queryBysID(sID);
-	}
+
 	
 	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
 		return lDao.createLogistic(oID,cID,type, phone, name, amount, address);

@@ -269,7 +269,7 @@ public class FunctionByActivity {
 			@RequestParam(name = "lat")float lat,
 			@RequestParam(name = "lng")float lng,
 			@RequestParam(name = "brief")String brief,
-			@RequestParam(name = "content")String content,
+			@RequestParam(name = "detail")String detail,
 			@RequestParam(name = "realType")String type,
 			@RequestParam(name = "beginTime")String beginTime,
 			@RequestParam(name = "endTime")String endTime,
@@ -281,33 +281,36 @@ public class FunctionByActivity {
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 		Map<String, String> temp = new HashMap<String, String>();
-		
+		m.addAttribute("temp", temp);
 		if (name == null || name.length() == 0) {
-			errors.put("name", "請輸入名稱");
+			errors.put("name", "尚未輸入活動名稱");
 		}
 
 		if (type.equals("no")) {
-			errors.put("type", "尚未選擇類型");
+			errors.put("type", "no");
 		}
 		
-		if (beginTime.length() ==0||endTime.length() ==0) {
-			errors.put("time", "尚未完整設定時間");
+		if (beginTime.length() ==0) {
+			errors.put("beginTime", "尚未完整設定時間");
+		}
+		if (endTime.length() ==0) {
+			errors.put("endTime", "尚未完整設定時間");
 		}
 		
 		if (address == null || address.length() == 0) {
-			errors.put("address", "請輸入地點");
+			errors.put("address", "尚未輸入活動地點");
 		}
 		
 		if ((lat==0)||(lng==0)) {
-			errors.put("map", "請點選地圖設定地點");
+			errors.put("map", "尚未點選地圖設定地點");
 		}
 		
 		if (brief == null || brief.length() == 0) {
-			errors.put("brief", "請輸入簡介");
+			errors.put("brief", "尚未輸入簡介");
 		}
 		
-		if (content == null || content.length() == 0) {
-			errors.put("content", "請輸入內容");
+		if (detail == null || detail.length() == 0) {
+			errors.put("detail", "尚未輸入內容");
 		}
 		
 		if (userId==null) {
@@ -318,7 +321,7 @@ public class FunctionByActivity {
 
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
-			temp.put("name", name);
+			temp.put("name", String.valueOf(name));
 			temp.put("type", type);
 			temp.put("beginTime", beginTime);
 			temp.put("endTime", endTime);
@@ -329,8 +332,8 @@ public class FunctionByActivity {
 			temp.put("targetNum", String.valueOf(targetNum));
 			temp.put("actualNum", String.valueOf(actualNum));
 			temp.put("brief", brief);
-			temp.put("content", content);
-			m.addAttribute("temp", temp);
+			temp.put("detail", detail);
+			
 			return "logistic/ActivityCreate";
 		}
 		
@@ -359,8 +362,8 @@ public class FunctionByActivity {
 
 		Activity activity = new Activity();
 		String newBrief = brief.replace("\n", "<br>");
-		String newContent = content.replace("\n", "<br>");
-		aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newContent, beginTime, endTime, limitNum, targetNum, actualNum);
+		String newDetail = detail.replace("\n", "<br>");
+		aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
 		
 		System.out.println("try to redirect to ActivityHall");
 //		response.sendRedirect("ActivityHall");

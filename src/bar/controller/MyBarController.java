@@ -135,12 +135,23 @@ public class MyBarController {
 			//for websocket
 			WebSocketTest.setModel(m);
 			
-			return "myBar";
+			return "editMyBar";
 		}
 		Company Data = mBS.selectBarData(companyId);
 
-		String about = Detail.getAboutBar().replaceAll("<br>", "");
-		String menu = Detail.getBarMenu().replaceAll("<br>", "");
+		String about;
+		String menu;
+		
+		if(Detail.getAboutBar()!=null) {
+			about = Detail.getAboutBar().replaceAll("<br>", "");
+		}else {
+			about = Detail.getAboutBar();
+		}
+		if(Detail.getBarMenu()!=null) {
+			menu = Detail.getBarMenu().replaceAll("<br>", "");
+		}else {
+			menu = Detail.getBarMenu();
+		}
 		
 		request.setAttribute("barId", companyId);
 

@@ -217,7 +217,7 @@
 			
 						<div class="onlineBox">
 							<h4>在線者</h4>
-							<div id="onlineUser"></div>
+							<ul id="onlineUser"></ul>
 							<div class="countBox">
 								<h5>在線人數:</h5>
 								<h5>
@@ -231,7 +231,7 @@
 			
 						<div class="sendBox">
 							<h4>發送對象</h4>
-							<input id="username" type="text" width="50px" value="${targetName}"/> <br /> <br />
+							<input id="targetName" type="text" width="50px" /> <br /> <br />
 			
 							<div class="chatBox">
 								<div id="message" style="overflow:auto;height:300px;"></div>
@@ -260,6 +260,12 @@
 		window.onbeforeunload = function() {
 			websocket.send('${CName}');
 		}
+	</script>
+	
+	<script type="text/javascript">
+		$('#onlineUser li').click(function(){
+			$('#targetName').val($(this).text());
+		});
 	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>

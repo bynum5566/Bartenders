@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -8,88 +7,83 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
-<meta name="google-signin-client_id"
-	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 
 <!-- 小鈴鐺 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <title>Bartenders</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
-<noscript>
-	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
-</noscript>
+<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
 
-<style type="text/css">
-body {
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	background-position: top;
-	background-image: url(/Bartenders/images/bg16.png);
-	background-color: transparent;
-}
-
-.wrapper.style5 {
-	background-color: transparent;
-}
-
-.welcome {
-	position: relative;
-	margin-top: 10px;
-	text-align: center;
-	margin: auto;
-	color: white;
-	padding: 117px;
-}
-
-#logo {
-	position: relative;
-	width: 150px;
-	margin: 20px;
-}
-
-.small {
-	display: flex;
-	align-self: center;
-}
-
-.small a {
-	font-size: 16px;
-	font-weight: 400;
-	color: #888;
-	font-family: 111.otf;
-}
-
-.small a+a {
-	margin-left: 15px;
-}
-
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
-</style>
+	<style type="text/css">
+		body {
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: top;
+			background-image: url(/Bartenders/images/bg16.png);
+			background-color: transparent;
+		}
+		
+		.wrapper.style5 {
+			background-color: transparent;
+		}
+		
+		.welcome {
+			position: relative;
+			margin-top: 10px;
+			text-align: center;
+			margin: auto;
+			color: white;
+			padding: 117px;
+		}
+		
+		#logo {
+			position: relative;
+			width: 150px;
+			margin: 20px;
+		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
+		
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -116,9 +110,6 @@ body {
 							<ul>
 								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-
-
-
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -128,10 +119,8 @@ body {
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-								<li><a id="myActivity"
-									href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a
-									href="javascript:signOut()">登出</a></li>
+								<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -150,6 +139,7 @@ body {
 			</section>
 		</article>
 	</div>
+	
 	<script>
 		//測試是否可以接收到登入參數
 		var user = '${getUserId}';

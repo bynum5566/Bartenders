@@ -172,67 +172,26 @@ console.log('currentId is: ',currentId);
 								
 							 
 								<div id="alter" align="center">
-									<h1 style="font-size:36px;" align="center">酒吧舉辦活動</h1>
-									<form action="saveActivity.do" method="post" enctype="multipart/form-data">
+									<h1 style="font-size:36px;" align="center">設定酒吧資訊</h1>
+									<form action="saveBar.do" method="post" enctype="multipart/form-data">
 										<fieldset style="width: 800px">
-												<input id="name" class="classTest" type="text" name="name" placeholder="輸入活動名稱">
+												<input id="name" class="classTest" type="text" name="name" value="${bar.companyName}">
 												<div id="typeDiv" style="margin:10px;">
-													<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
-													<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
-													<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
-													<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
+													<input class="type" type="radio" id="bar" name="type" value="bar"><label for="bar">酒吧</label> 
+													<input class="type" type="radio" id="shop" name="type" value="shop"> <label for="shop">洋酒專賣店</label>
 												</div>
-														<!-- 
-												<table>
-													<tr>
-														<td>
-															<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
-														</td>
-														<td>
-															<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
-														</td>
-														<td>
-															<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
-														</td>
-														<td>
-															<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
-														</td>
-													</tr>
-												</table>
-												 -->
-												<!-- 
-												<p class="errors">${errors.type}</p>
-												 -->
-												
-												<input id="beginTime" type="text" name="beginTime" placeholder="開始時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="結束時間">
+												<input id="beginTime" type="text" name="beginTime" placeholder="營業時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="打烊時間">
 												<p></p>
-												<!-- 
-												<p class="errors">${errors.time}</p>
-												 -->
-												<input id="address" type="text" name="address" placeholder="活動地址">
+												<input id="address" type="text" name="address" value="${bar.address}">
 												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
-												<!-- 
-												<p class="errors">${errors.map}</p>
-												 -->
 												<div class="showEachMap">
 													<div id="hidden" class="hideMap" >
 														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button>
 														<div id="map"></div>
 													</div>
 												</div>
-												<!-- 
-												<p class="errors">${errors.address}</p>
-												 -->
-												<label style="display:inline;">(選填)</label>
-												<input id="limitNum" class="numSetting" type="text" name="limitNum" placeholder="人數上限"> /
-												<input id="actualNum" class="numSetting" type="text" name="actualNum" placeholder="內建人數"> / 
-												<input id="targetNum" class="numSetting" type="text" name="targetNum" placeholder="成團人數">
-												<br>
-												<br>
 												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
-												<textarea id="brief" placeholder="輸入活動簡介" name="brief" rows="1"></textarea>
-												<br>
-												<textarea id="detail" placeholder="輸入活動內容" name="detail" rows="6"></textarea>
+												<textarea id="brief" name="brief" rows="3" >${myBar.aboutBar}</textarea>
 												<br>
 												<div style="display:block">
 												<input id="lat" type="text" name="lat" value="0">
@@ -259,8 +218,8 @@ console.log('currentId is: ',currentId);
 		//更改placeholder
 		
 		
-		
-		
+		console.log('this is bar: ','${bar}');
+		console.log('this is myBar: ','${myBar}');
 		//檢查地址是否輸入 限制定位按鈕
 		var addressBtn = document.getElementById('addressBtn')
 		if(document.getElementById('address').value==''){
@@ -285,18 +244,7 @@ console.log('currentId is: ',currentId);
 	$('.type').on('click',function(){
 		tempValue = this.id
 		realType.value = tempValue;
-		//inputType(tempValue);	
 	})
-	/*
-	function inputType(testValue){
-		for(var i=0;i<typeRadio.length;i++){
-			if(typeRadio[i].checked==true){
-				console.log('real type is: ',tempValue)
-				realType.value = tempValue;
-			}
-		}
-	}
-	*/
 	
 	//點地圖儲存座標+小OK顯示
 	var ok = document.getElementById("smallok")
@@ -364,9 +312,11 @@ console.log('currentId is: ',currentId);
 	const myInput = document.getElementById("beginTime");
 	const fp = flatpickr(myInput, {
 		enableTime : true,
-		dateFormat : "yy/m/d H:i",
-		maxDate : new Date().fp_incr(14), // 14 days from now
-		minDate : "today",
+		noCalendar: true,
+		dateFormat : "H:i",
+		//dateFormat : "yy/m/d H:i",
+		//maxDate : new Date().fp_incr(14), // 14 days from now
+		//minDate : "today",
 		time_24hr: true
 	});
 
@@ -374,9 +324,11 @@ console.log('currentId is: ',currentId);
 	const myInput2 = document.getElementById("endTime");
 	const fp2 = flatpickr(myInput2, {
 		enableTime : true,
-		dateFormat : "yy/m/d H:i",
-		maxDate : new Date().fp_incr(14), // 14 days from now
-		minDate : "today",
+		noCalendar: true,
+		dateFormat : "H:i",
+		//dateFormat : "yy/m/d H:i",
+		//maxDate : new Date().fp_incr(14), // 14 days from now
+		//minDate : "today",
 		time_24hr: true
 	});
 	//設定currentId給超連結
@@ -459,21 +411,11 @@ console.log('currentId is: ',currentId);
 			checkMap();
 			mapBtn.innerHTML = '修改地圖位置';
 		}
-		if('${temp.limitNum}'!='null'){
-			document.getElementById('limitNum').value = '${temp.limitNum}';
-		}
-		if('${temp.targetNum}'!='null'){
-			document.getElementById('targetNum').value = '${temp.targetNum}';
-		}
-		if('${temp.actualNum}'!='null'){
-			document.getElementById('actualNum').value = '${temp.actualNum}';
-		}
+
 		if('${temp.brief}'!=''){
 			document.getElementById('brief').value = '${temp.brief}';
 		}
-		if('${temp.detail}'!=''){
-			document.getElementById('detail').value = '${temp.detail}';
-		}
+
 		
 	</c:if>
 	</script>
