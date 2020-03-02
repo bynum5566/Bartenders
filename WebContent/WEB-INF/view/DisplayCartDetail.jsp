@@ -8,12 +8,14 @@
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>確認訂單資訊頁面／Bartenders</title>
-	<%--豪--%>
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<title>確認訂單資訊頁面</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>	<noscript>
 		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 <style>
 	.small {
 		display: flex;
@@ -30,13 +32,46 @@
 	.small a+a {
 		margin-left: 15px;
 	}
+	
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+	
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		    <header id="header">
-      <h1><a href="UserFirstPage">Bartenders</a></h1>
+      <h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+     
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+     
       <nav id="nav">
         <ul>
           <li class="special">
@@ -52,7 +87,7 @@
                 <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
                 <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
                 <li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-                <li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+                <li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               </ul>
             </div>
           </li>
@@ -92,15 +127,32 @@
 												<br>
 											</c:forEach>
 										</table>
-										<ul class="alt">
-											<li colspan="3">產品合計:&nbsp;${totalPrice}</li>
-											<li colspan="3">運費:&nbsp;${ShippingNumToPrice[order.shipping]}</li>
-											<li colspan="3">訂單總金額:&nbsp;${finalTotalPrice}</li>
-										</ul>
+										<br>
+										<table align="center">
+											<tr class="actions">
+												<td>產品合計:&nbsp;</td>
+												<td>${totalPrice}</td>
+											</tr>
+											<tr class="actions">
+												<td >運費:&nbsp;</td>
+												<td id = "Freight">${ShippingNumToPrice[order.shipping]}</td>
+											</tr>
+											<tr class="actions">
+												<td>訂單總金額:&nbsp;</td>
+												<td id = "finalTotalPrice">${finalTotalPrice}</td>
+											</tr>										
+										</table>
 									</div>
 								</div>
 								</form>
-
+								
+								<!------------- 新增超商按鈕  ------------------->
+								<form action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
+									<input id="marketUrl" type="hidden" name="rtURL" value="http://localhost:8080/Bartenders/DisplayCart.controller?orderId=${orderId}&status=${order.status}">
+									<input type="submit" value="選擇超商">
+								</form>
+								
+								
 								<form action="<c:url value="/ChangeStatusOneToTwo.controller"/>" method="get">
 								<div class="row">
 									<div class="col-6 col-12-medium">
@@ -113,10 +165,11 @@
 											<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> -->
 											<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
 											<div class="col-4 col-12-small">
-												<input id="setTt1" name="select1" type="radio" value="1" checked >
+												<input id="setTt1" name="select1" type="radio" value="1" checked onclick="onclickFunction01()">
 												<label for="setTt1">宅配</label>
-												<input id="setTt2" name="select1" type="radio" value="2">
+												<input id="setTt2" name="select1" type="radio" value="2" onclick="onclickFunction02()">
 												<label for="setTt2">超商</label>
+												
 											</div>
 
 										</c:if>
@@ -161,6 +214,8 @@
 												value="${defaultAddress}"/>
 											<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 											<br>
+											<!-- 新增超商回傳地址  -->
+											<Input type='text' name='testtest' value='${marketAddr}'>
 										</c:if>
 
 
@@ -212,7 +267,7 @@
 											value='${ShippingNumToPrice[order.shipping]}'>
 										<!-- 新增2020131_1634 -->
 										<input class="button primary" type='submit' value='資訊無誤，確認訂購'>
-										<p style="color:red">請注意，一經確認，即無法修改。</p>
+										<!--<p style="color:red">請注意，一經確認，即無法修改。</p>-->
 									</div>
 								</div>
 								</form>
@@ -229,9 +284,31 @@
 
 	<!--縮放用JS，開始-->
 	<script type="text/javascript">
+	var url = document.getElementById('marketUrl');
+	console.log('url is:',url.value);
+	console.log('orderId is:','${orderId}');
+	console.log('status is:','${order.status}');
+	function insertUrl(){
+		url.value = 'http://localhost:8080/Bartenders/DisplayCart.controller?orderId='+${orderId}+'&status='+${order.status};
+	}
 		$(".flip").click(function () {
 			$(".panel").slideToggle("slow");
 		});
+		<%--動態顯示運費，總金額。開始--%>
+		<!--finalTotalPrice		0 	QR		n/a		-->
+		<!--finalTotalPrice		80 	normal	不變		-->
+		<!--finalTotalPrice		60 	超商		減去20	-->
+		function onclickFunction01() 
+		{
+			document.getElementById("Freight").innerHTML = "80";
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};	
+		}
+		function onclickFunction02() 
+		{
+			document.getElementById("Freight").innerHTML = "60";
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice - 20};
+		}
+		<%--動態顯示運費，總金額。結束--%>
 	</script>
 	<!--縮放用JS，結束-->
 
@@ -245,6 +322,15 @@
 
 <script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 	</body>
 
 </html>

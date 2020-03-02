@@ -16,7 +16,7 @@ import java.util.Random;
 @Controller
 @SessionAttributes(names = { 
 		"account", 
-		"listOfBar" 
+		"listOfBar" ,"userName"
 		})
 @EnableTransactionManagement
 public class DisplayBarListController {
@@ -44,6 +44,10 @@ public class DisplayBarListController {
 		m.addAttribute("title", "所有酒吧");
 
 		CartService.Pf("/DisplayBarList.controller，結束");
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "DisplayBarList";
 
 	}
@@ -72,6 +76,10 @@ public class DisplayBarListController {
 			m.addAttribute("listOfBar", listOfBar);
 			m.addAttribute("account", account);
 			m.addAttribute("title", "精選酒吧");
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "DisplayBarList";
 		}
 		
@@ -131,6 +139,10 @@ public class DisplayBarListController {
 		m.addAttribute("title", "精選酒吧");
 		
 		CartService.Pf("/DisplayBarList.controller_TestVer，結束");
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "DisplayBarList";
 
 	}

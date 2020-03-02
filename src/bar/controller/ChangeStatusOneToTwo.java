@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.Cart;
 import bar.model.CartService;
@@ -24,6 +25,7 @@ import bar.model.UsersService;
 
 @Controller
 @EnableTransactionManagement
+@SessionAttributes(names = {"userName"})
 public class ChangeStatusOneToTwo
 {
 	private ProductDataService pService;
@@ -256,16 +258,28 @@ public class ChangeStatusOneToTwo
 		if (msg == "庫存不足，請重新選擇數量") {
 			System.out.println("結束狀態A");
 			m.addAttribute("msg",msg);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "ResultOfCheckout";
 		}
 		if (msg == "成立訂單成功") {
 			System.out.println("結束狀態B");
 			m.addAttribute("msg",msg);
+			
+			//for websocket
+			WebSocketTest.setModel(m);
+			
 			return "ResultOfCheckout";
 		}
 		msg="發生不明錯誤";
 		m.addAttribute("msg",msg);
 		System.out.println("結束狀態C");
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "ResultOfCheckout";
 	}
 

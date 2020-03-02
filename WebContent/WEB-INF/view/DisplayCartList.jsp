@@ -15,6 +15,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>	<noscript>
 		<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 <style>
 	.small {
 		display: flex;
@@ -31,13 +34,46 @@
 	.small a+a {
 		margin-left: 15px;
 	}
+	
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+	
 </style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		    <header id="header">
-      <h1><a href="UserFirstPage">Bartenders</a></h1>
+      <h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+      
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+      
       <nav id="nav">
         <ul>
           <li class="special">
@@ -53,7 +89,7 @@
                 <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
                 <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
                 <li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-                <li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+                <li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               </ul>
             </div>
           </li>
@@ -207,52 +243,51 @@
 														&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 													</c:if>
 
-													<form style="margin:0px;display:inline" action="<c:url value="/DeleteItemInCart.controller"/>" method="get">
-													<Input type='submit' value='刪除'>
+															<form style="margin:0px;display:inline" action="<c:url value="/DeleteItemInCart.controller"/>" method="get">
+															<Input type='submit' value='刪除'>
+		
+															<Input type='hidden' name='num'
+																value='${listOflistOfCart[current.index][current2.index].num}'>
+															<Input type='hidden' name='orderId'
+																value='${listOfOrder[current.index].orderId}'>
+															<!-- 超連結版本開始 -->
+															<!--<a href="<c:url value="/DeleteItemInCart.controller"/>?num=${listOflistOfCart[current.index][current2.index].num}&orderId=${listOfOrder[current.index].orderId}">刪除</a>-->
+															<!-- 超連結版本結束 -->
+															</form>
+														</td>
+														
+														<td>
+															<!--　小計   -->
+															${listOflistOfCart[current.index][current2.index].quantity *
+															listOflistOfCart[current.index][current2.index].checkoutPrice}
+														</td>
+														<td></td><!-- 刪除/成立訂單　 -->
+														</tr>
+													</c:forEach>
+												</tr>
+												<td></td>
+												<td>總金額</td>
+												<td></td>
+												<td></td>
+												
 
-													<Input type='hidden' name='num'
-														value='${listOflistOfCart[current.index][current2.index].num}'>
-													<Input type='hidden' name='orderId'
-														value='${listOfOrder[current.index].orderId}'>
-													<!-- 超連結版本開始 -->
-													<!--<a href="<c:url value="/DeleteItemInCart.controller"/>?num=${listOflistOfCart[current.index][current2.index].num}&orderId=${listOfOrder[current.index].orderId}">刪除</a>-->
-													<!-- 超連結版本結束 -->
-													</form>
+												<c:if test="${listOfOrder[current.index].shipping == '1'}">
+													<td align="center">${listOfOrder[current.index].amount - 80}</td>
+												</c:if>
+												<c:if test="${listOfOrder[current.index].shipping == '2'}">
+													<td align="center">${listOfOrder[current.index].amount - 60}</td>
+												</c:if>
 
-
-												</td>
-
+												<c:if test="${listOfOrder[current.index].shipping == '3'}">
+													<td align="center">${listOfOrder[current.index].amount}</td>
+												</c:if>
+												
+												
+												
 												<td>
-													<!--　小計   -->
-													${listOflistOfCart[current.index][current2.index].quantity *
-													listOflistOfCart[current.index][current2.index].checkoutPrice}
+													<a class="button primary" href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}">成立訂單</a>
 												</td>
-
-												<td></td><!-- 刪除/成立訂單　 -->
-
-
-
-
-											</tr>
-											</c:forEach>
-											</tr>
-
-											<td></td>
-											<td>總金額</td>
-											<td></td>
-											<td></td>
-											<td align="center">${listOfOrder[current.index].amount}</td>
-
-
-											<td>
-
-
-
-												<a class="button primary" href="<c:url value="/DisplayCart.controller"/>?orderId=${listOfOrder[current.index].orderId}&status=${listOfOrder[current.index].status}">成立訂單</a>
-
-
-											</td>
-											</c:forEach>
+												</c:forEach>
 											</tr>
 										</tbody>
 									</table>
@@ -286,6 +321,15 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 <script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 	</body>
 
 </html>

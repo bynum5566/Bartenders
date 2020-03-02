@@ -43,6 +43,8 @@ public class WebSocketTest {
 	public static void setModel(Model m) {
 		WebSocketTest.m = m;
 	}
+	
+
 
 	/** * 連接建立成功調用的方法 * @param session * 可選的參數。session為與某個客戶端的連接會話，需要通過它來給客戶端發送數據 */
 	@OnOpen
@@ -137,6 +139,14 @@ public class WebSocketTest {
 		if (messageStr.indexOf("@") != -1) {
 			String targetname = messageStr.substring(0, messageStr.indexOf("@"));
 			String sourcename = "";
+			
+			for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
+				// session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源
+				if (entry1.getValue().session == session) {
+					sourcename = entry1.getKey();
+				}
+			}
+			
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 
 				// 根據接收用戶名遍歷出接收對象
@@ -156,12 +166,7 @@ public class WebSocketTest {
 						System.out.println("3.對方在聊天室");
 
 						try {
-							for (Entry<String, WebSocketTest> entry1 : webSocketMap.entrySet()) {
-								// session在這裡作為客戶端向伺服器發送信息的會話，用來辨認出信息來源
-								if (entry1.getValue().session == session) {
-									sourcename = entry1.getKey();
-								}
-							}
+							
 							MessageDto md = new MessageDto();
 							md.setMessageType("message");
 							md.setData(sourcename + ":" + message.substring(messageStr.indexOf("@") + 1));
@@ -179,10 +184,10 @@ public class WebSocketTest {
 
 						try {
 							System.out.println("Noticify~~~");
-
+						
 							MessageDto md = new MessageDto();
 							md.setMessageType("noticify");
-							md.setData("您有新訊息，請至聊天室確認");
+							md.setData(sourcename + "傳送訊息給您:" + message.substring(messageStr.indexOf("@") + 1));
 							entry.getValue().sendMessage(gson.toJson(md));
 
 							System.out.println("4.送出提醒訊息");

@@ -16,7 +16,7 @@ public class FunctionByLogout {
 	public FunctionByLogout() {
 	}
 
-	@RequestMapping(path="logistic/LogisticLogout.do", method = RequestMethod.POST)
+	@RequestMapping(path="logistic/LogisticLogout.do", method = RequestMethod.GET)
 	public String processAction4(HttpSession session,Model m) {
 		session.invalidate();
 		m.addAttribute("msg", "已登出，請重新登入");

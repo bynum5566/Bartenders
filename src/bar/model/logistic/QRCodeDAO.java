@@ -49,35 +49,44 @@ public class QRCodeDAO {
 	public Logistic QRCodeAction(String oID, Integer sID) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			String hqlStr = "from Logistic where oID=:oID";
+			String hqlStr = "from Logistic where oID=:oID and sID=:sID";
 			System.out.println("hqlStr:" + hqlStr);
 			Query query = session.createQuery(hqlStr);
 			query.setParameter("oID", oID);
-//			query.setParameter("Status", status);
+			query.setParameter("sID", sID);
 			Logistic order = (Logistic)query.uniqueResult();
 			System.out.println("order query result:"+order);
 			if(order!=null) {
+				System.out.println("start to check");
+				System.out.println("order status: "+order.getoStatus());
+				System.out.println("order ocomplete: "+order.getoComplete());
 				if(order.getoStatus()==1&&order.getoComplete()==null) {
+					System.out.println("situation 1");
 					order.setoStatus(2);
 					String date = getTime();
 					order.setoTimeB(date);
-					order.setsID(sID);
 					System.out.println("update status");
 //					String name = order.getoName();
 //					CreateQR(ID,status+1,name);
 					Orders reUpdate = oService.selectOrder(oID);
 					reUpdate.setStatus(4);
+					return order;
 				}else if(order.getoStatus()==2&&order.getoComplete()==1) {
+					System.out.println("situation 2");
 					order.setoStatus(3);
 					String date = getTime();
 					order.setoTimeC(date);
 					Orders reUpdate = oService.selectOrder(oID);
 					reUpdate.setStatus(6);
 					System.out.println("update status");
+					return order;
+				}else if(order.getoStatus()==2&&order.getoComplete()==null){
+					System.out.println("no situation matched");
+					return order;
 				}
+				
 			}
-			System.out.println("return result");
-			return order;
+			return null;
 		} catch (Exception e) {
 			System.out.println("e:" + e);
 			return null;

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 <meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<title>註冊帳戶</title>
+<title>註冊帳戶/ Bartenders</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
@@ -66,7 +66,7 @@ h5 {
 <body class="is-preload">
 	<div id="page-wrapper">
 	<header id="header">
-		<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -75,9 +75,9 @@ h5 {
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
+								
+								
+								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -87,7 +87,7 @@ h5 {
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -112,21 +112,23 @@ h5 {
 											<li>帳號:</li>
 											<li><input type="text" name="newAccount" placeholder="${gid}" size="50" disabled="disabled"/><br></li>
 											<li>密碼:</li>
-											<li><input type="password" name="newPassword" size="50" placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></li>
+											<li><input type="password" name="newPassword" size="50" placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd"/><br></li>
 											<li>確認密碼:</li>
-											<li><input type="password" name="newPassword2" size="50" placeholder="請再輸入一次密碼" required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></li>
+											<li><input type="password" name="newPassword2" size="50" placeholder="請再輸入一次密碼" required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd2"/><br></li>
 											<li>手機:</li>
-											<li><input type="tel" name="phone" autocomplete="off" size="50" placeholder="請填寫正確的手機號碼" required="required" pattern="^.{10}$"/><br></li>
+											<li><input type="tel" name="phone" autocomplete="off" size="50" placeholder="請填寫正確的手機號碼" required="required" pattern="^.{10}$" id="phone"/><br></li>
 											<li>生日:</li>
-											<li><input type="date" name="birthday" size="50" autocomplete="off" required="required"/><br></li>
+											<li><input type="date" name="birthday" size="50" autocomplete="off" required="required" id="bd"/><br></li>
 											<li>電子郵件:</li>
 											<li><input type="email" name="email" placeholder="${email}" size="50" disabled="disabled"/><br></li>
 											<li>聯絡地址:</li>
-											<li><input type="text" name="address" autocomplete="off" size="50" placeholder="請填寫正確的住址" pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required"/><br></li>
+											<li><input type="text" name="address" autocomplete="off" size="50" placeholder="請填寫正確的住址" pattern="^[0-9-\u4e00-\u9fa5].{10,}$" required="required" id="add"/><br></li>
 										</ul>
 									</div>
 									<div class="col-12">
 										<ul class="actions">
+											<li><input class="button" type="button" value="demo" id="demo"/></li>
+											<li><a class="button" href="/Bartenders/login">回主頁</a></li>
 											<li><input class="button" type="reset" value="清除重填"/></li>
 											<li><input class="button primary" type="submit" value="確認送出"/></li>
 										</ul>
@@ -170,6 +172,16 @@ h5 {
 	        gapi.auth2.init();
 	      });
 	   }
+	</script>
+	
+	<script type="text/javascript">
+		$('#demo').click(function(){
+			$('#pwd').val('Ann159874');
+			$('#pwd2').val('Ann159874');
+			$('#phone').val('0987564251');
+			$('#bd').val('1990/3/13');
+			$('#add').val('台北市大安區信義路三段147巷5弄17-1');
+		});
 	</script>
 
 </body>

@@ -8,11 +8,13 @@
 	<meta charset="UTF-8">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>聊天室</title>
+	<title>聊天室 / Bartenders</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<style type="text/css">
 /* 		.mydiv { */
@@ -129,6 +131,28 @@
 	    text-transform: uppercase;
 	    list-style-type: none;
 	}
+	
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+	
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -140,7 +164,18 @@
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
+		
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -149,9 +184,9 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-								<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-								<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息+</a></li>
+								
+								
+								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -161,7 +196,7 @@
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
-								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -196,7 +231,7 @@
 			
 						<div class="sendBox">
 							<h4>發送對象</h4>
-							<input id="username" type="text" width="50px" value="${targetName}"/> <br /> <br />
+							<input id="targetName" type="text" width="50px" /> <br /> <br />
 			
 							<div class="chatBox">
 								<div id="message" style="overflow:auto;height:300px;"></div>
@@ -226,6 +261,14 @@
 			websocket.send('${CName}');
 		}
 	</script>
+	
+	<script type="text/javascript">
+			function chatwith(){
+				var tarName=$(this).val;
+				alert(tarName);
+				$("#targetName").val=tarName;
+			}
+	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
@@ -236,6 +279,14 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	
 	</body>
 
 </html>

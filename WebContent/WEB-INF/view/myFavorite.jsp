@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/forTabs.css">
+<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<style>
 		.small {
@@ -42,13 +44,52 @@
 			color: #DAC9A6;
 			text-shadow: 1px 2px 0px #8E354A;
 		}
+		.pd0{
+			text-align: left;
+		}
+	
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
+
+        #content {
+		    margin-top: 0;
+		}
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="page-wrapper">
 		<header id="header">
-			<h1><a href="UserFirstPage">Bartenders</a></h1>
+			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+			
+<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -64,7 +105,7 @@
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -80,26 +121,26 @@
 							<div class="col-6 col-12-medium">
 								<div id="tabs">
 									<ul class="fav">
-										<li><a href="#tab1" name="#tab1">Bar</a></li>
-										<li><a href="#tab2" name="#tab2">Alcohol</a></li>
+										<li><a class="tab" href="#tab1" name="#tab1">Bar</a></li>
+										<li><a class="tab" href="#tab2" name="#tab2">Alcohol</a></li>
 									</ul>
-									<div id="content">
-										<div id="tab1" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒吧清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${MyfavB}</table>
-												</li>
-											</ul>
-										</div>
-										<div id="tab2" class="outwrapper">
-											<ul class="alt">
-												<li><h2>我的最愛酒類清單</h2></li>
-												<li class="inwrapper">
-													<table class="pd0">${Myfav}</table>
-												</li>
-											</ul>
-										</div>
+								</div>
+								<div id="content">
+									<div id="tab1" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒吧清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${MyfavB}</table>
+											</li>
+										</ul>
+									</div>
+									<div id="tab2" class="outwrapper">
+										<ul class="alt">
+											<li><h2>我的最愛酒類清單</h2></li>
+											<li class="inwrapper">
+												<table class="pd0">${Myfav}</table>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -124,6 +165,14 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	</body>
 
 </html>
