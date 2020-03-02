@@ -35,10 +35,11 @@ public class MyFavoriteService {
 			String pdid = idList.get(x);	
 			ProductData prod = pdao.selectP(pdid);	
 			favs = favs
-					+"<tr class=\"pdRow\"><td><div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/Product.show?PdId="+prod.getPdId()
-					+ "';\">" + prod.getProductName() + "</h3></div></td><td class=\"RSide\">"
-					+ "<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href = '/Bartenders/pdDisLike?pdidck="
-					+prod.getPdId() + "';\" class=\"bT\" style=\"width:40px; height:40px; cursor: pointer;\"/></td></tr>";
+					+"<tr class=\"B1 pdRow\"><td class=\"B1 leftSide\"><div><h3 class=\"nameLink\" onclick=\"location.href='/Bartenders/Product.show?PdId="+prod.getPdId()
+					+ "';\">" + prod.getProductName() + "</h3></div></td><td class=\"B1 RSide\">"
+					+ "<a href=\"/Bartenders/pdDisLike?pdidck=" +prod.getPdId() + "\" class=\"bT4\">"
+					+ "<img src=\"/Bartenders/images/delete.png\" style=\"width:40px; height:40px; cursor: pointer;\"/>"
+					+ "</a></td></tr>";
 		}
 		return favs;
 	}

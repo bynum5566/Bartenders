@@ -50,24 +50,14 @@ public class EventsAndNewsService {
 		List<EventsAndNews> evNnes = enDao.selectAllEN(companyId);
 		for(EventsAndNews eAn:evNnes) {
 			EN = EN
-					+"<tr class=\"pdRow\"><td class=\"MidS1\">"
-					+ eAn.getNeTitle()
-//					+ "<form action=\"/Bartenders/NewsAndEvents.Edit\" method=\"GET\">" 
-					+ "</td>"
-					+ "<td><img src=\"/Bartenders/images/document.png\" onclick=\"location.href='/Bartenders/NewsAndEvents.Edit?ckEN1="
-					+ eAn.getNeId()
-					+ "';\" style=\"width: 40px; height: 40px; cursor: pointer;\"></td>"
-//					+ "<input type=\"submit\" value=\""
-//					+ "\"/>" 
-//					+ "</form>"
-					+ "<td class=\"RSide\">"
-//					+ "<form action=\"/Bartenders/EN.remove\" method=\"POST\">"
-//					+ "<input type=\"text\" name=\"ckEN2\" class=\"pdidckLL\" value=\""
-					+"<img src=\"/Bartenders/images/delete.png\" onclick=\"location.href='/Bartenders/EN.remove?ckEN2="
-					+ eAn.getNeId()
-					+ "'\" style=\"width: 40px; height: 40px; cursor: pointer;\">"
-//					+ "\" readonly=\"readonly\"><input type=\"submit\" value=\"刪除\"></form>"
-					+ "</td></tr>";
+					+"<tr class=\"B1 pdRow\"><td class=\"B1 MidS1\"><h4>"
+					+ eAn.getNeTitle() + "</h4></td><td><h4>"
+					+ eAn.getNePostDate()
+					+ "</h4></td><td class=\"B1\"><img src=\"/Bartenders/images/document.png\" onclick=\"location.href='/Bartenders/NewsAndEvents.Edit?ckEN1="
+					+ eAn.getNeId() + "';\" style=\"width: 40px; height: 40px; cursor: pointer;\"></td><td class=\"B1 RSide\">"
+					+ "<a class=\"bT4\" href=\"/Bartenders/EN.remove?ckEN2=" + eAn.getNeId() + "\">"
+					+ "<img src=\"/Bartenders/images/delete.png\" style=\"width: 40px; height: 40px; cursor: pointer;\">"
+					+ "</a></td></tr>";
 		}
 		return EN;
 	}
