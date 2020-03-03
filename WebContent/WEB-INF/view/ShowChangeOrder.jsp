@@ -136,13 +136,21 @@
 										<li><input type="text" size="40" name="recipient"
 											value="${order.recipient}" /><br></li>
 										<li>配送方式:</li>
-										<li><select name="shippingType">
-												<option value="HomeDelivery" width="10">1.宅配</option>
-												<option value="ConvenienceStore" width="10">2.超商取貨</option>
+										<li><select name="shippingType" id="shipping">
+												<option value="ConvenienceStore" width="10">1.超商取貨</option>
+												<option value="HomeDelivery" width="10">2.宅配</option>
 										</select> <br></li>
+										<a href="http://map.ezship.com.tw/ezship_map_web.jsp?rtURL=http://localhost:8080/Bartenders/ShowChangeOrder.controller?orderId=${orderId}">
+										<img id="BT" src="/Bartenders/images/shipping.jpg" title="請選擇超商門市" style="width:80px; height:80px;margin-left:8px"></a>
 										<li>配送地址:</li>
-										<li><input type="text" name="address" size="40"
+										<c:if test="${not empty marketAddress}">
+											<li><input type="text" name="address" size="40"
+											value="${marketAddress}" /><br></li>
+										</c:if>
+										<c:if test="${empty marketAddress}">
+											<li><input type="text" name="address" size="40"
 											value="${attrAddress}" /><br></li>
+										</c:if>
 										<li>收件人電話:</li>
 										<li><input type="text" size="40" name="phone"
 											value="${order.phone}" /><br></li>
@@ -162,6 +170,16 @@
 			</section>
 		</article>
 	</div>
+	
+	<script type="text/javascript">
+		$("#shipping").change(function(){
+			if($('#shipping').val()==="HomeDelivery"){
+				$('#BT').hide();
+			}else{
+				$('#BT').show();
+			}
+		})	
+	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
