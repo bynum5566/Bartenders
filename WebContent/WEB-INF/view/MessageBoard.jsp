@@ -28,7 +28,8 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <!-- 小鈴鐺 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
 <style>
@@ -70,7 +71,6 @@ form.panel {
 	width: 100%
 }
 
-
 .noticeBox {
 	position: fixed;
 	top: 60px;
@@ -91,7 +91,6 @@ form.panel {
 	float: right;
 	display: none;
 }
-
 </style>
 </head>
 
@@ -105,8 +104,8 @@ form.panel {
 			<h1>
 				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
-			
-<!-- 小鈴鐺 -->
+
+			<!-- 小鈴鐺 -->
 			<div class="noticeBox">
 				<div class="bell">
 					<img class="bellImg" src="/Bartenders/images/bell.png">
@@ -115,7 +114,7 @@ form.panel {
 					<ul id="notice"></ul>
 				</div>
 			</div>
-			
+
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -131,7 +130,8 @@ form.panel {
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
+								<li class="small"><a
+									href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -166,16 +166,17 @@ form.panel {
 										<ul class="alt">
 											<li>主題</li>
 											<li><input type="text" name="title" placeholder="請輸入主題"
-												required="required"></li>
+												required="required" id="title"></li>
 
 											<li style="font-weight: bold;">文章</li>
 											<li width='700'><textarea rows='20' cols='70'
-													name='blabla' placeholder="請輸入文章" required="required"></textarea></li>
+													name='blabla' placeholder="請輸入文章" required="required"
+													id="blabla"></textarea></li>
 
 											<li>刪除碼</li>
 											<li><input type="password" name="deletePassword"
 												size="16" maxlength="8" placeholder="請輸入刪除碼"
-												required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+												required="required" id="deletePassword"> <small>(留言刪除用，英文數字最多8個)</small>
 											</li>
 
 											<li>圖片</li>
@@ -183,12 +184,25 @@ form.panel {
 												<div class="dropzone" id="wordPicture" required="required">
 													<div class="info"></div>
 												</div> <input id="imgPlace" name="pdImg" class="image-url" /><br>
-												<input type='submit' value='提交'>
+												<input type='submit' value='提交'> <input
+												class="button" type="reset" value="清除重填" /> <input
+												class="button" type="button" value="demo" id="demo" />
 											</li>
 										</ul>
 										<hr>
 									</form>
 								</li>
+
+								<script type="text/javascript">
+									$('#demo').click(function() {
+										$('#title').val('好酒配好料');
+										$('#blabla').val('1 將蒜頭去膜切末；辣椒切末；蛤蜊以1000cc的水加入30g的鹽，吐沙1-2小時；九層塔切碎備用。2鍋內放800cc水煮沸後，加1/2茶匙鹽及油，將麵條以傘狀下鍋後用筷子略拌，避免沾黏。中火沸騰後續煮約11分鐘，撈起放入冷水中至涼，瀝乾水分，加1小匙橄欖油拌勻備用。3中火沸騰後續煮約11分鐘，撈起放入冷水中至涼，瀝乾水分，加1小匙橄欖油拌勻備用。4鍋內放入奶油，再倒入蒜末、辣椒末用中小火爆香1分鐘，再將蛤蜊、40cc的白酒及120cc的水倒入鍋內，煮約1-2分鐘至蛤蜊全開後撈起備用。5將作法2的義大利麵放入鍋中拌炒，加入少許鹽、黑胡椒、紅辣椒末以及20cc的白酒拌炒至略收汁。6起鍋前加入九層塔末略拌，盛盤擺上蛤蜊即可。');
+										$('#deletePassword').val('11111111');
+									});
+								</script>
+
+
+
 								<li>
 									<div style="color: white">
 										<c:forEach var="messageBoard" items="${newest}">
@@ -230,7 +244,8 @@ form.panel {
 														<td><input type="text" name="id" size="8"
 															placeholder="留言ID" required="required"></td>
 														<td><input type="password" name="deletePassword"
-															size="8" maxlength="8" placeholder="刪除密碼" required="required"></td>
+															size="8" maxlength="8" placeholder="刪除密碼"
+															required="required"></td>
 														<td><input type="submit" value="刪除留言"></td>
 													</tr>
 												</tbody>
@@ -498,15 +513,15 @@ form.panel {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
-		
-<!-- 小鈴鐺 -->
+
+	<!-- 小鈴鐺 -->
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-		
+
 </body>
 
 </html>
