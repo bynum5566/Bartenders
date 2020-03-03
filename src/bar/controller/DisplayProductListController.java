@@ -143,6 +143,10 @@ public class DisplayProductListController {
 		m.addAttribute("listOfEventOfOneBar", listOfEventOfOneBar);	/*這個酒吧的所有事件*/
 		
 		CartService.Pf("DisplayProductList，結束");
+		
+		//for Websocket
+		WebSocketTest.setModel(m);
+		
 		return "DisplayProductList";
 		
 //		return "displayProductListMk2";

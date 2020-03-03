@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
@@ -18,7 +20,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>${CompanyName}／Bartenders</title>
+<title>討論列表</title>
 <%--豪--%>
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <meta name="viewport"
@@ -32,7 +34,204 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <style>
+div.panel, img.flip {
+	margin: 0px;
+	padding: 5px;
+	background: rgba(0, 0, 0, 0.6);
+	border: solid 1px #c3c3c3;
+}
 
+div.panel {
+	/* 			height: 300px; */
+	height: auto;
+	width: 300px;
+	display: none;
+}
+
+.sigmaTd1 img {
+	width: 100px;
+}
+
+.small {
+	display: flex;
+	align-self: center;
+}
+
+.small a {
+	font-size: 16px;
+	font-weight: 400;
+	color: #888;
+	font-family: 111.otf;
+}
+
+.small a+a {
+	margin-left: 15px;
+}
+
+#barName {
+	font-size: 50px;
+	font-weight: 600;
+}
+
+#favbT, img.myMenu {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+
+#myBtn:hover {
+	color: #ECECED;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	color: #9F9BA0;
+}
+
+.modal-content {
+	position: relative;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 40%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s;
+}
+
+#modal-content1 {
+	width: 80%;
+	height: 80%;
+}
+
+@
+-webkit-keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+.close, #close1 {
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus, #close1:hover, #close1:focus {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-header {
+	padding: 2px 16px;
+	background-color: #443E44;
+}
+
+.modal-body {
+	background-color: #A19CA8;
+	padding: 2px 16px;
+	/* 		color: #0F0E0F; */
+	color: #FFFFFF;
+}
+
+#myBtn1 {
+	width: 100px;
+	height: 100px;
+}
+
+#map {
+	height: 90%;
+}
+
+.accordion {
+	background-color: #443E44;
+	/*  	color: #9F9BA0; */
+	color: #FFFFFF;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 22px;
+	font-weight: 600;
+	transition: 0.4s;
+	border: 1px solid #554F55;
+}
+
+.active, .accordion:hover {
+	background-color: #554F55;
+	/* 		color: #ECECED; */
+	color: #FFFFFF;
+}
+
+.accordion:after {
+	content: '\002B';
+	/*  	color: #ECECED; */
+	color: #FFFFFF;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+.active:after {
+	content: "\2212";
+}
+
+.thePanels {
+	padding: 0 18px;
+	background-color: #76727B;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	/* 		color: #ECECED; */
+	color: #FFFFFF;
+}
+
+.social {
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+.B1 {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: left;
+}
 
 .swiper-container {
 	width: 640px;
@@ -84,6 +283,17 @@ div.swiper-slide img {
 	float: right;
 	display: none;
 }
+
+<!--
+-->
+.PoetryContent {
+	width: 1.5em;
+	float: right;
+	line-height: 2em;
+	padding-top: 30px;
+	font-size: 15px;
+	text-align: center;
+}
 </style>
 </head>
 
@@ -128,165 +338,160 @@ div.swiper-slide img {
 			</nav>
 		</header>
 
-		<body>
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class=mydiv>
+							<section>
+								<ul class="actions">
 
-			<div>
-				<div style="color: WhiteSmoke;">
-					[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
+									<li><img id="myBtn1" src="/Bartenders/images/map.png"></li>
+									<li>&emsp;&emsp;</li>
+									<li><img id="myBtn" class="myMenu"
+										src="/Bartenders/images/menu_icon.png"></li>
+									<li>&emsp;&emsp;</li>
+								</ul>
+								<ul class="alt">
+									<li><h4>
+											[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
+											</h4></li>
+
+									<li>
+										<h4>最熱文章</h4>
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<img src="${famousMessageRank1PitcureUrl}" />
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank1title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
+												</div>
+												<div class="swiper-slide">
+													<img src="${famousMessageRank2PitcureUrl}" />
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank2title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
+												</div>
+												<div class="swiper-slide">
+													<img src="${famousMessageRank3PitcureUrl}" />
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank3title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
+												</div>
+
+											</div>
+											<div class="swiper-pagination"></div>
+											<div class="swiper-button-next"></div>
+											<div class="swiper-button-prev"></div>
+										</div>
+									</li>
+
+									<div id="contents" style="color: WhiteSmoke; margin: 20px;">
+										<h3 align="center">列表模式</h3>
+										<form action="xxx" method="post">
+											<table width="1000" height="80">
+												<tbody>
+													<tr style="align: center;">
+														<td>&nbsp;<b>帳號</b>&nbsp;
+														</td>
+														<td>&nbsp;<b>標題</b>&nbsp;
+														</td>
+														<td>&nbsp;<b>發文者</b>&nbsp;
+														</td>
+														<td>&nbsp;<b>回應數</b>&nbsp;
+														</td>
+														<td>&nbsp;<b>日期</b>&nbsp;
+														</td>
+													</tr>
+													<c:forEach var="messageBoard" items="${newest}">
+														<tr style="align: center;">
+															<td>&nbsp;${messageBoard.account}&nbsp;</td>
+															<td style="color: bisque;"><h4><a
+																href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></h4></td>
+															<td>&nbsp;${messageBoard.userName}&nbsp;</td>
+															<td>&nbsp;${messageBoard.subMessageAmount}&nbsp;</td>
+															<td>&nbsp;${messageBoard.time}&nbsp;</td>
+														</tr>
+													</c:forEach>
+
+
+												</tbody>
+											</table>
+
+
+
+										</form>
+
+
+									</div>
+
+
+
+
+
+
+								</ul>
+								<ul>
+									<li>
+										<div id="myModal" class="modal">
+											<div class="modal-content">
+												<div class="modal-header">
+													<span class="close">&times;</span>
+													<h2>Menu</h2>
+												</div>
+												<div class="modal-body">
+													<p>${myBarX.barMenu}</p>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+
+								<div id="myModal1" class="modal">
+									<div id="modal-content1" class="modal-content">
+										<div class="modal-header">
+											<span id="close1">&times;</span>
+
+
+
+										</div>
+
+
+									</div>
+								</div>
+							</section>
+						</div>
+					</section>
 				</div>
-			</div>
+			</section>
+		</article>
+	</div>
+
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+	<script src="/Bartenders/JS/forBarPage.js"></script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSxkb9GTtPwminPpk88vuulGQFJVMvQA&callback=initMap"></script>
+	<script src="/Bartenders/assets/js/jquery.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/Bartenders/assets/js/browser.min.js"></script>
+	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
+	<script src="/Bartenders/assets/js/util.js"></script>
+	<script src="/Bartenders/assets/js/main.js"></script>
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
+		async defer></script>
 
 
-			<!-- 李昀陽/////////facebook登入 -->
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 
+</body>
 
-			<div id="fb-root"></div>
-			<script async defer crossorigin="anonymous"
-				src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0&appId=198371544718507&autoLogAppEvents=1"></script>
-
-
-			<div class="fb-login-button" data-width="" data-size="large"
-				data-button-type="continue_with" data-auto-logout-link="false"
-				data-use-continue-as="false"></div>
-
-
-
-
-			<script>
-				function checkLoginState() {
-					FB.getLoginStatus(function(response) {
-						statusChangeCallback(response);
-					});
-				}
-
-				FB.getLoginStatus(function(response) {
-					statusChangeCallback(response);
-				});
-
-				window.fbAsyncInit = function() {
-					FB.init({
-						appId : '{your-app-id}',
-						cookie : true,
-						xfbml : true,
-						version : '{api-version}'
-					});
-
-					FB.AppEvents.logPageView();
-
-				};
-
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) {
-						return;
-					}
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "https://connect.facebook.net/en_US/sdk.js";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script>
-
-
-			<!-- 李昀陽/////////facebook登入 -->
-
-
-
-<li>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img src="${famousMessageRank1PitcureUrl}" />
-					</div>
-
-
-					<div class="swiper-slide">
-						<img src="${famousMessageRank2PitcureUrl}" />
-					</div>
-
-					<div class="swiper-slide">
-						<img src="${famousMessageRank3PitcureUrl}" />
-					</div>
-
-					<div class="swiper-slide">
-						<img src="${famousMessageRank3PitcureUrl}" />
-					</div>
-
-					<div class="swiper-slide">
-						<img src="${famousMessageRank3PitcureUrl}" />
-					</div>
-
-				</div>
-				<div class="swiper-pagination"></div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-</li>
-
-
-
-			<div id="contents" style="color: WhiteSmoke; margin: 20px;">
-				<h3 align="center">列表模式</h3>
-				<form action="xxx" method="post">
-					<table width="1000" height="80">
-						<tbody>
-							<tr style="align: center;">
-								<td>&nbsp;<b>帳號</b>&nbsp;
-								</td>
-								<td>&nbsp;<b>標題</b>&nbsp;
-								</td>
-								<td>&nbsp;<b>發文者</b>&nbsp;
-								</td>
-								<td>&nbsp;<b>回應數</b>&nbsp;
-								</td>
-								<td>&nbsp;<b>日期</b>&nbsp;
-								</td>
-							</tr>
-							<c:forEach var="messageBoard" items="${newest}">
-								<tr style="align: center;">
-									<td>&nbsp;${messageBoard.account}&nbsp;</td>
-									<td style="color: bisque;"><a
-										href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></td>
-									<td>&nbsp;${messageBoard.userName}&nbsp;</td>
-									<td>&nbsp;${messageBoard.subMessageAmount}&nbsp;</td>
-									<td>&nbsp;${messageBoard.time}&nbsp;</td>
-								</tr>
-							</c:forEach>
-
-
-						</tbody>
-					</table>
-
-
-
-				</form>
-
-
-			</div>
-
-
-			<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-			<script src="/Bartenders/JS/forBarPage.js"></script>
-			<script async defer
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSxkb9GTtPwminPpk88vuulGQFJVMvQA&callback=initMap"></script>
-			<script src="/Bartenders/assets/js/jquery.min.js"></script>
-			<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
-			<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
-			<script src="/Bartenders/assets/js/browser.min.js"></script>
-			<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
-			<script src="/Bartenders/assets/js/util.js"></script>
-			<script src="/Bartenders/assets/js/main.js"></script>
-			<script src="/Bartenders/assets/js/logout.js"></script>
-			<script src="https://apis.google.com/js/platform.js?onload=onLoad"
-				async defer></script>
-
-
-			<!-- 小鈴鐺 -->
-			<script type="text/javascript">
-				$(".bell").click(function() {
-					$(".notice").slideToggle("slow");
-				})
-			</script>
-			<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-		</body>
 </html>
