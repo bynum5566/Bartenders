@@ -38,9 +38,8 @@
 		padding:10px;
 		margin: 0px auto;/*div對齊效果*/
 		margin-left:-450px;
-  		border:3px green solid;
-		text-align: center;
-		
+  		border:1px green solid;
+  		
 		}
 		#participate{
 		position:absolute;
@@ -137,9 +136,7 @@
 								
 								
 								<div class="container">
-								<c:forEach var="Activity" items="${activity}" varStatus="status">
-								
-									<div style="width:380px;background-color:lightgreen;display:inline-block;vertical-align:top;">
+									<c:forEach var="Activity" items="${activity}" varStatus="status" >
 										<div class="each" id="${Activity.activityId}" >
 											<fieldset style="width: 350px;border-radius:30px;text-align: center;">
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
@@ -158,25 +155,7 @@
 															style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												
-												<!-- 
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
-												-->
-												<input type="hidden" name="preUrl" value="${preUrl}">
-												
-											</fieldset>
-											
-										</div>
-										
-									</div>
-									
-									
-									<div style="width:480px;background-color:lightblue;display:inline-block;">
-										<div style="width:450px;height:150px;border:1px red solid;">
-											<div style="width:130px;height:150px;border:1px red solid;display:inline;">xxx</div>
-											<div style="width:280px;height:150px;border:1px red solid;display:inline;">xxx</div>
-										</div>
-										<div align=center style="margin: 10px">
+												<div align=center style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
@@ -248,14 +227,19 @@
 														</div>
 													</div>
 												</div>
-										<div style="width:450px;border:1px red solid;">
-											<p class="brief" align=center style="width: 450px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												
+												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												<input type="hidden" name="preUrl" value="${preUrl}">
+												
+											</fieldset>
+											
 										</div>
-										<div style="width:450px;border:1px red solid;">
-											<p class="detail" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.detail}</p>
+										<div style="border:2px red solid;display:inline;">
+											<div style="border:1px green solid;display:inline;">
+												${Activity.detail}
+											</div>
+											
 										</div>
-									</div>
-									
 										<script>
 											console.log('IndexNum is:',"${status.index}");
 											//計算地圖個數
@@ -293,6 +277,7 @@
 											var people = document.getElementById('people${status.index}');
 											</script>
 									</c:forEach>
+											
 								</div>
 								<div id="participate">
 									<h1>活動參加者</h1>

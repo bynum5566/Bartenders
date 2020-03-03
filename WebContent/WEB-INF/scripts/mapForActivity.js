@@ -154,12 +154,13 @@
 							'<div class="infoTitle">'+
 								'<h1 class="infoH1">'+name+'</h1>'+
 							'</div>'+
+							
 							'<img class="infoImg" alt="未設定照片" src="images/'+img+'">'+
 							'<div class="detailDiv">'+
 								'<p class="infoDetail">2020/02/21</p>'+
 								'<p class="infoDetail">16:00 ~ 20:00</p>'+
-								'<p class="infoDetail">'+address+'</p>'+
-								'<a href="/Bartenders/queryActivityByActivityId.do?activityId='+id+'"/>活動詳情</a>'+
+								'<p class="infoAddress">'+address+'</p>'+
+								'<a class="infoA" href="/Bartenders/queryActivityByActivityId.do?activityId='+id+'"/>活動詳情</a>'+
 							'</div>'+
 							'<div class="infoBrief" >'+brief+'</div>'+
 						'</div>';

@@ -42,6 +42,9 @@
 			width:100%;
 		}
 		
+		#name{
+			width:400px;
+		}
 		
 		#beginTime{
 		width:210px;
@@ -183,14 +186,14 @@ console.log('currentId is: ',currentId);
 												<input id="beginTime" type="text" name="beginTime" placeholder="營業時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="打烊時間">
 												<p></p>
 												<input id="address" type="text" name="address" value="${bar.address}">
-												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
+												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;"></p>
 												<div class="showEachMap">
 													<div id="hidden" class="hideMap" >
 														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button>
 														<div id="map"></div>
 													</div>
 												</div>
-												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
+												<p>酒吧照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
 												<textarea id="brief" name="brief" rows="3" >${myBar.aboutBar}</textarea>
 												<br>
 												<div style="display:block">

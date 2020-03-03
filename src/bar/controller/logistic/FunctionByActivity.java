@@ -95,7 +95,7 @@ public class FunctionByActivity {
 		
 		//類型類
 		boolean checking = false;
-		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")||obj.contains("carnival")||obj.contains("festival")) {
 			checking=true;
 			System.out.println("start to check type");
 		}
@@ -115,7 +115,7 @@ public class FunctionByActivity {
 		System.out.println("there are: "+finalList.size()+" activities are included after type check");
 
 		//狀態類
-		if(obj.get(4).toString().equals("ready")) {
+		if(obj.get(6).toString().equals("ready")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()<a.getTargetNum()) {
@@ -125,7 +125,7 @@ public class FunctionByActivity {
 			finalList.removeAll(listToRemove);
 			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
 		}
-		if(obj.get(5).toString().equals("available")) {
+		if(obj.get(7).toString().equals("available")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()>=a.getLimitNum()) {
@@ -137,13 +137,13 @@ public class FunctionByActivity {
 		}
 		
 		//日期類
-		if(!obj.get(6).toString().equals("null")) {
+		if(!obj.get(8).toString().equals("null")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			Date immediatlyD = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			Date beginD = sdf.parse(obj.get(6).toString());
-			Date endD = sdf.parse(obj.get(7).toString());
+			Date beginD = sdf.parse(obj.get(8).toString());
+			Date endD = sdf.parse(obj.get(9).toString());
 			//進行轉換
 			for(Activity a:finalList) {
 				Date aBeginD = sdf2.parse(a.getBeginTime());

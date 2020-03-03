@@ -15,12 +15,25 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style>
-		#orderDiv{
-			position:absolute;
-			left:3%;
-			margin:0px auto;
+	#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-100px;
+			/*border:2px yellow solid;*/
 		}
 
+	#orderDiv{
+		position:relative;
+		/*border:1px red solid;*/
+		width:1500px;
+		left:50%;
+		margin-left:-750px;
+		}
+	td{
+		padding:5px;
+		vertical-align:middle;
+	}
 </style>
 </head>
 
@@ -31,7 +44,7 @@
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
+							<div id="background" class="col-12 col-12-medium"><!-- 這裡開始 -->
 								<h1 align="center" style="font-size:36px;">這張訂單已交由配送員編號: ${realSender.senderId} 配送中</h1>
 								
 								<div id="orderDiv" >
@@ -39,18 +52,18 @@
 										<table align=center>
 											<thead>
 												<tr align=center>
-													<td style="width:80px;padding:10px">序號</td>
-													<td style="width:270px;padding:10px">訂單號碼</td>
-													<td style="width:100px;padding:10px">物流號碼</td>
-													<td style="width:80px;padding:10px">類型</td>
-													<td style="width:250px;">送貨地址</td>
-													<td style="width:120px;padding:10px">收件人</td>
-													<td style="width:150px;padding:10px">收件人手機</td>
-													<td style="width:80px;padding:10px">金額</td>
-													<td style="width:100px;padding:10px">進度</td>
-													<td style="width:150px;padding:10px">出貨時間</td>
-													<td style="width:150px;padding:10px">物流取貨</td>
-													<td style="width:150px;padding:10px">送達時間</td>
+													<td style="width:4%;padding:10px">序號</td>
+													<td style="width:10%;padding:10px">訂單號碼</td>
+													<td style="width:7%;padding:10px">物流號碼</td>
+													<td style="width:4.5%;padding:10px">類型</td>
+													<td style="width:15%;">送貨地址</td>
+													<td style="width:8%;padding:10px">收件人</td>
+													<td style="width:8%;padding:10px">收件人手機</td>
+													<td style="width:6%;padding:10px">金額</td>
+													<td style="width:6%;padding:10px">進度</td>
+													<td style="width:8%;padding:10px">出貨時間</td>
+													<td style="width:8%;padding:10px">物流取貨</td>
+													<td style="width:8%;padding:10px">送達時間</td>
 												</tr>
 											</thead>
 											<tbody>

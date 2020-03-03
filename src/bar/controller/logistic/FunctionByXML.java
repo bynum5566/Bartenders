@@ -87,7 +87,7 @@ public class FunctionByXML {
 		
 		//類型類
 		boolean checking = false;
-		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")||obj.contains("carnival")||obj.contains("festival")) {
 			checking=true;
 			System.out.println("start to check type");
 		}
@@ -142,7 +142,7 @@ public class FunctionByXML {
 //		}
 //		System.out.println("type with qualify result: "+checkList);
 		//狀態類
-		if(obj.get(4).toString().equals("ready")) {
+		if(obj.get(6).toString().equals("ready")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()<a.getTargetNum()) {
@@ -152,7 +152,7 @@ public class FunctionByXML {
 			finalList.removeAll(listToRemove);
 			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
 		}
-		if(obj.get(5).toString().equals("available")) {
+		if(obj.get(7).toString().equals("available")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()>=a.getLimitNum()) {
@@ -183,13 +183,13 @@ public class FunctionByXML {
 //		}
 		
 		//日期類
-		if(!obj.get(6).toString().equals("null")) {
+		if(!obj.get(8).toString().equals("null")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			Date immediatlyD = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			Date beginD = sdf.parse(obj.get(6).toString());
-			Date endD = sdf.parse(obj.get(7).toString());
+			Date beginD = sdf.parse(obj.get(8).toString());
+			Date endD = sdf.parse(obj.get(9).toString());
 			//進行轉換
 //			long period = (endD.getTime()-beginD.getTime())/1000/60;
 //			System.out.println("time diff between now & begin: "+period+"min");
@@ -363,7 +363,13 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
-		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
+		List<Logistic> orderList;
+		if(cID==0) {
+			orderList = lSer.queryJoker("ostatus","'1'");
+		}else {
+			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
+		}
+		
 		lSer.checkReserveTime(orderList);
 		m.addAttribute("activity",orderList);
 		return orderList;
@@ -375,5 +381,25 @@ public class FunctionByXML {
 		return lSer.uniqueQuery(Param,oID);
 	}
 	
-
+	@RequestMapping(path = "/logistic/OrderReserveByBar/{oID}/{sID}",method = RequestMethod.GET)
+	public String orderReserve(@PathVariable(value = "oID")String oID,Model m,
+			@PathVariable(value = "sID")Integer sID,
+			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
+		Logistic rs = lSer.uniqueQuery("oID", "'"+oID+"'");
+		Date current = new Date();
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		String reserve = sdFormat.format(current);
+		Calendar beforeTime = Calendar.getInstance();
+		beforeTime.add(Calendar.MINUTE, +1);
+		Date beforeD = beforeTime.getTime();
+		String after5 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(beforeD);
+		System.out.println("current is: "+reserve);
+		System.out.println("after 5 is: "+after5);
+		//只保留到下一頁
+		rs.setsID(sID);
+		rs.setoTimeR(after5);
+		Integer cID = rs.getcID();
+		System.out.println("order reserver success");
+		return "redirect:/logistic/OrderSearchByBar/"+cID;
+	}
 }

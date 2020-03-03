@@ -17,21 +17,33 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<style>
-		#orderDiv{
-			position:absolute;
-			top:30%;
-			left:0px;
-
+	
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-100px;
+			/*border:2px yellow solid;*/
 		}
+		
 		#container{
 		position:relative;
-		top:-30%;
-		padding:10px;
-		margin: 0px auto;/*div對齊效果*/
+		margin: 10px auto;
   		text-align: center;
+  		/*border:1px blue solid;*/
 		}
+		
+		#orderDiv{
+			position:relative;
+			/*border:1px red solid;*/
+			width:1500px;
+			left:50%;
+			margin-left:-750px;
+		}
+		
 		td{
-		border:1px white solid;
+		padding:5px;
+		vertical-align:middle;
 		}
 	</style>
 </head>
@@ -60,19 +72,15 @@
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-12 col-12-medium">
+							<div id="background" class="col-12 col-12-medium">
 								<div id="container">
-									<h1 align=center style="color:white;font-size:48px">訂單管理</h1>
-									<table align=center>
-										<tr>
-											<td style="border:1px transparent solid">
-												<button id="status0" class="ByStatus">管理所有訂單</button>
-												<button id="status1" class="ByStatus">查詢未收貨訂單</button> <!-- status=1 -->
-												<button id="status2" class="ByStatus">查詢配送中訂單</button> <!-- status=2 -->
-												<button id="status3" class="ByStatus">查詢已送達訂單</button> <!-- status=3 -->
-											</td>
-										</tr>
-									</table>
+									<h1 align=center style="color:white;font-size:48px;margin:10px;">個人訂單管理</h1>
+
+												<button id="status0" class="ByStatus" style="width:150px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢所有訂單</button>
+												<button id="status1" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢未收貨訂單</button> <!-- status=1 -->
+												<button id="status2" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢配送中訂單</button> <!-- status=2 -->
+												<button id="status3" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢已送達訂單</button> <!-- status=3 -->
+
 								</div>
 									<!-- 
 									<div align="center">
@@ -86,14 +94,16 @@
 										</form>
 									</div>
 									 -->
-									<div id="orderDiv" align=center style="margin:15px" >
+									<div id="orderDiv" align=center >
 										<fieldset >
 											<legend style="color:white;font-size:24px">查詢結果</legend>
 											<table >
 												<thead>
 													<tr align=center>
 														<td style="width:80px;padding:10px">序號</td>
+														<!-- 
 														<td style="width:270px;padding:10px">訂單號碼</td>
+														 -->
 														<td style="width:100px;padding:10px">物流號碼</td>
 														<td style="width:80px;padding:10px">類型</td>
 														<td style="width:250px;">送貨地址</td>
@@ -111,7 +121,9 @@
 													<c:forEach var="Logistic" items="${logistic}" varStatus="status">
 														<tr align="center">
 															<td>${status.index+1}</td>
+															<!-- 
 															<td>${Logistic.oID}</td>
+															 -->
 															<td>${Logistic.lID}</td>
 															<td class="myType">${Logistic.oType}</td>
 															<td>${Logistic.oAddr}</td>

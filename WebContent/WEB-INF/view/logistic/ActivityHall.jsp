@@ -32,12 +32,17 @@
 			color: darkgrey !important;
 			font-family: 'Noto Sans TC', sans-serif;
 		}
-		.errors{
-			margin: 0px auto;
-			color:red;
+		
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-80px;
+			/*border:2px yellow solid;*/
 		}
+		
 		.container{
-		position:absolute;
+		position:relative;
 		width:1400px;
 		left:50%;
 		padding:10px;
@@ -84,12 +89,12 @@
 		
 		#beginTime{
 			height:25px;
-
+			margin:5px;
 		}
 		
 		#endTime{
 			height:25px;
-
+			margin:5px;
 		}
 		
 		div.col-12.col-12-medium {
@@ -300,8 +305,8 @@
 <!-- 				<div class="inner"> -->
 					<section>
 						<div class="row">
-							<div class="col-12 col-6-medium"><!-- 這裡開始 -->
-								<h1 align=center style="font-size:48px;">活動大廳</h1>
+							<div id="background" class="col-12 col-6-medium"><!-- 這裡開始 -->
+								<h1 align=center style="font-size:48px;margin:5px;">活動大廳</h1>
 								
 								<div class="searchDiv" align=center>
 									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
@@ -323,14 +328,14 @@
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
 						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} </p>
+												<p class="ActivityAddress" align=left style="margin: 10px">${Activity.address} </p>
 												<button id="${Activity.activityId}Bhidden${status.index+1}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">檢視地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index+1}" class="hideMap">
-														<div id="map${status.index+1}" style="width: 350px; height: 350px; background: red"></div>
+														<div id="map${status.index+1}" style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												<div align=left style="margin: 10px">
+												<div align=center style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
@@ -378,7 +383,7 @@
 
 												<p class="brief" align=center style="width: 350px;height:40px;line-height:40px;padding:0px 20px 0px 20px; margin: 5px; text-align: center">${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
-												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
+												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												
 											</fieldset>
 										</div>
@@ -423,8 +428,8 @@
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
 											}
-											//判斷EL是否為null
-											var people = document.getElementById('people${status.index}');
+											
+											
 											
 											</script>
 									</c:forEach>
@@ -435,18 +440,20 @@
 									<div id="collap" class="collapse in" style="text-align: left;">
 										<form class="formBox" >
 											搜尋類型:<br>
-											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label><br>
-											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label><br>
-											<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label><br>
-											<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label><br>
-											<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label><br>
-											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label><br>
-											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" ><br>
-											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"><br>
+											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label>
+											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label>
+											<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label>
+											<input id="carnival" type="checkbox" class="multi" name="type2" value="carnival" ><label for="carnival">嘉年華</label>
+											<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label>
+											<input id="festival" type="checkbox" class="multi" name="type2" value="festival" ><label for="festival">節慶活動</label>
+											<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label>
+											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label>
+											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" >
+											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間">
 											<div align="center">
-											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
-											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
-											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
+											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
+											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
 											</div>
 										</form>
 									</div>
@@ -634,24 +641,6 @@
 	<script type="text/javascript">
 	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
 	//window.open(dlLink);
-
-	
-
-	//小OK顯示
-	var ok = document.getElementById("smallok")
-	var checklat = document.getElementById("lat")
-	$('#map').on("click", function(){
-		checkMap();
-		reloadMarkers(lat.value,lng.value,realType.value);
-		getMarkers(lat.value,lng.value,realType.value);
-		console.log('temp marker:',lat.value,lng.value,realType.value)
-	});
-	function checkMap(){
-		console.log("checkMap");
-		if(checklat.value!=0){
-			ok.style.visibility = 'visible';
-		}
-	}
 	
 	//打開搜尋地圖
 	$('#openSearch').on('click', function(){
@@ -673,8 +662,10 @@
 
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
+			$(this).html('關閉地圖');
 		}else {
-			$('#hidden'+indexNum).css('display','none');	
+			$('#hidden'+indexNum).css('display','none');
+			$(this).html('檢視地圖');
 		}
 	})
 
@@ -712,7 +703,7 @@
 	<script>
 	console.log('jokerList is: ','${jokerList}')
 	if(${empty jokerList}){
-		var defaultList = ["checked","checked","checked","checked","checked","checked","null","null","close"];
+		var defaultList = ["checked","checked","checked","checked","checked","checked","checked","checked","null","null","close"];
 		reloadMarkers("ActivityJoker",defaultList,0);
 		getMarkers("ActivityJoker",defaultList,0);
 		
@@ -721,7 +712,7 @@
 		queryList = getList.slice(1,getList.length-1).split(", ");
 		reloadMarkers("ActivityJoker",queryList,0);
 		getMarkers("ActivityJoker",queryList,0);
-		if(queryList[8].toString()=='open'){
+		if(queryList[10].toString()=='open'){
 			$('.searchDiv').css('display','block');
 		}else{
 			$('.searchDiv').css('display','none');
