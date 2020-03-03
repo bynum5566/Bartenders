@@ -57,6 +57,15 @@ public class MessageBoardDAO {
 		query.setParameter("id", id);
 		return (List<MessageBoard>) query.list();
 	}
+	
+	public MessageBoard selectTheMessageOnlyById(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from MessageBoard where id=:id";
+		Query query = session.createQuery(hqlStr);		
+		query.setParameter("id", id);
+		return (MessageBoard) query.uniqueResult();
+	}
+	
 	/////////////////////////////////////////////////////////
 	public List<SubMessageBoard> selectNewestSubMessage(Integer id) {
 		Session session = sessionFactory.getCurrentSession();

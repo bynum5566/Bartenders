@@ -148,19 +148,29 @@ public class MessageBoardController {
 	@RequestMapping(path = { "messageBoardDelete.controller" }, method = { RequestMethod.POST })
 	public String processActionDelete(@RequestParam(name = "id") int id,
 			@RequestParam(name = "deletePassword") String deletePassword, Model m) {
-		
-		
-		
 
-		boolean status = messageBoardService.delete(id, deletePassword);
+		MessageBoard theMessage = messageBoardService.selectTheMessageOnlyById(id);
+		
+		if(theMessage==null) {
 
-		if (status) {
 			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 			m.addAttribute("newest", newest);
 
 			return "MessageBoard";
 		}
+		
+		Integer amountSubMessage = theMessage.getSubMessageAmount();						
+		if (amountSubMessage==0) {			
+			messageBoardService.delete(id, deletePassword);
+			
+			List<MessageBoard> newest = messageBoardService.selectNewestMessage();
+
+			m.addAttribute("newest", newest);
+
+			return "MessageBoard";
+		}
+
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
 
 		m.addAttribute("newest", newest);

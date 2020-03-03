@@ -284,13 +284,16 @@ div.swiper-slide img {
 	display: none;
 }
 
-
-<!--  -->
-.PoetryContent{
-			width:1.5em; float:right;line-height:2em;padding-top:30px;
-			font-size:15px;
-		}
-
+<!--
+-->
+.PoetryContent {
+	width: 1.5em;
+	float: right;
+	line-height: 2em;
+	padding-top: 30px;
+	font-size: 15px;
+	text-align: center;
+}
 </style>
 </head>
 
@@ -352,28 +355,31 @@ div.swiper-slide img {
 								<ul class="alt">
 									<li><h4>
 											[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
-										</h42></li>
+											</h4></li>
 
 									<li>
-									<h4>最熱文章</h4>
+										<h4>最熱文章</h4>
 										<div class="swiper-container">
 											<div class="swiper-wrapper">
 												<div class="swiper-slide">
 													<img src="${famousMessageRank1PitcureUrl}" />
-													<div class="PoetryContent"  style="color: black; padding: 5px">${famousMessageRank1title}</div>
-													<div class="PoetryContent"  style="color: black; ">&emsp;&emsp;</div>
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank1title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
 												</div>
 												<div class="swiper-slide">
 													<img src="${famousMessageRank2PitcureUrl}" />
-													<div class="PoetryContent"  style="color: black; padding: 5px">${famousMessageRank2title}</div>
-													<div class="PoetryContent"  style="color: black; ">&emsp;&emsp;</div>
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank2title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
 												</div>
 												<div class="swiper-slide">
 													<img src="${famousMessageRank3PitcureUrl}" />
-													<div class="PoetryContent"  style="color: black; padding: 5px">${famousMessageRank3title}</div>
-													<div class="PoetryContent"  style="color: black; ">&emsp;&emsp;</div>
+													<div class="PoetryContent"
+														style="color: black; padding: 8px">${famousMessageRank3title}</div>
+													<div class="PoetryContent" style="color: black;">&emsp;&emsp;</div>
 												</div>
-												
+
 											</div>
 											<div class="swiper-pagination"></div>
 											<div class="swiper-button-next"></div>
@@ -401,8 +407,8 @@ div.swiper-slide img {
 													<c:forEach var="messageBoard" items="${newest}">
 														<tr style="align: center;">
 															<td>&nbsp;${messageBoard.account}&nbsp;</td>
-															<td style="color: bisque;"><a
-																href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></td>
+															<td style="color: bisque;"><h4><a
+																href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></h4></td>
 															<td>&nbsp;${messageBoard.userName}&nbsp;</td>
 															<td>&nbsp;${messageBoard.subMessageAmount}&nbsp;</td>
 															<td>&nbsp;${messageBoard.time}&nbsp;</td>

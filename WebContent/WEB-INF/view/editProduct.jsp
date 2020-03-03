@@ -208,19 +208,19 @@
 												<li>
 													<h3>Tag1</h3>
 												</li>
-												<li><input class="bt0" name="pdTg1" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT1}"/>"></li>
+												<li><input class="bt0" name="pdTg1" placeholder="請填寫關鍵字標籤" type="text" maxlength="15" value="<c:out value="${pdT1}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>Tag2</h3>
 												</li>
-												<li><input class="bt0" name="pdTg2" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT2}"/>"></li>
+												<li><input class="bt0" name="pdTg2" placeholder="請填寫關鍵字標籤" type="text" maxlength="15" value="<c:out value="${pdT2}"/>"></li>
 											</ul>
 											<ul>
 												<li>
 													<h3>Tag3</h3>
 												</li>
-												<li><input class="bt0" name="pdTg3" placeholder="請填寫標籤名稱" type="text" max="10" value="<c:out value="${pdT3}"/>"></li>
+												<li><input class="bt0" name="pdTg3" placeholder="請填寫關鍵字標籤" type="text" maxlength="15" value="<c:out value="${pdT3}"/>"></li>
 											</ul>
 											<ul>
 												<li>
