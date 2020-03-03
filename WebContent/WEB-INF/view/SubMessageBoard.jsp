@@ -245,9 +245,9 @@ form.panel {
 													<tbody>
 														<tr>
 															<td><input type="text" name="subId" size="8"
-																placeholder="留言ID"></td>
+																placeholder="留言ID" required="required"></td>
 															<td><input type="password" name="deletePassword"
-																size="8" maxlength="8" placeholder="刪除密碼"></td>
+																size="8" maxlength="8" placeholder="刪除密碼" required="required"></td>
 															<td><input type="submit" value="刪除留言"></td>
 														</tr>
 													</tbody>
