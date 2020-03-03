@@ -10,7 +10,7 @@
 <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 <meta name="google-signin-client_id"
 	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-<title>聊天室 / Bartenders</title>
+<title>${tarName}(聊天室) / Bartenders</title>
 <!-- 小鈴鐺 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -23,94 +23,6 @@
 </noscript>
 
 <style type="text/css">
-/* 		.mydiv { */
-/* 			width: 100%; */
-/* 			height: 500px; */
-/* 			margin: 0px auto; */
-/* 			top: 80px; */
-/* 			position: relative; */
-/* 			text-align: center; */
-/* 			background-position: center; */
-/* 			align-content: center; */
-/* 		} */
-
-/* 		html, */
-/* 		body { */
-/* 			margin: 0; */
-/* 			padding: 0; */
-/* 			background: url("/Bartenders/images/chatRoom.png") no-repeat center center fixed; */
-/* 			-webkit-background-size: cover; */
-/* 			-moz-background-size: cover; */
-/* 			-o-background-size: cover; */
-/* 			background-size: cover; */
-/* 		} */
-
-/* 		h2 { */
-/* 			align-content: center; */
-/* 			color: #ACD6FF; */
-/* 		} */
-
-/* 		.onlineBox { */
-/* 			background-color: rgb(255, 255, 255, 0.4); */
-/* 			height: 75%; */
-/* 			width: 35%; */
-/* 			float: left; */
-/* 			text-align: center; */
-/* 			margin-left: 15%; */
-/* 			height: 75%; */
-/* 		} */
-
-/* 		#onlineUser { */
-/* 			margin: auto; */
-/* 			width: 90%; */
-/* 			height: 93%; */
-/* 			border: 1.5px groove; */
-/* 			align-content: center; */
-/* 		} */
-
-/* 		.sendBox { */
-/* 			position: relative; */
-/* 			background-color: rgb(255, 255, 255, 0.4); */
-/* 			height: 75%; */
-/* 			width: 35%; */
-/* 			float: left; */
-/* 			text-align: center; */
-/* 			margin-right: 15%; */
-/* 		} */
-
-/* 		.countBox { */
-/* 			clear: both; */
-/* 			text-align: center; */
-/* 			color: #73BF00; */
-/* 		} */
-
-/* 		.chatBox { */
-/* 			height: 80%; */
-/* 		} */
-
-/* 		#message { */
-/* 			margin: auto; */
-/* 			width: 90%; */
-/* 			height: 93%; */
-/* 			border: 1.5px groove; */
-/* 			align-content: center; */
-/* 			overflow-x: hidden; */
-/* 			overflow-y: auto; */
-/* 			word-wrap: break-word; */
-/* 			word-break: break-all; */
-/* 			display: block; */
-/* 			clear: both; */
-/* 		} */
-
-/* 		#text { */
-/* 			width: 100%; */
-/* 			height: 25%; */
-/* 		} */
-
-/* 		.action { */
-/* 			margin-left: 10%; */
-/* 			/* margin-left: 25px; */
-/* 		} */
 .small {
 	display: flex;
 	align-self: center;
@@ -170,26 +82,26 @@
 					<ul id="notice"></ul>
 				</div>
 			</div>
-			<nav id="nav">
-				<ul>
-					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
-							<ul>
-								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
-								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
-								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
-								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
-								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
-								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
-								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
-									href="javascript:signOut()">登出</a></li>
-							</ul>
-						</div></li>
-				</ul>
-			</nav>
+<!-- 			<nav id="nav"> -->
+<!-- 				<ul> -->
+<!-- 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a> -->
+<!-- 						<div id="menu"> -->
+<!-- 							<ul> -->
+<!-- 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li> -->
+<!-- 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li> -->
+<!-- 								<li><a -->
+<!-- 									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li> -->
+<!-- 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li> -->
+<!-- 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li> -->
+<!-- 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li> -->
+<!-- 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li> -->
+<!-- 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li> -->
+<!-- 								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a -->
+<!-- 									href="javascript:signOut()">登出</a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div></li> -->
+<!-- 				</ul> -->
+<!-- 			</nav> -->
 		</header>
 
 		<article id="main">
@@ -200,11 +112,11 @@
 
 							<!-- 		<div class="mydiv"> -->
 							<h2>
-								哈囉，${userName}<br /> 歡迎來到聊天室
+								哈囉，${sourName}<br /> 歡迎來到聊天室
 							</h2>
 							<br />
 
-							<div class="onlineBox">
+							<div class="onlineBox" >
 								<h4>在線者</h4>
 								<ul id="onlineUser"></ul>
 								<div class="countBox">
@@ -220,14 +132,14 @@
 
 							<div class="sendBox">
 								<h4>發送對象</h4>
-								<input id="targetName" type="text" width="50px"
+								<input id="targetName" type="text" width="50px" value="${tarName}"
 									 /> <br /> <br />
 
 								<div class="chatBox">
 									<div id="message" style="overflow: auto; height: 300px;"></div>
 								</div>
 								<h4>訊息內容</h4>
-								<textarea rows="8" cols="10" id="text"></textarea>
+								<textarea rows="8" cols="10" id="text" value="${tarName}:${content}"></textarea>
 								<div class="row">
 									<div class="col-6 col-12-medium">
 										<ul class="actions">
@@ -254,6 +166,7 @@
 		</script>
 		
 		<script type="text/javascript">
+		
 			function chatWith(x){
 				var id="on"+x;
 				var tarName=document.getElementById(id).innerHTML;

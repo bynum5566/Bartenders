@@ -25,7 +25,7 @@ import bar.model.MessageDto;
 
 /** * @ServerEndpoint */
 @ServerEndpoint("/websocketTest")
-@SessionAttributes(value = { "userName", "CName" })
+@SessionAttributes(value = { "userName", "CName" ,"tarCA"})
 public class WebSocketTest {
 	// private static int onlineCount = 0;
 
@@ -187,7 +187,7 @@ public class WebSocketTest {
 						
 							MessageDto md = new MessageDto();
 							md.setMessageType("noticify");
-							md.setData(sourcename + "傳送訊息給您:" + message.substring(messageStr.indexOf("@") + 1));
+							md.setData(targetname +"*"+ sourcename +"*" + "傳送訊息給您:" + message.substring(messageStr.indexOf("@") + 1));
 							entry.getValue().sendMessage(gson.toJson(md));
 
 							System.out.println("4.送出提醒訊息");
@@ -202,13 +202,14 @@ public class WebSocketTest {
 			
 			System.out.println("push start.");
 			
-			String companyName = messageStr.substring(0, messageStr.indexOf("%"));
+			String companyAccount = messageStr.substring(0, messageStr.indexOf("%"));
+			String companyName = messageStr.substring(messageStr.indexOf("%")+1,messageStr.indexOf("*"));
+			String title = messageStr.substring(messageStr.indexOf("*")+1);
 			MessageDto md = new MessageDto();
-			md.setMessageType("push");
-			md.setData(companyName + ":" + message.substring(messageStr.indexOf("%") + 1));
+			md.setMessageType("pushNews");
+			md.setData(companyName + ":" + title + "*"+ companyAccount);
 			sendAll(gson.toJson(md));
 
-			
 		} else {
 			chatList.remove(message);
 		}

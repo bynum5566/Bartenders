@@ -29,22 +29,24 @@ websocket.onmessage = function(event) {
 	}
 
 	if (messageJson.messageType === "onlineUser") {
-		// alert(messageJson.data);
 		i++;
-		document.getElementById('onlineUser').innerHTML += '<li><a onclick="chatWith()" id="on'+i+'" href="#">'
+		document.getElementById('onlineUser').innerHTML += '<li><a onclick="chatWith('+i+')" id="on'+i+'" href="#">'
 				+ messageJson.data + '</a></li>';
 	}
 
 	if (messageJson.messageType === "noticify") {
 //		alert(messageJson.data);
-		document.getElementById('notice').innerHTML += '<li>'
-				+ messageJson.data + '</li>';
+		var messArray = messageJson.data.split("*");
+		document.getElementById('notice').innerHTML += 
+			'<li><a href="/Bartenders/121room.chat?tarName='+messArray[1]+'&sourName='+messArray[0]+
+			'" target="_blank" >'+ messArray[1]+messArray[2] + '</a></li>';
 	}
 
-	if (messageJson.messageType === "push") {
+	if (messageJson.messageType === "pushNews") {
 //		alert(messageJson.data);
-		document.getElementById('notice').innerHTML += '<li>'
-				+ messageJson.data + '</li>';
+		var messArray = messageJson.data.split("*");
+		document.getElementById('notice').innerHTML += '<li><a href="/Bartenders/DisplayProductList.controller?barAccount='+messArray[1]+'">'
+				+ messArray[0] + '</a></li>';
 	}
 	
 }
@@ -55,7 +57,7 @@ function setMessageInnerHTML(innerHTML) {
 
 function send() {
 	var message = document.getElementById('text').value;
-	var username = document.getElementById('username').value;
+	var username = document.getElementById('targetName').value;
 	websocket.send(username + "@" + message);
 	document.getElementById('text').value = "";
 	document.getElementById('message').innerHTML += "me:" + message + '<br/>';
