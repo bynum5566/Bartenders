@@ -144,23 +144,19 @@
 										</table>
 									</div>
 								</div>
-								</form>
-								
+								</form>																
 								<!------------- 新增超商按鈕  ------------------->
-								<form action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
+								<form style="display:none" id="selectMarket" action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
 									<input id="marketUrl" type="hidden" name="rtURL" value="http://localhost:8080/Bartenders/DisplayCart.controller?orderId=${orderId}&status=${order.status}">
 									<input type="submit" value="選擇超商">
 								</form>
-								
-								
+								<!------------- 新增超商按鈕 ，結束 ------------------->								
 								<form action="<c:url value="/ChangeStatusOneToTwo.controller"/>" method="get">
 								<div class="row">
 									<div class="col-6 col-12-medium">
 										<h2>配送資訊</h2>
 										<h3>配送方式:</h3>
-
 										<!-- =如果是一般商品，可以選擇配送方式，開始= -->
-
 										<c:if test="${shipping == '1' or shipping == '2'}">
 											<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> -->
 											<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
@@ -168,16 +164,14 @@
 												<input id="setTt1" name="select1" type="radio" value="1" checked onclick="onclickFunction01()">
 												<label for="setTt1">宅配</label>
 												<input id="setTt2" name="select1" type="radio" value="2" onclick="onclickFunction02()">
-												<label for="setTt2">超商</label>
-												
+												<label for="setTt2">超商</label>											
 											</div>
-
 										</c:if>
-
-										<!--0	未選擇
-					1	宅配
-					2	超商
-					3	QR票券 -->
+<!--
+0	未選擇
+1	宅配
+2	超商
+3	QR票券 -->
 										<!-- =如果是一般商品，可以選擇配送方式，結束= -->
 
 										<c:if test="${shipping == '3' }">
@@ -257,9 +251,6 @@
 										<c:if test="${shipping == '3' }">
 											<Input type='hidden' name='select1' value='${shipping}'>
 										</c:if>
-
-
-
 										<Input type='hidden' name='orderId' value='${orderId}'>
 										<Input type='hidden' name='totalPrice' value='${totalPrice}'>
 										<!-- 新增2020131_1634 -->
@@ -279,9 +270,6 @@
 			</section>
 		</article>
 	</div>
-
-
-
 	<!--縮放用JS，開始-->
 	<script type="text/javascript">
 	var url = document.getElementById('marketUrl');
@@ -298,11 +286,13 @@
 		<!--finalTotalPrice		0 	QR		n/a		-->
 		<!--finalTotalPrice		80 	normal	不變		-->
 		<!--finalTotalPrice		60 	超商		減去20	-->
+		<%--點下宅配--%>
 		function onclickFunction01() 
 		{
 			document.getElementById("Freight").innerHTML = "80";
 			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};	
 		}
+		<%--點下超商--%>
 		function onclickFunction02() 
 		{
 			document.getElementById("Freight").innerHTML = "60";
@@ -310,8 +300,16 @@
 		}
 		<%--動態顯示運費，總金額。結束--%>
 	</script>
+	<%--選擇超商按鈕的顯示與隱藏--%>
+	<script>
+		$("#setTt1").click(function() {
+			$('#selectMarket').hide();
+		})	
+		$("#setTt2").click(function() {
+			$('#selectMarket').show();
+		})		
+	</script>
 	<!--縮放用JS，結束-->
-
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
@@ -319,18 +317,14 @@
 	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
-
-<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-	
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>	
 <!-- 小鈴鐺 -->
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	
 	</body>
-
 </html>
