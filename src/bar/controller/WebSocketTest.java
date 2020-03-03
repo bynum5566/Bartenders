@@ -67,7 +67,7 @@ public class WebSocketTest {
 			String count = Integer.toString(webSocketMap.size());
 			md.setData(count);
 			sendAll(gson.toJson(md));
-			System.out.println(count);
+			System.out.println("online count"+count);
 
 			for (Entry<String, WebSocketTest> entry : webSocketMap.entrySet()) {
 				MessageDto md1 = new MessageDto();

@@ -161,7 +161,7 @@
 		<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 		<script type="text/javascript">
 			window.onbeforeunload = function() {
-				websocket.send('${userName}');
+				websocket.send('${sourName}');
 			}
 		</script>
 		

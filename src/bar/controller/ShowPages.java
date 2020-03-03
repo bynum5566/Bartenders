@@ -207,27 +207,40 @@ public String showVerifyMailPage() {
 	}
 
 	@RequestMapping(path = "/ActivityCreate", method = RequestMethod.GET)
-	public String ActivityCreate() {
+	public String ActivityCreate(Model m) {
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivityCreate";
 	}
 
 	@RequestMapping(path = "/ActivityManage", method = RequestMethod.GET)
-	public String ActivityManage() {
+	public String ActivityManage(Model m) {
+		//for websocket
+		WebSocketTest.setModel(m);
 		return "logistic/ActivityManage";
 	}
 
 	@RequestMapping(path = "/ActivityEdit", method = RequestMethod.GET)
-	public String ActivityEdit() {
+	public String ActivityEdit(Model m) {
+		//for websocket
+		WebSocketTest.setModel(m);
 		return "logistic/ActivityEdit";
 	}
 	
 	@RequestMapping(path = "/BarCreate", method = RequestMethod.GET)
-	public String BarCreate() {
+	public String BarCreate(Model m) {
+		//for websocket
+		WebSocketTest.setModel(m);
 		return "logistic/BarCreate";
 	}
 
 	@RequestMapping(path = "/Example", method = RequestMethod.GET)
-	public String Example() {
+	public String Example(Model m) {
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		System.out.println("redirect to Example");
 		return "logistic/Example";
 	}
