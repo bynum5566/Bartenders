@@ -128,26 +128,26 @@
 			justify-content:  center;
 		}
 		
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 		
 	</style>
 </head>
@@ -175,9 +175,6 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								
-								
-								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -199,6 +196,7 @@
 			<section class="wrapper style5">
 				<div class="inner">
 					<section>
+						<img src="/Bartenders/images/contract.png" align="right" id="Input">
 						<div class="outwrap">
 							<div class="inwrap">
 								<h2>編輯酒吧</h2>
@@ -330,11 +328,11 @@
 											</ul>
 											<ul>
 												<li><label>關於</label></li>
-												<li><textarea name="aboutBar" placeholder="關於酒吧">${aboutBar}</textarea></li>
+												<li><textarea id="aboutBar" name="aboutBar" placeholder="關於酒吧">${aboutBar}</textarea></li>
 											</ul>
 											<ul>
 												<li><label>Menu</label></li>
-												<li><textarea name="barMenu" placeholder="請填寫酒吧菜單">${barMenu}</textarea></li>
+												<li><textarea id="barMenu" name="barMenu" placeholder="請填寫酒吧菜單">${barMenu}</textarea></li>
 											</ul>
 											<ul>
 												<li><label>地址</label></li>
@@ -350,16 +348,16 @@
 											</ul>
 											<ul>
 												<li><label>Facebook粉專帳號</label></li>
-												<li><input type="text" name="barFb" placeholder="請填寫Facebook帳號"  value="<c:out value="${barFb}"/>"></li>
+												<li><input type="text" id="barFb" name="barFb" placeholder="請填寫Facebook帳號"  value="<c:out value="${barFb}"/>"></li>
 											</ul>
 											<ul>
 												<li><label>Line帳號</label></li>
-												<li><input type="text" name="barLine" placeholder="請填寫Line帳號"  value="<c:out value="${barLine}"/>">
+												<li><input type="text" id="barLine" name="barLine" placeholder="請填寫Line帳號"  value="<c:out value="${barLine}"/>">
 												</li>
 											</ul>
 											<ul>
 												<li><label>Instgram帳號</label></li>
-												<li><input type="text" name="barIG" placeholder="請填寫Instgram帳號"  value="<c:out value="${barIg}"/>"></li>
+												<li><input type="text" id="barIG" name="barIG" placeholder="請填寫Instgram帳號"  value="<c:out value="${barIg}"/>"></li>
 											</ul>
 										</div>
 										<div class="col-12">
@@ -386,6 +384,14 @@
 
 	<script>
 		$("#hdId").hide();
+		
+		$('#Input').click(function() {
+			$('#aboutBar').val('這裡是一個令人放鬆自在的空間，\n每天都有爵士樂手現場演奏，\n暫時放下平日的煩惱以及城市的喧囂，\n沉浸在爵士樂以及我們精心調製出的美味調酒中吧!');
+			$('#barMenu').val('完美馬丁尼......$300\n瑪格麗塔......$300\n藍色夏威夷......$350\n環遊世界......$350\n亞歷山大......$320\n白色佳人......$320\n藍色珊瑚礁......$350\n墨西哥灣流......$320');
+			$('#barFb').val('little_JazzBar_2009');
+			$('#barLine').val('little_JazzBar_2009');
+			$('#barIG').val('little_JazzBar_2009');
+		})
 	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

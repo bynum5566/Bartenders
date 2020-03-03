@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>活動大廳 / Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

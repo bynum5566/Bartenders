@@ -150,14 +150,10 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#Input')
-				.click(
-						function() {
-							$('#newsTitle').val('新分店台北信義店新開幕!');
-							$('#newsDetail')
-									.val(
-											'慶祝信義分店新開幕，<br>即日起全店品項5折優惠!<br>活動期限至2020/3/30止。<br>(本活動僅限信義分店有效，其他分店無此優惠。)');
-						})
+		$('#Input').click(function() {
+			$('#newsTitle').val('新分店台北信義店新開幕!');
+			$('#newsDetail').val('慶祝信義分店新開幕，\n即日起全店品項5折優惠!\n活動期限至2020/3/30止。\n(本活動僅限信義分店有效，其他分店無此優惠。)');
+		})
 
 		$(function() {
 			if (window.history && window.history.pushState) {
