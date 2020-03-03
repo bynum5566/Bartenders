@@ -196,7 +196,8 @@
 										<c:if test="${shipping == '1' }">
 											<br>
 											<label>收件人&emsp;&emsp;：</label>
-											<input type="text" required="required" name="input1" size="30"
+											<%--required="required--%>
+											<input type="text" name="input1" size="30"
 												value="${defaultName}"/>
 											<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 											<br>
@@ -221,7 +222,8 @@
 										<c:if test="${shippingMethod == '1'}">
 											<div id='normalAddress'>									
 												<label>地址：</label>
-												<input type="text" required="required" name="address1" size="30"
+												<%--required="required"--%>
+												<input type="text" name="address1" size="30"
 													value="${defaultAddress}"/>
 												<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 												<br>
@@ -229,7 +231,8 @@
 											<div id='returnAddress' style="display:none">
 												<label>超商：</label>
 												<!-- 新增超商回傳地址  -->
-												<Input type='text' required="required" name='address2' value='${marketAddr}'>
+												<%--required="required--%>
+												<Input type='text' name='address2' value='${marketAddr}'>
 												<%--style="display:none"--%>
 												<br>
 											</div>	
@@ -239,7 +242,8 @@
 										<c:if test="${shippingMethod == '2'}">
 											<div id='normalAddress' style="display:none">									
 												<label>地址：</label>
-												<input type="text" required="required" name="address1" size="30"
+												<%--required="required--%>
+												<input type="text" name="address1" size="30"
 													value="${defaultAddress}"/>
 												<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 												<br>
@@ -247,7 +251,8 @@
 											<div id='returnAddress'>
 												<label>超商：</label>
 												<!-- 新增超商回傳地址  -->
-												<Input type='text' required="required" name='address2' value='${marketAddr}'>
+												<%--required="required--%>
+												<Input type='text' name='address2' value='${marketAddr}'>
 												<%--style="display:none"--%>
 												<br>
 											</div>								
@@ -255,7 +260,8 @@
 
 										<c:if test="${shipping == '2' }">
 											<label>超商門市：</label>
-											<input type="text" required="required" name="address2" size="30"
+											<%--required="required--%>
+											<input type="text" name="address2" size="30"
 												value="${defaultAddress}"/>
 											<br>
 										</c:if>
@@ -269,7 +275,8 @@
 										<c:if test="${shipping == '1' }">
 											<!-- 全型空白 -->
 											<label>電話：&emsp;&emsp;&emsp;</label>
-											<input type="text" required="required" name="input2" size="30"
+											<%--required="required--%>
+											<input type="text" name="input2" size="30"
 												value="${defaultPhone}"/>
 										</c:if>
 										<c:if test="${shipping == '3' }">
