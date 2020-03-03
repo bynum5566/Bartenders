@@ -55,7 +55,7 @@ public class MyBarController {
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();
 		MyBar Detail = mBS.selectBarDetail(companyId);
 		if (Detail == null) {
-			mBS.insertBar(companyId);
+			mBS.insertBar(companyId, "https://i.imgur.com/C56KNDu.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png");
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -102,7 +102,7 @@ public class MyBarController {
 
 		MyBar Detail = mBS.selectBarDetail(companyId);
 		if (Detail == null) {
-			mBS.insertBar(companyId);
+			mBS.insertBar(companyId, "https://i.imgur.com/C56KNDu.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png", "https://i.imgur.com/fo4k0on.png");
 
 			try {
 				Thread.sleep(3000);
@@ -135,12 +135,23 @@ public class MyBarController {
 			//for websocket
 			WebSocketTest.setModel(m);
 			
-			return "myBar";
+			return "editMyBar";
 		}
 		Company Data = mBS.selectBarData(companyId);
 
-		String about = Detail.getAboutBar().replaceAll("<br>", "");
-		String menu = Detail.getBarMenu().replaceAll("<br>", "");
+		String about;
+		String menu;
+		
+		if(Detail.getAboutBar()!=null) {
+			about = Detail.getAboutBar().replaceAll("<br>", "");
+		}else {
+			about = Detail.getAboutBar();
+		}
+		if(Detail.getBarMenu()!=null) {
+			menu = Detail.getBarMenu().replaceAll("<br>", "");
+		}else {
+			menu = Detail.getBarMenu();
+		}
 		
 		request.setAttribute("barId", companyId);
 

@@ -19,8 +19,14 @@ public class MyBarService {
 		this.cDao=cDao;
 	}
 	
-	public void insertBar(int companyId) {
+	public void insertBar(int companyId, String logoUrl, String coverUrl1, String coverUrl2, String coverUrl3, String coverUrl4, String coverUrl5) {
 		myBar.setCompanyId(companyId);
+		myBar.setLogoUrl(logoUrl);
+		myBar.setCoverUrl1(coverUrl1);
+		myBar.setCoverUrl2(coverUrl2);
+		myBar.setCoverUrl3(coverUrl3);
+		myBar.setCoverUrl4(coverUrl4);
+		myBar.setCoverUrl5(coverUrl5);
 		mbDao.newBar(myBar);
 	}
 	

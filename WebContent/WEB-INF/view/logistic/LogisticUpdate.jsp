@@ -93,7 +93,7 @@
 													window.location.href = '<c:url value="/UserFirstPage"/>';
 												//尚未送達
 												}else if(currentId==ordersID){
-													console.log('id is same');
+													console.log('配送員相符');
 													//重複刷
 													if(LogisticJSON.oTimeB!=null&&LogisticJSON.oComplete==0){
 														document.getElementById('tbody').remove();
@@ -133,9 +133,10 @@
 														document.getElementById('noteText').innerHTML = '若商品已送達，請記得先點選送達按鈕再刷QR碼';
 														changeHTML();
 														readyBtn();
+														console.log('重複刷');
 													
 													//收貨	
-													}else if(orderID!=""&&ary.length==1){
+													}else if(orderID!=""&&LogisticJSON.oTimeB==null){
 														if (confirm("確定進行物流收貨嗎?")) {
 															window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
 					
@@ -146,9 +147,13 @@
 														}
 													}
 												//配送員不符	
-												}else{
-													console.log('id is diff');
+												}else if(ordersID!=null&&currentId!=ordersID){
+													console.log('配送員不符');
+													document.getElementById('temp').innerHTML = '配送員不符合，請勿拿別人訂單 ';
 													window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
+												}else {
+													console.log('此訂單尚未點選預約');
+													document.getElementById('temp').innerHTML = '請先預約取件 '
 												}
 												});
 									};
@@ -215,7 +220,7 @@
 										<tbody id="tbody">
 											<tr align=center style="height:97px">
 												<td>${status.index+1}</td>
-												<td>${update.oID}</td>
+												<td id="temp">${update.oID}</td>
 												<td>${update.lID}</td>
 												<td class="myType">${update.oType}</td>
 												<td>${update.oAddr}</td>

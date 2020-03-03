@@ -30,10 +30,7 @@
 		label{
 		margin:15px;
 		}
-		.wrapper.style5 ::-webkit-input-placeholder {
-		color: #eee !important;
-		font-family: 'Noto Sans TC', sans-serif;
-		}
+
 		
 		#alter{
 			position:absolute;
@@ -42,10 +39,14 @@
 			width:100%;
 		}
 		
+		#name{
+			width:400px;
+		}
+		
 		
 		#beginTime{
-		width:210px;
-		display:inline;
+			width:210px;
+			display:inline;
 		}
 		
 		#endTime{
@@ -182,47 +183,19 @@ console.log('currentId is: ',currentId);
 													<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
 													<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
 												</div>
-														<!-- 
-												<table>
-													<tr>
-														<td>
-															<input class="type" type="radio" id="party" name="type" value="party"><label for="party">派對</label> 
-														</td>
-														<td>
-															<input class="type" type="radio" id="carnival" name="type" value="carnival"> <label for="carnival">嘉年華</label>
-														</td>
-														<td>
-															<input class="type" type="radio" id="show" name="type" value="show"> <label for="show">酒展</label>
-														</td>
-														<td>
-															<input class="type" type="radio" id="festival" name="type" value="festival"> <label for="festival">節慶活動</label>
-														</td>
-													</tr>
-												</table>
-												 -->
-												<!-- 
-												<p class="errors">${errors.type}</p>
-												 -->
-												
 												<input id="beginTime" type="text" name="beginTime" placeholder="開始時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="結束時間">
 												<p></p>
-												<!-- 
-												<p class="errors">${errors.time}</p>
-												 -->
+
 												<input id="address" type="text" name="address" placeholder="活動地址">
-												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
-												<!-- 
-												<p class="errors">${errors.map}</p>
-												 -->
+												<p style="vertical-align:middle;">地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;"></p>
+
 												<div class="showEachMap">
 													<div id="hidden" class="hideMap" >
 														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button>
 														<div id="map"></div>
 													</div>
 												</div>
-												<!-- 
-												<p class="errors">${errors.address}</p>
-												 -->
+
 												<label style="display:inline;">(選填)</label>
 												<input id="limitNum" class="numSetting" type="text" name="limitNum" placeholder="人數上限"> /
 												<input id="actualNum" class="numSetting" type="text" name="actualNum" placeholder="內建人數"> / 
@@ -365,7 +338,7 @@ console.log('currentId is: ',currentId);
 	const fp = flatpickr(myInput, {
 		enableTime : true,
 		dateFormat : "yy/m/d H:i",
-		maxDate : new Date().fp_incr(14), // 14 days from now
+		maxDate : new Date().fp_incr(31), // 14 days from now
 		minDate : "today",
 		time_24hr: true
 	});
@@ -375,7 +348,7 @@ console.log('currentId is: ',currentId);
 	const fp2 = flatpickr(myInput2, {
 		enableTime : true,
 		dateFormat : "yy/m/d H:i",
-		maxDate : new Date().fp_incr(14), // 14 days from now
+		maxDate : new Date().fp_incr(31), // 14 days from now
 		minDate : "today",
 		time_24hr: true
 	});

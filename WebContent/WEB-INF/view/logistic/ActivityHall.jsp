@@ -27,8 +27,10 @@
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<style>
-		input{
-			color:white;
+	
+		.wrapper.style5 ::-webkit-input-placeholder {
+			color: darkgrey !important;
+			font-family: 'Noto Sans TC', sans-serif;
 		}
 		.errors{
 			margin: 0px auto;
@@ -36,10 +38,14 @@
 		}
 		.container{
 		position:absolute;
-		left:0%;
+		width:1400px;
+		left:50%;
 		padding:10px;
 		margin: 0px auto;/*div對齊效果*/
+		margin-left:-700px;
   		text-align: center;
+  		
+  		/*border:1px red solid;*/
 		}
 	    /* 以下是搜尋地圖設定*/
 		.searchDiv {
@@ -62,7 +68,7 @@
 			right:0%;
 			background-color:lightgrey;
 /* 			width:150px; */
-			width:15%;
+			width:11%;
 			height:auto;
 			padding:5px;
 			margin:15px;
@@ -75,16 +81,15 @@
 			display: inline-block;
 			vertical-align:top;
 		}
-		.date{
-		width:120px;
-		}
 		
 		#beginTime{
 			height:25px;
+
 		}
 		
 		#endTime{
 			height:25px;
+
 		}
 		
 		div.col-12.col-12-medium {
@@ -299,8 +304,7 @@
 								<h1 align=center style="font-size:48px;">活動大廳</h1>
 								
 								<div class="searchDiv" align=center>
-									<label>輸入地址定位</label>
-									<input id="address" type="text" style="width:500px">
+									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
 									<button id="addressBtn" type="button" onclick="getInput()">搜尋</button>
 									<button id="autoAddressBtn" type="button" onclick="autoLocating()">自動定位</button>
 									<div id="map0" class="mapDiv"></div>
@@ -319,11 +323,11 @@
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
 						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} <button id="${Activity.activityId}Bhidden${status.index+1}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:40px">確認地圖</button></p>
+												<p align=left style="margin: 10px">${Activity.address} </p>
+												<button id="${Activity.activityId}Bhidden${status.index+1}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">檢視地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index+1}" class="hideMap">
-														<div id="map${status.index+1}"
-															style="width: 350px; height: 350px; background: red"></div>
+														<div id="map${status.index+1}" style="width: 350px; height: 350px; background: red"></div>
 													</div>
 												</div>
 												<div align=left style="margin: 10px">
@@ -371,23 +375,10 @@
 														</div>
 													</div>
 												</div>
-												
-												<!-- 
-												<div class="outer">
-													<div id="groundD${status.index}" class="ground">
-														<p id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
-														<div id="targetFor${status.index}" class="targetD">
-															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>	
-														</div>
-														<div id="currentFor${status.index}" class="currentD NP">
-															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
-														</div>
-													</div>
-												</div>
-												 -->
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+
+												<p class="brief" align=center style="width: 350px;height:40px;line-height:40px;padding:0px 20px 0px 20px; margin: 5px; text-align: center">${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
-												<button id="single${Activity.activityId}" class="singlePage">進入活動頁面</button>
+												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												
 											</fieldset>
 										</div>
@@ -442,7 +433,7 @@
 								<div id="choose" class="chooseType" >
 									<span data-toggle="collapse" data-target="#collap" style="text-align:left; cursor:pointer;">&times;</span>
 									<div id="collap" class="collapse in" style="text-align: left;">
-										<form class="formBox">
+										<form class="formBox" >
 											搜尋類型:<br>
 											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label><br>
 											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label><br>
@@ -452,9 +443,11 @@
 											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label><br>
 											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" ><br>
 											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"><br>
-											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px">清除時間</button><br>
-											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >整合搜尋</button><br>
-											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >檢視地圖</button><br>
+											<div align="center">
+											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
+											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
+											</div>
 										</form>
 									</div>
 									
@@ -473,7 +466,7 @@
 										  if(endTime.value==''){
 											  console.log('end not pick yet')
 											  endTime.style.background = 'pink';
-											  endTime.placeholder = '請一併選擇結束時間';
+											  endTime.placeholder = '尚未選擇結束時間';
 											  console.log('begin value: ',beginTime.value);
 											  console.log('end value: ',endTime.value);
 											  joker.disabled=true;
@@ -490,7 +483,7 @@
 										  if(beginTime.value==''){
 											  console.log('begin not pick yet')
 											  beginTime.style.background = 'pink';
-											  beginTime.placeholder = '請一併選擇開始時間';
+											  beginTime.placeholder = '尚未選擇開始時間';
 											  console.log('begin value: ',beginTime.value);
 											  console.log('end value: ',endTime.value);
 											  joker.disabled=true;

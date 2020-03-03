@@ -60,7 +60,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and  autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is null and deleteTag is null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and  autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is null and deleteTag is null order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -74,7 +74,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime > :nowTime and autoLaunchTime < autoPullTime ) or ( autoLaunchTime > :nowTime and autoPullTime > :nowTime ) or ( autoPullTime < :nowTime and autoPullTime > autoLaunchTime ) or ( autoLaunchTime > :nowTime and autoPullTime is null ) ) and validDate is null and deleteTag is null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime > :nowTime and autoLaunchTime < autoPullTime ) or ( autoLaunchTime > :nowTime and autoPullTime > :nowTime ) or ( autoPullTime < :nowTime and autoPullTime > autoLaunchTime ) or ( autoLaunchTime > :nowTime and autoPullTime is null ) ) and validDate is null and deleteTag is null order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -88,7 +88,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is not null and deleteTag is null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) and validDate is not null and deleteTag is null order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -102,7 +102,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime > :nowTime and autoLaunchTime < autoPullTime ) or ( autoLaunchTime > :nowTime and autoPullTime > :nowTime ) or ( autoPullTime < :nowTime AND autoPullTime > autoLaunchTime ) or ( autoLaunchTime > :nowTime and autoPullTime is null ) ) and validDate is not null and deleteTag is null";
+		String hqlStr = "from ProductData where companyId=:cId and ( ( autoLaunchTime > :nowTime and autoLaunchTime < autoPullTime ) or ( autoLaunchTime > :nowTime and autoPullTime > :nowTime ) or ( autoPullTime < :nowTime AND autoPullTime > autoLaunchTime ) or ( autoLaunchTime > :nowTime and autoPullTime is null ) ) and validDate is not null and deleteTag is null order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("cId", companyId);
 		query.setParameter("nowTime", nowTime);
@@ -116,7 +116,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where (upper(productName) like '%' || upper(:kWord)  || '%' or upper(pdTag1) like '%' || upper(:kWord)  || '%' or upper(pdTag2) like '%' || upper(:kWord)  || '%' or upper(pdTag3) like '%' || upper(:kWord)  || '%') and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) )";
+		String hqlStr = "from ProductData where (upper(productName) like '%' || upper(:kWord)  || '%' or upper(pdTag1) like '%' || upper(:kWord)  || '%' or upper(pdTag2) like '%' || upper(:kWord)  || '%' or upper(pdTag3) like '%' || upper(:kWord)  || '%') and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("kWord",keyword);
 		query.setParameter("nowTime", nowTime);	
