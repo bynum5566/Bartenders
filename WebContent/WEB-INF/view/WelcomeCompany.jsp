@@ -135,7 +135,7 @@
 							<div class="col-12 col-6-medium">
 								<div class="welcome">
 									<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
-									<h2>歡迎回來，${CName}。</h2>
+									<h2>Welcome back! ${CName}</h2>
 								</div>
 							</div>
 						</div>

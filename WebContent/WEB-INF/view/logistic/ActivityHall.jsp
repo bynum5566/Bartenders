@@ -44,7 +44,6 @@
 	    /* 以下是搜尋地圖設定*/
 		.searchDiv {
 			margin: auto;
-/* 			width:800px; */
 			width:70%;
 			height: auto;
 			display:none;
@@ -61,11 +60,11 @@
 			top:10%;
 			right:0%;
 			background-color:lightgrey;
-/* 			width:150px; */
 			width:15%;
 			height:auto;
 			padding:5px;
 			margin:15px;
+			color: #888;
 		}
 		label{
 			display: block;
@@ -101,8 +100,17 @@
 		    height: 40px;
 		    margin: 0px auto;
 		    vertical-align: middle;
-		    color: darkgrey;
+		    color: #888;
 		    font-size: 12px;
+		}
+		
+		input#beginTime, input#endTime {
+		    background-color:#aaa;
+		    color: #888;
+		}
+		
+		.wrapper.style5 input[type="checkbox"] + label {
+			color: #888;
 		}
 		
 		p.brirf{
@@ -244,6 +252,7 @@
 			}
 			.searchDiv{
 				width: 400px;
+				margin-left: 20px;
 			}
 			#map0 {
 				width: 80%;
@@ -266,11 +275,13 @@
 			button#clearTime, button#jokerBtn, button#openSearch {
 			    width: 110px;
 			    height: 35px;
-			    /* padding: 5px; */
 			    margin: 0px auto;
 			    vertical-align: middle;
-			    color: darkgrey;
 			    font-size: 10px;
+			}
+			
+			input#address{
+				width: 400px;
 			}
 		}
 		
@@ -322,7 +333,11 @@
 		
 		@media screen and (max-width: 320px) {
 			input#address{
-				width: 280px;
+				width: 240px;
+			}
+			
+			.searchDiv{
+				width: 260px;
 			}
 			
 			.col-12.col-12-medium {
@@ -347,7 +362,6 @@
 				padding:3px;
 				margin:0px auto;
 				vertical-align:middle;
-				color:darkgrey;
 				line-height:16px" 
 			}
 			
@@ -373,7 +387,7 @@
 			}
 			
 			.fieldset {
-			    width: 310px;
+			    width: 300px;
 			}
 
 			img.img {
