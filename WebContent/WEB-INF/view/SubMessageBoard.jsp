@@ -203,7 +203,7 @@ form.panel {
 												<script async defer crossorigin="anonymous"
 													src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
 												<div class="fb-like"
-													data-href="http://11129henry.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
+													data-href="http://bartenders.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
 													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
 
