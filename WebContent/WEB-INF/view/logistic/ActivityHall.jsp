@@ -92,6 +92,25 @@
 			text-align: center;
 		}
 		
+		input#address{
+			 width:500px;
+		}
+		
+		button#clearTime, button#jokerBtn, button#openSearch {
+		    width: 130px;
+		    height: 40px;
+		    margin: 0px auto;
+		    vertical-align: middle;
+		    color: darkgrey;
+		    font-size: 12px;
+		}
+		
+		p.brirf{
+			width: 340px;
+			margin: 5px;
+			text-align: justify;
+		}
+		
 		/*RWD for Map*/
 		@media screen and (max-width: 1680px) {
 			.col-12.col-12-medium {
@@ -151,6 +170,17 @@
 			#map0 {
 				width: 80%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
 		}
 		
 		@media screen and (max-width: 667px) {
@@ -166,6 +196,17 @@
 			}
 			#map0 {
 				width: 80%;
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
 			}
 		}
 		
@@ -183,6 +224,17 @@
 			#map0 {
 				width: 80%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
 		}
 		
 		@media screen and (max-width: 568px) {
@@ -199,6 +251,27 @@
 			#choose{
 				width:30%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch {
+			    width: 110px;
+			    height: 35px;
+			    /* padding: 5px; */
+			    margin: 0px auto;
+			    vertical-align: middle;
+			    color: darkgrey;
+			    font-size: 10px;
+			}
 		}
 		
 		@media screen and (max-width: 414px) {
@@ -208,10 +281,112 @@
 			}
 		}
 		
-		@media screen and (max-width: 320px) {
+		@media screen and (max-width: 360px) {
+			input#address{
+				width: 300px;
+			}
+			
 			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 1%;
+				width:45%;
+				margin-left: 0.3%;
+			}
+			
+			div.container {
+			    position: absolute;
+			    left: 0%;
+			    padding: 10px;
+			    margin: 0px auto;
+			    text-align: center;
+			    width: 320px;
+			}
+			
+			.fieldset {
+			    width: 310px;
+			}
+
+			img.img{
+				width:300px;
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
+		}
+		
+		@media screen and (max-width: 320px) {
+			input#address{
+				width: 280px;
+			}
+			
+			.col-12.col-12-medium {
+				width:45%;
+				margin-left: 0.3%;
+			}
+			
+			div#choose.chooseType form.formBox{
+				top: 30px;
+				height: 480px;
+				font-size:14px;
+				line-height: 16px;
+			}
+			
+			input.date.flatpickr-input.flatpickr-mobile {
+				width: 80px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch{
+				width: 80px;
+				height:40px;
+				padding:3px;
+				margin:0px auto;
+				vertical-align:middle;
+				color:darkgrey;
+				line-height:16px" 
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 0px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			    width: 300px;
+			}
+			
+			div.container {
+			    position: absolute;
+			    left: 0%;
+			    padding: 10px;
+			    margin: 0px auto;
+			    text-align: center;
+			    width: 320px;
+			}
+			
+			.fieldset {
+			    width: 310px;
+			}
+
+			img.img {
+				width:240px;
+			}
+			
+			div#groundD0 {
+				width:260px;
+			}
+			
+			p.brief {
+				width:270px;
+				margin-left: 10px;
 			}
 		}
 	</style>
@@ -300,7 +475,7 @@
 								
 								<div class="searchDiv" align=center>
 									<label>輸入地址定位</label>
-									<input id="address" type="text" style="width:500px">
+									<input id="address" type="text">
 									<button id="addressBtn" type="button" onclick="getInput()">搜尋</button>
 									<button id="autoAddressBtn" type="button" onclick="autoLocating()">自動定位</button>
 									<div id="map0" class="mapDiv"></div>
@@ -385,7 +560,7 @@
 													</div>
 												</div>
 												 -->
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												<p class="brief" align=center>${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
 												<button id="single${Activity.activityId}" class="singlePage">進入活動頁面</button>
 												
@@ -452,9 +627,9 @@
 											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label><br>
 											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" ><br>
 											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"><br>
-											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px">清除時間</button><br>
-											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >整合搜尋</button><br>
-											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >檢視地圖</button><br>
+											<button id="clearTime" type="button" onclick="clearDate()">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()">整合搜尋</button><br>
+											<button id="openSearch" type="button">檢視地圖</button><br>
 										</form>
 									</div>
 									

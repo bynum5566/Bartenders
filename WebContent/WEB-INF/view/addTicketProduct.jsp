@@ -207,7 +207,7 @@
 												<h3>Tag1</h3>
 											</li>
 											<li>
-												<input id="pdTag1" class="bt0" name="pdTg1" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag1" class="bt0" name="pdTg1" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>
@@ -215,7 +215,7 @@
 												<h3>Tag2</h3>
 											</li>
 											<li>
-												<input id="pdTag2" class="bt0" name="pdTg2" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag2" class="bt0" name="pdTg2" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>
@@ -223,7 +223,7 @@
 												<h3>Tag3</h3>
 											</li>
 											<li>
-												<input id="pdTag3" class="bt0" name="pdTg3" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag3" class="bt0" name="pdTg3" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>
