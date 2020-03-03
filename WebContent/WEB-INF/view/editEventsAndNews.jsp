@@ -134,8 +134,6 @@
 											</li>
 											<li><input class="button primary" type="submit" value="更新"></li>
 											
-											<!-- 推播功能 -->
-											<li><input class="button primary" onclick="push();" value="推廣活動"></li>
 										</ul>
 									</div>
 								</form>
@@ -146,13 +144,6 @@
 			</section>
 		</article>
 	</div>
-
-	<script type="text/javascript">
-		function push(){
-			var title = document.getElementById('neTitle').value;
-			websocket.send('${CName}'+'%'+title);
-		}
-	</script>
 
 	<script>
 		$('#neId').hide();

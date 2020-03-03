@@ -16,30 +16,23 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import bar.model.Cart;
 import bar.model.CartService;
-import bar.model.CompanyService;
 import bar.model.Orders;
 import bar.model.OrdersService;
 import bar.model.ProductData;
-import bar.model.ProductDataService;
-import bar.model.UsersService;
 
 @Controller
 @EnableTransactionManagement
 @SessionAttributes(names = {"userName"})
 public class ChangeStatusOneToTwo
 {
-	private ProductDataService pService;
-	private UsersService uService;
 	private OrdersService oService;
-	private CompanyService cService;
 	private CartService cartService;
 
-	public ChangeStatusOneToTwo(ProductDataService pService, UsersService uService, OrdersService oService,
-			CompanyService cService , CartService cartService) {
-		this.pService = pService;
-		this.uService = uService;
+	public ChangeStatusOneToTwo(
+			OrdersService oService, 
+			CartService cartService
+			) {
 		this.oService = oService;
-		this.cService = cService;
 		this.cartService = cartService;
 	}
 
@@ -73,7 +66,7 @@ public class ChangeStatusOneToTwo
 			createTime.setTime(createTime2.getTime());
 			CartService.Pf2("createTime.getTime()", createTime.getTime());
 			CartService.Pf2("createTime.toString()", createTime.toString());
-			CartService.Pf2("createTime.toGMTString()", createTime.toGMTString());
+			/*CartService.Pf2("createTime.toGMTString()", createTime.toGMTString());*/
 
 			String createTimeString = createTime.toString();
 			int companyId;
@@ -130,7 +123,7 @@ public class ChangeStatusOneToTwo
 			/* ================================================= */ // 新增20200131_1228
 			orderX = oService.selectOrder(orderId);
 			
-			String tempString ="2020-02-27 11:11:11.777";
+			/*String tempString ="2020-02-27 11:11:11.777";*/
 			
 			/*String版本時間，開始*/	
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -142,8 +135,8 @@ public class ChangeStatusOneToTwo
 			
 			orderX.setCreateTime(StringDate);
 			orderX.setShipping(Integer.valueOf(select1));
-			orderX.setRecipient(input1);
-			orderX.setPhone(input2);
+			orderX.setRecipient(recipient);
+			orderX.setPhone(phone);
 			
 			
 			/*根據配送方式寫入地址*/	
@@ -152,8 +145,9 @@ public class ChangeStatusOneToTwo
 			
 			CartService.Pf("判斷前列印");
 			CartService.printValueTypeTime("select1", select1);
-			CartService.printValueTypeTime("shipping", address1);
+			CartService.printValueTypeTime("shipping", shipping);
 			CartService.printValueTypeTime("address1", address1);
+			CartService.printValueTypeTime("address2", address2);
 			int flag = 0;
 			if (select1.equals("1")) { /* select1 == "1" 錯誤 */
 				CartService.Pf("宅配");
@@ -164,9 +158,9 @@ public class ChangeStatusOneToTwo
 			}
 			if (select1.equals("2")) {
 				CartService.Pf("超商");
-				CartService.printValueTypeTime("address1", address1);
+				CartService.printValueTypeTime("address2", address2);
 				orderX.setAddress1("");
-				orderX.setAddress2(address1);
+				orderX.setAddress2(address2);
 				flag = 1;
 			}
 			if (select1.equals("3")) {

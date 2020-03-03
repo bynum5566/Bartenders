@@ -173,7 +173,7 @@ public class AddProductToCartController
 					int amount = 0;
 					Users userX = userService.select(account);
 					String address1 = userX.getAddress();	//可null
-					String address2 = ""; //可null
+					String address2 = "請輸入"; //可null
 					String phone = userX.getPhone();	//可null
 					String shippingNumber = ""; //可null
 
