@@ -219,7 +219,7 @@
 
 
 										<%--<c:if test="${shipping == '1' }">--%>
-										<c:if test="${shippingMethod == '1'}">
+										<c:if test="${shippingMethod == '1' && shipping != '3'}">
 											<div id='normalAddress'>									
 												<label>地址：</label>
 												<%--required="required"--%>
