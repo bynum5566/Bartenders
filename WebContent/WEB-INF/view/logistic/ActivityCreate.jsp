@@ -10,7 +10,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+<<<<<<< HEAD
+	<title>建立活動</title>
+=======
+	<title>建立活動／Bartenders</title>
+>>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -20,6 +24,7 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	
 	<!-- 小鈴鐺 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<style>
@@ -33,12 +38,13 @@
 		margin:15px;
 		}
 
-		
+		/**/
 		#alter{
 			position:absolute;
 			top:10%;
 			left:0%;
 			width:100%;
+			
 		}
 		
 		#name{
@@ -96,7 +102,14 @@
 	        padding-top: 10px;
 	    }
 	    
-	    /* 小鈴鐺 */
+<<<<<<< HEAD
+	    #demoBox{
+	    	position:absolute;
+	    	right:2%;
+	    	bottom:5%;
+	    }
+=======
+	    		/*小鈴鐺*/
 .noticeBox {
 	position: fixed;
 	top: 60px;
@@ -117,7 +130,8 @@
 	float: right;
 	display: none;
 }
-	    
+	
+>>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
 	</style>
 </head>
 <body class="is-preload">
@@ -135,7 +149,7 @@ console.log('currentId is: ',currentId);
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
 		
-<!-- 小鈴鐺 -->
+		<!-- 小鈴鐺 -->
 			<div class="noticeBox">
 				<div class="bell">
 					<img class="bellImg" src="/Bartenders/images/bell.png">
@@ -144,7 +158,6 @@ console.log('currentId is: ',currentId);
 					<ul id="notice"></ul>
 				</div>
 			</div>
-		
 		
 		<nav id="nav">
 			<ul>
@@ -255,19 +268,59 @@ console.log('currentId is: ',currentId);
 										</fieldset>
 									</form>
 								</div>
+								
 							</div>
 						</div>
+						<!-- Demo用 -->
+								<div id="demoBox">
+									<button id="demo1">派對</button><br>
+									<button id="demo2">酒展</button><br>
+									<button id="demo3">嘉年華</button>
+								</div>
 					</section>
+					
 				</div>
 			</section>
 		</article>
 	</div>
 	
 	<script type="text/javascript" >
-	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
-	//window.open(dlLink);
-		//更改placeholder
+		//demo用
+		$('#demo1').on('click',function(){
+			console.log('click1');
+			$('#name').val('周末狂歡派對');
+			//$('#party').prop('checked');
+			document.getElementById('party').checked = true;
+			$('#realType').val('party');
+			$('#beginTime').val('2020/03/05 19:00');
+			$('#endTime').val('2020/03/05 22:00');
+			$('#address').val('台北市大安區仁愛路四段112巷11號');
+			$('#lat').val(25.0365128);
+			$('#lng').val(121.5499646);
+			$('#limitNum').val(10);
+			$('#actualNum').val(2);
+			$('#targetNum').val(6);
+			$('#brief').val('狂歡派對就是要人多');
+			$('#detail').val('我們是一群認識已久的酒友 當初也是因為喝酒認識的 如果你也是個酒品愛好者 卻苦無一起享受的夥伴 歡迎加入我們一起狂歡');
+		})
 		
+		$('#demo2').on('click',function(){
+			console.log('click2');
+			$('#name').val('2020 台北國際酒展');
+			//$('#party').prop('checked');
+			document.getElementById('show').checked = true;
+			$('#realType').val('show');
+			$('#beginTime').val('2020/03/13 10:00');
+			$('#endTime').val('2020/03/16 18:00');
+			$('#address').val('台北南港展覽館1館');
+			$('#lat').val(25.0365128);
+			$('#lng').val(121.5499646);
+			$('#limitNum').val(999);
+			$('#actualNum').val(46);
+			//$('#targetNum').val(0);
+			$('#brief').val('全台最大國際酒展');
+			$('#detail').val('來自世界各國的葡萄酒、清酒及啤酒！結合好酒、好食、好玩、好看，與你一起打開味蕾、刺激鼻間、衝擊視野、感受微醺、探索春Wine美好，體驗酒展風格。');
+		})
 		
 		
 		

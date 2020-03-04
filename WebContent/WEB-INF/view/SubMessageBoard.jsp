@@ -176,6 +176,8 @@ form.panel {
 												<input type='submit' value='提交'> <input
 												class="button" type="reset" value="清除重填" /> <input
 												class="button" type="button" value="demo" id="demo" />
+												<input
+												class="button" type="button" value="demo2" id="demo2" />
 											</li>
 										</ul>
 										<hr>
@@ -184,7 +186,13 @@ form.panel {
 
 								<script type="text/javascript">
 									$('#demo').click(function() {
-										$('#blabla').val('感謝大大分享，我很喜歡');
+										$('#blabla').val('蕃茄醬汁適合巴貝拉（Barbera）、瓦波里切拉（Valpolicella）、索亞維（Soave）、維爾帝奇歐（Verdicchio），與新世界產的白蘇維儂（Sauvignon Blanc）。奶油或乳酪醬汁適合稍微經過橡木桶陳化的夏多內（Chardonnay）、索亞維、維爾帝奇歐、坎佩尼亞白酒、瓦坡里切拉或梅洛（Merlot）。');
+										$('#deletePassword').val('11111111');
+
+									});
+									
+									$('#demo2').click(function() {
+										$('#blabla').val('青醬適合新世界產的白蘇維儂、坎佩尼亞白酒（Campania），以及多切托（Dolcetto）、法國的朗格多克（Languedoc）產紅酒。肉醬類醬汁適合義大利北部或中部產的紅酒、法國或新世界產的希哈（Syrah）、金芬黛（Zinfandel）。');
 										$('#deletePassword').val('11111111');
 
 									});
@@ -243,7 +251,10 @@ form.panel {
 													<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
 												</ul>
 											</div>
+											<hr>
 										</c:forEach>
+										
+										
 									</div>
 								</li>
 

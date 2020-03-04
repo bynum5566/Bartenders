@@ -1,46 +1,67 @@
 package bar.controller.logistic;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.omg.PortableInterceptor.ForwardRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import bar.model.logistic.Logistic;
+import bar.model.logistic.LogisticService;
+import bar.model.logistic.Participant;
+import bar.model.logistic.Bar;
+import bar.model.logistic.BarDAO;
+
+import net.coobird.thumbnailator.Thumbnails;
 import bar.controller.WebSocketTest;
 import bar.model.Company;
 import bar.model.CompanyService;
 import bar.model.Users;
 import bar.model.UsersDAO;
+import bar.model.UsersService;
 import bar.model.logistic.Activity;
 import bar.model.logistic.ActivityDAO;
 import bar.model.logistic.ActivityService;
-import bar.model.logistic.LogisticService;
-import bar.model.logistic.Participant;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
-@SessionAttributes(names= {"activity","participant" , "userName", "CName"})
+@SessionAttributes(names= {"activity","participant","userName" , "CName"})
 public class FunctionByActivity {
 
 	private ActivityDAO aDao;
@@ -75,7 +96,7 @@ public class FunctionByActivity {
 		
 		//類型類
 		boolean checking = false;
-		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")||obj.contains("carnival")||obj.contains("festival")) {
 			checking=true;
 			System.out.println("start to check type");
 		}
@@ -95,7 +116,7 @@ public class FunctionByActivity {
 		System.out.println("there are: "+finalList.size()+" activities are included after type check");
 
 		//狀態類
-		if(obj.get(4).toString().equals("ready")) {
+		if(obj.get(6).toString().equals("ready")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()<a.getTargetNum()) {
@@ -105,7 +126,7 @@ public class FunctionByActivity {
 			finalList.removeAll(listToRemove);
 			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
 		}
-		if(obj.get(5).toString().equals("available")) {
+		if(obj.get(7).toString().equals("available")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()>=a.getLimitNum()) {
@@ -117,13 +138,13 @@ public class FunctionByActivity {
 		}
 		
 		//日期類
-		if(!obj.get(6).toString().equals("null")) {
+		if(!obj.get(8).toString().equals("null")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			Date immediatlyD = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			Date beginD = sdf.parse(obj.get(6).toString());
-			Date endD = sdf.parse(obj.get(7).toString());
+			Date beginD = sdf.parse(obj.get(8).toString());
+			Date endD = sdf.parse(obj.get(9).toString());
 			//進行轉換
 			for(Activity a:finalList) {
 				Date aBeginD = sdf2.parse(a.getBeginTime());
@@ -159,10 +180,6 @@ public class FunctionByActivity {
 		m.addAttribute("mapOpen","true");
 //		response.sendRedirect("/Bartenders/ActivityHall");
 //		return null;
-		
-		//for websocket
-		WebSocketTest.setModel(m);
-		
 		return "logistic/ActivityHall";
 	}
 	
@@ -190,10 +207,6 @@ public class FunctionByActivity {
 //		List<Activity> activity = aDao.simpleQuery(hqlStr);
 		m.addAttribute("activity",activity);
 //		response.sendRedirect("ManageActivity");
-		
-		//for websocket
-		WebSocketTest.setModel(m);
-		
 		return "ManageActivity";
 	}
 	
@@ -304,10 +317,6 @@ public class FunctionByActivity {
 		if (userId==null) {
 //			errors.put("type", "尚未選擇類型");
 			System.out.println("閒置過久，請重新登入");
-			
-			//for websocket
-			WebSocketTest.setModel(m);
-			
 			return "WelcomeCompany";
 		}
 
@@ -325,9 +334,6 @@ public class FunctionByActivity {
 			temp.put("actualNum", String.valueOf(actualNum));
 			temp.put("brief", brief);
 			temp.put("detail", detail);
-			
-			//for websocket
-			WebSocketTest.setModel(m);
 			
 			return "logistic/ActivityCreate";
 		}
@@ -483,6 +489,17 @@ public class FunctionByActivity {
 			) throws IOException, ParseException {
 		List<Activity> list = aSer.queryJoker("activityId",activityId);
 		List<Participant> participant = aSer.queryParticipant(activityId);
+		Integer id = null;
+		for(Activity a:list) {
+			id = a.getUserId();
+		}
+		if(id>499999) {
+			Company company = cSer.selectCompany(id);
+			m.addAttribute("company",company);
+		}else if(id<499999) {
+			Users user = uDao.selectUser(id);
+			m.addAttribute("user",user);
+		}
 		m.addAttribute("activity",list);
 		m.addAttribute("participant",participant);
 		

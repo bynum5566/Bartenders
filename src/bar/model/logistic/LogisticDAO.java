@@ -55,7 +55,7 @@ public class LogisticDAO {
 			}
 		}
 
-	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address, Integer uID) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
@@ -65,7 +65,7 @@ public class LogisticDAO {
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 			SimpleDateFormat logisticNum = new SimpleDateFormat("yyyyMMdd");//20200217
 			String forTime = sdFormat.format(time);
-			String forNum = logisticNum.format(time);//20200217
+			String forNum = logisticNum.format(time);//20200217 年月日
 			System.out.println("forTime:"+forTime+"forNum:"+forNum);
 			String last = getLastNum();//2001
 			String finalLast;
@@ -77,9 +77,15 @@ public class LogisticDAO {
 				System.out.println("訂單換日,today is:"+forTime.substring(8, 10)+"年月is:"+forNum.substring(2, 6));
 				finalLast = forNum.substring(2, 6)+forTime.substring(8, 10)+"01"; 
 			}else{
-				int num = Integer.parseInt(last)+1;
-				String text = Integer.toString(num);
-				finalLast = forNum.substring(2)+text.substring(2); 
+				System.out.println("今日新訂單:");
+				String pre = forNum.substring(2)+last.substring(2);
+				int x = Integer.parseInt(pre)+1;
+				finalLast = Integer.toString(x);
+//				System.out.println("final x lID: "+x);
+//				int num = Integer.parseInt(last)+1;//0301
+//				String text = Integer.toString(num);
+//				System.out.println("lID: "+forNum.substring(2)+" + "+text.substring(2));
+//				finalLast = forNum.substring(2)+text.substring(2); 
 			}
 			int finalInput = Integer.parseInt(finalLast);
 			System.out.println("finalLast: "+finalLast);
@@ -96,6 +102,7 @@ public class LogisticDAO {
 			logis.setoStatus(1);
 			logis.setoTimeA(forTime);
 			logis.setoComplete(0);
+			logis.setCharge(uID);
 			session.save(logis);
 			qdao.CreateQR(oID, 1, name);
 //			order.setShippingNumber(finalLast);
