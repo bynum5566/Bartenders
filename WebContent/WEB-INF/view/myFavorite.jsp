@@ -103,6 +103,10 @@
         #content {
 		    margin-top: 0;
 		}
+		
+		.wrapper {
+		    padding: 2em 0 4em 0;
+		}
 	</style>
 </head>
 
@@ -161,7 +165,9 @@
 										<ul class="alt">
 											<li><h2>我的最愛酒吧清單</h2></li>
 											<li class="inwrapper">
-												<table class="pd0">${MyfavB}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${MyfavB}</table>
+												</div>
 											</li>
 										</ul>
 									</div>
@@ -169,7 +175,9 @@
 										<ul class="alt">
 											<li><h2>我的最愛酒類清單</h2></li>
 											<li class="inwrapper">
-												<table class="pd0">${Myfav}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Myfav}</table>
+												</div>
 											</li>
 										</ul>
 									</div>

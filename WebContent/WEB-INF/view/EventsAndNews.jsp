@@ -95,6 +95,9 @@
 			display: none;
 		}
 		
+		.wrapper {
+		    padding: 2em 0 4em 0;
+		}
 	</style>
 </head>
 
@@ -158,7 +161,7 @@
 										<h2>最新消息</h2>
 									</li>
 									<li>
-										<div class="inwrapper">
+										<div class="inwrapper" style="height: 600px;overflow: auto;">
 											<table class="pd0">${NewsEvents}</table>
 										</div>
 									</li>

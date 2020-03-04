@@ -135,6 +135,10 @@
         #content {
 		    margin-top: 0;
 		}
+		
+		.wrapper {
+		    padding: 2em 0 4em 0;
+		}
 	</style>
 </head>
 
@@ -211,7 +215,9 @@
 														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
 													</div>
 												</div>
-												<table class="pd0">${Launched}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Launched}</table>
+												</div>
 												<ul class="actions B1">
 													<li style="border-color: transparent;">
 														<form action="/Bartenders/delMultiLTkPD" method="post" id="lMultiDel">
@@ -239,7 +245,9 @@
 														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
 													</div>
 												</div>
-												<table class="pd0">${Pulled}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Pulled}</table>
+												</div>
 												<ul class="actions B1">
 													<li style="border-color: transparent;">
 														<form action="/Bartenders/delMultiPTkPD" method="post" id="pMultiDel">

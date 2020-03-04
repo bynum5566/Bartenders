@@ -67,6 +67,7 @@
 			padding:5px;
 			margin:15px;
 			color: #888;
+			margin-top:8%;
 		}
 		label{
 			display: block;
@@ -107,12 +108,15 @@
 		}
 		
 		input#beginTime, input#endTime {
+			font-size:12px;
 		    background-color:#aaa;
 		    color: #888;
 		}
 		
 		.wrapper.style5 input[type="checkbox"] + label {
 			color: #888;
+			font-size:14px;
+			line-height: 14px;
 		}
 		
 		p.brirf{
@@ -147,7 +151,7 @@
 		@media screen and (max-width: 1680px) {
 			.col-12.col-12-medium {
 				width:50%;
-				margin-left: 5%;
+				margin-left: 8%;
 			}
 		}
 		
@@ -165,12 +169,10 @@
 			}
 			#choose{
 				width:18%;
+				margin-top: 10%;
 			}
 			.searchDiv{
 				width: 850px;
-			}
-			#map0 {
-				width: 80%;
 			}
 		}
 		
@@ -180,12 +182,13 @@
 			}
 			#choose{
 				width:20%;
+				margin-top: 12%;
 			}
 			.searchDiv{
 				width: 750px;
 			}
-			#map0 {
-				width: 80%;
+			#map0{
+				width: 90%;
 			}
 		}
 		
@@ -195,12 +198,10 @@
 			}
 			#choose{
 				width:20%;
+				margin-top: 13%;
 			}
 			.searchDiv{
 				width: 650px;
-			}
-			#map0 {
-				width: 80%;
 			}
 			
 			.each {
@@ -222,12 +223,10 @@
 			}
 			#choose{
 				width:25%;
+				margin-top: 15%;
 			}
 			.searchDiv{
 				width: 550px;
-			}
-			#map0 {
-				width: 80%;
 			}
 			
 			.each {
@@ -249,12 +248,10 @@
 			}
 			#choose{
 				width:25%;
+				margin-top: 17%;
 			}
 			.searchDiv{
 				width: 500px;
-			}
-			#map0 {
-				width: 80%;
 			}
 			
 			.each {
@@ -270,19 +267,13 @@
 		}
 		
 		@media screen and (max-width: 568px) {
-			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 3%;
-			}
 			.searchDiv{
 				width: 400px;
 				margin-left: 20px;
 			}
-			#map0 {
-				width: 80%;
-			}
 			#choose{
 				width:30%;
+				margin-top: 18%;
 			}
 			
 			.each {
@@ -310,70 +301,27 @@
 		}
 		
 		@media screen and (max-width: 414px) {
-			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 2%;
-			}
-		}
-		
-		@media screen and (max-width: 360px) {
-			input#address{
-				width: 300px;
-			}
-			
-			.col-12.col-12-medium {
-				width:45%;
-				margin-left: 0.3%;
-			}
-			
-			div.container {
-			    position: absolute;
-			    left: 0%;
-			    padding: 10px;
-			    margin: 0px auto;
-			    text-align: center;
-			    width: 320px;
-			}
-			
-			.fieldset {
-			    width: 310px;
-			}
-
-			img.img{
-				width:300px;
-			}
-			
-			.each {
-			    position: relative;
-			    border: 2px yellow solid;
-			    margin: 10px;
-			    display: block;
-			    vertical-align: top;
-			    height: auto;
-			    background-color: grey;
-			    border-radius: 20px;
-			}
-		}
-		
-		@media screen and (max-width: 320px) {
 			input#address{
 				width: 240px;
 			}
 			
 			.searchDiv{
-				width: 260px;
+				width: 280px;
 			}
 			
 			.col-12.col-12-medium {
-				width:45%;
 				margin-left: 0.3%;
+				width:300px;
 			}
 			
-			div#choose.chooseType form.formBox{
-				top: 30px;
-				height: 480px;
-				font-size:14px;
-				line-height: 16px;
+			#choose {
+			    margin-top: 18%;
+			}
+			
+			.bell .bellImg {
+			    height: 40px;
+			    width: 40px;
+			    float: right;
 			}
 			
 			input.date.flatpickr-input.flatpickr-mobile {
@@ -425,6 +373,31 @@
 			p.brief {
 				width:270px;
 				margin-left: 10px;
+			}
+			.wrapper.style5 input[type="checkbox"] + label {
+			color: #888;
+			font-size: 10px;
+		}
+		}
+		
+		@media screen and (max-width: 320px) {
+			.col-12.col-12-medium {
+				margin-left: 0.3%;
+				width:260px;
+			}
+			
+			.searchDiv{
+				width: 260px;
+			}
+			
+			#choose {
+			    margin-top: 15%;
+			}
+			
+			.bell .bellImg {
+			    height: 40px;
+			    width: 40px;
+			    float: right;
 			}
 		}
 	</style>
@@ -485,9 +458,9 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+<!-- 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li> -->
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
 							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
