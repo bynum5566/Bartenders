@@ -56,17 +56,16 @@ public class finishPay {
 	@RequestMapping(path = "/finishPay", method = RequestMethod.POST)
 	public ModelAndView toFinishPay(HttpServletRequest hsRequest, HttpServletResponse hsResponse, Model m) throws ServletException, IOException {
 		try {
-			System.out.println("**********Trying in Finishpay");
+			System.out.println("*****Trying in Finishpay*****");
 			String confirmUrl=(String) hsRequest.getSession().getAttribute("reqConfirmUrl");
 			int amount=(int) hsRequest.getSession().getAttribute("amount");
 			orderId=(String) hsRequest.getSession().getAttribute("orderId");
 			String xlID=(String) hsRequest.getSession().getAttribute("xlID");
 			String xlSecret=(String) hsRequest.getSession().getAttribute("xlSecret");
+			
 			Cart car = carService.selectCartByOid(orderId);
 			String pdId = car.getPdId();
 			ProductData pd = pdService.select(pdId);
-			expiryDate = null;
-			validDate = null;
 			expiryDate = pd.getExpiryDate();
 			validDate = pd.getValidDate();
 			pd = null;
@@ -103,11 +102,14 @@ public class finishPay {
 				m.addAttribute("orderId", orderId);
 				ModelAndView mav = new ModelAndView();
 				mav.setViewName("qrDelever");
-				updateSoldQuan(orderId);	
+				updateSoldQuan(orderId);
+				expiryDate = null;
+				validDate = null;
+				System.out.println("****** expiryDate in QR after being set to null = "+expiryDate+"******");
+				System.out.println("****** validDate in QR after being set to null = "+validDate+"******");
 				return mav;
 			}
 			int status = 3;
-			System.out.println("*****Doesn't in if");
 			oService.updateToCancel(orderId, status);
 			updateSoldQuan(orderId);	
 			
