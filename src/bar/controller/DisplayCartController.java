@@ -16,12 +16,10 @@ import bar.model.Cart;
 import bar.model.CartDAO;
 import bar.model.CartService;
 import bar.model.Orders;
-import bar.model.OrdersDAO;
 import bar.model.OrdersService;
 import bar.model.ProductData;
 import bar.model.ProductDataService;
 import bar.model.UsersService;
-import bar.model.Users;
 @Controller
 @SessionAttributes(names = {"account","userName"})
 @EnableTransactionManagement
@@ -71,16 +69,12 @@ public class DisplayCartController
 		List<Cart> oneOrderCartsList = cService.select(orderId);/*List，找出單[購物車]的所有Cart*/
 		m.addAttribute("oneOrderCarts", oneOrderCartsList);
 		
-		int subltotalOfOneProduct = 0;
 		int totalPriceOfOneOrderPlusFreight = 0;
 		int shippingPrice = 0;
 		List<ProductData> listOfProduct = new ArrayList<ProductData>();/*List，用來存單[購物車]的ProductData*/
 		List<Integer> listOfProductSubtotal = new ArrayList<Integer>();/*List，用來存單[購物車]各個產品的小計*/
-		
-		
+				
 		listOfProductSubtotal = CartService.calculateListOfProductSubtotal(oneOrderCartsList);/*List，計算並存單[購物車]各個產品的小計*/
-
-
 		
 		int totalPriceOfOneOrder = 0;
 		totalPriceOfOneOrder = CartService.calculateTotalPriceOfOneOrder(listOfProductSubtotal);/*計算單[購物車]不含運費的金額*/
@@ -96,10 +90,7 @@ public class DisplayCartController
 		/*運費======================*/
 		shippingPrice = freight(orderId);	/*取得運費*/
 		/*運費======================*/
-		
-		
-		
-		
+			
 		/*===============*/
 		Orders order = oService.selectOrder(orderId);
 		int shipping = order.getShipping();
@@ -112,19 +103,12 @@ public class DisplayCartController
 		m.addAttribute("totalPrice", totalPriceOfOneOrder);
 		totalPriceOfOneOrderPlusFreight = totalPriceOfOneOrder + shippingPrice;
 		m.addAttribute("finalTotalPrice", totalPriceOfOneOrderPlusFreight);
-		
-		
+				
 		//==================================
 		//導入預設值
 		//收件人
 		
 		//改在訂單建立時設定預設值
-		
-		Users userX = uService.select(account);
-		
-//		String name = userX.getUserName();
-//		String phone = userX.getPhone();
-//		String address = userX.getAddress();
 		
 		String name = order.getRecipient();
 		String phone = order.getPhone();
@@ -149,7 +133,6 @@ public class DisplayCartController
 			System.out.println("【error】");
 			break;
 		}
-
 		
 		m.addAttribute("defaultName", name);
 		m.addAttribute("defaultPhone", phone);
@@ -160,6 +143,10 @@ public class DisplayCartController
 		m.addAttribute("marketAddr",st_addr);
 		System.out.println("address is: "+st_addr);
 		//==================================
+		/*沒有表示1宅配，有值表示2超商*/
+		String shippingMethod = request.getParameter("stAddr") == null ? "1" : "2";
+		m.addAttribute("shippingMethod",shippingMethod);
+		CartService.Pf2("shippingMethod", shippingMethod);
 //		return "OrderList";
 		
 		//for websocket
@@ -169,9 +156,7 @@ public class DisplayCartController
 		// ===========================【結束】
 //		return "TestPage";
 	}
-	
-
-	
+		
 	public int freight(String orderId) { /* 運費 */
 		int shippingPrice = 0;
 		Orders order = oService.selectOrder(orderId);
@@ -240,17 +225,13 @@ public class DisplayCartController
 	public void printCart2(String orderId)/* 找出該orderId，在Cart中的所有項目 */
 	{
 		CartService.Pf2("out", cDao.select(orderId).toString());
-		//// PrintC.Pf2("out", cService.selectCartList(orderId).toString());
 		List<Cart> cartSet = cDao.select(orderId);
-		//// List<Cart> cartSet = cService.selectCartList(orderId);
 		String productId;
 		int qtyOfproduct;
 		System.out.println(cartSet.size());
 		for (int i = 0; i <= cartSet.size() - 1; i++)
 		{
 			productId = cartSet.get(i).getPdId();
-			ProductData productDataX = pService.select(productId);
-			//ProductData productDataX = pService.selectProductVer2(productId);
 			qtyOfproduct = cartSet.get(i).getQuantity();
 			CartService.Pf2("productId", productId);
 			CartService.Pf2("qtyOfproduct", qtyOfproduct);
@@ -265,9 +246,5 @@ public class DisplayCartController
 		  0 , //QR票券
 		  };
 		return returnShippingPrice;
-	}
-	private void printInputData(String account)
-	{
-		CartService.Pf2("account", account);
 	}
 }

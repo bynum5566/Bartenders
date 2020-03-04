@@ -263,9 +263,11 @@
 	</script>
 	
 	<script type="text/javascript">
-		$('#onlineUser li').click(function(){
-			$('#targetName').val($(this).text());
-		});
+		function chatWith(x){
+			var id="on"+x;
+			var tarName=document.getElementById(id).innerHTML;
+			$('#targetName').val(tarName);
+		}
 	</script>
 
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>

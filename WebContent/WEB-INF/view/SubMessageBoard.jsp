@@ -243,7 +243,10 @@ form.panel {
 													<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
 												</ul>
 											</div>
+											<hr>
 										</c:forEach>
+										
+										
 									</div>
 								</li>
 

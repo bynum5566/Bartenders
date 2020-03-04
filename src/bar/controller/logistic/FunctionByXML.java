@@ -1,10 +1,21 @@
 package bar.controller.logistic;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,22 +23,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.omg.PortableInterceptor.ForwardRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import bar.model.logistic.Logistic;
+import bar.model.logistic.LogisticService;
+import bar.model.logistic.Bar;
+import bar.model.logistic.BarDAO;
+
+import net.coobird.thumbnailator.Thumbnails;
 import bar.model.logistic.Activity;
 import bar.model.logistic.ActivityDAO;
 import bar.model.logistic.ActivityService;
-import bar.model.logistic.Logistic;
-import bar.model.logistic.LogisticService;
 
 @Controller
 @SessionAttributes(names="activity")
@@ -62,7 +87,7 @@ public class FunctionByXML {
 		
 		//類型類
 		boolean checking = false;
-		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")) {
+		if(obj.contains("bar")||obj.contains("shop")||obj.contains("show")||obj.contains("party")||obj.contains("carnival")||obj.contains("festival")) {
 			checking=true;
 			System.out.println("start to check type");
 		}
@@ -117,7 +142,7 @@ public class FunctionByXML {
 //		}
 //		System.out.println("type with qualify result: "+checkList);
 		//狀態類
-		if(obj.get(4).toString().equals("ready")) {
+		if(obj.get(6).toString().equals("ready")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()<a.getTargetNum()) {
@@ -127,7 +152,7 @@ public class FunctionByXML {
 			finalList.removeAll(listToRemove);
 			System.out.println("there are: "+finalList.size()+" activities are included after ready check");
 		}
-		if(obj.get(5).toString().equals("available")) {
+		if(obj.get(7).toString().equals("available")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			for(Activity a:finalList) {
 				if(a.getActualNum()>=a.getLimitNum()) {
@@ -158,13 +183,13 @@ public class FunctionByXML {
 //		}
 		
 		//日期類
-		if(!obj.get(6).toString().equals("null")) {
+		if(!obj.get(8).toString().equals("null")) {
 			List<Activity> listToRemove = new ArrayList<Activity>();
 			Date immediatlyD = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			Date beginD = sdf.parse(obj.get(6).toString());
-			Date endD = sdf.parse(obj.get(7).toString());
+			Date beginD = sdf.parse(obj.get(8).toString());
+			Date endD = sdf.parse(obj.get(9).toString());
 			//進行轉換
 //			long period = (endD.getTime()-beginD.getTime())/1000/60;
 //			System.out.println("time diff between now & begin: "+period+"min");
@@ -338,7 +363,13 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
-		List<Logistic> orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
+		List<Logistic> orderList;
+		if(cID==0) {
+			orderList = lSer.queryJoker("ostatus","'1'");
+		}else {
+			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
+		}
+		
 		lSer.checkReserveTime(orderList);
 		m.addAttribute("activity",orderList);
 		return orderList;
@@ -350,5 +381,25 @@ public class FunctionByXML {
 		return lSer.uniqueQuery(Param,oID);
 	}
 	
-
+	@RequestMapping(path = "/logistic/OrderReserveByBar/{oID}/{sID}",method = RequestMethod.GET)
+	public String orderReserve(@PathVariable(value = "oID")String oID,Model m,
+			@PathVariable(value = "sID")Integer sID,
+			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
+		Logistic rs = lSer.uniqueQuery("oID", "'"+oID+"'");
+		Date current = new Date();
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		String reserve = sdFormat.format(current);
+		Calendar beforeTime = Calendar.getInstance();
+		beforeTime.add(Calendar.MINUTE, +1);
+		Date beforeD = beforeTime.getTime();
+		String after5 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(beforeD);
+		System.out.println("current is: "+reserve);
+		System.out.println("after 5 is: "+after5);
+		//只保留到下一頁
+		rs.setsID(sID);
+		rs.setoTimeR(after5);
+		Integer cID = rs.getcID();
+		System.out.println("order reserver success");
+		return "redirect:/logistic/OrderSearchByBar/"+cID;
+	}
 }

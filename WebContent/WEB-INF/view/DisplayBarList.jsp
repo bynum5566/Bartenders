@@ -40,6 +40,7 @@
 			text-shadow: 1px 2px 0px #8E354A;
 		}
 		
+		/*小鈴鐺*/
 .noticeBox {
 	position: fixed;
 	top: 60px;
