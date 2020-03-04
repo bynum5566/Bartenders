@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>管理活動／Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -98,6 +98,17 @@
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -367,6 +378,14 @@
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		});
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	
 </body>
 </html>

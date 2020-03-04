@@ -467,6 +467,17 @@
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>	
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -934,5 +945,14 @@
 		}
 	}
 	</script>
+	
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 </body>
 </html>
