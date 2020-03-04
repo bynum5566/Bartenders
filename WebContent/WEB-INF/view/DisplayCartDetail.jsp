@@ -197,7 +197,7 @@
 											<br>
 											<label>收件人&emsp;&emsp;：</label>
 											<%--required="required--%>
-											<input type="text" name="input1" size="30"
+											<input type="text" required="required" name="input1" size="30"
 												value="${defaultName}"/>
 											<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
 											<br>
@@ -223,7 +223,7 @@
 											<div id='normalAddress'>									
 												<label>地址：</label>
 												<%--required="required"--%>
-												<input type="text" name="address1" size="30"
+												<input id='normalAddressInputBox' type="text" name="address1" size="30"
 													value="${defaultAddress}"/>
 												<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
 												<br>
@@ -232,7 +232,7 @@
 												<label>超商：</label>
 												<!-- 新增超商回傳地址  -->
 												<%--required="required--%>
-												<Input type='text' name='address2' value='${marketAddr}'>
+												<Input id='returnAddressInputBox' type='text' name='address2' value='${marketAddr}'>
 												<%--style="display:none"--%>
 												<br>
 											</div>	
@@ -271,12 +271,12 @@
 											<Input type='hidden' name='input2' value="${defaultAddress}">
 											<br>
 										</c:if>
-
+										<%--超商或宅配--%>
 										<c:if test="${shipping == '1' }">
 											<!-- 全型空白 -->
 											<label>電話：&emsp;&emsp;&emsp;</label>
 											<%--required="required--%>
-											<input type="text" name="input2" size="30"
+											<input type="text" required="required" name="input2" size="30"
 												value="${defaultPhone}"/>
 										</c:if>
 										<c:if test="${shipping == '3' }">
@@ -338,23 +338,36 @@
 		function onclickFunction01() 
 		{
 			document.getElementById("Freight").innerHTML = "80";
-			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};	
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};
+			<%--宅配地址輸入欄位的id--%>
+			document.getElementById("normalAddressInputBox").setAttribute("required", "");
+			<%--超商地址輸入欄位的id--%>
+			document.getElementById("returnAddressInputBox").removeAttribute("required");			
 		}
 		<%--點下超商--%>
 		function onclickFunction02() 
 		{
 			document.getElementById("Freight").innerHTML = "60";
 			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice - 20};
+			<%--宅配地址輸入欄位的id--%>
+			document.getElementById("normalAddressInputBox").removeAttribute("required");
+			<%--超商地址輸入欄位的id--%>
+			document.getElementById("returnAddressInputBox").setAttribute("required", "");
 		}
 		<%--動態顯示運費，總金額。結束--%>
 	</script>
 	<%--選擇超商按鈕的顯示與隱藏--%>
 	<script>
+		<%--點下宅配--%>
 		$("#setTt1").click(function() {
+			<%--超商地址按鈕--%>
 			$('#selectMarket').hide();
+			<%--超商地址--%>
 			$('#returnAddress').hide();
+			<%--普通地址--%>
 			$('#normalAddress').show();
 		})	
+		<%--點下超商--%>
 		$("#setTt2").click(function() {
 			$('#selectMarket').show();
 			$('#returnAddress').show();
