@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "productdata")
+@Table(name = "ProductData")
 @Component
 public class ProductData {
 	private int companyId;

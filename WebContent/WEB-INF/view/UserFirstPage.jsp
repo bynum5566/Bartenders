@@ -218,8 +218,6 @@
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-								<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-								<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>

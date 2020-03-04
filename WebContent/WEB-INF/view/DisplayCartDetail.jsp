@@ -86,6 +86,7 @@
                 <li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
                 <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
                 <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+                <li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
                 <li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
                 <li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               </ul>
@@ -145,39 +146,48 @@
 									</div>
 								</div>
 								</form>
-								
+								<%--改成url													
 								<!------------- 新增超商按鈕  ------------------->
-								<form action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
+								<form style="display:none" id="selectMarket" action="http://map.ezship.com.tw/ezship_map_web.jsp" method="post">
 									<input id="marketUrl" type="hidden" name="rtURL" value="http://localhost:8080/Bartenders/DisplayCart.controller?orderId=${orderId}&status=${order.status}">
 									<input type="submit" value="選擇超商">
 								</form>
-								
-								
+								<!------------- 新增超商按鈕 ，結束 ------------------->
+								--%>								
 								<form action="<c:url value="/ChangeStatusOneToTwo.controller"/>" method="get">
 								<div class="row">
 									<div class="col-6 col-12-medium">
 										<h2>配送資訊</h2>
 										<h3>配送方式:</h3>
-
 										<!-- =如果是一般商品，可以選擇配送方式，開始= -->
-
 										<c:if test="${shipping == '1' or shipping == '2'}">
 											<!--  如果這固定宅配，enable這個		<Input type='hidden' name='select1' value="${shipping}"> -->
 											<!--  如果這固定宅配，enable這個		<label>宅配</label> -->
 											<div class="col-4 col-12-small">
-												<input id="setTt1" name="select1" type="radio" value="1" checked onclick="onclickFunction01()">
-												<label for="setTt1">宅配</label>
-												<input id="setTt2" name="select1" type="radio" value="2" onclick="onclickFunction02()">
-												<label for="setTt2">超商</label>
-												
+												<c:if test="${shippingMethod == '1'}">
+													<input id="setTt1" name="select1" type="radio" value="1" checked onclick="onclickFunction01()">
+													<label for="setTt1">宅配</label>
+													<input id="setTt2" name="select1" type="radio" value="2" onclick="onclickFunction02()">
+													<label for="setTt2">超商</label>	
+												</c:if>	
+												<c:if test="${shippingMethod == '2'}">
+													<input id="setTt1" name="select1" type="radio" value="1" onclick="onclickFunction01()">
+													<label for="setTt1">宅配</label>
+													<input id="setTt2" name="select1" type="radio" value="2" checked  onclick="onclickFunction02()">
+													<label for="setTt2">超商</label>	
+												</c:if>										
 											</div>
-
 										</c:if>
-
-										<!--0	未選擇
-					1	宅配
-					2	超商
-					3	QR票券 -->
+<%--url新增超商連結--%>
+<a id="selectMarket" style="display:none" href=
+"<c:url value="http://map.ezship.com.tw/ezship_map_web.jsp"/>
+?rtURL=http://localhost:8080/Bartenders/DisplayCart.controller?orderId=${orderId}&status=${order.status}
+">選擇超商</a>	
+<!--
+0	未選擇
+1	宅配
+2	超商
+3	QR票券 -->
 										<!-- =如果是一般商品，可以選擇配送方式，結束= -->
 
 										<c:if test="${shipping == '3' }">
@@ -187,6 +197,7 @@
 										<c:if test="${shipping == '1' }">
 											<br>
 											<label>收件人&emsp;&emsp;：</label>
+											<%--required="required--%>
 											<input type="text" required="required" name="input1" size="30"
 												value="${defaultName}"/>
 											<!-- 	<Input type='hidden' name='input1' value="${defaultName}"> -->
@@ -208,20 +219,50 @@
 										</c:if>
 
 
-										<c:if test="${shipping == '1' }">
-											<label>地址／門市：</label>
-											<input type="text" required="required" name="address1" size="30"
-												value="${defaultAddress}"/>
-											<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
-											<br>
-											<!-- 新增超商回傳地址  -->
-											<Input type='text' name='testtest' value='${marketAddr}'>
-										</c:if>
+										<%--<c:if test="${shipping == '1' }">--%>
+										<c:if test="${shippingMethod == '1' && shipping != '3'}">
+											<div id='normalAddress'>									
+												<label>地址：</label>
+												<%--required="required"--%>
+												<input id='normalAddressInputBox' type="text" name="address1" size="30"
+													value="${defaultAddress}"/>
+												<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
+												<br>
+											</div>
+											<div id='returnAddress' style="display:none">
+												<label>超商：</label>
+												<!-- 新增超商回傳地址  -->
+												<%--required="required--%>
+												<Input id='returnAddressInputBox' type='text' name='address2' value='${marketAddr}'>
+												<%--style="display:none"--%>
+												<br>
+											</div>	
 
+										</c:if>
+										
+										<c:if test="${shippingMethod == '2'}">
+											<div id='normalAddress' style="display:none">									
+												<label>地址：</label>
+												<%--required="required--%>
+												<input type="text" name="address1" size="30"
+													value="${defaultAddress}"/>
+												<!-- 	<Input type='hidden' name='address1' value="${defaultAddress}">  -->
+												<br>
+											</div>	
+											<div id='returnAddress'>
+												<label>超商：</label>
+												<!-- 新增超商回傳地址  -->
+												<%--required="required--%>
+												<Input type='text' name='address2' value='${marketAddr}'>
+												<%--style="display:none"--%>
+												<br>
+											</div>								
+										</c:if>
 
 										<c:if test="${shipping == '2' }">
 											<label>超商門市：</label>
-											<input type="text" required="required" name="address2" size="30"
+											<%--required="required--%>
+											<input type="text" name="address2" size="30"
 												value="${defaultAddress}"/>
 											<br>
 										</c:if>
@@ -231,10 +272,11 @@
 											<Input type='hidden' name='input2' value="${defaultAddress}">
 											<br>
 										</c:if>
-
+										<%--超商或宅配--%>
 										<c:if test="${shipping == '1' }">
 											<!-- 全型空白 -->
 											<label>電話：&emsp;&emsp;&emsp;</label>
+											<%--required="required--%>
 											<input type="text" required="required" name="input2" size="30"
 												value="${defaultPhone}"/>
 										</c:if>
@@ -243,9 +285,10 @@
 										</c:if>
 
 										<br>
-										<c:if test="${shipping == '1' }">
+										
+										<%--<c:if test="${shipping == '1' }">
 											<Input type='hidden' name='address2' value='empty'>
-										</c:if>
+										</c:if>--%>
 										<c:if test="${shipping == '2' }">
 											<Input type='hidden' name='address1' value='empty'>
 										</c:if>
@@ -257,9 +300,6 @@
 										<c:if test="${shipping == '3' }">
 											<Input type='hidden' name='select1' value='${shipping}'>
 										</c:if>
-
-
-
 										<Input type='hidden' name='orderId' value='${orderId}'>
 										<Input type='hidden' name='totalPrice' value='${totalPrice}'>
 										<!-- 新增2020131_1634 -->
@@ -279,9 +319,6 @@
 			</section>
 		</article>
 	</div>
-
-
-
 	<!--縮放用JS，開始-->
 	<script type="text/javascript">
 	var url = document.getElementById('marketUrl');
@@ -298,20 +335,48 @@
 		<!--finalTotalPrice		0 	QR		n/a		-->
 		<!--finalTotalPrice		80 	normal	不變		-->
 		<!--finalTotalPrice		60 	超商		減去20	-->
+		<%--點下宅配--%>
 		function onclickFunction01() 
 		{
 			document.getElementById("Freight").innerHTML = "80";
-			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};	
+			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice};
+			<%--宅配地址輸入欄位的id--%>
+			document.getElementById("normalAddressInputBox").setAttribute("required", "");
+			<%--超商地址輸入欄位的id--%>
+			document.getElementById("returnAddressInputBox").removeAttribute("required");			
 		}
+		<%--點下超商--%>
 		function onclickFunction02() 
 		{
 			document.getElementById("Freight").innerHTML = "60";
 			document.getElementById("finalTotalPrice").innerHTML = ${finalTotalPrice - 20};
+			<%--宅配地址輸入欄位的id--%>
+			document.getElementById("normalAddressInputBox").removeAttribute("required");
+			<%--超商地址輸入欄位的id--%>
+			document.getElementById("returnAddressInputBox").setAttribute("required", "");
 		}
 		<%--動態顯示運費，總金額。結束--%>
 	</script>
+	<%--選擇超商按鈕的顯示與隱藏--%>
+	<script>
+		<%--點下宅配--%>
+		$("#setTt1").click(function() {
+			<%--超商地址按鈕--%>
+			$('#selectMarket').hide();
+			<%--超商地址--%>
+			$('#returnAddress').hide();
+			<%--普通地址--%>
+			$('#normalAddress').show();
+		})	
+		<%--點下超商--%>
+		$("#setTt2").click(function() {
+			$('#selectMarket').show();
+			$('#returnAddress').show();
+			$('#normalAddress').hide();
+			
+		})		
+	</script>
 	<!--縮放用JS，結束-->
-
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
@@ -319,18 +384,14 @@
 	<script src="/Bartenders/assets/js/breakpoints.min.js"></script>
 	<script src="/Bartenders/assets/js/util.js"></script>
 	<script src="/Bartenders/assets/js/main.js"></script>
-
-<script src="/Bartenders/assets/js/logout.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-	
+	<script src="/Bartenders/assets/js/logout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>	
 <!-- 小鈴鐺 -->
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
-	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-	
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>	
 	</body>
-
 </html>

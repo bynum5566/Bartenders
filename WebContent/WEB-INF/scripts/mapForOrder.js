@@ -96,7 +96,19 @@
 		    console.log('order clear!');
 		    orders = [];
 		}
-		
+		function reserveOrder(prefix,input,senderId){
+			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
+					function(response) {
+						return response.json();
+					}).then(function(JSONdata){
+						console.log('current bar order : ', JSONdata);
+						reloadOrders();
+						var prefix = 'logistic/OrderSearchByBar';
+						input = JSONdata[0].cID;
+						getOrders(prefix,input,senderId);
+						getOrderJSON(JSONdata);
+					})
+				}
 		function getMarkers(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
@@ -108,7 +120,6 @@
 						var all = JSONdata.forEach(function(item){
 							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
 							var index = defaultIndex;
-							console.log('this index: ', index);
 							var barId = item.userId;
 							var name = item.name;
 							var address = item.address;
@@ -116,7 +127,6 @@
 							var lng = item.lng;
 							var type = item.type;
 							var orderNum = item.orderNum.toString();
-							console.log('this is pending order: ', orderNum);
 							var img = item.img;
 							var brief = item.brief;
 							var point = new google.maps.LatLng(lat, lng);
@@ -157,10 +167,19 @@
 							defaultIndex++;
 							}//if結尾
 						})	
+						
 					});
 				}
-
-						
+		//刷新訂單
+		function reset(prefix,input){
+			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
+					function(response) {
+						console.log('data get!');
+						return response.json();
+					}).then(function(JSONdata) {
+						getOrderJSON(JSONdata);
+					});
+				}			
 		//讀取特定訂單
 		 function getOrders(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(

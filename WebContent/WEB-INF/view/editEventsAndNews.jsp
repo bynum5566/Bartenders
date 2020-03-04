@@ -79,9 +79,6 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								
-								
-								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -89,8 +86,7 @@
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
@@ -134,8 +130,6 @@
 											</li>
 											<li><input class="button primary" type="submit" value="更新"></li>
 											
-											<!-- 推播功能 -->
-											<li><input class="button primary" onclick="push();" value="推廣活動"></li>
 										</ul>
 									</div>
 								</form>
@@ -146,13 +140,6 @@
 			</section>
 		</article>
 	</div>
-
-	<script type="text/javascript">
-		function push(){
-			var title = document.getElementById('neTitle').value;
-			websocket.send('${CName}'+'%'+title);
-		}
-	</script>
 
 	<script>
 		$('#neId').hide();

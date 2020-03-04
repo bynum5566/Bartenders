@@ -10,67 +10,63 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>活動詳情</title>
+	<title>活動詳情 / Bartenders</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
-	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyleForSingle.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- 小鈴鐺 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<style>
-		input{
-			color:white;
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-80px;
 		}
-		.errors{
-			margin: 0px auto;
-			color:red;
-		}
+		
 		.container{
 		position:relative;
-		left:0%;
+		width:900px;
+		left:50%;
 		padding:10px;
 		margin: 0px auto;/*div對齊效果*/
-  		text-align: center;
+		margin-left:-450px;
+		text-align: center;
+		
 		}
-	    /* 以下是搜尋地圖設定*/
-		.searchDiv {
-			margin: auto;
-			width:800px;
-			height: 800px;
-			display:none;
+		#participate{
+		position:absolute;
+		right:0%;
 		}
-		.mapDiv {
-			height: 800px;
-			width: 800px;
-		}
+				/* 小鈴鐺 */
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
 
-		/*以下是搜尋框設定*/
-		.chooseType{
-			position:fixed;
-			top:-10%;
-			right:0%;
-			background-color:lightgrey;
-			width:150px;
-			height: 400px;
-			padding:5px;
-			margin:15px;
-		}
-		label{
-			display: block;
-			vertical-align:top;
-		}
-		input{
-			display: inline-block;
-			vertical-align:top;
-		}
-		.date{
-		width:120px;
-		}
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
 	</style>
 	
 	<script>
@@ -98,6 +94,17 @@
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>	
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -110,9 +117,6 @@
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -120,10 +124,9 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -140,8 +143,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -157,55 +160,127 @@
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align="center">活動詳情</h1>
+							<div id="background" class="col-12 col-12-medium"><!-- 這裡開始 -->
+								<h1 align="center" style="font-size:48px;margin:5px;">活動詳情</h1>
+								
+								
 								<div class="container">
-									<c:forEach var="Activity" items="${activity}" varStatus="status">
-										<div class="each" id="${Activity.activityId}">
-											<fieldset style="width: 350px;border-radius:30px">
+								<c:forEach var="Activity" items="${activity}" varStatus="status">
+								<div style="background-color:darkgrey;border-radius:20px;">
+									<div style="display:inline-block;vertical-align:top;">
+										<div class="each" id="${Activity.activityId}" >
+											<fieldset style="width: 350px;border-radius:30px;text-align: center;">
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
-												<img class="img" alt="未選擇圖片" style="margin: 5px"
+												<img class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;"
 													src="images/${Activity.img}"> <img class="imgType"
 													alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
 												<div class="ActivityName">${Activity.name}</div>
-												<div id="date${Activity.activityId}" class="ActivityDate"
-													align=left>
+												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
-						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} <button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button">確認地圖</button></p>
-												
+												<p align=left style="margin: 10px">${Activity.address} </p>
+												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">確認地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
 														<div id="map${status.index}"
-															style="width: 350px; height: 350px; background: red"></div>
+															style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												<div align=left style="margin: 10px">
+												
+												<!-- 
+												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												-->
+												<input type="hidden" name="preUrl" value="${preUrl}">
+												
+											</fieldset>
+											
+										</div>
+										
+									</div>
+									
+									
+									<div style="width:500px;display:inline-block;">
+										<div style="width:500px;height:140px;">
+											<div style="display:inline-block;vertical-align:top;">
+												<img src="images/unnamed.png" style="width:140px;height:140px;border:2px white solid;border-radius:20px;">
+											</div>
+											<div style="width:350px;height:140px;display:inline-block;padding:15px;">
+												<p style="margin:0px">主辦人資訊</p>
+												<c:if test="${not empty company}">
+												<p align="left" style="margin:0px">店家:  ${company.companyName}</p>
+												<p align="left" style="margin:0px">聯絡方式:  ${company.phone}</p>
+												</c:if>
+												<c:if test="${not empty user}">
+												<p align="left" style="margin:0px">姓名: ${user.userName}</p>
+												<p align="left" style="margin:0px">聯絡方式: ${user.phone}</p>
+												</c:if>
+											</div>
+										
+										</div>
+										<div align=center style="margin: 10px">
 													<c:choose>
-														<c:when test="${empty Activity.targetNum}">
-															<p>活動人數不限</p>
-														</c:when>
-														<c:when test="${Activity.limitNum-Activity.actualNum>0}">
-															<p id="people${status.index}" class="number">參加人數:${Activity.actualNum} / ${Activity.limitNum} 我想報名:</p>
-															<form align=right action="joinActivity.do" method="post" >
+														<c:when test="${Activity.limitNum==999}">
+															<span>參加人數不限</span>
+															<span id="people${status.index}" class="number">目前人數:${Activity.actualNum}</span>
+															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+																<span>已成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum<Activity.targetNum}">
+																<span>未成團</span>
+															</c:if>
+															
+															<form action="joinActivity.do" method="post" style="margin:0px;vertical-align:middle;">
+															<span>我想報名:
+																<select name="joinNum" style="width:90px;height:40px;padding:5px;display:inline;">
+																	<c:forEach begin="1"
+																		end="20"
+																		varStatus="add">
+																		<option value="${add.index}" style="width:50px;display:inline;">${add.index}人</option>
+																	</c:forEach>
+																</select>
 																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
 																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
-																<select name="joinNum" style="width:130px;display:inline;">
+																<input type="submit" value="確定" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">
+																</span>
+															</form>
+														</c:when>
+														<c:when test="${Activity.actualNum==Activity.limitNum}">
+															<span>活動人數已滿</span>
+															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+																<span>已成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum<Activity.targetNum}">
+																<span>未成團</span>
+															</c:if>
+														</c:when>
+														<c:otherwise>
+															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
+															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+																<span>已成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum<Activity.targetNum}">
+																<span>未成團</span>
+															</c:if>
+															
+															<form action="joinActivity.do" method="post" style="margin:0px;vertical-align:middle;">
+															<span>我想報名:
+																<select name="joinNum" style="width:90px;height:40px;padding:5px;display:inline;">
 																	<c:forEach begin="1"
 																		end="${Activity.limitNum-Activity.actualNum}"
 																		varStatus="add">
-																		<option value="${add.index}" style="width:130px;display:inline;">${add.index}人</option>
+																		<option value="${add.index}" style="width:50px;display:inline;">${add.index}人</option>
 																	</c:forEach>
 																</select>
-																<input type="submit" value="確定" style="width:50px;display:inline;">
+																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
+																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
+																<input type="submit" value="確定" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">
+																</span>
 															</form>
-														</c:when>
-														<c:otherwise>
-															<p>參加人數已滿</p>
 														</c:otherwise>
 													</c:choose>
+													
 												</div>
+												<div style="position:relative;">
 												<div class="outer">
 													<div id="groundD" class="ground">
 														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
@@ -217,12 +292,13 @@
 														</div>
 													</div>
 												</div>
-												
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
-												<input type="hidden" name="preUrl" value="${preUrl}">
-												
-											</fieldset>
+												</div>
+											<p class="brief" align=center style="height:40px;line-height:40px;padding:0px 20px 0px 20px;margin:0px 5px 0px 5px; text-align: center">${Activity.brief}</p>
+											<p class="detail" align=center style="margin:0px;text-align:justify">${Activity.detail}</p>
+							
 										</div>
+									</div>
+									<c:set var="hostId" value="${Activity.userId}"></c:set>
 										<script>
 											console.log('IndexNum is:',"${status.index}");
 											//計算地圖個數
@@ -240,34 +316,47 @@
 											limitNum.push(${Activity.limitNum});
 											targetNum.push(${Activity.targetNum});
 											currentNum.push(${Activity.actualNum});
-											console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											var fix = $('#groundD').width()-20;
-											console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
-											per = fix/limitNum['${status.index}'];
+											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
+											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+											var fix = $('#groundD${status.index}').width()-20;
+											if(${Activity.limitNum}==999){
+												if(${Activity.targetNum}!=0){
+													per = fix/targetNum['${status.index}'];
+													$('#targetFor${status.index}').width(fix);
+												}else if(${Activity.targetNum}==0){
+													per = fix/currentNum['${status.index}'];
+													$('#targetFor${status.index}').css('display','none');
+												}
+												$('#limitP${status.index}').css('display','none');
+											}else{
+												per = fix/limitNum['${status.index}'];
+												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+											}
 											perNum.push(per);
-											console.log('per is:',per);
-											$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
 											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
 											$('#currentFor${status.index}').css('background-color','pink');
-											
+											//若成團
 											if(currentNum['${status.index}']>=targetNum['${status.index}']){
-												console.log('target reached',typeof currentNum['${status.index}'],' > ',typeof targetNum['${status.index}']);
-												console.log('target reached',currentNum['${status.index}'],' > ',targetNum['${status.index}']);
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
 											}
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
+											
 											</script>
 									</c:forEach>
+								
 								</div>
-								<div class="participate">
+								
+							</div><!-- 這裡結束 -->
+							<c:if test="${hostId==testV}">
+								<div id="participate" style="margin:10px;">
 									<h1>活動參加者</h1>
 									<table>
 										<tr>
-											<td>姓名</td>
-											<td>手機</td>
-											<td>人數</td>
+											<td style="width:90px;">姓名</td>
+											<td style="width:140px;">手機</td>
+											<td style="width:70px;">人數</td>
 										</tr>
 										<c:forEach var="Participant" items="${participant}" varStatus="status">
 											<tr>
@@ -278,7 +367,7 @@
 										</c:forEach>
 									</table>
 								</div>
-							</div><!-- 這裡結束 -->
+							</c:if>
 						</div>
 					</section>
 				</div>
@@ -329,5 +418,15 @@
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	
+	
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		});
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 </body>
 </html>

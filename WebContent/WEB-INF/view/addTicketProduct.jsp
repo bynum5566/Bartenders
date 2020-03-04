@@ -11,19 +11,21 @@
 	<meta  http-equiv="Cache-Control"  CONTENT="no-cache">   
 	<meta  http-equiv="Pragma"  CONTENT="no-cache">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
+	
+	<!-- 小鈴鐺 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/style.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/mobile-style.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet"/>
 	<title>新增票券 / Bartenders</title>
-	<!-- 小鈴鐺 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	
 	<style>
 		.small {
@@ -47,31 +49,81 @@
 			justify-content:  center;
 		}
 		
+		div.daterangepicker.dropdown-menu.ltr.single.show-calendar.opensleft, div.daterangepicker.dropdown-menu.ltr.show-calendar.opensleft {
+			background-color: #565656;
+		}
+		
+		.daterangepicker:after {
+			border-bottom: 6px solid #565656;
+		}
+		
+		.glyphicon-time:before {
+		    content: none;
+		}
+		
+		div.calendar-time{
+			color: #fff;
+		}
+		
+		input.input-mini.form-control{
+			color: #fff;
+		}
+		
+		select.hourselect, select.minuteselect, select.ampmselect {
+			color: #fff;
+			padding: 10px;
+			font-size: 16px;
+			margin-right: 5px;
+			display: inline-block
+		}
+		
+		div.calendar.left.single, .daterangepicker .calendar.single .calendar-table, .daterangepicker .calendar-table {
+			background-color: #565656;
+			color: #fff;
+		}
+		
+		.daterangepicker .calendar-table {
+			background-color: transparent;
+		}
+		
+		td.available:hover, td.off.available:hover {
+			color: #565656 !important;
+		}
+		
+		select.monthselect, select.yearselect{
+			margin-right: 5px;
+			display: inline-block
+		}
+		
+		active.start-date.available.in-range{
+			background-color: #4E4F97;
+		}
+		
 		#Input{
 			width: 40px;
 			height: 40px;
 		}
 		
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 		
 	</style>
 </head>
@@ -106,8 +158,7 @@
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
@@ -155,7 +206,7 @@
 												<h3>Tag1</h3>
 											</li>
 											<li>
-												<input id="pdTag1" class="bt0" name="pdTg1" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag1" class="bt0" name="pdTg1" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>
@@ -163,7 +214,7 @@
 												<h3>Tag2</h3>
 											</li>
 											<li>
-												<input id="pdTag2" class="bt0" name="pdTg2" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag2" class="bt0" name="pdTg2" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>
@@ -171,7 +222,7 @@
 												<h3>Tag3</h3>
 											</li>
 											<li>
-												<input id="pdTag3" class="bt0" name="pdTg3" placeholder="請填寫標籤名稱" type="text" max="10">
+												<input id="pdTag3" class="bt0" name="pdTg3" placeholder="請填寫關鍵字標籤" type="text" maxlength="15">
 											</li>
 										</ul>
 										<ul>

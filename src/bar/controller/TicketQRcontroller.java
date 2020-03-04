@@ -76,6 +76,8 @@ public class TicketQRcontroller {
 		hsRequest.setAttribute("qrUrl", qrUrl);
 		int status=3;
 		oService.updateStatusAndQR(orderId, status, qrUrl);
+		m.addAttribute("validDate", null);
+		m.addAttribute("expireDate", null);
 		return "qrDelever";
 	}
 	

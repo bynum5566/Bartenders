@@ -29,7 +29,7 @@ public class MyFavoriteBarsDAO {
 	
 	public List<MyFavoriteBars> selectAllFavBars (int userId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from MyFavoriteBars where userId=:uid";
+		String hqlStr = "from MyFavoriteBars where userId=:uid order by fNum DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("uid", userId);
 		return (List<MyFavoriteBars>)query.list();

@@ -23,7 +23,8 @@
 <link rel="icon" href="img/favicon.ico" type="image/x-icon"/ >
 
 <!-- 小鈴鐺 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <style>
@@ -94,7 +95,7 @@ form.panel {
 			<h1>
 				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
-			
+
 			<!-- 小鈴鐺 -->
 			<div class="noticeBox">
 				<div class="bell">
@@ -104,7 +105,7 @@ form.panel {
 					<ul id="notice"></ul>
 				</div>
 			</div>
-			
+
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -112,15 +113,16 @@ form.panel {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">返回首頁</a><a
+								<li class="small"><a
+									href="/Bartenders/Welcome.UserFirstPage">返回首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -156,13 +158,13 @@ form.panel {
 										<ul class="alt">
 											<li>文章</li>
 											<li width='700'><textarea rows='8' cols='70'
-													name='blabla' placeholder="請輸入文章" required="required"></textarea>
-											</li>
+													name='blabla' placeholder="請輸入文章" required="required"
+													id="blabla"></textarea></li>
 
 											<li>刪除碼</li>
 											<li><input type="password" name="deletePassword"
 												size="16" maxlength="8" placeholder="請輸入刪除碼"
-												required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+												required="required" id="deletePassword"> <small>(留言刪除用，英文數字最多8個)</small>
 											</li>
 
 											<li>圖片</li>
@@ -171,13 +173,33 @@ form.panel {
 												<div class="dropzone" id="wordPicture" required="required">
 													<div class="info"></div>
 												</div> <input id="imgPlace" name="pdImg" class="image-url" /> <br>
-												<input type='submit' value='提交'>
+												<input type='submit' value='提交'> <input
+												class="button" type="reset" value="清除重填" /> <input
+												class="button" type="button" value="demo" id="demo" />
+												<input
+												class="button" type="button" value="demo2" id="demo2" />
 											</li>
 										</ul>
-										<!-- 								</table> -->
 										<hr>
 									</form>
 								</li>
+
+								<script type="text/javascript">
+									$('#demo').click(function() {
+										$('#blabla').val('蕃茄醬汁適合巴貝拉（Barbera）、瓦波里切拉（Valpolicella）、索亞維（Soave）、維爾帝奇歐（Verdicchio），與新世界產的白蘇維儂（Sauvignon Blanc）。奶油或乳酪醬汁適合稍微經過橡木桶陳化的夏多內（Chardonnay）、索亞維、維爾帝奇歐、坎佩尼亞白酒、瓦坡里切拉或梅洛（Merlot）。');
+										$('#deletePassword').val('11111111');
+
+									});
+									
+									$('#demo2').click(function() {
+										$('#blabla').val('青醬適合新世界產的白蘇維儂、坎佩尼亞白酒（Campania），以及多切托（Dolcetto）、法國的朗格多克（Languedoc）產紅酒。肉醬類醬汁適合義大利北部或中部產的紅酒、法國或新世界產的希哈（Syrah）、金芬黛（Zinfandel）。');
+										$('#deletePassword').val('11111111');
+
+									});
+								</script>
+
+
+
 								<li>
 									<div
 										style="border-style: double; background: hsla(255, 50%, 50%, 0.15); padding: 10px;">
@@ -203,7 +225,7 @@ form.panel {
 												<script async defer crossorigin="anonymous"
 													src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
 												<div class="fb-like"
-													data-href="http://11129henry.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
+													data-href="http://bartenders.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
 													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
 
@@ -211,8 +233,9 @@ form.panel {
 										</div>
 
 									</div>
-									
-									<div style="border-style: double; background: hsla(200, 50%, 50%, 0.2); padding: 10px; margin: 50px;">
+
+									<div
+										style="border-style: double; background: hsla(200, 50%, 50%, 0.2); padding: 10px; margin: 50px;">
 										<c:forEach var="subMessageBoard" items="${subnewest}">
 											<div style="margin: 10px;">
 												<ul>
@@ -228,7 +251,10 @@ form.panel {
 													<li style="vertical-align: bottom;">${subMessageBoard.time}</li>
 												</ul>
 											</div>
+											<hr>
 										</c:forEach>
+										
+										
 									</div>
 								</li>
 
@@ -245,9 +271,10 @@ form.panel {
 													<tbody>
 														<tr>
 															<td><input type="text" name="subId" size="8"
-																placeholder="留言ID"></td>
+																placeholder="留言ID" required="required"></td>
 															<td><input type="password" name="deletePassword"
-																size="8" maxlength="8" placeholder="刪除密碼"></td>
+																size="8" maxlength="8" placeholder="刪除密碼"
+																required="required"></td>
 															<td><input type="submit" value="刪除留言"></td>
 														</tr>
 													</tbody>
@@ -519,7 +546,7 @@ form.panel {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
-		
+
 	<!-- 小鈴鐺 -->
 	<script type="text/javascript">
 		$(".bell").click(function() {

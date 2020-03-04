@@ -1,9 +1,11 @@
 package bar.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -33,9 +35,14 @@ public class CheckLogin {
 	}
 
 	@RequestMapping(path = { "/UcheckLogin.controller" }, method = { RequestMethod.POST })
-	public String userProcessAction(@RequestParam(name = "userAccount") String account,
-			@RequestParam(name = "userPwd") String password, Model m ,HttpServletRequest request) {
-
+	public String userProcessAction(@RequestParam(name = "userAccount") String account,@RequestParam(name = "requestOrderId") String orderId,
+			@RequestParam(name = "userPwd") String password, Model m ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if(orderId.equals("")) {
+			System.out.println("this is normal login: "+orderId);
+		}else {
+			System.out.println("order catched: "+orderId);
+		}
+		
 		
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
@@ -68,7 +75,13 @@ public class CheckLogin {
 				m.addAttribute("userName", user.getUserName());
 				////////新增回傳Id方便撈其他資料////////////
 				m.addAttribute("getUserId", user.getUserId());
-				
+				if(orderId.equals("")) {
+					System.out.println("this is normal login");
+				}else {
+					System.out.println("prepare to redirect, orderId: "+orderId);
+					response.sendRedirect("/Bartenders/LogisticArrive.do?orderID="+orderId+"&userId="+user.getUserId());
+					return null;
+				}
 //				HttpSession session = request.getSession();
 //				WebSocketTest.setHttpSession(session);
 				WebSocketTest.setModel(m);

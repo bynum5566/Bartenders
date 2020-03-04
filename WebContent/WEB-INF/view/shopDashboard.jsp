@@ -135,6 +135,10 @@
         #content {
 		    margin-top: 0;
 		}
+		
+		.wrapper {
+		    padding: 2em 0 4em 0;
+		}
 	</style>
 </head>
 
@@ -159,8 +163,7 @@
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li class="small"><a href="WelcomeCompany">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
@@ -211,7 +214,9 @@
 														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllL" align="left"><label for="CheckAllL" align="left">全選</label>
 													</div>
 												</div>
-												<table class="pd0">${Launched}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Launched}</table>
+												</div>
 												<ul class="actions B1">
 													<li style="border-color: transparent;">
 														<form action="/Bartenders/delMultiLPD" method="post" id="lMultiDel">
@@ -239,7 +244,9 @@
 														&nbsp;&nbsp;&ensp;&emsp;&emsp;<input type="checkbox" id="CheckAllP" align="left"><label for="CheckAllP" align="left">全選</label>
 													</div>
 												</div>
-												<table class="pd0">${Pulled}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Pulled}</table>
+												</div>
 												<ul class="actions B1">
 													<li style="border-color: transparent;">
 														<form action="/Bartenders/delMultiPPD" method="post" id="pMultiDel">

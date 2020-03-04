@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>物流訂單搜尋</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -19,23 +19,45 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<style>
-		#orderDiv{
-			position:absolute;
-			left:0px;
-			border:1px red solid;
+	
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-100px;
+			/*border:2px yellow solid;*/
 		}
+		
 		#container{
 		position:relative;
-		top:-100px;
-		padding:10px;
-		margin: 0px auto;/*div對齊效果*/
+		margin: 10px auto;
   		text-align: center;
+  		/*border:1px blue solid;*/
+		}
 
-  		border:1px blue solid;
+		#orderDiv{
+			position:relative;
+			width:140%;
+			left:50%;
+			margin-left:-70%;
+			/*border:1px red solid;
+			width:1500px;
+			left:50%;
+			margin-left:-750px;
+			*/
 		}
 		td{
-
+		border:1px white solid;
 		padding:5px;
+		vertical-align:middle;
+		}
+		
+		#demoBox{
+			position:relative;
+			right:-80%;
+			bottom:-50px;
+			width:450px;
+			height:100px;
 		}
 		
 		/* 以下是地圖搜尋設定*/
@@ -43,11 +65,11 @@
 			margin: auto;
 			display:none;
 			height:auto;
-			border:1px yellow solid;
+			/*border:1px yellow solid;*/
 		}
 		
 		.mapDiv {
-			height: 600px;
+			height: 400px;
 			width: 800px;	
 		}
 	</style>
@@ -72,19 +94,20 @@
 		</nav>
 	</header>
 	
-		<article id="main">
-			<section class="wrapper style5">
-				<div class="inner">
+		<article id="main" >
+			<section class="wrapper style5" >
+				<div class="inner" >
 					<section>
-						<div class="row">
-							<div class="col-12 col-12-medium">
+						<div class="row" >
+							<div id="background" class="col-12 col-12-medium" >
 								<div id="container">
-									<h1 align=center style="color:white;font-size:48px">訂單搜尋</h1>
+									<h1 align=center style="color:white;font-size:48px;margin:10px;">訂單搜尋</h1>
+									<button id="openSearch" type="button" style="width:150px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">打開地圖</button>
+									<button id="renewSearch" type="button" style="width:150px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px" onclick="queryJoker()">更新訂單</button>
 									<div class="searchDiv" align=center>
-										<button id="renewSearch" type="button" style="margin:0px auto;"onclick="queryJoker()">更新訂單</button>
 										<div id="map" class="mapDiv"></div>
 									</div>
-									<button id="openSearch" type="button" style="margin:0px auto;">打開地圖</button>
+									
 								</div>
 									<div id="orderDiv" align=center >
 									
@@ -94,24 +117,22 @@
 											<table id="targetTable" align=center >
 												<thead>
 													<tr align="center">
-														<td style="width:80px;padding:10px">序號</td>
-														<td style="width:270px;padding:10px">訂單號碼</td>
-														<td style="width:100px;padding:10px">物流號碼</td>
-														<td style="width:80px;padding:10px">類型</td>
-														<td style="width:250px;">送貨地址</td>
-														<td style="width:120px;padding:10px">收件人</td>
-														<td style="width:150px;padding:10px">收件人手機</td>
-														<td style="width:80px;padding:10px">金額</td>
-														<td style="width:100px;padding:10px">進度</td>
-														<td style="width:150px;padding:10px">出貨時間</td>
-														<td style="width:150px;padding:10px">物流取貨</td>
-														<td style="width:150px;padding:10px">送達時間</td>
-														<td style="width:100px;padding:10px">狀態</td>
+														<td style="width:4%;padding:10px">序號</td>
+														<td style="width:10%;padding:10px">訂單號碼</td>
+														<td style="width:7%;padding:10px">物流號碼</td>
+														<td style="width:4.5%;padding:10px">類型</td>
+														<td style="width:15%;">送貨地址</td>
+														<td style="width:8%;padding:10px">收件人</td>
+														<td style="width:8%;padding:10px">收件人手機</td>
+														<td style="width:6%;padding:10px">金額</td>
+														<td style="width:6%;padding:10px">進度</td>
+														<td style="width:8%;padding:10px">出貨時間</td>
+														<td style="width:7%;padding:10px">狀態</td>
 													</tr>
 												</thead>
 												<tbody id="tbody" align="center">
 													<c:forEach var="Logistic" items="${logistic}" varStatus="status">
-														<tr >
+														<tr style="vertical-align:middle;">
 															<td>${status.index+1}</td>
 															<td>${Logistic.oID}</td>
 															<td>${Logistic.lID}</td>
@@ -122,14 +143,9 @@
 															<td>${Logistic.oAmount}</td>
 															<td class="myStatus">${Logistic.oStatus}</td>
 															<td>${Logistic.oTimeA}</td>
-															<td>${Logistic.oTimeB}</td>
-															<td>${Logistic.oTimeC}</td>
-															<!-- 
-															<td id="oComplete${Logistic.oID}">${Logistic.oComplete}</td>
-															 -->
 															<td>
 															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve" style="padding:0px;">接單</button>		
+																	class="reserve" style="width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>		
 															</td>
 														</tr>
 													</c:forEach>
@@ -140,6 +156,17 @@
 								</div>
 							</div>
 						</div>
+							<!--  -->
+									<div id="demoBox" align="center" >
+										<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
+											<table>
+												<tr>
+													<td style="width:350px;">請輸入要模擬的訂單號碼<input type="text" name="orderId" style="width:300px;height:40px;"></td>
+													<td style="width:100px;"><input type="submit" value="建立" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px"></td>
+												</tr>
+											</table>
+										</form>
+									</div>
 					</section>
 				</div>
 			</section>
@@ -154,8 +181,12 @@
 			var prefix = 'logistic/OrderSearch';
 			reloadMarkers(prefix,1);
 			getMarkers(prefix,1,${getSenderId});
+			$('#openSearch').html('收起地圖');
+			//$('#container').css('position','relative');
 		}else {
 			$('.searchDiv').css('display','none');	
+			$('#openSearch').html('打開地圖');
+			//$('#container').css('position','absolute');
 		}
 
 	})
@@ -175,7 +206,7 @@
 			index++;
 			for(var t in item){
 				var txt = item[t];
-				if(t!='oNo'&&t!='cID'&&t!='sID'&&t!='oComplete'&&t!='charge'&&t!='cost'&&t!='oTimeR'){
+				if(t!='oNo'&&t!='cID'&&t!='sID'&&t!='oComplete'&&t!='charge'&&t!='cost'&&t!='oTimeR'&&t!='oTimeB'&&t!='oTimeC'){
 				var newTd = document.createElement("td"); 
 				newTd.innerHTML = txt;
 					if(t=='oType'){
@@ -193,6 +224,7 @@
 			newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
 			newBtn.className = 'reserve';
 			newBtn.innerHTML = '接單';
+			newBtn.style = 'width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 			//newBtn.style.display = 'none';
 			newTd.appendChild(newBtn);
 			newTr.appendChild(newTd);
@@ -209,7 +241,9 @@
 		//window.location.href = '<c:url value="/logistic/OrderSearch.do/'+1+'"/>';
 		reloadMarkers(prefix,1);
 		reloadOrders();
-		getMarkers(prefix,1,${getSenderId});
+		getMarkers(prefix,1,'${getSenderId}');
+		reset('logistic/OrderSearchByBar',0);
+		//getMarkers('logistic/OrderSearchByBar',0,'${getSenderId}');
 	}
 	//狀態轉文字
 	function changeHTML(){
@@ -242,7 +276,11 @@
 		var Str = this.id
 		orderID = Str.substring(8);
 		console.log('orderId is: ',orderID)
-		window.location.href = '<c:url value="/logistic/orderReserve.do"/>?oID=' + orderID + '&sID=${getSenderId}';
+		//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+		var prefix = 'logistic/OrderReserveByBar';
+		var input = orderID+'/${getSenderId}';
+
+		reserveOrder(prefix,input,'${getSenderId}');
 	})
 	
 		listR = $('button[id^="9"][class="reserve"]');

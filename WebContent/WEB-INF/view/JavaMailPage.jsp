@@ -190,13 +190,24 @@ div.panel {
 				enctype="multipart/form-data">
 				收件人：<input type="text" name="to" size="50"
 					value="11129henry@gmail.com" /><br> 寄件人：<input type="text"
-					name="from" size="50" /><br> 主 旨：<input type="text"
-					name="subject" size="50" /><br> 附 檔：<input type="file"
+					name="from" size="50" id="from"/><br> 主 旨：<input type="text"
+					name="subject" size="50" id="subject"/><br> 附 檔：<input type="file"
 					name="file" size="50" /><br>
-				<textarea name="text" rows="10" cols="50"></textarea>
-				<br> <input type="submit" value="傳送" /><br>
+				<textarea name="text" rows="10" cols="50" id="text"></textarea>
+				<br> 
+				<input type="submit" value="傳送" />
+				<input class="button" type="reset" value="清除重填"/>
+				<input class="button" type="button" value="demo" id="demo"/>
 			</form>
 		</div>
+		
+		<script type="text/javascript">
+		$('#demo').click(function(){
+			$('#from').val('11129henry@gmail.com');
+			$('#subject').val('天霖酒廠合作邀約');
+			$('#text').val('Bartenders網站製作者們您好!  弊公司天霖酒廠有一份合作計畫想和你們談談關於弊公司自製的清酒，有新的高級酒品推出，想藉由您們的網站來推廣!上附企畫書，如有興趣歡迎來合作  謝謝您!');
+		});
+	</script>
 	
 </body>
 </html>

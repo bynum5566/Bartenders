@@ -86,7 +86,7 @@
 <!-- 					<section> -->
 						<div class="welcome">
 							<img id="logo" src="../img/Logo.png" style="width: 150px; margin: 20px"/>
-							<h2>辛苦了，${sender.logisticName}。</h2>
+							<h2>辛苦了，${senderName}。</h2>
 						</div>
 <!-- 					</section> -->
 				</div>

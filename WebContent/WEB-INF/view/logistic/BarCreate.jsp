@@ -42,6 +42,9 @@
 			width:100%;
 		}
 		
+		#name{
+			width:400px;
+		}
 		
 		#beginTime{
 		width:210px;
@@ -120,9 +123,6 @@ console.log('currentId is: ',currentId);
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -130,10 +130,9 @@ console.log('currentId is: ',currentId);
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -150,8 +149,8 @@ console.log('currentId is: ',currentId);
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -183,14 +182,14 @@ console.log('currentId is: ',currentId);
 												<input id="beginTime" type="text" name="beginTime" placeholder="營業時間" > ~ <input id="endTime" type="text" name="endTime" placeholder="打烊時間">
 												<p></p>
 												<input id="address" type="text" name="address" value="${bar.address}">
-												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.jpg" style="visibility:collapse"></p>
+												<p>地圖位置: <button id="Bhidden" type="button" style="margin:10px;">點選按鈕設定地圖位置</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;"></p>
 												<div class="showEachMap">
 													<div id="hidden" class="hideMap" >
 														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button>
 														<div id="map"></div>
 													</div>
 												</div>
-												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
+												<p>酒吧照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
 												<textarea id="brief" name="brief" rows="3" >${myBar.aboutBar}</textarea>
 												<br>
 												<div style="display:block">

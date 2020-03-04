@@ -118,8 +118,6 @@
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
 								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-								<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-								<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -130,11 +128,16 @@
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
-					<div class="welcome">
-						<img id="logo" src="img/Logo.png"
-							style="width: 150px; margin: 20px" />
-						<h2>歡迎回來，${CName}。</h2>
-					</div>
+					<section>
+						<div class="row">
+							<div class="col-12 col-6-medium">
+								<div class="welcome">
+									<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
+									<h2>Welcome back! ${CName}</h2>
+								</div>
+							</div>
+						</div>
+					</section>
 				</div>
 			</section>
 		</article>

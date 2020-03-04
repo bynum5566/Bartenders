@@ -29,7 +29,7 @@ public class MyFavoriteDAO {
 	
 	public List<MyFavorite> selectAllFav (int userId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from MyFavorite where userId=:uid";
+		String hqlStr = "from MyFavorite where userId=:uid order by fNum DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("uid", userId);
 		return (List<MyFavorite>)query.list();

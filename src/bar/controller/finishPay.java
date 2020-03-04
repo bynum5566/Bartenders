@@ -56,16 +56,19 @@ public class finishPay {
 	@RequestMapping(path = "/finishPay", method = RequestMethod.POST)
 	public ModelAndView toFinishPay(HttpServletRequest hsRequest, HttpServletResponse hsResponse, Model m) throws ServletException, IOException {
 		try {
+			System.out.println("*****Trying in Finishpay*****");
 			String confirmUrl=(String) hsRequest.getSession().getAttribute("reqConfirmUrl");
 			int amount=(int) hsRequest.getSession().getAttribute("amount");
 			orderId=(String) hsRequest.getSession().getAttribute("orderId");
 			String xlID=(String) hsRequest.getSession().getAttribute("xlID");
 			String xlSecret=(String) hsRequest.getSession().getAttribute("xlSecret");
+			
 			Cart car = carService.selectCartByOid(orderId);
 			String pdId = car.getPdId();
 			ProductData pd = pdService.select(pdId);
 			expiryDate = pd.getExpiryDate();
 			validDate = pd.getValidDate();
+			pd = null;
 			
 		    HttpPost httpPost = new HttpPost(confirmUrl);
 			httpPost.setHeader("Content-Type", "application/json;charset=UTF-8");
@@ -99,7 +102,11 @@ public class finishPay {
 				m.addAttribute("orderId", orderId);
 				ModelAndView mav = new ModelAndView();
 				mav.setViewName("qrDelever");
-				updateSoldQuan(orderId);	
+				updateSoldQuan(orderId);
+				expiryDate = null;
+				validDate = null;
+				System.out.println("****** expiryDate in QR after being set to null = "+expiryDate+"******");
+				System.out.println("****** validDate in QR after being set to null = "+validDate+"******");
 				return mav;
 			}
 			int status = 3;
@@ -117,7 +124,7 @@ public class finishPay {
 			
 			int cID = order.getCompanyId();
 			System.out.println("order found: "+order);
-			String logistic = lService.createLogistic(orderId,cID,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			String logistic = lService.createLogistic(orderId,cID,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress,order.getUserId());
 			System.out.println("logistic creation done");
 			order.setShippingNumber(logistic);
 			//以上屬於物流部分 請勿刪除

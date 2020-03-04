@@ -88,6 +88,7 @@
                 <li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
                 <li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
                 <li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+                <li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
                 <li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
                 <li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
               </ul>
@@ -173,6 +174,7 @@
 													<Input type='hidden' name='status'
 														value='${listOfOrder[current.index].status}'>
 													<Input type='submit' value='刪除'>
+													<%--刪除按鈕--%>
 													</form>
 												</td>
 
@@ -222,7 +224,7 @@
 															value="${listOflistOfCart[current.index][current2.index].quantity}"
 															max="${listOflistOfProduct[current.index][current2.index].pdStock}"
 															min="1"/>
-
+														<%--修改按鈕--%>
 														<Input type='submit' value='修改'>
 
 														<Input type='hidden' name='PdId'

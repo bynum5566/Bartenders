@@ -10,7 +10,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+<<<<<<< HEAD
+	<title>活動管理</title>
+=======
+	<title>管理活動／Bartenders</title>
+>>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -23,54 +27,54 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<style>
-		input{
-			color:white;
-		}
-		.errors{
-			margin: 0px auto;
-			color:red;
-		}
-		.container{
-		border:1px red solid;
-		width: 1250px;
-		padding:10px;
+	<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	
-		}
-	    /* 以下是搜尋地圖設定*/
-		.searchDiv {
-			margin: auto;
-			width:800px;
-			height: 800px;
-			display:none;
-		}
-		.mapDiv {
-			height: 800px;
-			width: 800px;
-		}
+	
+	<style>
 
-		/*以下是搜尋框設定*/
-		.chooseType{
-			position:fixed;
-			top:-10%;
-			right:0%;
-			background-color:lightgrey;
-			width:150px;
-			height: 400px;
-			padding:5px;
-			margin:15px;
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-80px;
+			/*border:2px yellow solid;*/
 		}
-		label{
-			display: block;
-			vertical-align:top;
+		
+
+
+		.container{
+		position:relative;
+		width:1400px;
+		left:50%;
+		padding:10px;
+		margin: 0px auto;/*div對齊效果*/
+		margin-left:-700px;
+  		text-align: center;
+  		
+  		/*border:1px red solid;*/
 		}
-		input{
-			display: inline-block;
-			vertical-align:top;
-		}
-		.date{
-		width:120px;
-		}
+	    /* 小鈴鐺 */
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
 	</style>
 	
 	<script>
@@ -98,6 +102,17 @@
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -110,9 +125,6 @@
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -120,10 +132,9 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -140,8 +151,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -157,8 +168,11 @@
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align=center>活動管理</h1>
+							<div id="background" class="col-12 col-12-medium"><!-- 這裡開始 -->
+								<h1 align=center style="font-size:48px;margin:5px;">活動管理</h1>
+								
+								 
+								
 								<div class="container">
 									<c:forEach var="Activity" items="${activity}" varStatus="status">
 										<div class="each" id="${Activity.activityId}">
@@ -172,46 +186,47 @@
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
 						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} <button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button">確認地圖</button></p>
+												<p class="ActivityAddress" align=left style="margin:10px;width:340px;">${Activity.address}</p>
+												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">檢視地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
-														<div id="map${status.index}"
-															style="width: 350px; height: 350px; background: red"></div>
+														<div id="map${status.index}" style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												<div align=left style="margin: 10px">
+												<div align=center style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
-															<p>參加人數不限</p>
+															<span>參加人數不限</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:when test="${Activity.actualNum==Activity.limitNum}">
-															<p>活動人數已滿</p>
+															<span>活動人數已滿</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:otherwise>
-															<p>目前人數${Activity.actualNum} / ${Activity.limitNum} </p>
+															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
-																<p>已成團</p>
+																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
-																<p>未成團</p>
+																<span>未成團</span>
 															</c:if>
+															
 														</c:otherwise>
 													</c:choose>
 													
 												</div>
-												<!--  -->
+												
 												<div class="outer">
 													<div id="groundD${status.index}" class="ground">
 														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
@@ -223,16 +238,22 @@
 														</div>
 													</div>
 												</div>
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+												<p class="brief" align=center style="width: 350px;height:40px;line-height:40px;padding:0px 20px 0px 20px; margin: 5px; text-align: center">${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
-												<button id="single${Activity.activityId}" class="singlePage">進入活動頁面</button>
+												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
-													class="edit visible" style="display: none">編輯</button>
-												<button id="${Activity.status}${Activity.activityId}${Activity.userId}"
-													class="close visible" style="display: none">結束活動</button>
+													class="edit visible" style="display: none;width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
+												
+												<!-- 活動推播 -->
+												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">
+													推廣活動</button>
+												
+												<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
+													class="close visible" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">結束活動</button>
 											</fieldset>
 										</div>
+										<!-- -->
 										<script>
 											//計算地圖個數
 											number++;
@@ -273,8 +294,6 @@
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
 											}
-											//判斷EL是否為null
-											var people = document.getElementById('people${status.index}');
 											
 											</script>
 									</c:forEach>
@@ -306,8 +325,10 @@
 
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
+			$(this).html('關閉地圖');
 		}else {
-			$('#hidden'+indexNum).css('display','none');	
+			$('#hidden'+indexNum).css('display','none');
+			$(this).html('檢視地圖');
 		}
 	})
 
@@ -330,8 +351,9 @@
 	//關閉活動
 	$(".close").on("click", function () {
 		var Str = this.id
-		var activityId = Str.substring(1, 5);
-		var userId = Str.substring(5);
+		var array = Str.split("-");
+		var activityId = array[1];
+		var userId = array[2];
 		window.location.href = '<c:url value="/closeActivity.do"/>?userId=' + userId + '&activityId=' + activityId;
 	})
 	//編輯
@@ -343,7 +365,7 @@
 	})
 
 	listButton = $('button[id^="O"][class*="visible"]');
-	listButton.attr("style", "display:block;");
+	listButton.css("display", "block");
 
 	
 	//設定currentId給超連結
@@ -361,6 +383,25 @@
 	<script src="scripts/MapStyle.js"></script>
 	<script src="scripts/mapForActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		});
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
+	<!--  活動推廣 -->
+	<script type="text/javascript">
+		$(".pushAct").on("click", function () {
+			var Str = this.id
+			var array = Str.split("-");
+			var activityId = array[1];
+			var activityName = array[2];
+			websocket.send(activityId+"#"+activityName);
+		});
+	</script>
 	
 </body>
 </html>

@@ -2,6 +2,8 @@ package bar.model;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,11 @@ public class MessageBoardService {
 	
 	public List<MessageBoard> selectTheMessage(String account, Integer id) {
 		return messageBoardDAO.selectTheMessage(account, id);
+	}
+	
+	public MessageBoard selectTheMessageOnlyById(Integer id) {
+		
+		return messageBoardDAO.selectTheMessageOnlyById(id);
 	}
 	
 	//////////////////////////////

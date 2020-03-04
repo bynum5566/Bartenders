@@ -88,9 +88,6 @@
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								
-								
-								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -98,8 +95,7 @@
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>
@@ -134,6 +130,7 @@
 										<ul class="actions">
 											<li><a style="text-decoration: none;" class="button" href="/Bartenders/NewsAndEvents.All">取消</a></li>
 											<li><input class="button primary" type="submit" value="發佈"></li>
+											
 										</ul>
 									</div>
 								</div>
@@ -146,14 +143,10 @@
 	</div>
 
 	<script type="text/javascript">
-		$('#Input')
-				.click(
-						function() {
-							$('#newsTitle').val('新分店台北信義店新開幕!');
-							$('#newsDetail')
-									.val(
-											'慶祝信義分店新開幕，<br>即日起全店品項5折優惠!<br>活動期限至2020/3/30止。<br>(本活動僅限信義分店有效，其他分店無此優惠。)');
-						})
+		$('#Input').click(function() {
+			$('#newsTitle').val('新分店台北信義店新開幕!');
+			$('#newsDetail').val('慶祝信義分店新開幕，\n即日起全店品項5折優惠!\n活動期限至2020/3/30止。\n(本活動僅限信義分店有效，其他分店無此優惠。)');
+		})
 
 		$(function() {
 			if (window.history && window.history.pushState) {
@@ -183,7 +176,7 @@
 		})
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-
+	
 </body>
 
 </html>

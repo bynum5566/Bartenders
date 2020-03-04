@@ -14,32 +14,6 @@
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 
 <style type="text/css">
-/* html, body { */
-/* 	margin: 0; */
-/* 	padding: 0; */
-/* 	background: url("/Bartenders/images/Register.jpg") no-repeat center */
-/* 		center fixed; */
-/* 	-webkit-background-size: cover; */
-/* 	-moz-background-size: cover; */
-/* 	-o-background-size: cover; */
-/* 	background-size: cover; */
-/* } */
-
-/* .content { */
-/* 	margin: 100px auto; */
-/* 	text-align: center; */
-/* 	background-color: rgb(255, 255, 255, 0.4); */
-/* 	width: 50%; */
-/* 	height: 500px; */
-/* 	border: 1.5px groove rgb(255, 255, 255, 0.4); */
-/* 	border-radius: 2%; */
-/* 	font-size: 140%; */
-/* 	line-height: 150%; */
-/* } */
-
-/* table { */
-/* 	margin-left: 15%; */
-/* } */
 
 h5 {
 	color: red;
@@ -75,9 +49,6 @@ h5 {
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-								
-								
-								
 								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 								<li><a href="/Bartenders/NewsAndEvents.All">最新消息管理</a></li>
@@ -85,8 +56,7 @@ h5 {
 								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-								<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
-								<li><a href="/Bartenders/ManageBar">管理活動</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div>

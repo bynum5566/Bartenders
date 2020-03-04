@@ -28,7 +28,8 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <!-- 小鈴鐺 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
 <style>
@@ -70,7 +71,6 @@ form.panel {
 	width: 100%
 }
 
-
 .noticeBox {
 	position: fixed;
 	top: 60px;
@@ -91,7 +91,6 @@ form.panel {
 	float: right;
 	display: none;
 }
-
 </style>
 </head>
 
@@ -105,8 +104,8 @@ form.panel {
 			<h1>
 				<a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a>
 			</h1>
-			
-<!-- 小鈴鐺 -->
+
+			<!-- 小鈴鐺 -->
 			<div class="noticeBox">
 				<div class="bell">
 					<img class="bellImg" src="/Bartenders/images/bell.png">
@@ -115,7 +114,7 @@ form.panel {
 					<ul id="notice"></ul>
 				</div>
 			</div>
-			
+
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -123,15 +122,16 @@ form.panel {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
+								<li class="small"><a
+									href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
 									href="javascript:signOut()">登出</a></li>
 							</ul>
 						</div></li>
@@ -166,16 +166,17 @@ form.panel {
 										<ul class="alt">
 											<li>主題</li>
 											<li><input type="text" name="title" placeholder="請輸入主題"
-												required="required"></li>
+												required="required" id="title"></li>
 
 											<li style="font-weight: bold;">文章</li>
 											<li width='700'><textarea rows='20' cols='70'
-													name='blabla' placeholder="請輸入文章" required="required"></textarea></li>
+													name='blabla' placeholder="請輸入文章" required="required"
+													id="blabla"></textarea></li>
 
 											<li>刪除碼</li>
 											<li><input type="password" name="deletePassword"
 												size="16" maxlength="8" placeholder="請輸入刪除碼"
-												required="required"> <small>(留言刪除用，英文數字最多8個)</small>
+												required="required" id="deletePassword"> <small>(留言刪除用，英文數字最多8個)</small>
 											</li>
 
 											<li>圖片</li>
@@ -183,12 +184,25 @@ form.panel {
 												<div class="dropzone" id="wordPicture" required="required">
 													<div class="info"></div>
 												</div> <input id="imgPlace" name="pdImg" class="image-url" /><br>
-												<input type='submit' value='提交'>
+												<input type='submit' value='提交'> <input
+												class="button" type="reset" value="清除重填" /> <input
+												class="button" type="button" value="demo" id="demo" />
 											</li>
 										</ul>
 										<hr>
 									</form>
 								</li>
+
+								<script type="text/javascript">
+									$('#demo').click(function() {
+										$('#title').val('好酒配好料');
+										$('#blabla').val('葡萄酒本身是一門學問，說到佐餐搭配，大部分的人都想到吃肉、吃海鮮，其實西餐常見的義大利麵，也會碰到配酒的問題，而且義大利麵和葡萄酒相遇，將會產生令人難以自拔的美食藝術。義大利麵在造型部分有常見的Spaghetti直麵條、Macaroni通心粉、Ravioli義大利餃等等，而賦予美味的重要關鍵則是搭配的義大利麵醬，就是耳熟能詳的紅醬（tomato sauce）、青醬（pesto sauce）、白醬（cream sauce）和黑醬（squid-ink sauce）。');
+										$('#deletePassword').val('11111111');
+									});
+								</script>
+
+
+
 								<li>
 									<div style="color: white">
 										<c:forEach var="messageBoard" items="${newest}">
@@ -228,9 +242,10 @@ form.panel {
 												<tbody>
 													<tr>
 														<td><input type="text" name="id" size="8"
-															placeholder="留言ID"></td>
+															placeholder="留言ID" required="required"></td>
 														<td><input type="password" name="deletePassword"
-															size="8" maxlength="8" placeholder="刪除密碼"></td>
+															size="8" maxlength="8" placeholder="刪除密碼"
+															required="required"></td>
 														<td><input type="submit" value="刪除留言"></td>
 													</tr>
 												</tbody>
@@ -498,15 +513,15 @@ form.panel {
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
 		async defer></script>
-		
-<!-- 小鈴鐺 -->
+
+	<!-- 小鈴鐺 -->
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		})
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-		
+
 </body>
 
 </html>

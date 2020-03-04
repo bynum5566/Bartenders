@@ -60,8 +60,8 @@ public class QRCodeDAO {
 				System.out.println("start to check");
 				System.out.println("order status: "+order.getoStatus());
 				System.out.println("order ocomplete: "+order.getoComplete());
-				if(order.getoStatus()==1&&order.getoComplete()==null) {
-					System.out.println("situation 1");
+				if(order.getoStatus()==1&&order.getoComplete()==0) {
+					System.out.println("物流準備收貨");
 					order.setoStatus(2);
 					String date = getTime();
 					order.setoTimeB(date);
@@ -72,7 +72,7 @@ public class QRCodeDAO {
 					reUpdate.setStatus(4);
 					return order;
 				}else if(order.getoStatus()==2&&order.getoComplete()==1) {
-					System.out.println("situation 2");
+					System.out.println("商品準備送達");
 					order.setoStatus(3);
 					String date = getTime();
 					order.setoTimeC(date);
@@ -80,8 +80,8 @@ public class QRCodeDAO {
 					reUpdate.setStatus(6);
 					System.out.println("update status");
 					return order;
-				}else if(order.getoStatus()==2&&order.getoComplete()==null){
-					System.out.println("no situation matched");
+				}else if(order.getoStatus()==2&&order.getoComplete()==0){
+					System.out.println("尚未點選送達確認");
 					return order;
 				}
 				

@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>活動大廳 / Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -26,25 +26,54 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- 小鈴鐺 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
 	<style>
-		input{
-			color:white;
+	
+		.wrapper.style5 ::-webkit-input-placeholder {
+			color: darkgrey !important;
+			font-family: 'Noto Sans TC', sans-serif;
 		}
-		.errors{
-			margin: 0px auto;
-			color:red;
+		
+		#background{
+			position:relative;
+			left:0%;
+			top:0%;
+			margin-top:-80px;
+			/*border:2px yellow solid;*/
 		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
+		
 		.container{
-		position:absolute;
-		left:0%;
+		position:relative;
+		width:1400px;
+		left:50%;
 		padding:10px;
 		margin: 0px auto;/*div對齊效果*/
+		margin-left:-700px;
   		text-align: center;
+  		
+  		/*border:1px red solid;*/
 		}
 	    /* 以下是搜尋地圖設定*/
 		.searchDiv {
 			margin: auto;
-/* 			width:800px; */
 			width:70%;
 			height: auto;
 			display:none;
@@ -52,6 +81,10 @@
 		.mapDiv {
 			width: 800px;
 			height: 500px;
+		}
+
+		.links{
+			text-align: center;
 		}
 
 		/*以下是搜尋框設定*/
@@ -62,10 +95,12 @@
 			right:0%;
 			background-color:lightgrey;
 /* 			width:150px; */
-			width:15%;
+			width:14%;
 			height:auto;
 			padding:5px;
 			margin:15px;
+			color: #888;
+			margin-top:6%;
 		}
 		label{
 			display: block;
@@ -75,16 +110,15 @@
 			display: inline-block;
 			vertical-align:top;
 		}
-		.date{
-		width:120px;
-		}
 		
 		#beginTime{
 			height:25px;
+			margin:5px;
 		}
 		
 		#endTime{
 			height:25px;
+			margin:5px;
 		}
 		
 		div.col-12.col-12-medium {
@@ -92,20 +126,77 @@
 			text-align: center;
 		}
 		
+		input#address{
+			width:90%;
+/* 			 width:500px; */
+		}
+		
+		button#clearTime, button#jokerBtn, button#openSearch {
+		    width: 130px;
+		    height: 40px;
+		    margin: 0px auto;
+		    vertical-align: middle;
+		    color: #888;
+		    font-size: 12px;
+		}
+		
+		input#beginTime, input#endTime {
+			font-size:12px;
+		    background-color:#aaa;
+		    color: #888;
+		}
+		
+		.wrapper.style5 input[type="checkbox"] + label {
+			color: #888;
+			font-size:14px;
+			line-height: 14px;
+		}
+		
+		p.brirf{
+			width: 340px;
+			margin: 5px;
+			text-align: justify;
+		}
+		
+		/* 小鈴鐺 */
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
+		
 		/*RWD for Map*/
 		@media screen and (max-width: 1680px) {
 			.col-12.col-12-medium {
 				width:50%;
-				margin-left: 5%;
+				margin-left: 8%;
 			}
 		}
 		
 		@media screen and (max-width: 1480px) {
 			.col-12.col-12-medium {
 				width:50%;
-				margin-left: 9%;
+				margin-left: 12%;
 			}
-			
+			#choose{
+				width:18%;
+				margin-top: 10%;
+			}
 		}
 		
 		@media screen and (max-width: 960px) {
@@ -113,13 +204,11 @@
 				margin-left: 8%;
 			}
 			#choose{
-				width:18%;
+				width:20%;
+				margin-top: 10%;
 			}
 			.searchDiv{
 				width: 850px;
-			}
-			#map0 {
-				width: 80%;
 			}
 		}
 		
@@ -129,12 +218,13 @@
 			}
 			#choose{
 				width:20%;
+				margin-top: 12%;
 			}
 			.searchDiv{
 				width: 750px;
 			}
-			#map0 {
-				width: 80%;
+			#map0{
+				width: 90%;
 			}
 		}
 		
@@ -144,12 +234,21 @@
 			}
 			#choose{
 				width:20%;
+				margin-top: 13%;
 			}
 			.searchDiv{
 				width: 650px;
 			}
-			#map0 {
-				width: 80%;
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
 			}
 		}
 		
@@ -160,12 +259,21 @@
 			}
 			#choose{
 				width:25%;
+				margin-top: 15%;
 			}
 			.searchDiv{
 				width: 550px;
 			}
-			#map0 {
-				width: 80%;
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
 			}
 		}
 		
@@ -176,42 +284,156 @@
 			}
 			#choose{
 				width:25%;
+				margin-top: 17%;
 			}
 			.searchDiv{
 				width: 500px;
 			}
-			#map0 {
-				width: 80%;
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
 			}
 		}
 		
 		@media screen and (max-width: 568px) {
-			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 3%;
-			}
 			.searchDiv{
 				width: 400px;
-			}
-			#map0 {
-				width: 80%;
+				margin-left: 20px;
 			}
 			#choose{
 				width:30%;
+				margin-top: 18%;
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch {
+			    width: 110px;
+			    height: 35px;
+			    margin: 0px auto;
+			    vertical-align: middle;
+			    font-size: 10px;
+			}
+			
+			input#address{
+				width: 400px;
 			}
 		}
 		
 		@media screen and (max-width: 414px) {
-			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 2%;
+			input#address{
+				width: 240px;
 			}
+			
+			.searchDiv{
+				width: 280px;
+			}
+			
+			.col-12.col-12-medium {
+				margin-left: 0.3%;
+				width:300px;
+			}
+			
+			#choose {
+			    margin-top: 18%;
+			}
+			
+			.bell .bellImg {
+			    height: 40px;
+			    width: 40px;
+			    float: right;
+			}
+			
+			input.date.flatpickr-input.flatpickr-mobile {
+				width: 80px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch{
+				width: 80px;
+				height:40px;
+				padding:3px;
+				margin:0px auto;
+				vertical-align:middle;
+				line-height:16px" 
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 0px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			    width: 300px;
+			}
+			
+			div.container {
+			    position: absolute;
+			    left: 0%;
+			    padding: 10px;
+			    margin: 0px auto;
+			    text-align: center;
+			    width: 320px;
+			}
+			
+			.fieldset {
+			    width: 300px;
+			}
+
+			img.img {
+				width:240px;
+			}
+			
+			div#groundD0 {
+				width:260px;
+			}
+			
+			p.brief {
+				width:270px;
+				margin-left: 10px;
+			}
+			.wrapper.style5 input[type="checkbox"] + label {
+			color: #888;
+			font-size: 10px;
+		}
 		}
 		
 		@media screen and (max-width: 320px) {
 			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 1%;
+				margin-left: 0.3%;
+				width:260px;
+			}
+			
+			.searchDiv{
+				width: 260px;
+			}
+			
+			#choose {
+			    margin-top: 15%;
+			}
+			
+			.bell .bellImg {
+			    height: 40px;
+			    width: 40px;
+			    float: right;
 			}
 		}
 	</style>
@@ -242,6 +464,17 @@
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+			<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>	
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -251,9 +484,6 @@
 							<c:if test="${testV>499999}">
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -261,10 +491,10 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+<!-- 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li> -->
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
@@ -278,8 +508,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
@@ -295,12 +525,21 @@
 <!-- 				<div class="inner"> -->
 					<section>
 						<div class="row">
-							<div class="col-12 col-6-medium"><!-- 這裡開始 -->
-								<h1 align=center style="font-size:48px;">活動大廳</h1>
+							<div id="background" class="col-12 col-6-medium"><!-- 這裡開始 -->
+								<h2 align=center style="margin-top:30px;">活動大廳</h2>
+									<div class="links">
+<%-- 										<c:if test="${testV>499999}"> --%>
+										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
+										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${testV<499999}"> --%>
+<!-- 										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a> -->
+<!-- 										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a> -->
+<%-- 										</c:if> --%>
+									</div>
 								
 								<div class="searchDiv" align=center>
-									<label>輸入地址定位</label>
-									<input id="address" type="text" style="width:500px">
+									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
 									<button id="addressBtn" type="button" onclick="getInput()">搜尋</button>
 									<button id="autoAddressBtn" type="button" onclick="autoLocating()">自動定位</button>
 									<div id="map0" class="mapDiv"></div>
@@ -319,14 +558,14 @@
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
 						
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} <button id="${Activity.activityId}Bhidden${status.index+1}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:40px">確認地圖</button></p>
+												<p class="ActivityAddress" align=left style="margin: 10px">${Activity.address} </p>
+												<button id="${Activity.activityId}Bhidden${status.index+1}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">檢視地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index+1}" class="hideMap">
-														<div id="map${status.index+1}"
-															style="width: 350px; height: 350px; background: red"></div>
+														<div id="map${status.index+1}" style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												<div align=left style="margin: 10px">
+												<div align=center style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
@@ -371,23 +610,10 @@
 														</div>
 													</div>
 												</div>
-												
-												<!-- 
-												<div class="outer">
-													<div id="groundD${status.index}" class="ground">
-														<p id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
-														<div id="targetFor${status.index}" class="targetD">
-															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>	
-														</div>
-														<div id="currentFor${status.index}" class="currentD NP">
-															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
-														</div>
-													</div>
-												</div>
-												 -->
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
+
+												<p class="brief" align=center style="width: 350px;height:40px;line-height:40px;padding:0px 20px 0px 20px; margin: 5px; text-align: center">${Activity.brief}</p>
 												<input type="hidden" name="preUrl" value="${preUrl}">
-												<button id="single${Activity.activityId}" class="singlePage">進入活動頁面</button>
+												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:5px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												
 											</fieldset>
 										</div>
@@ -432,8 +658,8 @@
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
 											}
-											//判斷EL是否為null
-											var people = document.getElementById('people${status.index}');
+											
+											
 											
 											</script>
 									</c:forEach>
@@ -442,19 +668,23 @@
 								<div id="choose" class="chooseType" >
 									<span data-toggle="collapse" data-target="#collap" style="text-align:left; cursor:pointer;">&times;</span>
 									<div id="collap" class="collapse in" style="text-align: left;">
-										<form class="formBox">
+										<form class="formBox" >
 											搜尋類型:<br>
-											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label><br>
-											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label><br>
-											<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label><br>
-											<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label><br>
-											<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label><br>
-											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label><br>
-											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" ><br>
-											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間"><br>
-											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px">清除時間</button><br>
-											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >整合搜尋</button><br>
-											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:darkgrey;line-height:40px" >檢視地圖</button><br>
+											<input id="bar" type="checkbox" class="multi" name="type2" value="bar" ><label for="bar">酒吧</label>
+											<input id="shop" type="checkbox" class="multi" name="type2" value="shop" ><label for="shop">專賣店</label>
+											<input id="party" type="checkbox" class="multi" name="type2" value="party" ><label for="party">派對</label>
+											<input id="carnival" type="checkbox" class="multi" name="type2" value="carnival" ><label for="carnival">嘉年華</label>
+											<input id="show" type="checkbox" class="multi" name="type2" value="show" ><label for="show">酒展</label>
+											<input id="festival" type="checkbox" class="multi" name="type2" value="festival" ><label for="festival">節慶活動</label>
+											<input id="ready" type="checkbox" class="multi" name="ready" value="ready"><label for="ready">已成團</label>
+											<input id="available" type="checkbox" class="multi" name="available" value="available"><label for="available">還有空位</label>
+											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" >
+											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間">
+											<div align="center">
+											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
+											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
+											</div>
 										</form>
 									</div>
 									
@@ -473,7 +703,7 @@
 										  if(endTime.value==''){
 											  console.log('end not pick yet')
 											  endTime.style.background = 'pink';
-											  endTime.placeholder = '請一併選擇結束時間';
+											  endTime.placeholder = '尚未選擇結束時間';
 											  console.log('begin value: ',beginTime.value);
 											  console.log('end value: ',endTime.value);
 											  joker.disabled=true;
@@ -490,7 +720,7 @@
 										  if(beginTime.value==''){
 											  console.log('begin not pick yet')
 											  beginTime.style.background = 'pink';
-											  beginTime.placeholder = '請一併選擇開始時間';
+											  beginTime.placeholder = '尚未選擇開始時間';
 											  console.log('begin value: ',beginTime.value);
 											  console.log('end value: ',endTime.value);
 											  joker.disabled=true;
@@ -641,24 +871,6 @@
 	<script type="text/javascript">
 	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
 	//window.open(dlLink);
-
-	
-
-	//小OK顯示
-	var ok = document.getElementById("smallok")
-	var checklat = document.getElementById("lat")
-	$('#map').on("click", function(){
-		checkMap();
-		reloadMarkers(lat.value,lng.value,realType.value);
-		getMarkers(lat.value,lng.value,realType.value);
-		console.log('temp marker:',lat.value,lng.value,realType.value)
-	});
-	function checkMap(){
-		console.log("checkMap");
-		if(checklat.value!=0){
-			ok.style.visibility = 'visible';
-		}
-	}
 	
 	//打開搜尋地圖
 	$('#openSearch').on('click', function(){
@@ -680,8 +892,10 @@
 
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
+			$(this).html('關閉地圖');
 		}else {
-			$('#hidden'+indexNum).css('display','none');	
+			$('#hidden'+indexNum).css('display','none');
+			$(this).html('檢視地圖');
 		}
 	})
 
@@ -719,7 +933,7 @@
 	<script>
 	console.log('jokerList is: ','${jokerList}')
 	if(${empty jokerList}){
-		var defaultList = ["checked","checked","checked","checked","checked","checked","null","null","close"];
+		var defaultList = ["checked","checked","checked","checked","checked","checked","checked","checked","null","null","close"];
 		reloadMarkers("ActivityJoker",defaultList,0);
 		getMarkers("ActivityJoker",defaultList,0);
 		
@@ -728,12 +942,21 @@
 		queryList = getList.slice(1,getList.length-1).split(", ");
 		reloadMarkers("ActivityJoker",queryList,0);
 		getMarkers("ActivityJoker",queryList,0);
-		if(queryList[8].toString()=='open'){
+		if(queryList[10].toString()=='open'){
 			$('.searchDiv').css('display','block');
 		}else{
 			$('.searchDiv').css('display','none');
 		}
 	}
 	</script>
+	
+	<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 </body>
 </html>
