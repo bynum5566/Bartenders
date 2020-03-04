@@ -277,8 +277,9 @@
 		orderID = Str.substring(8);
 		console.log('orderId is: ',orderID)
 		//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+		//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
 		var prefix = 'logistic/OrderReserveByBar';
-		var input = orderID+'/${getSenderId}';
+		var input = orderID;
 
 		reserveOrder(prefix,input,'${getSenderId}');
 	})

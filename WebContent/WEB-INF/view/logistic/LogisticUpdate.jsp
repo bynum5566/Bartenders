@@ -50,6 +50,8 @@
 			vertical-align:middle;
 			
 		}
+		
+		
 	</style>
 </head>
 <body class="is-preload">
@@ -100,8 +102,8 @@
 												LogisticData = LogisticJSON;
 												ordersID = LogisticJSON.sID;
 												//已點選送達
-												if(LogisticJSON.oComplete==1){
-													window.location.href = '<c:url value="/LogisticArrive"/>?orderID=' + orderID;
+												if(LogisticJSON.oComplete==1&&currentId==ordersID){
+													window.location.href = '<c:url value="/MerchandiseFilter.do"/>?orderID=' + orderID;
 													//window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
 												//尚未送達
 												}else if(currentId==ordersID){
@@ -161,8 +163,9 @@
 												//配送員不符	
 												}else if(ordersID!=null&&currentId!=ordersID){
 													console.log('配送員不符');
-													document.getElementById('temp').innerHTML = '配送員不符合，請勿拿別人訂單 ';
+													document.getElementById('temp').innerHTML = '配送員不符，請勿拿別人訂單 ';
 													window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
+												//尚未預約取件
 												}else {
 													console.log('此訂單尚未點選預約');
 													document.getElementById('temp').innerHTML = '請先預約取件 ';
@@ -190,10 +193,24 @@
 															newTr.appendChild(newTd);
 															}
 													}
+													var newTd = document.createElement("td"); 
+													newTd.id = 'reserveBtn';
+													var newBtn = document.createElement("button");
+													newBtn.id = LogisticJSON['sID']+LogisticJSON['oStatus']+'reserve'+LogisticJSON['oID'];
+													newBtn.type = 'button';
+													newBtn.className = 'reserve';
+													newBtn.innerHTML = '接單';
+													newBtn.style = 'width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+													//newBtn.style.display = 'none';
+													newTd.appendChild(newBtn);
+													newTr.appendChild(newTd);
+													
+													/////////
 													document.getElementById('tbody').appendChild(newTr);
 													document.getElementById('noteText').innerHTML = '請先點選接單按鈕';
+													changeDisplay();
 												}//else結束
-												});
+											});
 									};
 								
 								//async function initialCheck(){
@@ -231,6 +248,29 @@
 									listR.css("display", "block");
 									listRN = $('button[id$="1"][class="Ready"]');
 									listRN.attr("disabled", "true");
+								}
+								
+								//接單按鈕
+								function changeDisplay(){
+								$(".reserve").on("click", function () {
+									var Str = this.id
+									orderID = Str.substring(8);
+									console.log('orderId is: ',orderID)
+									window.location.href = '<c:url value="/logistic/orderReserve.do"/>?oID=' + orderID + '&sID='+currentId;
+									//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
+									//var prefix = 'logistic/OrderReserveByBar';
+									//var input = orderID;
+									//reserveOrder(prefix,input,'${getSenderId}');
+								})
+								
+									listR = $('button[id^="9"][class="reserve"]');
+									listR.attr("disabled",true);
+									console.log('class length: ',listR.length);
+									for(var i=0;i<listR.length;i++){
+										listR[i].innerHTML = '已接單';
+									}
+									
+									//listR.attr("style", "display:block;");
 								}
 							</script>	
 							<h3 align="center" style="font-size:36px;">訂單明細</h3>

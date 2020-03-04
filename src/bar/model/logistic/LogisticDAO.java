@@ -104,7 +104,7 @@ public class LogisticDAO {
 			logis.setoComplete(0);
 			logis.setCharge(uID);
 			session.save(logis);
-			qdao.CreateQR(oID, 1, name);
+			qdao.CreateQR(oID, 1, name,finalInput);
 //			order.setShippingNumber(finalLast);
 			return finalLast;
 		}catch(Exception e) {
@@ -140,7 +140,31 @@ public class LogisticDAO {
 		}
 	}
 
-	
+	public boolean checkReserveTime(Logistic logistic) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date current = new Date();
+		try {
+			if(logistic.getoTimeR()!=null) {
+				String reserveTime = logistic.getoTimeR();
+				System.out.println("oTimeR : "+reserveTime);
+				System.out.println("current: "+sdf.format(current));
+				Date end = sdf.parse(reserveTime);
+				System.out.println("deadline: "+end);
+				System.out.println("now time: "+current);
+				long diff=(end.getTime()-current.getTime())/(1000); //以秒計算
+				System.out.println("diff is: "+diff);
+				if(diff==0||diff<=0) {
+					logistic.setsID(null);
+					logistic.setoTimeR(null);
+					System.out.println("order has been release");
+				}
+			}			
+		}catch (Exception e){
+			System.out.println("e:"+e);
+			return false;
+		}
+		return true;
+	}
 	public boolean checkReserveTime(List<Logistic> list) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date current = new Date();

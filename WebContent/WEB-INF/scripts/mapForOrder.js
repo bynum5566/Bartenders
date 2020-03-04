@@ -97,7 +97,8 @@
 		    orders = [];
 		}
 		function reserveOrder(prefix,input,senderId){
-			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
+			console.log('oID=',input);
+			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'/'+senderId+'').then(
 					function(response) {
 						return response.json();
 					}).then(function(JSONdata){
@@ -211,12 +212,14 @@
 								'<p class="oinfoDetail">運送地址: '+address+'</p>'+
 								'</div>';
 							}else{
+								
 								iconImg = '../images/defaultMarker.png';
 								var contentString = 	'<div id="odiv">'+
 								'<p class="oinfoDetail">物流單號: '+lID+'</p>'+
 								'<p class="oinfoDetail">運送地址: '+address+'</p>'+
-								'<a style="color:blue;" href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'">我要接單</a>'+
+								'<a style="color:blue;" href="javascript: reserveOrder(\'logistic/OrderReserveByBar\',\''+oID+'\','+senderId+')">我要接單</a>'+
 								'</div>';
+				
 							};
 							
 							var marker = new google.maps.Marker({
