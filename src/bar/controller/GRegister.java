@@ -19,7 +19,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(value = { "userName", "email", "gid" , "CName" , "Gname","account","Caccount"})
+@SessionAttributes(value = { "userName", "email", "gid" , "CName" , "Gname","account","Caccount","getUserId","getCompanyId"})
 @EnableTransactionManagement
 public class GRegister {
 
@@ -38,6 +38,7 @@ public class GRegister {
 		if (Guser != null) {
 			m.addAttribute("userName", Guser.getUserName());
 			m.addAttribute("account", gid);
+			m.addAttribute("getUserId", Guser.getUserId());
 			
 			//for websocket
 			WebSocketTest.setModel(m);
@@ -80,7 +81,9 @@ public class GRegister {
 		    }
 
 			Users Nuser = new Users(account, password, userName, birthday, phone, email, address, "member");
-			uservice.insert(Nuser);
+			Users NIuser = uservice.insert(Nuser);
+			m.addAttribute("getUserId", NIuser.getUserId());
+			
 
 		} catch (Exception e) {
 			m.addAttribute("errorMsg", "系統忙碌中，請稍後再試");
@@ -88,6 +91,7 @@ public class GRegister {
 		}
 		m.addAttribute("userName", userName);
 		m.addAttribute("account", account);
+		
 		
 		//for websocket
 		WebSocketTest.setModel(m);
@@ -103,6 +107,7 @@ public class GRegister {
 		if (Gcompany != null) {
 			m.addAttribute("CName", Gcompany.getCompanyName());
 			m.addAttribute("Caccount", gid);
+			m.addAttribute("getCompanyId", Gcompany.getCompanyId());
 			
 			//for websocket
 			WebSocketTest.setModel(m);
@@ -132,7 +137,8 @@ public class GRegister {
 			Company Ncompany = new Company(account, password, companyName, taxId, phone, email, address, lineId,
 					lineSecret, "unverified");
 
-			cservice.insert(Ncompany);
+			Company NIcompany = cservice.insert(Ncompany);
+			m.addAttribute("getCompanyId", NIcompany.getCompanyId());
 
 		} catch (Exception e) {
 			m.addAttribute("errorMsg", "系統忙碌中，請稍後再試");
