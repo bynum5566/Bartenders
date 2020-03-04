@@ -56,6 +56,7 @@ public class finishPay {
 	@RequestMapping(path = "/finishPay", method = RequestMethod.POST)
 	public ModelAndView toFinishPay(HttpServletRequest hsRequest, HttpServletResponse hsResponse, Model m) throws ServletException, IOException {
 		try {
+			System.out.println("**********Trying in Finishpay");
 			String confirmUrl=(String) hsRequest.getSession().getAttribute("reqConfirmUrl");
 			int amount=(int) hsRequest.getSession().getAttribute("amount");
 			orderId=(String) hsRequest.getSession().getAttribute("orderId");
@@ -64,8 +65,11 @@ public class finishPay {
 			Cart car = carService.selectCartByOid(orderId);
 			String pdId = car.getPdId();
 			ProductData pd = pdService.select(pdId);
+			expiryDate = null;
+			validDate = null;
 			expiryDate = pd.getExpiryDate();
 			validDate = pd.getValidDate();
+			pd = null;
 			
 		    HttpPost httpPost = new HttpPost(confirmUrl);
 			httpPost.setHeader("Content-Type", "application/json;charset=UTF-8");
@@ -103,6 +107,7 @@ public class finishPay {
 				return mav;
 			}
 			int status = 3;
+			System.out.println("*****Doesn't in if");
 			oService.updateToCancel(orderId, status);
 			updateSoldQuan(orderId);	
 			
