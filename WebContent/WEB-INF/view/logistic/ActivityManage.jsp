@@ -244,6 +244,11 @@
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
 													class="edit visible" style="display: none;width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
+												
+												<!-- 活動推播 -->
+												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">
+													推廣活動</button>
+												
 												<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
 													class="close visible" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">結束活動</button>
 											</fieldset>
@@ -386,6 +391,17 @@
 		});
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
+	<!--  活動推廣 -->
+	<script type="text/javascript">
+		$(".pushAct").on("click", function () {
+			var Str = this.id
+			var array = Str.split("-");
+			var activityId = array[1];
+			var activityName = array[2];
+			websocket.send(activityId+"#"+activityName);
+		});
+	</script>
 	
 </body>
 </html>

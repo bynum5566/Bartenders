@@ -211,6 +211,14 @@
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
 	
+	<!-- 消息推廣 -->
+	<script type="text/javascript">
+		$(".pushNews").on("click", function() {
+			var title = this.id;
+			websocket.send('${Caccount}'+'%'+'${CName}'+'*'+title);
+		});
+	</script>
+	
 	
 	</body>
 
