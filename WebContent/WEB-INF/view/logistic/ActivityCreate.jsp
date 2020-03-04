@@ -10,6 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<title>建立活動</title>
 	<title>建立活動／Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -34,12 +35,13 @@
 		margin:15px;
 		}
 
-		
+		/**/
 		#alter{
 			position:absolute;
 			top:10%;
 			left:0%;
 			width:100%;
+			
 		}
 		
 		#name{
@@ -97,30 +99,35 @@
 	        padding-top: 10px;
 	    }
 	    
+	    #demoBox{
+	    	position:absolute;
+	    	right:2%;
+	    	bottom:5%;
+	    }
 	    		/*小鈴鐺*/
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
-	
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 	</style>
 </head>
+
 <body class="is-preload">
 <script>
 //測試是否可以接收到登入參數
@@ -158,9 +165,6 @@ console.log('currentId is: ',currentId);
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -168,10 +172,9 @@ console.log('currentId is: ',currentId);
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -188,8 +191,8 @@ console.log('currentId is: ',currentId);
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -255,19 +258,59 @@ console.log('currentId is: ',currentId);
 										</fieldset>
 									</form>
 								</div>
+								
 							</div>
 						</div>
+						<!-- Demo用 -->
+								<div id="demoBox">
+									<button id="demo1">派對</button><br>
+									<button id="demo2">酒展</button><br>
+									<button id="demo3">嘉年華</button>
+								</div>
 					</section>
+					
 				</div>
 			</section>
 		</article>
 	</div>
 	
 	<script type="text/javascript" >
-	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
-	//window.open(dlLink);
-		//更改placeholder
+		//demo用
+		$('#demo1').on('click',function(){
+			console.log('click1');
+			$('#name').val('周末狂歡派對');
+			//$('#party').prop('checked');
+			document.getElementById('party').checked = true;
+			$('#realType').val('party');
+			$('#beginTime').val('2020/03/05 19:00');
+			$('#endTime').val('2020/03/05 22:00');
+			$('#address').val('台北市大安區仁愛路四段112巷11號');
+			$('#lat').val(25.0365128);
+			$('#lng').val(121.5499646);
+			$('#limitNum').val(10);
+			$('#actualNum').val(2);
+			$('#targetNum').val(6);
+			$('#brief').val('狂歡派對就是要人多');
+			$('#detail').val('我們是一群認識已久的酒友 當初也是因為喝酒認識的 如果你也是個酒品愛好者 卻苦無一起享受的夥伴 歡迎加入我們一起狂歡');
+		})
 		
+		$('#demo2').on('click',function(){
+			console.log('click2');
+			$('#name').val('2020 台北國際酒展');
+			//$('#party').prop('checked');
+			document.getElementById('show').checked = true;
+			$('#realType').val('show');
+			$('#beginTime').val('2020/03/13 10:00');
+			$('#endTime').val('2020/03/16 18:00');
+			$('#address').val('台北南港展覽館1館');
+			$('#lat').val(25.0365128);
+			$('#lng').val(121.5499646);
+			$('#limitNum').val(999);
+			$('#actualNum').val(46);
+			//$('#targetNum').val(0);
+			$('#brief').val('全台最大國際酒展');
+			$('#detail').val('來自世界各國的葡萄酒、清酒及啤酒！結合好酒、好食、好玩、好看，與你一起打開味蕾、刺激鼻間、衝擊視野、感受微醺、探索春Wine美好，體驗酒展風格。');
+		})
 		
 		
 		

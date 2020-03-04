@@ -122,13 +122,13 @@ form.panel {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a
 									href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
@@ -196,7 +196,7 @@ form.panel {
 								<script type="text/javascript">
 									$('#demo').click(function() {
 										$('#title').val('好酒配好料');
-										$('#blabla').val('1 將蒜頭去膜切末；辣椒切末；蛤蜊以1000cc的水加入30g的鹽，吐沙1-2小時；九層塔切碎備用。2鍋內放800cc水煮沸後，加1/2茶匙鹽及油，將麵條以傘狀下鍋後用筷子略拌，避免沾黏。中火沸騰後續煮約11分鐘，撈起放入冷水中至涼，瀝乾水分，加1小匙橄欖油拌勻備用。3中火沸騰後續煮約11分鐘，撈起放入冷水中至涼，瀝乾水分，加1小匙橄欖油拌勻備用。4鍋內放入奶油，再倒入蒜末、辣椒末用中小火爆香1分鐘，再將蛤蜊、40cc的白酒及120cc的水倒入鍋內，煮約1-2分鐘至蛤蜊全開後撈起備用。5將作法2的義大利麵放入鍋中拌炒，加入少許鹽、黑胡椒、紅辣椒末以及20cc的白酒拌炒至略收汁。6起鍋前加入九層塔末略拌，盛盤擺上蛤蜊即可。');
+										$('#blabla').val('葡萄酒本身是一門學問，說到佐餐搭配，大部分的人都想到吃肉、吃海鮮，其實西餐常見的義大利麵，也會碰到配酒的問題，而且義大利麵和葡萄酒相遇，將會產生令人難以自拔的美食藝術。義大利麵在造型部分有常見的Spaghetti直麵條、Macaroni通心粉、Ravioli義大利餃等等，而賦予美味的重要關鍵則是搭配的義大利麵醬，就是耳熟能詳的紅醬（tomato sauce）、青醬（pesto sauce）、白醬（cream sauce）和黑醬（squid-ink sauce）。');
 										$('#deletePassword').val('11111111');
 									});
 								</script>

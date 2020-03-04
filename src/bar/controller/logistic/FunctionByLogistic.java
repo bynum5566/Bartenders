@@ -93,13 +93,14 @@ public class FunctionByLogistic {
 			String phone = rs.getPhone();
 			String name = rs.getRecipient();
 			int amount = rs.getAmount();
+			Integer uID = rs.getUserId();
 			String address = null;
 			if(type==1) {
 				address = rs.getAddress1();
 			}else if(type==2) {
 				address = rs.getAddress2();
 			}
-			lSer.createLogistic(oID, cID, type, phone, name, amount, address);
+			lSer.createLogistic(oID, cID, type, phone, name, amount, address, uID);
 			System.out.println("test Logistic order created");
 		}
 		

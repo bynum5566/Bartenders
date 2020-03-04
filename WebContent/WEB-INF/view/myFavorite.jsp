@@ -103,6 +103,10 @@
         #content {
 		    margin-top: 0;
 		}
+		
+		.wrapper {
+		    padding: 2em 0 4em 0;
+		}
 	</style>
 </head>
 
@@ -135,6 +139,7 @@
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>
@@ -161,7 +166,9 @@
 										<ul class="alt">
 											<li><h2>我的最愛酒吧清單</h2></li>
 											<li class="inwrapper">
-												<table class="pd0">${MyfavB}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${MyfavB}</table>
+												</div>
 											</li>
 										</ul>
 									</div>
@@ -169,7 +176,9 @@
 										<ul class="alt">
 											<li><h2>我的最愛酒類清單</h2></li>
 											<li class="inwrapper">
-												<table class="pd0">${Myfav}</table>
+												<div style="height: 600px;overflow: auto;">
+													<table class="pd0">${Myfav}</table>
+												</div>
 											</li>
 										</ul>
 									</div>

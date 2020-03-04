@@ -69,7 +69,7 @@
 									<li>
 										<h3>帳號:</h3>
 									</li>
-									<li><input type="text" name="userAccount" placeholder="請輸入您的帳號"/></li>
+									<li><input type="text" name="userAccount" placeholder="請輸入您的帳號" id="account"/></li>
 									<li>${errors.account}</li>
 								</ul>
 
@@ -77,7 +77,7 @@
 									<li>
 										<h3>EMAIL帳號:</h3>
 									</li>
-									<li><input type="email" name="useremail" autocomplete="off" size="50"
+									<li><input type="email" name="useremail" autocomplete="off" size="50" id="email"
 											placeholder="請填寫正確的郵件地址" required="required"
 											pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"/><br></li>
 									<li>${errors.email}</li>
@@ -88,23 +88,23 @@
 										<h3>手機:</h3>
 									</li>
 									<li><input type="text" name="userphone" autocomplete="off" size="50"
-											placeholder="請填寫正確的手機號碼" required="required"/><br></li>
+											placeholder="請填寫正確的手機號碼" required="required" id="phone"/><br></li>
 									<li>${errors.phone}</li>
 								</ul>
 								<ul>
 									<li>
-										<h3>密碼:</h3>
+										<h3>新密碼:</h3>
 									</li>
-									<li><input type="password" name="newPassword" size="50"
+									<li><input type="text" name="newPassword" size="50"
 											placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
-											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br></li>
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="newPassword"/><br></li>
 								</ul>
 								<ul>
 									<li>
-										<h3>確認密碼:</h3>
+										<h3>確認新密碼:</h3>
 									</li>
-									<li><input type="password" name="newPassword2" size="50" placeholder="請再輸入一次密碼"
-											required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$"/><br>
+									<li><input type="text" name="newPassword2" size="50" placeholder="請再輸入一次密碼"
+											required="required" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="newPassword2"/><br>
 									</li>
 									<li>${errors.pswd}</li>
 								</ul>
@@ -112,6 +112,8 @@
 								<ul class="actions">
 									<li><a class="button" href="/Bartenders/login">返回</a></li>
 									<li colspan="2"><button class="button primary" value="submit">送出</button></li>
+									<li><input class="button" type="reset" value="清除重填"/></li>
+									<li><input class="button" type="button" value="demo" id="demo"/></li>
 								</ul>
 								<!-- </table> -->
 							</div>
@@ -135,6 +137,21 @@
 	<script src="/Bartenders/assets/js/main.js"></script>
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	
+	
+	<script type="text/javascript">
+		$('#demo').click(function(){
+			$('#account').val('11129Henry');
+			$('#newPassword').val('PassW0rd123');
+			$('#newPassword2').val('PassW0rd123');
+			$('#phone').val('0987564251');
+			$('#email').val('11129henry@gamil.com');
+		});
+	</script>
+	
+	
+	
+	
 	</body>
 
 </html>

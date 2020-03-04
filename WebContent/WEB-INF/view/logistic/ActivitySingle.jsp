@@ -117,9 +117,6 @@
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -127,10 +124,9 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -147,8 +143,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -358,9 +354,9 @@
 									<h1>活動參加者</h1>
 									<table>
 										<tr>
-											<td style="width:100px;">姓名</td>
-											<td style="width:160px;">手機</td>
-											<td style="width:80px;">人數</td>
+											<td style="width:90px;">姓名</td>
+											<td style="width:140px;">手機</td>
+											<td style="width:70px;">人數</td>
 										</tr>
 										<c:forEach var="Participant" items="${participant}" varStatus="status">
 											<tr>

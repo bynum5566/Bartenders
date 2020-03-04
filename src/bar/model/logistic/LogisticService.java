@@ -54,8 +54,8 @@ public class LogisticService {
 	
 
 	
-	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
-		return lDao.createLogistic(oID,cID,type, phone, name, amount, address);
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address,Integer uID) {
+		return lDao.createLogistic(oID,cID,type, phone, name, amount, address,uID);
 	}
 	
 	public Logistic deliverReady(String id) {

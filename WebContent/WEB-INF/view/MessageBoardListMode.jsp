@@ -321,13 +321,13 @@ div.swiper-slide img {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a
-									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
 								<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 								<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 								<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 								<li class="small"><a
 									href="/Bartenders/Welcome.UserFirstPage">首頁</a><a
@@ -339,17 +339,16 @@ div.swiper-slide img {
 		</header>
 
 		<article id="main">
-			<section class="wrapper style5">
+			<section class="wrapper style5" >
 				<div class="inner">
 					<section>
 						<div class=mydiv>
 							<section>
-								<ul class="actions">
+								<ul class="actions" >
 
 									<li><img id="myBtn1" src="/Bartenders/images/map.png"></li>
 									<li>&emsp;&emsp;</li>
-									<li><img id="myBtn" class="myMenu"
-										src="/Bartenders/images/menu_icon.png"></li>
+									<li style="display: none;"><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 									<li>&emsp;&emsp;</li>
 								</ul>
 								<ul class="alt">
@@ -386,6 +385,9 @@ div.swiper-slide img {
 											<div class="swiper-button-prev"></div>
 										</div>
 									</li>
+									
+							
+									
 
 									<div id="contents" style="color: WhiteSmoke; margin: 20px;">
 										<h3 align="center">列表模式</h3>

@@ -66,6 +66,7 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="p-2"></div>
         <!-- ----------------------------------------------一般會員 -->
+        
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">        
             <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
@@ -79,7 +80,18 @@
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
                 <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+              	<input type="hidden" id="requestOrderId" value="" name="requestOrderId">
               </div>
+              <script>
+		      	console.log('orderID is: ','${orderID}')
+		        var logisticRequest = document.getElementById('requestOrderId');
+		      	$('#requestOrderId').on('click',function(){
+		      		console.log('requestOrderId');
+		      		console.log('temp',$(this).value);
+		      		console.log('temp2',this.value);
+		      	})
+		      	logisticRequest.value = '${orderID}';
+		      </script>
             </div>
          
                  <div class="col-12 p-0 ">
@@ -351,7 +363,16 @@
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
                 <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+              	<input type="hidden" id="requestOrderId2" name="requestOrderId2" value="">
               </div>
+              <script>
+		      	console.log('orderID is: ','${orderID}')
+		        var logisticRequest2 = document.getElementById('requestOrderId2');
+		      	$('#requestOrderId2').on('click',function(){
+		      		console.log('requestOrderId2');
+		      	})
+		      	logisticRequest2.value = '${orderID}';
+		      </script>
             </div>
          
                  <div class="col-12 p-0 ">

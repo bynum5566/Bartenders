@@ -79,13 +79,13 @@
 										<li>
 											<h3>密碼:</h3>
 										</li>
-										<li><input type="password" name="newPassword" size="50"
+										<li><input type="text" name="newPassword" size="50"
 											placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
 											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd"/><br></li>
 										<li>
 											<h3>確認密碼:</h3>
 										</li>
-										<li><input type="password" name="newPassword2" size="50"
+										<li><input type="text" name="newPassword2" size="50"
 											placeholder="請再輸入一次密碼" required="required"
 											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd2"/><br>
 										</li>
@@ -142,7 +142,7 @@
 	
 	<script type="text/javascript">
 		$('#demo').click(function(){
-			$('#name').val('李雲揚');
+			$('#name').val('楊雲理');
 			$('#account').val('11129Henry');
 			$('#pwd').val('11129Henry');
 			$('#pwd2').val('11129Henry');

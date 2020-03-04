@@ -47,6 +47,28 @@ public class FunctionByQRCode {
 //		return "LogisticGate";
 //	}
 	
+	@RequestMapping(path="LogisticArrive.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String LogisticArrive(
+			@RequestParam(name = "orderID")String oID,
+			@RequestParam(name = "userId")Integer userId,Model m,
+			HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		Logistic check = lSer.uniqueQuery("oID", "'"+oID+"'");
+		if(userId.equals(check.getCharge())) {
+			System.out.println("有找到訂單 進行貨物送達");
+			Logistic update = qdao.QRCodeAction(oID,check.getsID());
+			System.out.println("get retrun result:"+update);
+			m.addAttribute("update",update);
+			response.sendRedirect("LogisticArrive");
+			return null;
+//			return "LogisticArrive";
+		}else {
+			LogisticAccount realSender = laSer.querySender(check.getsID());
+			System.out.println("訂單號碼or運送人不對");
+			m.addAttribute("valid",check);
+			m.addAttribute("realSender",realSender);
+			return "logistic/QRCodeInvalid";
+		}
+	}
 	
 	@RequestMapping(path="logistic/QRCodeUpdate.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String processAction3(

@@ -193,11 +193,12 @@ public String showVerifyMailPage() {
 		return "logistic/QRCodeUpdatePage";
 	}
 
-	@RequestMapping(path = "/logistic/SelectLogisticPOST", method = RequestMethod.GET)
-	public String SelectLogisticPOST() {
-		System.out.println("redirect to SelectLogisticPOST");
-		return "logistic/SelectLogisticPOST";
+	@RequestMapping(path = "/LogisticArrive", method = RequestMethod.GET)
+	public String LogisticArrive() {
+		System.out.println("redirect to LogisticArrive");
+		return "LogisticArrive";
 	}
+
 
 	///////////////////以下是地圖搜尋/////////////////
 	@RequestMapping(path = "/ActivityHall", method = RequestMethod.GET)
