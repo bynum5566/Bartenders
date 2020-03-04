@@ -173,6 +173,7 @@
 													<Input type='hidden' name='status'
 														value='${listOfOrder[current.index].status}'>
 													<Input type='submit' value='刪除'>
+													<%--刪除按鈕--%>
 													</form>
 												</td>
 
@@ -222,7 +223,7 @@
 															value="${listOflistOfCart[current.index][current2.index].quantity}"
 															max="${listOflistOfProduct[current.index][current2.index].pdStock}"
 															min="1"/>
-
+														<%--修改按鈕--%>
 														<Input type='submit' value='修改'>
 
 														<Input type='hidden' name='PdId'
