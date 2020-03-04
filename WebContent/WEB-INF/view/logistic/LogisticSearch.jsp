@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>物流訂單搜尋</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -34,21 +34,12 @@
   		text-align: center;
   		/*border:1px blue solid;*/
 		}
-		/*
-		#container{
-		position:relative;
-		top:-100px;
-		padding:10px;
-		margin: 0px auto;
-  		text-align: center;
-  		border:1px blue solid;
-		}
-		*/
+
 		#orderDiv{
 			position:relative;
-			width:150%;
+			width:140%;
 			left:50%;
-			margin-left:-75%;
+			margin-left:-70%;
 			/*border:1px red solid;
 			width:1500px;
 			left:50%;
@@ -56,9 +47,17 @@
 			*/
 		}
 		td{
-
+		border:1px white solid;
 		padding:5px;
 		vertical-align:middle;
+		}
+		
+		#demoBox{
+			position:relative;
+			right:-80%;
+			bottom:-50px;
+			width:450px;
+			height:100px;
 		}
 		
 		/* 以下是地圖搜尋設定*/
@@ -98,7 +97,7 @@
 		<article id="main" >
 			<section class="wrapper style5" >
 				<div class="inner" >
-					<section >
+					<section>
 						<div class="row" >
 							<div id="background" class="col-12 col-12-medium" >
 								<div id="container">
@@ -157,6 +156,17 @@
 								</div>
 							</div>
 						</div>
+							<!--  -->
+									<div id="demoBox" align="center" >
+										<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
+											<table>
+												<tr>
+													<td style="width:350px;">請輸入要模擬的訂單號碼<input type="text" name="orderId" style="width:300px;height:40px;"></td>
+													<td style="width:100px;"><input type="submit" value="建立" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px"></td>
+												</tr>
+											</table>
+										</form>
+									</div>
 					</section>
 				</div>
 			</section>

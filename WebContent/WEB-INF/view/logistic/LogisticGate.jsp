@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Excel Report</title>
+	<title>個人訂單管理</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -36,15 +36,17 @@
 		#orderDiv{
 			position:relative;
 			/*border:1px red solid;*/
-			width:150%;
+			width:140%;
 			left:50%;
-			margin-left:-75%;
+			margin-left:-70%;
 		}
 		
 		td{
 		padding:5px;
 		vertical-align:middle;
 		}
+		
+		
 	</style>
 </head>
 <body class="is-preload">
@@ -82,18 +84,8 @@
 												<button id="status3" class="ByStatus" style="width:17%;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢已送達訂單</button> <!-- status=3 -->
 
 								</div>
-									<!-- 
-									<div align="center">
-										<form action="<c:url value="/logistic/createLogistic.do" />" method="post">
-											<table>
-												<tr>
-													<td>請輸入要測試的訂單號碼<input type="text" name="orderId"></td>
-													<td><input type="submit" value="建立"></td>
-												</tr>
-											</table>
-										</form>
-									</div>
-									 -->
+								
+									
 									<div id="orderDiv" align=center >
 										<fieldset >
 											<legend style="color:white;font-size:24px">查詢結果</legend>
@@ -145,13 +137,19 @@
 															
 														</tr>
 													</c:forEach>
+													<c:if test="${empty logistic}">
+														<tr>
+															<td colspan="12" align="center">查無訂單</td>
+														</tr>
+													</c:if>
 												</tbody>
 											</table>
 										</fieldset>
 									</div>
-								
+									
 							</div>
 						</div>
+					
 					</section>
 				</div>
 			</section>

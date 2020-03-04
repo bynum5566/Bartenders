@@ -55,7 +55,7 @@ public class LogisticDAO {
 			}
 		}
 
-	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address) {
+	public String createLogistic(String oID,Integer cID,Integer type,String phone,String name,Integer amount,String address, Integer uID) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String hqlStr = "from Logistic";
@@ -102,6 +102,7 @@ public class LogisticDAO {
 			logis.setoStatus(1);
 			logis.setoTimeA(forTime);
 			logis.setoComplete(0);
+			logis.setCharge(uID);
 			session.save(logis);
 			qdao.CreateQR(oID, 1, name);
 //			order.setShippingNumber(finalLast);

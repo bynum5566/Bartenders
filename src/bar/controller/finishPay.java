@@ -117,7 +117,7 @@ public class finishPay {
 			
 			int cID = order.getCompanyId();
 			System.out.println("order found: "+order);
-			String logistic = lService.createLogistic(orderId,cID,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress);
+			String logistic = lService.createLogistic(orderId,cID,order.getShipping(),order.getPhone(),order.getRecipient(),order.getAmount(),lAddress,order.getUserId());
 			System.out.println("logistic creation done");
 			order.setShippingNumber(logistic);
 			//以上屬於物流部分 請勿刪除

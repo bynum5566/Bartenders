@@ -324,9 +324,9 @@
 									<h1>活動參加者</h1>
 									<table>
 										<tr>
-											<td style="width:100px;">姓名</td>
-											<td style="width:160px;">手機</td>
-											<td style="width:80px;">人數</td>
+											<td style="width:90px;">姓名</td>
+											<td style="width:140px;">手機</td>
+											<td style="width:70px;">人數</td>
 										</tr>
 										<c:forEach var="Participant" items="${participant}" varStatus="status">
 											<tr>

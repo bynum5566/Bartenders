@@ -60,6 +60,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         	}
         }else if(!url.equals("")){
         	String loginStatus = (String) request.getSession().getAttribute("LoginStatus");
+        	if(url.equals("/LogisticArrive")) {
+        		String orderID = request.getParameter("orderID");
+        		request.setAttribute("orderID",orderID);
+        		System.out.println("orderID is:"+orderID);
+        		RequestDispatcher rd = request.getRequestDispatcher("/login");
+        		rd.forward(request, response);
+                return false;
+        	}
             if(loginStatus == null){
             	System.out.println(">>>未登入者<<<");
                 response.sendRedirect("/Bartenders/login");

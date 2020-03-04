@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>物流訂單明細</title>
+	<title>商品送達</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -53,40 +53,15 @@
 	</style>
 </head>
 <body class="is-preload">
-
-	<div id="page-wrapper">
-	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
-		<nav id="nav">
-			<ul>
-				<li class="special">
-					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
-						<ul>
-							<li><a href="/Bartenders/logistic/searchPersonalOrder.do?sID=${getSenderId}">訂單管理</a></li>
-							<li><a href="/Bartenders/logistic/OrderSearch.do/1">搜尋訂單</a></li>
-							<li class="small"><a href="/Bartenders/logistic/WelcomeLogistic">首頁</a><a href="/Bartenders/logistic/LogisticLogout.do">登出</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</header>
+<script>
+	//測試是否可以接收到登入參數
+	var user = '${getUserId}';
+	var company = '${getCompanyId}';
 	
-		<article id="main">
-			<section class="wrapper style5">
-				<div class="inner">
-					<section>
-						<div class="row">
-							<div id="background" class="col-12 col-12-medium">
-							<script>
-								//測試是否可以接收到登入參數
-								var user = '${getUserId}';
-								var company = '${getCompanyId}';
-								var sender = '${getSenderId}'
-								console.log('preUrl=','${preUrl}');
-								var currentId = '${getSenderId}';
-								console.log('currentId is: ',currentId);
+	console.log('preUrl=','${preUrl}');
+	var currentId = '${getCompanyId}${getUserId}';
+	console.log('currentId is: ',currentId);
+	<c:set var="testV" value="${getCompanyId}${getUserId}"/>
 								
 								//先取回資料做檢查
 								function getLogistic(input){
@@ -101,68 +76,16 @@
 												ordersID = LogisticJSON.sID;
 												//已點選送達
 												if(LogisticJSON.oComplete==1){
-													window.location.href = '<c:url value="/LogisticArrive"/>?orderID=' + orderID;
-													//window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
-												//尚未送達
-												}else if(currentId==ordersID){
-													console.log('配送員相符');
-													//重複刷
-													if(LogisticJSON.oTimeB!=null&&LogisticJSON.oComplete==0){
-														document.getElementById('tbody').remove();
-														var targetBody = document.createElement("tbody");
-														targetBody.id = 'tbody';
-														targetBody.align = 'center';
-														document.getElementById('targetTable').appendChild(targetBody);
-														var newTr = document.createElement("tr");
-														var newTd = document.createElement("td"); 
-														newTd.innerHTML = 1;
-														newTr.appendChild(newTd);
-														for(var t in LogisticJSON){
-															var txt = LogisticJSON[t];
-															if(t!='oNo'&&t!='oID'&&t!='cID'&&t!='sID'&&t!='charge'&&t!='cost'&&t!='oTimeR'&&t!='oComplete'){
-																var newTd = document.createElement("td"); 
-																newTd.innerHTML = txt;
-																	if(t=='oType'){
-																		newTd.className = 'myType';
-																	}
-																	if(t=='oStatus'){
-																		newTd.className = 'myStatus';
-																	}
-																newTr.appendChild(newTd);
-																}
-														}
-														var newTd = document.createElement("td"); 
-														newTd.id = 'btnTd';
-														var newBtn = document.createElement("button");
-														newBtn.id = LogisticJSON['oStatus']+'-'+LogisticJSON['oID']+'-'+LogisticJSON['oComplete'];
-														newBtn.className = 'Ready';
-														newBtn.type = 'button';
-														newBtn.innerHTML = '送達';
-														//newBtn.style.display = 'none';
-														newTd.appendChild(newBtn);
-														newTr.appendChild(newTd);
-														document.getElementById('tbody').appendChild(newTr);
-														document.getElementById('noteText').innerHTML = '若商品已送達，請記得先點選送達按鈕再刷QR碼';
-														changeHTML();
-														readyBtn();
-														console.log('重複刷');
-													
-													//收貨	
-													}else if(orderID!=""&&LogisticJSON.oTimeB==null){
-														if (confirm("確定進行物流收貨嗎?")) {
-															window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
-					
-														}
-														else {
-															alert("已經取消了操作");
-															window.location.href = '<c:url value="/logistic/searchPersonalOrder.do?sID=${getSenderId}"/>';
-														}
+													if (confirm("是否確定收到商品?")) {
+														//window.location.href = '<c:url value="/LogisticArrive.do"/>?orderID=' + orderID+'&userId='+currentId;
+				
 													}
-												//配送員不符	
-												}else if(ordersID!=null&&currentId!=ordersID){
-													console.log('配送員不符');
-													document.getElementById('temp').innerHTML = '配送員不符合，請勿拿別人訂單 ';
-													window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
+													else {
+														alert("商品尚未收到");
+														
+													}
+													
+												//尚未送達
 												}else {
 													console.log('此訂單尚未點選預約');
 													document.getElementById('temp').innerHTML = '請先預約取件 ';
@@ -233,7 +156,64 @@
 									listRN.attr("disabled", "true");
 								}
 							</script>	
-							<h3 align="center" style="font-size:36px;">訂單明細</h3>
+	<div id="page-wrapper">
+	<header id="header">
+		<h1><a href="index.jsp">Bartenders</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<c:if test="${testV>499999}">
+							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
+							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
+							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
+							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
+							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</c:if>
+							<c:if test="${testV<499999}">
+							<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+							<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+							<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+							<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+							<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
+							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
+		<article id="main">
+			<section class="wrapper style5">
+				<div class="inner">
+					<section>
+						<div class="row">
+							<div id="background" class="col-12 col-12-medium">
+							<h3 align="center" style="font-size:36px;">商品送達</h3>
 							<div id="orderDiv">
 								
 								<fieldset>
@@ -241,9 +221,9 @@
 										<thead>
 											<tr align=center>
 												<td style="width:4%;padding:10px">序號</td>
-												<!-- 
+											
 												<td style="width:10%;padding:10px">訂單號碼</td>
-												 -->
+												
 												<td style="width:7%;padding:10px">物流號碼</td>
 												<td style="width:4.5%;padding:10px">類型</td>
 												<td style="width:15%;">送貨地址</td>
@@ -260,9 +240,9 @@
 										<tbody id="tbody">
 											<tr align=center style="height:97px">
 												<td>${status.index+1}</td>
-												<!-- 
+												
 												<td id="temp">${update.oID}</td>
-												 -->
+												
 												<td>${update.lID}</td>
 												<td class="myType">${update.oType}</td>
 												<td id="temp">${update.oAddr}</td>
@@ -280,7 +260,7 @@
 									</table>
 									<div id="btnDiv" align=center>
 										<p id="noteText"></p>
-										<button id="bt1" class="Code" >返回</button><br>
+										<button id="bt1" class="Code" >確定</button><br>
 									</div>
 								</fieldset>
 							
@@ -297,7 +277,7 @@
 	
 	<script>
 		$("#bt1").on("click", function () {
-			window.location.href = '<c:url value="/logistic/LogisticGate"/>';
+			window.location.href = '<c:url value="/UserFirstPage"/>';
 		})
 		
 
