@@ -480,6 +480,17 @@ public class FunctionByActivity {
 			) throws IOException, ParseException {
 		List<Activity> list = aSer.queryJoker("activityId",activityId);
 		List<Participant> participant = aSer.queryParticipant(activityId);
+		Integer id = null;
+		for(Activity a:list) {
+			id = a.getUserId();
+		}
+		if(id>499999) {
+			Company company = cSer.selectCompany(id);
+			m.addAttribute("company",company);
+		}else if(id<499999) {
+			Users user = uDao.selectUser(id);
+			m.addAttribute("user",user);
+		}
 		m.addAttribute("activity",list);
 		m.addAttribute("participant",participant);
 		return "logistic/ActivitySingle";

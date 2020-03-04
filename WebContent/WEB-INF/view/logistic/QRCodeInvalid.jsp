@@ -26,9 +26,9 @@
 	#orderDiv{
 		position:relative;
 		/*border:1px red solid;*/
-		width:1500px;
+		width:150%;
 		left:50%;
-		margin-left:-750px;
+		margin-left:-75%;
 		}
 	td{
 		padding:5px;

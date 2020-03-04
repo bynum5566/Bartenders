@@ -23,6 +23,10 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	
 	<style>
 
 		#background{
@@ -46,7 +50,27 @@
   		
   		/*border:1px red solid;*/
 		}
-	    
+	    /* 小鈴鐺 */
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
 	</style>
 	
 	<script>

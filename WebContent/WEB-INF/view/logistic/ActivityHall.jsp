@@ -26,6 +26,9 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	<!-- 小鈴鐺 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
 	<style>
 	
 		.wrapper.style5 ::-webkit-input-placeholder {
@@ -102,6 +105,47 @@
 			text-align: center;
 		}
 		
+		input#address{
+			 width:500px;
+		}
+		
+		button#clearTime, button#jokerBtn, button#openSearch {
+		    width: 130px;
+		    height: 40px;
+		    margin: 0px auto;
+		    vertical-align: middle;
+		    color: darkgrey;
+		    font-size: 12px;
+		}
+		
+		p.brirf{
+			width: 340px;
+			margin: 5px;
+			text-align: justify;
+		}
+		
+		/* 小鈴鐺 */
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+		
 		/*RWD for Map*/
 		@media screen and (max-width: 1680px) {
 			.col-12.col-12-medium {
@@ -161,6 +205,17 @@
 			#map0 {
 				width: 80%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
 		}
 		
 		@media screen and (max-width: 667px) {
@@ -176,6 +231,17 @@
 			}
 			#map0 {
 				width: 80%;
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
 			}
 		}
 		
@@ -193,6 +259,17 @@
 			#map0 {
 				width: 80%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
 		}
 		
 		@media screen and (max-width: 568px) {
@@ -209,6 +286,27 @@
 			#choose{
 				width:30%;
 			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch {
+			    width: 110px;
+			    height: 35px;
+			    /* padding: 5px; */
+			    margin: 0px auto;
+			    vertical-align: middle;
+			    color: darkgrey;
+			    font-size: 10px;
+			}
 		}
 		
 		@media screen and (max-width: 414px) {
@@ -218,10 +316,112 @@
 			}
 		}
 		
-		@media screen and (max-width: 320px) {
+		@media screen and (max-width: 360px) {
+			input#address{
+				width: 300px;
+			}
+			
 			.col-12.col-12-medium {
-				width:50%;
-				margin-left: 1%;
+				width:45%;
+				margin-left: 0.3%;
+			}
+			
+			div.container {
+			    position: absolute;
+			    left: 0%;
+			    padding: 10px;
+			    margin: 0px auto;
+			    text-align: center;
+			    width: 320px;
+			}
+			
+			.fieldset {
+			    width: 310px;
+			}
+
+			img.img{
+				width:300px;
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 10px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			}
+		}
+		
+		@media screen and (max-width: 320px) {
+			input#address{
+				width: 280px;
+			}
+			
+			.col-12.col-12-medium {
+				width:45%;
+				margin-left: 0.3%;
+			}
+			
+			div#choose.chooseType form.formBox{
+				top: 30px;
+				height: 480px;
+				font-size:14px;
+				line-height: 16px;
+			}
+			
+			input.date.flatpickr-input.flatpickr-mobile {
+				width: 80px;
+			}
+			
+			button#clearTime, button#jokerBtn, button#openSearch{
+				width: 80px;
+				height:40px;
+				padding:3px;
+				margin:0px auto;
+				vertical-align:middle;
+				color:darkgrey;
+				line-height:16px" 
+			}
+			
+			.each {
+			    position: relative;
+			    border: 2px yellow solid;
+			    margin: 0px;
+			    display: block;
+			    vertical-align: top;
+			    height: auto;
+			    background-color: grey;
+			    border-radius: 20px;
+			    width: 300px;
+			}
+			
+			div.container {
+			    position: absolute;
+			    left: 0%;
+			    padding: 10px;
+			    margin: 0px auto;
+			    text-align: center;
+			    width: 320px;
+			}
+			
+			.fieldset {
+			    width: 310px;
+			}
+
+			img.img {
+				width:240px;
+			}
+			
+			div#groundD0 {
+				width:260px;
+			}
+			
+			p.brief {
+				width:270px;
+				margin-left: 10px;
 			}
 		}
 	</style>

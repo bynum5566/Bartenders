@@ -36,9 +36,9 @@
 		#orderDiv{
 			position:relative;
 			/*border:1px red solid;*/
-			width:1500px;
+			width:150%;
 			left:50%;
-			margin-left:-750px;
+			margin-left:-75%;
 		}
 		
 		td{
@@ -76,10 +76,10 @@
 								<div id="container">
 									<h1 align=center style="color:white;font-size:48px;margin:10px;">個人訂單管理</h1>
 
-												<button id="status0" class="ByStatus" style="width:150px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢所有訂單</button>
-												<button id="status1" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢未收貨訂單</button> <!-- status=1 -->
-												<button id="status2" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢配送中訂單</button> <!-- status=2 -->
-												<button id="status3" class="ByStatus" style="width:180px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢已送達訂單</button> <!-- status=3 -->
+												<button id="status0" class="ByStatus" style="width:15%;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢所有訂單</button>
+												<button id="status1" class="ByStatus" style="width:17%;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢未收貨訂單</button> <!-- status=1 -->
+												<button id="status2" class="ByStatus" style="width:17%;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢配送中訂單</button> <!-- status=2 -->
+												<button id="status3" class="ByStatus" style="width:17%;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">查詢已送達訂單</button> <!-- status=3 -->
 
 								</div>
 									<!-- 
@@ -100,21 +100,21 @@
 											<table >
 												<thead>
 													<tr align=center>
-														<td style="width:80px;padding:10px">序號</td>
+														<td style="width:4%;padding:10px">序號</td>
 														<!-- 
-														<td style="width:270px;padding:10px">訂單號碼</td>
+														<td style="width:10%;padding:10px">訂單號碼</td>
 														 -->
-														<td style="width:100px;padding:10px">物流號碼</td>
-														<td style="width:80px;padding:10px">類型</td>
-														<td style="width:250px;">送貨地址</td>
-														<td style="width:120px;padding:10px">收件人</td>
-														<td style="width:150px;padding:10px">收件人手機</td>
-														<td style="width:80px;padding:10px">金額</td>
-														<td style="width:100px;padding:10px">進度</td>
-														<td style="width:150px;padding:10px">出貨時間</td>
-														<td style="width:150px;padding:10px">物流取貨</td>
-														<td style="width:150px;padding:10px">送達時間</td>
-														<td style="width:100px;padding:10px">狀態</td>
+														<td style="width:7%;padding:10px">物流號碼</td>
+														<td style="width:4.5%;padding:10px">類型</td>
+														<td style="width:15%;">送貨地址</td>
+														<td style="width:8%;padding:10px">收件人</td>
+														<td style="width:8%;padding:10px">收件人手機</td>
+														<td style="width:6%;padding:10px">金額</td>
+														<td style="width:6%;padding:10px">進度</td>
+														<td style="width:8%;padding:10px">出貨時間</td>
+														<td style="width:8%;padding:10px">物流取貨</td>
+														<td style="width:8%;padding:10px">送達時間</td>
+														<td style="width:6%;padding:10px">狀態</td>
 													</tr>
 												</thead>
 												<tbody>

@@ -29,9 +29,9 @@
 		#orderDiv{
 			position:relative;
 			/*border:1px red solid;*/
-			width:1500px;
+			width:150%;
 			left:50%;
-			margin-left:-750px;
+			margin-left:-75%;
 		}
 		
 		td{
@@ -102,6 +102,7 @@
 												//已點選送達
 												if(LogisticJSON.oComplete==1){
 													window.location.href = '<c:url value="/UserFirstPage"/>';
+													//window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
 												//尚未送達
 												}else if(currentId==ordersID){
 													console.log('配送員相符');
@@ -164,8 +165,34 @@
 													window.location.href = '<c:url value="/logistic/QRCodeUpdate.do"/>?orderID=' + orderID + '&sID=' + currentId;
 												}else {
 													console.log('此訂單尚未點選預約');
-													document.getElementById('temp').innerHTML = '請先預約取件 '
-												}
+													document.getElementById('temp').innerHTML = '請先預約取件 ';
+													//////////////////////////////////
+														document.getElementById('tbody').remove();
+													var targetBody = document.createElement("tbody");
+													targetBody.id = 'tbody';
+													targetBody.align = 'center';
+													document.getElementById('targetTable').appendChild(targetBody);
+													var newTr = document.createElement("tr");
+													var newTd = document.createElement("td"); 
+													newTd.innerHTML = 1;
+													newTr.appendChild(newTd);
+													for(var t in LogisticJSON){
+														var txt = LogisticJSON[t];
+														if(t!='oNo'&&t!='oID'&&t!='cID'&&t!='sID'&&t!='charge'&&t!='cost'&&t!='oTimeR'&&t!='oComplete'){
+															var newTd = document.createElement("td"); 
+															newTd.innerHTML = txt;
+																if(t=='oType'){
+																	newTd.className = 'myType';
+																}
+																if(t=='oStatus'){
+																	newTd.className = 'myStatus';
+																}
+															newTr.appendChild(newTd);
+															}
+													}
+													document.getElementById('tbody').appendChild(newTr);
+													document.getElementById('noteText').innerHTML = '請先點選接單按鈕';
+												}//else結束
 												});
 									};
 								

@@ -46,10 +46,14 @@
 		*/
 		#orderDiv{
 			position:relative;
-			/*border:1px red solid;*/
+			width:150%;
+			left:50%;
+			margin-left:-75%;
+			/*border:1px red solid;
 			width:1500px;
 			left:50%;
 			margin-left:-750px;
+			*/
 		}
 		td{
 
@@ -114,17 +118,17 @@
 											<table id="targetTable" align=center >
 												<thead>
 													<tr align="center">
-														<td style="width:80px;padding:10px">序號</td>
-														<td style="width:270px;padding:10px">訂單號碼</td>
-														<td style="width:100px;padding:10px">物流號碼</td>
-														<td style="width:80px;padding:10px">類型</td>
-														<td style="width:250px;">送貨地址</td>
-														<td style="width:120px;padding:10px">收件人</td>
-														<td style="width:150px;padding:10px">收件人手機</td>
-														<td style="width:80px;padding:10px">金額</td>
-														<td style="width:100px;padding:10px">進度</td>
-														<td style="width:150px;padding:10px">出貨時間</td>
-														<td style="width:100px;padding:10px">狀態</td>
+														<td style="width:4%;padding:10px">序號</td>
+														<td style="width:10%;padding:10px">訂單號碼</td>
+														<td style="width:7%;padding:10px">物流號碼</td>
+														<td style="width:4.5%;padding:10px">類型</td>
+														<td style="width:15%;">送貨地址</td>
+														<td style="width:8%;padding:10px">收件人</td>
+														<td style="width:8%;padding:10px">收件人手機</td>
+														<td style="width:6%;padding:10px">金額</td>
+														<td style="width:6%;padding:10px">進度</td>
+														<td style="width:8%;padding:10px">出貨時間</td>
+														<td style="width:7%;padding:10px">狀態</td>
 													</tr>
 												</thead>
 												<tbody id="tbody" align="center">
@@ -142,7 +146,7 @@
 															<td>${Logistic.oTimeA}</td>
 															<td>
 															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>		
+																	class="reserve" style="width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>		
 															</td>
 														</tr>
 													</c:forEach>
@@ -210,7 +214,7 @@
 			newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
 			newBtn.className = 'reserve';
 			newBtn.innerHTML = '接單';
-			newBtn.style = 'width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+			newBtn.style = 'width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 			//newBtn.style.display = 'none';
 			newTd.appendChild(newBtn);
 			newTr.appendChild(newTd);

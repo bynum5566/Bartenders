@@ -134,6 +134,10 @@
 										<ul class="actions">
 											<li><a style="text-decoration: none;" class="button" href="/Bartenders/NewsAndEvents.All">取消</a></li>
 											<li><input class="button primary" type="submit" value="發佈"></li>
+											
+											<li>
+											<img src="/Bartenders/images/promote.png" onclick="push();" style="width: 40px;height:40px;cursor:pointer;">
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -183,6 +187,13 @@
 		})
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
+	<script type="text/javascript">
+		function push(){
+			var title = document.getElementById('newsTitle').value;
+			websocket.send('${Caccount}'+'%'+'${CName}'+'*'+title);
+		}
+	</script>
 
 </body>
 

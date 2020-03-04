@@ -28,7 +28,6 @@
 			left:0%;
 			top:0%;
 			margin-top:-80px;
-			border:2px yellow solid;
 		}
 		
 		.container{
@@ -38,7 +37,6 @@
 		padding:10px;
 		margin: 0px auto;/*div對齊效果*/
 		margin-left:-450px;
-  		border:3px green solid;
 		text-align: center;
 		
 		}
@@ -138,12 +136,12 @@
 								
 								<div class="container">
 								<c:forEach var="Activity" items="${activity}" varStatus="status">
-								
-									<div style="width:380px;background-color:lightgreen;display:inline-block;vertical-align:top;">
+								<div style="background-color:darkgrey;border-radius:20px;">
+									<div style="display:inline-block;vertical-align:top;">
 										<div class="each" id="${Activity.activityId}" >
 											<fieldset style="width: 350px;border-radius:30px;text-align: center;">
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
-												<img class="img" alt="未選擇圖片" style="margin: 5px"
+												<img class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;"
 													src="images/${Activity.img}"> <img class="imgType"
 													alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
 												<div class="ActivityName">${Activity.name}</div>
@@ -171,33 +169,49 @@
 									</div>
 									
 									
-									<div style="width:480px;background-color:lightblue;display:inline-block;">
-										<div style="width:450px;height:150px;border:1px red solid;">
-											<div style="width:130px;height:150px;border:1px red solid;display:inline;">xxx</div>
-											<div style="width:280px;height:150px;border:1px red solid;display:inline;">xxx</div>
+									<div style="width:500px;display:inline-block;">
+										<div style="width:500px;height:140px;">
+											<div style="display:inline-block;vertical-align:top;">
+												<img src="images/unnamed.png" style="width:140px;height:140px;border:2px white solid;border-radius:20px;">
+											</div>
+											<div style="width:350px;height:140px;display:inline-block;padding:15px;">
+												<p style="margin:0px">主辦人資訊</p>
+												<c:if test="${not empty company}">
+												<p align="left" style="margin:0px">店家:  ${company.companyName}</p>
+												<p align="left" style="margin:0px">聯絡方式:  ${company.phone}</p>
+												</c:if>
+												<c:if test="${not empty user}">
+												<p align="left" style="margin:0px">姓名: ${user.userName}</p>
+												<p align="left" style="margin:0px">聯絡方式: ${user.phone}</p>
+												</c:if>
+											</div>
+										
 										</div>
 										<div align=center style="margin: 10px">
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
+															<span id="people${status.index}" class="number">目前人數:${Activity.actualNum}</span>
 															<c:if test="${Activity.actualNum>=Activity.targetNum}">
 																<span>已成團</span>
 															</c:if>
 															<c:if test="${Activity.actualNum<Activity.targetNum}">
 																<span>未成團</span>
 															</c:if>
-															<p id="people${status.index}" class="number">參加人數:${Activity.actualNum} / ${Activity.limitNum} 我想報名:</p>
-															<form align=right action="joinActivity.do" method="post" >
-																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
-																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
-																<select name="joinNum" style="width:130px;display:inline;">
+															
+															<form action="joinActivity.do" method="post" style="margin:0px;vertical-align:middle;">
+															<span>我想報名:
+																<select name="joinNum" style="width:90px;height:40px;padding:5px;display:inline;">
 																	<c:forEach begin="1"
-																		end="${Activity.limitNum-Activity.actualNum}"
+																		end="20"
 																		varStatus="add">
-																		<option value="${add.index}" style="width:130px;display:inline;">${add.index}人</option>
+																		<option value="${add.index}" style="width:50px;display:inline;">${add.index}人</option>
 																	</c:forEach>
 																</select>
-																<input type="submit" value="確定" style="width:50px;display:inline;">
+																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
+																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
+																<input type="submit" value="確定" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">
+																</span>
 															</form>
 														</c:when>
 														<c:when test="${Activity.actualNum==Activity.limitNum}">
@@ -236,7 +250,7 @@
 													</c:choose>
 													
 												</div>
-												
+												<div style="position:relative;">
 												<div class="outer">
 													<div id="groundD" class="ground">
 														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
@@ -248,14 +262,13 @@
 														</div>
 													</div>
 												</div>
-										<div style="width:450px;border:1px red solid;">
-											<p class="brief" align=center style="width: 450px; margin: 5px; text-align: justify">${Activity.brief}</p>
-										</div>
-										<div style="width:450px;border:1px red solid;">
-											<p class="detail" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.detail}</p>
+												</div>
+											<p class="brief" align=center style="height:40px;line-height:40px;padding:0px 20px 0px 20px;margin:0px 5px 0px 5px; text-align: center">${Activity.brief}</p>
+											<p class="detail" align=center style="margin:0px;text-align:justify">${Activity.detail}</p>
+							
 										</div>
 									</div>
-									
+									<c:set var="hostId" value="${Activity.userId}"></c:set>
 										<script>
 											console.log('IndexNum is:',"${status.index}");
 											//計算地圖個數
@@ -273,34 +286,47 @@
 											limitNum.push(${Activity.limitNum});
 											targetNum.push(${Activity.targetNum});
 											currentNum.push(${Activity.actualNum});
-											console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											var fix = $('#groundD').width()-20;
-											console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
-											per = fix/limitNum['${status.index}'];
+											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
+											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+											var fix = $('#groundD${status.index}').width()-20;
+											if(${Activity.limitNum}==999){
+												if(${Activity.targetNum}!=0){
+													per = fix/targetNum['${status.index}'];
+													$('#targetFor${status.index}').width(fix);
+												}else if(${Activity.targetNum}==0){
+													per = fix/currentNum['${status.index}'];
+													$('#targetFor${status.index}').css('display','none');
+												}
+												$('#limitP${status.index}').css('display','none');
+											}else{
+												per = fix/limitNum['${status.index}'];
+												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+											}
 											perNum.push(per);
-											console.log('per is:',per);
-											$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
 											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
 											$('#currentFor${status.index}').css('background-color','pink');
-											
+											//若成團
 											if(currentNum['${status.index}']>=targetNum['${status.index}']){
-												console.log('target reached',typeof currentNum['${status.index}'],' > ',typeof targetNum['${status.index}']);
-												console.log('target reached',currentNum['${status.index}'],' > ',targetNum['${status.index}']);
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
 											}
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
+											
 											</script>
 									</c:forEach>
+								
 								</div>
-								<div id="participate">
+								
+							</div><!-- 這裡結束 -->
+							<c:if test="${hostId==testV}">
+								<div id="participate" style="margin:10px;">
 									<h1>活動參加者</h1>
 									<table>
 										<tr>
-											<td>姓名</td>
-											<td>手機</td>
-											<td>人數</td>
+											<td style="width:100px;">姓名</td>
+											<td style="width:160px;">手機</td>
+											<td style="width:80px;">人數</td>
 										</tr>
 										<c:forEach var="Participant" items="${participant}" varStatus="status">
 											<tr>
@@ -311,7 +337,7 @@
 										</c:forEach>
 									</table>
 								</div>
-							</div><!-- 這裡結束 -->
+							</c:if>
 						</div>
 					</section>
 				</div>
