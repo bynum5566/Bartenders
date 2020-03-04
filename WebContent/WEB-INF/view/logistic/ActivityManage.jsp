@@ -10,11 +10,11 @@
 
 <head>
 	<meta charset="UTF-8">
-<<<<<<< HEAD
+
 	<title>活動管理</title>
-=======
+
 	<title>管理活動／Bartenders</title>
->>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
+
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
