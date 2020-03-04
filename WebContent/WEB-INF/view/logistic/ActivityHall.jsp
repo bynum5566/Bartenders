@@ -528,14 +528,14 @@
 							<div id="background" class="col-12 col-6-medium"><!-- 這裡開始 -->
 								<h2 align=center style="margin-top:30px;">活動大廳</h2>
 									<div class="links">
-										<c:if test="${testV>499999}">
+<%-- 										<c:if test="${testV>499999}"> --%>
 										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
 										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
-										</c:if>
-										<c:if test="${testV<499999}">
-										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
-										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
-										</c:if>
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${testV<499999}"> --%>
+<!-- 										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a> -->
+<!-- 										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a> -->
+<%-- 										</c:if> --%>
 									</div>
 								
 								<div class="searchDiv" align=center>
