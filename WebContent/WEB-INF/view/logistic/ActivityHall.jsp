@@ -44,6 +44,22 @@
 			/*border:2px yellow solid;*/
 		}
 		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
+		
 		.container{
 		position:relative;
 		width:1400px;
@@ -67,6 +83,10 @@
 			height: 500px;
 		}
 
+		.links{
+			text-align: center;
+		}
+
 		/*以下是搜尋框設定*/
 		
 		#choose{
@@ -75,12 +95,12 @@
 			right:0%;
 			background-color:lightgrey;
 /* 			width:150px; */
-			width:11%;
+			width:14%;
 			height:auto;
 			padding:5px;
 			margin:15px;
 			color: #888;
-			margin-top:8%;
+			margin-top:6%;
 		}
 		label{
 			display: block;
@@ -107,7 +127,8 @@
 		}
 		
 		input#address{
-			 width:500px;
+			width:90%;
+/* 			 width:500px; */
 		}
 		
 		button#clearTime, button#jokerBtn, button#openSearch {
@@ -138,26 +159,26 @@
 		}
 		
 		/* 小鈴鐺 */
-.noticeBox {
-	position: fixed;
-	top: 60px;
-	right: 20px;
-	align: right;
-}
-
-.bell .bellImg {
-	height: 70px;
-	width: 70px;
-	float: right;
-}
-
-.notice {
-	background-color: rgb(255, 255, 255, 0.4);
-	width: 110%;
-	height: auto;
-	float: right;
-	display: none;
-}
+		.noticeBox {
+			position: fixed;
+			top: 60px;
+			right: 20px;
+			align: right;
+		}
+		
+		.bell .bellImg {
+			height: 70px;
+			width: 70px;
+			float: right;
+		}
+		
+		.notice {
+			background-color: rgb(255, 255, 255, 0.4);
+			width: 110%;
+			height: auto;
+			float: right;
+			display: none;
+		}
 		
 		/*RWD for Map*/
 		@media screen and (max-width: 1680px) {
@@ -170,9 +191,12 @@
 		@media screen and (max-width: 1480px) {
 			.col-12.col-12-medium {
 				width:50%;
-				margin-left: 9%;
+				margin-left: 12%;
 			}
-			
+			#choose{
+				width:18%;
+				margin-top: 10%;
+			}
 		}
 		
 		@media screen and (max-width: 960px) {
@@ -180,7 +204,7 @@
 				margin-left: 8%;
 			}
 			#choose{
-				width:18%;
+				width:20%;
 				margin-top: 10%;
 			}
 			.searchDiv{
@@ -460,9 +484,6 @@
 							<c:if test="${testV>499999}">
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -473,7 +494,7 @@
 <!-- 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li> -->
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 <!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
@@ -487,8 +508,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
@@ -505,7 +526,17 @@
 					<section>
 						<div class="row">
 							<div id="background" class="col-12 col-6-medium"><!-- 這裡開始 -->
-								<h1 align=center style="font-size:48px;margin:5px;">活動大廳</h1>
+								<h2 align=center style="margin-top:30px;">活動大廳</h2>
+									<div class="links">
+										<c:if test="${testV>499999}">
+										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
+										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
+										</c:if>
+										<c:if test="${testV<499999}">
+										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
+										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
+										</c:if>
+									</div>
 								
 								<div class="searchDiv" align=center>
 									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
