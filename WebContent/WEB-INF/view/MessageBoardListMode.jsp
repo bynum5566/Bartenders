@@ -339,17 +339,16 @@ div.swiper-slide img {
 		</header>
 
 		<article id="main">
-			<section class="wrapper style5">
+			<section class="wrapper style5" >
 				<div class="inner">
 					<section>
 						<div class=mydiv>
 							<section>
-								<ul class="actions">
+								<ul class="actions" >
 
 									<li><img id="myBtn1" src="/Bartenders/images/map.png"></li>
 									<li>&emsp;&emsp;</li>
-									<li><img id="myBtn" class="myMenu"
-										src="/Bartenders/images/menu_icon.png"></li>
+									<li style="display: none;"><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
 									<li>&emsp;&emsp;</li>
 								</ul>
 								<ul class="alt">
@@ -386,6 +385,9 @@ div.swiper-slide img {
 											<div class="swiper-button-prev"></div>
 										</div>
 									</li>
+									
+							
+									
 
 									<div id="contents" style="color: WhiteSmoke; margin: 20px;">
 										<h3 align="center">列表模式</h3>

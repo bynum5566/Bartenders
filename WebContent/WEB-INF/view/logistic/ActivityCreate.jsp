@@ -10,7 +10,11 @@
 
 <head>
 	<meta charset="UTF-8">
+<<<<<<< HEAD
 	<title>建立活動</title>
+=======
+	<title>建立活動／Bartenders</title>
+>>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -20,6 +24,9 @@
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
+	
+	<!-- 小鈴鐺 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<style>
 
 		.errors{
@@ -95,11 +102,36 @@
 	        padding-top: 10px;
 	    }
 	    
+<<<<<<< HEAD
 	    #demoBox{
 	    	position:absolute;
 	    	right:2%;
 	    	bottom:5%;
 	    }
+=======
+	    		/*小鈴鐺*/
+.noticeBox {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	align: right;
+}
+
+.bell .bellImg {
+	height: 70px;
+	width: 70px;
+	float: right;
+}
+
+.notice {
+	background-color: rgb(255, 255, 255, 0.4);
+	width: 110%;
+	height: auto;
+	float: right;
+	display: none;
+}
+	
+>>>>>>> cb48927c9aa2374a7591c3dcbe3ffbac7143834d
 	</style>
 </head>
 <body class="is-preload">
@@ -116,6 +148,17 @@ console.log('currentId is: ',currentId);
 	<div id="page-wrapper">
 	<header id="header">
 		<h1><a href="index.jsp">Bartenders</a></h1>
+		
+		<!-- 小鈴鐺 -->
+			<div class="noticeBox">
+				<div class="bell">
+					<img class="bellImg" src="/Bartenders/images/bell.png">
+				</div>
+				<div class="notice">
+					<ul id="notice"></ul>
+				</div>
+			</div>
+		
 		<nav id="nav">
 			<ul>
 				<li class="special">
@@ -497,5 +540,15 @@ console.log('currentId is: ',currentId);
 		
 	</c:if>
 	</script>
+	
+	
+<!-- 小鈴鐺 -->
+	<script type="text/javascript">
+		$(".bell").click(function() {
+			$(".notice").slideToggle("slow");
+		})
+	</script>
+	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
 </body>
 </html>

@@ -38,6 +38,22 @@ public class OrdersDAO {
 		return false;
 	}
 	
+	public boolean updateToCancel(String orderId, Integer status) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "update Orders set status=:status where orderId=:orderId";
+		try {	
+			Query query = session.createQuery(hqlStr);
+			query.setParameter("status", status);
+			query.setParameter("orderId", orderId);
+			query.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println("e" + e);
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean update(String orderId, Integer amount, String recipient, Integer shipping, String address1,
 			String address2, String phone) {
 		Session session = sessionFactory.getCurrentSession();
@@ -57,23 +73,6 @@ public class OrdersDAO {
 			System.out.println("e" + e);
 			e.printStackTrace();
 		}
-		return false;
-	}
-
-	public boolean updateToCancel(String orderId, Integer status) {
-		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "update Orders set status=:status where orderId=:orderId";
-		try {
-			Query query = session.createQuery(hqlStr);
-			query.setParameter("status", status);
-			query.setParameter("orderId", orderId);
-			query.executeUpdate();
-			return true;
-		} catch (Exception e) {
-			System.out.println("e" + e);
-			e.printStackTrace();
-		}
-
 		return false;
 	}
 

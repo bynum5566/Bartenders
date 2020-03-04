@@ -50,6 +50,7 @@ import bar.model.logistic.Bar;
 import bar.model.logistic.BarDAO;
 
 import net.coobird.thumbnailator.Thumbnails;
+import bar.controller.WebSocketTest;
 import bar.model.Company;
 import bar.model.CompanyService;
 import bar.model.Users;
@@ -60,7 +61,7 @@ import bar.model.logistic.ActivityDAO;
 import bar.model.logistic.ActivityService;
 
 @Controller
-@SessionAttributes(names= {"activity","participant"})
+@SessionAttributes(names= {"activity","participant","userName" , "CName"})
 public class FunctionByActivity {
 
 	private ActivityDAO aDao;
@@ -458,6 +459,10 @@ public class FunctionByActivity {
 		m.addAttribute("activity",allActive);
 //		redirectAttributes.addFlashAttribute("activitytest", activity);
 //		response.sendRedirect("ManageActivity");
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivityHall";
 	}
 
@@ -470,6 +475,10 @@ public class FunctionByActivity {
 		System.out.println("return list: "+list);
 		m.addAttribute("activity",list);
 //		response.sendRedirect("ManageActivity");
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivityEdit";
 	}
 	
@@ -493,6 +502,10 @@ public class FunctionByActivity {
 		}
 		m.addAttribute("activity",list);
 		m.addAttribute("participant",participant);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivitySingle";
 	}
 	
@@ -511,12 +524,20 @@ public class FunctionByActivity {
 //		System.out.println("all activities is checked: "+status);
 		m.addAttribute("activity",list);
 //		redirectAttributes.addFlashAttribute("activitytest", list);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivityManage";
 	}
 	
 	@RequestMapping(path = "return.do",method = RequestMethod.GET)
-	public String returnPage(@ModelAttribute("activitytest") List<Activity> activity) throws IOException, ParseException {
+	public String returnPage(@ModelAttribute("activitytest") List<Activity> activity , Model m) throws IOException, ParseException {
 		System.out.println("list contain: "+activity);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "ActivityHall";
 	}
 	
@@ -533,6 +554,10 @@ public class FunctionByActivity {
 		}
 		List<Activity> activity = aDao.query("userId",userId);
 		m.addAttribute("activity",activity);
+		
+		//for websocket
+		WebSocketTest.setModel(m);
+		
 		return "logistic/ActivityManage";
 	}
 	
