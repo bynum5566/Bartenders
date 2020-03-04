@@ -49,6 +49,13 @@ websocket.onmessage = function(event) {
 				+ messArray[0] + '</a></li>';
 	}
 	
+	if (messageJson.messageType === "pushAct") {
+//		alert(messageJson.data);
+		var messArray = messageJson.data.split("#");
+		document.getElementById('notice').innerHTML += '<li><a href="/Bartenders/queryActivityByActivityId.do?activityId='+messArray[0]+'">'
+				+ messArray[1] + '</a></li>';
+	}
+	
 }
 
 function setMessageInnerHTML(innerHTML) {

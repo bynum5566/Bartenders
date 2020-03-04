@@ -80,7 +80,6 @@ public class WebSocketTest {
 
 		} else if (onlineCompany != null && onlineCompany.length() != 0) {
 			webSocketMap.put(onlineCompany, this);
-//			addOnlineCount();
 
 			MessageDto md = new MessageDto();
 			md.setMessageType("onlineCount");
@@ -128,8 +127,7 @@ public class WebSocketTest {
 
 
 	/**
-	 * * 伺服器接收到客戶端消息時調用的方法，（通過「@」截取接收用戶的用戶名） * * @param message * 客戶端發送過來的消息
-	 * * @param session * 數據源客戶端的session
+	 * * 伺服器接收到客戶端消息時調用的方法
 	 */
 	@OnMessage
 	public void onMessage(String message, Session session) {
@@ -200,7 +198,7 @@ public class WebSocketTest {
 			}
 		} else if (messageStr.indexOf("%") != -1) {
 			
-			System.out.println("push start.");
+			System.out.println("News push start.");
 			
 			String companyAccount = messageStr.substring(0, messageStr.indexOf("%"));
 			String companyName = messageStr.substring(messageStr.indexOf("%")+1,messageStr.indexOf("*"));
@@ -209,7 +207,18 @@ public class WebSocketTest {
 			md.setMessageType("pushNews");
 			md.setData(companyName + ":" + title + "*"+ companyAccount);
 			sendAll(gson.toJson(md));
-
+			
+		}else if(messageStr.indexOf("#") != -1) {
+			
+			System.out.println("Activity push start.");
+			
+			String actId = messageStr.substring(0, messageStr.indexOf("#"));
+			String actName = messageStr.substring(messageStr.indexOf("#")+1);
+			MessageDto md = new MessageDto();
+			md.setMessageType("pushAct");
+			md.setData(actId+"#"+"即將舉辦:"+actName+"<br/>快來報名吧!!!");
+			sendAll(gson.toJson(md));
+			
 		} else {
 			chatList.remove(message);
 		}

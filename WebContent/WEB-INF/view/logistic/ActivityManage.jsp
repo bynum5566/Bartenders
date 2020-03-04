@@ -125,9 +125,6 @@
 							 -->
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Product.Add">新增商品+</a></li>
-							<li><a href="/Bartenders/TicketProduct.Add">新增票券+</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.Add">新增最新消息與活動+</a></li>
 							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
 							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
 							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
@@ -135,10 +132,9 @@
 							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
 							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
 							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -155,8 +151,8 @@
 							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
 							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li>
-							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li>
+<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
@@ -248,6 +244,11 @@
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
 													class="edit visible" style="display: none;width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
+												
+												<!-- 活動推播 -->
+												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">
+													推廣活動</button>
+												
 												<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
 													class="close visible" style="display: none;width:100px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">結束活動</button>
 											</fieldset>
@@ -390,6 +391,17 @@
 		});
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
+	
+	<!--  活動推廣 -->
+	<script type="text/javascript">
+		$(".pushAct").on("click", function () {
+			var Str = this.id
+			var array = Str.split("-");
+			var activityId = array[1];
+			var activityName = array[2];
+			websocket.send(activityId+"#"+activityName);
+		});
+	</script>
 	
 </body>
 </html>
