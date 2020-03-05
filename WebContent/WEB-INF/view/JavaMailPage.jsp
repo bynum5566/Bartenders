@@ -203,8 +203,8 @@ div.panel {
 		<div style="position: center; margin:  100px;">
 			<form action="JavaMailController" method="post"
 				enctype="multipart/form-data">
-				收件人：<input type="text" name="to" size="50"
-					value="11129henry@gmail.com" /><br> 寄件人：<input type="text"
+				<input type="text" name="to" size="50"
+					value="11129henry@gmail.com" style="display: none;"/><br> 寄件人：<input type="text"
 					name="from" size="50" id="from"/><br> 主 旨：<input type="text"
 					name="subject" size="50" id="subject"/><br> 附 檔：<input type="file"
 					name="file" size="50" /><br>

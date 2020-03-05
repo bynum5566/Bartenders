@@ -322,13 +322,29 @@ console.log('currentId is: ',currentId);
 			$('#lat').val(25.0365128);
 			$('#lng').val(121.5499646);
 			$('#limitNum').val(999);
-			$('#actualNum').val(46);
+			$('#actualNum').val(12);
 			//$('#targetNum').val(0);
 			$('#brief').val('全台最大國際酒展');
 			$('#detail').val('來自世界各國的葡萄酒、清酒及啤酒！結合好酒、好食、好玩、好看，與你一起打開味蕾、刺激鼻間、衝擊視野、感受微醺、探索春Wine美好，體驗酒展風格。');
 		})
 		
-		
+		$('#demo3').on('click',function(){
+			console.log('click2');
+			$('#name').val('2020 台灣德國啤酒節');
+			//$('#party').prop('checked');
+			document.getElementById('carnival').checked = true;
+			$('#realType').val('carnival');
+			$('#beginTime').val('2020/03/21 10:00');
+			$('#endTime').val('2020/03/28 18:00');
+			$('#address').val('台北晶華酒店');
+			$('#lat').val(25.054231);
+			$('#lng').val(121.524194);
+			$('#limitNum').val(999);
+			$('#actualNum').val(9);
+			//$('#targetNum').val(0);
+			$('#brief').val('聞名世界的慕尼黑啤酒節來囉');
+			$('#detail').val('台北晶華酒店今年首次推出的「德國酒食嘉年華」，是由連續在台主辦德國啤酒節19年的德籍美食主廚--麥可溫德(Michael Wendel)主導，將這流傳近3世紀的飲食文化首次帶進五星酒店；三樓宴會廳的「德國啤酒節派對」現場提供德式冷肉乳酪盤、啤酒燉豬肉、德式烤豬腳、啤酒節烘烤半雞、德式冷肉乳酪盤…等應景佳餚以及特色獨具的德國艾丁格啤酒；場地佈置上也是匠心獨具的將巴伐利亞垂吊掛飾、啤酒節專用桌椅…等空運來台，晶華更重金禮聘曾在美國、法國、荷蘭等地啤酒節演出的巴伐利亞特快車樂團(Bavaria Show Express)現場演唱，團員身著德國傳統服飾、透過歡樂的曲風，以及特色獨具的阿爾卑斯山長號炒熱氣氛，希望完整傳遞德國啤酒節的氛圍。');
+		})
 		
 		//檢查地址是否輸入 限制定位按鈕
 		var addressBtn = document.getElementById('addressBtn')

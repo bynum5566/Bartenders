@@ -38,6 +38,10 @@ public class LogisticService {
 	public boolean checkReserveTime(List<Logistic> list) {
 		return lDao.checkReserveTime(list);
 	}
+	
+	public boolean checkReserveTime(Logistic logistic) {
+		return lDao.checkReserveTime(logistic);
+	}
 	///////////////以下待整理
 	
 	public List<Logistic> queryByStatus(Integer status) {

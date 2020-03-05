@@ -57,7 +57,9 @@ public class EventsAndNewsService {
 					+ eAn.getNeId() + "';\" style=\"width: 40px; height: 40px; cursor: pointer;\"></td><td class=\"B1 RSide\">"
 					+ "<a class=\"bT4\" href=\"/Bartenders/EN.remove?ckEN2=" + eAn.getNeId() + "\">"
 					+ "<img src=\"/Bartenders/images/delete.png\" style=\"width: 40px; height: 40px; cursor: pointer;\">"
-					+ "</a></td></tr>";
+					+ "</a></td>"
+					+ "<td class=\"B1 bT6\"><img src=\"/Bartenders/images/promote.png\" id=\""+eAn.getNeTitle() +"\" class=\"pushNews\" style=\"width: 40px;height:40px;cursor:pointer;\"><td/>"
+					+"</tr>";
 		}
 		return EN;
 	}

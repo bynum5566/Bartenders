@@ -102,12 +102,7 @@
 								<tr>
 									<td>${msg}</td>
 								</tr>
-								<tr style="display:block;color:white;">
-									<td>orderID:${orderID}</td>
-								</tr>
-								<tr style="display:block;color:white;">
-									<td>orderStatus:${orderStatus}</td>
-								</tr>
+								
 							</table>
 							</form>
 						</div>

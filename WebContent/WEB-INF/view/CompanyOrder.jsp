@@ -7,19 +7,19 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="google-signin-client_id"
-	content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 <title>訂單管理 / Bartenders</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 <noscript>
 	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" />
 </noscript>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <style>
 .small {
 	display: flex;
@@ -110,6 +110,27 @@ table td {
 	height: auto;
 	float: right;
 	display: none;
+}
+
+button.confirm, button.cancel {
+border: 0;
+border-radius: 3px;
+-webkit-box-shadow: none;
+box-shadow: none;
+color: #fff;
+cursor: pointer;
+font-size: 17px;
+font-weight: 500;
+margin: 15px 5px 0;
+padding: 0 40px;
+}
+
+button.confirm {
+background-color: #ed4933 !important;
+}
+
+button.confirm:hover {
+background-color: #ef5e4a !important;
 }
 </style>
 </head>
@@ -254,7 +275,7 @@ table td {
 													<c:choose>
 														<c:when
 															test="${statusNumToStr[Corders[current.index].status]=='未付款'}">
-															<td class="highlight" nowrap="nowrap"><a
+															<td class="highlight" nowrap="nowrap"><a class="bT4"
 																href="<c:url value="/CancelOrder.controller"/>?orderId=${Corders[current.index].orderId}&status=${Corders[current.index].status}"
 																value="${Corders[current.index].orderId}">取消</a></td>
 														</c:when>
@@ -279,6 +300,27 @@ table td {
 	<%--$(".panel").slideToggle("slow");--%>
 		$(this).siblings().slideToggle("slow");
 		});
+		
+		$(function(){ 
+			$('a.bT4').click(function(e){
+			e.preventDefault();
+			var link = $(this).attr('href');
+
+			swal({
+			title: "取消",
+			text: "確定要取消選擇的訂單嗎?",
+			type: "warning",
+			confirmButtonText: "確定",
+			cancelButtonText: "取消",
+			showCancelButton: true
+			},
+			function(isConfirm) {
+			if (isConfirm) {
+			window.location.href = link;
+			}
+			});
+			});
+		})
 	</script>
 	<script src="/Bartenders/JS/sorttable.js"></script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>

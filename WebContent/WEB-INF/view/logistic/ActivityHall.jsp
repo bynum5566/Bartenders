@@ -529,7 +529,7 @@
 								<h2 align=center style="margin-top:30px;">活動大廳</h2>
 									<div class="links">
 <%-- 										<c:if test="${testV>499999}"> --%>
-										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
+										<a id="myActivity" href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
 										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
 <%-- 										</c:if> --%>
 <%-- 										<c:if test="${testV<499999}"> --%>
@@ -537,7 +537,7 @@
 <!-- 										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a> -->
 <%-- 										</c:if> --%>
 									</div>
-								
+								<br>
 								<div class="searchDiv" align=center>
 									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
 									<button id="addressBtn" type="button" onclick="getInput()">搜尋</button>

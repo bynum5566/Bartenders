@@ -376,6 +376,14 @@ public class FunctionByXML {
 	}
 	
 	@RequestMapping(path = "logistic/LogisticCheck/{oID}",method = RequestMethod.GET)
+	public @ResponseBody Logistic LogisticCheck(@PathVariable(value = "oID") String oID) {
+		String Param = "oID";
+		Logistic logis = lSer.uniqueQuery(Param,oID);
+		lSer.checkReserveTime(logis);
+		return logis;
+	}
+	
+	@RequestMapping(path = "LogisticCheck/{oID}",method = RequestMethod.GET)
 	public @ResponseBody Logistic uniqueQuery(@PathVariable(value = "oID") String oID) {
 		String Param = "oID";
 		return lSer.uniqueQuery(Param,oID);

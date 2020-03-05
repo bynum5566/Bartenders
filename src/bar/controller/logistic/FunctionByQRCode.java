@@ -47,7 +47,14 @@ public class FunctionByQRCode {
 //		return "LogisticGate";
 //	}
 	
-	@RequestMapping(path="LogisticArrive.do", method = {RequestMethod.GET,RequestMethod.POST})
+	//過濾頁
+	@RequestMapping(path="/MerchandiseFilter.do", method = RequestMethod.GET)
+	public String MerchandiseFilter(@RequestParam(name = "orderID")String oID,Model m) {
+		m.addAttribute("orderID",oID);
+		return "redirect:/MerchandiseArrive.do";
+	}
+	
+	@RequestMapping(path="MerchandiseArrive.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String LogisticArrive(
 			@RequestParam(name = "orderID")String oID,
 			@RequestParam(name = "userId")Integer userId,Model m,
@@ -58,15 +65,21 @@ public class FunctionByQRCode {
 			Logistic update = qdao.QRCodeAction(oID,check.getsID());
 			System.out.println("get retrun result:"+update);
 			m.addAttribute("update",update);
-			response.sendRedirect("LogisticArrive");
-			return null;
-//			return "LogisticArrive";
+			m.addAttribute("thank","感謝您的購買，期待再次為您服務");
+//			response.sendRedirect("LogisticArrive");
+//			return null;
+			return "LogisticArrive";
+		}else if(userId.equals(check.getCharge())&&check.getoTimeC()!=null){
+			System.out.println("配送已完成 重複刷");
+			m.addAttribute("update",check);
+			m.addAttribute("thank","此訂單已於"+check.getoTimeC()+"完成配送");
+			return "LogisticArrive";
 		}else {
 			LogisticAccount realSender = laSer.querySender(check.getsID());
 			System.out.println("訂單號碼or運送人不對");
 			m.addAttribute("valid",check);
 			m.addAttribute("realSender",realSender);
-			return "logistic/QRCodeInvalid";
+			return "LogisticInvalid";
 		}
 	}
 	
@@ -103,15 +116,7 @@ public class FunctionByQRCode {
 	//過濾頁
 	@RequestMapping(path="/logistic/QRCodeAction.do", method = RequestMethod.GET)
 	public String processAction4(@RequestParam(name = "orderID")String oID, Model m) {
-//		Logistic order = qdao.QRCodeAction(orderID,orderStatus);
-//		System.out.println("get retrun result:"+order);
-//		if(order==null) {
-//			System.out.println("result is null");
-//			return "QRCodeInvalid";
-//		}
-//		m.addAttribute("update",order);
 		m.addAttribute("orderID",oID);
-//		m.addAttribute("orderStatus",orderStatus);
 		System.out.println("return to page");
 		return "logistic/LogisticUpdate";
 	}
