@@ -341,7 +341,7 @@ public class FunctionByActivity {
 		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);
 		String realPath = request.getSession().getServletContext().getRealPath("\\WEB-INF\\resource\\images/");
 		System.out.println("this is realPath:"+realPath);
-		String tempPath = "C:\\test\\";
+		String tempPath = "C:\\DataSource\\SpringMVCFinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Bartenders\\WEB-INF\\resources\\images\\";
 		System.out.println("upload file: "+request.getContentLengthLong());
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile file = multipartRequest.getFile("uploadFile");
@@ -353,7 +353,7 @@ public class FunctionByActivity {
 			System.out.println("start Thumbnails, saving file: "+tempPath+filename);
 			File savePath2 = new File(tempPath+filename);
 			
-			Thumbnails.of(input).size(80, 80).toFile(savePath2);
+			Thumbnails.of(input).size(300, 300).toFile(savePath2);
 			System.out.println("Thumbnails complete");
 		}else {
 			System.out.println("no file selected");

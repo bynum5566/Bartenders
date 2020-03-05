@@ -155,7 +155,7 @@ public class FunctionByBar {
 		System.out.println("this is realPath2:"+realPath2);
 		System.out.println("this is basePath:"+basePath);
 		
-		String tempPath = "C:\\test\\";
+		String tempPath = "C:\\DataSource\\SpringMVCFinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Bartenders\\WEB-INF\\resources\\images";
 		System.out.println("upload file: "+request.getContentLengthLong());
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile file = multipartRequest.getFile("uploadFile");
