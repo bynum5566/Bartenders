@@ -353,7 +353,7 @@ public class FunctionByActivity {
 			System.out.println("start Thumbnails, saving file: "+tempPath+filename);
 			File savePath2 = new File(tempPath+filename);
 			
-			Thumbnails.of(input).size(30, 30).toFile(savePath2);
+			Thumbnails.of(input).size(80, 80).toFile(savePath2);
 			System.out.println("Thumbnails complete");
 		}else {
 			System.out.println("no file selected");

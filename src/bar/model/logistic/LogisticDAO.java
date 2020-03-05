@@ -144,7 +144,7 @@ public class LogisticDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date current = new Date();
 		try {
-			if(logistic.getoTimeR()!=null) {
+			if(logistic.getoStatus()==1&&logistic.getoTimeR()!=null) {
 				String reserveTime = logistic.getoTimeR();
 				System.out.println("oTimeR : "+reserveTime);
 				System.out.println("current: "+sdf.format(current));
@@ -170,7 +170,7 @@ public class LogisticDAO {
 		Date current = new Date();
 		try {
 			for(Logistic logistic:list) {
-				if(logistic.getoTimeR()!=null) {
+				if(logistic.getoStatus()==1&&logistic.getoTimeR()!=null) {
 					String reserveTime = logistic.getoTimeR();
 					System.out.println("oTimeR : "+reserveTime);
 					System.out.println("current: "+sdf.format(current));
