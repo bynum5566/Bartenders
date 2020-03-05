@@ -32,6 +32,22 @@
 			margin-top:-80px;
 		}
 		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
+		
 		.container{
 		position:relative;
 		width:900px;

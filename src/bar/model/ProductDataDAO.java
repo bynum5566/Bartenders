@@ -116,7 +116,7 @@ public class ProductDataDAO {
 		String nowTime = sdf.format(date);
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hqlStr = "from ProductData where (upper(productName) like '%' || upper(:kWord)  || '%' or upper(pdTag1) like '%' || upper(:kWord)  || '%' or upper(pdTag2) like '%' || upper(:kWord)  || '%' or upper(pdTag3) like '%' || upper(:kWord)  || '%') and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) order by autoLaunchTime DESC";
+		String hqlStr = "from ProductData where (upper(productName) like '%' || upper(:kWord)  || '%' or upper(pdTag1) like '%' || upper(:kWord)  || '%' or upper(pdTag2) like '%' || upper(:kWord)  || '%' or upper(pdTag3) like '%' || upper(:kWord)  || '%' or upper(pdDetail) like '%' || upper(:kWord)  || '%') and  ( ( autoLaunchTime < :nowTime and autoPullTime > :nowTime ) or ( autoLaunchTime < :nowTime and autoLaunchTime > autoPullTime ) or ( autoLaunchTime < :nowTime and autoPullTime is null ) ) order by autoLaunchTime DESC";
 		Query query = session.createQuery(hqlStr);
 		query.setParameter("kWord",keyword);
 		query.setParameter("nowTime", nowTime);	
