@@ -49,7 +49,7 @@
 			margin-left:5%;	
 		}
 		
-		td.RSide{
+		td.B1.bT6{
 			margin-right:5%;
 		}
 		

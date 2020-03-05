@@ -145,7 +145,7 @@
 			$('#newPassword').val('PassW0rd123');
 			$('#newPassword2').val('PassW0rd123');
 			$('#phone').val('0987564251');
-			$('#email').val('11129henry@gamil.com');
+			$('#email').val('11129henry@gmail.com');
 		});
 	</script>
 	
