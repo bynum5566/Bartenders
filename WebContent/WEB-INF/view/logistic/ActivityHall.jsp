@@ -540,8 +540,8 @@
 								<br>
 								<div class="searchDiv" align=center>
 									<input id="address" type="text" style="width:500px" placeholder="輸入地址定位">
-									<button id="addressBtn" type="button" onclick="getInput()">搜尋</button>
-									<button id="autoAddressBtn" type="button" onclick="autoLocating()">自動定位</button>
+									<button id="addressBtn" type="button" onclick="getInput()" style="width: 120px;height:40px;line-height:40px;padding:0px 10px 0px 10px; margin: 5px; text-align: center">地址搜尋</button>
+									<button id="autoAddressBtn" type="button" onclick="autoLocating()" style="width: 120px;height:40px;line-height:40px;padding:0px 10px 0px 10px; margin: 5px; text-align: center">自動定位</button>
 									<div id="map0" class="mapDiv"></div>
 								</div>
 								
@@ -569,28 +569,37 @@
 													<c:choose>
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:when test="${Activity.actualNum==Activity.limitNum}">
 															<span>活動人數已滿</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:otherwise>
 															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
 															
@@ -601,6 +610,16 @@
 												<!--  -->
 												<div class="outer">
 													<div id="groundD${status.index}" class="ground">
+														<!-- 
+														<c:choose>
+															<c:when test="${Activity.limitNum==999}">
+																<img id="limitP${status.index}" class="limitP NP" title="活動人數不限" src="images/arrowLimit.png">
+															</c:when>
+															<c:otherwise>
+																<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
+															</c:otherwise>
+														</c:choose>
+														 -->
 														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
 														<div id="targetFor${status.index}" class="targetD">
 															<img class="targetP NP" title="成團: ${Activity.targetNum}人" src="images/arrowTarget.png">	
@@ -733,12 +752,27 @@
 							
 										  }
 										});
+									
+									//檢查地址是否輸入 限制定位按鈕
+									var addressBtn = document.getElementById('addressBtn')
+									if(document.getElementById('address').value==''){
+											addressBtn.disabled=true;
+										}else{
+											addressBtn.disabled=false;
+										}
+									$('#address').on('blur',function(){
+										if(document.getElementById('address').value==''){
+											addressBtn.disabled=true;
+										}else{
+											addressBtn.disabled=false;
+										}	
+									})
 									//輸入地址定位
 									var locationLat;
 									var locationLng;
+									var address = document.getElementById('address').value
 									async function getInput() {
-										var address = document.getElementById('address').value
-
+										
 										//等fetch做完再繼續
 										await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
 											function (response) {
@@ -871,6 +905,7 @@
 	<script type="text/javascript">
 	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
 	//window.open(dlLink);
+	
 	
 	//打開搜尋地圖
 	$('#openSearch').on('click', function(){

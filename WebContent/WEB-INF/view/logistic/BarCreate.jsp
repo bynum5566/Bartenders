@@ -133,7 +133,6 @@ console.log('currentId is: ',currentId);
 							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 <!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
 <!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-							<li><a href="/Bartenders/Example">測試</a></li>
 							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
 						<c:if test="${testV<499999}">
@@ -192,7 +191,7 @@ console.log('currentId is: ',currentId);
 												<p>酒吧照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
 												<textarea id="brief" name="brief" rows="3" >${myBar.aboutBar}</textarea>
 												<br>
-												<div style="display:block">
+												<div style="display:none">
 												<input id="lat" type="text" name="lat" value="0">
 												<input id="lng" type="text" name="lng" value="0">
 												<input type="text" name="preUrl" value="${preUrl}">

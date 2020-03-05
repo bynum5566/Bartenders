@@ -1,13 +1,10 @@
 
-.infoDiv{
-width:190px;
-height:180px;
-background-color:lightgrey;/**/
+.barDiv{
 
 }
-
 .infoName{
 font-size:20px;
+color:orange;
 margin: 0px auto;
 /*margin:6px 0px 6px 0px ;*/
 overflow: hidden; /*超出的文本隐藏*/
@@ -17,7 +14,6 @@ white-space: nowrap; /*溢出不换行*/
 
 .infoAddr{
 	margin:4px auto;
-	font-size:10px;
 	color:black;
 	overflow: hidden; /*超出的文本隐藏*/
 	text-overflow: -o-ellipsis-lastline;
@@ -57,6 +53,18 @@ white-space: nowrap; /*溢出不换行*/
 }
 
 .oinfoDetail{
+	margin:4px auto;
+	color:black;
+}
+
+.detailDiv{
+	position:relative;
+	display:inline-block;
+	right:0px;
+	width:85px;
+	padding:2px;
+}
+.infoDetail{
 	margin:4px auto;
 	color:black;
 }
