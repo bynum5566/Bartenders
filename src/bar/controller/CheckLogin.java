@@ -92,7 +92,7 @@ public class CheckLogin {
 			
 		}
 
-		m.addAttribute("msg", "帳號或密碼不正確");
+		m.addAttribute("msg", "帳號、密碼不正確，或未啟用信箱");
 		return "index";
 	}
 

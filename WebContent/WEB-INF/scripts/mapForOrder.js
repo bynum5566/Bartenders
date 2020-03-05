@@ -123,6 +123,8 @@
 							var index = defaultIndex;
 							var barId = item.userId;
 							var name = item.name;
+							var beginTime = item.beginTime;
+							var endTime = item.endTime;
 							var address = item.address;
 							var lat = item.lat;
 							var lng = item.lng;
@@ -147,12 +149,16 @@
 							
 							markers.push(marker);
 							//建立個別window
-							var contentString = 	'<div>'+
-							'<h3 class="infoH3">'+name+'</h3>'+
-							'<img class="infoType" alt="未設定類型" src="../images/'+type+'.png">'+
+							var contentString = 	'<div class="barDiv">'+
+							'<div class="infoName">'+name+'</div>'+
+							'<div class="infoDetail" >營業時間:'+beginTime.substring(11)+' ~ '+endTime.substring(11)+'</div>'+
 							'<div class="infoAddr" >'+address+'</div>'+
-							'<img class="infoImg" alt="未設定照片" src="../images/'+img+'">'+
-							'<div class="infoBrief" >'+brief+'</div>'
+							//'<img class="infoImg" alt="未設定照片" src="/Bartenders/logistic/images/'+img+'">'+
+							//'<div class="detailDiv">'+
+								
+								
+							//'</div>'+
+							
 							'</div>';
 						
 							marker.addListener('click', function() {

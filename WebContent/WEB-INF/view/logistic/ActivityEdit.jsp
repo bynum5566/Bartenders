@@ -29,6 +29,22 @@
 			left:0%;
 			width:100%;
 		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
 		/*以下是地圖開關設定*/
 		.showEachMap{
 			width: 550px;

@@ -89,6 +89,14 @@ public class MessageBoardController {
 	@RequestMapping(path = { "messageBoardShow.controller" })
 	public String processActionShow(Model m) {
 		List<MessageBoard> newest = messageBoardService.selectNewestMessage();
+		
+		for (int i = 0; i <= newest.size() - 1; i++) {
+			int id = newest.get(i).getId();
+			List<SubMessageBoard> subnewest = messageBoardService.selectNewestSubMessage(id);
+			int subMessageAmount = subnewest.size();
+			newest.get(i).setSubMessageAmount(subMessageAmount);
+		}
+		
 		m.addAttribute("newest", newest);
 
 		// for websocket

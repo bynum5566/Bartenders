@@ -210,7 +210,7 @@
 											<ul>
 												<li><label>Bar名稱</label></li>
 												<li>
-													<input type="text" name="barName" required="required" value="<c:out value="${barName}"/>">
+													<input type="text" id="barName" name="barName" required="required" value="<c:out value="${barName}"/>">
 												</li>
 											</ul>
 											<ul>
@@ -385,6 +385,7 @@
 		$("#hdId").hide();
 		
 		$('#Input').click(function() {
+			$('#barName').val('Jazz Drink吧');
 			$('#aboutBar').val('這裡是一個令人放鬆自在的空間，\n每天都有爵士樂手現場演奏，\n暫時放下平日的煩惱以及城市的喧囂，\n沉浸在爵士樂以及我們精心調製出的美味調酒中吧!');
 			$('#barMenu').val('完美馬丁尼......$300\n瑪格麗塔......$300\n藍色夏威夷......$350\n環遊世界......$350\n亞歷山大......$320\n白色佳人......$320\n藍色珊瑚礁......$350\n墨西哥灣流......$320');
 			$('#barFb').val('little_JazzBar_2009');
