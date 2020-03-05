@@ -57,6 +57,14 @@
 	display: none;
 }
 
+ .alt h3{ 
+ 	text-transform:none; 
+ 	line-height: 2em;
+ 	}
+
+
+
+
 
 </style>
 </head>
@@ -108,15 +116,15 @@
 						<!-- <div class="mydiv"> -->
 						<h2>個人資料</h2>
 						<div class="row gtr-uniform">
-							<div class="col-6 col-12-medium">
+							<div class="col-9 col-12-medium">
 								<!-- <div class="content"> -->
 								<ul class="alt">
-									<li>帳號:&nbsp;${showAccount}</li>
-									<li>姓名:&nbsp;${showName}</li>
-									<li>生日:&nbsp;${showBirthday}</li>
-									<li>連絡電話:&nbsp;${showPhone}</li>
-									<li>電子郵件:&nbsp;${showEmail}</li>
-									<li>聯絡地址:&nbsp;${showAddress}</li>
+									<li><h3>帳號:&nbsp;${showAccount}</h3></li>
+									<li><h3>姓名:&nbsp;${showName}</h3></li>
+									<li><h3>生日:&nbsp;${showBirthday}</h3></li>
+									<li><h3>連絡電話:&nbsp;${showPhone}</h3></li>
+									<li><h3>電子郵件:&nbsp;${showEmail}</h3></li>
+									<li><h3>聯絡地址:&nbsp;${showAddress}</h3></li>
 								</ul>
 								<ul class="actions">
 									<li><a class="button primary" href="/Bartenders/resetInfo">修改個人資料</a>

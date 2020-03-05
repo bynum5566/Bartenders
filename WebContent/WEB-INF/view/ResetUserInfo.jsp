@@ -141,7 +141,7 @@ html, body {
 										<h3>姓名:</h3>
 									</li>
 									<li><input type="text" name="userName" required="required" size="50"
-											placeholder="請輸入您的姓名" pattern="^.{3,30}$" id="name"/><br></li>
+											placeholder="請輸入您的姓名" pattern="^.{3,30}$" id="name" value="<c:out value="${showName}"/>"/><br></li>
 									<li>
 										<h3>帳號:</h3>
 									</li>
@@ -151,13 +151,13 @@ html, body {
 										<h3>手機:</h3>
 									</li>
 									<li><input type="tel" name="phone" autocomplete="off" size="50"
-											placeholder="請填寫欲更改的手機號碼" required="required" pattern="^.{10}$" id="phone"/><br>
+											placeholder="請填寫欲更改的手機號碼" required="required" pattern="^.{10}$" id="phone" value="${showPhone}" /><br>
 									</li>
 									<li>
 										<h3>生日:</h3>
 									</li>
 									<li><input type="date" name="birthday" size="50" autocomplete="off"
-											required="required" /><br></li>
+											required="required" value="${showBirthday}" /><br></li>
 									<li>
 										<h3>電子郵件:</h3>
 									</li>
@@ -168,7 +168,7 @@ html, body {
 									</li>
 									<li><input type="text" name="address" autocomplete="off" size="50"
 											placeholder="請填寫欲更改的的住址" pattern="^[0-9-\u4e00-\u9fa5].{10,}$"
-											required="required" id="add"/><br></li>
+											required="required" id="add" value="${showAddress}"/><br></li>
 								</ul>
 								<!-- </table> -->
 								<ul class="actions">
@@ -209,7 +209,7 @@ html, body {
 	
 	<script type="text/javascript">
 		$('#demo').click(function(){
-			$('#name').val('陳曉明');
+			$('#name').val('陳曉美');
 			$('#phone').val('0919569231');
 			$('#add').val('台北市萬華區興寧街66巷2弄');
 		});
