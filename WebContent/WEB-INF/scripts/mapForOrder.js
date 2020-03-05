@@ -147,12 +147,9 @@
 							
 							markers.push(marker);
 							//建立個別window
-							var contentString = 	'<div>'+
-							'<h3 class="infoH3">'+name+'</h3>'+
-							'<img class="infoType" alt="未設定類型" src="../images/'+type+'.png">'+
-							'<div class="infoAddr" >'+address+'</div>'+
-							'<img class="infoImg" alt="未設定照片" src="../images/'+img+'">'+
-							'<div class="infoBrief" >'+brief+'</div>'
+							var contentString = 	'<div id="odiv">'+
+							'<div class="infoName">'+name+'</div>'+
+							'<div class="infoAddr" >'+address+'</div>'
 							'</div>';
 						
 							marker.addListener('click', function() {
