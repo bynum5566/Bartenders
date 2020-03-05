@@ -147,8 +147,8 @@
 			$('#pwd').val('11129Henry');
 			$('#pwd2').val('11129Henry');
 			$('#phone').val('0987564251');
-			$('#email').val('11129henry@gamil.com');
-			$('#add').val('台北市大安區信義路三段147巷5弄17-1');
+			$('#email').val('11129henry@gmail.com');
+			$('#add').val('台北市大安區樂利路31-1號');
 		});
 	</script>
 
