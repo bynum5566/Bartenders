@@ -11,7 +11,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>建立活動</title>
-	<title>建立活動／Bartenders</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -157,7 +156,12 @@ console.log('currentId is: ',currentId);
 </script>
 	<div id="page-wrapper">
 	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<c:if test="${testV>499999}">
+			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		</c:if>
+		<c:if test="${testV<499999}">
+			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+		</c:if>
 		
 		<!-- 小鈴鐺 -->
 			<div class="noticeBox">
@@ -263,7 +267,7 @@ console.log('currentId is: ',currentId);
 												<br>
 												<textarea id="detail" placeholder="輸入活動內容" name="detail" rows="6"></textarea>
 												<br>
-												<div style="display:block">
+												<div style="display:none">
 												<input id="lat" type="text" name="lat" value="0">
 												<input id="lng" type="text" name="lng" value="0">
 												<input type="text" name="preUrl" value="${preUrl}">

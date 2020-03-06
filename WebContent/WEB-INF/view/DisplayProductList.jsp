@@ -240,7 +240,35 @@
 			height: 100%;
 			margin: auto;
 			object-fit: cover;
-		}		
+		}
+		
+		/*RWD*/
+		@media screen and (max-width: 950px) {
+			img#myBtn1, img#myBtn.myMenu, img#favbT{
+				width: 50px;
+				height: 50px;
+			}
+		}
+		
+		@media screen and (max-width: 650px) {
+			img#myBtn1, img#myBtn.myMenu, img#favbT{
+				width: 45px;
+				height: 45px;
+			}
+			.thebuttons{
+				display: block;
+			}
+			.hideBr{
+			display: block;
+			}
+		}
+		@media screen and (max-width: 440x) {
+			img#myBtn1, img#myBtn.myMenu, img#favbT{
+				width: 30px;
+				height: 30px;
+			}
+		}
+		
 		
 .noticeBox {
 	position: fixed;
@@ -311,14 +339,13 @@
 						<div class=mydiv>
 							<section>
 									<ul class="actions">
-										<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/>&emsp;&emsp;</li>
-										<li >&zwnj;<div id="barName">${CompanyName}&emsp;&ensp;</div></li>
-										<li><img id="myBtn1" src="/Bartenders/images/map.png"></li>
-										<li>&emsp;&emsp;</li>
-										<li><img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png"></li>
-										<li>&emsp;&emsp;</li>
-										<li><img id="favbT" src="/Bartenders/images/heart (1).png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
-										<li></li>
+										<li><img style="width:100px;height:100px;border-radius: 50%;border:2px solid white;" src="<c:out value="${myBarX.logoUrl}"/>"/></li>
+										<li >&zwnj;<div id="barName">${CompanyName}</div></li>
+										<li class="thebuttons"><img id="myBtn1" src="/Bartenders/images/map.png">
+<!-- 										<li>&emsp;&emsp;</li> -->
+										<img id="myBtn" class="myMenu" src="/Bartenders/images/menu_icon.png">
+<!-- 										<li>&emsp;&emsp;</li> -->
+										<img id="favbT" src="/Bartenders/images/heart (1).png" onclick="location.href='/Bartenders/addFav.bar?cidck=<c:out value="${companyId}"/>';"></li>
 									</ul>
 									<ul class="alt">
 										<li><h2>最新活動<h2></h2></li>

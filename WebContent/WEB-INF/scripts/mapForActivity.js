@@ -94,7 +94,6 @@
 					var type = item.type;
 					
 					var img = item.img;
-					console.log('this is img: ', img);
 					var brief = item.brief;
 					var point = new google.maps.LatLng(lat, lng);
 					
@@ -134,9 +133,17 @@
 						var lat = item.lat;
 						var lng = item.lng;
 						var type = item.type;
-						
+						var beginTime = item.beginTime;
+						var endTime = item.endTime;
+						console.log('date: ',beginTime.substring(5,10),' ; ',endTime.substring(5,10))
+						var activityDate;
+						if(beginTime.substring(5,10)==endTime.substring(5,10)){
+							
+							activityDate = beginTime.substring(5,10);
+						}else{
+							activityDate = beginTime.substring(5,10)+' ~ '+endTime.substring(5,10);;
+						}
 						var img = item.img;
-						console.log('this is img: ', img);
 						var brief = item.brief;
 						var point = new google.maps.LatLng(lat, lng);
 						//建立個別marker
@@ -149,6 +156,7 @@
 						targetMap.panTo(point);
 						markers[mapId].push(marker);
 						//建立個別window
+						
 						var contentString = 	
 							'<div class="infoDiv">'+
 							'<div class="infoTitle">'+
@@ -157,8 +165,9 @@
 							
 							'<img class="infoImg" alt="未設定照片" src="images/'+img+'">'+
 							'<div class="detailDiv">'+
-								'<p class="infoDetail">2020/02/21</p>'+
-								'<p class="infoDetail">16:00 ~ 20:00</p>'+
+							
+								'<p class="infoDetail">'+activityDate+'</p>'+
+								'<p class="infoDetail">'+beginTime.substring(11)+' ~ '+endTime.substring(11)+'</p>'+
 								'<p class="infoAddress">'+address+'</p>'+
 								'<a class="infoA" href="/Bartenders/queryActivityByActivityId.do?activityId='+id+'"/>活動詳情</a>'+
 							'</div>'+

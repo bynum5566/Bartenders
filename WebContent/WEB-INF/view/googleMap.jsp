@@ -57,7 +57,7 @@
 	        _geocoder(aDds,function(address){
 	            var map = new google.maps.Map(document.getElementById('map'), {
 	            center: address,
-	            zoom: 14
+	            zoom: 18
 	            });
 	        
 	            //設定資訊視窗內容
