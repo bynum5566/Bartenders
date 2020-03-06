@@ -66,13 +66,13 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="p-2"></div>
         <!-- ----------------------------------------------一般會員 -->
-        
+        <!-- id="inputPassword" -->
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">        
             <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
-                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
+                <input type="id" class="form-control-plaintext input_bg" id="inputAccunt" placeholder="請輸入帳號" name="userAccount">
               </div>
             </div>
             <div class="form-group row">
@@ -116,6 +116,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
+                <button type="button" id="demo1" class=" btn btn-light" data-dismiss="modal">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -150,14 +151,14 @@
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
-                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="companyAccount">
+                <input type="id" class="form-control-plaintext input_bg" id="inputCAccunt" placeholder="請輸入帳號" name="companyAccount">
               </div>
             </div>
             <div class="form-group row">
               
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
-                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="companyPwd">
+                <input type="password" class="form-control-plaintext input_bg" id="inputCPassword" placeholder="請輸入密碼" name="companyPwd">
               </div>
             </div>
          
@@ -184,6 +185,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
+                <button type="button" id="demo2" class=" btn btn-light" data-dismiss="modal">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -680,7 +682,18 @@
         // var parallax = new Parallax(scene);
 
     </script>
-    
+	<script type="text/javascript">
+		$('#demo1').click(function() {
+			$('#inputAccunt').val('Aa654321');
+			$('#inputPassword').val('Aa123456Aa123456');
+		});
+	</script>
+	<script type="text/javascript">
+		$('#demo2').click(function() {
+			$('#inputCAccunt').val('Cc654321');
+			$('#inputCPassword').val('Cc123456Cc123456');
+		});
+	</script>
 </body>
 
 </html>
