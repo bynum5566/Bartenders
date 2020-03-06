@@ -156,7 +156,12 @@ console.log('currentId is: ',currentId);
 </script>
 	<div id="page-wrapper">
 	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+		<c:if test="${testV>499999}">
+			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		</c:if>
+		<c:if test="${testV<499999}">
+			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+		</c:if>
 		
 		<!-- 小鈴鐺 -->
 			<div class="noticeBox">
