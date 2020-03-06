@@ -48,7 +48,16 @@ public class UserInformationController {
 	}
 	
 	@RequestMapping(path="/resetInfo" , method = RequestMethod.GET)
-	public String showResetInfo(Model m) {
+	public String showResetInfo(Model m,@ModelAttribute(name="account") String account) {
+		Users ruser=uservice.select(account);
+		
+		m.addAttribute("showAccount", ruser.getAccount());
+		m.addAttribute("showName", ruser.getUserName());
+		m.addAttribute("showBirthday", ruser.getBirthday());
+		m.addAttribute("showPhone", ruser.getPhone());
+		m.addAttribute("showEmail", ruser.getEmail());
+		m.addAttribute("showAddress",ruser.getAddress());
+		
 		//for websocket
 		WebSocketTest.setModel(m);
 		

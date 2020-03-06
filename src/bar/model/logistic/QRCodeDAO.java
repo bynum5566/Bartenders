@@ -94,7 +94,7 @@ public class QRCodeDAO {
 	}
 
 	@SuppressWarnings("all")
-	public void CreateQR(String orderID, Integer orderStatus, String name) {
+	public void CreateQR(String orderID, Integer orderStatus, String name,Integer lID) {
 //基本引數
 		int width = 500, height = 500;
 		String format = "png", contents = "http://localhost:8080/Bartenders/logistic/QRCodeAction.do?orderID="+orderID;
@@ -112,12 +112,12 @@ public class QRCodeDAO {
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, width, height,
 					hashMap);
 //檔案生成路徑
-			File file = new File("C:/test/"+orderID+name+".png");
+			File file = new File("C:/test/"+lID+name+".jpg");
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 			MatrixToImageWriter.writeToPath(bitMatrix, format, file.toPath());
-			System.out.println("Create code success:"+orderID+name+".png");
+			System.out.println("Create code success:"+lID+name+".jpg");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

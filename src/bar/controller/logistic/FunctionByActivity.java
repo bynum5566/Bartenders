@@ -341,7 +341,11 @@ public class FunctionByActivity {
 		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);
 		String realPath = request.getSession().getServletContext().getRealPath("\\WEB-INF\\resource\\images/");
 		System.out.println("this is realPath:"+realPath);
-		String tempPath = "C:\\test\\";
+		String[] x = realPath.split("resource");
+		System.out.println(x[0]+"resources"+x[1]);
+		String tempPath = x[0]+"resources"+x[1];
+		String y = "C:\\DataSource\\SpringMVCFinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Bartenders\\WEB-INF\\resources\\images\\";
+//		String tempPath = "C:\\DataSource\\SpringMVCFinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Bartenders\\WEB-INF\\resources\\images\\";
 		System.out.println("upload file: "+request.getContentLengthLong());
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile file = multipartRequest.getFile("uploadFile");
@@ -352,8 +356,8 @@ public class FunctionByActivity {
 		
 			System.out.println("start Thumbnails, saving file: "+tempPath+filename);
 			File savePath2 = new File(tempPath+filename);
-			
-			Thumbnails.of(input).size(30, 30).toFile(savePath2);
+			Thumbnails.of(input).size(300,300).toFile(savePath2);
+
 			System.out.println("Thumbnails complete");
 		}else {
 			System.out.println("no file selected");
@@ -471,6 +475,9 @@ public class FunctionByActivity {
 			@RequestParam(name = "activityId")Integer activityId
 			) throws IOException, ParseException {
 		System.out.println("Start query");
+//		Activity activity = aSer.uniqueQuery("activityId",activityId);
+//		System.out.println("return list: "+activity);
+//		m.addAttribute("Activity",activity);
 		List<Activity> list = aDao.query("activityId",activityId);
 		System.out.println("return list: "+list);
 		m.addAttribute("activity",list);
@@ -479,7 +486,7 @@ public class FunctionByActivity {
 		//for websocket
 		WebSocketTest.setModel(m);
 		
-		return "logistic/ActivityEdit";
+		return "logistic/ActivitySingleEdit";
 	}
 	
 	

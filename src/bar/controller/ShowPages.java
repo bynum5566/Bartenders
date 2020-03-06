@@ -199,7 +199,11 @@ public String showVerifyMailPage() {
 		return "LogisticArrive";
 	}
 
-
+	@RequestMapping(path = "/LogisticInvalid", method = RequestMethod.GET)
+	public String LogisticInvalid() {
+		System.out.println("redirect to LogisticInvalid");
+		return "LogisticInvalid";
+	}
 	///////////////////以下是地圖搜尋/////////////////
 	@RequestMapping(path = "/ActivityHall", method = RequestMethod.GET)
 	public String ActivityHall() {

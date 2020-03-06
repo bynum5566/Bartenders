@@ -29,6 +29,22 @@
 			left:0%;
 			width:100%;
 		}
+		
+		.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
 		/*以下是地圖開關設定*/
 		.showEachMap{
 			width: 550px;
@@ -68,7 +84,12 @@
 	</script>
 	<div id="page-wrapper">
 	<header id="header">
-		<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		<c:if test="${testV>499999}">
+			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		</c:if>
+		<c:if test="${testV<499999}">
+			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+		</c:if>
 		<nav id="nav">
 			<ul>
 				<li class="special">

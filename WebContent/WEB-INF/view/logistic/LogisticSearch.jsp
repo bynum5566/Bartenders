@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css"/>
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
-	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindowForOrder.css">
 	<style>
 	
 		#background{
@@ -47,7 +47,6 @@
 			*/
 		}
 		td{
-		border:1px white solid;
 		padding:5px;
 		vertical-align:middle;
 		}
@@ -277,8 +276,9 @@
 		orderID = Str.substring(8);
 		console.log('orderId is: ',orderID)
 		//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+		//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
 		var prefix = 'logistic/OrderReserveByBar';
-		var input = orderID+'/${getSenderId}';
+		var input = orderID;
 
 		reserveOrder(prefix,input,'${getSenderId}');
 	})

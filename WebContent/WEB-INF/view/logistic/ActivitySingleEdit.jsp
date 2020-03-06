@@ -15,7 +15,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
-	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyleForSingle.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyleForEdit.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -32,22 +32,6 @@
 			margin-top:-80px;
 		}
 		
-		.small {
-			display: flex;
-			align-self: center;
-		}
-	
-		.small a {
-			font-size: 16px;
-			font-weight: 400;
-			color: #888;
-			font-family: 111.otf;
-		}
-	
-		.small a+a {
-			margin-left: 15px;
-		}
-		
 		.container{
 		position:relative;
 		width:900px;
@@ -62,7 +46,12 @@
 		position:absolute;
 		right:0%;
 		}
+		
+		.inputBox{
+			height:20px;
+		}
 				/* 小鈴鐺 */
+
 .noticeBox {
 	position: fixed;
 	top: 60px;
@@ -109,7 +98,7 @@
 	</script>
 	<div id="page-wrapper">
 	<header id="header">
-					<c:if test="${testV>499999}">
+		<c:if test="${testV>499999}">
 			<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		</c:if>
 		<c:if test="${testV<499999}">
@@ -181,11 +170,12 @@
 					<section>
 						<div class="row">
 							<div id="background" class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align="center" style="font-size:48px;margin:5px;">活動詳情</h1>
+								<h1 align="center" style="font-size:48px;margin:5px;">活動編輯</h1>
 								
 								
 								<div class="container">
-								<c:forEach var="Activity" items="${activity}" varStatus="status">
+								<c:forEach var="Activity" items="${activity}" varStatus="status"><!--  -->
+								<form action="updateActivity.do" method="post" enctype="multipart/form-data">
 								<div style="background-color:darkgrey;border-radius:20px;">
 									<div style="display:inline-block;vertical-align:top;">
 										<div class="each" id="${Activity.activityId}" >
@@ -194,11 +184,13 @@
 												<img class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;"
 													src="images/${Activity.img}"> <img class="imgType"
 													alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
-												<div class="ActivityName">${Activity.name}</div>
+												<div class="ActivityName"><input class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
 												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
-													<p id="changeFormat${Activity.activityId}" style="margin: 10px"></p>
+													<p id="changeFormat${Activity.activityId}" style="margin: 10px">
+													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
+													<input id="endTime" class="inputBox" type="text" name="endTime"  value="${Activity.endTime}" style="width:150px;height:32px;font-size:14px;display:inline;"></p>
 												</div>
-												<p align=left style="margin: 10px">${Activity.address} </p>
+												<p align=left style="margin: 10px"><input type="text" name="address" value="${Activity.address}"> </p>
 												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">確認地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
@@ -242,60 +234,41 @@
 														<c:when test="${Activity.limitNum==999}">
 															<span>參加人數不限</span>
 															<span id="people${status.index}" class="number">目前人數:${Activity.actualNum}</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
 															
-															<form action="joinActivity.do" method="post" style="margin:0px;vertical-align:middle;">
-															<span>我想報名:
-																<select name="joinNum" style="width:90px;height:40px;padding:5px;display:inline;">
-																	<c:forEach begin="1"
-																		end="20"
-																		varStatus="add">
-																		<option value="${add.index}" style="width:50px;display:inline;">${add.index}人</option>
-																	</c:forEach>
-																</select>
-																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
-																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
-																<input type="submit" value="確定" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">
-																</span>
-															</form>
 														</c:when>
 														<c:when test="${Activity.actualNum==Activity.limitNum}">
 															<span>活動人數已滿</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
 														</c:when>
 														<c:otherwise>
 															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
-															<c:if test="${Activity.actualNum>=Activity.targetNum}">
+															<c:if test="${Activity.targetNum==0}">
+																<span>直接成團</span>
+															</c:if>
+															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
 																<span>已成團</span>
 															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum}">
+															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
 																<span>未成團</span>
 															</c:if>
-															
-															<form action="joinActivity.do" method="post" style="margin:0px;vertical-align:middle;">
-															<span>我想報名:
-																<select name="joinNum" style="width:90px;height:40px;padding:5px;display:inline;">
-																	<c:forEach begin="1"
-																		end="${Activity.limitNum-Activity.actualNum}"
-																		varStatus="add">
-																		<option value="${add.index}" style="width:50px;display:inline;">${add.index}人</option>
-																	</c:forEach>
-																</select>
-																<input type="hidden" name="activityId" value="${Activity.activityId}" > 
-																<input id="userInput" type="hidden" name="userId" value="${getUserId}${getCompanyId}">
-																<input type="submit" value="確定" style="width:80px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">
-																</span>
-															</form>
+														
 														</c:otherwise>
 													</c:choose>
 													
@@ -313,8 +286,11 @@
 													</div>
 												</div>
 												</div>
-											<p class="brief" align=center style="height:40px;line-height:40px;padding:0px 20px 0px 20px;margin:0px 5px 0px 5px; text-align: center">${Activity.brief}</p>
-											<p class="detail" align=center style="margin:0px;text-align:justify">${Activity.detail}</p>
+												<textarea id="brief" class="inputArea" name="brief" >${Activity.brief}</textarea>
+										
+											<p class="detail" align=center style="margin:0px;text-align:justify">
+												<textarea id="detail" class="inputArea" name="detail" rows="10">${Activity.detail}</textarea>
+											</p>
 							
 										</div>
 									</div>
@@ -330,8 +306,46 @@
 											var exp = 'hello';
 											var bT = beginD.split(' ');//bT[0]開始的年月日2020/02/20 bT[1]開始的時分15:26
 											var eT = endD.split(' ');//eT[0]開始的年月日2020/02/20 eT[1]開始的時分15:26
-											var changeFormat = document.getElementById('changeFormat${Activity.activityId}');
-											changeFormat.innerHTML = bT[0]+' '+bT[1]+' ~ '+eT[0].substring(5)+' '+eT[1];
+											//var changeFormat = document.getElementById('changeFormat${Activity.activityId}');
+											//changeFormat.innerHTML = bT[0]+' '+bT[1]+' ~ '+eT[0].substring(5)+' '+eT[1];
+											//var beginInput = document.getElementById('beginTime');
+											//beginInput.value = bT[0]+' '+bT[1];
+											//var endInput = document.getElementById('endTime');
+											//beginInput.value = eT[0].substring(5)+' '+eT[1];
+											
+											// begin time
+									var today=new Date();
+									var current = today.getHours()+':'+today.getMinutes();
+									console.log('current time: ',current);
+									const myInput = document.getElementById("beginTime");
+									const fp = flatpickr(myInput, {
+										enableTime : true,
+										dateFormat : "yy/m/d H:i",
+										maxDate : new Date().fp_incr(30), // 30 days from now
+										minDate : "today",
+							
+										time_24hr: true
+									});
+									var endMinD;
+									var endMinT;
+									if(beginTime.value==''){
+										endMinD = "today";
+										endMinT = current;
+									}else{
+										endMinD = beginTime.value;
+										endMinT = beginTime.value;
+									}
+									// end time
+									const myInput2 = document.getElementById("endTime");
+									const fp2 = flatpickr(myInput2, {
+										enableTime : true,
+										dateFormat : "yy/m/d H:i",
+										maxDate : new Date().fp_incr(30), // 30 days from now
+										minDate : "today",
+										time_24hr: true
+									});
+											
+											
 											//個別進度條設定
 											limitNum.push(${Activity.limitNum});
 											targetNum.push(${Activity.targetNum});
@@ -364,30 +378,14 @@
 											var people = document.getElementById('people${status.index}');
 											
 											</script>
-									</c:forEach>
+											<input type="submit" value="確定">
+											</form>
+									</c:forEach><!-- -->
 								
 								</div>
 								
 							</div><!-- 這裡結束 -->
-							<c:if test="${hostId==testV}">
-								<div id="participate" style="margin:10px;">
-									<h1>活動參加者</h1>
-									<table>
-										<tr>
-											<td style="width:90px;">姓名</td>
-											<td style="width:140px;">手機</td>
-											<td style="width:70px;">人數</td>
-										</tr>
-										<c:forEach var="Participant" items="${participant}" varStatus="status">
-											<tr>
-												<td>${Participant.name}</td>
-												<td>${Participant.phone}</td>
-												<td>${Participant.together}</td>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-							</c:if>
+							
 						</div>
 					</section>
 				</div>
@@ -441,12 +439,13 @@
 	
 	
 	<!-- 小鈴鐺 -->
+	<!-- 
 	<script type="text/javascript">
 		$(".bell").click(function() {
 			$(".notice").slideToggle("slow");
 		});
 	</script>
 	<script src="/Bartenders/JS/OpenWebsocket.js"></script>
-	
+	 -->
 </body>
 </html>

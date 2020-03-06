@@ -24,6 +24,21 @@
 	rel="stylesheet"></link>
 
 <style type="text/css">
+.small {
+			display: flex;
+			align-self: center;
+		}
+	
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+	
+		.small a+a {
+			margin-left: 15px;
+		}
 .sigmaGray {
 	color: gray;
 }
@@ -188,8 +203,8 @@ div.panel {
 		<div style="position: center; margin:  100px;">
 			<form action="JavaMailController" method="post"
 				enctype="multipart/form-data">
-				收件人：<input type="text" name="to" size="50"
-					value="11129henry@gmail.com" /><br> 寄件人：<input type="text"
+				<input type="text" name="to" size="50"
+					value="11129henry@gmail.com" style="display: none;"/><br> 寄件人：<input type="text"
 					name="from" size="50" id="from"/><br> 主 旨：<input type="text"
 					name="subject" size="50" id="subject"/><br> 附 檔：<input type="file"
 					name="file" size="50" /><br>
@@ -205,7 +220,7 @@ div.panel {
 		$('#demo').click(function(){
 			$('#from').val('11129henry@gmail.com');
 			$('#subject').val('天霖酒廠合作邀約');
-			$('#text').val('Bartenders網站製作者們您好!  弊公司天霖酒廠有一份合作計畫想和你們談談關於弊公司自製的清酒，有新的高級酒品推出，想藉由您們的網站來推廣!上附企畫書，如有興趣歡迎來合作  謝謝您!');
+			$('#text').val('Bartenders網站製作者們您好：　 敝公司「天霖酒廠」有一份合作計畫想和你們談談。主要關於敝公司自釀清酒，希望作為旗艦酒品推出，想藉由您們的網站來推廣！附上企畫書以利參照，如有合作機會歡迎隨時與敝端窗口聯繫 ，謝謝您！');
 		});
 	</script>
 	

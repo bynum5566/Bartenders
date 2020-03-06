@@ -65,7 +65,7 @@
 								
 								//先取回資料做檢查
 								function getLogistic(input){
-									fetch('http://localhost:8080/Bartenders/logistic/LogisticCheck/'+input+'')
+									fetch('http://localhost:8080/Bartenders/LogisticCheck/'+input+'')
 										.then(function(response) {
 												console.log('data get!');
 												return response.json();
@@ -73,61 +73,72 @@
 												console.log('this is LogisticJSON: ', LogisticJSON);
 												console.log('this is sID: ', LogisticJSON.sID);
 												LogisticData = LogisticJSON;
-												ordersID = LogisticJSON.sID;
-												//已點選送達
-												if(LogisticJSON.oComplete==1){
-													if (confirm("是否確定收到商品?")) {
-														//window.location.href = '<c:url value="/LogisticArrive.do"/>?orderID=' + orderID+'&userId='+currentId;
-				
+												//尚未收到貨物
+												if(LogisticJSON.oTimeC==null&&LogisticJSON.oComplete==1){
+													//已點選送達
+													if(LogisticJSON.charge==currentId){
+														//收件人正確
+														if (confirm("是否確定收到商品?")) {
+															console.log('商品確認已收到')
+															window.location.href = '<c:url value="/MerchandiseArrive.do"/>?orderID=' + orderID + '&userId=' + currentId;
+														}
+														else {
+															alert("動作取消");
+															window.location.href = '<c:url value="/UserFirstPage"/>?';
+														}
+													//收件人不符
+													}else{
+														console.log('收件人不符');
+														window.location.href = '<c:url value="/MerchandiseArrive.do"/>?orderID=' + orderID + '&userId=' + currentId;
 													}
-													else {
-														alert("商品尚未收到");
-														
-													}
-													
-												//尚未送達
+												//貨物已收到重複刷
 												}else {
-													console.log('此訂單尚未點選預約');
-													document.getElementById('temp').innerHTML = '請先預約取件 ';
-													//////////////////////////////////
+													//本人重複刷
+													if(LogisticJSON.charge==currentId){
 														document.getElementById('tbody').remove();
-													var targetBody = document.createElement("tbody");
-													targetBody.id = 'tbody';
-													targetBody.align = 'center';
-													document.getElementById('targetTable').appendChild(targetBody);
-													var newTr = document.createElement("tr");
-													var newTd = document.createElement("td"); 
-													newTd.innerHTML = 1;
-													newTr.appendChild(newTd);
-													for(var t in LogisticJSON){
-														var txt = LogisticJSON[t];
-														if(t!='oNo'&&t!='oID'&&t!='cID'&&t!='sID'&&t!='charge'&&t!='cost'&&t!='oTimeR'&&t!='oComplete'){
-															var newTd = document.createElement("td"); 
-															newTd.innerHTML = txt;
-																if(t=='oType'){
-																	newTd.className = 'myType';
+														var targetBody = document.createElement("tbody");
+														targetBody.id = 'tbody';
+														targetBody.align = 'center';
+														document.getElementById('targetTable').appendChild(targetBody);
+														var newTr = document.createElement("tr");
+														var newTd = document.createElement("td"); 
+														newTd.innerHTML = 1;
+														newTr.appendChild(newTd);
+														for(var t in LogisticJSON){
+															var txt = LogisticJSON[t];
+															if(t!='oNo'&&t!='cID'&&t!='sID'&&t!='charge'&&t!='cost'&&t!='oTimeR'&&t!='oComplete'){
+																var newTd = document.createElement("td"); 
+																newTd.innerHTML = txt;
+																	if(t=='oType'){
+																		newTd.className = 'myType';
+																	}
+																	if(t=='oStatus'){
+																		newTd.className = 'myStatus';
+																	}
+																newTr.appendChild(newTd);
 																}
-																if(t=='oStatus'){
-																	newTd.className = 'myStatus';
-																}
-															newTr.appendChild(newTd);
-															}
+														}
+														document.getElementById('tbody').appendChild(newTr);
+														document.getElementById('noteText').innerHTML = '此訂單已於'+LogisticJSON['oTimeC']+'完成配送';
+														changeHTML();
+														console.log('之前已經確認收貨');
+														
+													//不是本人誤刷
+													}else{
+														console.log('你不是本人');
+														window.location.href = '<c:url value="/MerchandiseArrive.do"/>?orderID=' + orderID + '&userId=' + currentId;
 													}
-													document.getElementById('tbody').appendChild(newTr);
-													document.getElementById('noteText').innerHTML = '請先點選接單按鈕';
 												}//else結束
-												});
+											});
 									};
 								
 								//async function initialCheck(){
 									var url = location.href;
 									var LogisticData;
-									var mysID;
 									console.log('url catched: ',url);
 								//再來用去尋找網址列中是否有資料傳遞(QueryString)
 									if (url.indexOf('?') != -1) {
 										var orderID = "";
-										var orderStatus = "";
 										//在此直接將各自的參數資料切割放進ary中
 										var ary = url.split('?')[1].split('&');
 										console.log(ary);
@@ -137,7 +148,9 @@
 										if (ary[0].split('=')[0] == 'orderID')
 											orderID = ary[0].split('=')[1];
 										console.log('orderID is:',orderID);
-										getLogistic(orderID);
+										if(ary.length=1){
+											getLogistic(orderID);
+										}
 									}
 								//}
 								function readyBtn(){
@@ -226,7 +239,7 @@
 												<td style="width:8%;padding:10px">出貨時間</td>
 												<td style="width:8%;padding:10px">物流取貨</td>
 												<td style="width:8%;padding:10px">送達時間</td>
-												<td style="width:6%;padding:10px">狀態</td>
+	
 											</tr>
 										</thead>
 										<tbody id="tbody">
@@ -245,13 +258,13 @@
 												<td>${update.oTimeA}</td>
 												<td>${update.oTimeB}</td>
 												<td>${update.oTimeC}</td>
-												<td class="myComplete">${update.oComplete}</td>
+												
 											</tr>
 	
 										</tbody>
 									</table>
 									<div id="btnDiv" align=center>
-										<p id="noteText"></p>
+										<p id="noteText">${thank}</p>
 										<button id="bt1" class="Code" >確定</button><br>
 									</div>
 								</fieldset>

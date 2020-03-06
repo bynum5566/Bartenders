@@ -394,24 +394,23 @@ div.swiper-slide img {
 										<form action="xxx" method="post">
 											<table width="1000" height="80">
 												<tbody>
-													<tr style="align: center;">
-														<td>&nbsp;<b>帳號</b>&nbsp;
+													<tr style="align: center; color: WhiteSmoke">
+														<td Width="150％">&nbsp;發文者&nbsp;
 														</td>
-														<td>&nbsp;<b>標題</b>&nbsp;
+														<td Width="200％">&nbsp;標題&nbsp;
 														</td>
-														<td>&nbsp;<b>發文者</b>&nbsp;
+														
+														<td Width="150％">&nbsp;回應數&nbsp;
 														</td>
-														<td>&nbsp;<b>回應數</b>&nbsp;
-														</td>
-														<td>&nbsp;<b>日期</b>&nbsp;
+														<td Width="200％">&nbsp;日期&nbsp;
 														</td>
 													</tr>
 													<c:forEach var="messageBoard" items="${newest}">
 														<tr style="align: center;">
-															<td>&nbsp;${messageBoard.account}&nbsp;</td>
-															<td style="color: bisque;"><h4><a
-																href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></h4></td>
 															<td>&nbsp;${messageBoard.userName}&nbsp;</td>
+															<td><h4 style="align: center;"><a
+																href="<c:url value="/submessageBoardShow.controller"/>?resId=${messageBoard.id}&resAccount=${messageBoard.account}">&nbsp;${messageBoard.title}&nbsp;</a></h4></td>
+															
 															<td>&nbsp;${messageBoard.subMessageAmount}&nbsp;</td>
 															<td>&nbsp;${messageBoard.time}&nbsp;</td>
 														</tr>

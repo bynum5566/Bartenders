@@ -75,7 +75,7 @@ public class WebSocketTest {
 				md1.setData(entry.getKey());
 
 				sendAll(gson.toJson(md1));
-				System.out.println("online:" + entry.getKey());
+				System.out.println(entry.getKey()+" 在線上");
 			}
 
 		} else if (onlineCompany != null && onlineCompany.length() != 0) {
@@ -94,7 +94,7 @@ public class WebSocketTest {
 				md1.setData(entry.getKey());
 
 				sendAll(gson.toJson(md1));
-				System.out.println("online:" + entry.getKey());
+				System.out.println(entry.getKey()+" 在線上");
 			}
 			
 		}
