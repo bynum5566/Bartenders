@@ -79,7 +79,7 @@
               
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
-                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+                <input type="password" class="form-control-plaintext input_bg" id="inputUPassword" placeholder="請輸入密碼" name="userPwd">
               	<input type="hidden" id="requestOrderId" value="" name="requestOrderId">
               </div>
               <script>
@@ -116,7 +116,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
-                <button type="button" id="demo1" class=" btn btn-light" data-dismiss="modal">資策會VIP通道</button>
+                <button id="demo1" class=" btn btn-light"  style="color:#62592C">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -185,7 +185,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
-                <button type="button" id="demo2" class=" btn btn-light" data-dismiss="modal">資策會VIP通道</button>
+                <button type="button" id="demo2" class=" btn btn-light" style="color:#305A56">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -685,10 +685,10 @@
 	<script type="text/javascript">
 		$('#demo1').click(function() {
 			$('#inputAccunt').val('Aa654321');
-			$('#inputPassword').val('Aa123456Aa123456');
+			$('#inputUPassword').val('Aa123456Aa123456');
 		});
 	</script>
-	<script type="text/javascript">
+ 	<script type="text/javascript">
 		$('#demo2').click(function() {
 			$('#inputCAccunt').val('Cc654321');
 			$('#inputCPassword').val('Cc123456Cc123456');
