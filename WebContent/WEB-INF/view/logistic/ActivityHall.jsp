@@ -770,11 +770,11 @@
 									//輸入地址定位
 									var locationLat;
 									var locationLng;
-									var address = document.getElementById('address').value
+									
 									async function getInput() {
-										
+										var addressData = document.getElementById('address').value
 										//等fetch做完再繼續
-										await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
+										await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressData + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
 											function (response) {
 												return response.json();
 											}).then(function (JSONdata) {

@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>活動詳情 / Bartenders</title>
+	<title>活動詳情</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -46,9 +46,13 @@
 		position:absolute;
 		right:0%;
 		}
-		
+
 		.inputBox{
 			height:20px;
+		}
+		
+		.typeLabel{
+			
 		}
 				/* 小鈴鐺 */
 
@@ -177,10 +181,22 @@
 										<div class="each" id="${Activity.activityId}" >
 											<fieldset style="width: 350px;border-radius:30px;text-align: center;">
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
-												<img class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;"
-													src="images/${Activity.img}"> <img class="imgType"
-													alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
+												<img id="imgDisplay" class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;" src="images/${Activity.img}"> 
+												<img id="typeDisplay" class="imgType" alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
+												
 												<div class="ActivityName"><input class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
+												
+												<div id="typeSelectDiv" style="display:none;">
+													<input class="type" type="radio" id="party" name="type" value="party">
+													<label class="typeLabel" for="party" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">派對</label> 
+													<input class="type" type="radio" id="carnival" name="type" value="carnival">
+													<label class="typeLabel" for="carnival" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">嘉年華</label>
+													<input class="type" type="radio" id="show" name="type" value="show">
+													<label class="typeLabel" for="show" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">酒展</label>
+													<input class="type" type="radio" id="festival" name="type" value="festival">
+													<label class="typeLabel" for="festival" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">節慶活動</label>
+												</div>
+												<input type="text" id="realType" name="realType" value="${Activity.type}">
 												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px">
 													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
@@ -392,6 +408,29 @@
 	<script type="text/javascript">
 	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
 	//window.open(dlLink);
+	
+	//更換活動類型直接改圖片設定
+	var typeRadio = document.getElementsByClassName('type');
+	var realType = document.getElementById('realType');
+	var tempValue;
+
+	$('#typeDisplay').on('click',function(){
+		tempValue = this.title;
+		document.getElementById('carnival').checked = true;
+		if($('#typeSelectDiv').css('display')=='none'){
+			$('#typeSelectDiv').css('display','block');
+		}else{
+			$('#typeSelectDiv').css('display','none');
+		}
+		
+	})
+	$('.type').on('click',function(){
+		tempValue = this.id
+		realType.value = tempValue;
+		var typeDisplay = document.getElementById('typeDisplay');
+		typeDisplay.src = 'images/'+tempValue+'.png';
+		typeDisplay.title = tempValue;
+	})
 	
 	//設定currentId給超連結
 	$('#myActivity').attr("href","/Bartenders/queryActivityByUser.do?currentId="+currentId);
