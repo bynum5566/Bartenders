@@ -37,13 +37,13 @@
 
 <body class="is-preload">
     <div id="page-wrapper">
-        <header id="header">
+        <header id="header" class="alt_ver">
 			<h1>Bartenders</h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
+						<div id="menu" class="alt_ver">
 							<ul>
 								<li class="small"><a href="/Bartenders/Welcome.UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</ul>

@@ -462,12 +462,13 @@
 </script>
 
 	<div id="page-wrapper">
-	<header id="header">
 		<c:if test="${testV>499999}">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+			<header id="header" class="alt_ver">
+				<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		</c:if>
 		<c:if test="${testV<499999}">
-			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+			<header id="header">
+				<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
 		</c:if>	
 			<!-- 小鈴鐺 -->
 			<div class="noticeBox">
@@ -483,39 +484,41 @@
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
-						<ul>
-							<c:if test="${testV>499999}">
-							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
-							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
-							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
-							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
-							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
-							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
-							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-<!-- 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li> -->
-							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
-<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-							<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+					<c:if test="${testV>499999}">
+						<div id="menu" class="alt_ver">
+							<ul>
+								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+								<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+								<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+								<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+								<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+								<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+								<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+								<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+	<!-- 							<li><a href="/Bartenders/logistic/LogisticGate">物流</a></li> -->
+								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+	<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+	<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
+								<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
+								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
 							<c:if test="${testV<499999}">
-							<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
-							<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-							<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
-							<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
-							<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
-							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
-							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
-							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
-<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+								<div id="menu">
+									<ul>
+										<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+										<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+										<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+										<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+										<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+										<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+										<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+										<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+										<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+			<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+			<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
+										<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+										<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
 						</ul>
 					</div>

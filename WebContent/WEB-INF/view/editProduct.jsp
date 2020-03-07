@@ -134,7 +134,7 @@
 
 <body class="is-preload">
 	<div id="page-wrapper">
-		<header id="header">
+		<header id="header" class="alt_ver">
 		<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
 		
 <!-- 小鈴鐺 -->
@@ -151,7 +151,7 @@
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
+					<div id="menu" class="alt_ver">
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
