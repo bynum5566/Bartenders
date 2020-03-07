@@ -185,7 +185,8 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
-                <button type="button" id="demo2" class=" btn btn-light" style="color:#305A56">資策會VIP通道</button>
+                <button id="demo2" class=" btn btn-light" style="color:#305A56">資策會VIP通道</button>
+   <!--       裡面屬性不設定type="button"可直接送出表單		-->
                   </div>
                  </div>
                  <div class="display480">
