@@ -42,7 +42,7 @@
 		body {
 			margin: 0;
 			padding: 0;
-			background: url("/Bartenders/images/BarImgOrderUser.png") center center fixed;
+			background: url("/Bartenders/images/BarImgOrderUser.png") no repeart center center fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;

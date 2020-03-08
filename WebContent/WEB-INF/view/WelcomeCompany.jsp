@@ -17,10 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
-
+			<!-- background-repeat: no-repeat;-->
 	<style type="text/css">
 		body {
-			background-repeat: no-repeat;
+
 			background-attachment: fixed;
 			background-size: cover;
 			background-position: top;
