@@ -182,7 +182,7 @@
 								
 								<div class="container">
 								<c:forEach var="Activity" items="${activity}" varStatus="status"><!--  -->
-								<form action="updateActivity.do" method="post" enctype="multipart/form-data">
+								<form action="saveActivity.do" method="post" enctype="multipart/form-data">
 								<div style="background-color:darkgrey;border-radius:20px;">
 									<div style="display:inline-block;vertical-align:top;">
 										<div class="each" id="${Activity.activityId}" >
@@ -190,6 +190,7 @@
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
 												<img id="imgDisplay" class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;" src="images/${Activity.img}"> 
 												<img id="typeDisplay" class="imgType" alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
+												<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" value="${Activity.img}" style="display:none;"/>
 												
 												<div class="ActivityName"><input class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
 												
@@ -203,7 +204,7 @@
 													<input class="type" type="radio" id="festival" name="type" value="festival">
 													<label class="typeLabel" for="festival" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">節慶活動</label>
 												</div>
-												<input type="text" id="realType" name="realType" value="${Activity.type}">
+												
 												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px">
 													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
@@ -217,12 +218,6 @@
 															style="width: 350px; height: 500px; background: red"></div>
 													</div>
 												</div>
-												
-												<!-- 
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
-												-->
-												<input type="hidden" name="preUrl" value="${preUrl}">
-												
 											</fieldset>
 											
 										</div>
@@ -249,61 +244,22 @@
 										
 										</div>
 										<div align=center style="margin: 10px">
-													<c:choose>
-														<c:when test="${Activity.limitNum==999}">
-															<span>參加人數不限</span>
-															<span id="people${status.index}" class="number">目前人數:${Activity.actualNum}</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
-															
-														</c:when>
-														<c:when test="${Activity.actualNum==Activity.limitNum}">
-															<span>活動人數已滿</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
-														</c:when>
-														<c:otherwise>
-															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
+											上限: <input id="limitNum" class="numSetting" type="text" name="limitNum" value="${Activity.limitNum}" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
+											成團: <input id="targetNum" class="numSetting" type="text" name="targetNum" value="${Activity.targetNum}" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
+											目前: <input id="actualNum" class="numSetting" type="text" name="actualNum" value="${Activity.actualNum}" style="width:50px;display:inline;height:32px;text-align:center;">人
+										</div>
+					
+											<div id="outer${status.index}" class="outer" title="">
+													<div id="groundD${status.index}" class="ground">
 														
-														</c:otherwise>
-													</c:choose>
-													
-												</div>
-												<div style="position:relative;">
-												<div class="outer">
-													<div id="groundD" class="ground">
-														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
+														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
 														<div id="targetFor${status.index}" class="targetD">
-															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>
+															<img class="targetP NP" title="成團: ${Activity.targetNum}人" src="images/arrowTarget.png">	
 														</div>
 														<div id="currentFor${status.index}" class="currentD NP">
-															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
+															<p><img class="currentP NP" title="現在: ${Activity.actualNum}人" src="images/arrowCurrent.png"></p>
 														</div>
 													</div>
-												</div>
 												</div>
 												<textarea id="brief" class="inputArea" name="brief" >${Activity.brief}</textarea>
 										
@@ -364,39 +320,102 @@
 										time_24hr: true
 									});
 											
-											
-											//個別進度條設定
-											limitNum.push(${Activity.limitNum});
-											targetNum.push(${Activity.targetNum});
-											currentNum.push(${Activity.actualNum});
-											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
-											var fix = $('#groundD${status.index}').width()-20;
-											if(${Activity.limitNum}==999){
-												if(${Activity.targetNum}!=0){
-													per = fix/targetNum['${status.index}'];
-													$('#targetFor${status.index}').width(fix);
-												}else if(${Activity.targetNum}==0){
-													per = fix/currentNum['${status.index}'];
-													$('#targetFor${status.index}').css('display','none');
-												}
-												$('#limitP${status.index}').css('display','none');
+									//圖片預覽&&點擊圖片上傳
+									
+									function readURL(input) {
+									  if (input.files && input.files[0]) {
+									    var reader = new FileReader();
+									    reader.onload = function(e) {
+									      $('#imgDisplay').attr('src', e.target.result);
+									    }
+									    reader.readAsDataURL(input.files[0]);
+									  }
+									}
+									$('#imgDisplay').on('click',function(){
+										$("#uploadFile").click();
+									})
+									$("#uploadFile").change(function() {
+									  readURL(this);
+									});
+									//個別進度條設定
+									limitNum.push('${Activity.limitNum}');
+									targetNum.push('${Activity.targetNum}');
+									currentNum.push('${Activity.actualNum}');
+									//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
+									//console.log('limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+									var fix = $('#groundD${status.index}').width()-20;
+									//console.log('固定寬度: ',fix);
+									if('${Activity.limitNum}'==999){
+										//console.log('no limit')
+										if('${Activity.targetNum}'!=0){
+											//console.log('target != 0')
+											per = fix/targetNum['${status.index}'];
+											$('#targetFor${status.index}').width(fix);
+											//console.log('目標寬度:',$('#targetFor${status.index}').width());
+											//perNum.push(per);
+											if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
+												$('#currentFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數無上限 有目標 已達標')
+												$('#outer${status.index}').prop('title',"不限人數   已成團   現在: ${Activity.actualNum}人");
 											}else{
-												per = fix/limitNum['${status.index}'];
-												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+												
+												$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+												//$('#currentFor${status.index}').css('background-color','pink');
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數無上限 有目標 未達標')
+												$('#outer${status.index}').prop('title',"不限人數   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
 											}
-											perNum.push(per);
-											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
-											$('#currentFor${status.index}').css('background-color','pink');
-											//若成團
-											if(currentNum['${status.index}']>=targetNum['${status.index}']){
-												$('#currentFor${status.index}').css('background-color','lightgreen');
-												$('#targetFor${status.index}').css('display','none');
-											}
+											
+										}else if('${Activity.targetNum}'==0){
+											//console.log('target = 0')
+											per = fix/parseInt(currentNum['${status.index}']);
+											$('#targetFor${status.index}').css('display','none');
+											//perNum.push(per);
+											$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+											//$('#currentFor${status.index}').css('background-color','pink');
+											//console.log('現在寬度:',$('#currentFor${status.index}').width());
+											//console.log('人數無上限 沒目標')
+											$('#outer${status.index}').prop('title',"不限人數   直接成團   現在: ${Activity.actualNum}人");
+										}
+										$('#limitP${status.index}').css('display','none');
+									}else{
+										
+										per = fix/parseInt(limitNum['${status.index}']);
+										//console.log('has limit, per= ',per)
+										$('#targetFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+										//console.log('目標寬度: ',$('#targetFor${status.index}').width())
+										//perNum.push(per);
+										$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+										//$('#currentFor${status.index}').css('background-color','pink');
+										//console.log('現在寬度:',$('#currentFor${status.index}').width());
+										//console.log('人數有上限 可能有目標')
+										$('#outer${status.index}').prop('title',"上限: ${Activity.limitNum}人   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
+									}
+									perNum.push(per);
+									
+									if(parseInt(currentNum['${status.index}'])>=parseInt(limitNum['${status.index}'])){
+										$('#currentFor${status.index}').css('background-color','#b3b3b3');
+										$('#targetFor${status.index}').css('display','none');
+										$('#outer${status.index}').prop('title',"活動人數已滿");
+									}else if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
+										$('#currentFor${status.index}').css('background-color','lightgreen');
+										$('#targetFor${status.index}').css('display','none');
+									}else{
+										$('#currentFor${status.index}').css('background-color','pink');
+									}
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
 											
 											</script>
+											<input id="lat" type="text" name="lat" value="${Activity.lat}">
+											<input id="lng" type="text" name="lng" value="${Activity.lng}">
+											<input type="text" name="preUrl" value="${preUrl}">
+											<input type="text" id="activityId" name="activityId" value="${Activity.activityId}">
+											<input type="text" name="userId" value="${getUserId}${getCompanyId}">
+											<input type="text" id="realType" name="realType" value="${Activity.type}">
+											
+											
 											<input type="submit" value="確定">
 											</form>
 									</c:forEach><!-- -->
@@ -423,7 +442,7 @@
 
 	$('#typeDisplay').on('click',function(){
 		tempValue = this.title;
-		document.getElementById('carnival').checked = true;
+		document.getElementById(tempValue).checked = true;
 		if($('#typeSelectDiv').css('display')=='none'){
 			$('#typeSelectDiv').css('display','block');
 		}else{

@@ -27,18 +27,21 @@ white-space: nowrap; /*溢出不换行*/
 	position:relative;
 	display:inline-block;
 	right:0px;
-	width:85px;
+	width:95px;
 	padding:2px;
+
 }
 .infoDetail{
-	margin:4px auto;
-	font-size:10px;
+	margin:0px auto;
+	padding:0px;
+	font-size:8px;
 	color:black;
+
 }
 
 .infoAddress{
-	margin:4px auto;
-	font-size:10px;
+	margin:2px auto;
+	font-size:6px;
 	color:black;
 	overflow: hidden; /*超出的文本隐藏*/
 	text-overflow: -o-ellipsis-lastline;
@@ -54,7 +57,7 @@ white-space: nowrap; /*溢出不换行*/
 .infoImg{
 	float:left;
 	border-radius:20px;
-	width:100px;
+	width:90px;
 	margin:4px 0px 4px 0px;
 }
 

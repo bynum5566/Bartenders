@@ -329,20 +329,23 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearch/{status}",method = RequestMethod.GET)
 	public @ResponseBody List<Activity> searchOrder(@PathVariable Integer status,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
-		List<Logistic> newOrder = lSer.queryByStatus(status);
+//		List<Logistic> newOrder = lSer.queryByStatus(status);
+		List<Logistic> newOrder = lSer.queryJoker("ostatus", status);
 		lSer.checkReserveTime(newOrder);
+		
 		System.out.println("order numbers: "+newOrder.size());
-		HashMap<Integer,Integer> hashMap = new HashMap<>();
+		HashMap<Integer,Integer> orderByBar = new HashMap<>();
 		List<Activity> activity = new ArrayList<Activity>();
 		List<Activity> temp;
 		for(Logistic a:newOrder) {
-			Integer cID = a.getcID();
-			hashMap.putIfAbsent(cID,0);
-			hashMap.put(cID,hashMap.get(cID)+1);
-			
+//			if(a.getsID()==null) {
+				Integer cID = a.getcID();
+				orderByBar.putIfAbsent(cID,0);
+				orderByBar.put(cID,orderByBar.get(cID)+1);
+//			}
 		}
-		System.out.println("hashMap is: "+hashMap);
-		Iterator<Map.Entry<Integer, Integer>> iterator = hashMap.entrySet().iterator();
+		System.out.println("hashMap is: "+orderByBar);
+		Iterator<Map.Entry<Integer, Integer>> iterator = orderByBar.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Entry<Integer, Integer> entry = iterator.next();
 			Integer barId = entry.getKey();
@@ -352,10 +355,8 @@ public class FunctionByXML {
 			for(Activity bar:temp) {
 				bar.setOrderNum(orderNum);
 			}
-			
 			activity.addAll(temp);
 		}
-
 		m.addAttribute("activity",activity);
 		return activity;
 	}
@@ -367,6 +368,7 @@ public class FunctionByXML {
 		if(cID==0) {
 			orderList = lSer.queryJoker("ostatus","'1'");
 		}else {
+//			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'","oTimeR","NULL");
 			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
 		}
 		
@@ -389,16 +391,18 @@ public class FunctionByXML {
 		return lSer.uniqueQuery(Param,oID);
 	}
 	
-	@RequestMapping(path = "/logistic/OrderReserveByBar/{oID}/{sID}",method = RequestMethod.GET)
+	@RequestMapping(path = "/logistic/OrderReserveByBar/{situation}/{second}/{oID}/{sID}",method = RequestMethod.GET)
 	public String orderReserve(@PathVariable(value = "oID")String oID,Model m,
 			@PathVariable(value = "sID")Integer sID,
+			@PathVariable(value = "second")Integer second,
+			@PathVariable(value = "situation")String situation,
 			HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) throws IOException {
 		Logistic rs = lSer.uniqueQuery("oID", "'"+oID+"'");
 		Date current = new Date();
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		String reserve = sdFormat.format(current);
 		Calendar beforeTime = Calendar.getInstance();
-		beforeTime.add(Calendar.MINUTE, +1);
+		beforeTime.add(Calendar.SECOND, +second);
 		Date beforeD = beforeTime.getTime();
 		String after5 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(beforeD);
 		System.out.println("current is: "+reserve);
@@ -408,6 +412,13 @@ public class FunctionByXML {
 		rs.setoTimeR(after5);
 		Integer cID = rs.getcID();
 		System.out.println("order reserver success");
-		return "redirect:/logistic/OrderSearchByBar/"+cID;
+		if(situation.equals("bar")) {
+			System.out.println("order reserver from bar");
+			return "redirect:/logistic/OrderSearchByBar/"+cID;
+		}else if(situation.equals("all")) {
+			System.out.println("order reserver from all");
+			return "redirect:/logistic/OrderSearchByBar/0";
+		}
+		return null;
 	}
 }
