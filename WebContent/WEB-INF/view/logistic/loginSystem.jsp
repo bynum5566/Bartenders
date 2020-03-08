@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>物流登入</title>
+	<title>BarOrders</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />	<noscript>
 	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
@@ -15,7 +15,6 @@
 	<style type="text/css">
 		a {
 			color: #E8CCFF;
-
 		}
 
 		a:hover {
@@ -42,11 +41,14 @@
 		body {
 /* 			margin: 0; */
 /* 			padding: 0; */
-			background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
+			background-image: url("/Bartenders/images/BarImgOrderUser.png");
+			background-position: top;
+			background-attachment: fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
 			background-size: cover;
+			background-repeat: no-repeat;
 		}
 		.small {
 			display: flex;
@@ -71,43 +73,41 @@
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
-					<section>
-						<h2 align="center">物流登入</h2>
-						<div align="center">
-							<form action="<c:url value="/logistic/LogisticLogin.do" />" method="post" >
-							<table>
-								<tr>
-									<td>物流帳號:</td>
-									<td><input type="text" name="username"></td>
-									<td>${errors.account}</td>
-								</tr>
-								<tr>
-									<td>帳號密碼:</td>
-									<td><input type="password" name="userpwd"></td>
-									<td>${errors.password}</td>
-								</tr>
-								<tr>
-									<td><input type="hidden" name="orderID" value="${orderID}"></td>
-									<!-- 
-									<td><input type="hidden" name="orderStatus" value="${orderStatus}"></td>
-									 -->
-								</tr>
-								<tr>
-									<td><input type="submit"></td>
-									<td>${errors.msg}</td>
-								</tr>
-								<tr>
-									<td>${msg}</td>
-								</tr>
-								
-							</table>
-							</form>
+						<div class="row">
+							<div class="col-8 col-12-medium">
+								<h2>物流登入</h2>
+								<div>
+									<form action="<c:url value="/logistic/LogisticLogin.do" />" method="post" >
+										<ul class="alt">
+												<li>
+													<h3>帳號:</h3>
+													<input type="text" name="username">
+													<h3>${errors.account}</h3>
+												</li>
+												<li>
+													<h3>密碼:</h3>
+													<input type="password" name="userpwd">
+													<h3>${errors.password}</h3>
+													<input type="hidden" name="orderID" value="${orderID}">
+												</li>
+												<!-- 
+												<td><input type="hidden" name="orderStatus" value="${orderStatus}"></td>
+												 -->
+												<li>
+													<input type="submit">
+													<h3>${errors.msg}</h3>
+													<h3>${msg}</h3>
+												</li>
+										</ul>
+									</form>
+								</div>
+							</div>
 						</div>
-					</section>
 				</div>
 			</section>
 		</article>
 	</div>
+	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
