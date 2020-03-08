@@ -42,7 +42,7 @@
 		body {
 			margin: 0;
 			padding: 0;
-			background: url("/Bartenders/images/BarImgOrderUser.png") no-repeat center center fixed;
+			background: url("/Bartenders/images/BarImgOrderUser.png") center center fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -91,18 +91,12 @@
 								</tr>
 								<tr>
 									<td><input type="hidden" name="orderID" value="${orderID}"></td>
-									<!-- 
-									<td><input type="hidden" name="orderStatus" value="${orderStatus}"></td>
-									 -->
 								</tr>
 								<tr>
 									<td><input type="submit"></td>
 									<td>${errors.msg}</td>
-								</tr>
-								<tr>
 									<td>${msg}</td>
 								</tr>
-								
 							</table>
 							</form>
 						</div>
