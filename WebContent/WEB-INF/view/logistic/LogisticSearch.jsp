@@ -19,6 +19,21 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindowForOrder.css">
 	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
 	
 		#background{
 			position:relative;
@@ -68,8 +83,9 @@
 		}
 		
 		.mapDiv {
-			height: 400px;
+/* 			height: 400px; */
 			width: 800px;	
+			height: 80%;
 		}
 	</style>
 </head>

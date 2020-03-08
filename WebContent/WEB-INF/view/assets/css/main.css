@@ -3527,6 +3527,10 @@ button,
 		width: 20em;
 		z-index: 10002;
 	}
+	
+	#menu.alt_ver{
+		background: #2d82a5;
+	}
 
 		#menu ul {
 			list-style: none;
@@ -3620,6 +3624,10 @@ button,
 		top: 0;
 		width: 100%;
 		z-index: 10000;
+	}
+	
+	#header.alt_ver{
+		background: #3a395d;
 	}
 
 		#header h1 {

@@ -33,13 +33,13 @@
 
 <body class="is-preload">
 	<div id="page-wrapper">
-		<header id="header">
+		<header id="header" class="alt_ver">
 			<h1><a href="/Bartenders/login">Bartenders</a></h1>
 			<nav id="nav">
 				<ul>
 					<li class="special">
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
+						<div id="menu" class="alt_ver">
 							<ul>
 								<li><a href="/Bartenders/login">返回首頁</a></li>
 							</ul>
@@ -49,7 +49,7 @@
 			</nav>
 		</header>
 		
-		1<article id="main">
+		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
 					<div id="page-wrapper">
