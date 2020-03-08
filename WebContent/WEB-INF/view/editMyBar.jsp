@@ -203,7 +203,7 @@
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
 											<ul id="hdId">
-												<li colspan="2">
+												<li>
 													<input class="bt0" name="pdId" type="text" value="<c:out value="${barId}"/>" readonly="readonly">
 												</li>
 											</ul>
