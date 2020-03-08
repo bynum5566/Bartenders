@@ -31,8 +31,11 @@
 			url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600')
 			;
 		
-		div.content {
-			width: 800px;
+		.welcome {
+			position: relative;
+			text-align: center;
+			margin: auto;
+			color: white;
 		}
 		
 		main {
@@ -90,7 +93,7 @@
 			background-position: center;
 			background-color: transparent;
 			background-attachment: fixed;
-			background-size: 100% 100%;
+/* 			background-size: 100% 100%; */
 		}
 		
 		.wrapper.style5 {
@@ -229,14 +232,13 @@
 
 		<article id="main">
 			<section class="wrapper style5">
-				<section>
+				<div class="col-6 col-6-medium">
 					<main>
-						<div class="content">
-							<h2 align="center">
-								<img src="img/Logo.png" style="width: 160px; margin: 40px"/> <br>
-							</h2>
+						<div class="welcome" align="center">
+							<img src="img/Logo.png" style="width: 150px; margin: 20px"/> <br>
 							<h2 class="ml9" align="center">
-								<span class="text-wrapper"> <span class="letters">歡迎回來~~${userName}，<br>今天想喝甚麼呢?</span>
+								<span class="text-wrapper">
+									<span class="letters">歡迎回來~~${userName}，<br>今天想喝甚麼呢?</span>
 								</span>
 							</h2>
 							<br>
@@ -269,7 +271,7 @@
 							</div>
 						</div>
 					</main>
-				</section>
+				</div>
 			</section>
 		</article>
 	</div>

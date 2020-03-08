@@ -38,7 +38,7 @@
 			text-align: center;
 			margin: auto;
 			color: white;
-			padding: 117px;
+ 			padding-top: 117px;
 		}
 		
 		#logo {
@@ -127,17 +127,11 @@
 
 		<article id="main">
 			<section class="wrapper style5">
-				<div class="inner">
-					<section>
-						<div class="row">
-							<div class="col-12 col-6-medium">
-								<div class="welcome">
-									<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
-									<h2>Welcome back! ${CName}</h2>
-								</div>
-							</div>
-						</div>
-					</section>
+				<div class="col-6 col-6-medium">
+					<div class="welcome" align="center">
+						<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
+						<h2>Welcome back! ${CName}</h2>
+					</div>
 				</div>
 			</section>
 		</article>
