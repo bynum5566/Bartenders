@@ -224,7 +224,7 @@
 				width: 750px;
 			}
 			#map0{
-				width: 90%;
+				width: 120%;
 			}
 		}
 		
@@ -339,31 +339,25 @@
 		@media screen and (max-width: 414px) {
 			input#address{
 				width: 240px;
-			}
-			
+			}	
 			.searchDiv{
 				width: 280px;
-			}
-			
+			}			
 			.col-12.col-12-medium {
 				margin-left: 0.3%;
 				width:300px;
-			}
-			
+			}			
 			#choose {
 			    margin-top: 18%;
-			}
-			
+			}			
 			.bell .bellImg {
 			    height: 40px;
 			    width: 40px;
 			    float: right;
-			}
-			
+			}			
 			input.date.flatpickr-input.flatpickr-mobile {
 				width: 80px;
-			}
-			
+			}			
 			button#clearTime, button#jokerBtn, button#openSearch{
 				width: 80px;
 				height:40px;
@@ -371,20 +365,19 @@
 				margin:0px auto;
 				vertical-align:middle;
 				line-height:16px" 
-			}
-			
+			}			
 			.each {
 			    position: relative;
 			    border: 2px yellow solid;
 			    margin: 0px;
+			    margin-left: 9%;
 			    display: block;
 			    vertical-align: top;
 			    height: auto;
 			    background-color: grey;
 			    border-radius: 20px;
 			    width: 300px;
-			}
-			
+			}			
 			div.container {
 			    position: absolute;
 			    left: 0%;
@@ -392,20 +385,16 @@
 			    margin: 0px auto;
 			    text-align: center;
 			    width: 320px;
-			}
-			
+			}			
 			.fieldset {
 			    width: 300px;
 			}
-
 			img.img {
 				width:240px;
-			}
-			
+			}			
 			div#groundD0 {
 				width:260px;
-			}
-			
+			}			
 			p.brief {
 				width:270px;
 				margin-left: 10px;
@@ -413,7 +402,7 @@
 			.wrapper.style5 input[type="checkbox"] + label {
 			color: #888;
 			font-size: 10px;
-		}
+			}
 		}
 		
 		@media screen and (max-width: 320px) {
