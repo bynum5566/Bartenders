@@ -41,8 +41,9 @@ white-space: nowrap; /*溢出不换行*/
 
 .infoAddress{
 	margin:2px auto;
-	font-size:6px;
+	font-size:8px;
 	color:black;
+	text-align:justify;
 	overflow: hidden; /*超出的文本隐藏*/
 	text-overflow: -o-ellipsis-lastline;
 	text-overflow: ellipsis; /*溢出用省略号显示*/
@@ -67,16 +68,15 @@ white-space: nowrap; /*溢出不换行*/
 
 .infoBrief{
 	clear:both;
-	padding:10px;
 	color:black;
 	display:inline-block;
 	text-align:justify;
 	text-justify:distribute-all-lines;
 	background-color:lightgrey;
 	border-radius:20px;
-	padding:0px 20px 0px 20px;
-	line-height:40px;
-	height:40px;
+	padding:0px 5px 0px 5px;
+	line-height:20px;
+	height:20px;
 	width:185px;
 	text-align: center;
 	overflow: hidden; /*超出的文本隐藏*/
@@ -87,3 +87,23 @@ white-space: nowrap; /*溢出不换行*/
 	-webkit-box-orient: vertical;
 }
 
+.barInfoName{
+	font-size:18px;
+	color:orange;
+	margin: 0px auto;
+}
+
+.barInfoDetail{
+	color:black;
+	margin: 0px auto;
+}
+
+.barInfoAddr{
+	color:black;
+	margin: 0px auto;
+}
+
+.barInfoImg{
+	width:180px;
+	
+}
