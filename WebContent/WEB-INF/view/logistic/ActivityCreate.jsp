@@ -239,7 +239,7 @@ console.log('currentId is: ',currentId);
 								
 							 
 								<div id="alter" align="center">
-									<h1 style="font-size:36px;" align="center">酒吧舉辦活動</h1>
+									<h1 style="font-size:36px;" align="center">建立活動</h1>
 									<form action="saveActivity.do" method="post" enctype="multipart/form-data">
 										<fieldset style="width: 800px">
 												<input id="name" class="classTest" type="text" name="name" placeholder="輸入活動名稱">
@@ -270,7 +270,7 @@ console.log('currentId is: ',currentId);
 												<br>
 												<p>活動照片上傳: </p>
 													<img id="preview" src="images/noImage.png" alt="your image" style="width:300px;"/>
-													<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" style="width:300px;display:block;"/>
+													<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" style="width:300px;display:none;"/>
 												
 												
 												<textarea id="brief" placeholder="輸入活動簡介" name="brief" rows="1"></textarea>
@@ -280,7 +280,7 @@ console.log('currentId is: ',currentId);
 												<div style="display:block">
 												<input id="lat" type="text" name="lat" value="0">
 												<input id="lng" type="text" name="lng" value="0">
-												<input type="text" name="preUrl" value="${preUrl}">
+												<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
 												<input type="text" name="activityId" value="0">
 												<input type="text" name="userId" value="${getUserId}${getCompanyId}">
 												<input type="text" id="realType" name="realType" value="no">
@@ -407,6 +407,8 @@ console.log('currentId is: ',currentId);
 		tempValue = this.id
 		realType.value = tempValue;
 		//inputType(tempValue);	
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 	})
 	
 	//點地圖儲存座標+小OK顯示
@@ -508,7 +510,6 @@ console.log('currentId is: ',currentId);
 	<script>
 	console.log('this is errors: ','${errors}');
 	console.log('this is temp: ','${temp}');
-	console.log('this is temp.name: ','${temp.name}');
 	<c:if test="${not empty errors}">
 		console.log('errors has data');
 		if('${errors.name}'!=''){
@@ -584,6 +585,9 @@ console.log('currentId is: ',currentId);
 		}
 		if('${temp.detail}'!=''){
 			document.getElementById('detail').value = '${temp.detail}';
+		}
+		if('${temp.preUrl}'!=''){
+			document.getElementById('preUrl').value = '${temp.preUrl}';
 		}
 		
 	</c:if>

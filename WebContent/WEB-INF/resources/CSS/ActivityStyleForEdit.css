@@ -74,6 +74,10 @@
 	border-radius:10px;
 	text-align: center;
 }
+#detail{
+	text-align:justify;
+	border-radius:10px;
+}
 /*
 .brief {
 	background-color:lightgrey;

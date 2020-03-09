@@ -192,7 +192,7 @@
 												<img id="typeDisplay" class="imgType" alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
 												<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" value="${Activity.img}" style="display:none;"/>
 												
-												<div class="ActivityName"><input class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
+												<div class="ActivityName"><input id="name" class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
 												
 												<div id="typeSelectDiv" style="display:none;">
 													<input class="type" type="radio" id="party" name="type" value="party">
@@ -210,12 +210,14 @@
 													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
 													<input id="endTime" class="inputBox" type="text" name="endTime"  value="${Activity.endTime}" style="width:150px;height:32px;font-size:14px;display:inline;"></p>
 												</div>
-												<p align=left style="margin: 10px"><input type="text" name="address" value="${Activity.address}"> </p>
+												<p align=left style="margin: 10px"><input id="address" type="text" name="address" value="${Activity.address}"> </p>
 												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">確認地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
-														<div id="map${status.index}"
-															style="width: 350px; height: 500px; background: red"></div>
+														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;">
+														<div id="map"
+															style="width: 350px; height: 500px; background: red">
+														</div>
 													</div>
 												</div>
 											</fieldset>
@@ -410,7 +412,7 @@
 											</script>
 											<input id="lat" type="text" name="lat" value="${Activity.lat}">
 											<input id="lng" type="text" name="lng" value="${Activity.lng}">
-											<input type="text" name="preUrl" value="${preUrl}">
+											<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
 											<input type="text" id="activityId" name="activityId" value="${Activity.activityId}">
 											<input type="text" name="userId" value="${getUserId}${getCompanyId}">
 											<input type="text" id="realType" name="realType" value="${Activity.type}">
@@ -432,9 +434,61 @@
 	</div>
 	
 	<script type="text/javascript">
-	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
-	//window.open(dlLink);
+	//檢查地址是否輸入 限制定位按鈕
+	var addressBtn = document.getElementById('addressBtn')
+	if(document.getElementById('address').value==''){
+			addressBtn.disabled=true;
+		}else{
+			addressBtn.disabled=false;
+		}
+	$('#address').on('blur',function(){
+		if(document.getElementById('address').value==''){
+			addressBtn.disabled=true;
+		}else{
+			addressBtn.disabled=false;
+		}	
+	})
 	
+	//點地圖儲存座標+小OK顯示
+	var ok = document.getElementById("smallok")
+	var checklat = document.getElementById("lat")
+	$('#map').on("click", function(){
+		checkMap();
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
+		console.log('temp marker:',lat.value,lng.value,realType.value)
+	});
+	function checkMap(){
+		console.log("checkMap");
+		if(checklat.value!=0){
+			ok.style.visibility = 'visible';
+		}
+	}
+	//地址按鈕
+	var locationLat;
+	var locationLng;
+	async function getInput() {
+		var address = document.getElementById('address').value
+		
+		//等fetch做完再繼續
+		await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
+			function (response) {
+				return response.json();
+			}).then(function (JSONdata) {
+				console.log('this is data results: ', JSONdata.results);
+				//console.log("this is location's latlng: ", JSONdata.address_components);
+				var all = JSONdata.results.forEach(function (item) {
+					locationLat = item.geometry.location.lat;
+					locationLng = item.geometry.location.lng;
+
+				})
+			});//fetch結束
+		console.log("指定位置", locationLat, '; ', locationLng);
+		document.getElementById('lat').value = locationLat;
+		document.getElementById('lng').value = locationLng;
+		relocate(locationLat, locationLng,realType.value);
+		checkMap();
+	}
 	//更換活動類型直接改圖片設定
 	var typeRadio = document.getElementsByClassName('type');
 	var realType = document.getElementById('realType');
@@ -456,6 +510,8 @@
 		var typeDisplay = document.getElementById('typeDisplay');
 		typeDisplay.src = 'images/'+tempValue+'.png';
 		typeDisplay.title = tempValue;
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 	})
 	
 	//設定currentId給超連結
@@ -467,9 +523,10 @@
 		var activityId = tempId.substring(0,4);
 		var indexNum = tempId.substring(11);
 		var prefix = 'ActivityActivityId';
-		reloadMarkers(prefix,activityId,indexNum);
-		getMarkers(prefix,activityId,indexNum);
-
+		//reloadMarkers(prefix,activityId,indexNum);
+		//getMarkers(prefix,activityId,indexNum);
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
 		}else {
@@ -495,9 +552,102 @@
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	<script src="scripts/MapStyle.js"></script>
-	<script src="scripts/mapForActivity.js"></script>
+	<script src="scripts/mapForCreateActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	<script>
+	<c:if test="${not empty errors}">
+	console.log('errors has data','${errors}');
+	if('${errors.name}'!=''){
+		document.getElementById('name').style.border = '1px red solid';
+	}
+	if('${errors.type}'!=''){
+		document.getElementById('typeDiv').style.border = '1px red solid';
+	}
+	if('${errors.beginTime}'!=''){
+		document.getElementById('beginTime').style.border = '1px red solid';
+	}
+	if('${errors.endTime}'!=''){
+		document.getElementById('endTime').style.border = '1px red solid';
+	}
+	if('${errors.address}'!=''){
+		document.getElementById('address').style.border = '1px red solid';
+	}
+	if('${errors.map}'=='尚未點選地圖設定地點'){
+		mapBtn.style.border = '2px red solid';
+		mapBtn.innerHTML = '尚未點選地圖設定地點';
+	}
 	
+	if('${errors.limitNum}'!=''){
+		document.getElementById('limitNum').style.border = '1px red solid';
+	}
+	if('${errors.targetNum}'!=''){
+		document.getElementById('targetNum').style.border = '1px red solid';
+	}
+	if('${errors.actualNum}'!=''){
+		document.getElementById('actualNum').style.border = '1px red solid';
+	}
+	if('${errors.brief}'!=''){
+		document.getElementById('brief').style.border = '1px red solid';
+	}
+	if('${errors.detail}'!=''){
+		document.getElementById('detail').style.border = '1px red solid';
+	}
+</c:if>
+	<c:if test="${not empty temp}">
+	console.log('temp has data','${temp}');
+	/**/
+	document.getElementById('name').value = '';
+	document.getElementById('beginTime').value = '';
+	document.getElementById('endTime').value = '';
+	document.getElementById('address').value = '';
+	document.getElementById('limitNum').value = '';
+	document.getElementById('targetNum').value = '';
+	document.getElementById('actualNum').value = '';
+	document.getElementById('brief').value = '';
+	document.getElementById('detail').value = '';
+	if('${temp.name}'!=''){
+		document.getElementById('name').value = '${temp.name}';
+	}
+	if('${temp.type}'!='no'){
+		document.getElementById('${temp.type}').checked = true;
+		realType.value = '${temp.type}';
+	}
+	if('${temp.beginTime}'!=''){
+		document.getElementById('beginTime').value = '${temp.beginTime}';
+	}
+	if('${temp.endTime}'!=''){
+		document.getElementById('endTime').value = '${temp.endTime}';
+	}
+	if('${temp.address}'!=''){
+		document.getElementById('address').value = '${temp.address}';
+	}
+	if('${temp.lat}'!='0.0'&&'${temp.lng}'!='0.0'){
+		document.getElementById('lat').value = '${temp.lat}';
+		document.getElementById('lng').value = '${temp.lng}';
+		getMarkers(lat.value,lng.value,realType.value);
+		checkMap();
+		//mapBtn.innerHTML = '修改地圖位置';
+	}
+	if('${temp.limitNum}'!='null'){
+		document.getElementById('limitNum').value = '${temp.limitNum}';
+	}
+	if('${temp.targetNum}'!='null'){
+		document.getElementById('targetNum').value = '${temp.targetNum}';
+	}
+	if('${temp.actualNum}'!='null'){
+		document.getElementById('actualNum').value = '${temp.actualNum}';
+	}
+	if('${temp.brief}'!=''){
+		document.getElementById('brief').value = '${temp.brief}';
+	}
+	if('${temp.detail}'!=''){
+		document.getElementById('detail').value = '${temp.detail}';
+	}
+	if('${temp.preUrl}'!=''){
+		document.getElementById('preUrl').value = '${temp.preUrl}';
+	}
+</c:if>
+	</script>
 	
 	<!-- 小鈴鐺 -->
 	<!-- 

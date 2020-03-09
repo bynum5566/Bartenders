@@ -737,9 +737,9 @@
 											<input id="beginTime" class="date" type="text" name="beginTime" placeholder="開始時間" >
 											<input id="endTime" class="date" type="text" name="endTime" placeholder="結束時間">
 											<div align="center">
-											<button id="clearTime" type="button" onclick="clearDate()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
-											<button id="jokerBtn" type="button" onclick="queryJoker()" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
-											<button id="openSearch" type="button" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
+											<button id="clearTime" type="button" onclick="clearDate()" style="font-size:20px;width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px">清除時間</button><br>
+											<button id="jokerBtn" type="button" onclick="queryJoker()" style="font-size:20px;width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >整合搜尋</button><br>
+											<button id="openSearch" type="button" style="font-size:20px;width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:darkgrey;line-height:31px" >檢視地圖</button><br>
 											</div>
 										</form>
 									</div>
