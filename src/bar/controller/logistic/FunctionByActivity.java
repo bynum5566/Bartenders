@@ -307,6 +307,18 @@ public class FunctionByActivity {
 			errors.put("map", "尚未點選地圖設定地點");
 		}
 		
+//		if (limitNum == null) {
+//			errors.put("limitNum", "尚未輸入上限");
+//		}
+//		
+//		if (targetNum == null) {
+//			errors.put("targetNum", "尚未輸入目標");
+//		}
+//		
+//		if (actualNum == null) {
+//			errors.put("actualNum", "尚未輸入內建");
+//		}
+		
 		if (brief == null || brief.length() == 0) {
 			errors.put("brief", "尚未輸入簡介");
 		}
@@ -324,6 +336,7 @@ public class FunctionByActivity {
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
 			temp.put("name", String.valueOf(name));
+
 			temp.put("type", type);
 			temp.put("beginTime", beginTime);
 			temp.put("endTime", endTime);
@@ -335,8 +348,15 @@ public class FunctionByActivity {
 			temp.put("actualNum", String.valueOf(actualNum));
 			temp.put("brief", brief);
 			temp.put("detail", detail);
-			
-			return "logistic/ActivityCreate";
+			if(preUrl.equals("/editActivity.do")) {
+				System.out.println("preUrl is:"+preUrl);
+				temp.put("preUrl", "/editActivity.do");
+				return "logistic/ActivitySingleEdit";
+			}else if(preUrl.equals("/ActivityCreate")) {
+				System.out.println("preUrl is:"+preUrl);
+				temp.put("preUrl", "/ActivityCreate");
+				return "logistic/ActivityCreate";
+			}
 		}
 		
 		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);

@@ -265,14 +265,14 @@
 												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
-													class="edit visible" style="display: none;width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
+													class="edit visible" style="width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
 												
 												<!-- 活動推播 -->
-												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="display: none;width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">
+												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">
 													推廣活動</button>
 												
 												<button id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
-													class="close visible" style="display: none;width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">關閉活動</button>
+													class="close visible" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">關閉活動</button>
 											</fieldset>
 										</div>
 										<!-- -->
@@ -427,9 +427,8 @@
 		window.location.href = '<c:url value="/editActivity.do"/>?activityId=' + array[1];
 	})
 
-	listButton = $('button[id^="O"][class*="visible"]');
-	listButton.css("display", "block");
-
+	listButton = $('button[id^="N"][class*="visible"]');
+	listButton.attr("disabled",true);
 	
 	//設定currentId給超連結
 	$('#myActivity').attr("href","/Bartenders/queryActivityByUser.do?currentId="+currentId);
