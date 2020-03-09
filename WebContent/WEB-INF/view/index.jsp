@@ -97,13 +97,14 @@
                  <div class="col-12 p-0 ">
                  <div class="row">
   <div class="col-sm-7 dis480">
-      <div class=" g-signin2" data-onsuccess="onSignIn">
+      <div class=" g-signin2" data-width="171" data-onsuccess="onSignIn">
       <!-- class="text-center loginBtn loginBtn--google" -->
       </div>
   	  <!-- <button class="text-center loginBtn loginBtn--facebook">Facebook</button> -->
-      <div class="col-7 p-0">
-      <a href="/Bartenders/FLogin"><button type="button" class="text-center loginBtn loginBtn--facebook col-12">
-        Facebook
+      <div class="col-8 p-0">
+      <a href="/Bartenders/FLogin">
+      <button type="button" class="loginBtn loginBtn--facebook col-12">
+       &emsp;&emsp;&nbsp;&nbsp;Facebook
       </button></a>
       <!-- 上面這顆按鈕在form內所以要加type="button"否則會把整個表單提交出去 -->
       </div> 
@@ -119,7 +120,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
-                <button id="demo1" class=" btn btn-light"  style="color:#62592C">資策會VIP通道</button>
+                <button id="demo1" class=" btn btn-light"  style="color:#62592C; width:140px; font-size:16px;">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -172,10 +173,17 @@
   <!--     <button class="text-center loginBtn loginBtn--facebook">
         Facebook
       </button> -->
-      <div class="g-signin2" data-onsuccess="onSignInC">
+      <div class="g-signin2" data-width="171" data-onsuccess="onSignInC">
       <!-- class="text-center loginBtn loginBtn--google" -->
         Google
       </div>
+      <div class="col-8 p-0">
+      <a href="/Bartenders/">
+      <button type="button" class="loginBtn loginBtn--facebook col-12">
+       &emsp;&emsp;&nbsp;&nbsp;Facebook
+      </button></a>
+      <!-- 上面這顆按鈕在form內所以要加type="button"否則會把整個表單提交出去 -->
+      </div> 
       <br>
       <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
         酒吧用戶
@@ -188,7 +196,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
-                <button id="demo2" class=" btn btn-light" style="color:#305A56">資策會VIP通道</button>
+                <button id="demo2" class=" btn btn-light" style="color:#305A56; width:140px; font-size:16px;">資策會VIP通道</button>
    <!--       裡面屬性不設定type="button"可直接送出表單		-->
                   </div>
                  </div>
