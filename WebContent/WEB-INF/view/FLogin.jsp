@@ -153,7 +153,7 @@
 									<div class="row gtr-uniform">
 										<div class="col-11 col-12-xsmall">
 											<ul>
-												<li>姓名:</li>
+												<li>姓名:(取FACEBOOK姓名)</li>
 												<li><input type="text" name="facebookNameshow"
 													id="facebookName" size="50" disabled="disabled"/><br>
 													<input type="hidden" name="facebookName"
