@@ -97,13 +97,16 @@
                  <div class="col-12 p-0 ">
                  <div class="row">
   <div class="col-sm-7 dis480">
-  <!--     <button class="text-center loginBtn loginBtn--facebook">
-        Facebook
-      </button> -->
-      <div class="g-signin2" data-onsuccess="onSignIn">
+      <div class=" g-signin2" data-onsuccess="onSignIn">
       <!-- class="text-center loginBtn loginBtn--google" -->
-        Google
       </div>
+  	  <!-- <button class="text-center loginBtn loginBtn--facebook">Facebook</button> -->
+      <div class="col-7 p-0">
+      <a href="/Bartenders/FLogin"><button type="button" class="text-center loginBtn loginBtn--facebook col-12">
+        Facebook
+      </button></a>
+      <!-- 上面這顆按鈕在form內所以要加type="button"否則會把整個表單提交出去 -->
+      </div> 
       <br>
       <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
         酒吧用戶
