@@ -122,7 +122,8 @@ form.panel {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a
+									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
@@ -146,8 +147,21 @@ form.panel {
 							<div>
 								<div style="color: WhiteSmoke;">
 									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
+									[<a href=<c:url value="/FRegister"/>>facebook註冊</a>] 
+									[<a href=<c:url value="/FLogin"/>>facebook登入</a>]
 								</div>
 
+								<!-- fb按鈕 -->
+								目前狀態： <span id="FB_STATUS_1"></span>
+								<div id="fb-root"></div>
+								<script async defer crossorigin="anonymous"
+									src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0&appId=198371544718507&autoLogAppEvents=1"></script>
+
+
+								<div class="fb-login-button" data-width="" data-size="large"
+									data-button-type="continue_with" data-layout="default"
+									data-auto-logout-link="false" data-use-continue-as="true"></div>
+								<!-- fb按鈕 -->
 							</div>
 
 							<h1 class="flip" align="right">縮放留言按此</h1>
@@ -194,11 +208,17 @@ form.panel {
 								</li>
 
 								<script type="text/javascript">
-									$('#demo').click(function() {
-										$('#title').val('好酒配好料');
-										$('#blabla').val('葡萄酒本身是一門學問，說到佐餐搭配，大部分的人都想到吃肉、吃海鮮，其實西餐常見的義大利麵，也會碰到配酒的問題，而且義大利麵和葡萄酒相遇，將會產生令人難以自拔的美食藝術。義大利麵在造型部分有常見的Spaghetti直麵條、Macaroni通心粉、Ravioli義大利餃等等，而賦予美味的重要關鍵則是搭配的義大利麵醬，就是耳熟能詳的紅醬（tomato sauce）、青醬（pesto sauce）、白醬（cream sauce）和黑醬（squid-ink sauce）。');
-										$('#deletePassword').val('11111111');
-									});
+									$('#demo')
+											.click(
+													function() {
+														$('#title')
+																.val('好酒配好料');
+														$('#blabla')
+																.val(
+																		'葡萄酒本身是一門學問，說到佐餐搭配，大部分的人都想到吃肉、吃海鮮，其實西餐常見的義大利麵，也會碰到配酒的問題，而且義大利麵和葡萄酒相遇，將會產生令人難以自拔的美食藝術。義大利麵在造型部分有常見的Spaghetti直麵條、Macaroni通心粉、Ravioli義大利餃等等，而賦予美味的重要關鍵則是搭配的義大利麵醬，就是耳熟能詳的紅醬（tomato sauce）、青醬（pesto sauce）、白醬（cream sauce）和黑醬（squid-ink sauce）。');
+														$('#deletePassword')
+																.val('11111111');
+													});
 								</script>
 
 
@@ -503,6 +523,90 @@ form.panel {
 			callback : feedback
 		});
 	</script>
+	
+	
+	<script type="text/javascript">
+									window.fbAsyncInit = function() {
+										FB.init({
+											appId : '198371544718507', // 填入 FB APP ID
+											cookie : true,
+											xfbml : true,
+											version : 'v6.0'
+										});
+
+										FB.getLoginStatus(function(response) {
+											statusChangeCallback(response);
+										});
+									};
+
+									// 處理各種登入身份
+									function statusChangeCallback(response) {
+										console.log(response);
+										var target = document
+												.getElementById("FB_STATUS_1"), html = "";
+
+										// 登入 FB 且已加入會員
+										if (response.status === 'connected') {
+											html = "已登入 FB<br/>";
+
+											FB
+													.api(
+															'/me?fields=id,name,email',
+															function(response) {
+																console
+																		.log(response);
+																html += "會員暱稱："
+																		+ response.name
+																		+ "<br/>";
+
+																target.innerHTML = html;
+																$(
+																		'#facebookName')
+																		.val(
+																				response.name);
+																$(
+																		'#facebookAccount')
+																		.val(
+																				response.id);
+
+															});
+										}
+
+										// 登入 FB, 未偵測到加入會員
+										else if (response.status === "not_authorized") {
+											target.innerHTML = "已登入 FB，但未加入 WFU BLOG DEMO 應用程式";
+										}
+
+										// 未登入 FB
+										else {
+											target.innerHTML = "未登入 FB";
+
+										}
+									}
+
+									function checkLoginState() {
+										FB.getLoginStatus(function(response) {
+											statusChangeCallback(response);
+										});
+									}
+
+									// 載入 FB SDK
+									(function(d, s, id) {
+										var js, fjs = d.getElementsByTagName(s)[0];
+										if (d.getElementById(id))
+											return;
+										js = d.createElement(s);
+										js.id = id;
+										js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+										fjs.parentNode.insertBefore(js, fjs);
+									}(document, 'script', 'facebook-jssdk'));
+								</script>
+	
+	
+	
+	
+	
+	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>
