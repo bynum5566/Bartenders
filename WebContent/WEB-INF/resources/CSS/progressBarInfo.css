@@ -1,25 +1,16 @@
 
-.box{
-position:relative;
-width:300px;
-height:300px;
-border:2px green solid;
-margin:0px auto;
-background-color:white;
-clear:both;
-}
 
-.outer{
+.infoouter{
 position:relative;
-width:280px;
+width:180px;
 height:40px;
 margin:0px auto;
 
 }
-.ground{
+.infoground{
 position:absolute;
 background:lightgrey;
-width:280px;
+width:180px;
 height:16px;
 border-radius:20px;
 bottom:7%;
@@ -27,17 +18,17 @@ margin:0px auto;
 
 }
 
-.currentD{
+.infocurrentD{
 
 background:pink;
 position: absolute;
 height:8px;
 margin:4px 10px 4px 10px;
-
 border-radius:20px;
+border:1px red solid;
 }
 
-.targetD{
+.infotargetD{
 position: absolute;
 background:lightyellow;
 
@@ -48,19 +39,19 @@ border-radius:20px;
 
 }
 
-.limitP{
+.infolimitP{
 position:absolute;
 right:1px;
 top:-21px;
 }
 
-.targetP{
+.infotargetP{
 position:absolute;
 right:-10px;
 top:-25px;
 }
 
-.currentP{
+.infocurrentP{
 position:absolute;
 right:-9px;
 top:-25px;

@@ -96,30 +96,21 @@
 		    console.log('order clear!');
 		    orders = [];
 		}
-		function reserveOrder(prefix,input,senderId,situation){
+		function reserveOrder(prefix,input,senderId){
 			console.log('oID=',input);
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'/'+senderId+'').then(
 					function(response) {
 						return response.json();
 					}).then(function(JSONdata){
 						console.log('current bar order : ', JSONdata);
-						if(situation=='byBar'){
-							console.log('situation is: ',situation);
-							reloadOrders();
-							var prefix = 'logistic/OrderSearchByBar';
-							input = JSONdata[0].cID;
-							getOrders(prefix,input,senderId,situation);
-						}else if(situation=='all'){
-							console.log('situation is: ',situation);
-							reloadOrders();
-							var prefix = 'logistic/OrderSearchByBar';
-							input = 0;
-							getOrders(prefix,input,senderId,situation);
-						}
-						
+						reloadOrders();
+						var prefix = 'logistic/OrderSearchByBar';
+						input = JSONdata[0].cID;
+						getOrders(prefix,input,senderId);
+						getOrderJSON(JSONdata);
 					})
 				}
-		function getMarkers(prefix,input,senderId,situation){
+		function getMarkers(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
 						console.log('data get!');
@@ -175,10 +166,9 @@
 								infowindow.open(map, marker);
 								var prefix = 'logistic/OrderSearchByBar'
 									input = barId;
-								
 								changeIcon(index);
 								reloadOrders();
-								getOrders(prefix,input,senderId,situation);
+								getOrders(prefix,input,senderId);
 								
 							});
 							defaultIndex++;
@@ -194,11 +184,11 @@
 						console.log('data get!');
 						return response.json();
 					}).then(function(JSONdata) {
-						getOrderJSON(JSONdata,'all');
+						getOrderJSON(JSONdata);
 					});
 				}			
 		//讀取特定訂單
-		 function getOrders(prefix,input,senderId,situation){
+		 function getOrders(prefix,input,senderId){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
 						console.log('data get!');
@@ -257,7 +247,7 @@
 							});
 							
 				})
-				getOrderJSON(OrderJSON,situation);
+				getOrderJSON(OrderJSON);
 			});
 		}
 		 

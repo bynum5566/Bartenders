@@ -148,7 +148,7 @@ public class FunctionByLogistic {
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		String reserve = sdFormat.format(current);
 		Calendar beforeTime = Calendar.getInstance();
-		beforeTime.add(Calendar.MINUTE, +1);
+		beforeTime.add(Calendar.SECOND, +5);
 		Date beforeD = beforeTime.getTime();
 		String after5 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(beforeD);
 		System.out.println("current is: "+reserve);

@@ -304,14 +304,28 @@
 													
 												</div>
 												<div style="position:relative;">
+												<!-- 
 												<div class="outer">
-													<div id="groundD" class="ground">
+													<div id="groundD${status.index}" class="ground">
 														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
 														<div id="targetFor${status.index}" class="targetD">
 															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>
 														</div>
 														<div id="currentFor${status.index}" class="currentD NP">
 															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
+														</div>
+													</div>
+												</div>
+												 -->
+												<div id="outer${status.index}" class="outer" title="">
+													<div id="groundD${status.index}" class="ground">
+														
+														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
+														<div id="targetFor${status.index}" class="targetD">
+															<img class="targetP NP" title="成團: ${Activity.targetNum}人" src="images/arrowTarget.png">	
+														</div>
+														<div id="currentFor${status.index}" class="currentD NP">
+															<p><img class="currentP NP" title="現在: ${Activity.actualNum}人" src="images/arrowCurrent.png"></p>
 														</div>
 													</div>
 												</div>
@@ -336,33 +350,75 @@
 											var changeFormat = document.getElementById('changeFormat${Activity.activityId}');
 											changeFormat.innerHTML = bT[0]+' '+bT[1]+' ~ '+eT[0].substring(5)+' '+eT[1];
 											//個別進度條設定
-											limitNum.push(${Activity.limitNum});
-											targetNum.push(${Activity.targetNum});
-											currentNum.push(${Activity.actualNum});
+											limitNum.push('${Activity.limitNum}');
+											targetNum.push('${Activity.targetNum}');
+											currentNum.push('${Activity.actualNum}');
 											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+											//console.log('limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
 											var fix = $('#groundD${status.index}').width()-20;
-											if(${Activity.limitNum}==999){
-												if(${Activity.targetNum}!=0){
+											//console.log('固定寬度: ',fix);
+											if('${Activity.limitNum}'==999){
+												//console.log('no limit')
+												if('${Activity.targetNum}'!=0){
+													//console.log('target != 0')
 													per = fix/targetNum['${status.index}'];
 													$('#targetFor${status.index}').width(fix);
-												}else if(${Activity.targetNum}==0){
-													per = fix/currentNum['${status.index}'];
+													//console.log('目標寬度:',$('#targetFor${status.index}').width());
+													//perNum.push(per);
+													if(${Activity.actualNum>=Activity.targetNum}){
+														
+														$('#currentFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+														
+														//console.log('現在寬度:',$('#currentFor${status.index}').width());
+														//console.log('人數無上限 有目標 已達標')
+														$('#outer${status.index}').prop('title',"不限人數   已成團   現在: ${Activity.actualNum}人");
+													}else{
+														
+														$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+														//$('#currentFor${status.index}').css('background-color','pink');
+														//console.log('現在寬度:',$('#currentFor${status.index}').width());
+														//console.log('人數無上限 有目標 未達標')
+														$('#outer${status.index}').prop('title',"不限人數   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
+													}
+													
+												}else if('${Activity.targetNum}'==0){
+													//console.log('target = 0')
+													per = fix/parseInt(currentNum['${status.index}']);
 													$('#targetFor${status.index}').css('display','none');
+													//perNum.push(per);
+													$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+													//$('#currentFor${status.index}').css('background-color','pink');
+													//console.log('現在寬度:',$('#currentFor${status.index}').width());
+													//console.log('人數無上限 沒目標')
+													$('#outer${status.index}').prop('title',"不限人數   直接成團   現在: ${Activity.actualNum}人");
 												}
 												$('#limitP${status.index}').css('display','none');
 											}else{
-												per = fix/limitNum['${status.index}'];
-												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+												
+												per = fix/parseInt(limitNum['${status.index}']);
+												//console.log('has limit, per= ',per)
+												$('#targetFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+												//console.log('目標寬度: ',$('#targetFor${status.index}').width())
+												//perNum.push(per);
+												$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+												//$('#currentFor${status.index}').css('background-color','pink');
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數有上限 可能有目標')
+												$('#outer${status.index}').prop('title',"上限: ${Activity.limitNum}人   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
 											}
 											perNum.push(per);
-											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
-											$('#currentFor${status.index}').css('background-color','pink');
-											//若成團
-											if(currentNum['${status.index}']>=targetNum['${status.index}']){
+											
+											if(parseInt(currentNum['${status.index}'])>=parseInt(limitNum['${status.index}'])){
+												$('#currentFor${status.index}').css('background-color','#b3b3b3');
+												$('#targetFor${status.index}').css('display','none');
+												$('#outer${status.index}').prop('title',"活動人數已滿");
+											}else if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
+											}else{
+												$('#currentFor${status.index}').css('background-color','pink');
 											}
+				
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
 											
