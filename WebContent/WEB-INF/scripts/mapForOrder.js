@@ -3,6 +3,7 @@
 		var cancelLocating=false;
 		var infowindow;
 		var markers = [];
+		var barMap = new Map();
 		var orders = [];
 		var tempMarkList = [];
 		var orderLat;
@@ -71,8 +72,8 @@
 	            alert("未允許或遭遇錯誤！");
 	        }
 		}
-		
-		function reloadMarkers(prefix,input) {
+		/*
+		function reloadMarkers() {
 		    for (var i=0; i<markers.length; i++) {
 		    	console.log(markers[i]);
 		        markers[i].setMap(null);
@@ -80,12 +81,40 @@
 		    console.log('marker clear!');
 		    markers = [];
 		}
-		
+		*/
+		function reloadMarkers() {
+			barMap.forEach(function(item){
+				item.setMap(null);
+			})
+			console.log('this is barMap in reloadMarkers(): ',barMap);
+			console.log('reloadMarkers done!');
+		}
+		/*
 		function changeIcon(index) {
 		    for (var i=0; i<markers.length; i++) {
 		    	markers[i].setIcon('../images/O3.png');
 		    	markers[index].setIcon('../images/O2.png');
 		    } 	    
+		}
+		*/
+		function changeIcon(cID) {
+			/*
+		    for (var i=0; i<barMap.size; i++) {
+		    	barMap.get(i).setIcon('../images/O3.png');
+		    }
+		    */
+			
+			console.log('this is barMap in changeIcon('+cID+'): ',barMap,'targetbarMap is: ',barMap.get(cID));
+			barMap.forEach(function(item){
+				item.setIcon('../images/O3.png');
+			})
+			console.log('icon changed: ',barMap.get(cID));
+			//alert('cID is: '+cID);
+			//alert('barMap is:'+barMap);
+			//alert('barMap.get(cID) is: '+barMap.get(cID));
+		    barMap.get(cID).setIcon('../images/O2.png');
+		    
+			
 		}
 		
 		function reloadOrders() {
@@ -97,11 +126,11 @@
 		    orders = [];
 		}
 		function reserveOrder(prefix,input,senderId,situation){
-			console.log('oID=',input);
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'/'+senderId+'').then(
 					function(response) {
 						return response.json();
 					}).then(function(JSONdata){
+						/*
 						console.log('current bar order : ', JSONdata);
 						if(situation=='byBar'){
 							console.log('situation is: ',situation);
@@ -116,7 +145,8 @@
 							input = 0;
 							getOrders(prefix,input,senderId,situation);
 						}
-						
+						*/
+						console.log('reserveOrder done');
 					})
 				}
 		function getMarkers(prefix,input,senderId,situation){
@@ -155,8 +185,8 @@
 								    fontSize:'24px'
 								  }
 							});
-							
-							markers.push(marker);
+							barMap.set(barId,marker);
+							//markers.push(marker);
 							//建立個別window
 							var contentString = 	'<div class="barDiv">'+
 							'<div class="infoName">'+name+'</div>'+
@@ -175,10 +205,9 @@
 								infowindow.open(map, marker);
 								var prefix = 'logistic/OrderSearchByBar'
 									input = barId;
-								
-								changeIcon(index);
+								changeIcon(barId);
 								reloadOrders();
-								getOrders(prefix,input,senderId,situation);
+								getOrders(prefix,input,senderId,'byBar');
 								
 							});
 							defaultIndex++;
@@ -186,10 +215,11 @@
 						})	
 						
 					});
+					console.log('getMarkers done')
 				}
 		//刷新訂單
 		function reset(prefix,input){
-			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
+			fetch('http://localhost:8080/Bartenders/logistic/OrderSearchByBar/0').then(
 					function(response) {
 						console.log('data get!');
 						return response.json();
@@ -205,12 +235,12 @@
 						return response.json();
 					}).then(function(OrderJSON) {
 						console.log('this is OrderJSON: ', OrderJSON);
-						//<c:set var="orderData" scope="page" value="OrderJSON" />;
 						var all = OrderJSON.forEach(async function(item){
 							
 							var address = item.oAddr;
 							var oID = item.oID;
 							var lID = item.lID;
+							var cID = item.cID;
 							var sID = item.sID;
 							//進行座標轉換
 							await getInput(address);
@@ -233,32 +263,33 @@
 								var contentString = 	'<div id="odiv">'+
 								'<p class="oinfoDetail">物流單號: '+lID+'</p>'+
 								'<p class="oinfoDetail">運送地址: '+address+'</p>'+
-								'<a style="color:blue;" href="javascript: reserveOrder(\'logistic/OrderReserveByBar/bar/60\',\''+oID+'\','+senderId+')">我要接單</a>'+
+								//'<a style="color:blue;" href="javascript: reserveOrder(\'logistic/OrderReserveByBar/bar/60\',\''+oID+'\','+senderId+',\'byBar\')">我要接單</a>'+
+								'<a style="color:blue;" href="javascript: $(\'button[id*='+cID+'-'+oID+'][class*=normal]\').click()">我要接單</a>'+
 								'<br>'+
-								'<a style="color:blue;" href="javascript: reserveOrder(\'logistic/OrderReserveByBar/bar/5\',\''+oID+'\','+senderId+')">5秒接單</a>'+
+								//'<a style="color:blue;" href="javascript: reserveOrder(\'logistic/OrderReserveByBar/bar/5\',\''+oID+'\','+senderId+')">5秒接單</a>'+
+								'<a style="color:blue;" href="javascript: $(\'button[id*='+cID+'-'+oID+'][class*=demo]\').click()">5秒接單</a>'+
 								'</div>';
 				
 							};
-							
-							var marker = new google.maps.Marker({
-								map : map,
-								position : point,
-								//logistic頁面 所以要往上一層
-								icon : iconImg
-							});
-							
-							orders.push(marker);
-							//建立個別window
-							
-							marker.addListener('click', function() {
-								infowindow.setContent(contentString);
-								infowindow.open(map, marker);
-								
-							});
-							
+							if(sID==null){
+								var marker = new google.maps.Marker({
+									map : map,
+									position : point,
+									//logistic頁面 所以要往上一層
+									icon : iconImg
+								});
+								orders.push(marker);
+								//建立個別window
+								marker.addListener('click', function() {
+									infowindow.setContent(contentString);
+									infowindow.open(map, marker);
+									changeIcon(cID);
+								});
+							}	
 				})
 				getOrderJSON(OrderJSON,situation);
 			});
+			console.log('getOrders done')
 		}
 		 
 		 

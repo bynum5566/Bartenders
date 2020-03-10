@@ -10,11 +10,12 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>活動詳情</title>
+	<title>活動編輯</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBarInfo.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyleForEdit.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -230,7 +231,12 @@
 									<div style="width:500px;display:inline-block;">
 										<div style="width:500px;height:140px;">
 											<div style="display:inline-block;vertical-align:top;">
-												<img src="images/unnamed.png" style="width:140px;height:140px;border:2px white solid;border-radius:20px;">
+												<c:if test="${not empty company}">
+													<img src="images/host.png" style="width:140px;height:140px;border:2px white solid;border-radius:20px;margin:0px 0px 10px 0px;">
+												</c:if>
+												<c:if test="${not empty user}">
+													<img src="images/host2.png" style="width:140px;height:140px;border:2px white solid;border-radius:20px;margin:0px 0px 10px 0px;">
+												</c:if>
 											</div>
 											<div style="width:350px;height:140px;display:inline-block;padding:15px;">
 												<p style="margin:0px">主辦人資訊</p>
@@ -266,7 +272,7 @@
 												<textarea id="brief" class="inputArea" name="brief" >${Activity.brief}</textarea>
 										
 											<p class="detail" align=center style="margin:0px;text-align:justify">
-												<textarea id="detail" class="inputArea" name="detail" rows="10">${Activity.detail}</textarea>
+												<textarea id="detail" class="inputArea" name="detail">${Activity.detail}</textarea>
 											</p>
 							
 										</div>
