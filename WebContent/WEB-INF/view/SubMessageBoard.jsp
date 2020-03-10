@@ -151,6 +151,19 @@ form.panel {
 								});
 							</script>
 							<!--縮放用JS，結束-->
+							
+							<div style="margin: 20px;">
+								目前狀態： <span id="FB_STATUS_1"></span>
+								<div id="fb-root"></div>
+								<script async defer crossorigin="anonymous"
+									src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0&appId=198371544718507&autoLogAppEvents=1"></script>
+
+
+								<div class="fb-login-button" data-width="" data-size="large"
+									data-button-type="continue_with" data-layout="default"
+									data-auto-logout-link="false" data-use-continue-as="true"></div>
+							</div>
+							
 							<ul>
 								<li style="color: white; font-weight: bold;">
 									<form action='subMessageBoard.controller' method='post'
@@ -225,7 +238,7 @@ form.panel {
 												<script async defer crossorigin="anonymous"
 													src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0"></script>
 												<div class="fb-like"
-													data-href="http://bartendersplace.free.idcfengye.com/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
+													data-href="https://bartenders.ngrok.io/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
 													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
 
@@ -536,6 +549,72 @@ form.panel {
 			callback : feedback
 		});
 	</script>
+	
+	<script type="text/javascript">
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '198371544718507', // 填入 FB APP ID
+				cookie : true,
+				xfbml : true,
+				version : 'v6.0'
+			});
+
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		};
+
+		// 處理各種登入身份
+		function statusChangeCallback(response) {
+			console.log(response);
+			var target = document.getElementById("FB_STATUS_1"), html = "";
+
+			// 登入 FB 且已加入會員
+			if (response.status === 'connected') {
+				html = "已登入 FB<br/>";
+
+				FB.api('/me?fields=id,name,email', function(response) {
+					console.log(response);
+					html += "會員暱稱：" + response.name + "<br/>";
+
+					target.innerHTML = html;
+					$('#facebookName').val(response.name);
+					$('#facebookAccount').val(response.id);
+
+				});
+			}
+
+			// 登入 FB, 未偵測到加入會員
+			else if (response.status === "not_authorized") {
+				target.innerHTML = "已登入 FB，但未加入 WFU BLOG DEMO 應用程式";
+			}
+
+			// 未登入 FB
+			else {
+				target.innerHTML = "未登入 FB";
+
+			}
+		}
+
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
+
+		// 載入 FB SDK
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>

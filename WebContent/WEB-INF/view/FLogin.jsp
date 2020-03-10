@@ -47,8 +47,9 @@
 						<div class="row">
 							<div class="col-7 col-12-medium">
 								<h1>Facebook登入頁面</h1>
-
-								目前狀態： <span id="FB_STATUS_1"></span>
+								
+								 目前狀態： <span
+									id="FB_STATUS_1"></span>
 
 								<div id="fb-root"></div>
 								<script async defer crossorigin="anonymous"
@@ -101,18 +102,17 @@
 																		.val(
 																				response.name);
 																$(
-																'#facebookName1')
-																.val(
-																		response.name);
+																		'#facebookName1')
+																		.val(
+																				response.name);
 																$(
 																		'#facebookAccount')
 																		.val(
 																				response.id);
 																$(
-																'#facebookAccount1')
-																.val(
-																		response.id);
-
+																		'#facebookAccount1')
+																		.val(
+																				response.id);
 
 															});
 										}
@@ -147,27 +147,26 @@
 									}(document, 'script', 'facebook-jssdk'));
 								</script>
 
-								<h5>${errorMsg}</h5>
-								<form action="<c:url value="/checkFLogin"/>"
-									method="POST">
+								
+								<form action="<c:url value="/checkFLogin"/>" method="POST">
 									<div class="row gtr-uniform">
 										<div class="col-11 col-12-xsmall">
 											<ul>
 												<li>姓名:(取FACEBOOK姓名)</li>
 												<li><input type="text" name="facebookNameshow"
-													id="facebookName" size="50" disabled="disabled"/><br>
-													<input type="hidden" name="facebookName"
-													id="facebookName1" size="50" /><br></li>
+													id="facebookName" size="50" disabled="disabled" /><br>
+													<input type="hidden" name="facebookName" id="facebookName1"
+													size="50" /><br></li>
 												<li>帳號:</li>
 												<li><input type="text" name="facebookAccountshow"
-													id="facebookAccount" size="50"  disabled="disabled"/><br>
+													id="facebookAccount" size="50" disabled="disabled" /><br>
 													<input type="hidden" name="facebookAccount"
-													id="facebookAccount1" size="50"  /><br></li>
+													id="facebookAccount1" size="50" /><br></li>
 												<li>密碼:</li>
 												<li><input type="text" name="newPassword" size="50"
 													placeholder="請至少輸入8碼，包含英文字母大小寫與數字" required="required"
 													pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$" id="pwd" /><br></li>
-												
+
 											</ul>
 										</div>
 										<div class="col-12">
@@ -177,12 +176,15 @@
 												<li><a class="button" href="/Bartenders/login">回主頁</a></li>
 												<li><input class="button" type="reset" value="清除重填" /></li>
 												<li><input class="button primary" type="submit"
-													value="確認送出" /></li>
+													value="登入" /></li>
+												
 											</ul>
+											<h1 style="text-align: center; margin: 10px;">${errorMsg}</h1>
 										</div>
+										<h1>[<a href=<c:url value="/FRegister"/>>facebook註冊</a>]</h1>
 									</div>
 								</form>
-								
+
 							</div>
 						</div>
 					</section>
@@ -208,7 +210,7 @@
 	<script type="text/javascript">
 		$('#demo').click(function() {
 			$('#pwd').val('PassW0rd123');
-			
+
 		});
 	</script>
 

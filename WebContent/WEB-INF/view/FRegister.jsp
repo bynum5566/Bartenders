@@ -147,7 +147,7 @@
 									}(document, 'script', 'facebook-jssdk'));
 								</script>
 
-								<h5>${errorMsg}</h5>
+								
 								<form action="<c:url value="/Fregister.do"/>"
 									method="POST">
 									<div class="row gtr-uniform">
@@ -200,7 +200,8 @@
 										</div>
 									</div>
 								</form>
-								<h5>${msg}</h5>
+								<h1 style="text-align: center; margin: 10px;">${errorMsg}</h1>
+								<h1 style="text-align: center; margin: 10px;">${msg}</h1>
 							</div>
 						</div>
 					</section>
