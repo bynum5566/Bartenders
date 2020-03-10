@@ -56,7 +56,7 @@ body {
 	margin-left: 15px;
 }
 
-.title {
+#title {
 	font-size: 30px;
 	margin: 0 0 0 0;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .row {
-	margin-left: 20%;
+	margin-left: 15%;
 }
 
 .noticeBox {
@@ -94,6 +94,12 @@ body {
 	height: auto;
 	float: right;
 	display: none;
+}
+
+.B1 {
+	display: flex;
+	align-items: center;
+	justify-content: right;
 }
 </style>
 </head>
@@ -137,7 +143,6 @@ body {
 				</ul>
 			</nav>
 		</header>
-
 		<article id="main">
 			<section class="wrapper style5">
 				<div class="inner">
@@ -145,18 +150,25 @@ body {
 						<div class="row">
 							<div class="col-6 col-12-medium">
 								<div class="outwrap" align="center" style="width: 500px;">
-									<h1 class="title">營業額圓餅圖</h1>
+									<h1 id="title">營業額圓餅圖</h1>
 									<br>
 									<form action="/Bartenders/salesReportByPieSelectTime.controller">
-									起始時間:
+									<ul class="actions" style="pading-left:-40px;">
+									<li class="B1" style="white-space: nowrap;">起訖時間:</li>
+									<li class="B1" nowrap="nowrap">
 									<input type="date" name="startTime" size="30"
 											autocomplete="off" required="required"/>
-									<br>
-									結束時間:
+									</li>
+									<li class="B1">
+									～</li>
+									<li class="B1" nowrap="nowrap">
 									<input type="date" name="endTime" size="30"
 											autocomplete="off" required="required"/>
-									<br>
+									</li>
+									<li class="B1">
 									<input type="submit" value="搜尋" />
+									</li>
+									</ul>
 									</form>
 									<canvas align="center" id="myChart"></canvas>
 								</div>
