@@ -214,6 +214,8 @@ div.panel {
 				<input class="button" type="reset" value="清除重填"/>
 				<input class="button" type="button" value="demo" id="demo"/>
 			</form>
+			
+		<a href="mailto:11129henry@gmail.com">聯繫我們</a>
 		</div>
 		
 		<script type="text/javascript">

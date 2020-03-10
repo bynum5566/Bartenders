@@ -104,7 +104,13 @@ body {
 	float: right;
 	display: none;
 }
-	
+
+.B1 {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+			
 </style>
 </head>
 
@@ -156,15 +162,23 @@ body {
 									<h1 class="title">銷售量直條圖</h1>
 									<br>
 									<form action="/Bartenders/salesReportSelectTime.controller">
-									起始時間:
+									<ul class="actions">
+									<li class="B1">
+									起訖時間:</li>
+									<li class="B1" nowrap="nowrap">
 									<input type="date" name="startTime" size="30"
 											autocomplete="off" required="required"/>
-									<br>
-									結束時間:
+									</li>
+									<li class="B1">
+									～</li>
+									<li class="B1" nowrap="nowrap">
 									<input type="date" name="endTime" size="30"
 											autocomplete="off" required="required"/>
-									<br>
+									</li>
+									<li class="B1">
 									<input type="submit" value="搜尋" />
+									</li>
+									</ul>
 									</form>
 									<canvas id="myChart"></canvas>
 								</div>
