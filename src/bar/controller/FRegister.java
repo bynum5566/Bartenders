@@ -17,7 +17,7 @@ import bar.model.Users;
 import bar.model.UsersService;
 
 @Controller
-@SessionAttributes(value = { "getUserId", "userName", "account" ,"LoginStatus"})
+@SessionAttributes(value = { "getUserId", "userName", "account", "LoginStatus" })
 @EnableTransactionManagement
 public class FRegister {
 
@@ -31,19 +31,24 @@ public class FRegister {
 	public String checkFLogin(@RequestParam(name = "facebookAccount") String account,
 			@RequestParam(name = "facebookName") String userName, @RequestParam(name = "newPassword") String password,
 			Model m) {
+		
+		if (account == "" || userName == "") {
+			m.addAttribute("errorMsg", "未登入Facebook");
+			return "FLogin";
+		}
+		
 
 		boolean loginStatus1 = uservice.checkLogin(account, password);
 
 		if (loginStatus1) {
 
-			
 			Users user = uservice.select(account);
 			m.addAttribute("userName", user.getUserName());
 
 			m.addAttribute("LoginStatus", "true");
 			m.addAttribute("account", account);
 			m.addAttribute("userName", userName);
-			
+
 			WebSocketTest.setModel(m);
 
 			return "UserFirstPage";
@@ -61,6 +66,10 @@ public class FRegister {
 			@RequestParam(name = "phone") String phone, @RequestParam(name = "email") String email,
 			@RequestParam(name = "address") String address, Model m) {
 
+		if (facebookAccount == "" || facebookName == "") {
+			m.addAttribute("errorMsg", "未登入Facebook");
+			return "FRegister";
+		}
 
 		try {
 
@@ -85,9 +94,6 @@ public class FRegister {
 				m.addAttribute("errorMsg", "未滿18歲，請勿飲酒。");
 				return "FRegister";
 			}
-			
-			
-			
 
 			Users Nuser = new Users(facebookAccount, password, facebookName, birthday, phone, email, address, "member");
 			Users Ruser = uservice.insert(Nuser);
@@ -97,8 +103,7 @@ public class FRegister {
 
 				return "FRegister";
 			}
-			
-			
+
 			m.addAttribute("getUserId", Ruser.getUserId());
 
 		} catch (Exception e) {
