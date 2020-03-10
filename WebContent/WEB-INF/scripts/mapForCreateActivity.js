@@ -28,7 +28,7 @@
 			}
 			var point = new google.maps.LatLng(lat, lng);
 			//建立暫時marker
-			
+			map.panTo(point);
 			var marker = new google.maps.Marker({
 				map : map,
 				position : point,

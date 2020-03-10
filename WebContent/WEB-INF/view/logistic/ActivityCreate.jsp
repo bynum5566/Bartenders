@@ -198,6 +198,8 @@ console.log('currentId is: ',currentId);
 		<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 									<li><a href="/Bartenders/Example">測試</a></li>
 									<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+							</ul>
+						</div>
 						</c:if>
 						<c:if test="${testV<499999}">
 							<div id="menu">
@@ -218,9 +220,10 @@ console.log('currentId is: ',currentId);
 		<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
 									<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
 									<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
-						</c:if>
-						</ul>
-					</div>
+						
+							</ul>
+						</div>
+					</c:if>
 				</li>
 			</ul>
 		</nav>
@@ -236,7 +239,7 @@ console.log('currentId is: ',currentId);
 								
 							 
 								<div id="alter" align="center">
-									<h1 style="font-size:36px;" align="center">酒吧舉辦活動</h1>
+									<h1 style="font-size:36px;" align="center">建立活動</h1>
 									<form action="saveActivity.do" method="post" enctype="multipart/form-data">
 										<fieldset style="width: 800px">
 												<input id="name" class="classTest" type="text" name="name" placeholder="輸入活動名稱">
@@ -265,15 +268,20 @@ console.log('currentId is: ',currentId);
 												<input id="targetNum" class="numSetting" type="text" name="targetNum" placeholder="成團人數">
 												<br>
 												<br>
-												<p>活動照片上傳: <input id="uploadFile" type="file" name="uploadFile" style="width:300px;"/></p>
+												<p>活動照片上傳: </p>
+													<img id="preview" src="images/noImage.png" alt="your image" style="width:300px;"/>
+													<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" style="width:300px;display:none;"/>
+												
+												
 												<textarea id="brief" placeholder="輸入活動簡介" name="brief" rows="1"></textarea>
 												<br>
 												<textarea id="detail" placeholder="輸入活動內容" name="detail" rows="6"></textarea>
 												<br>
-												<div style="display:none">
+												<div style="display:block">
 												<input id="lat" type="text" name="lat" value="0">
 												<input id="lng" type="text" name="lng" value="0">
-												<input type="text" name="preUrl" value="${preUrl}">
+												<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
+												<input type="text" name="activityId" value="0">
 												<input type="text" name="userId" value="${getUserId}${getCompanyId}">
 												<input type="text" id="realType" name="realType" value="no">
 												</div>
@@ -374,8 +382,23 @@ console.log('currentId is: ',currentId);
 			}	
 		})
 
-
-		
+		//圖片預覽
+		function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      $('#preview').attr('src', e.target.result);
+		    }
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		$('#preview').on('click',function(){
+			$('#uploadFile').click();
+		})
+		$("#uploadFile").change(function() {
+			console.log('try to start readURL')
+		  readURL(this);
+		});
 	//若沒有選擇活動 預設為no 會報錯
 	var typeRadio = document.getElementsByClassName('type');
 	var realType = document.getElementById('realType');
@@ -384,17 +407,9 @@ console.log('currentId is: ',currentId);
 		tempValue = this.id
 		realType.value = tempValue;
 		//inputType(tempValue);	
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 	})
-	/*
-	function inputType(testValue){
-		for(var i=0;i<typeRadio.length;i++){
-			if(typeRadio[i].checked==true){
-				console.log('real type is: ',tempValue)
-				realType.value = tempValue;
-			}
-		}
-	}
-	*/
 	
 	//點地圖儲存座標+小OK顯示
 	var ok = document.getElementById("smallok")
@@ -495,7 +510,6 @@ console.log('currentId is: ',currentId);
 	<script>
 	console.log('this is errors: ','${errors}');
 	console.log('this is temp: ','${temp}');
-	console.log('this is temp.name: ','${temp.name}');
 	<c:if test="${not empty errors}">
 		console.log('errors has data');
 		if('${errors.name}'!=''){
@@ -571,6 +585,9 @@ console.log('currentId is: ',currentId);
 		}
 		if('${temp.detail}'!=''){
 			document.getElementById('detail').value = '${temp.detail}';
+		}
+		if('${temp.preUrl}'!=''){
+			document.getElementById('preUrl').value = '${temp.preUrl}';
 		}
 		
 	</c:if>

@@ -182,7 +182,7 @@
 								
 								<div class="container">
 								<c:forEach var="Activity" items="${activity}" varStatus="status"><!--  -->
-								<form action="updateActivity.do" method="post" enctype="multipart/form-data">
+								<form action="saveActivity.do" method="post" enctype="multipart/form-data">
 								<div style="background-color:darkgrey;border-radius:20px;">
 									<div style="display:inline-block;vertical-align:top;">
 										<div class="each" id="${Activity.activityId}" >
@@ -190,8 +190,9 @@
 												<legend>活動${status.index+1} - 活動ID:${Activity.activityId}</legend>
 												<img id="imgDisplay" class="img" alt="未選擇圖片" style="margin: 0px 5px 0px 5px;padding:0px;" src="images/${Activity.img}"> 
 												<img id="typeDisplay" class="imgType" alt="未設定類型" title="${Activity.type}" src="images/${Activity.type}.png" style="margin: 0px 10px 0px 0px">
+												<input id="uploadFile" type="file" name="uploadFile"  accept="image/*" value="${Activity.img}" style="display:none;"/>
 												
-												<div class="ActivityName"><input class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
+												<div class="ActivityName"><input id="name" class="inputBox" type="text" name="name" value="${Activity.name}" style="height:50px;font-size:26px;font-weight:bold;line-height:50px;text-align:center;"> </div>
 												
 												<div id="typeSelectDiv" style="display:none;">
 													<input class="type" type="radio" id="party" name="type" value="party">
@@ -203,26 +204,22 @@
 													<input class="type" type="radio" id="festival" name="type" value="festival">
 													<label class="typeLabel" for="festival" style="font-size:18px;padding:5px 0px 5px 30px;line-height:20px;margin:5px 0px 5px 0px;">節慶活動</label>
 												</div>
-												<input type="text" id="realType" name="realType" value="${Activity.type}">
+												
 												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px">
 													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
 													<input id="endTime" class="inputBox" type="text" name="endTime"  value="${Activity.endTime}" style="width:150px;height:32px;font-size:14px;display:inline;"></p>
 												</div>
-												<p align=left style="margin: 10px"><input type="text" name="address" value="${Activity.address}"> </p>
+												<p align=left style="margin: 10px"><input id="address" type="text" name="address" value="${Activity.address}"> </p>
 												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">確認地圖</button>
 												<div class="showEachMap">
 													<div id="hidden${status.index}" class="hideMap">
-														<div id="map${status.index}"
-															style="width: 350px; height: 500px; background: red"></div>
+														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;">
+														<div id="map"
+															style="width: 350px; height: 500px; background: red">
+														</div>
 													</div>
 												</div>
-												
-												<!-- 
-												<p class="brief" align=center style="width: 340px; margin: 5px; text-align: justify">${Activity.brief}</p>
-												-->
-												<input type="hidden" name="preUrl" value="${preUrl}">
-												
 											</fieldset>
 											
 										</div>
@@ -249,61 +246,22 @@
 										
 										</div>
 										<div align=center style="margin: 10px">
-													<c:choose>
-														<c:when test="${Activity.limitNum==999}">
-															<span>參加人數不限</span>
-															<span id="people${status.index}" class="number">目前人數:${Activity.actualNum}</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
-															
-														</c:when>
-														<c:when test="${Activity.actualNum==Activity.limitNum}">
-															<span>活動人數已滿</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
-														</c:when>
-														<c:otherwise>
-															<span>目前人數${Activity.actualNum} / ${Activity.limitNum}</span>
-															<c:if test="${Activity.targetNum==0}">
-																<span>直接成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum>=Activity.targetNum&&Activity.targetNum!=0}">
-																<span>已成團</span>
-															</c:if>
-															<c:if test="${Activity.actualNum<Activity.targetNum&&Activity.targetNum!=0}">
-																<span>未成團</span>
-															</c:if>
+											上限: <input id="limitNum" class="numSetting" type="text" name="limitNum" value="${Activity.limitNum}" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
+											成團: <input id="targetNum" class="numSetting" type="text" name="targetNum" value="${Activity.targetNum}" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
+											目前: <input id="actualNum" class="numSetting" type="text" name="actualNum" value="${Activity.actualNum}" style="width:50px;display:inline;height:32px;text-align:center;">人
+										</div>
+					
+											<div id="outer${status.index}" class="outer" title="">
+													<div id="groundD${status.index}" class="ground">
 														
-														</c:otherwise>
-													</c:choose>
-													
-												</div>
-												<div style="position:relative;">
-												<div class="outer">
-													<div id="groundD" class="ground">
-														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
+														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
 														<div id="targetFor${status.index}" class="targetD">
-															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>
+															<img class="targetP NP" title="成團: ${Activity.targetNum}人" src="images/arrowTarget.png">	
 														</div>
 														<div id="currentFor${status.index}" class="currentD NP">
-															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
+															<p><img class="currentP NP" title="現在: ${Activity.actualNum}人" src="images/arrowCurrent.png"></p>
 														</div>
 													</div>
-												</div>
 												</div>
 												<textarea id="brief" class="inputArea" name="brief" >${Activity.brief}</textarea>
 										
@@ -364,39 +322,102 @@
 										time_24hr: true
 									});
 											
-											
-											//個別進度條設定
-											limitNum.push(${Activity.limitNum});
-											targetNum.push(${Activity.targetNum});
-											currentNum.push(${Activity.actualNum});
-											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
-											var fix = $('#groundD${status.index}').width()-20;
-											if(${Activity.limitNum}==999){
-												if(${Activity.targetNum}!=0){
-													per = fix/targetNum['${status.index}'];
-													$('#targetFor${status.index}').width(fix);
-												}else if(${Activity.targetNum}==0){
-													per = fix/currentNum['${status.index}'];
-													$('#targetFor${status.index}').css('display','none');
-												}
-												$('#limitP${status.index}').css('display','none');
+									//圖片預覽&&點擊圖片上傳
+									
+									function readURL(input) {
+									  if (input.files && input.files[0]) {
+									    var reader = new FileReader();
+									    reader.onload = function(e) {
+									      $('#imgDisplay').attr('src', e.target.result);
+									    }
+									    reader.readAsDataURL(input.files[0]);
+									  }
+									}
+									$('#imgDisplay').on('click',function(){
+										$("#uploadFile").click();
+									})
+									$("#uploadFile").change(function() {
+									  readURL(this);
+									});
+									//個別進度條設定
+									limitNum.push('${Activity.limitNum}');
+									targetNum.push('${Activity.targetNum}');
+									currentNum.push('${Activity.actualNum}');
+									//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
+									//console.log('limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+									var fix = $('#groundD${status.index}').width()-20;
+									//console.log('固定寬度: ',fix);
+									if('${Activity.limitNum}'==999){
+										//console.log('no limit')
+										if('${Activity.targetNum}'!=0){
+											//console.log('target != 0')
+											per = fix/targetNum['${status.index}'];
+											$('#targetFor${status.index}').width(fix);
+											//console.log('目標寬度:',$('#targetFor${status.index}').width());
+											//perNum.push(per);
+											if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
+												$('#currentFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數無上限 有目標 已達標')
+												$('#outer${status.index}').prop('title',"不限人數   已成團   現在: ${Activity.actualNum}人");
 											}else{
-												per = fix/limitNum['${status.index}'];
-												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+												
+												$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+												//$('#currentFor${status.index}').css('background-color','pink');
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數無上限 有目標 未達標')
+												$('#outer${status.index}').prop('title',"不限人數   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
 											}
-											perNum.push(per);
-											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
-											$('#currentFor${status.index}').css('background-color','pink');
-											//若成團
-											if(currentNum['${status.index}']>=targetNum['${status.index}']){
-												$('#currentFor${status.index}').css('background-color','lightgreen');
-												$('#targetFor${status.index}').css('display','none');
-											}
+											
+										}else if('${Activity.targetNum}'==0){
+											//console.log('target = 0')
+											per = fix/parseInt(currentNum['${status.index}']);
+											$('#targetFor${status.index}').css('display','none');
+											//perNum.push(per);
+											$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+											//$('#currentFor${status.index}').css('background-color','pink');
+											//console.log('現在寬度:',$('#currentFor${status.index}').width());
+											//console.log('人數無上限 沒目標')
+											$('#outer${status.index}').prop('title',"不限人數   直接成團   現在: ${Activity.actualNum}人");
+										}
+										$('#limitP${status.index}').css('display','none');
+									}else{
+										
+										per = fix/parseInt(limitNum['${status.index}']);
+										//console.log('has limit, per= ',per)
+										$('#targetFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+										//console.log('目標寬度: ',$('#targetFor${status.index}').width())
+										//perNum.push(per);
+										$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+										//$('#currentFor${status.index}').css('background-color','pink');
+										//console.log('現在寬度:',$('#currentFor${status.index}').width());
+										//console.log('人數有上限 可能有目標')
+										$('#outer${status.index}').prop('title',"上限: ${Activity.limitNum}人   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
+									}
+									perNum.push(per);
+									
+									if(parseInt(currentNum['${status.index}'])>=parseInt(limitNum['${status.index}'])){
+										$('#currentFor${status.index}').css('background-color','#b3b3b3');
+										$('#targetFor${status.index}').css('display','none');
+										$('#outer${status.index}').prop('title',"活動人數已滿");
+									}else if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
+										$('#currentFor${status.index}').css('background-color','lightgreen');
+										$('#targetFor${status.index}').css('display','none');
+									}else{
+										$('#currentFor${status.index}').css('background-color','pink');
+									}
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
 											
 											</script>
+											<input id="lat" type="text" name="lat" value="${Activity.lat}">
+											<input id="lng" type="text" name="lng" value="${Activity.lng}">
+											<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
+											<input type="text" id="activityId" name="activityId" value="${Activity.activityId}">
+											<input type="text" name="userId" value="${getUserId}${getCompanyId}">
+											<input type="text" id="realType" name="realType" value="${Activity.type}">
+											
+											
 											<input type="submit" value="確定">
 											</form>
 									</c:forEach><!-- -->
@@ -413,9 +434,61 @@
 	</div>
 	
 	<script type="text/javascript">
-	//var dlLink = "CSVGen.jsp?fn="+encodeURIComponent(fileName);
-	//window.open(dlLink);
+	//檢查地址是否輸入 限制定位按鈕
+	var addressBtn = document.getElementById('addressBtn')
+	if(document.getElementById('address').value==''){
+			addressBtn.disabled=true;
+		}else{
+			addressBtn.disabled=false;
+		}
+	$('#address').on('blur',function(){
+		if(document.getElementById('address').value==''){
+			addressBtn.disabled=true;
+		}else{
+			addressBtn.disabled=false;
+		}	
+	})
 	
+	//點地圖儲存座標+小OK顯示
+	var ok = document.getElementById("smallok")
+	var checklat = document.getElementById("lat")
+	$('#map').on("click", function(){
+		checkMap();
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
+		console.log('temp marker:',lat.value,lng.value,realType.value)
+	});
+	function checkMap(){
+		console.log("checkMap");
+		if(checklat.value!=0){
+			ok.style.visibility = 'visible';
+		}
+	}
+	//地址按鈕
+	var locationLat;
+	var locationLng;
+	async function getInput() {
+		var address = document.getElementById('address').value
+		
+		//等fetch做完再繼續
+		await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E').then(
+			function (response) {
+				return response.json();
+			}).then(function (JSONdata) {
+				console.log('this is data results: ', JSONdata.results);
+				//console.log("this is location's latlng: ", JSONdata.address_components);
+				var all = JSONdata.results.forEach(function (item) {
+					locationLat = item.geometry.location.lat;
+					locationLng = item.geometry.location.lng;
+
+				})
+			});//fetch結束
+		console.log("指定位置", locationLat, '; ', locationLng);
+		document.getElementById('lat').value = locationLat;
+		document.getElementById('lng').value = locationLng;
+		relocate(locationLat, locationLng,realType.value);
+		checkMap();
+	}
 	//更換活動類型直接改圖片設定
 	var typeRadio = document.getElementsByClassName('type');
 	var realType = document.getElementById('realType');
@@ -423,7 +496,7 @@
 
 	$('#typeDisplay').on('click',function(){
 		tempValue = this.title;
-		document.getElementById('carnival').checked = true;
+		document.getElementById(tempValue).checked = true;
 		if($('#typeSelectDiv').css('display')=='none'){
 			$('#typeSelectDiv').css('display','block');
 		}else{
@@ -437,6 +510,8 @@
 		var typeDisplay = document.getElementById('typeDisplay');
 		typeDisplay.src = 'images/'+tempValue+'.png';
 		typeDisplay.title = tempValue;
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 	})
 	
 	//設定currentId給超連結
@@ -448,9 +523,10 @@
 		var activityId = tempId.substring(0,4);
 		var indexNum = tempId.substring(11);
 		var prefix = 'ActivityActivityId';
-		reloadMarkers(prefix,activityId,indexNum);
-		getMarkers(prefix,activityId,indexNum);
-
+		//reloadMarkers(prefix,activityId,indexNum);
+		//getMarkers(prefix,activityId,indexNum);
+		reloadMarkers();
+		getMarkers(lat.value,lng.value,realType.value);
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
 		}else {
@@ -476,9 +552,102 @@
 	<script src="/Bartenders/assets/js/logout.js"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	<script src="scripts/MapStyle.js"></script>
-	<script src="scripts/mapForActivity.js"></script>
+	<script src="scripts/mapForCreateActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
+	<script>
+	<c:if test="${not empty errors}">
+	console.log('errors has data','${errors}');
+	if('${errors.name}'!=''){
+		document.getElementById('name').style.border = '1px red solid';
+	}
+	if('${errors.type}'!=''){
+		document.getElementById('typeDiv').style.border = '1px red solid';
+	}
+	if('${errors.beginTime}'!=''){
+		document.getElementById('beginTime').style.border = '1px red solid';
+	}
+	if('${errors.endTime}'!=''){
+		document.getElementById('endTime').style.border = '1px red solid';
+	}
+	if('${errors.address}'!=''){
+		document.getElementById('address').style.border = '1px red solid';
+	}
+	if('${errors.map}'=='尚未點選地圖設定地點'){
+		mapBtn.style.border = '2px red solid';
+		mapBtn.innerHTML = '尚未點選地圖設定地點';
+	}
 	
+	if('${errors.limitNum}'!=''){
+		document.getElementById('limitNum').style.border = '1px red solid';
+	}
+	if('${errors.targetNum}'!=''){
+		document.getElementById('targetNum').style.border = '1px red solid';
+	}
+	if('${errors.actualNum}'!=''){
+		document.getElementById('actualNum').style.border = '1px red solid';
+	}
+	if('${errors.brief}'!=''){
+		document.getElementById('brief').style.border = '1px red solid';
+	}
+	if('${errors.detail}'!=''){
+		document.getElementById('detail').style.border = '1px red solid';
+	}
+</c:if>
+	<c:if test="${not empty temp}">
+	console.log('temp has data','${temp}');
+	/**/
+	document.getElementById('name').value = '';
+	document.getElementById('beginTime').value = '';
+	document.getElementById('endTime').value = '';
+	document.getElementById('address').value = '';
+	document.getElementById('limitNum').value = '';
+	document.getElementById('targetNum').value = '';
+	document.getElementById('actualNum').value = '';
+	document.getElementById('brief').value = '';
+	document.getElementById('detail').value = '';
+	if('${temp.name}'!=''){
+		document.getElementById('name').value = '${temp.name}';
+	}
+	if('${temp.type}'!='no'){
+		document.getElementById('${temp.type}').checked = true;
+		realType.value = '${temp.type}';
+	}
+	if('${temp.beginTime}'!=''){
+		document.getElementById('beginTime').value = '${temp.beginTime}';
+	}
+	if('${temp.endTime}'!=''){
+		document.getElementById('endTime').value = '${temp.endTime}';
+	}
+	if('${temp.address}'!=''){
+		document.getElementById('address').value = '${temp.address}';
+	}
+	if('${temp.lat}'!='0.0'&&'${temp.lng}'!='0.0'){
+		document.getElementById('lat').value = '${temp.lat}';
+		document.getElementById('lng').value = '${temp.lng}';
+		getMarkers(lat.value,lng.value,realType.value);
+		checkMap();
+		//mapBtn.innerHTML = '修改地圖位置';
+	}
+	if('${temp.limitNum}'!='null'){
+		document.getElementById('limitNum').value = '${temp.limitNum}';
+	}
+	if('${temp.targetNum}'!='null'){
+		document.getElementById('targetNum').value = '${temp.targetNum}';
+	}
+	if('${temp.actualNum}'!='null'){
+		document.getElementById('actualNum').value = '${temp.actualNum}';
+	}
+	if('${temp.brief}'!=''){
+		document.getElementById('brief').value = '${temp.brief}';
+	}
+	if('${temp.detail}'!=''){
+		document.getElementById('detail').value = '${temp.detail}';
+	}
+	if('${temp.preUrl}'!=''){
+		document.getElementById('preUrl').value = '${temp.preUrl}';
+	}
+</c:if>
+	</script>
 	
 	<!-- 小鈴鐺 -->
 	<!-- 

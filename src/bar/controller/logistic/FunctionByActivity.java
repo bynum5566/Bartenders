@@ -265,6 +265,7 @@ public class FunctionByActivity {
 	public String createActivity(HttpServletRequest request, HttpServletResponse response,Model m,
 			@RequestParam(name = "preUrl")String preUrl,
 			@RequestParam(name = "userId")Integer userId,
+			@RequestParam(name = "activityId")Integer activityId,
 			@RequestParam(name = "name")String name,
 			@RequestParam(name = "address")String address,
 			@RequestParam(name = "lat")float lat,
@@ -306,6 +307,18 @@ public class FunctionByActivity {
 			errors.put("map", "尚未點選地圖設定地點");
 		}
 		
+//		if (limitNum == null) {
+//			errors.put("limitNum", "尚未輸入上限");
+//		}
+//		
+//		if (targetNum == null) {
+//			errors.put("targetNum", "尚未輸入目標");
+//		}
+//		
+//		if (actualNum == null) {
+//			errors.put("actualNum", "尚未輸入內建");
+//		}
+		
 		if (brief == null || brief.length() == 0) {
 			errors.put("brief", "尚未輸入簡介");
 		}
@@ -323,6 +336,7 @@ public class FunctionByActivity {
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
 			temp.put("name", String.valueOf(name));
+
 			temp.put("type", type);
 			temp.put("beginTime", beginTime);
 			temp.put("endTime", endTime);
@@ -334,8 +348,15 @@ public class FunctionByActivity {
 			temp.put("actualNum", String.valueOf(actualNum));
 			temp.put("brief", brief);
 			temp.put("detail", detail);
-			
-			return "logistic/ActivityCreate";
+			if(preUrl.equals("/editActivity.do")) {
+				System.out.println("preUrl is:"+preUrl);
+				temp.put("preUrl", "/editActivity.do");
+				return "logistic/ActivitySingleEdit";
+			}else if(preUrl.equals("/ActivityCreate")) {
+				System.out.println("preUrl is:"+preUrl);
+				temp.put("preUrl", "/ActivityCreate");
+				return "logistic/ActivityCreate";
+			}
 		}
 		
 		System.out.println("this is preUrl: "+preUrl+" ;userId: "+userId);
@@ -360,97 +381,98 @@ public class FunctionByActivity {
 
 			System.out.println("Thumbnails complete");
 		}else {
-			System.out.println("no file selected");
-			filename="noImage.png";
+			if(preUrl.equals("/editActivity.do")) {
+				System.out.println("no file selected");
+				filename="same";
+			}else {
+				System.out.println("no file selected");
+				filename="noImage.png";
+			}
+			
 		}
-		
-
-		Activity activity = new Activity();
+		Activity activity = null;
 		String newBrief = brief.replace("\n", "<br>");
 		String newDetail = detail.replace("\n", "<br>");
-		aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
+		if(preUrl.equals("/editActivity.do")) {
+			System.out.println("這是編輯活動");
+			activity = aSer.uniqueQuery("activityId",activityId);
+			aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
+			System.out.println("try to redirect to ActivityManage");
+			return "redirect:/queryActivityByUser.do?currentId="+userId;
+		}else if(preUrl.equals("/ActivityCreate")) {
+			System.out.println("這是建立活動");
+			activity = new Activity();
+			aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
+			System.out.println("try to redirect to ActivityHall");
+			return "redirect:/queryAllActive.do";
+		}
 		
-		System.out.println("try to redirect to ActivityHall");
+		
+		
+		
+		
 //		response.sendRedirect("ActivityHall");
 //		return "createActivity";
-		return "redirect:/queryAllActive.do";
+		return null;
 	}
 	
-	@RequestMapping(path = "updateActivity.do",method = RequestMethod.POST)
-	public String updateActivity(HttpServletRequest request, HttpServletResponse response,Model m,
-			@RequestParam(name = "preUrl")String preUrl,
-			@RequestParam(name = "activityId")Integer activityId,
-			@RequestParam(name = "name")String name,
-			@RequestParam(name = "address")String address,
-			@RequestParam(name = "lat")float lat,
-			@RequestParam(name = "lng")float lng,
-			@RequestParam(name = "brief")String brief,
-			@RequestParam(name = "type")String type,
-			@RequestParam(name = "beginTime")String beginTime,
-			@RequestParam(name = "endTime")String endTime,
-			@RequestParam(name = "limitNum")Integer limitNum,
-			@RequestParam(name = "targetNum")Integer targetNum,
-			@RequestParam(name = "actualNum")Integer actualNum
-////			@RequestParam(name = "img")String img,
-		
-			) throws IOException, ParseException {
-		
-		System.out.println("start");
-		String realPath = request.getSession().getServletContext().getRealPath("\\WEB-INF\\images\\");
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		MultipartFile file = multipartRequest.getFile("uploadFile");
-		String filename = null;
-		List<Activity> activity = aSer.queryJoker("activityId", activityId);
-		
-		
-		for(Activity a:activity) {
-			a.setName(name);
-			a.setAddress(address);
-			a.setLat(lat);
-			a.setLng(lng);
-			a.setBrief(brief);
-			a.setType(type);
-			if(!file.isEmpty()) {
-				filename = file.getOriginalFilename();
-				InputStream input = file.getInputStream();
-				System.out.println("start Thumbnails");
-				File savePath2 = new File(realPath+filename);
-				System.out.println("this is path:"+realPath);
-				Thumbnails.of(input).size(90, 90).toFile(savePath2);
-				a.setImg(filename);
-			}else {
-				System.out.println("file is null");
-			};
-			a.setBeginTime(beginTime);
-			a.setEndTime(endTime);
-			a.setLimitNum(limitNum);
-			a.setTargetNum(targetNum);
-			a.setActualNum(actualNum);
-		}
-//		//設定日期格式
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-//		System.out.println("Activity time:"+beginTime);
-//		//進行轉換
-//		Date date1 = sdf.parse(beginTime);
-//		System.out.println("開始時間:"+beginTime);
-//		Date date2 = sdf.parse(endTime);
-//		System.out.println("結束時間:"+endTime);
-//		long day=(date2.getTime()-date1.getTime())/(1000*60); 
-//		System.out.println("時間差:"+day+"分");
-		
-//		aDao.saveActivity(activity,userid, name, address, lat, lng, type, filename, text, beginTime, endTime);
+//	@RequestMapping(path = "updateActivity.do",method = RequestMethod.POST)
+//	public String updateActivity(HttpServletRequest request, HttpServletResponse response,Model m,
+//			@RequestParam(name = "preUrl")String preUrl,
+//			@RequestParam(name = "activityId")Integer activityId,
+//			@RequestParam(name = "name")String name,
+//			@RequestParam(name = "address")String address,
+//			@RequestParam(name = "lat")float lat,
+//			@RequestParam(name = "lng")float lng,
+//			@RequestParam(name = "brief")String brief,
+//			@RequestParam(name = "detail")String detail,
+//			@RequestParam(name = "realType")String type,
+//			@RequestParam(name = "beginTime")String beginTime,
+//			@RequestParam(name = "endTime")String endTime,
+//			@RequestParam(name = "limitNum")Integer limitNum,
+//			@RequestParam(name = "targetNum")Integer targetNum,
+//			@RequestParam(name = "actualNum")Integer actualNum
+//			) throws IOException, ParseException {
 //		
-//		System.out.println("this is preUrl: "+preUrl);
-//		if(preUrl!=null&&preUrl.equals("/createShow")) {
-//			System.out.println("try to redirect to ManageBar");
-//			response.sendRedirect("ManageBar");
-//			return null;
-//		}
-		System.out.println("try to redirect to ActivityManage");
-//		response.sendRedirect("ActivityManage");
-//		return "createActivity";
-		return "redirect:/queryAllActive.do";
-	}
+//		System.out.println("start");
+//		String realPath = request.getSession().getServletContext().getRealPath("\\WEB-INF\\images\\");
+//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+//		MultipartFile file = multipartRequest.getFile("uploadFile");
+//		String filename = null;
+//		Activity a = aSer.uniqueQuery("activityId",activityId);
+//			a.setName(name);
+//			a.setAddress(address);
+//			a.setLat(lat);
+//			a.setLng(lng);
+//			String newBrief = brief.replace("\n", "<br>");
+//			String newDetail = detail.replace("\n", "<br>");
+//			a.setBrief(newBrief);
+//			a.setDetail(newDetail);
+//			a.setType(type);
+//			a.setBeginTime(beginTime);
+//			a.setEndTime(endTime);
+//			a.setLimitNum(limitNum);
+//			a.setTargetNum(targetNum);
+//			a.setActualNum(actualNum);
+//		System.out.println("try to redirect to ActivityManage");
+//		return "redirect:/queryAllActive.do";
+//	}
+	//淘汰 因包含酒吧
+//	@RequestMapping(path = "queryAllActive.do",method = RequestMethod.GET)
+//	public String queryAllActive(HttpServletRequest request, HttpServletResponse response, Model m,
+//			RedirectAttributes redirectAttributes
+//			) throws IOException, ParseException {
+//
+//		List<Activity> activity = aSer.queryAll();
+//		aSer.checkEndTime(activity);
+//		List<Activity> allActive = aSer.queryJoker("status","'O'");
+//		m.addAttribute("activity",allActive);
+//		//for websocket
+//		WebSocketTest.setModel(m);
+//		
+//		return "logistic/ActivityHall";
+//	}
+
 	
 	@RequestMapping(path = "queryAllActive.do",method = RequestMethod.GET)
 	public String queryAllActive(HttpServletRequest request, HttpServletResponse response, Model m,
@@ -460,16 +482,19 @@ public class FunctionByActivity {
 		List<Activity> activity = aSer.queryAll();
 		aSer.checkEndTime(activity);
 		List<Activity> allActive = aSer.queryJoker("status","'O'");
-		m.addAttribute("activity",allActive);
-//		redirectAttributes.addFlashAttribute("activitytest", activity);
-//		response.sendRedirect("ManageActivity");
-		
+		List<Activity> notBarShop = new ArrayList<Activity>();
+		for(Activity a:allActive) {
+			if(!a.getType().equals("bar")&&!a.getType().equals("shop")) {
+				notBarShop.add(a);
+			}
+		}
+		m.addAttribute("activity",notBarShop);
 		//for websocket
 		WebSocketTest.setModel(m);
 		
 		return "logistic/ActivityHall";
 	}
-
+	
 	@RequestMapping(path = "editActivity.do",method = RequestMethod.GET)
 	public String editActivity(HttpServletRequest request, HttpServletResponse response, Model m,
 			@RequestParam(name = "activityId")Integer activityId
