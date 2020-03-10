@@ -152,17 +152,12 @@ form.panel {
 							</script>
 							<!--縮放用JS，結束-->
 							
+							<!-- fb按鈕 -->
 							<div style="margin: 20px;">
-								目前狀態： <span id="FB_STATUS_1"></span>
-								<div id="fb-root"></div>
-								<script async defer crossorigin="anonymous"
-									src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0&appId=198371544718507&autoLogAppEvents=1"></script>
-
-
-								<div class="fb-login-button" data-width="" data-size="large"
-									data-button-type="continue_with" data-layout="default"
-									data-auto-logout-link="false" data-use-continue-as="true"></div>
+								目前已登入的Facebook帳戶：<span id="FB_STATUS_1"></span>
+								
 							</div>
+							<!-- fb按鈕 -->
 							
 							<ul>
 								<li style="color: white; font-weight: bold;">
@@ -241,6 +236,8 @@ form.panel {
 													data-href="https://bartenders.ngrok.io/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
 													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
+												<div><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a></div>
+												<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 											</c:forEach>
 										</div>
