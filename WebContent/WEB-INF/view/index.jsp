@@ -119,11 +119,11 @@
   </div>
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
-                <button value="submit" class="btn btn-dark ">送出</button>
+                <button value="submit" class="btn btn-dark ">送出</button><br>
                 <button id="demo1" class=" btn btn-light"  style="color:#62592C; width:140px; font-size:16px;">資策會VIP通道</button>
                   </div>
                  </div>
-                 <div class="display480">
+                 <div class="display480 text-left">
   <!--                 <div class="col-12  p-0">
                     <button class="text-center col-12 loginBtn loginBtn--facebook">
                       Facebook
@@ -131,10 +131,14 @@
                     <!-- <div class="col-12  p-0"><button onclick="location.href='/Bartenders/CLogin'" class="login text-center loginBtn" >
                酒吧用戶
               </button></div> -->
-
-                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
+                  <div class="col-12  p-0 mt-1" > <div class="g-signin2" data-width="158" class="text-center col-12 loginBtn loginBtn--google" data-onsuccess="onSignIn">
                     Google &nbsp;
                   </div></div>
+                  <div class="col-12  p-0 mt-1" >
+				  <a href="/Bartenders/FLogin">
+     			  <button type="button" class="loginBtn loginBtn--facebook">
+       				&emsp;&emsp;&nbsp;&nbsp;Facebook
+      			  </button></a></div>
                   <div class="col-12 p-0 mt-1">
                     <button onclick="location.href='/Bartenders/ResetPassword'" class="login text-center loginBtn" data-toggle="modal" data-target="#exampleModalCenter1">
                         忘記密碼
@@ -565,7 +569,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <a href="/Bartenders/XXX"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">地圖搜尋</button></a>
+              <a href="/Bartenders/queryAllActive.do"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">地圖搜尋</button></a>
               <p>
             </div>
             <h5>迷路了嗎？</h5>
@@ -593,7 +597,7 @@
           </div>
           <div class="carousel-caption d-none d-md-block">
             <div class="loginbox2">
-              <a href="/Bartenders/DisplayBarList.controller"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">搜尋酒吧</button></a>
+              <a href="/Bartenders/Welcome.UserFirstPage"><button class="login" data-toggle="modal" data-target="#exampleModalCenter1">搜尋酒吧</button></a>
               <p>
             </div>
             <h5>腦中靈光一閃？</h5>

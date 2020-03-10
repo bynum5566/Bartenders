@@ -113,7 +113,8 @@ form.panel {
 							<ul>
 								<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
 								<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-								<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+								<li><a
+									href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
 								<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
 								<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
 								<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
@@ -151,14 +152,14 @@ form.panel {
 								});
 							</script>
 							<!--縮放用JS，結束-->
-							
+
 							<!-- fb按鈕 -->
 							<div style="margin: 20px;">
 								目前已登入的Facebook帳戶：<span id="FB_STATUS_1"></span>
-								
+
 							</div>
 							<!-- fb按鈕 -->
-							
+
 							<ul>
 								<li style="color: white; font-weight: bold;">
 									<form action='subMessageBoard.controller' method='post'
@@ -183,8 +184,7 @@ form.panel {
 												</div> <input id="imgPlace" name="pdImg" class="image-url" /> <br>
 												<input type='submit' value='提交'> <input
 												class="button" type="reset" value="清除重填" /> <input
-												class="button" type="button" value="demo" id="demo" />
-												<input
+												class="button" type="button" value="demo" id="demo" /> <input
 												class="button" type="button" value="demo2" id="demo2" />
 											</li>
 										</ul>
@@ -193,17 +193,27 @@ form.panel {
 								</li>
 
 								<script type="text/javascript">
-									$('#demo').click(function() {
-										$('#blabla').val('蕃茄醬汁適合巴貝拉（Barbera）、瓦波里切拉（Valpolicella）、索亞維（Soave）、維爾帝奇歐（Verdicchio），與新世界產的白蘇維儂（Sauvignon Blanc）。奶油或乳酪醬汁適合稍微經過橡木桶陳化的夏多內（Chardonnay）、索亞維、維爾帝奇歐、坎佩尼亞白酒、瓦坡里切拉或梅洛（Merlot）。');
-										$('#deletePassword').val('11111111');
+									$('#demo')
+											.click(
+													function() {
+														$('#blabla')
+																.val(
+																		'蕃茄醬汁適合巴貝拉（Barbera）、瓦波里切拉（Valpolicella）、索亞維（Soave）、維爾帝奇歐（Verdicchio），與新世界產的白蘇維儂（Sauvignon Blanc）。奶油或乳酪醬汁適合稍微經過橡木桶陳化的夏多內（Chardonnay）、索亞維、維爾帝奇歐、坎佩尼亞白酒、瓦坡里切拉或梅洛（Merlot）。');
+														$('#deletePassword')
+																.val('11111111');
 
-									});
-									
-									$('#demo2').click(function() {
-										$('#blabla').val('青醬適合新世界產的白蘇維儂、坎佩尼亞白酒（Campania），以及多切托（Dolcetto）、法國的朗格多克（Languedoc）產紅酒。肉醬類醬汁適合義大利北部或中部產的紅酒、法國或新世界產的希哈（Syrah）、金芬黛（Zinfandel）。');
-										$('#deletePassword').val('11111111');
+													});
 
-									});
+									$('#demo2')
+											.click(
+													function() {
+														$('#blabla')
+																.val(
+																		'青醬適合新世界產的白蘇維儂、坎佩尼亞白酒（Campania），以及多切托（Dolcetto）、法國的朗格多克（Languedoc）產紅酒。肉醬類醬汁適合義大利北部或中部產的紅酒、法國或新世界產的希哈（Syrah）、金芬黛（Zinfandel）。');
+														$('#deletePassword')
+																.val('11111111');
+
+													});
 								</script>
 
 
@@ -236,8 +246,12 @@ form.panel {
 													data-href="https://bartenders.ngrok.io/Bartenders/submessageBoardShow.controller?resId=${messageBoard.id}&resAccount=${messageBoard.account}"
 													data-layout="button_count" data-action="like"
 													data-size="small" data-share="true"></div>
-												<div><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a></div>
-												<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+												<div>
+													<a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+														class="twitter-share-button" data-show-count="false">Tweet</a>
+												</div>
+												<script async src="https://platform.twitter.com/widgets.js"
+													charset="utf-8"></script>
 
 											</c:forEach>
 										</div>
@@ -263,8 +277,8 @@ form.panel {
 											</div>
 											<hr>
 										</c:forEach>
-										
-										
+
+
 									</div>
 								</li>
 
@@ -546,7 +560,7 @@ form.panel {
 			callback : feedback
 		});
 	</script>
-	
+
 	<script type="text/javascript">
 		window.fbAsyncInit = function() {
 			FB.init({
@@ -583,7 +597,9 @@ form.panel {
 
 			// 登入 FB, 未偵測到加入會員
 			else if (response.status === "not_authorized") {
-				target.innerHTML = "已登入 FB";
+
+				target.innerHTML = "尚未連動本站";
+
 			}
 
 			// 未登入 FB
@@ -610,8 +626,8 @@ form.panel {
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	
-	
+
+
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrolly.min.js"></script>

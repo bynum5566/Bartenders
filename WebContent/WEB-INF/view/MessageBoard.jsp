@@ -148,7 +148,7 @@ form.panel {
 								<div style="color: WhiteSmoke;">
 									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 
-									
+
 								</div>
 
 
@@ -166,7 +166,7 @@ form.panel {
 							<!-- fb按鈕 -->
 							<div style="margin: 20px;">
 								目前已登入的Facebook帳戶：<span id="FB_STATUS_1"></span>
-								
+
 							</div>
 							<!-- fb按鈕 -->
 							<ul>
@@ -543,7 +543,6 @@ form.panel {
 
 			// 登入 FB 且已加入會員
 			if (response.status === 'connected') {
-				
 
 				FB.api('/me?fields=id,name,email', function(response) {
 					console.log(response);
@@ -558,7 +557,9 @@ form.panel {
 
 			// 登入 FB, 未偵測到加入會員
 			else if (response.status === "not_authorized") {
-				target.innerHTML = "已登入 FB";
+
+				target.innerHTML = "尚未連動本站";
+
 			}
 
 			// 未登入 FB
