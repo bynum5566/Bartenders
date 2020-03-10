@@ -155,6 +155,17 @@ body {
 								<div class="outwrap">
 									<h1 class="title">銷售量直條圖</h1>
 									<br>
+									<form action="/Bartenders/salesReportSelectTime.controller">
+									起始時間:
+									<input type="date" name="startTime" size="30"
+											autocomplete="off" required="required"/>
+									<br>
+									結束時間:
+									<input type="date" name="endTime" size="30"
+											autocomplete="off" required="required"/>
+									<br>
+									<input type="submit" value="搜尋" />
+									</form>
 									<canvas id="myChart"></canvas>
 								</div>
 							</div>

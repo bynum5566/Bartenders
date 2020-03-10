@@ -136,10 +136,20 @@ public String showVerifyMailPage() {
 	public String showSalesReport() {
 		return "SalesReport";
 	}
+	
+	@RequestMapping(path = "/SalesReportSelectTime")
+	public String showSalesReportSelectTime() {
+		return "SalesReportSelectTime";
+	}
 
 	@RequestMapping(path = "/SalesReportByPie")
 	public String showSalesReportByPie() {
 		return "SalesReportByPie";
+	}
+	
+	@RequestMapping(path = "/SalesReportByPieSelectTime")
+	public String showSalesReportByPieSelectTime() {
+		return "SalesReportByPieSelectTime";
 	}
 
 	@RequestMapping(path = "/UserFirstPage")

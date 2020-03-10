@@ -72,6 +72,9 @@ public class OrdersService {
 		return productDataDAO.selectP(pdId);
 	}
 
+	public List<Orders> selectOrdersByTime(Integer companyId,Integer status,String startTime,String endTime) {
+		return ordersDAO.selectOrdersByTime(companyId, status, startTime, endTime);
+	}
 	//-----------------------------------------------------------------------
 	public boolean updateBeforeShipping(String orderId,String recipient,String address1,String address2,String phone) {
 		return ordersDAO.updateBeforeShipping(orderId, recipient, address1, address2, phone);

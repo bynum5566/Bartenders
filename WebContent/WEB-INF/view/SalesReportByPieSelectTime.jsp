@@ -149,14 +149,14 @@ body {
 									<br>
 									<form action="/Bartenders/salesReportByPieSelectTime.controller">
 									起始時間:
-									<input type="date"  name="startTime" size="30"
+									<input type="date" name="startTime" size="30"
 											autocomplete="off" required="required"/>
 									<br>
 									結束時間:
 									<input type="date" name="endTime" size="30"
 											autocomplete="off" required="required"/>
-									<br>		
-									<input type="submit"value="搜尋" />
+									<br>
+									<input type="submit" value="搜尋" />
 									</form>
 									<canvas align="center" id="myChart"></canvas>
 								</div>
