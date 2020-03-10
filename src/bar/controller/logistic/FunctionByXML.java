@@ -366,7 +366,7 @@ public class FunctionByXML {
 			) throws IOException, ParseException {
 		List<Logistic> orderList;
 		if(cID==0) {
-			orderList = lSer.queryJoker("ostatus","'1'");
+			orderList = lSer.queryJoker("ostatus","'1'","sID","NULL");
 		}else {
 			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'","sID","NULL");
 //			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");

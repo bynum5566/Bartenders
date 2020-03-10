@@ -208,13 +208,13 @@
 												
 												<div id="date${Activity.activityId}" class="ActivityDate" align=left>
 													<p id="changeFormat${Activity.activityId}" style="margin: 10px">
-													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;"> ~ 
+													<input id="beginTime" class="inputBox" type="text" name="beginTime" value="${Activity.beginTime}" style="width:150px;height:32px;font-size:14px;display:inline;">  ~  
 													<input id="endTime" class="inputBox" type="text" name="endTime"  value="${Activity.endTime}" style="width:150px;height:32px;font-size:14px;display:inline;"></p>
 												</div>
 												<p align=left style="margin: 10px"><input id="address" type="text" name="address" value="${Activity.address}"> </p>
 												<button id="${Activity.activityId}Bhidden${status.index}" class="closeAndOpen" type="button" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:31px">確認地圖</button>
 												<div class="showEachMap">
-													<div id="hidden${status.index}" class="hideMap">
+													<div id="hidden${status.index}" class="hideMap"><p style="display:inline-block;width:45px;"></p>    
 														<button id="addressBtn" type="button" onclick="getInput()">根據地址自動設定</button><img id="smallok" src="images/ok.png" style="visibility:collapse;vertical-align:middle;">
 														<div id="map"
 															style="width: 350px; height: 500px; background: red">
@@ -416,12 +416,12 @@
 											var people = document.getElementById('people${status.index}');
 											
 											</script>
-											<input id="lat" type="text" name="lat" value="${Activity.lat}">
-											<input id="lng" type="text" name="lng" value="${Activity.lng}">
-											<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
-											<input type="text" id="activityId" name="activityId" value="${Activity.activityId}">
-											<input type="text" name="userId" value="${getUserId}${getCompanyId}">
-											<input type="text" id="realType" name="realType" value="${Activity.type}">
+											<input id="lat" type="hidden" name="lat" value="${Activity.lat}">
+											<input id="lng" type="hidden" name="lng" value="${Activity.lng}">
+											<input id="preUrl" type="hidden" name="preUrl" value="${preUrl}">
+											<input id="activityId" type="hidden" name="activityId" value="${Activity.activityId}">
+											<input type="hidden" name="userId" value="${getUserId}${getCompanyId}">
+											<input id="realType" type="hidden" name="realType" value="${Activity.type}">
 											
 											
 											<input type="submit" value="確定">
@@ -535,8 +535,10 @@
 		getMarkers(lat.value,lng.value,realType.value);
 		if($('#hidden'+indexNum).css('display')=='none'){
 			$('#hidden'+indexNum).css('display','block');
+			$(this).html('關閉地圖');
 		}else {
 			$('#hidden'+indexNum).css('display','none');	
+			$(this).html('確認地圖');
 		}
 	})
 

@@ -288,12 +288,11 @@
 	//訂單搜尋
 	function queryJoker(){
 		console.log('click joker');
-		var prefix = 'logistic/OrderSearch';
 		//清除酒吧
-		reloadMarkers();
-		//清除送貨地點
+		reloadMarkers()
 		reloadOrders();
-		getMarkers(prefix,1,'${getSenderId}','all');
+		
+		getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
 		//reset();
 		getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
 	}
@@ -336,7 +335,7 @@
 			await reloadOrders();
 			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
 			await getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
-			changeIcon(cID);
+			//changeIcon(cID);
 		})
 
 		//demo按鈕
@@ -351,7 +350,7 @@
 			await reloadOrders();
 			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
 			await getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
-			changeIcon(cID);
+			//changeIcon(cID);
 		})
 		
 		$(".allnormal").on("click",async function () {
@@ -367,7 +366,7 @@
 			await reloadOrders();
 			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
 			await getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
-			changeIcon(cID);
+			//changeIcon(cID);
 		})
 
 		//demo按鈕
@@ -384,7 +383,7 @@
 			await reloadOrders();
 			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
 			await getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
-			changeIcon(cID);
+			//changeIcon(cID);
 		})
 		
 		listR = $('button[id^="9"][class*="reserve"]');

@@ -448,13 +448,15 @@
 											<td style="width:140px;">手機</td>
 											<td style="width:70px;">人數</td>
 										</tr>
-										<c:forEach var="Participant" items="${participant}" varStatus="status">
-											<tr>
-												<td>${Participant.name}</td>
-												<td>${Participant.phone}</td>
-												<td>${Participant.together}</td>
-											</tr>
-										</c:forEach>
+										
+											<c:forEach var="Participant" items="${participant}" varStatus="status">
+												<tr>
+													<td>${Participant.name}</td>
+													<td>${Participant.phone}</td>
+													<td>${Participant.together}</td>
+												</tr>
+											</c:forEach>
+										
 									</table>
 								</div>
 							</c:if>

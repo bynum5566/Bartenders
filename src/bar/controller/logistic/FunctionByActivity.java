@@ -506,10 +506,13 @@ public class FunctionByActivity {
 		//List<Activity> list = aDao.query("activityId",activityId);
 		List<Activity> list = aSer.queryJoker("activityId",activityId);
 		System.out.println("return list: "+list);
-		m.addAttribute("activity",list);
+		
 		Integer id = null;
 		for(Activity a:list) {
 			id = a.getUserId();
+			String detail = a.getDetail();
+			String newDetail = detail.replace("<br>", "\n");
+			a.setDetail(newDetail);
 		}
 		if(id>499999) {
 			Company company = cSer.selectCompany(id);
@@ -518,6 +521,7 @@ public class FunctionByActivity {
 			Users user = uDao.selectUser(id);
 			m.addAttribute("user",user);
 		}
+		m.addAttribute("activity",list);
 //		response.sendRedirect("ManageActivity");
 		
 		//for websocket
@@ -536,6 +540,9 @@ public class FunctionByActivity {
 		Integer id = null;
 		for(Activity a:list) {
 			id = a.getUserId();
+			String detail = a.getDetail();
+			String newDetail = detail.replace("<br>", "\n");
+			a.setDetail(newDetail);
 		}
 		if(id>499999) {
 			Company company = cSer.selectCompany(id);

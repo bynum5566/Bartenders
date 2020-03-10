@@ -86,7 +86,7 @@
 			barMap.forEach(function(item){
 				item.setMap(null);
 			})
-			console.log('this is barMap in reloadMarkers(): ',barMap);
+			//console.log('this is barMap in reloadMarkers(): ',barMap);
 			console.log('reloadMarkers done!');
 		}
 		/*
