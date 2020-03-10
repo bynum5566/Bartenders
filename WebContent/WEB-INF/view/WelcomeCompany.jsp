@@ -17,10 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/Bartenders/assets/css/main.css" />
 <noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
-
+			<!-- background-repeat: no-repeat;-->
 	<style type="text/css">
 		body {
-			background-repeat: no-repeat;
+
 			background-attachment: fixed;
 			background-size: cover;
 			background-position: top;
@@ -38,7 +38,7 @@
 			text-align: center;
 			margin: auto;
 			color: white;
-			padding: 117px;
+ 			padding-top: 117px;
 		}
 		
 		#logo {
@@ -88,7 +88,7 @@
 
 <body class="is-preload">
 	<div id="page-wrapper">
-		<header id="header">
+		<header id="header" class="alt_ver">
 			<h1>
 				<a href="/Bartenders/Welcome.Company">Bartenders</a>
 			</h1>
@@ -106,7 +106,7 @@
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
+						<div id="menu" class="alt_ver">
 							<ul>
 								<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
@@ -127,17 +127,11 @@
 
 		<article id="main">
 			<section class="wrapper style5">
-				<div class="inner">
-					<section>
-						<div class="row">
-							<div class="col-12 col-6-medium">
-								<div class="welcome">
-									<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
-									<h2>Welcome back! ${CName}</h2>
-								</div>
-							</div>
-						</div>
-					</section>
+				<div class="col-6 col-6-medium">
+					<div class="welcome" align="center">
+						<img id="logo" src="img/Logo.png" style="width: 150px; margin: 20px" />
+						<h2>Welcome back! ${CName}</h2>
+					</div>
 				</div>
 			</section>
 		</article>

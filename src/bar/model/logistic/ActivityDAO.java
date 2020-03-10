@@ -161,8 +161,11 @@ public class ActivityDAO {
 		a.setLat(lat);
 		a.setLng(lng);
 		a.setType(type);
-		a.setImg(img);
-		
+		if(img.equals("same")) {
+			
+		}else {
+			a.setImg(img);
+		}
 		a.setBrief(brief);
 		a.setDetail(detail);
 		a.setBeginTime(beginTime);

@@ -170,13 +170,13 @@
 								}
 							</script>	
 	<div id="page-wrapper">
-	<header id="header">
-		<h1><a href="index.jsp">Bartenders</a></h1>
+	<header id="header" class="alt_ver">
+		<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
+					<div id="menu" class="alt_ver">
 						<ul>
 							<c:if test="${testV>499999}">
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>

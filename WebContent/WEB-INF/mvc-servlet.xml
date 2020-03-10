@@ -139,6 +139,13 @@
 			<mvc:exclude-mapping path="/JavaMailPage" />
 
 			<mvc:exclude-mapping path="/VerifyMailPage" />
+			<mvc:exclude-mapping path="/FRegister" />
+			<mvc:exclude-mapping path="/Fregister.do" />
+			<mvc:exclude-mapping path="/FLogin" />
+			<mvc:exclude-mapping path="/checkFLogin" />
+			
+			
+			
 
 
 			<mvc:exclude-mapping path="/logistic" />

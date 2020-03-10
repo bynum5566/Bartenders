@@ -1,6 +1,7 @@
 package bar.model;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -137,6 +138,17 @@ public class OrdersDAO {
 		return false;
 	}
 	
+	public List<Orders> selectOrdersByTime(Integer companyId,Integer status,String startTime,String endTime) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlStr = "from Orders where companyId=:companyId and status=:status and ( createTime > :startTime and createTime < :endTime )";
+		Query query = session.createQuery(hqlStr);
+		query.setParameter("companyId", companyId);
+		query.setParameter("status", status);
+		query.setParameter("startTime", startTime);
+		query.setParameter("endTime", endTime);
+		System.out.println("query:"+query+"-------------------------------");
+		return (List<Orders>) query.list();
+	}
 	// --(王選豪)------------------
 
 	public boolean insert(Orders orders) {

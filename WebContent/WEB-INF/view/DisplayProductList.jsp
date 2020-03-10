@@ -262,6 +262,14 @@
 			display: block;
 			}
 		}
+		
+		@media screen and (max-width: 568px) {
+			.swiper-container {
+			    width: 320px;
+			    height: 180px;
+			}
+		}
+		
 		@media screen and (max-width: 440x) {
 			img#myBtn1, img#myBtn.myMenu, img#favbT{
 				width: 30px;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes(names = {"userName" , "CName"})
+@SessionAttributes(names = { "userName", "CName" })
 public class ShowPages {
 
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -67,22 +67,31 @@ public class ShowPages {
 		return "SubMessageBoard";
 	}
 
-@RequestMapping(path = "/MessageBoardListMode", method = RequestMethod.GET)
-public String showMessageBoardListMode() {
+	@RequestMapping(path = "/MessageBoardListMode", method = RequestMethod.GET)
+	public String showMessageBoardListMode() {
 
-	return "MessageBoardListMode";
-}
+		return "MessageBoardListMode";
+	}
 
-@RequestMapping(path = "/JavaMailPage", method = RequestMethod.GET)
-public String showJavaMailPage() {	
-	return "JavaMailPage";
-}
+	@RequestMapping(path = "/JavaMailPage", method = RequestMethod.GET)
+	public String showJavaMailPage() {
+		return "JavaMailPage";
+	}
 
-@RequestMapping(path = "/VerifyMailPage", method = RequestMethod.GET)
-public String showVerifyMailPage() {	
-	return "VerifyMailPage";
-}
+	@RequestMapping(path = "/VerifyMailPage", method = RequestMethod.GET)
+	public String showVerifyMailPage() {
+		return "VerifyMailPage";
+	}
 
+	@RequestMapping(path = "/FRegister", method = RequestMethod.GET)
+	public String showFRegister() {
+		return "FRegister";
+	}
+	
+	@RequestMapping(path = "/FLogin", method = RequestMethod.GET)
+	public String showFLogin() {
+		return "FLogin";
+	}
 
 ////////////////////////	
 
@@ -136,10 +145,20 @@ public String showVerifyMailPage() {
 	public String showSalesReport() {
 		return "SalesReport";
 	}
+	
+	@RequestMapping(path = "/SalesReportSelectTime")
+	public String showSalesReportSelectTime() {
+		return "SalesReportSelectTime";
+	}
 
 	@RequestMapping(path = "/SalesReportByPie")
 	public String showSalesReportByPie() {
 		return "SalesReportByPie";
+	}
+	
+	@RequestMapping(path = "/SalesReportByPieSelectTime")
+	public String showSalesReportByPieSelectTime() {
+		return "SalesReportByPieSelectTime";
 	}
 
 	@RequestMapping(path = "/UserFirstPage")
@@ -204,7 +223,8 @@ public String showVerifyMailPage() {
 		System.out.println("redirect to LogisticInvalid");
 		return "LogisticInvalid";
 	}
-	///////////////////以下是地圖搜尋/////////////////
+
+	/////////////////// 以下是地圖搜尋/////////////////
 	@RequestMapping(path = "/ActivityHall", method = RequestMethod.GET)
 	public String ActivityHall() {
 		System.out.println("redirect to ActivityHall");
@@ -213,43 +233,42 @@ public String showVerifyMailPage() {
 
 	@RequestMapping(path = "/ActivityCreate", method = RequestMethod.GET)
 	public String ActivityCreate(Model m) {
-		//for websocket
+		// for websocket
 		WebSocketTest.setModel(m);
-		
+
 		return "logistic/ActivityCreate";
 	}
 
 	@RequestMapping(path = "/ActivityManage", method = RequestMethod.GET)
 	public String ActivityManage(Model m) {
-		//for websocket
+		// for websocket
 		WebSocketTest.setModel(m);
 		return "logistic/ActivityManage";
 	}
 
 	@RequestMapping(path = "/ActivityEdit", method = RequestMethod.GET)
 	public String ActivityEdit(Model m) {
-		//for websocket
+		// for websocket
 		WebSocketTest.setModel(m);
 		return "logistic/ActivityEdit";
 	}
-	
+
 	@RequestMapping(path = "/BarCreate", method = RequestMethod.GET)
 	public String BarCreate(Model m) {
-		//for websocket
+		// for websocket
 		WebSocketTest.setModel(m);
 		return "logistic/BarCreate";
 	}
 
 	@RequestMapping(path = "/Example", method = RequestMethod.GET)
 	public String Example(Model m) {
-		
-		//for websocket
+
+		// for websocket
 		WebSocketTest.setModel(m);
-		
+
 		System.out.println("redirect to Example");
 		return "logistic/Example";
 	}
-
 
 //////////
 
@@ -264,6 +283,5 @@ public String showVerifyMailPage() {
 		WebSocketTest.setModel(m);
 		return "UserFirstPage";
 	}
-	
 
 }

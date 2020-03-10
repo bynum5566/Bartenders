@@ -110,7 +110,7 @@ body {
 
 <body class="is-preload">
 	<div id="page-wrapper">
-		<header id="header">
+		<header id="header" class="alt_ver">
 			<h1><a href="/Bartenders/Welcome.Company">Bartenders</a></h1>
 			
 		<!-- 小鈴鐺 -->
@@ -127,7 +127,7 @@ body {
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
+					<div id="menu" class="alt_ver">
 						<ul>
 							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
 								<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
@@ -155,6 +155,17 @@ body {
 								<div class="outwrap">
 									<h1 class="title">銷售量直條圖</h1>
 									<br>
+									<form action="/Bartenders/salesReportSelectTime.controller">
+									起始時間:
+									<input type="date" name="startTime" size="30"
+											autocomplete="off" required="required"/>
+									<br>
+									結束時間:
+									<input type="date" name="endTime" size="30"
+											autocomplete="off" required="required"/>
+									<br>
+									<input type="submit" value="搜尋" />
+									</form>
 									<canvas id="myChart"></canvas>
 								</div>
 							</div>

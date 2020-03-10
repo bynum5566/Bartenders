@@ -108,12 +108,13 @@
 		<c:set var="testV" value="${getCompanyId}${getUserId}"/>
 	</script>
 	<div id="page-wrapper">
-	<header id="header">
-					<c:if test="${testV>499999}">
-			<h1><a href="WelcomeCompany">Bartenders</a></h1>
+		<c:if test="${testV>499999}">
+			<header id="header" class="alt_ver">
+				<h1><a href="WelcomeCompany">Bartenders</a></h1>
 		</c:if>
 		<c:if test="${testV<499999}">
-			<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
+			<header id="header">
+				<h1><a href="/Bartenders/Welcome.UserFirstPage">Bartenders</a></h1>
 		</c:if>
 			<!-- 小鈴鐺 -->
 			<div class="noticeBox">
@@ -129,44 +130,46 @@
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
-					<div id="menu">
-						<ul>
 						<c:if test="${testV>499999}">
+							<div id="menu" class="alt_ver">
+								<ul>
 							<!-- 
 							<c:out value="${testV}"/>
 							 -->
-							<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
-							<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
-							<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
-							<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
-							<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
-							<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
-							<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
-							<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
-							<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
-							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
-<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-							<li><a href="/Bartenders/Example">測試</a></li>
-							<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
+									<li><a href="/Bartenders/My.Bar">我的酒吧</a></li>
+									<li><a href="/Bartenders/Bar.edit">編輯酒吧</a></li>
+									<li><a href="/Bartenders/Dashboard.Products">商品管理</a></li>
+									<li><a href="/Bartenders/Dashboard.TkProducts">票券管理</a></li>
+									<li><a href="/Bartenders/NewsAndEvents.All">最新消息與活動管理</a></li>
+									<li><a href="/Bartenders/companyOrder.controller">訂單管理</a></li>
+									<li><a href="/Bartenders/salesReport.controller">銷售量長條圖</a></li>
+									<li><a href="/Bartenders/salesReportByPie.controller">營業額圓餅圖</a></li>
+									<li><a href="/Bartenders/Croom.chat">聊天室</a></li>
+									<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+		<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+		<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
+									<li><a href="/Bartenders/Example">測試</a></li>
+									<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
 						<c:if test="${testV<499999}">
+								<div id="menu">
+									<ul>
 							<!-- 
 							<c:out value="${testV}"/>
 							 -->
-							<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
-							<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
-							<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
-							<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
-							<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
-							<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
-							<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
-							<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
-							<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
-<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
-<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-							<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
-							<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
+										<li><a href=<c:url value="/Users.Info"/>>會員中心</a></li>
+										<li><a href=<c:url value="/DisplayBarList.controller"/>>所有酒吧</a></li>
+										<li><a href=<c:url value="/DisplayRandomBarList.controller"/>>精選酒吧</a></li>
+										<li><a href=<c:url value="/DisplayCartList.controller"/>>我的購物車</a></li>
+										<li><a href=<c:url value="/userOrder.controller"/>>我的訂單</a></li>
+										<li><a href=<c:url value="/Dashboard.MyFavorite"/>>我的最愛</a></li>
+										<li><a href=<c:url value="/messageBoardShow.controller"/>>討論區</a></li>
+										<li><a href=<c:url value="/room.chat"/>>聊天室</a></li>
+										<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
+			<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
+			<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
+										<li><a href=<c:url value="/JavaMailPage"/>>聯絡我們</a></li>
+										<li class="small"><a href="UserFirstPage">首頁</a><a href="javascript:signOut()">登出</a></li>
 						</c:if>
 						</ul>
 					</div>
@@ -301,14 +304,28 @@
 													
 												</div>
 												<div style="position:relative;">
+												<!-- 
 												<div class="outer">
-													<div id="groundD" class="ground">
+													<div id="groundD${status.index}" class="ground">
 														<p class="limitP NP" title="上限: ${Activity.limitNum}人"><img src="images/arrowLimit.png"></p>
 														<div id="targetFor${status.index}" class="targetD">
 															<p class="targetP NP" title="成團: ${Activity.targetNum}人"><img src="images/arrowTarget.png"></p>
 														</div>
 														<div id="currentFor${status.index}" class="currentD NP">
 															<p class="currentP NP" title="現在: ${Activity.actualNum}人"><img src="images/arrowCurrent.png"></p>
+														</div>
+													</div>
+												</div>
+												 -->
+												<div id="outer${status.index}" class="outer" title="">
+													<div id="groundD${status.index}" class="ground">
+														
+														<img id="limitP${status.index}" class="limitP NP" title="上限: ${Activity.limitNum}人" src="images/arrowLimit.png">
+														<div id="targetFor${status.index}" class="targetD">
+															<img class="targetP NP" title="成團: ${Activity.targetNum}人" src="images/arrowTarget.png">	
+														</div>
+														<div id="currentFor${status.index}" class="currentD NP">
+															<p><img class="currentP NP" title="現在: ${Activity.actualNum}人" src="images/arrowCurrent.png"></p>
 														</div>
 													</div>
 												</div>
@@ -333,33 +350,75 @@
 											var changeFormat = document.getElementById('changeFormat${Activity.activityId}');
 											changeFormat.innerHTML = bT[0]+' '+bT[1]+' ~ '+eT[0].substring(5)+' '+eT[1];
 											//個別進度條設定
-											limitNum.push(${Activity.limitNum});
-											targetNum.push(${Activity.targetNum});
-											currentNum.push(${Activity.actualNum});
+											limitNum.push('${Activity.limitNum}');
+											targetNum.push('${Activity.targetNum}');
+											currentNum.push('${Activity.actualNum}');
 											//console.log('status.index is:','${status.index}','limitNum is:',limitNum[0],'targetNum is:',targetNum,'currentNum is:',currentNum);
-											//console.log(' limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
+											//console.log('limit is: ',limitNum['${status.index}'],' target is: ',targetNum['${status.index}']);
 											var fix = $('#groundD${status.index}').width()-20;
-											if(${Activity.limitNum}==999){
-												if(${Activity.targetNum}!=0){
+											//console.log('固定寬度: ',fix);
+											if('${Activity.limitNum}'==999){
+												//console.log('no limit')
+												if('${Activity.targetNum}'!=0){
+													//console.log('target != 0')
 													per = fix/targetNum['${status.index}'];
 													$('#targetFor${status.index}').width(fix);
-												}else if(${Activity.targetNum}==0){
-													per = fix/currentNum['${status.index}'];
+													//console.log('目標寬度:',$('#targetFor${status.index}').width());
+													//perNum.push(per);
+													if(${Activity.actualNum>=Activity.targetNum}){
+														
+														$('#currentFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+														
+														//console.log('現在寬度:',$('#currentFor${status.index}').width());
+														//console.log('人數無上限 有目標 已達標')
+														$('#outer${status.index}').prop('title',"不限人數   已成團   現在: ${Activity.actualNum}人");
+													}else{
+														
+														$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+														//$('#currentFor${status.index}').css('background-color','pink');
+														//console.log('現在寬度:',$('#currentFor${status.index}').width());
+														//console.log('人數無上限 有目標 未達標')
+														$('#outer${status.index}').prop('title',"不限人數   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
+													}
+													
+												}else if('${Activity.targetNum}'==0){
+													//console.log('target = 0')
+													per = fix/parseInt(currentNum['${status.index}']);
 													$('#targetFor${status.index}').css('display','none');
+													//perNum.push(per);
+													$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+													//$('#currentFor${status.index}').css('background-color','pink');
+													//console.log('現在寬度:',$('#currentFor${status.index}').width());
+													//console.log('人數無上限 沒目標')
+													$('#outer${status.index}').prop('title',"不限人數   直接成團   現在: ${Activity.actualNum}人");
 												}
 												$('#limitP${status.index}').css('display','none');
 											}else{
-												per = fix/limitNum['${status.index}'];
-												$('#targetFor${status.index}').width(per*targetNum['${status.index}']);
+												
+												per = fix/parseInt(limitNum['${status.index}']);
+												//console.log('has limit, per= ',per)
+												$('#targetFor${status.index}').width(per*parseInt(targetNum['${status.index}']));
+												//console.log('目標寬度: ',$('#targetFor${status.index}').width())
+												//perNum.push(per);
+												$('#currentFor${status.index}').width(per*parseInt(currentNum['${status.index}']));
+												//$('#currentFor${status.index}').css('background-color','pink');
+												//console.log('現在寬度:',$('#currentFor${status.index}').width());
+												//console.log('人數有上限 可能有目標')
+												$('#outer${status.index}').prop('title',"上限: ${Activity.limitNum}人   成團: ${Activity.targetNum}人   現在: ${Activity.actualNum}人");
 											}
 											perNum.push(per);
-											$('#currentFor${status.index}').width(per*currentNum['${status.index}']);
-											$('#currentFor${status.index}').css('background-color','pink');
-											//若成團
-											if(currentNum['${status.index}']>=targetNum['${status.index}']){
+											
+											if(parseInt(currentNum['${status.index}'])>=parseInt(limitNum['${status.index}'])){
+												$('#currentFor${status.index}').css('background-color','#b3b3b3');
+												$('#targetFor${status.index}').css('display','none');
+												$('#outer${status.index}').prop('title',"活動人數已滿");
+											}else if(parseInt(currentNum['${status.index}'])>=parseInt(targetNum['${status.index}'])){
 												$('#currentFor${status.index}').css('background-color','lightgreen');
 												$('#targetFor${status.index}').css('display','none');
+											}else{
+												$('#currentFor${status.index}').css('background-color','pink');
 											}
+				
 											//判斷EL是否為null
 											var people = document.getElementById('people${status.index}');
 											

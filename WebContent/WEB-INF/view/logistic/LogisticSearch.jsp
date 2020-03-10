@@ -19,6 +19,21 @@
 	<noscript><link rel="stylesheet" href="/Bartenders/assets/css/noscript.css"/></noscript>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindowForOrder.css">
 	<style>
+		.small {
+			display: flex;
+			align-self: center;
+		}
+		
+		.small a {
+			font-size: 16px;
+			font-weight: 400;
+			color: #888;
+			font-family: 111.otf;
+		}
+		
+		.small a+a {
+			margin-left: 15px;
+		}
 	
 		#background{
 			position:relative;
@@ -68,8 +83,9 @@
 		}
 		
 		.mapDiv {
-			height: 400px;
+/* 			height: 400px; */
 			width: 800px;	
+			height: 400px;
 		}
 	</style>
 </head>
@@ -144,7 +160,9 @@
 															<td>${Logistic.oTimeA}</td>
 															<td>
 															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve" style="width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>		
+																	class="reserve normal" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
+															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
+																	class="reserve demo" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒接單</button>			
 															</td>
 														</tr>
 													</c:forEach>
@@ -173,13 +191,15 @@
 	</div>
 	
 	<script type="text/javascript">
+	//登入者id
+	console.log('配送員ID: ','${getSenderId}');
 	//打開搜尋地圖
 	$('#openSearch').on('click', function(){
 		if($('.searchDiv').css('display')=='none'){
 			$('.searchDiv').css('display','block');
 			var prefix = 'logistic/OrderSearch';
 			reloadMarkers(prefix,1);
-			getMarkers(prefix,1,${getSenderId});
+			getMarkers(prefix,1,'${getSenderId}');
 			$('#openSearch').html('收起地圖');
 			//$('#container').css('position','relative');
 		}else {
@@ -190,7 +210,8 @@
 
 	})
 	var OrderJSON;
-	function getOrderJSON(OrderJSON){
+	var situation;
+	function getOrderJSON(OrderJSON,situation){
 		document.getElementById('tbody').remove();
 		var targetBody = document.createElement("tbody");
 		targetBody.id = 'tbody';
@@ -218,14 +239,41 @@
 				}
 				
 			}
-			var newTd = document.createElement("td"); 
-			var newBtn = document.createElement("button");
-			newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
-			newBtn.className = 'reserve';
-			newBtn.innerHTML = '接單';
-			newBtn.style = 'width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
-			//newBtn.style.display = 'none';
-			newTd.appendChild(newBtn);
+			if(situation=='byBar'){
+				var newTd = document.createElement("td"); 
+				var newBtn = document.createElement("button");
+				newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn.className = 'reserve normal';
+				newBtn.innerHTML = '接單';
+				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				//newBtn.style.display = 'none';
+				newTd.appendChild(newBtn);
+				//demo用
+				var newBtn2 = document.createElement("button");
+				newBtn2.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn2.className = 'reserve demo';
+				newBtn2.innerHTML = '5秒接單';
+				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				//newBtn.style.display = 'none';
+				newTd.appendChild(newBtn2);
+			}else if(situation=='all'){
+				var newTd = document.createElement("td"); 
+				var newBtn = document.createElement("button");
+				newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn.className = 'reserve allnormal';
+				newBtn.innerHTML = '接單';
+				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				//newBtn.style.display = 'none';
+				newTd.appendChild(newBtn);
+				//demo用
+				var newBtn2 = document.createElement("button");
+				newBtn2.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn2.className = 'reserve alldemo';
+				newBtn2.innerHTML = '5秒接單';
+				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				//newBtn.style.display = 'none';
+				newTd.appendChild(newBtn2);
+			}
 			newTr.appendChild(newTd);
 			document.getElementById('tbody').appendChild(newTr);
 			
@@ -237,10 +285,9 @@
 	function queryJoker(){
 		console.log('click joker');
 		var prefix = 'logistic/OrderSearch';
-		//window.location.href = '<c:url value="/logistic/OrderSearch.do/'+1+'"/>';
 		reloadMarkers(prefix,1);
 		reloadOrders();
-		getMarkers(prefix,1,'${getSenderId}');
+		getMarkers(prefix,1,'${getSenderId}','all');
 		reset('logistic/OrderSearchByBar',0);
 		//getMarkers('logistic/OrderSearchByBar',0,'${getSenderId}');
 	}
@@ -271,27 +318,63 @@
 	
 	//接單按鈕
 	function changeDisplay(){
-	$(".reserve").on("click", function () {
-		var Str = this.id
-		orderID = Str.substring(8);
-		console.log('orderId is: ',orderID)
-		//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
-		//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-		var prefix = 'logistic/OrderReserveByBar';
-		var input = orderID;
+		$(".normal").on("click", function () {
+			var Str = this.id
+			orderID = Str.substring(8);
+			console.log('orderId is: ',orderID)
+			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
+			var prefix = 'logistic/OrderReserveByBar/bar/60';
+			var input = orderID;
+			reserveOrder(prefix,input,'${getSenderId}','byBar');
+		})
 
-		reserveOrder(prefix,input,'${getSenderId}');
-	})
-	
-		listR = $('button[id^="9"][class="reserve"]');
+		//demo按鈕
+		$(".demo").on("click", function () {
+			var Str = this.id
+			orderID = Str.substring(8);
+			console.log('orderId is: ',orderID)
+			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
+			var prefix = 'logistic/OrderReserveByBar/bar/5';
+			var input = orderID;
+			reserveOrder(prefix,input,'${getSenderId}','byBar');
+		})
+		
+		$(".allnormal").on("click", function () {
+			var Str = this.id
+			orderID = Str.substring(8);
+			console.log('orderId is: ',orderID)
+			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
+			var prefix = 'logistic/OrderReserveByBar/all/60';
+			var input = orderID;
+			reserveOrder(prefix,input,'${getSenderId}','all');
+			
+		})
+
+		//demo按鈕
+		$(".alldemo").on("click", function () {
+			var Str = this.id
+			orderID = Str.substring(8);
+			console.log('orderId is: ',orderID)
+			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
+			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
+			var prefix = 'logistic/OrderReserveByBar/all/5';
+			var input = orderID;
+			reserveOrder(prefix,input,'${getSenderId}','all');
+			
+		})
+		
+		listR = $('button[id^="9"][class*="reserve"]');
 		listR.attr("disabled",true);
 		console.log('class length: ',listR.length);
 		for(var i=0;i<listR.length;i++){
 			listR[i].innerHTML = '已接單';
-		}
-		
-		//listR.attr("style", "display:block;");
+		}	
 	}
+	
+
 	//初始轉換 & 初始隱藏
 	changeHTML();
 	changeDisplay();

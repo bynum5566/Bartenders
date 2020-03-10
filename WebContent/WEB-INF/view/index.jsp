@@ -66,20 +66,20 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="p-2"></div>
         <!-- ----------------------------------------------一般會員 -->
-        
+        <!-- id="inputPassword" -->
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">        
             <form action="<c:url value="/UcheckLogin.controller"/>" method="post">
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
-                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="userAccount">
+                <input type="id" class="form-control-plaintext input_bg" id="inputAccunt" placeholder="請輸入帳號" name="userAccount">
               </div>
             </div>
             <div class="form-group row">
               
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
-                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="userPwd">
+                <input type="password" class="form-control-plaintext input_bg" id="inputUPassword" placeholder="請輸入密碼" name="userPwd">
               	<input type="hidden" id="requestOrderId" value="" name="requestOrderId">
               </div>
               <script>
@@ -97,13 +97,17 @@
                  <div class="col-12 p-0 ">
                  <div class="row">
   <div class="col-sm-7 dis480">
-  <!--     <button class="text-center loginBtn loginBtn--facebook">
-        Facebook
-      </button> -->
-      <div class="g-signin2" data-onsuccess="onSignIn">
+      <div class=" g-signin2" data-width="171" data-onsuccess="onSignIn">
       <!-- class="text-center loginBtn loginBtn--google" -->
-        Google
       </div>
+  	  <!-- <button class="text-center loginBtn loginBtn--facebook">Facebook</button> -->
+      <div class="col-8 p-0">
+      <a href="/Bartenders/FLogin">
+      <button type="button" class="loginBtn loginBtn--facebook col-12">
+       &emsp;&emsp;&nbsp;&nbsp;Facebook
+      </button></a>
+      <!-- 上面這顆按鈕在form內所以要加type="button"否則會把整個表單提交出去 -->
+      </div> 
       <br>
       <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
         酒吧用戶
@@ -116,6 +120,7 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
+                <button id="demo1" class=" btn btn-light"  style="color:#62592C; width:140px; font-size:16px;">資策會VIP通道</button>
                   </div>
                  </div>
                  <div class="display480">
@@ -150,14 +155,14 @@
             <div class="form-group row">
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">帳號</label>
               <div class="col-10 input_bgg">
-                <input type="id" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入帳號" name="companyAccount">
+                <input type="id" class="form-control-plaintext input_bg" id="inputCAccunt" placeholder="請輸入帳號" name="companyAccount">
               </div>
             </div>
             <div class="form-group row">
               
               <label for="inputPassword" class="col-2 col-form-label text-center color_b px-0">密碼</label>
               <div class="col-10">
-                <input type="password" class="form-control-plaintext input_bg" id="inputPassword" placeholder="請輸入密碼" name="companyPwd">
+                <input type="password" class="form-control-plaintext input_bg" id="inputCPassword" placeholder="請輸入密碼" name="companyPwd">
               </div>
             </div>
          
@@ -168,10 +173,17 @@
   <!--     <button class="text-center loginBtn loginBtn--facebook">
         Facebook
       </button> -->
-      <div class="g-signin2" data-onsuccess="onSignInC">
+      <div class="g-signin2" data-width="171" data-onsuccess="onSignInC">
       <!-- class="text-center loginBtn loginBtn--google" -->
         Google
       </div>
+      <div class="col-8 p-0">
+      <a href="/Bartenders/">
+      <button type="button" class="loginBtn loginBtn--facebook col-12">
+       &emsp;&emsp;&nbsp;&nbsp;Facebook
+      </button></a>
+      <!-- 上面這顆按鈕在form內所以要加type="button"否則會把整個表單提交出去 -->
+      </div> 
       <br>
       <!-- <a href="/Bartenders/CLogin" style="padding: 10px" class="login text-center loginBtn" >
         酒吧用戶
@@ -184,6 +196,8 @@
                   <div class="col-sm-5 text-right">       
                 <button type="button" class=" btn btn-light" data-dismiss="modal">取消</button>
                 <button value="submit" class="btn btn-dark ">送出</button>
+                <button id="demo2" class=" btn btn-light" style="color:#305A56; width:140px; font-size:16px;">資策會VIP通道</button>
+   <!--       裡面屬性不設定type="button"可直接送出表單		-->
                   </div>
                  </div>
                  <div class="display480">
@@ -680,7 +694,18 @@
         // var parallax = new Parallax(scene);
 
     </script>
-    
+	<script type="text/javascript">
+		$('#demo1').click(function() {
+			$('#inputAccunt').val('Aa654321');
+			$('#inputUPassword').val('Aa123456Aa123456');
+		});
+	</script>
+ 	<script type="text/javascript">
+		$('#demo2').click(function() {
+			$('#inputCAccunt').val('Cc654321');
+			$('#inputCPassword').val('Cc123456Cc123456');
+		});
+	</script>
 </body>
 
 </html>
