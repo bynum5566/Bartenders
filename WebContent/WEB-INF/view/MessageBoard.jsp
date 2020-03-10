@@ -558,7 +558,7 @@ form.panel {
 
 			// 登入 FB, 未偵測到加入會員
 			else if (response.status === "not_authorized") {
-				target.innerHTML = "已登入 FB，但未加入 WFU BLOG DEMO 應用程式";
+				target.innerHTML = "尚未連動本站";
 			}
 
 			// 未登入 FB
