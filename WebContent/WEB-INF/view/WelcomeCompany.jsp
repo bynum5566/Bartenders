@@ -26,6 +26,7 @@
 			background-position: top;
 			background-image: url(/Bartenders/images/bg16.png);
 			background-color: transparent;
+			background-repeat: repeat-y;
 		}
 		
 		.wrapper.style5 {

@@ -88,7 +88,7 @@
 		html, body {
 			height: 100%;
 			background-image: url("/Bartenders/images/userFirstPage1.jpg");
-			background-repeat: no-repeat;
+ 			background-repeat: no-repeat; 
 			background-size: cover;
 			background-position: center;
 			background-color: transparent;
