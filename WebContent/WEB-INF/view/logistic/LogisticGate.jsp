@@ -165,7 +165,7 @@
 		orderStatus = item[0];
 		orderID = item[1];
 		orderComplete = item[2];
-		window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus;
+		window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus + '&sID=${getSenderId}';
 	})
 	listR = $('button[id^="2"][class="Ready"]');
 	listR.css("display", "block");

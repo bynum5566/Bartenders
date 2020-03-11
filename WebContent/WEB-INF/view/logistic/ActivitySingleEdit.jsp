@@ -563,44 +563,7 @@
 	<script src="scripts/mapForCreateActivity.js"></script>
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAj6gmkT2i_jYKFJttSRpsdp7gAeFrzU5E&libraries=geometry&callback=initMap"></script>
 	<script>
-	<c:if test="${not empty errors}">
-	console.log('errors has data','${errors}');
-	if('${errors.name}'!=''){
-		document.getElementById('name').style.border = '1px red solid';
-	}
-	if('${errors.type}'!=''){
-		document.getElementById('typeDiv').style.border = '1px red solid';
-	}
-	if('${errors.beginTime}'!=''){
-		document.getElementById('beginTime').style.border = '1px red solid';
-	}
-	if('${errors.endTime}'!=''){
-		document.getElementById('endTime').style.border = '1px red solid';
-	}
-	if('${errors.address}'!=''){
-		document.getElementById('address').style.border = '1px red solid';
-	}
-	if('${errors.map}'=='尚未點選地圖設定地點'){
-		mapBtn.style.border = '2px red solid';
-		mapBtn.innerHTML = '尚未點選地圖設定地點';
-	}
 	
-	if('${errors.limitNum}'!=''){
-		document.getElementById('limitNum').style.border = '1px red solid';
-	}
-	if('${errors.targetNum}'!=''){
-		document.getElementById('targetNum').style.border = '1px red solid';
-	}
-	if('${errors.actualNum}'!=''){
-		document.getElementById('actualNum').style.border = '1px red solid';
-	}
-	if('${errors.brief}'!=''){
-		document.getElementById('brief').style.border = '1px red solid';
-	}
-	if('${errors.detail}'!=''){
-		document.getElementById('detail').style.border = '1px red solid';
-	}
-</c:if>
 	<c:if test="${not empty temp}">
 	console.log('temp has data','${temp}');
 	/**/
@@ -654,6 +617,44 @@
 	if('${temp.preUrl}'!=''){
 		document.getElementById('preUrl').value = '${temp.preUrl}';
 	}
+</c:if>
+<c:if test="${not empty errors}">
+console.log('errors has data','${errors}');
+if('${errors.name}'!=''){
+	document.getElementById('name').style.border = '1px red solid';
+}
+if('${errors.type}'!=''){
+	document.getElementById('typeDiv').style.border = '1px red solid';
+}
+if('${errors.beginTime}'!=''){
+	document.getElementById('beginTime').style.border = '1px red solid';
+}
+if('${errors.endTime}'!=''){
+	document.getElementById('endTime').style.border = '1px red solid';
+}
+if('${errors.address}'!=''){
+	document.getElementById('address').style.border = '1px red solid';
+}
+if('${errors.map}'=='尚未點選地圖設定地點'){
+	mapBtn.style.border = '2px red solid';
+	mapBtn.innerHTML = '尚未點選地圖設定地點';
+}
+
+if('${errors.limitNum}'!=''){
+	document.getElementById('limitNum').style.border = '1px red solid';
+}
+if('${errors.targetNum}'!=''){
+	document.getElementById('targetNum').style.border = '1px red solid';
+}
+if('${errors.actualNum}'!=''){
+	document.getElementById('actualNum').style.border = '1px red solid';
+}
+if('${errors.brief}'!=''){
+	document.getElementById('brief').style.border = '1px red solid';
+}
+if('${errors.detail}'!=''){
+	document.getElementById('detail').style.border = '1px red solid';
+}
 </c:if>
 	</script>
 	

@@ -160,9 +160,9 @@
 															<td>${Logistic.oTimeA}</td>
 															<td>
 															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
-																	class="reserve allnormal" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
+																	class="reserve allnormal" style="width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
 															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
-																	class="reserve alldemo" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒demo</button>			
+																	class="reserve alldemo" style="width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒demo</button>			
 															</td>
 														</tr>
 													</c:forEach>
@@ -248,7 +248,7 @@
 				newBtn.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn.className = 'reserve normal';
 				newBtn.innerHTML = '接單';
-				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn);
 				//demo用
@@ -256,7 +256,7 @@
 				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve demo';
 				newBtn2.innerHTML = '5秒demo';
-				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn2.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
 			}else if(situation=='all'){
@@ -266,7 +266,7 @@
 				newBtn.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn.className = 'reserve allnormal';
 				newBtn.innerHTML = '接單';
-				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn);
 				//demo用
@@ -274,7 +274,7 @@
 				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve alldemo';
 				newBtn2.innerHTML = '5秒demo';
-				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn2.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
 			}

@@ -10,7 +10,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>活動編輯</title>
+	<title>活動建立</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -179,7 +179,7 @@
 					<section>
 						<div class="row">
 							<div id="background" class="col-12 col-12-medium"><!-- 這裡開始 -->
-								<h1 align="center" style="font-size:48px;margin:5px;">活動編輯</h1>
+								<h1 align="center" style="font-size:48px;margin:5px;">活動建立</h1>
 								
 								
 								<div class="container">
@@ -252,7 +252,7 @@
 											</div>
 										
 										</div>
-										<div align=center style="margin: 10px">
+										<div align=center style="margin: 10px;font-size:18px;">
 											(選填) 上限: <input id="limitNum" class="numSetting" type="text" name="limitNum" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
 											成團: <input id="targetNum" class="numSetting" type="text" name="targetNum" style="width:50px;display:inline;height:32px;text-align:center;">人 / 
 											目前: <input id="actualNum" class="numSetting" type="text" name="actualNum" style="width:50px;display:inline;height:32px;text-align:center;">人
@@ -417,12 +417,12 @@
 											var people = document.getElementById('people${status.index}');
 											
 											</script>
-											<input id="lat" type="text" name="lat" value="0">
-											<input id="lng" type="text" name="lng" value="0">
-											<input id="preUrl" type="text" name="preUrl" value="${preUrl}">
-											<input type="text" name="userId" value="${getUserId}${getCompanyId}">
-											<input id="realType" type="text" name="realType" value="no">
-											<input id="activityId" type="text" name="activityId" value="${Activity.activityId}">
+											<input id="lat" type="hidden" name="lat" value="0">
+											<input id="lng" type="hidden" name="lng" value="0">
+											<input id="preUrl" type="hidden" name="preUrl" value="${preUrl}">
+											<input type="hidden" name="userId" value="${getUserId}${getCompanyId}">
+											<input id="realType" type="hidden" name="realType" value="no">
+											<input id="activityId" type="hidden" name="activityId" value="${Activity.activityId}">
 											
 											<input id="submitBtn" type="submit" value="確定">
 											</form>
@@ -432,9 +432,9 @@
 								
 							</div><!-- 這裡結束 -->
 							<div id="demoBox">
-								<button id="demo1">派對</button><br>
-								<button id="demo2">酒展</button><br>
-								<button id="demo3">嘉年華</button>
+								<button id="demo1">不完整demo</button><br>
+								<button id="demo2">完整demo</button><br>
+								<button id="demo3">完整demo2</button>
 							</div>
 						</div>
 					</section>
@@ -446,6 +446,27 @@
 	<script type="text/javascript">
 	//demo用
 	$('#demo1').on('click',function(){
+		console.log('click1');
+		$('#name').val('周末狂歡派對');
+		//$('#party').prop('checked');
+		//document.getElementById('party').checked = true;
+		//$('#realType').val('party');
+		//document.getElementById('typeDisplay').src = 'images/party.png';
+		$('#beginTime').val('2020/03/13 19:00');
+		//$('#endTime').val('2020/03/13 22:00');
+		//$('#address').val('台北市大安區仁愛路四段112巷11號');
+		//$('#lat').val(25.0365128);
+		//$('#lng').val(121.5499646);
+		addressBtn.disabled=false;
+		//checkMap();
+		$('#limitNum').val(10);
+		$('#actualNum').val(2);
+		$('#targetNum').val(6);
+		$('#brief').val('狂歡派對就是要人多');
+		$('#detail').val('我們是一群認識已久的酒友 當初也是因為喝酒認識的 如果你也是個酒品愛好者 卻苦無一起享受的夥伴 歡迎加入我們一起狂歡');
+	})
+	
+	$('#demo2').on('click',function(){
 		console.log('click1');
 		$('#name').val('周末狂歡派對');
 		//$('#party').prop('checked');
@@ -464,27 +485,6 @@
 		$('#targetNum').val(6);
 		$('#brief').val('狂歡派對就是要人多');
 		$('#detail').val('我們是一群認識已久的酒友 當初也是因為喝酒認識的 如果你也是個酒品愛好者 卻苦無一起享受的夥伴 歡迎加入我們一起狂歡');
-	})
-	
-	$('#demo2').on('click',function(){
-		console.log('click2');
-		$('#name').val('2020 台北國際酒展');
-		//$('#party').prop('checked');
-		document.getElementById('show').checked = true;
-		$('#realType').val('show');
-		document.getElementById('typeDisplay').src = 'images/show.png';
-		$('#beginTime').val('2020/03/13 10:00');
-		$('#endTime').val('2020/03/16 18:00');
-		$('#address').val('台北南港展覽館1館');
-		$('#lat').val(25.0365128);
-		$('#lng').val(121.5499646);
-		addressBtn.disabled=false;
-		checkMap();
-		$('#limitNum').val(999);
-		$('#actualNum').val(12);
-		//$('#targetNum').val(0);
-		$('#brief').val('全台最大國際酒展');
-		$('#detail').val('來自世界各國的葡萄酒、清酒及啤酒！結合好酒、好食、好玩、好看，與你一起打開味蕾、刺激鼻間、衝擊視野、感受微醺、探索春Wine美好，體驗酒展風格。');
 	})
 	
 	$('#demo3').on('click',function(){
@@ -508,6 +508,26 @@
 		$('#detail').val('台北晶華酒店今年首次推出的「德國酒食嘉年華」，是由連續在台主辦德國啤酒節19年的德籍美食主廚--麥可溫德(Michael Wendel)主導，將這流傳近3世紀的飲食文化首次帶進五星酒店；三樓宴會廳的「德國啤酒節派對」現場提供德式冷肉乳酪盤、啤酒燉豬肉、德式烤豬腳、啤酒節烘烤半雞、德式冷肉乳酪盤…等應景佳餚以及特色獨具的德國艾丁格啤酒；場地佈置上也是匠心獨具的將巴伐利亞垂吊掛飾、啤酒節專用桌椅…等空運來台，晶華更重金禮聘曾在美國、法國、荷蘭等地啤酒節演出的巴伐利亞特快車樂團(Bavaria Show Express)現場演唱，團員身著德國傳統服飾、透過歡樂的曲風，以及特色獨具的阿爾卑斯山長號炒熱氣氛，希望完整傳遞德國啤酒節的氛圍。');
 	})
 	
+	$('#demo4').on('click',function(){
+		console.log('click2');
+		$('#name').val('2020 台北國際酒展');
+		//$('#party').prop('checked');
+		document.getElementById('show').checked = true;
+		$('#realType').val('show');
+		document.getElementById('typeDisplay').src = 'images/show.png';
+		$('#beginTime').val('2020/03/13 10:00');
+		$('#endTime').val('2020/03/16 18:00');
+		$('#address').val('台北南港展覽館1館');
+		$('#lat').val(25.0365128);
+		$('#lng').val(121.5499646);
+		addressBtn.disabled=false;
+		checkMap();
+		$('#limitNum').val(999);
+		$('#actualNum').val(12);
+		//$('#targetNum').val(0);
+		$('#brief').val('全台最大國際酒展');
+		$('#detail').val('來自世界各國的葡萄酒、清酒及啤酒！結合好酒、好食、好玩、好看，與你一起打開味蕾、刺激鼻間、衝擊視野、感受微醺、探索春Wine美好，體驗酒展風格。');
+	})
 	//檢查地址是否輸入 限制定位按鈕
 	var addressBtn = document.getElementById('addressBtn')
 	if(document.getElementById('address').value==''){

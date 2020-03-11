@@ -225,6 +225,7 @@
 													document.getElementById('tbody').appendChild(newTr);
 													document.getElementById('noteText').innerHTML = '您尚未預約此訂單，請先點選接單按鈕';
 													changeDisplay();
+													changeHTML();
 												}//else結束
 											});
 									};
@@ -258,7 +259,7 @@
 										orderStatus = item[0];
 										orderID = item[1];
 										orderComplete = item[2];
-										window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus;
+										window.location.href = '<c:url value="/logistic/DeliverReady.do"/>?orderID=' + orderID + '&orderStatus=' + orderStatus + '&sID=${getSenderId}';
 									})
 									listR = $('button[id^="2"][class="Ready"]');
 									listR.css("display", "block");
@@ -361,7 +362,7 @@
 	
 	<script>
 		$("#bt1").on("click", function () {
-			window.location.href = '<c:url value="/logistic/LogisticGate"/>';
+			window.location.href = '<c:url value="/logistic/searchPersonalOrder.do?sID=${getSenderId}"/>';
 		})
 		
 
@@ -378,6 +379,7 @@
 				} else if (type[i].innerHTML == '3') {
 					type[i].innerHTML = '票券';
 				};
+				//console.log('類型已改好');
 			}
 	
 			var myStatus = document.getElementsByClassName('myStatus');
@@ -389,6 +391,7 @@
 				} else if (myStatus[i].innerHTML == '3') {
 					myStatus[i].innerHTML = '已送達';
 				};
+				//console.log('狀態已改好');
 			}
 		}
 		//初始轉換 & 初始隱藏
