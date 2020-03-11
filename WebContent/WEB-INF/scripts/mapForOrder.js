@@ -128,8 +128,9 @@
 		function reserveOrder(prefix,input,senderId,situation){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'/'+senderId+'').then(
 					function(response) {
+						console.log('reserveOrder done');
 						return response.json();
-					}).then(function(JSONdata){
+					}).then(function(){
 						/*
 						console.log('current bar order : ', JSONdata);
 						if(situation=='byBar'){
@@ -146,16 +147,19 @@
 							getOrders(prefix,input,senderId,situation);
 						}
 						*/
-						console.log('reserveOrder done');
+						getMarkers('logistic/OrderSearch',1,'${getSenderId}','all')
+						getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all')
+						
+						
 					})
 				}
 		function getMarkers(prefix,input,senderId,situation){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
-						console.log('data get!');
+						console.log('getMarker data get!');
 						return response.json();
 					}).then(function(JSONdata) {
-						console.log('this is data: ', JSONdata);
+						console.log('this is MarkerJSON: ', JSONdata);
 						var defaultIndex = 0;
 						var all = JSONdata.forEach(function(item){
 							if(prefix=='Bar'||prefix=='logistic/OrderSearch'){
@@ -231,7 +235,7 @@
 		 function getOrders(prefix,input,senderId,situation){
 			fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'').then(
 					function(response) {
-						console.log('data get!');
+						console.log('getOrders data get!');
 						return response.json();
 					}).then(function(OrderJSON) {
 						console.log('this is OrderJSON: ', OrderJSON);

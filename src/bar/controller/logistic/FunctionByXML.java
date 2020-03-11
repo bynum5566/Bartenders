@@ -364,6 +364,8 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
+		List<Logistic> updateTime = lSer.queryJoker("ostatus","'1'");
+		lSer.checkReserveTime(updateTime);
 		List<Logistic> orderList;
 		if(cID==0) {
 			orderList = lSer.queryJoker("ostatus","'1'","sID","NULL");
@@ -372,7 +374,6 @@ public class FunctionByXML {
 //			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
 		}
 		
-		lSer.checkReserveTime(orderList);
 		m.addAttribute("activity",orderList);
 		return orderList;
 	}

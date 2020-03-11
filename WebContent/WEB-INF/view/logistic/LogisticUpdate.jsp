@@ -211,9 +211,10 @@
 													var newTd = document.createElement("td"); 
 													newTd.id = 'reserveBtn';
 													var newBtn = document.createElement("button");
-													newBtn.id = LogisticJSON['sID']+LogisticJSON['oStatus']+'reserve'+LogisticJSON['oID'];
+													newBtn.id = LogisticJSON['sID']+'-'+LogisticJSON['oStatus']+'-'+LogisticJSON['cID']+'-'+LogisticJSON['oID'];
+													
 													newBtn.type = 'button';
-													newBtn.className = 'reserve';
+													newBtn.className = 'reserve normal';
 													newBtn.innerHTML = '接單';
 													newBtn.style = 'width:100px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 													//newBtn.style.display = 'none';
@@ -222,7 +223,7 @@
 													
 													/////////
 													document.getElementById('tbody').appendChild(newTr);
-													document.getElementById('noteText').innerHTML = '請先點選接單按鈕';
+													document.getElementById('noteText').innerHTML = '您尚未預約此訂單，請先點選接單按鈕';
 													changeDisplay();
 												}//else結束
 											});
@@ -267,26 +268,34 @@
 								
 								//接單按鈕
 								function changeDisplay(){
+								
+									$(".normal").on("click",function () {
+										var Str = this.id.split('-');
+										oID = Str[3];
+										cID = Str[2];
+										console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
+
+										reserveOrder('logistic/OrderReserveByBar/bar/60',oID,'${getSenderId}','byBar');
+										this.innerHTML = '已接單';
+										$(this).attr("disabled",true);
+										
+									})
+									/*
 								$(".reserve").on("click", function () {
 									var Str = this.id
 									orderID = Str.substring(8);
 									console.log('orderId is: ',orderID)
 									window.location.href = '<c:url value="/logistic/orderReserve.do"/>?oID=' + orderID + '&sID='+currentId;
-									//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-									//var prefix = 'logistic/OrderReserveByBar';
-									//var input = orderID;
-									//reserveOrder(prefix,input,'${getSenderId}');
 								})
-								
-									listR = $('button[id^="9"][class="reserve"]');
-									listR.attr("disabled",true);
-									console.log('class length: ',listR.length);
-									for(var i=0;i<listR.length;i++){
-										listR[i].innerHTML = '已接單';
-									}
-									
-									//listR.attr("style", "display:block;");
+								*/
 								}
+								function reserveOrder(prefix,input,senderId,situation){
+									fetch('http://localhost:8080/Bartenders/'+prefix+'/'+input+'/'+senderId+'').then(
+											function(response) {
+												console.log('reserveOrder done');
+												return response.json();
+											})
+										}
 							</script>	
 							<h3 align="center" style="font-size:36px;">訂單明細</h3>
 							<div id="orderDiv">

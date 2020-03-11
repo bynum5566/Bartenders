@@ -159,10 +159,10 @@
 															<td class="myStatus">${Logistic.oStatus}</td>
 															<td>${Logistic.oTimeA}</td>
 															<td>
-															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve normal" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
-															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve demo" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒接單</button>			
+															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
+																	class="reserve allnormal" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
+															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
+																	class="reserve alldemo" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒demo</button>			
 															</td>
 														</tr>
 													</c:forEach>
@@ -255,7 +255,7 @@
 				var newBtn2 = document.createElement("button");
 				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve demo';
-				newBtn2.innerHTML = '5秒接單';
+				newBtn2.innerHTML = '5秒demo';
 				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
@@ -265,7 +265,7 @@
 				var newBtn = document.createElement("button");
 				newBtn.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn.className = 'reserve allnormal';
-				newBtn.innerHTML = 'all接單';
+				newBtn.innerHTML = '接單';
 				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn);
@@ -273,7 +273,7 @@
 				var newBtn2 = document.createElement("button");
 				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve alldemo';
-				newBtn2.innerHTML = 'all5秒接單';
+				newBtn2.innerHTML = '5秒demo';
 				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
@@ -323,72 +323,75 @@
 	
 	//接單按鈕
 	function changeDisplay(){
-		$(".normal").on("click",async function () {
+		$(".normal").on("click",function () {
 			var Str = this.id.split('-');
 			oID = Str[3];
 			cID = Str[2];
-			//console.log('Str is: ',Str,'oID: ',oID)
-			await reserveOrder('logistic/OrderReserveByBar/bar/60',oID,'${getSenderId}','byBar');
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
 			//清除酒吧
-			await reloadMarkers();
+			reloadMarkers();
 			//清除送貨地點
-			await reloadOrders();
-			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
-			await getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/bar/60',oID,'${getSenderId}','byBar');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
+			//getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
 			//changeIcon(cID);
 		})
 
 		//demo按鈕
-		$(".demo").on("click", async function () {
+		$(".demo").on("click",function () {
 			var Str = this.id.split('-');
 			oID = Str[3];
 			cID = Str[2];
-			await reserveOrder('logistic/OrderReserveByBar/bar/5',oID,'${getSenderId}','byBar');
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
 			//清除酒吧
-			await reloadMarkers();
+			reloadMarkers();
 			//清除送貨地點
-			await reloadOrders();
-			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
-			await getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/bar/5',oID,'${getSenderId}','byBar');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
+			//getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
 			//changeIcon(cID);
 		})
 		
-		$(".allnormal").on("click",async function () {
+		$(".allnormal").on("click",function () {
 			var Str = this.id.split('-');
 			oID = Str[3];
 			cID = Str[2];
-			console.log('Str is: ',Str,'oID: ',oID)
-			
-			await reserveOrder('logistic/OrderReserveByBar/all/60',oID,'${getSenderId}','all');
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
 			//清除酒吧
-			await reloadMarkers();
+			reloadMarkers();
 			//清除送貨地點
-			await reloadOrders();
-			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
-			await getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/all/60',oID,'${getSenderId}','all');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
+			//getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
 			//changeIcon(cID);
 		})
 
 		//demo按鈕
-		$(".alldemo").on("click",async function () {
+		$(".alldemo").on("click",function () {
 			var Str = this.id.split('-');
 			oID = Str[3];
 			cID = Str[2];
-			console.log('Str is: ',Str,'oID: ',oID)
-			
-			await reserveOrder('logistic/OrderReserveByBar/all/5',oID,'${getSenderId}','all');
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
 			//清除酒吧
-			await reloadMarkers();
+			reloadMarkers();
 			//清除送貨地點
-			await reloadOrders();
-			await getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
-			await getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/all/5',oID,'${getSenderId}','all');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
+			//getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
 			//changeIcon(cID);
 		})
 		
 		listR = $('button[id^="9"][class*="reserve"]');
 		listR.attr("disabled",true);
-		console.log('class length: ',listR.length);
+		console.log('listR number: ',listR.length);
 		for(var i=0;i<listR.length;i++){
 			listR[i].innerHTML = '已接單';
 		}	
