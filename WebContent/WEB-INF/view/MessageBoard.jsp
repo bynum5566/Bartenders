@@ -163,12 +163,7 @@ form.panel {
 							</script>
 							<!--縮放用JS，結束-->
 
-							<!-- fb按鈕 -->
-							<div style="margin: 20px;">
-								目前已登入的Facebook帳戶：<span id="FB_STATUS_1"></span>
-
-							</div>
-							<!-- fb按鈕 -->
+							
 							<ul>
 								<li style="color: white; font-weight: bold;">
 									<form action='messageBoard.controller' method='post'
