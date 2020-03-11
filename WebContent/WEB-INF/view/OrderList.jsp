@@ -190,11 +190,11 @@ table td {
 								<table>
 									<thead>
 										<tr align="center">
-											<th>產品縮圖</th>
-											<th>產品名稱</th>
-											<th>產品單價</th>
-											<th>產品數量</th>
-											<th>產品金額</th>
+											<th style="font-size: 22px;">產品縮圖</th>
+											<th style="font-size: 22px;">產品名稱</th>
+											<th style="font-size: 22px;">產品單價</th>
+											<th style="font-size: 22px;">產品數量</th>
+											<th style="font-size: 22px;">產品金額</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -204,10 +204,10 @@ table td {
 											<td align="center" height="90" width="130">
 												<img height="90" width="130" id="pdPicture" src="<c:out value="${productData[current.index].productImageUrl}"/>">
 											</td>
-											<td align="center" style="line-height:50px">${productData[current.index].productName}</td>
-											<td align="center">$${oneOrderCarts[current.index].checkoutPrice}</td>
-											<td align="center">${oneOrderCarts[current.index].quantity}</td>
-											<td align="center">$${productsPrice[current.index]}</td>
+											<td align="center" style="line-height:50px;font-size:20px;">${productData[current.index].productName}</td>
+											<td align="center" style="font-size: 20px;">$${oneOrderCarts[current.index].checkoutPrice}</td>
+											<td align="center" style="font-size: 20px;">${oneOrderCarts[current.index].quantity}</td>
+											<td align="center" style="font-size: 20px;">$${productsPrice[current.index]}</td>
 											<!--<td colspan="3">合計  ${totalPrice}</td> -->
 
 										</tr>
@@ -216,16 +216,16 @@ table td {
 										</tr>
 
 										<tr align="center">
-											<th colspan="4">產品合計</th>
-											<td>$${totalPrice}</td>
+											<th colspan="4" style="font-size: 22px;">產品合計</th>
+											<td style="font-size: 20px;">$${totalPrice}</td>
 										</tr>
 										<tr align="center">
-											<th colspan="4">運費</th>
-											<td>$${ShippingNumToPrice[order.shipping]}</td>
+											<th colspan="4" style="font-size: 22px;">運費</th>
+											<td style="font-size: 20px;">$${ShippingNumToPrice[order.shipping]}</td>
 										</tr>
 										<tr align="center">
-											<th colspan="4">訂單總金額</th>
-											<td>$${finalTotalPrice}</td>
+											<th colspan="4" style="font-size: 22px">訂單總金額</th>
+											<td style="font-size: 20px;color: yellow;">$${finalTotalPrice}</td>
 										</tr>
 
 									</tbody>

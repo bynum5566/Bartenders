@@ -183,7 +183,7 @@ body {
 				<div class="inner">
 					<section>
 						<div class="row">
-							<div class="col-6 col-12-medium">
+							<div class="col-7 col-12-medium">
 								<div class="outwrap">
 									<h3>
 										<a style="text-decoration: none;" class="button"
