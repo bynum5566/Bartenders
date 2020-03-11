@@ -78,12 +78,12 @@
 							<div class="col-6 col-12-medium">
 								<!-- <div class="content"> -->
 								<ul class="alt">
-									<li>訂單編號:&nbsp;${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
-									<li>收件人:&nbsp;${order.recipient}</li>
-									<li>配送方式:&nbsp;${ShippingNumToStr[order.shipping]}</li>
-									<li>配送地址:&nbsp;${attrAddress}</li>
-									<li>配送電話:&nbsp;${order.phone}</li>
-									<li>物流編號:&nbsp;${order.shippingNumber}</li>
+									<li style="font-size: 20px;">訂單編號:&nbsp;${orderId.substring(3,6)}${orderId.substring(12,19)}</li>
+									<li style="font-size: 20px;">收件人:&nbsp;${order.recipient}</li>
+									<li style="font-size: 20px;">配送方式:&nbsp;${ShippingNumToStr[order.shipping]}</li>
+									<li style="font-size: 20px;">配送地址:&nbsp;${attrAddress}</li>
+									<li style="font-size: 20px;">配送電話:&nbsp;${order.phone}</li>
+									<li style="font-size: 20px;">物流編號:&nbsp;${order.shippingNumber}</li>
 								</ul>
 								<ul class="actions">
 									<li><a class="button primary" href="<c:url value="/companyOrder.controller"/>">返回訂單頁面</a>
