@@ -20,6 +20,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBarInfo.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
