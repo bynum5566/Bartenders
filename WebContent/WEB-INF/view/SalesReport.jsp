@@ -163,7 +163,7 @@ body {
 									<br>
 									<form action="/Bartenders/salesReportSelectTime.controller">
 									<ul class="actions">
-									<li class="B1">
+									<li class="B1" style="white-space: nowrap;">
 									起訖時間:</li>
 									<li class="B1" nowrap="nowrap">
 									<input type="date" name="startTime" size="30"
