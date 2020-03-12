@@ -7,7 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
-	<title>BarOrders</title>
+	<title>物流登入</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/Bartenders/assets/css/main.css" />	<noscript>
 	<link rel="stylesheet" href="/Bartenders/assets/css/noscript.css" /></noscript>
@@ -81,12 +82,12 @@
 										<ul class="alt">
 												<li>
 													<h3>帳號:</h3>
-													<input type="text" name="username">
+													<input id="userN" type="text" name="username">
 													<h3>${errors.account}</h3>
 												</li>
 												<li>
 													<h3>密碼:</h3>
-													<input type="password" name="userpwd">
+													<input id="userP" type="password" name="userpwd">
 													<h3>${errors.password}</h3>
 													<input type="hidden" name="orderID" value="${orderID}">
 												</li>
@@ -95,6 +96,8 @@
 												 -->
 												<li>
 													<input type="submit">
+													<button id="demo1" >配送員01</button>
+													<button id="demo2" >配送員02</button>
 													<h3>${errors.msg}</h3>
 													<h3>${msg}</h3>
 												</li>
@@ -107,6 +110,19 @@
 			</section>
 		</article>
 	</div>
+	<script>
+		$('#demo1').on('click',function(){
+			console.log('click demo1')
+			$('#userN').val('Alex7311');
+			$('#userP').val('2Xlialri');
+		})
+		
+		$('#demo2').on('click',function(){
+			console.log('click demo2')
+			$('#userN').val('Jone0001');
+			$('#userP').val('2Xbralbr');
+		})
+	</script>
 	
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>
