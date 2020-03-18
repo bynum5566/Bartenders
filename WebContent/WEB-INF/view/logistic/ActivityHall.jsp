@@ -490,7 +490,7 @@
 								<li><a href="/Bartenders/queryAllActive.do">活動大廳</a></li>
 	<!-- 							<li><a href="/Bartenders/ActivityCreate">建立活動</a></li> -->
 	<!-- 							<li><a id="myActivity" href="/Bartenders/queryActivityByUser.do">管理活動</a></li> -->
-								<li><a href="/Bartenders/getBarData.do?userId=${getCompanyId}">測試酒吧</a></li>
+								
 								<li class="small"><a href="/Bartenders/Welcome.Company">首頁</a><a href="javascript:signOut()">登出</a></li>
 							</c:if>
 							<c:if test="${testV<499999}">
@@ -527,7 +527,7 @@
 									<div class="links">
 <%-- 										<c:if test="${testV>499999}"> --%>
 										<a id="myActivity" href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a>
-										<a href="/Bartenders/ActivityCreate"><button align="center">建立活動</button></a>
+										<a id="myCreate" href="/Bartenders/ActivityCreate.do?currentId="><button align="center">建立活動</button></a>
 <%-- 										</c:if> --%>
 <%-- 										<c:if test="${testV<499999}"> --%>
 <!-- 										<a href="/Bartenders/queryActivityByUser.do"><button align="center">管理活動</button></a> -->
@@ -989,6 +989,7 @@
 	
 	//設定currentId給超連結
 		$('#myActivity').attr("href","/Bartenders/queryActivityByUser.do?currentId="+currentId);
+		$('#myCreate').attr("href","/Bartenders/ActivityCreate.do?currentId="+currentId);
 	</script>
 	<script src="/Bartenders/assets/js/jquery.min.js"></script>
 	<script src="/Bartenders/assets/js/jquery.scrollex.min.js"></script>

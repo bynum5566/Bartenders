@@ -338,11 +338,11 @@ public class FunctionByXML {
 		List<Activity> activity = new ArrayList<Activity>();
 		List<Activity> temp;
 		for(Logistic a:newOrder) {
-//			if(a.getsID()==null) {
+			if(a.getsID()==null) {
 				Integer cID = a.getcID();
 				orderByBar.putIfAbsent(cID,0);
 				orderByBar.put(cID,orderByBar.get(cID)+1);
-//			}
+			}
 		}
 		System.out.println("hashMap is: "+orderByBar);
 		Iterator<Map.Entry<Integer, Integer>> iterator = orderByBar.entrySet().iterator();
@@ -364,15 +364,16 @@ public class FunctionByXML {
 	@RequestMapping(path = "logistic/OrderSearchByBar/{cID}",method = RequestMethod.GET)
 	public @ResponseBody List<Logistic> searchOrderByBar(@PathVariable Integer cID,HttpServletRequest request, HttpServletResponse response, Model m
 			) throws IOException, ParseException {
+		List<Logistic> updateTime = lSer.queryJoker("ostatus","'1'");
+		lSer.checkReserveTime(updateTime);
 		List<Logistic> orderList;
 		if(cID==0) {
-			orderList = lSer.queryJoker("ostatus","'1'");
+			orderList = lSer.queryJoker("ostatus","'1'","sID","NULL");
 		}else {
-//			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'","oTimeR","NULL");
-			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
+			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'","sID","NULL");
+//			orderList = lSer.queryJoker("cID","'"+cID+"'","ostatus","'1'");
 		}
 		
-		lSer.checkReserveTime(orderList);
 		m.addAttribute("activity",orderList);
 		return orderList;
 	}
@@ -392,7 +393,7 @@ public class FunctionByXML {
 	}
 	
 	@RequestMapping(path = "/logistic/OrderReserveByBar/{situation}/{second}/{oID}/{sID}",method = RequestMethod.GET)
-	public String orderReserve(@PathVariable(value = "oID")String oID,Model m,
+	public @ResponseBody Logistic orderReserve(@PathVariable(value = "oID")String oID,Model m,
 			@PathVariable(value = "sID")Integer sID,
 			@PathVariable(value = "second")Integer second,
 			@PathVariable(value = "situation")String situation,
@@ -414,11 +415,11 @@ public class FunctionByXML {
 		System.out.println("order reserver success");
 		if(situation.equals("bar")) {
 			System.out.println("order reserver from bar");
-			return "redirect:/logistic/OrderSearchByBar/"+cID;
+//			return "redirect:/logistic/OrderSearchByBar/"+cID;
 		}else if(situation.equals("all")) {
 			System.out.println("order reserver from all");
-			return "redirect:/logistic/OrderSearchByBar/0";
+//			return "redirect:/logistic/OrderSearchByBar/0";
 		}
-		return null;
+		return rs;
 	}
 }

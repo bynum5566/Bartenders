@@ -159,10 +159,10 @@
 															<td class="myStatus">${Logistic.oStatus}</td>
 															<td>${Logistic.oTimeA}</td>
 															<td>
-															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve normal" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
-															<button id="${Logistic.sID}${Logistic.oStatus}reserve${Logistic.oID}"
-																	class="reserve demo" style="width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒接單</button>			
+															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
+																	class="reserve allnormal" style="width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">接單</button>	
+															<button id="${Logistic.sID}-${Logistic.oStatus}-${Logistic.cID}-${Logistic.oID}"
+																	class="reserve alldemo" style="width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px">5秒demo</button>			
 															</td>
 														</tr>
 													</c:forEach>
@@ -198,8 +198,10 @@
 		if($('.searchDiv').css('display')=='none'){
 			$('.searchDiv').css('display','block');
 			var prefix = 'logistic/OrderSearch';
-			reloadMarkers(prefix,1);
-			getMarkers(prefix,1,'${getSenderId}');
+			reloadMarkers();
+			reloadOrders();
+			getMarkers(prefix,1,'${getSenderId}','byBar');
+			getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
 			$('#openSearch').html('收起地圖');
 			//$('#container').css('position','relative');
 		}else {
@@ -240,37 +242,39 @@
 				
 			}
 			if(situation=='byBar'){
+				console.log('situation is: ',situation);
 				var newTd = document.createElement("td"); 
 				var newBtn = document.createElement("button");
-				newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn.className = 'reserve normal';
 				newBtn.innerHTML = '接單';
-				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn);
 				//demo用
 				var newBtn2 = document.createElement("button");
-				newBtn2.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve demo';
-				newBtn2.innerHTML = '5秒接單';
-				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn2.innerHTML = '5秒demo';
+				newBtn2.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
 			}else if(situation=='all'){
+				console.log('situation is: ',situation);
 				var newTd = document.createElement("td"); 
 				var newBtn = document.createElement("button");
-				newBtn.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn.className = 'reserve allnormal';
 				newBtn.innerHTML = '接單';
-				newBtn.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn);
 				//demo用
 				var newBtn2 = document.createElement("button");
-				newBtn2.id = item['sID']+item['oStatus']+'reserve'+item['oID'];
+				newBtn2.id = item['sID']+'-'+item['oStatus']+'-'+item['cID']+'-'+item['oID'];
 				newBtn2.className = 'reserve alldemo';
-				newBtn2.innerHTML = '5秒接單';
-				newBtn2.style = 'width:120px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
+				newBtn2.innerHTML = '5秒demo';
+				newBtn2.style = 'width:140px;height:40px;padding:5px;margin:0px auto;vertical-align:middle;color:white;line-height:0px;';
 				//newBtn.style.display = 'none';
 				newTd.appendChild(newBtn2);
 			}
@@ -284,12 +288,13 @@
 	//訂單搜尋
 	function queryJoker(){
 		console.log('click joker');
-		var prefix = 'logistic/OrderSearch';
-		reloadMarkers(prefix,1);
+		//清除酒吧
+		reloadMarkers()
 		reloadOrders();
-		getMarkers(prefix,1,'${getSenderId}','all');
-		reset('logistic/OrderSearchByBar',0);
-		//getMarkers('logistic/OrderSearchByBar',0,'${getSenderId}');
+		
+		getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
+		//reset();
+		getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
 	}
 	//狀態轉文字
 	function changeHTML(){
@@ -318,57 +323,75 @@
 	
 	//接單按鈕
 	function changeDisplay(){
-		$(".normal").on("click", function () {
-			var Str = this.id
-			orderID = Str.substring(8);
-			console.log('orderId is: ',orderID)
-			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
-			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-			var prefix = 'logistic/OrderReserveByBar/bar/60';
-			var input = orderID;
-			reserveOrder(prefix,input,'${getSenderId}','byBar');
+		$(".normal").on("click",function () {
+			var Str = this.id.split('-');
+			oID = Str[3];
+			cID = Str[2];
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
+			//清除酒吧
+			reloadMarkers();
+			//清除送貨地點
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/bar/60',oID,'${getSenderId}','byBar');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
+			//getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
+			//changeIcon(cID);
 		})
 
 		//demo按鈕
-		$(".demo").on("click", function () {
-			var Str = this.id
-			orderID = Str.substring(8);
-			console.log('orderId is: ',orderID)
-			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
-			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-			var prefix = 'logistic/OrderReserveByBar/bar/5';
-			var input = orderID;
-			reserveOrder(prefix,input,'${getSenderId}','byBar');
+		$(".demo").on("click",function () {
+			var Str = this.id.split('-');
+			oID = Str[3];
+			cID = Str[2];
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
+			//清除酒吧
+			reloadMarkers();
+			//清除送貨地點
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/bar/5',oID,'${getSenderId}','byBar');
+			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','byBar');
+			//getOrders('logistic/OrderSearchByBar',cID,'${getSenderId}','byBar');
+			//changeIcon(cID);
 		})
 		
-		$(".allnormal").on("click", function () {
-			var Str = this.id
-			orderID = Str.substring(8);
-			console.log('orderId is: ',orderID)
-			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
-			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-			var prefix = 'logistic/OrderReserveByBar/all/60';
-			var input = orderID;
-			reserveOrder(prefix,input,'${getSenderId}','all');
+		$(".allnormal").on("click",function () {
+			var Str = this.id.split('-');
+			oID = Str[3];
+			cID = Str[2];
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
+			//清除酒吧
+			reloadMarkers();
+			//清除送貨地點
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/all/60',oID,'${getSenderId}','all');
 			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
+			//getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
+			//changeIcon(cID);
 		})
 
 		//demo按鈕
-		$(".alldemo").on("click", function () {
-			var Str = this.id
-			orderID = Str.substring(8);
-			console.log('orderId is: ',orderID)
-			//window.location.href = '<c:url value="/logistic/OrderReserveByBar/'+orderID+'/${getSenderId}"/>';
-			//href="/Bartenders/logistic/orderReserve.do?oID=' + oID + '&sID='+senderId+'"
-			var prefix = 'logistic/OrderReserveByBar/all/5';
-			var input = orderID;
-			reserveOrder(prefix,input,'${getSenderId}','all');
+		$(".alldemo").on("click",function () {
+			var Str = this.id.split('-');
+			oID = Str[3];
+			cID = Str[2];
+			console.log('Str is: ',Str,'oID: ',oID,'element is: ',this);
+			//清除酒吧
+			reloadMarkers();
+			//清除送貨地點
+			reloadOrders();
+			reserveOrder('logistic/OrderReserveByBar/all/5',oID,'${getSenderId}','all');
 			
+			//getMarkers('logistic/OrderSearch',1,'${getSenderId}','all');
+			//getOrders('logistic/OrderSearchByBar',0,'${getSenderId}','all');
+			//changeIcon(cID);
 		})
 		
 		listR = $('button[id^="9"][class*="reserve"]');
 		listR.attr("disabled",true);
-		console.log('class length: ',listR.length);
+		console.log('listR number: ',listR.length);
 		for(var i=0;i<listR.length;i++){
 			listR[i].innerHTML = '已接單';
 		}	

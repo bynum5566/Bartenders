@@ -20,6 +20,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBar.css">
+	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/progressBarInfo.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/ActivityStyle.css">
 	<link rel="stylesheet" type="text/css" href="/Bartenders/CSS/infoWindow.css">
 	<meta name="google-signin-client_id" content="1074410414033-5sfqlbhj6c4tgk8t06164c13kbrh8v88.apps.googleusercontent.com">
@@ -265,7 +266,7 @@
 												<button id="single${Activity.activityId}" class="singlePage" style="width:200px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px">進入活動頁面</button>
 												<button
 													id="${Activity.status}-${Activity.activityId}-${Activity.userId}"
-													class="edit visible" style="width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
+													class="edit" style="width:65px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">編輯</button>
 												
 												<!-- 活動推播 -->
 												<button class="visible pushAct" id="${Activity.status}-${Activity.activityId}-${Activity.name}-promote" style="width:120px;height:40px;padding:5px;margin:2px auto;vertical-align:middle;color:white;line-height:31px;">

@@ -285,7 +285,7 @@ public class FunctionByActivity {
 		Map<String, String> temp = new HashMap<String, String>();
 		m.addAttribute("temp", temp);
 		if (name == null || name.length() == 0) {
-			errors.put("name", "尚未輸入活動名稱");
+			errors.put("name", "未輸入活動名稱");
 		}
 
 		if (type.equals("no")) {
@@ -304,7 +304,7 @@ public class FunctionByActivity {
 		}
 		
 		if ((lat==0)||(lng==0)) {
-			errors.put("map", "尚未點選地圖設定地點");
+			errors.put("map", "尚未設定地圖");
 		}
 		
 //		if (limitNum == null) {
@@ -319,11 +319,11 @@ public class FunctionByActivity {
 //			errors.put("actualNum", "尚未輸入內建");
 //		}
 		
-		if (brief == null || brief.length() == 0) {
+		if (brief == null || brief.length() == 0 || brief.equals("活動簡介")) {
 			errors.put("brief", "尚未輸入簡介");
 		}
 		
-		if (detail == null || detail.length() == 0) {
+		if (detail == null || detail.length() == 0 || detail.equals("活動內容")) {
 			errors.put("detail", "尚未輸入內容");
 		}
 		
@@ -335,6 +335,13 @@ public class FunctionByActivity {
 
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("資料不完整");
+			if(userId>499999) {
+				Company company = cSer.selectCompany(userId);
+				m.addAttribute("company",company);
+			}else if(userId<499999) {
+				Users user = uDao.selectUser(userId);
+				m.addAttribute("user",user);
+			}
 			temp.put("name", String.valueOf(name));
 
 			temp.put("type", type);
@@ -352,9 +359,9 @@ public class FunctionByActivity {
 				System.out.println("preUrl is:"+preUrl);
 				temp.put("preUrl", "/editActivity.do");
 				return "logistic/ActivitySingleEdit";
-			}else if(preUrl.equals("/ActivityCreate")) {
+			}else if(preUrl.equals("/ActivityCreate.do")) {
 				System.out.println("preUrl is:"+preUrl);
-				temp.put("preUrl", "/ActivityCreate");
+				temp.put("preUrl", "/ActivityCreate.do");
 				return "logistic/ActivityCreate";
 			}
 		}
@@ -399,7 +406,7 @@ public class FunctionByActivity {
 			aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
 			System.out.println("try to redirect to ActivityManage");
 			return "redirect:/queryActivityByUser.do?currentId="+userId;
-		}else if(preUrl.equals("/ActivityCreate")) {
+		}else if(preUrl.equals("/ActivityCreate.do")) {
 			System.out.println("這是建立活動");
 			activity = new Activity();
 			aSer.saveActivity(activity,userId, name, address, lat, lng, type, filename, newBrief,newDetail, beginTime, endTime, limitNum, targetNum, actualNum);
@@ -503,8 +510,24 @@ public class FunctionByActivity {
 //		Activity activity = aSer.uniqueQuery("activityId",activityId);
 //		System.out.println("return list: "+activity);
 //		m.addAttribute("Activity",activity);
-		List<Activity> list = aDao.query("activityId",activityId);
+		//List<Activity> list = aDao.query("activityId",activityId);
+		List<Activity> list = aSer.queryJoker("activityId",activityId);
 		System.out.println("return list: "+list);
+		
+		Integer id = null;
+		for(Activity a:list) {
+			id = a.getUserId();
+			String detail = a.getDetail();
+			String newDetail = detail.replace("<br>", "\n");
+			a.setDetail(newDetail);
+		}
+		if(id>499999) {
+			Company company = cSer.selectCompany(id);
+			m.addAttribute("company",company);
+		}else if(id<499999) {
+			Users user = uDao.selectUser(id);
+			m.addAttribute("user",user);
+		}
 		m.addAttribute("activity",list);
 //		response.sendRedirect("ManageActivity");
 		
@@ -514,7 +537,21 @@ public class FunctionByActivity {
 		return "logistic/ActivitySingleEdit";
 	}
 	
-	
+	@RequestMapping(path = "ActivityCreate.do",method = RequestMethod.GET)
+	public String ActivityCreate(HttpServletRequest request, HttpServletResponse response, Model m,
+			@RequestParam(name = "currentId")Integer currentId,RedirectAttributes redirectAttributes
+			) throws IOException, ParseException {
+
+		if(currentId>499999) {
+			Company company = cSer.selectCompany(currentId);
+			m.addAttribute("company",company);
+		}else if(currentId<499999) {
+			Users user = uDao.selectUser(currentId);
+			m.addAttribute("user",user);
+		}
+
+		return "logistic/ActivityCreate";
+	}
 	@RequestMapping(path = "queryActivityByActivityId.do",method = RequestMethod.GET)
 	public String queryActivityByActivityId(HttpServletRequest request, HttpServletResponse response, Model m,
 			@RequestParam(name = "activityId")Integer activityId,RedirectAttributes redirectAttributes
@@ -524,6 +561,9 @@ public class FunctionByActivity {
 		Integer id = null;
 		for(Activity a:list) {
 			id = a.getUserId();
+			String detail = a.getDetail();
+			String newDetail = detail.replace("<br>", "\n");
+			a.setDetail(newDetail);
 		}
 		if(id>499999) {
 			Company company = cSer.selectCompany(id);
@@ -551,10 +591,18 @@ public class FunctionByActivity {
 		}
 		System.out.println("接收到的id參數為: "+currentId);
 		List<Activity> list = aSer.queryJoker("userId",currentId);
+
+		List<Activity> notBarShop = new ArrayList<Activity>();
+		for(Activity a:list) {
+			if(!a.getType().equals("bar")&&!a.getType().equals("shop")) {
+				notBarShop.add(a);
+			}
+		}
+		m.addAttribute("activity",notBarShop);
 		//不檢查 將所有個人活動全部撈出來
 //		boolean status = aDao.checkEndTime(list);
 //		System.out.println("all activities is checked: "+status);
-		m.addAttribute("activity",list);
+//		m.addAttribute("activity",list);
 //		redirectAttributes.addFlashAttribute("activitytest", list);
 		
 		//for websocket
@@ -578,19 +626,16 @@ public class FunctionByActivity {
 			@RequestParam(name = "userId")Integer userId,
 			@RequestParam(name = "activityId")Integer activityId
 			) throws IOException, ParseException {
-		List<Activity> rs = aDao.query("activityId",activityId);
+		List<Activity> rs = aSer.queryJoker("activityId",activityId);
 		for(Activity a:rs) {
 			if(a.getStatus().equals("O")) {
 				a.setStatus("N");
 			}
 		}
-		List<Activity> activity = aDao.query("userId",userId);
-		m.addAttribute("activity",activity);
-		
 		//for websocket
 		WebSocketTest.setModel(m);
 		
-		return "logistic/ActivityManage";
+		return "redirect:/queryActivityByUser.do?currentId="+userId;
 	}
 	
 	

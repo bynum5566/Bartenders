@@ -147,6 +147,13 @@
 	float: right;
 	display: none;
 }
+
+#message{
+	font-size: 23px;
+	line-height: 30px;
+}
+
+
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {

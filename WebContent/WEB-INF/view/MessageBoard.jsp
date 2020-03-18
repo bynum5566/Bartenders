@@ -148,7 +148,7 @@ form.panel {
 								<div style="color: WhiteSmoke;">
 									[<a href=<c:url value="/messageBoardShowList.controller"/>>主題列表</a>]
 
-									[<a href=<c:url value="/FLogin"/>>facebook登入</a>]
+
 								</div>
 
 
@@ -163,19 +163,7 @@ form.panel {
 							</script>
 							<!--縮放用JS，結束-->
 
-							<!-- fb按鈕 -->
-							<div style="margin: 20px;">
-								目前狀態： <span id="FB_STATUS_1"></span>
-								<div id="fb-root"></div>
-								<script async defer crossorigin="anonymous"
-									src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v6.0&appId=198371544718507&autoLogAppEvents=1"></script>
-
-
-								<div class="fb-login-button" data-width="" data-size="large"
-									data-button-type="continue_with" data-layout="default"
-									data-auto-logout-link="false" data-use-continue-as="true"></div>
-							</div>
-							<!-- fb按鈕 -->
+							
 							<ul>
 								<li style="color: white; font-weight: bold;">
 									<form action='messageBoard.controller' method='post'
@@ -550,11 +538,10 @@ form.panel {
 
 			// 登入 FB 且已加入會員
 			if (response.status === 'connected') {
-				html = "已登入 FB<br/>";
 
 				FB.api('/me?fields=id,name,email', function(response) {
 					console.log(response);
-					html += "會員暱稱：" + response.name + "<br/>";
+					html += response.name + "<br/>";
 
 					target.innerHTML = html;
 					$('#facebookName').val(response.name);
@@ -565,7 +552,9 @@ form.panel {
 
 			// 登入 FB, 未偵測到加入會員
 			else if (response.status === "not_authorized") {
-				target.innerHTML = "已登入 FB，但未加入 WFU BLOG DEMO 應用程式";
+
+				target.innerHTML = "尚未連動本站";
+
 			}
 
 			// 未登入 FB

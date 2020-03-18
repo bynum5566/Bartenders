@@ -170,10 +170,12 @@ public class FunctionByLogistic {
 	
 	@RequestMapping(path = "/logistic/DeliverReady.do",method = RequestMethod.GET)
 	public String DeliverReady(@RequestParam(name = "orderStatus")int status,
-			@RequestParam(name = "orderID")String ID,Model m) {
+			@RequestParam(name = "orderID")String oID,
+			@RequestParam(name = "sID")Integer sID,Model m) {
 //		Logistic statusList = lSer.ChangeStatus(status,ID);
-		lSer.deliverReady(ID);
-		List<Logistic> orders = lSer.queryAll();
+		lSer.deliverReady(oID);
+		//List<Logistic> orders = lSer.queryAll();
+		List<Logistic> orders = lSer.queryJoker("sID","'"+sID+"'");
 		m.addAttribute("logistic",orders);
 //		m.addAttribute("type",orders);
 		if(orders!=null) {
