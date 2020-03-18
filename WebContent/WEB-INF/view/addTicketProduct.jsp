@@ -282,7 +282,7 @@
 													<h3>票券有效期間</h3>
 												</li>
 												<li>
-													<input name="setTKTime" id="setB1" class="dateRange2 form-control" type="text" required="required"/>
+													<input name="setTKTime" id="setTK1" class="dateRange2 form-control" type="text" required="required"/>
 												</li>
 											</ul>
 										</div>
@@ -354,22 +354,26 @@
 
 		function showT1() {
 			var T1 = document.getElementById("setA");
+			var T01 = document.getElementById("setA1");
 			var T2 = document.getElementById("setB");
+			var T02 = document.getElementById("setB1");
 			T1.className = "sho";
-			T1.name = "setTimeAct";
+			T01.name = "setTimeAct";
 			T2.className = "nosho";
-			T2.name = "setTimeNon";
+			T02.name = "setTimeNon";
 			$('.sho').show();
 			$('.nosho').hide();
 		}
 
 		function showT2() {
 			var T1 = document.getElementById("setA");
+			var T01 = document.getElementById("setA1");
 			var T2 = document.getElementById("setB");
+			var T02 = document.getElementById("setB1");
 			T2.className = "sho";
-			T2.name = "setTimeAct";
+			T02.name = "setTimeAct";
 			T1.className = "nosho";
-			T1.name = "setTimeNon";
+			T01.name = "setTimeNon";
 			$('.sho').show();
 			$('.nosho').hide();
 		}

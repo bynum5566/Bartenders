@@ -33,11 +33,11 @@ public CartService(
 		this.myBarDAO = myBarDAO;
 }
 	public MyBar selectMyBarByCompanyId(int companyId) {
-		Pf("selectMyBarByCompanyId，開始");
+//		Pf("selectMyBarByCompanyId，開始");
 
 		MyBar myBarX = myBarDAO.selectBar(companyId);
 		printValueTypeTime("myBarX", myBarX);
-		Pf("selectMyBarByCompanyId，結束");
+//		Pf("selectMyBarByCompanyId，結束");
 		return myBarX;
 	}
 	
@@ -55,15 +55,15 @@ public CartService(
 
 	
 	public ProductData selectP(String pdId) { /*更名不可*/
-		CartService.Pf("cartService.selectP，開始");
+//		CartService.Pf("cartService.selectP，開始");
 		CartService.printValueTypeTime("pdId",pdId    );
 		
 		return productDataDAO.selectP(pdId);
 	}
 	
 	public ProductData selectProductDataByPdid(String pdId) {
-		CartService.Pf("selectProductDataByPdid，開始");
-		System.out.println("productDataDAO = "+ productDataDAO);
+//		CartService.Pf("selectProductDataByPdid，開始");
+//		System.out.println("productDataDAO = "+ productDataDAO);
 		//CartService.printValueTypeTime("productDataDAO",productDataDAO    );
 		
 		ProductData productX;
@@ -215,7 +215,7 @@ public CartService(
 
 	//public Collection<? extends ProductData> selectAllBar() {
 	 public List<Company> selectAllBar() {	/*回傳資料庫中所有的Bar*/
-		 CartService.Pf("selectAllBar開始");
+//		 CartService.Pf("selectAllBar開始");
 		 List <Company>	listOfBar = new ArrayList<>();
 		 listOfBar = companyDAO.selectAll();
 		return listOfBar;		

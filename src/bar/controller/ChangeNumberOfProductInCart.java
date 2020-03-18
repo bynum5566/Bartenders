@@ -43,13 +43,13 @@ public class ChangeNumberOfProductInCart {
 			CartService cartsSrvice,
 			CartDAO cartDao,
 			OrdersDAO ordersDAO) {
-		CartService.Pf("AddToCartButtonController，Start");
+//		CartService.Pf("AddToCartButtonController，Start");
 		this.pService = pService;
 		this.uService = uService; /* C */
 		this.cartsSrvice = cartsSrvice;
 		this.cartDao = cartDao;
 		this.ordersDAO = ordersDAO;
-		CartService.Pf("AddToCartButtonController，End");
+//		CartService.Pf("AddToCartButtonController，End");
 	}
 
 	
@@ -59,7 +59,7 @@ public class ChangeNumberOfProductInCart {
 			String account,
 			@RequestParam("num") String num, 
 			Model m) {
-		CartService.Pf("AddToCartButtonProcessAction，Start"); // A
+//		CartService.Pf("AddToCartButtonProcessAction，Start"); // A
 		//==========================
 //		String pdId = "2"; // A
 //		int companyId = 500000; // A
@@ -73,16 +73,16 @@ public class ChangeNumberOfProductInCart {
 		String pdId = cartX.getPdId();
 		
 		
-		System.out.println("num = " + num);	
+//		System.out.println("num = " + num);	
 //		System.out.println("pdId = " + pdId);
 		//ProductData pX = pService.selectProductVer2(pdId);	/* 用service取 */
 		ProductData pX = pService.select(pdId);
-		System.out.println("【pX.getPdStock()】=" + pX.getPdStock()); // A
-		System.out.println("【pX.getProductName()】=" + pX.getProductName()); // A
-		System.out.println("【account】=" + account);
+//		System.out.println("【pX.getPdStock()】=" + pX.getPdStock()); // A
+//		System.out.println("【pX.getProductName()】=" + pX.getProductName()); // A
+//		System.out.println("【account】=" + account);
 		Users uX;/* C */
 		uX = uService.select(account); /* C */
-		CartService.Pf("您好，" + uX.getUserName()); /* C */
+//		CartService.Pf("您好，" + uX.getUserName()); /* C */
 		m.addAttribute("account", account);/* D */
 		m.addAttribute("UserName", uX.getUserName());/* D */
 		m.addAttribute("ProductName", pX.getProductName());/* D */
@@ -91,8 +91,8 @@ public class ChangeNumberOfProductInCart {
 		m.addAttribute("pdPrice", pX.getPdPrice());
 		m.addAttribute("validDate", pX.getValidDate());
 		
-		System.out.println("【pX.getPdId()】=" + pX.getPdId()); // D
-		CartService.Pf("AddToCartButtonProcessAction，End");
+//		System.out.println("【pX.getPdId()】=" + pX.getPdId()); // D
+//		CartService.Pf("AddToCartButtonProcessAction，End");
 		/*====*/
 		List <Orders> orderList;
 		Integer companyId, status, userId ,shipping;
@@ -102,7 +102,7 @@ public class ChangeNumberOfProductInCart {
 		shipping = 1;
 //		orderList = cartsSrvice.selectOrderListByCompanyIdStatusUserIdNormal(companyId, status, userId, shipping);
 		orderList = ordersDAO.selectListUserCompanyStatusOrderNormal(companyId, status, userId, shipping);
-		System.out.println(orderList.size());
+//		System.out.println(orderList.size());
 		/*====*/
 		
 		
