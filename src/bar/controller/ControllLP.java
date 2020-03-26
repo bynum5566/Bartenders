@@ -29,7 +29,7 @@ import bar.model.OrdersService;
 import net.sf.json.JSONObject;
 
 @Controller
-@SessionAttributes(names = {"reqConfirmUrl","orderId","xlID","xlSecret","amount"})
+@SessionAttributes(names = {"reqConfirmUrl","xlID","xlSecret","amount","orderId"})
 public class ControllLP{
 	
 	private OrdersService oService;
@@ -46,17 +46,21 @@ public class ControllLP{
 	}
 
 	@RequestMapping(path = "/doLPay", method = RequestMethod.GET)
-	public void lPayProcess(@RequestParam(name="orderId") String orderId, HttpServletRequest hsRequest, HttpServletResponse hsResponse,Model m) throws ClientProtocolException, IOException, ServletException {
+	public void lPayProcess(@RequestParam(name="orderId") String orderId, HttpServletRequest hsRequest, HttpServletResponse hsResponse,Model m) 
+	throws ClientProtocolException, IOException, ServletException {
 		String lPayResponse = doLPay(orderId);
 		String[] findPayurl = lPayResponse.split("\"");
 		String[] findTxId = lPayResponse.split(":|,");
+		System.out.println("用來拼湊出LP官方URL的專屬交易ID：（findTxId）"+findTxId);
 		String reqConfirmUrl="https://sandbox-api-pay.line.me/v2/payments/"+findTxId[13]+"/confirm";
 		m.addAttribute("reqConfirmUrl", reqConfirmUrl);
 		m.addAttribute("orderId", orderId);
 		m.addAttribute("xlID", xlID);
 		m.addAttribute("xlSecret", xlSecret);
 		m.addAttribute("amount", amount);
+		System.out.println("接下來要跳轉的LP官方頁面（findPayurl[15]）："+findPayurl[15]);
 		hsResponse.sendRedirect(findPayurl[15]);
+		System.out.println("下一個controller要用到的「確認交易URL」（reqConfirmUrl）："+reqConfirmUrl);
 	}
 
 	private String doLPay(String orderId) throws ClientProtocolException, IOException {
@@ -65,29 +69,20 @@ public class ControllLP{
 		HttpPost httpPost = new HttpPost(url);
 		String encoding = null;
 		
-		System.out.println("orderId="+orderId);
 		order = oService.selectOrder(orderId);
-		System.out.println(order.getCompanyId());
 		Company company = cService.selectCompany(order.getCompanyId());
 		xlID=company.getX_LINE_ChannelId();
 		xlSecret=company.getX_LINE_ChannelSecret();
 		amount=order.getAmount();
-		System.out.println(amount);
-		System.out.println(xlID);
-		System.out.println(xlSecret);
+
 		httpPost.setHeader("Content-Type", "application/json;charset=UTF-8");
 		httpPost.setHeader("X-LINE-ChannelId", xlID);
 		httpPost.setHeader("X-LINE-ChannelSecret", xlSecret);
-//		"1653764156"
-//		"a4e495c062ff3b7402b974c43399ce81"
 		
 		JSONObject jsonParam = new JSONObject();
 		jsonParam.put("amount", amount); 
-		//備用圖片url"http://placehold.it/84x84"); 
-		//以orderId撈出BEAN
 		jsonParam.put("productImageUrl", "https://i.imgur.com/ae3GSBi.png"); 
 		jsonParam.put("confirmUrl", "http://localhost:8080/Bartenders/finishPayment.jsp"); 
-		//以orderId撈出BEAN
 		jsonParam.put("productName", "TestProduct"); 
 		jsonParam.put("orderId", orderId); 
 		jsonParam.put("currency", "TWD"); 
@@ -97,7 +92,6 @@ public class ControllLP{
 		entity.setContentType("application/json");
 		httpPost.setEntity(entity);
 
-		// 獲取結果實體
 		CloseableHttpResponse response = client.execute(httpPost);		
 		HttpEntity hpEntity = response.getEntity();
 		String lPayResponse="";
@@ -105,7 +99,7 @@ public class ControllLP{
 			lPayResponse = EntityUtils.toString(hpEntity, encoding);}
 		EntityUtils.consume(hpEntity);
 		response.close();
-		System.out.println(lPayResponse);
+		System.out.println("伺服器的回應＝"+lPayResponse);//建議印出，如果有問題可以查看伺服器告知的代碼及訊息
 		return lPayResponse;
 	}
 }
